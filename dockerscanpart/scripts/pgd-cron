@@ -1,0 +1,2 @@
+0 * * * * find /pgd_data -type f 1>/dev/null 2>/dev/null; cd /pgd; python3 ./pgd.py
+30 * * * * find /pgd_data -type f 1>/dev/null 2>/dev/null; cd /pgd; python3 ./db-insert.py

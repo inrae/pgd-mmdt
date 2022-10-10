@@ -1,0 +1,41 @@
+<?php
+
+# Nom du fichier: doc
+# Auteur(s): D.JACOB 
+# Copyright: (c) INRAE - 2015-2021
+#
+session_start([ 'cookie_lifetime' => 3600 ]);
+
+date_default_timezone_set('Europe/Paris');
+ini_set('error_reporting', E_ALL & ~E_NOTICE);
+ini_set("include_path", ".:/usr/share/php");
+ini_set("display_errors", 1);
+
+$about_file='docs/about.md';
+$meta_file='docs/doc.md';
+$config_file='docs/config.md';
+
+include ('inc/parsedown/Parsedown.inc');
+include ('inc/parsedown/ParsedownExtra.inc');
+
+$PATH='';
+$FUNC='';
+
+if ($_SERVER['PATH_INFO']) {
+    $urloptions = explode("/",$_SERVER['PATH_INFO']);
+    array_shift($urloptions);
+    if (count($urloptions)>0) {
+        $FUNC =  array_shift($urloptions);
+        $PATH='../';
+    }
+}
+
+if ($FUNC=='about' || isset($_GET['about'])) {
+    include ('inc/doc/about.inc');
+} elseif ($FUNC=='meta' || isset($_GET['meta'])) {
+    include ('inc/doc/doc.inc');
+} elseif ($FUNC=='config' || isset($_GET['config'])) {
+    include ('inc/doc/config.inc');
+}
+
+?>
