@@ -1,0 +1,104 @@
+#!/bin/bash
+MYDIR=`dirname $0` && [ ! `echo "$0" | grep '^\/'` ] && MYDIR=`pwd`/$MYDIR
+
+DEV=1
+
+# Local HTTP Port for web application
+WEB_PORT=8087
+[ $DEV -eq 1 ] && WEB_PORT=8087
+
+# Path to the data
+DATADIR=/opt/dockerApps/ODAM/data/
+[ $DEV -eq 1 ] && DATADIR=/media/sf_DATA/
+
+# Docker images
+DB_IMAGE=pgd-mmdt-db
+SCAN_IMAGE=pgd-mmdt-scan
+WEB_IMAGE=pgd-mmdt-web
+
+# Docker containers
+DB_CONTAINER=mmdt-db
+SCAN_CONTAINER=mmdt-scan
+WEB_CONTAINER=mmdt-web
+
+# Volume name for Mondo DB
+MONGO_VOL=mmdt-mongodb
+MONGO_PORT=27017
+
+CMD=$1
+
+usage() { echo "usage: sh $0 start|stop|restart|fullstart|ps|build|initdb|scan";  exit 1; }
+
+case "$CMD" in
+   start)
+        echo "Lauching ... "
+        [ ! -d $MYDIR/web/tmp ] && mkdir -p $MYDIR/web/tmp
+        [ -d $MYDIR/web/tmp ] && chmod 777 $MYDIR/web/tmp
+        chmod 777 $MYDIR/web/json/*.json
+        VOLDBSRC="-v $MYDIR/dockerdbpart/initialisation:/js"
+        VOLSCANSRC=
+        [ $DEV -eq 1 ] && VOLSRCSCAN="-v $MYDIR/dockerscanpart/scripts:/pgd"
+        sudo docker run -d -v $MONGO_VOL:/data/db -v $DATADIR:/pgd_data -v $MYDIR/web/json:/json $VOLDBSRC -p $MONGO_PORT:27017 --name $DB_CONTAINER $DB_IMAGE
+        sudo docker run -d -v $DATADIR:/pgd_data -v $MYDIR/web/json:/json $VOLSRCSCAN --link $DB_CONTAINER --name $SCAN_CONTAINER $SCAN_IMAGE
+        sudo docker run -d -p $WEB_PORT:80 -v $MYDIR/web:/var/www/html -v $DATADIR:/mnt -v $MYDIR/etc:/etc/pgd-mmdt --link $DB_CONTAINER --name $WEB_CONTAINER $WEB_IMAGE
+        [ $? -eq 0 ] && echo OK
+        #sh $0 initdb 
+        #sh $0 scan
+        ;;
+   fullstart)
+        ( sh $0 start ; sh $0 initdb ; sh $0 scan )
+        ;;
+   stop)
+        sudo docker rm -f $WEB_CONTAINER $SCAN_CONTAINER $DB_CONTAINER
+        echo -n "Remove volumes ... "
+        for v in $(sudo docker volume ls | grep local | grep -v $MONGO_VOL | cut -d' ' -f6); do
+           sudo docker volume rm $v 1>/dev/null 2>/dev/null
+        done
+        sudo docker volume rm $MONGO_VOL 1>/dev/null 2>/dev/null
+        rm -f $MYDIR/web/tmp/*
+        [ $? -eq 0 ] && echo OK
+        ;;
+   restart)
+        ( sh $0 stop ; sh $0 fullstart )
+        ;;
+   ps)
+        sudo docker ps | head -1
+        sudo docker ps | grep "mmdt-"
+        ;;
+   build)
+        ( cd $MYDIR/dockerdbpart; sudo docker build -t $DB_IMAGE . )
+        ( cd $MYDIR/dockerscanpart; sudo docker build -t $SCAN_IMAGE . )
+        ( cd $MYDIR/dockerwebpart; sudo docker build -t $WEB_IMAGE . )
+        ;;
+   initdb)
+        echo -n "Init DB ... "
+        sudo docker exec -it $DB_CONTAINER /bin/bash -c "cd /js; python3 ./generate_setupdb.py"
+        sudo docker exec -it $DB_CONTAINER mongo /js/setupdb.js 1>/dev/null 2>/dev/null
+        [ $? -eq 0 ] && echo OK
+        [ $? -ne 0 ] && echo FAILED
+        ;;
+   scan)
+        echo -n "Scanning ... "
+        sudo docker exec -it $SCAN_CONTAINER /bin/bash -c "cd /pgd; python3 ./pgd.py"
+        sudo docker exec -it $SCAN_CONTAINER /bin/bash -c "cd /pgd; python3 ./db-insert.py"
+        [ $? -eq 0 ] && echo OK
+        [ $? -ne 0 ] && echo FAILED
+        ;;
+   passwd)
+        sudo docker exec -it $WEB_CONTAINER /usr/bin/htpasswd -c /etc/pgd-mmdt/.htpasswd admin
+        ;;
+   vol)
+        sudo docker volume ls
+        ;;
+   reset)
+        sudo docker volume rm $MONGO_VOL
+        ;;
+   delimages)
+        sudo docker rmi -f $(sudo docker images | grep pgd-mmdt- | sed -e "s/  \+/@/g" | cut -d'@' -f3)
+        ;;
+   *) usage
+      exit 2
+esac
+
+exit 0
+

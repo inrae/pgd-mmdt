@@ -1,0 +1,5 @@
+dockerscanpart/scripts/__pycache__/
+dockerscanpart/scripts/*.json
+web/tmp/*
+web/json/*.json.old
+*~

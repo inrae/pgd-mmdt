@@ -1,0 +1,88 @@
+{
+    "@context": "https://doi.org/10.5063/schema/codemeta-2.0",
+    "@type": "SoftwareSourceCode",
+    "license": "https://spdx.org/licenses/GPL-3.0",
+    "codeRepository": "https://github.com/inrae/pgd-mmdt",
+    "dateCreated": "2021-01-01",
+    "datePublished": "2022-10-10",
+    "dateModified": "2022-10-10",
+    "downloadUrl": "https://github.com/inrae/pgd-mmdt/archive/refs/tags/1.1.tar.gz",
+    "issueTracker": "https://github.com/inrae/pgd-mmdt/issues",
+    "name": "Indexator",
+    "version": "1.1",
+    "description": "Indexator is a metadata management tool that addresses the problems of organising, documenting, storing and sharing data in a research unit or infrastructure, and fits perfectly into a structural data management plan.",
+    "applicationCategory": "Data Management System",
+    "releaseNotes": "Fisrt stable release",
+    "developmentStatus": "active",
+    "funder": {
+        "@type": "Organization",
+        "name": "INRAE"
+    },
+    "keywords": [
+        "Data management",
+        "FAIR",
+        "metadata",
+        "storage"
+    ],
+    "programmingLanguage": [
+        "PHP",
+        "Javascript"
+    ],
+    "operatingSystem": [
+        "Linux",
+        "Windows"
+    ],
+    "softwareRequirements": [
+        "Docker or Hypervisor such as Oracle VirtualBox"
+    ],
+    "relatedLink": [
+        "https://pmb-bordeaux.fr/pgd-mmdt/doc/about"
+    ],
+    "author": [
+        {
+            "@type": "Person",
+            "@id": "https://orcid.org/0000-0003-2727-0070",
+            "givenName": "François",
+            "familyName": "Ehrenmann",
+            "email": "francois.ehrenmann@inrae.fr",
+            "affiliation": {
+                "@type": "Organization",
+                "name": "INRAE UMR 1202 BioGeCo"
+            }
+        },
+        {
+            "@type": "Person",
+            "givenName": "Philippe",
+            "familyName": "Chaumeil",
+            "email": "philippe.chaumeil@inrae.fr",
+            "affiliation": {
+                "@type": "Organization",
+                "name": "INRAE UMR 1202 BioGeCo"
+            }
+        },
+        {
+            "@type": "Person",
+            "@id": "https://orcid.org/0000-0002-6687-7169",
+            "givenName": "Daniel",
+            "familyName": "Jacob",
+            "email": "daniel.jacob@inrae.fr",
+            "affiliation": {
+                "@type": "Organization",
+                "name": "INRAE UMR 1332 Biologie du Fruit et Pathogènes"
+            }
+        }
+    ],
+    "contributor": [
+        {
+            "@type": "Person",
+            "@id": "https://orcid.org/0000-0002-3377-7516",
+            "givenName": "Edouard",
+            "familyName": "Guitton",
+            "email": "edouard.guitton@inrae.fr",
+            "affiliation": {
+                "@type": "Organization",
+                "name": "INRAE Dept. Santé Animal & Emerg'IN"
+            }
+        }
+    ]
+}
