@@ -7,6 +7,4 @@ web/json/*.json.old
 web/conf/*.json.old
 web/inc/dev.inc
 web/inc/local.inc
-web/inc/oaipmh
-web/oai
 *~
