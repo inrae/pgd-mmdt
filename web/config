@@ -1,0 +1,31 @@
+<?php
+
+# Nom du fichier: search
+# Auteur(s): D.JACOB 
+# Copyright: (c) INRAE - 2015-2021
+#
+session_start([ 'cookie_lifetime' => 3600 ]);
+
+date_default_timezone_set('Europe/Paris');
+ini_set('error_reporting', E_ALL & ~E_NOTICE);
+ini_set("include_path", ".:/usr/share/php");
+ini_set("display_errors", 1);
+
+// Chargement fichier config
+require_once('inc/config/config.inc');
+require_once('inc/functions/functions.inc');
+require_once('inc/convert/convert.inc');
+
+include ('inc/header.inc');
+
+if ($FUNC=='view' || isset($_GET['view'])) {
+    include ('inc/convert/tsv2view.inc');
+} elseif ($FUNC=='doc' || isset($_GET['doc'])) {
+    include ('inc/convert/tsv2md.inc');
+} else {
+    include ('inc/convert/tsv2json.inc');
+}
+
+include ('inc/footer.inc');
+
+?>

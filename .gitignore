@@ -1,0 +1,10 @@
+local.conf
+dockerscanpart/scripts/__pycache__/
+dockerscanpart/scripts/*.json
+web/tmp/*
+web/cache/*
+web/json/*.json.old
+web/conf/*.json.old
+web/inc/dev.inc
+web/inc/local.inc
+*~

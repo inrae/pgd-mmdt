@@ -1,0 +1,52 @@
+<?php
+
+# Nom du fichier: search
+# Auteur(s): D.JACOB 
+# Copyright: (c) INRAE - 2015-2021
+#
+session_start([ 'cookie_lifetime' => 3600 ]);
+
+date_default_timezone_set('Europe/Paris');
+ini_set('error_reporting', E_ALL & ~E_NOTICE);
+ini_set("include_path", ".:/usr/share/php");
+ini_set("display_errors", 1);
+
+// Chargement fichier config
+include ('inc/config/config.inc');
+include ('inc/functions/functions.inc');
+
+do {
+   if (isset($_GET['json'])) {
+      $json = base64_decode($_GET['json']);
+      echo isJSONValid($json);
+      break;
+   }
+   if (isset($_GET['file'])) {
+      if (is_file($_GET['file'])) { echo "1"; } else { echo "0"; }
+      break;
+   }
+   if (isset($_GET['redirect'])) {
+      header("Location: ".dirname($_SERVER['HTTP_REFERER']));
+      break;
+   }
+   if ($DEV && isset($_GET['header'])) {
+      echo "HTTP_X_APP_NAME = ".$_SERVER['HTTP_X_APP_NAME'].'<br>';
+      echo "HTTP_HOST = ".$_SERVER['HTTP_HOST'].'<br>';
+      echo "HTTP_X_FORWARDED_HOST = ".$_SERVER['HTTP_X_FORWARDED_HOST'].'<br>';
+      echo "HTTP_X_REAL_IP = ".$_SERVER['HTTP_X_REAL_IP'].'<br>';
+      echo "HTTP_X_FORWARDED_FOR = ".$_SERVER['HTTP_X_FORWARDED_FOR'].'<br>';
+      break;
+   }
+   if ($DEV && isset($_GET['lookup'])) {
+      echo '<pre>'; print_r(dns_get_record($_GET['lookup'], DNS_NS)); echo '</pre><br>';
+      echo '<pre>'; print_r(dns_get_record($_GET['lookup'], DNS_A)); echo '</pre><br>';
+      break;
+   }
+   if ($DEV && isset($_GET['phpinfo'])) {
+      echo phpinfo();
+      break;
+   }
+   echo "ok";
+} while(0);
+
+?>

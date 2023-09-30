@@ -1,0 +1,156 @@
+/*  Begin: Inline Edit Table */
+
+body {
+  display: block;
+  min-height: 100%;
+}
+
+footer {
+  position: absolute;
+  bottom: 120px;
+  width:65%;
+}
+
+input {
+  border: 1px solid #eeeaea; /* transparent; */
+  padding: 5px;
+  font-size: 16px;
+  width: 100%;
+}
+
+.tablehead {
+  background: #7693a0; /*#607d8b;*/
+  text-transform: uppercase;
+  vertical-align: top;
+  color: #fff;
+  font-weight: bold;
+  text-align: left;
+}
+
+.tablehead a {
+  color: #fff;
+}
+
+.tablehead a:hover {
+  text-decoration: none;
+}
+
+.tbl-btn {
+  min-width: 120px;
+}
+
+.tbl-main {
+  max-height: 400px;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+
+.tableFixHead {
+    overflow: auto;
+    height: 400px;
+}
+
+.tableFixHead thead th { 
+    position: sticky;
+    top: -1px; z-index: 1;
+    border-radius: 10px 10px 0px 0px;
+    vertical-align: middle;
+	background-color: #94aac1;
+    color: #fff;
+}
+
+
+.searchterm {
+  width: 300px;
+}
+
+.errvalid {
+  display: none;
+  background: #c47c86;;
+  color: #fff;
+  font-weight: bold;
+  border-radius: 15px;
+  border-top: 1px solid #dee2e6;
+  border-right: 1px solid #dee2e6;
+  border-left: 1px solid #dee2e6;
+  border-bottom: 1px solid #dee2e6;
+}
+
+.btn-errvalid {
+  background: #EC5840;
+  color: #ffffff;
+  font-weight: 400;
+  padding: 0.2rem 0.75rem;
+  font-size: 1rem;
+  font-weight: bold;
+  line-height: 1.5;
+  border-radius: 0.25rem;
+}
+
+.add, .edit, .save, .delete, .cancel {
+  outline: none;
+  background: none;
+  border: none;
+}
+
+.edit, .save, .delete, .cancel {
+  padding: 5px 10px;
+  cursor: pointer;
+  font-size: smaller;
+}
+
+.add {
+  float: right;
+  background: transparent;
+  border: 1px solid #ffffff;
+  color: #ffffff;
+  font-size: 13px;
+  padding: 0;
+  padding: 3px 5px;
+  cursor: pointer;
+}
+.add:hover {
+  background: #ffffff;
+  color: #00adee;
+}
+
+.save {
+  display: none;
+  background: #32AD60;
+  color: #ffffff;
+}
+.save:hover {
+  background: #27854a;
+}
+
+.edit {
+  background: #2199e8;
+  color: #ffffff;
+}
+.edit:hover {
+  background: #147dc2;
+}
+
+.delete {
+  background: #EC5840;
+  color: #ffffff;
+}
+.delete:hover {
+  background: #e23317;
+}
+
+.cancel {
+  display: none;
+  background: #ec9740;;
+  color: #ffffff;
+}
+.cancel:hover {
+  background: #de760b;;
+}
+
+.btn-send {
+  background-color: #557ca7;
+  border-color: white;
+}
+
+/*  End: Inline Edit Table */

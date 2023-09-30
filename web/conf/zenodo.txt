@@ -1,0 +1,52 @@
+Field	Type	Level	Array	Multiple	Property	Value type	Value source	Index	Prefix
+	upload_type	0	FALSE	FALSE		dataset			
+	communities	0	FALSE	FALSE		zenodo,inra			
+fulltitle	title	0	FALSE	FALSE		#VALUE			
+description	description	0	FALSE	FALSE		#VALUE			
+note	notes	0	FALSE	FALSE		#VALUE			
+access_rights	access_right	0	FALSE	FALSE		#VALUE			
+license	license	0	FALSE	FALSE		#VALUE			
+authors	creators	0	TRUE	TRUE					
+authors	creators	1	FALSE	FALSE	name	#VALUE			
+authors	creators	1	FALSE	FALSE	orcid	#DICO	cvlist:people	3	
+authors	creators	1	FALSE	FALSE	affiliation	#DICO	cvlist:people	2	
+contacts	contributors	0	TRUE	TRUE					
+contacts	contributors	1	FALSE	FALSE	type	ContactPerson			
+contacts	contributors	1	FALSE	FALSE	name	#VALUE			
+contacts	contributors	1	FALSE	FALSE	orcid	#DICO	cvlist:people	3	
+contacts	contributors	1	FALSE	FALSE	affiliation	#DICO	cvlist:people	2	
+collectors	contributors	1	TRUE	TRUE					
+collectors	contributors	1	FALSE	FALSE	type	DataCollector			
+collectors	contributors	1	FALSE	FALSE	name	#VALUE			
+collectors	contributors	1	FALSE	FALSE	orcid	#DICO	cvlist:people	3	
+collectors	contributors	1	FALSE	FALSE	affiliation	#DICO	cvlist:people	2	
+curators	contributors	1	TRUE	TRUE					
+curators	contributors	1	FALSE	FALSE	type	DataCurator			
+curators	contributors	1	FALSE	FALSE	name	#VALUE			
+curators	contributors	1	FALSE	FALSE	orcid	#DICO	cvlist:people	3	
+curators	contributors	1	FALSE	FALSE	affiliation	#DICO	cvlist:people	2	
+members	contributors	1	TRUE	TRUE					
+members	contributors	1	FALSE	FALSE	type	ProjectMember			
+members	contributors	1	FALSE	FALSE	name	#VALUE			
+members	contributors	1	FALSE	FALSE	orcid	#DICO	cvlist:people	3	
+members	contributors	1	FALSE	FALSE	affiliation	#DICO	cvlist:people	2	
+leader	contributors	1	TRUE	TRUE					
+leader	contributors	1	FALSE	FALSE	type	ProjectLeader			
+leader	contributors	1	FALSE	FALSE	name	#VALUE			
+leader	contributors	1	FALSE	FALSE	orcid	#DICO	cvlist:people	3	
+leader	contributors	1	FALSE	FALSE	affiliation	#DICO	cvlist:people	2	
+wpleader	contributors	1	TRUE	TRUE					
+wpleader	contributors	1	FALSE	FALSE	type	WorkPackageLeader			
+wpleader	contributors	1	FALSE	FALSE	name	#VALUE			
+wpleader	contributors	1	FALSE	FALSE	orcid	#DICO	cvlist:people	3	
+wpleader	contributors	1	FALSE	FALSE	affiliation	#DICO	cvlist:people	2	
+grantNumbers	grants	0	TRUE	TRUE					
+grantNumbers	grants	1	FALSE	FALSE	id	#DICO	cvlist:grant	2	
+keywords	keywords	0	TRUE	FALSE		#VALUE			
+topics	subjects	0	TRUE	TRUE					
+topics	subjects	1	FALSE	FALSE	identifier	#ONTO	cv:voinrae	1	
+topics	subjects	1	FALSE	FALSE	term	#VALUE			
+resources	related_identifiers	0	TRUE	TRUE					
+resources	related_identifiers	1	FALSE	FALSE	relation	hasPart			
+resources	related_identifiers	1	FALSE	FALSE	resource_type	#VALUE	datatype		
+resources	related_identifiers	1	FALSE	FALSE	identifier	#VALUE	location		

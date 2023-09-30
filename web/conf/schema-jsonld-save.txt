@@ -1,0 +1,113 @@
+#datasetField	Field	Type	Level	Array	Multiple	Property	Value type	Value source	Index	Prefix
+	@type		0	FALSE	FALSE		schema:Dataset			
+	@id		0	FALSE	FALSE					https://pmb-bordeaux.fr/maggot/metadata/
+	title	schema:identifier	0	FALSE	FALSE		#VALUE			maggot:
+	fulltitle	schema:name	0	FALSE	FALSE		#VALUE			
+	description	schema:description	0	FALSE	FALSE		#VALUE			
+	license	schema:license	0	FALSE	FALSE		#VALUE			
+	contacts	schema:creator	0	TRUE	TRUE					
+	contacts	schema:creator	1	FALSE	FALSE	@type	schema:Person			
+	contacts	schema:creator	1	FALSE	FALSE	name	#VALUE			
+	contacts	schema:creator	1	FALSE	FALSE	identifier	#DICO	cvlist:people	3	https://orcid.org/
+	contacts	schema:creator	1	FALSE	FALSE	email	#DICO	cvlist:people	4	
+	contacts	schema:creator	1	FALSE	TRUE	affiliation				
+	contacts	schema:creator	2	FALSE	FALSE	@type	schema:Organization			
+	contacts	schema:creator	2	FALSE	FALSE	name	#DICO	cvlist:people	2	
+	authors	schema:author	0	TRUE	TRUE					
+	authors	schema:author	1	FALSE	FALSE	@type	schema:Person			
+	authors	schema:author	1	FALSE	FALSE	name	#VALUE			
+	authors	schema:author	1	FALSE	FALSE	identifier	#DICO	cvlist:people	3	https://orcid.org/
+	authors	schema:author	1	FALSE	TRUE	affiliation				
+	authors	schema:author	2	FALSE	FALSE	@type	schema:Organization			
+	authors	schema:author	2	FALSE	FALSE	name	#DICO	cvlist:people	2	
+	collectors	contributor	0	TRUE	TRUE					
+	collectors	contributor	1	FALSE	FALSE	@type	schema:Person			
+	collectors	contributor	1	FALSE	FALSE	contributorType	DataCollector			http://purl.org/datacite/v4.4/
+	collectors	contributor	1	FALSE	FALSE	name	#VALUE			
+	collectors	contributor	1	FALSE	FALSE	identifier	#DICO	cvlist:people	3	https://orcid.org/
+	collectors	contributor	1	FALSE	TRUE	affiliation				
+	collectors	contributor	2	FALSE	FALSE	@type	schema:Organization			
+	collectors	contributor	2	FALSE	FALSE	name	#DICO	cvlist:people	2	
+	curators	contributor	1	TRUE	TRUE					
+	curators	contributor	1	FALSE	FALSE	@type	schema:Person			
+	curators	contributor	1	FALSE	FALSE	contributorType	DataCurator			http://purl.org/datacite/v4.4/
+	curators	contributor	1	FALSE	FALSE	name	#VALUE			
+	curators	contributor	1	FALSE	FALSE	identifier	#DICO	cvlist:people	3	https://orcid.org/
+	curators	contributor	1	FALSE	TRUE	affiliation				
+	curators	contributor	2	FALSE	FALSE	@type	schema:Organization			
+	curators	contributor	2	FALSE	FALSE	name	#DICO	cvlist:people	2	
+	members	contributor	1	TRUE	TRUE					
+	members	contributor	1	FALSE	FALSE	@type	schema:Person			
+	members	contributor	1	FALSE	FALSE	contributorType	ProjectMember			http://purl.org/datacite/v4.4/
+	members	contributor	1	FALSE	FALSE	name	#VALUE			
+	members	contributor	1	FALSE	FALSE	identifier	#DICO	cvlist:people	3	https://orcid.org/
+	members	contributor	1	FALSE	TRUE	affiliation				
+	members	contributor	2	FALSE	FALSE	@type	schema:Organization			
+	members	contributor	2	FALSE	FALSE	name	#DICO	cvlist:people	2	
+	leader	contributor	1	TRUE	TRUE					
+	leader	contributor	1	FALSE	FALSE	@type	schema:Person			
+	leader	contributor	1	FALSE	FALSE	contributorType	ProjectLeader			http://purl.org/datacite/v4.4/
+	leader	contributor	1	FALSE	FALSE	name	#VALUE			
+	leader	contributor	1	FALSE	FALSE	identifier	#DICO	cvlist:people	3	https://orcid.org/
+	leader	contributor	1	FALSE	TRUE	affiliation				
+	leader	contributor	2	FALSE	FALSE	@type	schema:Organization			
+	leader	contributor	2	FALSE	FALSE	name	#DICO	cvlist:people	2	
+	wpleader	contributor	1	TRUE	TRUE					
+	wpleader	contributor	1	FALSE	FALSE	@type	schema:Person			
+	wpleader	contributor	1	FALSE	FALSE	contributorType	WorkPackageLeader			http://purl.org/datacite/v4.4/
+	wpleader	contributor	1	FALSE	FALSE	name	#VALUE			
+	wpleader	contributor	1	FALSE	FALSE	identifier	#DICO	cvlist:people	3	https://orcid.org/
+	wpleader	contributor	1	FALSE	TRUE	affiliation				
+	wpleader	contributor	2	FALSE	FALSE	@type	schema:Organization			
+	wpleader	contributor	2	FALSE	FALSE	name	#DICO	cvlist:people	2	
+	grantNumbers	schema:funding	0	TRUE	TRUE					
+	grantNumbers	schema:funding	1	FALSE	FALSE	@type	schema:Grant			
+	grantNumbers	schema:funding	1	FALSE	FALSE	name	#VALUE			
+	grantNumbers	schema:funding	1	FALSE	FALSE	identifer	#DICO	cvlist:grant	2	
+	grantNumbers	schema:funding	1	FALSE	TRUE	funder				
+	grantNumbers	schema:funding	2	FALSE	FALSE	@type	schema:Organization			
+	grantNumbers	schema:funding	2	FALSE	FALSE	name	#DICO	cvlist:grant	1	
+	keywords	schema:keywords	0	TRUE	TRUE					
+	keywords	schema:keywords	1	FALSE	FALSE	@type	schema:DefinedTerm			
+	keywords	schema:keywords	1	FALSE	FALSE	name	#VALUE			
+	keywords	schema:keywords	1	FALSE	FALSE	url	#ONTO	cv:bponto	1	
+	keywords	schema:keywords	1	FALSE	FALSE	inDefinedTermSet	#ONTO	cv:bponto	0	
+	measurement	schema:variableMeasured	0	TRUE	TRUE		#VALUE			
+	measurement	schema:variableMeasured	1	FALSE	FALSE	@type	schema:DefinedTerm			
+	measurement	schema:variableMeasured	1	FALSE	FALSE	name	#VALUE			
+	measurement	schema:variableMeasured	1	FALSE	FALSE	url	#ONTO	cv:bponto	1	
+	measurement	schema:variableMeasured	1	FALSE	FALSE	inDefinedTermSet	#ONTO	cv:bponto	0	
+	subject	subject	0	TRUE	FALSE		#VALUE			
+	kindOfData	kindOfData	0	TRUE	FALSE		#VALUE			
+	dataOrigin	citation:dataOrigin	0	TRUE	FALSE		#VALUE			
+	publication_citation	publication	0	FALSE	TRUE					
+	type	publication	1	FALSE	FALSE	@type	schema:CreativeWork			
+	publication_citation	publication	1	FALSE	FALSE	publicationCitation	#VALUE			
+	publication_idtype	publication	1	FALSE	FALSE	publicationIDType	#VALUE			
+	publication_idnumber	publication	1	FALSE	FALSE	publicationIDNumber	#VALUE			
+	publication_url	publication	1	FALSE	FALSE	publicationURL	#VALUE			
+	lifeCycleStep	schema:creativeWorkStatus	0	TRUE	FALSE		#VALUE			
+	resources	schema:hasPart	0	TRUE	TRUE					
+	resources	schema:hasPart	1	FALSE	FALSE	@type	schema:CreativeWork			
+	resources	schema:hasPart	1	FALSE	FALSE	additionalType	#VALUE	datatype		http://purl.org/datacite/v4.4/
+	resources	schema:hasPart	1	FALSE	FALSE	encodingFormat	#VALUE	media		
+	resources	schema:hasPart	1	FALSE	FALSE	description	#VALUE	description		
+	resources	schema:hasPart	1	FALSE	FALSE	url	#VALUE	location		
+	resources	schema:distribution	0	TRUE	TRUE					
+	resources	schema:distribution	1	FALSE	FALSE	@type	schema:DataDownload			
+	resources	schema:distribution	1	FALSE	FALSE	additionalType	#VALUE	datatype		http://purl.org/datacite/v4.4/
+	resources	schema:distribution	1	FALSE	FALSE	encodingFormat	#VALUE	media		
+	resources	schema:distribution	1	FALSE	FALSE	description	#VALUE	description		
+	resources	schema:distribution	1	FALSE	FALSE	name	#VALUE	location		
+#context	Name	URL								
+	schema	http://schema.org/								
+	citation	https://dataverse.org/schema/citation/								
+	contributor	http://purl.org/dc/terms/contributor								
+	contributorType	http://purl.org/datacite/v4.4/ContributorType								
+	subject	http://purl.org/dc/terms/subject								
+	kindOfData	http://rdf-vocabulary.ddialliance.org/discovery#kindOfData								
+	publication	http://purl.org/dc/terms/isReferencedBy								
+	publicationCitation	http://purl.org/dc/terms/bibliographicCitation								
+	publicationIDType	http://purl.org/spar/datacite/ResourceIdentifierScheme								
+	publicationIDNumber	http://purl.org/spar/datacite/ResourceIdentifier								
+	publicationURL	https://schema.org/URL								

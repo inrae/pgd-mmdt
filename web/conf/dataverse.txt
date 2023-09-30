@@ -1,0 +1,30 @@
+Field	Typename	Type	Terminology
+title			
+fulltitle	title		
+subject	subject		
+description	dsDescription		
+status			
+retention_time			
+access_rights			
+language	language		
+license	license		
+contacts	datasetContact		cvlist:people
+authors	author		cvlist:people
+collectors	Data Collector	contributor	cvlist:people
+curators	Data Curator	contributor	cvlist:people
+members	Project Member	contributor	cvlist:people
+leader	Project Leader	contributor	cvlist:people
+wpleader	Work Package Leader	contributor	cvlist:people
+depositor	depositor		
+producer	producer		cvlist:producer
+grantNumbers	grantNumber		cvlist:grant
+keywords	keyword		cv:voinrae
+topics	topicClassification		cv:voinrae
+kindOfData	kindOfData		
+dataOrigin	dataOrigin		
+lifeCycleStep	lifeCycleStep		
+publication_citation	publicationCitation	publication	
+publication_idtype	publicationIDType	publication	
+publication_idnumber	publicationIDNumber	publication	
+publication_url	publicationURL	publication	
+resources	otherReferences		

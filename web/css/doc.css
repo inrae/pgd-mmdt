@@ -1,0 +1,14 @@
+/* Documentation page */
+
+h1 {font-size:32px; font-weight:normal; text-align:left; color:#337ab7}
+h2 {font-size:26px; font-weight:normal; text-align:left; color:#c52d0d}
+h3 {font-size:22px; font-weight:normal; text-align:left; color:#337ab7}
+h4 {font-size:18px; font-weight:normal; text-align:left; color:#388e3c}
+
+em {font-size:12px;}
+
+ul li {font-size:18px;}
+
+img { max-width: 1200px; }
+
+.decal { position:relative; left: 50px; }

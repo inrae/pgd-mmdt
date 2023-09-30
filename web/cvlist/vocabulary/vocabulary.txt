@@ -1,0 +1,3 @@
+biodiversity	EDAM	http://edamontology.org/topic_3050
+plant ecology	IOBC	http://purl.jp/bio/4/id/201306001472878455
+biochemical analysis	IOBC	http://purl.jp/bio/4/id/200906072808564316

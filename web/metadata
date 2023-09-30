@@ -1,0 +1,41 @@
+<?php
+
+# Nom du fichier: search
+# Auteur(s): D.JACOB 
+# Copyright: (c) INRAE - 2015-2021
+#
+session_start([ 'cookie_lifetime' => 3600 ]);
+
+date_default_timezone_set('Europe/Paris');
+ini_set('error_reporting', E_ALL & ~E_NOTICE);
+ini_set("include_path", ".:/usr/share/php");
+ini_set("display_errors", 1);
+
+// Chargement fichier config
+include ('inc/config/config.inc');
+include ('inc/functions/functions.inc');
+
+$NBCOLS=5;
+$MEDIA=0;
+$EMPTY=0;
+
+if (isset($_GET['format']) && $_GET['format']==='dataverse') {
+   include ('inc/dataverse/getfields.inc');
+   include ('inc/dataverse/convert.inc');
+}
+
+if (isset($_GET['format']) && $_GET['format']==='jsonld') {
+   include ('inc/schema/schema.inc');
+}
+
+if (isset($_GET['format']) && $_GET['format']==='zenodo') {
+   include ('inc/zenodo/mapping.inc');
+   include ('inc/zenodo/convert.inc');
+}
+
+include ('inc/search/cvlist.inc');
+include ('inc/header.inc');
+include ('inc/search/metadata.inc');
+include ('inc/footer.inc');
+
+?>

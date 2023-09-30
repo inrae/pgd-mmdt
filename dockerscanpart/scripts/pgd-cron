@@ -1,0 +1,1 @@
+0,30 * * * * (cd /pgd; python3 ./pgd.py; python3 ./db-insert.py >> /pgd/cron.log 2>&1)

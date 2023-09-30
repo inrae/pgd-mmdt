@@ -1,0 +1,2 @@
+Einstein	Albert	CNRS	0000-0000-0000-0001	albert.enstein@cnrs.fr
+Mouse	Mickey	Disneyland Paris	0000-0000-0000-0002	mickey.mouse@disney.com

@@ -1,0 +1,4 @@
+Name	Required	Format
+Name	Y	/^[a-zA-Z- ]+$/
+Ontology	N	/^[a-zA-Z0-9_-]+$/
+URL	N	/^(http|https):\/\//

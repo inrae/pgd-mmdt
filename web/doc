@@ -1,0 +1,45 @@
+<?php
+
+# Nom du fichier: doc
+# Auteur(s): D.JACOB 
+# Copyright: (c) INRAE - 2015-2021
+#
+session_start([ 'cookie_lifetime' => 3600 ]);
+
+date_default_timezone_set('Europe/Paris');
+ini_set('error_reporting', E_ALL & ~E_NOTICE);
+ini_set("include_path", ".:/usr/share/php");
+ini_set("display_errors", 1);
+
+// Chargement fichier config
+require_once('inc/config/config.inc');
+
+$home_file='docs/home.md';
+$about_file='docs/about.md';
+$meta_file='docs/doc.md';
+$config_file='docs/config.md';
+$dico_file='docs/dictionary.md';
+$dataverse_file='docs/dataverse.md';
+
+include ('inc/parsedown/Parsedown.inc');
+include ('inc/parsedown/ParsedownExtra.inc');
+
+include ('inc/header.inc');
+
+if ($FUNC=='home' || isset($_GET['home'])) {
+    include ('inc/doc/home.inc');
+} elseif ($FUNC=='about' || isset($_GET['about'])) {
+    include ('inc/doc/about.inc');
+} elseif ($FUNC=='meta' || isset($_GET['meta'])) {
+    include ('inc/doc/doc.inc');
+} elseif ($FUNC=='config' || isset($_GET['config'])) {
+    include ('inc/doc/config.inc');
+} elseif ($FUNC=='dictionary' || isset($_GET['dictionary'])) {
+    include ('inc/doc/dictionary.inc');
+} elseif ($FUNC=='dataverse' || isset($_GET['dataverse'])) {
+    include ('inc/doc/dataverse.inc');
+}
+
+include ('inc/footer.inc');
+
+?>

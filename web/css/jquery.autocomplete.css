@@ -1,0 +1,171 @@
+.acInput {
+	width: 200px;
+}
+.acResults {
+	padding: 0px;
+	border: 1px solid #ebebeb;
+	background-color: Window;
+	overflow: hidden;
+	background-color: white;
+	overflow: hidden;
+	text-align:left;
+	z-index: 99999;
+	box-shadow: 0 0 4px #719ECE;
+}
+
+.acResults ul {
+	width: 100%;
+	list-style-position: outside;
+	list-style: none;
+	padding: 0;
+	margin: 0;
+	text-align:left;
+}
+
+.acResults li {
+	margin: 0px;
+	padding: 2px 5px;
+	cursor: pointer;
+	display: block;
+	width: 100%;
+	font: menu;
+	font-size: 12px;
+	overflow: hidden;
+	text-align:left;
+}
+
+.acLoading {
+	background : Window url('../img/indicator.gif') right center no-repeat;
+}
+
+.acSelect {
+	background-color: Highlight;
+	color: HighlightText;
+}
+
+.ac_results {
+	padding: 0px;
+	border: 1px solid #ebebeb;
+	background-color: white;
+	overflow: hidden;
+	text-align:left;
+	z-index: 99999;
+	box-shadow: 0 0 4px #719ECE;
+}
+
+.ac_results ul {
+	width: 100%;
+	list-style-position: outside;
+	list-style: none;
+	padding: 0;
+	margin: 0;
+	text-align:left;
+}
+
+.ac_results iframe {
+	display:none;
+	display/**/:block;
+	position:absolute;
+	top:0;
+	left:0;
+	z-index:-1;
+	filter:mask();
+	width:3000px;
+	height:3000px;
+	text-align:left;
+}
+
+.ac_results li {
+	margin: 0px;
+	padding: 4px 5px;
+	cursor: pointer;
+	display: block;
+	width: 100%;
+	font: menu;
+	font-size: 12px;
+	overflow: hidden;
+	text-align:left;
+}
+
+.ac_loading {
+	background : Window url('../img/indicator.gif') right center no-repeat;
+}
+
+.ac_over {
+	background-color: #3875d7;
+	color: HighlightText;
+}
+
+.result_row {
+	width: 40%;
+}
+
+.result_term {
+	width: 150px;
+	float: left;
+}
+
+.result_term_highlight {
+	color: #006600;
+}
+
+.ac_over .result_term_highlight {
+	color: #B3D0B2;
+}
+
+.result_type {
+	font-family: Lucida Console, Monaco, monospace;
+	font-size: 9px;
+	color: gray;
+	display: inline-block;
+	padding-right: 10px;
+	width: 90px;
+	float: left;
+	line-height: 15px;
+}
+
+.ac_over .result_type {
+	color: white;
+}
+
+.result_ontology {
+	font-family: Lucida Console, Monaco, monospace;
+	color: gray;
+	font-size: 9px;
+	margin-left: 1em;
+	line-height: 15px;
+}
+
+.ac_over .result_ontology {
+	color: white;
+}
+
+.result_definition {
+	font-family: Lucida Console, Monaco, monospace;
+	color: gray;
+	float: right;
+	width: 440px;
+	font-size: 9px;
+	margin: 0px 10px;
+	position: relative;
+	top: 2.5px;
+}
+
+.ac_over .result_definition {
+	color: white;
+}
+
+.long_text {
+	display: none;
+}
+
+.expand_icon {
+}
+
+.ac_over span.long_text {
+	display: inline;
+}
+
+.ac_over span.expand_icon {
+	display: none;
+}
