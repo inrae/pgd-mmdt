@@ -34,7 +34,7 @@ Header set Access-Control-Allow-Origin "*"
 
 
 # entries
-<Files ~ "(entry|search|view|metadata|config|check|doc|dataverse|zenodo)$">
+<Files ~ "(entry|search|view|metadata|config|check|doc|dataverse|zenodo|oai)$">
   Order allow,deny
   allow from all
   AcceptPathInfo On

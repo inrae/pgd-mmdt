@@ -46,7 +46,7 @@ do {
       echo phpinfo();
       break;
    }
-   echo "ok";
+   echo "$APPURL";
 } while(0);
 
 ?>

@@ -1,8 +1,8 @@
 <?php
 
-# Nom du fichier: search
+# Nom du fichier: metadata
 # Auteur(s): D.JACOB 
-# Copyright: (c) INRAE - 2015-2021
+# Copyright: (c) INRAE - 2015-2023
 #
 session_start([ 'cookie_lifetime' => 3600 ]);
 
