@@ -15,9 +15,7 @@ ini_set("display_errors", 1);
 include ('inc/config/config.inc');
 include ('inc/functions/functions.inc');
 
-
-if ( isset($_GET['verb']) ) {
-   include ('inc/oaipmh/oai.inc');
-}
+$Verb = 'Identify';
+include ('inc/oaipmh/oai.inc');
 
 ?>

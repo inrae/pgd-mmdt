@@ -3,7 +3,7 @@
 # Application update script from the Git repository
 # (Bash scripts to move under /usr/local/bin)
 
-ROOTDIR=/opt/data
+ROOTDIR=/opt/apps
 APP=pgd-mmdt
 
 GITREPOS=https://github.com/inrae/pgd-mmdt.git
@@ -16,9 +16,9 @@ GITREPOS=https://github.com/inrae/pgd-mmdt.git
   echo "----------------------------------"
   echo "update $APP"
   echo "----------------------------------"
-  # Move the APP directory to old
-  mv $APP ${APP}.old
-  OLD=${APP}.old
+  # Add 'prev' as postfix to the current APP directory
+  mv $APP ${APP}.prev
+  OLD=${APP}.prev
   # Get the source code from github
   git clone $GITREPOS $APP
   if [ $? -eq 0 ]; then
