@@ -327,4 +327,4 @@ function box_links($arr_links, $dwnld=0)
 	return $html_script.$html_output;
 }
 
-?>if
+?>
