@@ -351,7 +351,7 @@ function json2schema($metadata, $def, $map)
 
 function maggot2schema ($input_json, &$output_json)
 {
-	global $schema_conf, $mapping_conf;
+	global $jsonld_conf, $mapping_conf;
 	$msg='';
 
 	// Index of columns
@@ -374,18 +374,18 @@ function maggot2schema ($input_json, &$output_json)
 		}
 
 		// Read schema definition file
-		if (! is_file($schema_conf)) {
-			$msg='Error: '.$schema_conf.' does not exist !!!';
+		if (! is_file($jsonld_conf)) {
+			$msg='Error: '.$jsonld_conf.' does not exist !!!';
 			break;
 		}
-		$def = tsvToArray($schema_conf, false);
+		$def = tsvToArray($jsonld_conf, false);
 		if (! count($def)) {
-			$msg='Error: '.$schema_conf.' is empty !!!';
+			$msg='Error: '.$jsonld_conf.' is empty !!!';
 			break;
 		}
 
 		if ($def[0][0] !== '#datasetField') {
-			$msg='Error: '.$schema_conf.' seems have a wrong format!!!';
+			$msg='Error: '.$jsonld_conf.' seems have a wrong format!!!';
 			break;
 		}
 

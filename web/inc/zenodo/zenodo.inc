@@ -279,12 +279,12 @@ do
 
 	$ds=$metadata['title'];
 	$arr_links = array();
-	$arr_links[0]=array('Zendo definition file',$output1,$zenodo_conf);
-	$arr_links[1]=array('Input file',$PATH.$input_url,$name);
-	$arr_links[2]=array('Output file',$PATH.$json_url,'zenodo_'.$ds.'.json');
+	$arr_links[0]=array('Zendo definition file',$output1,$zenodo_conf, $PATH, "Zenodo");
+	$arr_links[1]=array('Input file',$PATH.$input_url,$name, $PATH, "Input");
+	$arr_links[2]=array('Output file',$PATH.$json_url,'zenodo_'.$ds.'.json',$PATH, "Output");
 	
 	echo "<script>$('#push').css('display','none');</script>";
-	echo "<script>$('#link').html('".box_links($arr_links)."');</script>";
+	echo "<script>$('#link').html('".box_links($arr_links,0)."');</script>";
 
 	// Test if a dataset is already present in the data repository
 	$ds=$metadata['fulltitle'];

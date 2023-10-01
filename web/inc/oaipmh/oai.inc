@@ -28,22 +28,27 @@ if( isset( $_GET['verb'] ) ){
 do
 {
 
-	if (! in_array($Verb, array('Identify', 'ListMetadataFormats', 'ListSets', 'ListRecords', 'ListIdentifiers')))
+    $OAI_DC_HEADER = 'xmlns:oai_dc="http://www.openarchives.org/OAI/2.0/oai_dc/"
+       xmlns:dc="http://purl.org/dc/elements/1.1/"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.openarchives.org/OAI/2.0/oai_dc/ http://www.openarchives.org/OAI/2.0/oai_dc.xsd">';
+
+	if (! in_array($Verb, array('Identify', 'ListMetadataFormats', 'ListSets', 'ListRecords', 'ListIdentifiers', 'GetRecord')))
 		break;
 
 	// Header
 	header('Content-Type: text/xml');
-	echo '<?xml-stylesheet type="text/xsl" href="inc/oaipmh/oai.xsl" ?>
+	echo '<?xml-stylesheet type="text/xsl" href="xsl/oai.xsl" ?>
   <OAI-PMH xmlns="http://www.openarchives.org/OAI/2.0/"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://www.openarchives.org/OAI/2.0/
-         http://www.openarchives.org/OAI/2.0/OAI-PMH.xsd">
-  <responseDate>'.date("Y-m-d H:i:s T").'</responseDate><request verb="'.$Verb.'">'.$BASEURL.'</request>';
+         xsi:schemaLocation="http://www.openarchives.org/OAI/2.0/ http://www.openarchives.org/OAI/2.0/OAI-PMH.xsd">
+  <responseDate>'.date("Y-m-d H:i:s T").'</responseDate>';
 
 
 	// Identify
 	if ($Verb == 'Identify') {
 		echo '
+  <request verb="'.$Verb.'">'.$BASEURL.'</request>
   <Identify>
   <repositoryName>Maggot metadata repository</repositoryName>
   <baseURL>'.$BASEURL.'</baseURL>
@@ -55,7 +60,7 @@ do
   <description>
   <oai-identifier xmlns="http://www.openarchives.org/OAI/2.0/oai-identifier"
              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-             xsi:schemaLocation="http://www.openarchives.org/OAI/2.0/oai-identifier             http://www.openarchives.org/OAI/2.0/oai-identifier.xsd">
+             xsi:schemaLocation="http://www.openarchives.org/OAI/2.0/oai-identifier http://www.openarchives.org/OAI/2.0/oai-identifier.xsd">
 			 <scheme>oai</scheme>
             <repositoryIdentifier>'.$IDENTIFIER.'</repositoryIdentifier>
             <delimiter>:</delimiter>
@@ -68,6 +73,7 @@ do
 	// ListMetadataFormats
 	if ($Verb == 'ListMetadataFormats') {
 		echo '
+  <request verb="'.$Verb.'">'.$BASEURL.'</request>
   <ListMetadataFormats>
   <metadataFormat>
   <metadataPrefix>oai_dc</metadataPrefix>
@@ -80,58 +86,80 @@ do
 	// ListSets
 	if ($Verb == 'ListSets') {
 		echo '
+  <request verb="'.$Verb.'">'.$BASEURL.'</request>
   <ListSets>
   <set>
   <setSpec>maggot</setSpec>
-  <setName>Public</setName>
+  <setName>Public Datasets</setName>
   <setDescription>
-  <oai_dc:dc
-       xmlns:oai_dc="http://www.openarchives.org/OAI/2.0/oai_dc/"
-       xmlns:dc="http://purl.org/dc/elements/1.1/"
-       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xsi:schemaLocation="http://www.openarchives.org/OAI/2.0/oai_dc/
-       http://www.openarchives.org/OAI/2.0/oai_dc.xsd">
+  <oai_dc:dc '.$OAI_DC_HEADER.'
        <dc:description>Public access rights</dc:description>
-  </oai_dc:dc>
-  </setDescription>
-  </set>
-  <set>
-  <setSpec>maggot</setSpec>
-  <setName>Private</setName>
-  <setDescription>
-  <oai_dc:dc
-       xmlns:oai_dc="http://www.openarchives.org/OAI/2.0/oai_dc/"
-       xmlns:dc="http://purl.org/dc/elements/1.1/"
-       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xsi:schemaLocation="http://www.openarchives.org/OAI/2.0/oai_dc/
-       http://www.openarchives.org/OAI/2.0/oai_dc.xsd">
-       <dc:description>Private access rights</dc:description>
-  </oai_dc:dc>
-  </setDescription>
-  </set>
-  <set>
-  <setSpec>maggot</setSpec>
-  <setName>Mixte</setName>
-  <setDescription>
-  <oai_dc:dc
-       xmlns:oai_dc="http://www.openarchives.org/OAI/2.0/oai_dc/"
-       xmlns:dc="http://purl.org/dc/elements/1.1/"
-       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xsi:schemaLocation="http://www.openarchives.org/OAI/2.0/oai_dc/
-       http://www.openarchives.org/OAI/2.0/oai_dc.xsd">
-       <dc:description>Mixte access rights</dc:description>
   </oai_dc:dc>
   </setDescription>
   </set>
   </ListSets>';
 	}
 
-	// ListRecords
-	if ($Verb == 'ListRecords') {
-	}
-
 	// ListIdentifiers
 	if ($Verb == 'ListIdentifiers') {
+		echo '
+  <request verb="'.$Verb.'" metadataPrefix="oai_dc">'.$BASEURL.'</request>
+  <ListIdentifiers>
+  <header>
+   <identifier>oai:'.$IDENTIFIER.'::frim1</identifier>
+   <datestamp>2023-09-29</datestamp>
+   <setSpec>maggot</setSpec>
+  </header>
+  </ListIdentifiers>';
+	}
+
+	// ListRecords
+	if ($Verb == 'ListRecords') {
+		echo '
+  <request verb="'.$Verb.'" metadataPrefix="oai_dc">'.$BASEURL.'</request>
+  <ListRecords>
+  <record>
+  <header>
+   <identifier>oai:'.$IDENTIFIER.'::frim1</identifier>
+   <datestamp>2023-09-29</datestamp>
+   <setSpec>maggot</setSpec>
+  </header>
+  <metadata>
+     <oai_dc:dc '.$OAI_DC_HEADER.'
+	  <dc:title><![CDATA[Friml]]></dc:title>
+	  <dc:creator>Gibon Yves</dc:creator>
+	  <dc:description><![CDATA[FRIM Fruit Integrative Modelling]]></dc:description>
+	  <dc:date>2023-09-29</dc:date>
+      <dc:identifier><![CDATA[https://pmb-bordeaux.fr/maggot/metadata/frim1]]></dc:identifier>
+      <dc:language>eng</dc:language>
+    </oai_dc:dc>
+  </metadata>
+  </record>
+  </ListRecords>';
+	}
+
+	// GetRecord
+	if ($Verb == 'GetRecord') {
+		echo '
+  <request verb="'.$Verb.'" metadataPrefix="oai_dc" identifier="oai:'.$IDENTIFIER.'::frim1">'.$BASEURL.'</request>
+  <GetRecord>
+  <record>
+  <header>
+   <identifier>oai:'.$IDENTIFIER.'::frim1</identifier>
+   <datestamp>2023-09-29</datestamp>
+   <setSpec>maggot</setSpec>
+  </header>
+  <metadata>
+     <oai_dc:dc '.$OAI_DC_HEADER.'
+	  <dc:title><![CDATA[Friml]]></dc:title>
+	  <dc:creator>Gibon Yves</dc:creator>
+	  <dc:description><![CDATA[FRIM Fruit Integrative Modelling]]></dc:description>
+	  <dc:date>2023-09-29</dc:date>
+      <dc:identifier><![CDATA[https://pmb-bordeaux.fr/maggot/metadata/frim1]]></dc:identifier>
+    </oai_dc:dc>
+  </metadata>
+  </record>
+  </GetRecord>';
 	}
 
 	echo '</OAI-PMH>';

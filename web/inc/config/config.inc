@@ -54,11 +54,11 @@ $dictionary_help = "https://nextcloud.inrae.fr/s/mCjciEP687kbn8i";
 // Mapping files
 $dataverse_conf= 'conf/dataverse.txt';
 $mapping_conf= 'conf/mapping.txt';
-$schema_conf = 'conf/schema-jsonld.txt';
+$jsonld_conf = 'conf/schema-jsonld.txt';
 $zenodo_conf= 'conf/zenodo.txt';
 
-// Schema JSON-LD
-$export_schema_org = 1;
+// JSON-LD Schema 
+$export_jsonld = 1;
 
 // Zenodo 
 $export_zenodo = 1;

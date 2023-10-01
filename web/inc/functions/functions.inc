@@ -308,16 +308,23 @@ function get_term_info($dico, $name)
 // Build a box of links
 //----------------------------
 
-function box_links($arr_links)
+function box_links($arr_links, $dwnld=0)
 {
+	$html_script = '';
 	$html_output = '<fieldset class="border px-3 py-3 rounded">';
+	if($dwnld) $html_script = '<script>function downloadConf(cat) { do {';
 	foreach(array_keys($arr_links) as $key) {
 		$arr = $arr_links[$key];
-		$html_output .= '<div class="row mb-0"><div class="col-4"><blockquote class="blockquote"><p><i class="bi-caret-right-fill"></i>&nbsp;&nbsp;'.$arr[0].'</p></blockquote></div>';
-		$html_output .= '<div class="col"><blockquote class="blockquote"><p><i class="bi-link-45deg"></i>&nbsp;&nbsp;<a class="icon-link" href="'.$arr[1].'" target="_blank">'.$arr[2].'</a></p></blockquote></div></div>';
+		$html_output .= '<div class="row mb-0">';
+		$html_output .= '<div class="col-4"><blockquote class="blockquote"><p><i class="bi-caret-right-fill"></i>&nbsp;&nbsp;'.$arr[0].'</p></blockquote></div>';
+		$html_output .= '<div class="col-4"><blockquote class="blockquote"><p><i class="bi-eye-fill"></i>&nbsp;&nbsp;<a class="icon-link" href="'.$arr[1].'" target="_blank">'.$arr[2].'</a></p></blockquote></div>';
+		if($dwnld) $html_output .= '<div class="col-4"><blockquote class="blockquote"><p><i class="bi-download"></i>&nbsp;&nbsp;<button class=\"btn btn-success btn-xs\" style=\"width: 150px;\" onclick="downloadFile(downloadConf(\\\''.strtolower($arr[4]).'\\\'),\\\''.basename($arr[2]).'\\\'); return false;">'.$arr[4].'</button></blockquote></p></div>';
+		$html_output .= '</div>';
+		if($dwnld) $html_script .= ' if(cat.trim()=="'.strtolower($arr[4]).'"){url="'.$arr[3].$arr[2].'";break;}';
 	}
+	if($dwnld) $html_script .= '} while(false); return url; } <\/script>';
 	$html_output .= '</fieldset>';
-	return $html_output;
+	return $html_script.$html_output;
 }
 
-?>
+?>if

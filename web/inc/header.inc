@@ -121,7 +121,7 @@ $header_meta_1 = '
 $header_meta_2 = '
         <div class="form-group2" id="filebrowsercont" style="display: none"><i class="bi bi-folder" style="color:grey;"></i><span id="filebrowser"></span></div>';
 
-if ($export_schema_org && $export_zenodo)
+if ($export_jsonld && $export_zenodo)
 	$header_meta_1 = '
 		<div class="form-group2" id="exportcont" style="display: none"><i class="bi bi-hand-index-thumb" style="color:grey;"></i>
 		<select style="text-align-last:center; border:0; background: #edf1f6;" id="publish_sel" name="publish_sel" class="form-control-sm" onchange="gotoURL(this.value)">

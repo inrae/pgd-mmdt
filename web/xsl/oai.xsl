@@ -147,7 +147,7 @@ p.intro {
   <body>
     <h1>OAI 2.0 Request Results (Maggot Bordeaux Metabome)</h1>
     <xsl:call-template name="quicklinks"/>
-    <p class="intro">You are viewing an HTML version of the XML OAI response. To see the underlying XML use your web browsers view source option.</p>
+    <p class="intro">You are viewing an HTML version of the XML OAI response. To see the underlying XML, use your web browsers' View Source option.</p>
     <xsl:apply-templates select="/oai:OAI-PMH" />
     <xsl:call-template name="quicklinks"/>
   </body>
@@ -157,10 +157,10 @@ p.intro {
 <xsl:template name="quicklinks">
     <ul class="quicklinks">
       <li><a href="?verb=Identify">Identify</a> | </li> 
-      <li><a href="?verb=ListRecords&amp;metadataPrefix=oai_dc">ListRecords</a> | </li>
       <li><a href="?verb=ListSets">ListSets</a> | </li>
       <li><a href="?verb=ListMetadataFormats">ListMetadataFormats</a> | </li>
-      <li><a href="?verb=ListIdentifiers&amp;metadataPrefix=oai_dc">ListIdentifiers</a></li>
+      <li><a href="?verb=ListIdentifiers&amp;metadataPrefix=oai_dc">ListIdentifiers</a> | </li>
+      <li><a href="?verb=ListRecords&amp;metadataPrefix=oai_dc">ListRecords</a> | </li>
     </ul>
 </xsl:template>
 
@@ -468,10 +468,6 @@ p.intro {
     <td class="value">
       <xsl:value-of select="oai:identifier"/>
       <xsl:text> </xsl:text><a class="link" href="?verb=GetRecord&amp;metadataPrefix=oai_dc&amp;identifier={oai:identifier}">oai_dc</a>
-        <xsl:text> </xsl:text><a class="link" href="?verb=GetRecord&amp;metadataPrefix=pmc&amp;identifier={oai:identifier}">pmc</a>
-        <xsl:text> </xsl:text><a class="link" href="?verb=GetRecord&amp;metadataPrefix=pmc_fm&amp;identifier={oai:identifier}">pmc_fm</a>
-        <xsl:text> </xsl:text><a class="link" href="?verb=GetRecord&amp;metadataPrefix=dnb-art&amp;identifier={oai:identifier}">DNB-ART</a>
-        <xsl:text> </xsl:text><a class="link" href="?verb=GetRecord&amp;metadataPrefix=mods&amp;identifier={oai:identifier}">MODS</a>
       <xsl:text> </xsl:text><a class="link" href="?verb=ListMetadataFormats&amp;identifier={oai:identifier}">formats</a>
     </td></tr>
     <tr><td class="key">Datestamp</td>
