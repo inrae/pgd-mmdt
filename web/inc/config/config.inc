@@ -51,17 +51,29 @@ $ZENODO_API_TOKEN='';
 $dataverse_help = "https://nextcloud.inrae.fr/s/otBMwKZXK62KtMj";
 $dictionary_help = "https://nextcloud.inrae.fr/s/mCjciEP687kbn8i";
 
-// Mapping files
-$dataverse_conf= 'conf/dataverse.txt';
+// Mapping file
 $mapping_conf= 'conf/mapping.txt';
-$jsonld_conf = 'conf/schema-jsonld.txt';
-$zenodo_conf= 'conf/zenodo.txt';
+
+// Dataverse
+$dataverse_conf= 'conf/dataverse.txt';
+$export_dataverse = 1;
 
 // JSON-LD Schema 
+$jsonld_conf = 'conf/schema-jsonld.txt';
 $export_jsonld = 1;
 
 // Zenodo 
+$zenodo_conf= 'conf/zenodo.txt';
 $export_zenodo = 1;
+
+// OAI-PMH
+$oaipmh_conf= 'conf/oai-pmh.txt';
+$export_oai = 1;
+
+$OAI_HTTP = 'http';
+$OAI_BASEURL=$OAI_HTTP.'://'.$APPURL.'/oai';
+$OAI_EMAIL='pfmb-bordeaux@inra.fr';
+$OAI_IDENTIFIER='pmb-bordeaux.fr';
 
 // Vocabulary cache file
 $vocab_cache_file = 'cache/vocabulary.txt';

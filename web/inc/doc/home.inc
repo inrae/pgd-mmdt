@@ -84,25 +84,23 @@ Maggot was built to incentivize <b>good data management</b>, with "<b>data shari
 
 <?php
 	if ($EXTERN==0) echo
-	'<area alt="Configuration" title="Configuration" href="./config/view"        coords="'.$coords[0].'"  shape="rect" id="r1">
-	 <area alt="Dictionaries" title="Dictionaries" href="./dictionary"           coords="'.$coords[1].'"  shape="rect" id="r2">
-	 <area alt="Metadata entry" title="Metadata entry" href="./entry"            coords="'.$coords[2].'"  shape="rect" id="r3">
-	 <area alt="Dataset research" title="Dataset research" href="./search"       coords="'.$coords[3].'"  shape="rect" id="r4">
-	 <area alt="Publish a Dataset" title="Publish a Dataset" href="./dataverse"  coords="'.$coords[4].'"  shape="rect" id="r5">
-     <area alt="Metadata schema" title="Metadata schema" href="'.$links[5].'" target="_blank" coords="'.$coords[5].'"  shape="rect" id="r6">';
+	'<area href="./config/view"                 coords="'.$coords[0].'"  shape="rect" id="r1">
+	 <area href="./dictionary"                  coords="'.$coords[1].'"  shape="rect" id="r2">
+	 <area href="./entry"                       coords="'.$coords[2].'"  shape="rect" id="r3">
+	 <area href="./search"                      coords="'.$coords[3].'"  shape="rect" id="r4">
+	 <area href="./dataverse"                   coords="'.$coords[4].'"  shape="rect" id="r5">
+     <area href="'.$links[5].'" target="_blank" coords="'.$coords[5].'"  shape="rect" id="r6">';
 	else echo 
-	'<area alt="Dictionaries" title="Dictionaries" href="./dictionary"           coords="29,28,487,62"    shape="rect" id="r2">
-     <area alt="Metadata entry" title="Metadata entry" href="./entry"            coords="30,72,489,138"   shape="rect" id="r3">
-     <area alt="Publish a Dataset" title="Publish a Dataset" href="./dataverse"  coords="119,216,366,297" shape="rect" id="r5">';
-?>
+	'<area href="./dictionary"  coords="29,28,487,62"    shape="rect" id="r2">
+     <area href="./entry"       coords="30,72,489,138"   shape="rect" id="r3">
+     <area href="./dataverse"   coords="119,216,366,297" shape="rect" id="r5">';
 
-<?php
 	if ($FILEBROWSER==1)
-		echo '<area alt="File Browser" title="File Browser" href="'.$URL_FILEBROWSER.'" target="_blank" coords="'.$coords[6].'" shape="rect" id="r7">';
+		echo '<area href="'.$URL_FILEBROWSER.'" target="_blank" coords="'.$coords[6].'" shape="rect" id="r7">';
 	if ($export_zenodo==0 && $FAIRLINK==1)
-		echo '<area alt="FAIR" title="FAIR" href="'.$URL_FAIR.'" target="_blank" coords="'.$coords[7].'" shape="rect" id="r8">';
+		echo '<area href="'.$URL_FAIR.'"        target="_blank" coords="'.$coords[7].'" shape="rect" id="r8">';
 	if ($export_zenodo==1)
-		echo '<area alt="Publish a Dataset" title="Publish a Dataset" href="./zenodo" target="_blank" coords="'.$coords[7].'" shape="rect" id="r8">';
+		echo '<area href="./zenodo"             target="_blank" coords="'.$coords[7].'" shape="rect" id="r8">';
 ?>
   </map>
 </p>

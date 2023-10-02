@@ -598,7 +598,7 @@ p.intro {
 <tr><td class="key">Coverage</td><td class="value"><xsl:value-of select="."/></td></tr></xsl:template>
 
 <xsl:template match="dc:rights" xmlns:dc="http://purl.org/dc/elements/1.1/">
-<tr><td class="key">Rights Management</td><td class="value"><xsl:value-of select="."/></td></tr></xsl:template>
+<tr><td class="key">Acces Rights</td><td class="value"><xsl:value-of select="."/></td></tr></xsl:template>
 
 <!-- XML Pretty Maker -->
 

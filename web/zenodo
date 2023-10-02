@@ -16,11 +16,12 @@ require_once('inc/config/config.inc');
 require_once('inc/functions/functions.inc');
 require_once('inc/convert/convert.inc');
 
-include ('inc/header.inc');
-include ('inc/zenodo/mapping.inc');
-include ('inc/zenodo/convert.inc');
-include ('inc/zenodo/zenodo.inc');
-include ('inc/footer.inc');
-
+if ($export_zenodo) {
+	include ('inc/header.inc');
+	include ('inc/zenodo/mapping.inc');
+	include ('inc/zenodo/convert.inc');
+	include ('inc/zenodo/zenodo.inc');
+	include ('inc/footer.inc');
+}
 
 ?>

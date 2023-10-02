@@ -13,17 +13,17 @@ if (isset($_GET['format']) && strlen($id_metadata)) {
 		$path = str_replace('pgd_data', 'mnt', $array_values['chemin']);
 		if (is_file($path)) {
 		$json = file_get_contents($path);
-		if ($_GET['format']==='dataverse') {
+		if ($export_dataverse && $_GET['format']==='dataverse') {
 			$output_json='';
 			$msg = maggot2dataverse ($json, $output_json);
 			$json = $output_json;
 		}
-		if ($_GET['format']==='jsonld') {
+		if ($export_jsonld && $_GET['format']==='jsonld') {
 			$output_json='';
 			$msg = maggot2schema ($json, $output_json);
 			$json = $output_json;
 		}
-		if ($_GET['format']==='zenodo') {
+		if ($export_zenodo && $_GET['format']==='zenodo') {
 			$output_json='';
 			$msg = maggot2zenodo ($json, $output_json);
 			$json = $output_json;
@@ -174,16 +174,16 @@ do {
 	if ($FILEBROWSER)
 		echo "<script>$('#filebrowser').html('<a href=\"".$URL_FILEBROWSER."\" class=\"search_data\" target=\"_blank\"><button type=\"button\" class=\"btn btn-primary\" style=\"max-height: 32px;padding-top: 0.2rem;\" data-toggle=\"button\" aria-pressed=\"false\" autocomplete=\"off\" name=\"btn-search\">File Browser</button></a>');$('#filebrowsercont').css('display','inline-block')</script>";
 	
-	$dropselect = ($export_jsonld && $export_zenodo) ? 1 : 0;
+	$dropselect = ($export_dataverse && $export_zenodo) ? 1 : 0;
 	
-	if (is_file($dataverse_conf) && is_file($mapping_conf)) {
+	if ($export_dataverse && is_file($dataverse_conf) && is_file($mapping_conf)) {
 		if ($dropselect)
 			echo "<script>$('#publish_sel').append(`<option value=\"dataverse\">Dataverse repository</option>`); $('#exportcont').css('display','inline-block');</script>";
 		else
 			echo "<script>$('#export').html('<a href=\"".$PATH."dataverse?dataset=".$id_metadata."\" class=\"search_data\"><button type=\"button\" class=\"btn btn-primary\" style=\"max-height: 32px;padding-top: 0.2rem;\" data-toggle=\"button\" aria-pressed=\"false\" autocomplete=\"off\" name=\"btn-search\">Publish the Dataset</button></a>');$('#exportcont').css('display','inline-block');</script>";
 		$my_html .= '<option value="dataverse">Dataverse JSON Format</option>';
 	}
-	
+
 	if ($export_zenodo && is_file($zenodo_conf)) {
 		if ($dropselect)
 			echo "<script>$('#publish_sel').append(`<option value=\"zenodo\">Zenodo repository</option>`); $('#exportcont').css('display','inline-block');</script>";

@@ -15,7 +15,9 @@ ini_set("display_errors", 1);
 include ('inc/config/config.inc');
 include ('inc/functions/functions.inc');
 
-$Verb = 'Identify';
-include ('inc/oaipmh/oai.inc');
+if ($export_oai) {
+	$Verb = 'Identify';
+	include ('inc/oaipmh/oai.inc');
+}
 
 ?>

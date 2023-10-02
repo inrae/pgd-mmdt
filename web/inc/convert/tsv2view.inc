@@ -81,15 +81,16 @@ do
 	}
 
 	// Read Dataverse definition file
-	if (! is_file($dataverse_conf)) {
-		$msg .= 'Warning: '.$dataverse_conf.' does not exist !!!<br>';
-	} else {
-		// Display link to the Dataverse definition files
-		$output3 = 'tmp/'.genKEY().'.html';
-		file_put_contents($output3, tsv2html($dataverse_conf));
-		$arr_links[$nb_links]=array('Dataverse definition file',$PATH.$output3,$dataverse_conf,$PATH,"Dataverse");
-		$nb_links++;
-	}
+	if($export_dataverse)
+		if (! is_file($dataverse_conf)) {
+			$msg .= 'Warning: '.$dataverse_conf.' does not exist !!!<br>';
+		} else {
+			// Display link to the Dataverse definition files
+			$output3 = 'tmp/'.genKEY().'.html';
+			file_put_contents($output3, tsv2html($dataverse_conf));
+			$arr_links[$nb_links]=array('Dataverse definition file',$PATH.$output3,$dataverse_conf,$PATH,"Dataverse");
+			$nb_links++;
+		}
 
 	// Read Zenodo definition file
 	if($export_zenodo)
@@ -115,6 +116,17 @@ do
 			$nb_links++;
 		}
 
+	// OAI-PMH definition file
+	if($export_oai)
+		if (! is_file($oaipmh_conf)) {
+			$msg .= 'Warning: '.$oaipmh_conf.' does not exist !!!<br>';
+		} else {
+			// Display link to the Mapping definition files
+			$output7 = 'tmp/'.genKEY().'.html';
+			file_put_contents($output7, tsv2html($oaipmh_conf));
+			$arr_links[$nb_links]=array('OAI-PMH definition file',$PATH.$output7,$oaipmh_conf,$PATH, "OAI-PMH");
+			$nb_links++;
+		}
 
 	echo "<script>$('#link').html('".box_links($arr_links,1)."');</script>";
 	if (strlen($msg)>0)
