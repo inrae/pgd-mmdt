@@ -169,9 +169,6 @@ function get_dcterms ($def, $map, $record)
 
 do
 {
-	if (! in_array($Verb, array('Identify', 'ListMetadataFormats', 'ListSets', 'ListRecords', 'ListIdentifiers', 'GetRecord')))
-		break;
-
 	// Read OAI-PMH definition file
 	if (! is_file($oaipmh_conf)) {
 		$msg='Error: '.$oaipmh_conf.' does not exist !!!';
@@ -205,7 +202,14 @@ do
   <OAI-PMH xmlns="http://www.openarchives.org/OAI/2.0/"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://www.openarchives.org/OAI/2.0/ http://www.openarchives.org/OAI/2.0/OAI-PMH.xsd">
-  <responseDate>'.date("Y-m-d H:i:s T").'</responseDate>';
+  <responseDate>'.str_replace(' ','T',date("Y-m-d H:i:s")).'Z</responseDate>';
+
+	//----------------------------------------
+	// BadVerb
+	//----------------------------------------
+	if (! in_array($Verb, array('Identify', 'ListMetadataFormats', 'ListSets', 'ListRecords', 'ListIdentifiers', 'GetRecord')))
+		echo '
+<error code="badVerb">The request does not provide any verb.</error>';
 
 
 	//----------------------------------------
@@ -216,9 +220,9 @@ do
   <request verb="'.$Verb.'">'.$OAI_BASEURL.'</request>
   <Identify>
   <repositoryName>Maggot metadata repository</repositoryName>
-  <baseURL>'.$BASEURL.'</baseURL>
+  <baseURL>'.$OAI_BASEURL.'</baseURL>
   <protocolVersion>2.0</protocolVersion>
-  <adminEmail>'.$EMAIL.'</adminEmail>
+  <adminEmail>'.$OAI_EMAIL.'</adminEmail>
   <earliestDatestamp>2023-01-01</earliestDatestamp>
   <deletedRecord>no</deletedRecord>
   <granularity>YYYY-MM-DD</granularity>
@@ -277,7 +281,15 @@ do
 	//----------------------------------------
 	if ($Verb == 'ListIdentifiers') {
 		echo '
-  <request verb="'.$Verb.'" metadataPrefix="oai_dc">'.$OAI_BASEURL.'</request>
+  <request verb="'.$Verb.'" metadataPrefix="oai_dc">'.$OAI_BASEURL.'</request>';
+  		
+		if ((isset($_GET['until']) && ! preg_match('/^[0-9][0-9][0-9][0-9]-[0-9][0-9]-[0-9][0-9]/', $_GET['until'])) ||
+		    (isset($_GET['from']) && ! preg_match('/^[0-9][0-9][0-9][0-9]-[0-9][0-9]-[0-9][0-9]/', $_GET['from'])) ||
+		    (isset($_GET['resumptionToken']) && $_GET['resumptionToken'] == 'junk') ) {
+			echo '
+<error code="badArgument">The required argument &#039;identifier&#039; is missing in the request.</error>';
+		} else {
+			echo '
   <ListIdentifiers>';
 		$records = getMetadata ($id_metadata);
 		if (is_array($records))
@@ -290,6 +302,7 @@ do
   </header>';
 		echo '  
   </ListIdentifiers>';
+		}
 	}
 
 
@@ -298,13 +311,20 @@ do
 	//----------------------------------------
 	if ($Verb == 'ListRecords') {
 		echo '
-  <request verb="'.$Verb.'" metadataPrefix="oai_dc">'.$OAI_BASEURL.'</request>
-  <ListRecords>';
- 
-		$records = getMetadata ();
-		if (is_array($records)) for ($k=0; $k<count($records); $k++) {
-			$record = (array)($records[$k]);
+  <request verb="'.$Verb.'" metadataPrefix="oai_dc">'.$OAI_BASEURL.'</request>';
+  
+		if ((isset($_GET['until']) && ! preg_match('/^[0-9][0-9][0-9][0-9]-[0-9][0-9]-[0-9][0-9]/', $_GET['until'])) ||
+		    (isset($_GET['from']) && ! preg_match('/^[0-9][0-9][0-9][0-9]-[0-9][0-9]-[0-9][0-9]/', $_GET['from'])) ||
+		    (isset($_GET['resumptionToken']) && $_GET['resumptionToken'] == 'junk') ) {
 			echo '
+<error code="badArgument">The required argument &#039;identifier&#039; is missing in the request.</error>';
+		} else {
+			echo '
+  <ListRecords>';
+			$records = getMetadata ();
+			if (is_array($records)) for ($k=0; $k<count($records); $k++) {
+				$record = (array)($records[$k]);
+				echo '
   <record id="'.$record['title'].'">
   <header>
    <identifier>oai:'.$OAI_IDENTIFIER.'::'.$record['title'].'</identifier>
@@ -313,15 +333,15 @@ do
   </header>
   <metadata>
      <oai_dc:dc '.$OAI_DC_HEADER;
- 			echo get_dcterms($def,$map,$record);
-			echo '
+				echo get_dcterms($def,$map,$record);
+				echo '
     </oai_dc:dc>
   </metadata>
   </record>';
-		}
-
+			}
 		echo '
   </ListRecords>';
+		}
 	}
 
 
@@ -336,13 +356,11 @@ do
 			$record = (array)($record[0]);
 		else
 			$id_metadata = '';
-
-		echo '
-  <request verb="'.$Verb.'" metadataPrefix="oai_dc" identifier="'.$identifier.'">'.$OAI_BASEURL.'</request>
-  <GetRecord>';
  
 		if (strlen($id_metadata)>0) {
 			echo '
+  <request verb="'.$Verb.'" metadataPrefix="oai_dc" identifier="'.$identifier.'">'.$OAI_BASEURL.'</request>
+  <GetRecord>
   <record id="'.$id_metadata.'">
   <header>
    <identifier>'.$identifier.'</identifier>
@@ -352,15 +370,16 @@ do
   <metadata>
      <oai_dc:dc '.$OAI_DC_HEADER;
 			echo get_dcterms($def,$map,$record);
-		}
-
-		echo '
+			echo '
     </oai_dc:dc>
   </metadata>
-  </record>';
-
-		echo '
+  </record>
   </GetRecord>';
+		} else {
+			echo '
+  <request verb="'.$Verb.'">'.$OAI_BASEURL.'</request>
+  <error code="badArgument">The required argument &#039;identifier&#039; is missing in the request.</error>';
+		}
 	}
 
 	echo '

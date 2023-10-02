@@ -16,7 +16,7 @@ include ('inc/config/config.inc');
 include ('inc/functions/functions.inc');
 
 if ($export_oai) {
-	$Verb = 'Identify';
+	$Verb = '';
 	include ('inc/oaipmh/oai.inc');
 }
 

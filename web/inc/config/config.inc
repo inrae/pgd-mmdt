@@ -29,6 +29,16 @@ $MAINTITLE =$TITLE;
 
 #------------------------
 
+// Get the URL of the application
+$HOSTNAME=$_SERVER['HTTP_HOST'];
+$APPNAME='maggot';
+if (isset($_SERVER['HTTP_X_APP_NAME']) && strlen($_SERVER['HTTP_X_APP_NAME']))
+   $APPNAME=$_SERVER['HTTP_X_APP_NAME'];
+
+$APPURL=$HOSTNAME.'/'.$APPNAME;
+
+#------------------------
+
 // JSON schema
 $url_schema = "https://pmb-bordeaux.fr/maggot/conf/maggot-schema.json";
 
@@ -72,7 +82,8 @@ $export_oai = 1;
 
 $OAI_HTTP = 'http';
 $OAI_BASEURL=$OAI_HTTP.'://'.$APPURL.'/oai';
-$OAI_EMAIL='pfmb-bordeaux@inra.fr';
+//$OAI_EMAIL='pfmb-bordeaux@inra.fr';
+$OAI_EMAIL='daniel.jacob@inrae.fr';
 $OAI_IDENTIFIER='pmb-bordeaux.fr';
 
 // Vocabulary cache file
@@ -97,14 +108,6 @@ $url_ror = 'https://api.ror.org/organizations?query=';
 // URL of the JSON Schema Validation API
 // see https://assertible.com/json-schema-validation
 $JSVAPI_URL="https://assertible.com/json";
-
-// Get the URL of the application
-$HOSTNAME=$_SERVER['HTTP_HOST'];
-$APPNAME='maggot';
-if (isset($_SERVER['HTTP_X_APP_NAME']) && strlen($_SERVER['HTTP_X_APP_NAME']))
-   $APPNAME=$_SERVER['HTTP_X_APP_NAME'];
-
-$APPURL=$HOSTNAME.'/'.$APPNAME;
 
 #------------------------
 
