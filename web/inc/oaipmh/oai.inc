@@ -13,11 +13,6 @@
 # Copyright: (c) INRAE - 2015-2023
 #
 
-// verb given as a query parameter (GET)
-if( isset( $_GET['verb'] ) ){
-    $Verb =  $_GET['verb'];
-}
-
 function getMetadata ($id_metadata='') {
 	global $client, $txtboite, $listboite, $checkboite, $multiboite, $areaboite;
 	
@@ -167,6 +162,15 @@ function get_dcterms ($def, $map, $record)
 // Main
 //----------------------------------------
 
+// verb given as a query parameter (GET)
+if( isset( $_GET['verb'] ) ){
+    $Verb =  $_GET['verb'];
+	$PARAM = $_GET;
+} else if (isset( $_POST['verb'] ) ){
+    $Verb =  $_POST['verb'];
+	$PARAM = $_POST;
+}
+
 do
 {
 	// Read OAI-PMH definition file
@@ -283,11 +287,14 @@ do
 		echo '
   <request verb="'.$Verb.'" metadataPrefix="oai_dc">'.$OAI_BASEURL.'</request>';
   		
-		if ((isset($_GET['until']) && ! preg_match('/^[0-9][0-9][0-9][0-9]-[0-9][0-9]-[0-9][0-9]/', $_GET['until'])) ||
-		    (isset($_GET['from']) && ! preg_match('/^[0-9][0-9][0-9][0-9]-[0-9][0-9]-[0-9][0-9]/', $_GET['from'])) ||
-		    (isset($_GET['resumptionToken']) && $_GET['resumptionToken'] == 'junk') ) {
+		if ((isset($PARAM['until']) && ! preg_match('/^[0-9][0-9][0-9][0-9]-[0-9][0-9]-[0-9][0-9]$/', $PARAM['until'])) ||
+		    (isset($PARAM['from']) && ! preg_match('/^[0-9][0-9][0-9][0-9]-[0-9][0-9]-[0-9][0-9]$/', $PARAM['from'])) ||
+		    (isset($PARAM['resumptionToken']) && $PARAM['resumptionToken'] == 'junk') ) {
 			echo '
 <error code="badArgument">The required argument &#039;identifier&#039; is missing in the request.</error>';
+		} elseif ((isset($PARAM['until']) && $PARAM['until']<'2023-01-01') || (isset($PARAM['until']) && $PARAM['from']>'2023-01-01') ) {
+			echo '
+  <ListIdentifiers></ListIdentifiers>';
 		} else {
 			echo '
   <ListIdentifiers>';
@@ -313,11 +320,14 @@ do
 		echo '
   <request verb="'.$Verb.'" metadataPrefix="oai_dc">'.$OAI_BASEURL.'</request>';
   
-		if ((isset($_GET['until']) && ! preg_match('/^[0-9][0-9][0-9][0-9]-[0-9][0-9]-[0-9][0-9]/', $_GET['until'])) ||
-		    (isset($_GET['from']) && ! preg_match('/^[0-9][0-9][0-9][0-9]-[0-9][0-9]-[0-9][0-9]/', $_GET['from'])) ||
-		    (isset($_GET['resumptionToken']) && $_GET['resumptionToken'] == 'junk') ) {
+		if ((isset($PARAM['until']) && ! preg_match('/^[0-9][0-9][0-9][0-9]-[0-9][0-9]-[0-9][0-9]$/', $PARAM['until'])) ||
+		    (isset($PARAM['from']) && ! preg_match('/^[0-9][0-9][0-9][0-9]-[0-9][0-9]-[0-9][0-9]$/', $PARAM['from'])) ||
+		    (isset($PARAM['resumptionToken']) && $PARAM['resumptionToken'] == 'junk') ) {
 			echo '
 <error code="badArgument">The required argument &#039;identifier&#039; is missing in the request.</error>';
+		} elseif ((isset($PARAM['until']) && $PARAM['until']<'2023-01-01') || (isset($PARAM['until']) && $PARAM['from']>'2023-01-01') ) {
+			echo '
+  <ListIdentifiers></ListIdentifiers>';
 		} else {
 			echo '
   <ListRecords>';
@@ -349,7 +359,7 @@ do
 	// GetRecord
 	//----------------------------------------
 	if ($Verb == 'GetRecord') {
-		$identifier = isset($_GET['identifier']) ? $_GET['identifier'] : '';
+		$identifier = isset($PARAM['identifier']) ? $PARAM['identifier'] : '';
 		$id_metadata = preg_match('/^oai:[^:]+::([a-zA-Z0-9_]+)/',$identifier, $matches) ? $matches[1] : '';
 		$record = getMetadata ($id_metadata);
 		if (is_array($record))
