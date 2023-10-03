@@ -434,13 +434,14 @@ do
 		$identifier = isset($PARAM['identifier']) ? $PARAM['identifier'] : '';
 		$id_metadata = preg_match('/^oai:[^:]+::([a-zA-Z0-9_]+)/',$identifier, $matches) ? $matches[1] : '';
 		$record = getMetadata ($id_metadata);
+		$datestamp = getDatestamp($record);
 		if (is_array($record))
 			$record = (array)($record[0]);
 		else {
 			echo "\n".'<error code="badArgument">The argument &#039;identifier&#039; (value=&#039;'.$identifier.'&#039;) included in the request is not valid.</error>';
 			break;
 		}
-		echo "\n".'<GetRecord>'."\n".'<record id="'.$id_metadata.'">'."\n".'<header>'."\n".'<identifier>'.$identifier.'</identifier>'."\n".'   <datestamp>2023-09-29</datestamp>'."\n".'<setSpec>maggot</setSpec>'."\n".'</header>'."\n".'<metadata>'."\n".'<oai_dc:dc '.$OAI_DC_HEADER;
+		echo "\n".'<GetRecord>'."\n".'<record id="'.$id_metadata.'">'."\n".'<header>'."\n".'<identifier>'.$identifier.'</identifier>'."\n".'<datestamp>'.$datestamp.'</datestamp>'."\n".'<setSpec>maggot</setSpec>'."\n".'</header>'."\n".'<metadata>'."\n".'<oai_dc:dc '.$OAI_DC_HEADER;
 		echo get_dcterms($def,$map,$record);
 		echo "\n".'</oai_dc:dc>'."\n".'</metadata>'."\n".'</record>'."\n".'</GetRecord>';
 	}
