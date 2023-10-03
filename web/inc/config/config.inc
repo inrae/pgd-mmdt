@@ -85,6 +85,7 @@ $OAI_BASEURL=$OAI_HTTP.'://'.$APPURL.'/oai';
 //$OAI_EMAIL='pfmb-bordeaux@inra.fr';
 $OAI_EMAIL='daniel.jacob@inrae.fr';
 $OAI_IDENTIFIER='pmb-bordeaux.fr';
+$OAI_SET='maggot';
 
 // Vocabulary cache file
 $vocab_cache_file = 'cache/vocabulary.txt';
