@@ -187,7 +187,7 @@ function get_params ($PARAM)
 			break;
 		}
 
-		if (isset($params['resumptionToken']) && ! isset($params['metadataPrefix'])) {
+		if (isset($params['resumptionToken'])) {
 			$params['errorXML'] = "\n".'<error code="badResumptionToken">The value of the resumptionToken argument is invalid or expired.</error>';
 			break;
 		}
