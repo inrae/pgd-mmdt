@@ -214,7 +214,7 @@ function get_params ($PARAM)
 			break;
 		}
 
-		if ($params['verb'] !== 'GetRecord' && isset($params['identifier'])) {
+		if (! in_array($params['verb'], array('GetRecord','ListMetadataFormats')) && isset($params['identifier'])) {
 			$params['errorXML'] = "\n".'<error code="badArgument">The argument &#039;identifier&#039; (value=&#039;'.$params['identifier'].'&#039;) included in the request is not valid.</error>';
 			break;
 		}
@@ -240,8 +240,7 @@ function get_params ($PARAM)
 			break;
 		}
 
-		if ((isset($params['until']) && $params['until']<$OAI_DATE) || 
-			(isset($params['from']) && isset($params['until']) && $params['from']>$params['until'])) {
+		if (isset($params['from']) && isset($params['until']) && $params['from']>$params['until']) {
 			$params['errorXML'] = "\n".'<error code="badArgument">The date argument provided is incorrect.</error>';
 			break;
 		}
