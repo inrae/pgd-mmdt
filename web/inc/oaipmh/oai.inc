@@ -13,6 +13,10 @@
 # Copyright: (c) INRAE - 2015-2023
 #
 
+//----------------------------------------
+// Get metadata 
+//----------------------------------------
+
 function getMetadata ($id_metadata='')
 {
 	global $client, $txtboite, $listboite, $checkboite, $multiboite, $areaboite;
@@ -39,6 +43,10 @@ function getMetadata ($id_metadata='')
 	return $ret;
 }
 
+//----------------------------------------
+// Get the datestamp corresponding to the record
+//----------------------------------------
+
 function getDatestamp ($record)
 {
 	$path=$record['chemin'];
@@ -46,6 +54,10 @@ function getDatestamp ($record)
 	$date = (file_exists($json_file)) ? date('Y-m-d', filectime($json_file)) : '2023-01-01' ;
 	return $date;
 }
+
+//----------------------------------------
+// Get the XML Dubin Core corresponding to the record
+//----------------------------------------
 
 function get_dcterms ($def, $map, $record)
 {
@@ -166,6 +178,10 @@ function get_dcterms ($def, $map, $record)
 	return $xml;
 }
 
+//----------------------------------------
+// Get & check query parameters
+//----------------------------------------
+
 function get_params ($PARAM)
 {
 	global $OAI_DATE, $OAI_SET;
@@ -284,23 +300,23 @@ do
 {
 	// Read OAI-PMH definition file
 	if (! is_file($oaipmh_conf)) {
-		echo '<error>'.$oaipmh_conf.' does not exist !!!</error>';
+		echo '<error code="badDefinitionFile">'.$oaipmh_conf.' does not exist !!!</error>';
 		break;
 	}
 	$def = tsvToArray($oaipmh_conf, false);
 	if (! count($def)) {
-		echo "\n".'<error>'.$oaipmh_conf.' is empty !!!</error>';
+		echo "\n".'<error code="badDefinitionFile">'.$oaipmh_conf.' is empty !!!</error>';
 		break;
 	}
 
 	// Read Mapping definition file
 	if (! is_file($mapping_conf)) {
-		echo "\n".'<error>'.$mapping_conf.' does not exist !!!</error>';
+		echo "\n".'<error code="badDefinitionFile">'.$mapping_conf.' does not exist !!!</error>';
 		break;
 	}
 	$map = tsvToArray($mapping_conf, true);
 	if (! count($map)) {
-		echo "\n".'<error>'.$mapping_conf.' is empty !!!</error>';
+		echo "\n".'<error code="badDefinitionFile">'.$mapping_conf.' is empty !!!</error>';
 		break;
 	}
 

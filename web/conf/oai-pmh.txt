@@ -1,17 +1,17 @@
 Field	dcterm	Value type 	Value source	Index	Prefix
 fulltitle	dc:title	#VALUE			
 description	dc:description	#VALUE			
-authors	dc:creator	#DICO	cvlist:people	3	https://orcid.org/
-contacts	dc:creator	#DICO	cvlist:people	3	https://orcid.org/
-collectors	dc:contributor	#DICO	cvlist:people	3	https://orcid.org/
-curators	dc:contributor	#DICO	cvlist:people	3	https://orcid.org/
-members	dc:contributor	#DICO	cvlist:people	3	https://orcid.org/
-leader	dc:contributor	#DICO	cvlist:people	3	https://orcid.org/
-wpleader	dc:contributor	#DICO	cvlist:people	3	https://orcid.org/
+authors	dc:creator	#VALUE			
+contacts	dc:creator	#VALUE			
+collectors	dc:contributor	#VALUE			
+curators	dc:contributor	#VALUE			
+members	dc:contributor	#VALUE			
+leader	dc:contributor	#VALUE			
+wpleader	dc:contributor	#VALUE			
 access_rights	dc:rights	#VALUE			
 language	dc:language	#VALUE			
 kindOfData	dc:type	#VALUE			
 subject	dc:subject	#VALUE			
-keywords	dc:subject	#ONTO	cv:bponto	1	
-topics	dc:subject	#ONTO	cv:bponto	1	
+keywords	dc:subject	#VALUE			
+topics	dc:subject	#VALUE			
 resources	dc:relation	#VALUE	location		

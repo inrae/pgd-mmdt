@@ -1,6 +1,6 @@
-Name	Required	Format
-Last name	Y	/^[a-zA-Z- ]+$/
-First name	Y	/^[a-zA-Z- ]+$/
-Institute	Y	/^[a-zA-Z0-9,\. ]+$/
-ORCID	N	/^\d{4}-\d{4}-\d{4}-\d{3}[0-9|X]$/
-Email	N	/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/
+Name	Required	Format	API
+Last name	Y	/^[a-zA-Z- ]+$/	
+First name	Y	/^[a-zA-Z- ]+$/	
+Institute	Y	/^[a-zA-Z0-9-,\. ]+$/	ROR
+ORCID	N	/^\d{4}-\d{4}-\d{4}-\d{3}[0-9|X]$/	
+Email	N	/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/	

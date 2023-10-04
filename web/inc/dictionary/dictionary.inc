@@ -40,7 +40,10 @@ if ($handle = opendir($cvdir)) {
 	<title>Maggot - Dictionary</title>
 
 	<?php echo $HEAD ?>
+	<link rel="stylesheet" href="<?php echo $PATH ?>css/ror-widget.css">
 	<link rel="stylesheet" href="<?php echo $PATH ?>css/edit.css">
+	<script  src="<?php echo $PATH ?>js/typeahead.min.js"></script>
+	<script  src="<?php echo $PATH ?>js/ror-typeahead.js"></script>
 	<script  src="<?php echo $PATH ?>js/edit.js"></script>
 
 	<script>history.pushState(null, 'Maggot - Dictionary', 'dictionary');</script>
@@ -61,12 +64,12 @@ if ($handle = opendir($cvdir)) {
 <?php echo $header_title ?>
 <br><br>
 
-<h1>Dictionaries <a href="<? echo $dictionary_help ?>" target="_blank"><i class="bi bi-question-octagon-fill" style="color:grey; font-size: 20px"></i></a></h1>
-<br>
+<!--h1>Dictionaries <a href="<? echo $dictionary_help ?>" target="_blank"><i class="bi bi-question-octagon-fill" style="color:grey; font-size: 20px"></i></a></h1>
+<br-->
 
 <section>
 	<form id="formdico" name="formdico" action="#" autocomplete="off" method="get" enctype="multipart/form-data">
-		<b>Dictionary</b>:&nbsp;<select style="font-size: 1rem;" name="dico" id="dico" class="form-control form-control-sm" onchange="this.form.submit();"><? echo $html_options ?></select>
+		<b>Dictionaries</b>:&nbsp;<select style="font-size: 1rem;" name="dico" id="dico" class="form-control form-control-sm" onchange="this.form.submit();"><? echo $html_options ?></select>
 	</form>
 	<br>
 	<div style="padding-bottom: 10px;"><div id="errbox" name="errbox" class="msgbox errbox">
@@ -161,7 +164,7 @@ do {
 	// Build the HTML Table
 
 	// thead
-	$var1=$var2=$var3=''; $sep='';
+	$var1=$var2=$var3=$var4=''; $sep='';
 	$html_thread = '<thead class="thread-light"><tr>';
 	$url = basename($_SERVER['SCRIPT_NAME']).'?dico='.$DICOSEL.'&sort=';
 	$cnt=0;
@@ -169,6 +172,7 @@ do {
 		$req=0; $star='';
 		if ($line[1] === 'Y') { $req=1; $star=' (*)'; }
 		$var1 .= $sep."'".$line[0]."'"; $var2 .= $sep."'".$req."'";  $var3 .= $sep.$line[2];
+		$var4 .= (count($line)>3) ? $sep."'".$line[3]."'" : $sep."''" ;
 		$cnt++;
 		$scol=$cnt; if ($SORTCOL>0 && abs($SORTCOL)==$cnt) $scol=-$cnt;
 		$html_thread .= '<th class="tablehead"><a href="javascript:getsort(\\\''.$url.$scol.'\\\');">'.$line[0].'</a>'.$star.'</th>';
@@ -182,14 +186,16 @@ do {
 	$cnt=0;
 	foreach($dico as $line) {
 		$html_tbody .="<tr id=\"line".$cnt."\">";
+		$col=0;
 		foreach($line as $info) {
 			if (preg_match('/^http/',$info)) { # URL
-				$html_tbody .= '<td class="data"><a target=\"_blank\" href=\"'.$info.'\">'.$info.'</a></td>';
+				$html_tbody .= '<td class="data" id=\"col'.$col.'\"><a target=\"_blank\" href=\"'.$info.'\">'.$info.'</a></td>';
 			} elseif (preg_match('/^\d{4}-\d{4}-\d{4}-\d{3}[0-9|X]$/',$info)) { # ORCID
-				$html_tbody .= '<td class="data"><a target=\"_blank\" href=\"https://orcid.org/'.$info.'\">'.$info.'</a></td>';
+				$html_tbody .= '<td class="data" id=\"col'.$col.'\"><a target=\"_blank\" href=\"https://orcid.org/'.$info.'\">'.$info.'</a></td>';
 			} else {
-				$html_tbody .= '<td class="data">'.$info.'</td>';
+				$html_tbody .= '<td class="data" id=\"col'.$col.'\">'.$info.'</td>';
 			}
+			$col++;
 		}
 		if ($USER === 'admin') $html_tbody .= '<td class="td-btn"><button class="btn save">Save</button><button class="btn edit">Edit</button>&nbsp;<button class="btn delete">Del</button><button class="btn cancel">Cancel</button></td></tr>';
 		$cnt++;
@@ -203,7 +209,7 @@ do {
 	$html_table='<table id="mytable" name="mytable" class="table data" style="margin-bottom: 0rem;">'.$html_thread.$html_tbody.'</table>';
 
 	// Write in the HTML document
-	echo "<script>var nameArray = [ ".$var1." ];\nvar requireArray = [ ".$var2." ];\nvar regexArray = [ ".$var3." ];\n $('#tbl-main').html('".$html_table."'); $('#dico-name').html('".$DICOSEL."');$('#divsearch').css('display','".$dispsearch."');$('#tbl-footer').css('display','block');$('#searchterm').val('".$searchterm."');select_row('".$searchterm."');</script>";
+	echo "<script>var nameArray = [ ".$var1." ];\nvar requireArray = [ ".$var2." ];\nvar regexArray = [ ".$var3." ];\nvar apiArray = [ ".$var4." ];\n $('#tbl-main').html('".$html_table."'); $('#dico-name').html('".$DICOSEL."');$('#divsearch').css('display','".$dispsearch."');$('#tbl-footer').css('display','block');$('#searchterm').val('".$searchterm."');select_row('".$searchterm."');</script>";
 
     // If admin user then authorize to upload a file to replace the current dictionary
 	if ($USER == 'admin')

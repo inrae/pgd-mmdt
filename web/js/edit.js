@@ -2,6 +2,8 @@ var newflg = false;
 var editflg = false;
 var prevalues =[];
 
+var objpre = '';
+
 String.prototype.no_utf8 = function(){
 	var accent = [
 		/[\300-\306]/g, /[\340-\346]/g, // A, a
@@ -158,7 +160,12 @@ $(document).on('click', '.edit', function() {
 		prevalues =[];
 		$(this).parent().siblings('td.data').each(function() {
 			var content = ($(this).children('a').length > 0 ) ? $(this).children('a').text() : $(this).html();
-			$(this).html('<input class="tdico" value="' + content + '" />');
+            if (apiArray[$(this).attr('id').match(/\d+/)[0]]=='ROR') {
+				$(this).html('<input class="tdico typeahead" value="' + content + '" />');
+				callTypeahead();
+			}
+			else
+				$(this).html('<input class="tdico" value="' + content + '" />');
 			prevalues.push(content);
 		});
 		editflg=true
@@ -175,10 +182,20 @@ $(document).on('click', '.btn-errvalid', function() {
 	$('#errvalid').css('display','none');
 })
 
-$(document).on('click', '.cancel', function() {
+$(document).on('click', '.cancel', function()
+{
+	$('.tt-hint').remove();
 	$('input.tdico').each(function(index, element) {
-		$(this).html(getItemForTable(prevalues.shift()));
-		$(this).contents().unwrap();
+		if (typeof $(this).parent().attr('id') !== "undefined") {
+			if (prevalues.length>0) {
+				$(this).html(getItemForTable(prevalues.shift()));
+				$(this).contents().unwrap();
+			}
+		} else {
+			$(this).parent().parent().html(prevalues.shift());
+			objpre = $(this).next();
+			$(this).contents().unwrap();
+		}
 	});
 	$( "tr" ).find( "td.data" ).each(function(index, element) {
 		var content = $(element).html();
@@ -197,6 +214,7 @@ $(document).on('click', '.cancel', function() {
 
 $(document).on('click', '.save', function() {
 	var allValid=true;
+	$('.tt-hint').remove();
 	$('input.tdico').each(function(index, element) {
 		do {
 			if (!allValid) break;
@@ -216,8 +234,15 @@ $(document).on('click', '.save', function() {
 	});
 	if (allValid) {
 		$('input.tdico').each(function(index, element) {
-			$(this).html(getItemForTable($(this).val()));
-			$(this).contents().unwrap();
+			if (typeof $(this).parent().attr('id') !== "undefined") {
+				$(this).html(getItemForTable($(this).val()));
+				$(this).contents().unwrap();
+			} else {
+				val = $(this).next()[0].outerText;
+				if (val.length==0) val=$(this).val();
+				$(this).parent().parent().html(val);
+				$(this).contents().unwrap();
+			}
 		});
 		$( "tr" ).find( "td.data" ).each(function(index, element) {
 			var content = $(element).html();
