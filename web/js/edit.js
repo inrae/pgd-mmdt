@@ -2,9 +2,10 @@ var newflg = false;
 var editflg = false;
 var prevalues =[];
 
-var objpre = '';
+let apiHash = { ROR:'rorTypeahead' };  // Typeahead
 
-String.prototype.no_utf8 = function(){
+String.prototype.no_utf8 = function()
+{
 	var accent = [
 		/[\300-\306]/g, /[\340-\346]/g, // A, a
 		/[\310-\313]/g, /[\350-\353]/g, // E, e
@@ -24,7 +25,8 @@ String.prototype.no_utf8 = function(){
 	return str;
 }
 
-var getItemForTable = function (item) {
+var getItemForTable = function (item)
+{
 	var content=item;
 	var m=item.match(/^(http)/);
 	if(m) content='<a target="_blank" href="'+item+'">'+item+'</a>';
@@ -33,7 +35,8 @@ var getItemForTable = function (item) {
 	return content;
 }
 
-var tableToJson = function (table, header=true) {
+var tableToJson = function (table, header=true)
+{
 	var data = [];
 	// first row needs to be headers
 	var headers = [];
@@ -58,13 +61,15 @@ var tableToJson = function (table, header=true) {
 }
 
 
-var ErrorValidBox = function(msg) {
+var ErrorValidBox = function(msg)
+{
 	$('#errvalidmsg').html('Error Validation: '+msg)
 	$('#errvalid').css('display','block');
 }
 
 
-var select_row = function (inpval) {
+var select_row = function (inpval)
+{
 	tblobj = jQuery.parseJSON(JSON.stringify(tableToJson(document.getElementById('mytable'),false)))
 	var cnt=0;
 	tblobj.forEach(function (item){
@@ -82,7 +87,8 @@ var select_row = function (inpval) {
 	$('#savemsg').html('');
 }
 
-var saveData = function (json='') {
+var saveData = function (json='')
+{
 	if (json.length==0) json = JSON.stringify(tableToJson(document.getElementById('mytable')));
 	json =json.replace(/\(\*\)/g,'');
 	//console.log(json);
@@ -100,7 +106,8 @@ var saveData = function (json='') {
 	return ret;
 }
 
-var postDico = function (file) {
+var postDico = function (file)
+{
 	if (!file) return 1;
 	var reader = new FileReader();
 	reader.readAsText(file, "ISO-8859-1");
@@ -154,15 +161,17 @@ var postDico = function (file) {
 	}
 }
 
-$(document).on('click', '.edit', function() {
+$(document).on('click', '.edit', function()
+{
 	if (!editflg) {
 		$('#searchterm').prop('disabled', true);
 		prevalues =[];
 		$(this).parent().siblings('td.data').each(function() {
 			var content = ($(this).children('a').length > 0 ) ? $(this).children('a').text() : $(this).html();
-            if (apiArray[$(this).attr('id').match(/\d+/)[0]]=='ROR') {
+			api = apiArray[$(this).attr('id').match(/\d+/)[0]];
+			if (api.length>0 && Object.keys(apiHash).includes(api)) {  // Typeahead
 				$(this).html('<input class="tdico typeahead" value="' + content + '" />');
-				callTypeahead();
+				(1, eval(apiHash[api]))()
 			}
 			else
 				$(this).html('<input class="tdico" value="' + content + '" />');
@@ -178,22 +187,22 @@ $(document).on('click', '.edit', function() {
 });
 
 
-$(document).on('click', '.btn-errvalid', function() {
+$(document).on('click', '.btn-errvalid', function()
+{
 	$('#errvalid').css('display','none');
 })
 
 $(document).on('click', '.cancel', function()
 {
-	$('.tt-hint').remove();
+	$('.tt-hint').remove(); // Typeahead
 	$('input.tdico').each(function(index, element) {
 		if (typeof $(this).parent().attr('id') !== "undefined") {
 			if (prevalues.length>0) {
 				$(this).html(getItemForTable(prevalues.shift()));
 				$(this).contents().unwrap();
 			}
-		} else {
+		} else { // Typeahead
 			$(this).parent().parent().html(prevalues.shift());
-			objpre = $(this).next();
 			$(this).contents().unwrap();
 		}
 	});
@@ -212,9 +221,10 @@ $(document).on('click', '.cancel', function()
 	editflg=false;
 });
 
-$(document).on('click', '.save', function() {
+$(document).on('click', '.save', function()
+{
 	var allValid=true;
-	$('.tt-hint').remove();
+	$('.tt-hint').remove(); // Typeahead
 	$('input.tdico').each(function(index, element) {
 		do {
 			if (!allValid) break;
@@ -237,7 +247,7 @@ $(document).on('click', '.save', function() {
 			if (typeof $(this).parent().attr('id') !== "undefined") {
 				$(this).html(getItemForTable($(this).val()));
 				$(this).contents().unwrap();
-			} else {
+			} else { // Typeahead
 				val = $(this).next()[0].outerText;
 				if (val.length==0) val=$(this).val();
 				$(this).parent().parent().html(val);
@@ -286,7 +296,13 @@ $(document).on('click', '.delete', function() {
 
 $(document).on('click', '.add, .btn-add', function() {
 	var tdcols='';
-	for (let i = 0; i < nameArray.length; i++) tdcols += '<td class="data"><input class="tdico" value="" /></td>';
+	var api_id=-1;
+	for (let i = 0; i < nameArray.length; i++)
+		if (apiArray[i].length>0 && Object.keys(apiHash).includes(apiArray[i])) { // Typeahead
+			tdcols += '<td class="data"><input class="tdico typeahead" value="" /></td>';
+			api_id=i;
+		} else
+			tdcols += '<td class="data"><input class="tdico" value="" /></td>';
 	tbl=tableToJson(document.getElementById('mytable'),false)
 	$('#container').append('<tr id="line'+tbl.length+'">'+tdcols+'<td><button class="btn save">Save</button><button class="btn edit">Edit</button>&nbsp;<button class="btn delete">Del</button><button class="btn cancel">Cancel</button></td></tr>');
 	$("#tbl-main").animate({ scrollTop: $('#tbl-main').prop("scrollHeight")}, 100);
@@ -296,6 +312,9 @@ $(document).on('click', '.add, .btn-add', function() {
 	edit=$(lastCell).find('.edit')[0]; $(edit).hide()
 	newflg=true
 	editflg=true
+	if (api_id!==-1) // Typeahead
+		(1, eval(apiHash[apiArray[api_id]]))()
+
 	$('#searchterm').prop('disabled', true);
 	$('#savemsg').html('');
 });
