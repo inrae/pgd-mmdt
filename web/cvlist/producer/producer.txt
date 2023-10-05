@@ -1,1 +1,4 @@
 Bordeaux Metabolome	INRAE	https://metabolome.cgfb.u-bordeaux.fr/	https://metabolome.cgfb.u-bordeaux.fr/sites/metabolome/files/logoBordeauxMetabolomeCropped.png
+GCIE Team	INRAE	https://intranet.hautsdefrance.inrae.fr/UE-GCIE-Picardie	
+Metatoul	INRAE	https://www6.toulouse.inrae.fr/metatoul/	https://www.genotoul.fr/wp-content/uploads/2017/01/Metatoul_logo-rvb.png
+Plant Systems Biology Lab	Pontificia Universidad Catolica de Chile	http://virtualplant.bio.puc.cl/cgi-bin/Lab/index.cgi	

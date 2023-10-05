@@ -18,8 +18,8 @@ wpleader	Work Package Leader	contributor	cvlist:people
 depositor	depositor		
 producer	producer		cvlist:producer
 grantNumbers	grantNumber		cvlist:grant
-keywords	keyword		cv:voinrae
-topics	topicClassification		cv:voinrae
+keywords	keyword		cv:bponto
+topics	topicClassification		cv:bponto
 kindOfData	kindOfData		
 dataOrigin	dataOrigin		
 lifeCycleStep	lifeCycleStep		
