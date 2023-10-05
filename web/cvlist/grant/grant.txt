@@ -1,10 +1,2 @@
-Amaizing	ANR	ANR-10-BTBR-01	https://anr.fr/ProjetIA-10-BTBR-0001
-COSMOS	European Commission	312941	https://cordis.europa.eu/project/id/312941/fr
-Frim	ANR	ANR-09-SYSB-003	
-Frimouss	ANR	ANR-15-CE20-0009	https://anr.fr/Project-ANR-15-CE20-0009
-Glomicave	European Commission	952908	https://cordis.europa.eu/project/id/952908
 MetaboHub	ANR	ANR-11-INBS-0010	https://anr.fr/ProjetIA-11-INBS-0010
-PhenoMeNal	European Commission	654241	https://cordis.europa.eu/project/id/654241/fr
 Phenome	ANR	ANR-11-INBS-0012	https://anr.fr/ProjetIA-11-INBS-0012
-Untwist	European Commission	862524	https://cordis.europa.eu/project/id/862524
-WAPNMR	ANR	ANR-21-CE21-0014	https://anr.fr/Project-ANR-21-CE21-0014

@@ -1,37 +1,3 @@
-NMR spectroscopy assay	OBI	http://purl.obolibrary.org/obo/OBI_0000623
-agricultural science	EDAM	http://edamontology.org/topic_3810
-amino acid	IOBC	http://purl.jp/bio/4/id/200906089657456524
-analyte assay	MS	http://purl.obolibrary.org/obo/OBI_0000443
-biochemical analysis	IOBC	http://purl.jp/bio/4/id/200906072808564316
-biochemical characterization	IOBC	http://purl.jp/bio/4/id/201306093820876862
-biochemical composition	IOBC	http://purl.jp/bio/4/id/201106016579695836
-biochemistry	EDAM	http://edamontology.org/topic_3292
 biodiversity	EDAM	http://edamontology.org/topic_3050
-data analysis	thesaurus-inrae	http://opendata.inrae.fr/thesaurusINRAE/c_14534
-developmental stage	EFO	http://www.ebi.ac.uk/efo/EFO_0000399
-drought environment	EO	http://purl.obolibrary.org/obo/EO_0007404
-ecotype	IOBC	http://purl.jp/bio/4/id/200906046696673566
-enzyme activity	IOBC	http://purl.jp/bio/4/id/200906083481331268
-extremophile	IOBC	http://purl.jp/bio/4/id/201106071824839297
-fruit development stage	PO	http://purl.obolibrary.org/obo/PO_0001002
-genetic modification	EFO	http://www.ebi.ac.uk/efo/EFO_0000510
-hexose	IOBC	http://purl.jp/bio/4/id/200906071142823668
-hexose phosphate	IOBC	http://purl.jp/bio/4/id/200906026709277087
-lipid Metabolism	IOBC	http://purl.jp/bio/4/id/200906093955318492
-liquid chromatography mass spectrometry assay	OBI	http://purl.obolibrary.org/obo/OBI_0003097
-mass spectrometry	IOBC	http://purl.jp/bio/4/id/200906092400634899
-metabolite	IOBC	http://purl.jp/bio/4/id/200906011725918524
-phenotype	IOBC	http://purl.jp/bio/4/id/200906018430012889
-phenotypic expression	IOBC	http://purl.jp/bio/4/id/200906044121035425
-plant biology	EDAM	http://edamontology.org/topic_0780
-plant breeding	IOBC	http://purl.jp/bio/4/id/201306020822027270
 plant ecology	IOBC	http://purl.jp/bio/4/id/201306001472878455
-plant trait	TO	http://purl.obolibrary.org/obo/TO_0000387
-plant trait	IOBC	http://purl.jp/bio/4/id/201306020292400942
-plant treatment	EO	http://purl.obolibrary.org/obo/EO_0001001
-response to stress	EFO	http://purl.obolibrary.org/obo/GO_0006950
-response to water	EFO	http://purl.obolibrary.org/obo/GO_0009415
-response to water deprivation	EFO	http://purl.obolibrary.org/obo/GO_0009414
-seed development stage	PO	http://purl.obolibrary.org/obo/PO_0001170
-soil environment	EO	http://purl.obolibrary.org/obo/EO_0007049
-treatment	EFO	http://www.ebi.ac.uk/efo/EFO_0000727
+biochemical analysis	IOBC	http://purl.jp/bio/4/id/200906072808564316

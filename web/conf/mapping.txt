@@ -1,5 +1,3 @@
-Cvname	Cvtype	Cvurl	Cvterms	Cvlang
-voinrae	skosmos	https://consultation.vocabulaires-ouverts.inrae.fr	thesaurus-inrae	en
-bpall	bioportal	https://bioportal.bioontology.org	all	en
-bponto	bioportal	https://bioportal.bioontology.org	EDAM,OBI,NMR,MS,PO,PTO,AGRO,ECOCORE,IOBC,NCBITAXON	en
-agonto	bioportal	https://agroportal.lirmm.fr/	EDAM,PO,TO,PPEO,ENVO,EO	en
+Cvname	Cvtype	Cvurl	Cvterms	Cvlang	Cvtoken
+voinrae	skosmos	https://consultation.vocabulaires-ouverts.inrae.fr	thesaurus-inrae	en	
+bponto	bioportal	https://data.bioontology.org	EDAM,NCIT,OBI,NMR,MS	en	
