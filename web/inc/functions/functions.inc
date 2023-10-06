@@ -317,7 +317,7 @@ function box_links($arr_links, $dwnld=0)
 			$html_output .= '<div class="col-4"><blockquote class="blockquote"><p><i class="bi-caret-right-fill"></i>&nbsp;&nbsp;'.$arr[0].'</p></blockquote></div>';
 			$html_output .= '<div class="col-4"><blockquote class="blockquote"><p><i class="bi-eye-fill"></i>&nbsp;&nbsp;<a class="icon-link" href="'.$arr[1].'" target="_blank">'.$arr[2].'</a></p></blockquote></div>';
 			if($dwnld)
-				$html_output .= '<div class="col-4"><blockquote class="blockquote"><p><i class="bi-download"></i>&nbsp;&nbsp;<button class=\"btn btn-success btn-xs\" style=\"width: 150px;\" onclick="downloadFile(\\\''.$arr[3].$arr[2].'\\\',\\\''.basename($arr[2]).'\\\'); return false;">'.$arr[4].'</button></blockquote></p></div>';
+				$html_output .= '<div class="col-4"><center><button title="Download '.$arr[4].'" class=\"btn btn-success btn-xs bi-download\" style=\"width: 50px;\" onclick="downloadFile(\\\''.$arr[3].$arr[2].'\\\',\\\''.basename($arr[2]).'\\\'); return false;"></button></center></div>';
 		$html_output .= '</div>';
 	}
 	$html_output .= '</fieldset>';

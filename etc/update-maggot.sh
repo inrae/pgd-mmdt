@@ -11,46 +11,46 @@ GITREPOS=https://github.com/inrae/pgd-mmdt.git
 (
   cd $ROOTDIR
   # Stop APP
-  sh ./$APP/run stop
+  sudo sh ./$APP/run stop
   echo
   echo "----------------------------------"
   echo "update $APP"
   echo "----------------------------------"
   # Add 'prev' as postfix to the current APP directory
   mv $APP ${APP}.prev
-  OLD=${APP}.prev
+  PREV=${APP}.prev
   # Get the source code from github
-  git clone $GITREPOS $APP
+  sudo git clone $GITREPOS $APP
   if [ $? -eq 0 ]; then
      # Config
-     [ -f $OLD/local.conf ] && cp ./$OLD/local.conf ./$APP/
-     cp ./$OLD/etc/.htpasswd ./$APP/etc/
-     cp ./$OLD/dockerscanpart/scripts/config.py ./$APP/dockerscanpart/scripts/
-     cp ./$OLD/web/inc/config/mongodb.inc ./$APP/web/inc/config/
-     [ -f ./$OLD/web/inc/config/local.inc ] && cp ./$OLD/web/inc/config/local.inc ./$APP/web/inc/config/
-     cp ./$OLD/web/conf/* ./$APP/web/conf/
-     cp -rf ./$OLD/web/cache ./$APP/web/
-     rm -rf ./$APP/web/cvlist/*
-     cp -rf ./$OLD/web/cvlist/* ./$APP/web/cvlist/
+     [ -f $PREV/local.conf ] && sudo cp ./$PREV/local.conf ./$APP/
+     sudo cp ./$PREV/etc/.htpasswd ./$APP/etc/
+     sudo cp ./$PREV/dockerscanpart/scripts/config.py ./$APP/dockerscanpart/scripts/
+     sudo cp ./$PREV/web/inc/config/mongodb.inc ./$APP/web/inc/config/
+     [ -f ./$PREV/web/inc/config/local.inc ] && sudo cp ./$PREV/web/inc/config/local.inc ./$APP/web/inc/config/
+     sudo cp ./$PREV/web/conf/* ./$APP/web/conf/
+     sudo cp -rf ./$PREV/web/cache ./$APP/web/
+     sudo rm -rf ./$APP/web/cvlist/*
+     sudo cp -rf ./$PREV/web/cvlist/* ./$APP/web/cvlist/
 
      # Autocomplete
-     #cp ./$OLD/web/js/autocomplete/*.js ./${APP}/web/js/autocomplete/
-     chmod 755 ./$APP/web/js/autocomplete/
-     chmod 644 ./$APP/web/js/autocomplete/*
+     #sudo cp ./$PREV/web/js/autocomplete/*.js ./${APP}/web/js/autocomplete/
+     sudo chmod 755 ./$APP/web/js/autocomplete/
+     sudo chmod 644 ./$APP/web/js/autocomplete/*
 
      # Docs
-     cp ./$OLD/web/docs/doc.md ./$APP/web/docs/
-     chmod 775 ./$APP/web/docs/
-     chmod 664 ./$APP/web/docs/*
+     sudo cp ./$PREV/web/docs/doc.md ./$APP/web/docs/
+     sudo chmod 775 ./$APP/web/docs/
+     sudo chmod 664 ./$APP/web/docs/*
 
      # Delete the .git directory
-     ( cd $APP; rm -rf ./.git )
-     ( cd $APP; rm -f .gitignore AUTHORS codemeta.json LICENSE README.md )
+     ( cd $APP; sudo rm -rf ./.git )
+     ( cd $APP; sudo rm -f .gitignore AUTHORS codemeta.json LICENSE README.md )
 
      # Restart APP
-     ( cd $APP; sh ./run fullstart )
+     ( cd $APP; sudo sh ./run fullstart )
 
      # Delete old APP directory
-     rm -rf ./$OLD
+     sudo rm -rf ./$PREV
   fi
 )

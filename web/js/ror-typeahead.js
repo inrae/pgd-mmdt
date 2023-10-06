@@ -28,7 +28,8 @@ function rorTypeahead () {
 		templates: {
 			pending: [
 				'<div class="empty-message tt-Loading">',
-				'Wait while fetching organizations list ...',
+				'<img src="https://files.readme.io/7194034-small-ROR.org_Port_RGB_WhiteBack.png" style="width:50px;"/>&nbsp;&nbsp;'+
+				'<b><i>Wait while fetching organizations list ...</i></b>',
 				'</div>'
 			].join('\n'),
 			suggestion: function (data) {
