@@ -1,0 +1,48 @@
+h1, h2, h3
+{
+    color:#2980B9!important;
+}
+
+/* To avoid repetition of title of page as first list item */
+/*
+li.toctree-l2:first-child {
+    display: none;
+}
+*/
+
+/* ipython notebooks overflow in x direction */
+#notebook-container
+{
+    width:100%;
+}
+.wy-nav-content {
+    max-width: none;
+}
+
+/* search text is white from theme.css of RTD - but why? hav to investigate?*/
+input[type="text"] {
+    color:black;
+  }
+
+/* dark blue on hover over links not very visible on side bars, so... */
+a:hover,
+a:focus {
+  color: #e07f25!important;
+}
+
+p.plegend {
+    line-height: 1.2; 
+    font-size: smaller;
+    font-style: italic;
+    margin: 0 0 0 0;
+}
+
+p.center {
+    text-align: center;
+}
+
+p.justify {
+    text-align: justify;
+}
+
+p { text-align: justify; }
