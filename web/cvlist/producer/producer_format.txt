@@ -1,5 +1,5 @@
-Name	Required	Format
-Name	Y	/^[a-zA-Z- ]+$/
-Institution	Y	/^[a-zA-Z0-9,\. ]+$/
-URL	N	/^(http|https):\/\//
-URL Logo	N	/^(http|https):\/\//
+Name	Required	Format	API
+Name	Y	/^[a-zA-Z- ]+$/	
+Institution	Y	/^[a-zA-Z0-9,\. ]+$/	ROR
+URL	N	/^(http|https):\/\//	
+URL Logo	N	/^(http|https):\/\//	

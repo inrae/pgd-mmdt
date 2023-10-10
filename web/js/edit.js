@@ -297,12 +297,13 @@ $(document).on('click', '.delete', function() {
 $(document).on('click', '.add, .btn-add', function() {
 	var tdcols='';
 	var api_id=-1;
+	nbitems += 1;
 	for (let i = 0; i < nameArray.length; i++)
 		if (apiArray[i].length>0 && Object.keys(apiHash).includes(apiArray[i])) { // Typeahead
-			tdcols += '<td class="data"><input class="tdico typeahead" value="" /></td>';
+			tdcols += '<td class="data" id="line'+nbitems+'"><input class="tdico typeahead" value="" /></td>';
 			api_id=i;
 		} else
-			tdcols += '<td class="data"><input class="tdico" value="" /></td>';
+			tdcols += '<td class="data" id="line'+nbitems+'"><input class="tdico" value="" /></td>';
 	tbl=tableToJson(document.getElementById('mytable'),false)
 	$('#container').append('<tr id="line'+tbl.length+'">'+tdcols+'<td><button class="btn save">Save</button><button class="btn edit">Edit</button>&nbsp;<button class="btn delete">Del</button><button class="btn cancel">Cancel</button></td></tr>');
 	$("#tbl-main").animate({ scrollTop: $('#tbl-main').prop("scrollHeight")}, 100);

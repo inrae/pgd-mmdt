@@ -209,7 +209,7 @@ do {
 	$html_table='<table id="mytable" name="mytable" class="table data" style="margin-bottom: 0rem;">'.$html_thread.$html_tbody.'</table>';
 
 	// Write in the HTML document
-	echo "<script>var nameArray = [ ".$var1." ];\nvar requireArray = [ ".$var2." ];\nvar regexArray = [ ".$var3." ];\nvar apiArray = [ ".$var4." ];\n $('#tbl-main').html('".$html_table."'); $('#dico-name').html('".$DICOSEL."');$('#divsearch').css('display','".$dispsearch."');$('#tbl-footer').css('display','block');$('#searchterm').val('".$searchterm."');select_row('".$searchterm."');</script>";
+	echo "<script>var nameArray = [ ".$var1." ];\nvar requireArray = [ ".$var2." ];\nvar regexArray = [ ".$var3." ];\nvar apiArray = [ ".$var4." ];\nvar nbitems=".$cnt."\n$('#tbl-main').html('".$html_table."'); $('#dico-name').html('".$DICOSEL."');$('#divsearch').css('display','".$dispsearch."');$('#tbl-footer').css('display','block');$('#searchterm').val('".$searchterm."');select_row('".$searchterm."');</script>";
 
     // If admin user then authorize to upload a file to replace the current dictionary
 	if ($USER == 'admin')
