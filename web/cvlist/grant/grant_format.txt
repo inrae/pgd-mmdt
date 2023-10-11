@@ -1,5 +1,5 @@
-Name	Required	Format
-Project Name	Y	/^[a-zA-Z- ]+$/
-Agency 	Y	/^[0-9a-zA-Z- ]+$/
-Agency ID	Y	/^[0-9a-zA-Z-:]+$/
-Project URL	N	/^(http|https):\/\//
+Name	Required	Format	API
+Project Name	Y	/^[a-zA-Z- ]+$/	
+Agency 	Y	/^[0-9a-zA-Z- ]+$/	ROR
+Agency ID	Y	/^[0-9a-zA-Z-:]+$/	
+Project URL	N	/^(http|https):\/\//	
