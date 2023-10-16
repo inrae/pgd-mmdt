@@ -1,6 +1,6 @@
 Field	Type	Level	Array	Multiple	Property	Value type	Value source	Index	Prefix
 	upload_type	0	FALSE	FALSE		dataset			
-	communities	0	FALSE	FALSE		zenodo,inra			
+	prereserve_doi	0	FALSE	FALSE		true			
 fulltitle	title	0	FALSE	FALSE		#VALUE			
 description	description	0	FALSE	FALSE		#VALUE			
 note	notes	0	FALSE	FALSE		#VALUE			

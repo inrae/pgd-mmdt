@@ -2,6 +2,7 @@
 
 if (!isset($ZENODO_SERVER_URL))  $ZENODO_SERVER_URL=$zenodo_urls[0];
 if (!isset($ZENODO_API_TOKEN))   $ZENODO_API_TOKEN='';
+if (!isset($COMMUNITIES))        $COMMUNITIES='zenodo';
 
 $dataset = '';
 if (isset($_GET['dataset'])) $dataset = $_GET['dataset'];
@@ -9,6 +10,7 @@ if (isset($_GET['dataset'])) $dataset = $_GET['dataset'];
 if( isset($_POST['btnpush']) ) {
 	$ZENODO_API_TOKEN=$_POST['token'];
 	$ZENODO_SERVER_URL=$_POST['server'];
+	$COMMUNITIES=$_POST['parent'];
 	$jsontype = intval($_POST['jsontype']);
 	if ( $jsontype==1 && strlen(trim($_POST['dataset'])) )
 		$dataset = trim($_POST['dataset']);
@@ -54,6 +56,10 @@ if ($ret>0) {
 	<title>Maggot - Zenodo</title>
 
 	<?php echo $HEAD ?>
+	<link rel="stylesheet" href="<?php echo $PATH ?>css/ror-widget.css">
+	<script  src="<?php echo $PATH ?>js/typeahead.min.js"></script>
+	<script>var ZC_API_URL = "<?php echo $ZENODO_SERVER_URL.$ZC_API ?>";</script>
+	<script  src="<?php echo $PATH ?>js/zc-typeahead.js"></script>
 
 	<script type="text/javascript">
 	function selectjson(id) {
@@ -81,6 +87,7 @@ if ($ret>0) {
 		for( var i = 0; i < elements.length; ++i ) {
 			var element = elements[i];
 			var name = element.name;
+			if (!Object.keys(obj).includes(name)) { continue; }
 			var value = element.value;
 			if (value.length>0) { continue; }
 			errmsg=errmsg+" "+obj[name]+"\n";
@@ -93,6 +100,10 @@ if ($ret>0) {
 		$('#errbox').css('display','none');
 		return ret;
 	}
+	$(document).on('click', '#server', function() {
+		zenodo_server = $('#server').find(":selected").val();
+		ZC_API_URL = zenodo_server + '<?php echo $ZC_API ?>';
+	})
 	</script>
 </head>
 
@@ -127,6 +138,7 @@ if ($ret>0) {
 			</div>
 			<div style="padding-bottom: 10px;"><b>Zenodo Server URL</b>:&nbsp;<select name="server" id="server" class="form-control form-control-sm"><? echo $options_server ?></select></div>
 			<div style="padding-bottom: 10px;"><b>API-Token</b>:&nbsp;<input class="form-control form-control-sm solo" type="text" name="token" id="token" value="<? echo $ZENODO_API_TOKEN ?>" /></div>
+			<div style="padding-bottom: 10px;"><b>Communities</b>:&nbsp;<input class="form-control form-control-sm solo typeahead" type="text" name="parent" id="parent" value="<? echo $COMMUNITIES ?>" /></div>
 			<input type="submit" class="btn btn-primary" style="width: 100px;" id="btnpush" name="btnpush" value="Publish"/>
 			<input type="hidden" name="jsontype" id="jsontype" value="1">
 			<br>
@@ -169,6 +181,7 @@ if ($ret>0) {
 			selectjson(2);
 		}
 	})
+	zcTypeahead();
 </script>
 
 <?php
@@ -260,8 +273,7 @@ do
 //echo "<br><pre>"; print_r (array_keys($metadata)); echo "</pre><br>"; 
 
 	// Convert JSON to Dataverse
-	//$msg = maggot2zenodo ($json, $outjson);
-	$outjson = json2zenodo($metadata, $def, $map);
+	$outjson = json2zenodo($metadata, $def, $map, $COMMUNITIES);
 	if (strlen($outjson)==0) {
 		$msg='Error: Either no conversion has been done or the conversion has failed !!!';
 		echo "<script>$('#errboxmsg').html('".$msg."'); $('#errbox').css('display','block');</script>";
@@ -289,13 +301,15 @@ do
 	// Test if a dataset is already present in the data repository
 	$ds=$metadata['fulltitle'];
 	$output_arr = get_api_zenodo();
-	$html_record_id = $record_id = '';
+	$html_record_id = $record_id = $bucket_link = '';
     if (is_array($output_arr) && count($output_arr)>0) {
 		for($k=0; $k<count($output_arr); $k++) {
 			$arr=$output_arr[$k];
-			if (strlen($arr['doi'])==0 && $arr['submitted']==0 && $arr['title']==$ds) {
+			//if (strlen($arr['doi'])==0 && $arr['submitted']==0 && $arr['title']==$ds) {
+			if ($arr['title']==$ds) {
 				$record_id = $arr['record_id'];
 				$html_record_id = $arr['links']['html'];
+				$state = $arr['state'];
 				break;
 			}
 		}
@@ -308,8 +322,11 @@ do
 		$astyle = 'color: #2b5165; text-decoration: none;';
 		$htmlsuccess="WARNING: The dataset ".$ds." has been already created with the record ID: ".$record_id;
 		$htmlsuccess .= "<br>The corresponding URL is <a style=\"".$astyle."\" href=\"".$html_record_id."\" target=\"_blank\">".$html_record_id."</a>";
+		if ($state == 'done')
+			$htmlsuccess .= "<br>WARNING: This dataset has already been published, so you cannot modify by this way";
 		echo "<script>$('#successmsg').html('".$htmlsuccess."'); $('#successresp').css('display','block');</script>";
-		break;
+		if ($state == 'done')
+			break;
 	}
 
 //echo "<br><pre>"; print_r ($output_arr); echo "</pre><br>";
@@ -329,8 +346,9 @@ do
 	}
 	
 	// Success
-    if (is_array($output_arr)) {
+    if (strlen($record_id)==0 && is_array($output_arr)) {
 		$link = $output_arr['links']['html'];
+		$bucket_link = $output_arr['links']['bucket'];
 		$record_id = $output_arr['record_id'];
 		$astyle = 'color: #2b5165; text-decoration: none;';
 		$htmlsuccess="SUCCESS: The dataset ".$ds." has been created with success with the record ID: ".$record_id;
@@ -338,6 +356,32 @@ do
 		echo "<script>$('#successmsg').html('".$htmlsuccess."'); $('#successresp').css('display','block');</script>";
 	}
 
+	if (!file_exists($path.'/'.$auth_senddata_file)) break;
+
+	// Sending file if internal JSON
+	if ($jsontype==1) {
+		$files = array();
+		foreach( $metadata['resources'] as $arr ) {
+			$file = $path.'/'.$arr['location'];
+			if (strlen($arr['location'])>0 && ! preg_match('/^https?:/',$arr['location']) && file_exists($file))
+				array_push($files, $file);
+		}
+		if (count($files)>0) {
+			$msg = '';
+			if (strlen($bucket_link) == 0) {
+				$output_arr = get_api_zenodo($record_id);
+				$bucket_link = $output_arr['links']['bucket'];
+			}
+			foreach( $files as $file) {
+				$output_arr = send_file_zenodo($bucket_link, $file);
+				if (array_key_exists('status',$output_arr))
+					$msg .='ERROR '.$arr['location'].': '.addslashes($output_arr['message']).'<br>';
+			}
+			if (strlen($msg)) {
+				echo "<script>$('#filemsg').html('".$msg."'); $('#filemsgbox').css('display','block');</script>";
+			}
+		}
+	}
 } while(0);
 
 echo "<script>$('#waiting').css('display','none');</script>";

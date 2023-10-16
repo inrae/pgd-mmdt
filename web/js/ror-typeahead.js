@@ -54,10 +54,10 @@ function rorTypeahead () {
 			}
 		},
 		display: function (data) {
-		return data.name;
+			return data.name;
 		},
 		value: function(data) {
-		return data.identifier;
+			return data.identifier;
 		}
 	});
 }

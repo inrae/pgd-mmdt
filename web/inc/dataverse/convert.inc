@@ -19,7 +19,7 @@ function get_api_dataverse($request) {
     return cmd_api_dataverse($cmd);
 }
 
-function send_api_dataverse($request,$upload, $mode='POST') {
+function send_api_dataverse($request, $upload, $mode='POST') {
     global $API_TOKEN, $SERVER_URL;
     $header = 'X-Dataverse-key:'.$API_TOKEN;
     $content_type = "Content-type:application/json";
@@ -28,7 +28,7 @@ function send_api_dataverse($request,$upload, $mode='POST') {
     return cmd_api_dataverse($cmd);
 }
 
-function send_file_dataverse($id,$file,$description,$tags,$update) {
+function send_file_dataverse($id, $file, $description, $tags, $update) {
     global $API_TOKEN, $SERVER_URL;
     $header = 'X-Dataverse-key:'.$API_TOKEN;
     $upload = '-F "file=@'.$file.'"';
@@ -181,7 +181,7 @@ function maggot2dataverse ($input_json, &$output_json)
 	return $msg;
 }
 
-function send_resources_files($id,$resources,$path, $array_files)
+function send_resources_files($id, $resources, $path, $array_files)
 {
 	global $auth_senddata_file;
 
@@ -196,10 +196,10 @@ function send_resources_files($id,$resources,$path, $array_files)
 		}
 		if (count($array_files)>0 && isset($array_files[$arr['location']])) {
 			$op='updated';
-			$output_arr = send_file_dataverse($array_files[$arr['location']],$path.'/'.$arr['location'],$arr['description'],$arr['datatype'], true);
+			$output_arr = send_file_dataverse($array_files[$arr['location']], $path.'/'.$arr['location'], $arr['description'], $arr['datatype'], true);
 		} else {
 			$op='sent';
-			$output_arr = send_file_dataverse($id,$path.'/'.$arr['location'],$arr['description'],$arr['datatype'], false);
+			$output_arr = send_file_dataverse($id, $path.'/'.$arr['location'], $arr['description'], $arr['datatype'], false);
 		}
 		$status = $output_arr['status'];
 		if ($status==='ERROR') {

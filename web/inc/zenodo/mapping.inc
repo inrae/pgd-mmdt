@@ -8,7 +8,7 @@ $ZENODO['GRANTS_DOI'] = [
 $ZENODO['ACCESS_RIGHTS'] = [
 	'Public' => 'open',
 	'Private' => 'closed',
-	'Mixte' => 'open'
+	'Mixte' => 'restricted'
 ];
 
 $ZENODO['RELATION_TYPES'] = [

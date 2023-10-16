@@ -12,9 +12,12 @@ function cmd_api_zenodo($cmd) {
     return $output_arr;
 }
 
-function get_api_zenodo() {
+function get_api_zenodo($id='') {
     global $ZENODO_API_TOKEN, $ZENODO_SERVER_URL;
-    $cmd = 'curl --request GET '.$ZENODO_SERVER_URL.'/api/deposit/depositions?access_token='.$ZENODO_API_TOKEN;
+	if (strlen($id) > 0)
+		$cmd = 'curl --request GET '.$ZENODO_SERVER_URL.'/api/deposit/depositions/'.$id.'?access_token='.$ZENODO_API_TOKEN;
+	else
+		$cmd = 'curl --request GET '.$ZENODO_SERVER_URL.'/api/deposit/depositions?access_token='.$ZENODO_API_TOKEN;
     return cmd_api_zenodo($cmd);
 }
 
@@ -25,6 +28,12 @@ function send_api_zenodo($content, $mode='POST') {
     return cmd_api_zenodo($cmd);
 }
 
+function send_file_zenodo($bucket_link, $file) {
+    global $ZENODO_API_TOKEN;
+	$cmd='curl --upload-file '.$file.' --request PUT '.$bucket_link.'/'.basename($file).'?access_token='.$ZENODO_API_TOKEN;
+    return cmd_api_zenodo($cmd);
+}
+
 //----------------------------
 // Convertion routines
 //----------------------------
@@ -32,7 +41,7 @@ function send_api_zenodo($content, $mode='POST') {
 function addComma (&$str) {	if (substr($str,-1) !== ',') $str = $str.','; }
 function removeComma (&$str) {	$len = strlen($str); if (substr($str,-1) == ',') $str = substr($str,0,$len-1); }
 
-function json2zenodo($metadata, $def, $map)
+function json2zenodo($metadata, $def, $map, $COMMUNITIES='')
 {
 	global $ZENODO, $cvdir;
 
@@ -84,7 +93,12 @@ function json2zenodo($metadata, $def, $map)
 	$arrname = $fieldname = $p_arrname = $p_fieldname = '';
 	$jsoncore = '';
 
-	$cnt=1;
+	if (strlen($COMMUNITIES)) {
+		$cnt=0;
+		$def[$cnt] = [ '', 'communities', 0, $N, $N, '', $COMMUNITIES, '', '', '' ];
+	} else {
+		$cnt=1;
+	}
 	while (strlen($def[$cnt][$CT])>0) {
 		$arr=$def[$cnt];    // current line
 		$arr2=$def[$cnt+1]; // following line
@@ -141,7 +155,9 @@ function json2zenodo($metadata, $def, $map)
 					$jsonval = array();
 					foreach ($values as $value) $jsonval[] .= '{"identifier":"'.$value.'"}';
 					$jsoncore .= '"communities": [ '.implode(',',$jsonval).']';
-				} else
+				} elseif (in_array($arr[$VT], array('true','false')))
+					$jsoncore .= '"'.$arr[$CT].'":'.$arr[$VT];
+				else
 					$jsoncore .= '"'.$arr[$CT].'":"'.$arr[$VT].'"';
 				if (strlen($arr2[$CA])>0 && strlen($arr2[$CM])>0) addComma($jsoncore);
 				break;
@@ -187,6 +203,7 @@ function json2zenodo($metadata, $def, $map)
 			// Resources
 				if ($fieldname == 'resources') {
 					$res = array();
+					//array_push($res,  '{ "identifier": "maggot:'.$metadata['title'].'", "relation": "isAlternateIdentifier","scheme": "other" }' );
 					for($k=0; $k<$nbitems; $k++) {
 						$res2=array();
 						$url_ok = 1; $scheme='url';
@@ -322,7 +339,7 @@ function json2zenodo($metadata, $def, $map)
 
 function maggot2zenodo ($input_json, &$output_json)
 {
-	global $zenodo_conf, $mapping_conf;
+	global $zenodo_conf, $mapping_conf, $COMMUNITIES;
 	$msg='';
 
 	do
@@ -356,7 +373,7 @@ function maggot2zenodo ($input_json, &$output_json)
 			break;
 		}
 
-		$output_json = json2zenodo($metadata, $def, $map);
+		$output_json = json2zenodo($metadata, $def, $map, $COMMUNITIES);
 
 	} while(0);
 

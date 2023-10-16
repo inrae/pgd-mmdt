@@ -44,7 +44,7 @@ $url_schema = "https://pmb-bordeaux.fr/maggot/conf/maggot-schema.json";
 
 // Dataverse URL
 $dataverse_urls = array('https://demo.recherche.data.gouv.fr',
-                        'https://data-preproduction.inrae.fr/',
+                        'https://data-preproduction.inrae.fr',
                         'https://entrepot.recherche.data.gouv.fr');
 
 $SERVER_URL='https://entrepot.recherche.data.gouv.fr';
@@ -52,10 +52,23 @@ $PARENT='';
 
 // Zenodo URLs
 $zenodo_urls = array('https://zenodo.org',
-                     'https://sandbox.zenodo.org');
+					 'https://zenodo-rdm-qa.web.cern.ch');
+//                     'https://sandbox.zenodo.org');
+
+$ZC_API = '/api/communities/';
 
 $ZENODO_SERVER_URL='https://zenodo.org';
 $ZENODO_API_TOKEN='';
+$COMMUNITIES='';
+
+// OAI-PMH
+$OAI_HTTP = 'http';
+$OAI_BASEURL=$OAI_HTTP.'://'.$APPURL.'/oai';
+//$OAI_EMAIL='pfmb-bordeaux@inra.fr';
+$OAI_EMAIL='daniel.jacob@inrae.fr';
+$OAI_IDENTIFIER='pmb-bordeaux.fr';
+$OAI_SET='maggot';
+$OAI_DATE='2023-01-01';
 
 // Help links (Temporarily on nextcloud while waiting for online documentation on GitBook)
 $dataverse_help = "https://nextcloud.inrae.fr/s/otBMwKZXK62KtMj";
@@ -79,15 +92,6 @@ $export_zenodo = 1;
 // OAI-PMH
 $oaipmh_conf= 'conf/oai-pmh.txt';
 $export_oai = 1;
-
-$OAI_HTTP = 'http';
-$OAI_BASEURL=$OAI_HTTP.'://'.$APPURL.'/oai';
-//$OAI_EMAIL='pfmb-bordeaux@inra.fr';
-$OAI_EMAIL='daniel.jacob@inrae.fr';
-$OAI_IDENTIFIER='pmb-bordeaux.fr';
-$OAI_SET='maggot';
-$OAI_DATE='2023-01-01';
-
 
 // Vocabulary cache file
 $vocab_cache_file = 'cache/vocabulary.txt';
