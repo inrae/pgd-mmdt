@@ -66,6 +66,11 @@
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
+        
+        <a href="#the-maggot-tool-allows-users" class="md-skip">
+          Skip to content
+        </a>
+      
     </div>
     <div data-md-component="announce">
       
@@ -119,6 +124,8 @@
           
             
               
+                
+              
               <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
                 <div class="md-sidebar__scrollwrap">
                   <div class="md-sidebar__inner">
@@ -168,9 +175,49 @@
       
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          <span class="md-nav__icon md-icon"></span>
+          
+            <a href="./" class="md-nav__link md-nav__link--active"
+              style="margin: initial; padding: initial; pointer-events: initial">
+          
+            Presentation
+          </a>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         Presentation
       </a>
+      
+        
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#the-maggot-tool-allows-users" class="md-nav__link">
+    The Maggot tool allows users
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#overview-of-the-different-stages-of-metadata-management" class="md-nav__link">
+    Overview of the different stages of metadata management
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -224,6 +271,18 @@
           </a>
         </label>
         <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../configuration/config/" class="md-nav__link">
+        Terminology
+      </a>
+    </li>
+  
+
           
             
   
@@ -361,6 +420,45 @@
               </div>
             
             
+              
+                
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" hidden>
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#the-maggot-tool-allows-users" class="md-nav__link">
+    The Maggot tool allows users
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#overview-of-the-different-stages-of-metadata-management" class="md-nav__link">
+    Overview of the different stages of metadata management
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
           
           <div class="md-content" data-md-component="content">
             <article class="md-content__inner md-typeset">
@@ -369,7 +467,30 @@
                 
                   <h1>Presentation</h1>
                 
-                
+                <h3 id="the-maggot-tool-allows-users">The Maggot tool allows users<a class="headerlink" href="#the-maggot-tool-allows-users" title="Permanent link">&para;</a></h3>
+<ul>
+<li>to describe the <a href="https://en.wikipedia.org/wiki/Metadata" target="_blank">Metadata</a> of their datasets produced within a collective, thus making it possible :<ul>
+<li>to answer certain questions of the <a href="https://en.wikipedia.org/wiki/Data_management_plan" target="_blank">Data Management Plan (DMP)</a> concerning the organization, documentation, storage and sharing of data in the data storage space, </li>
+<li>to meet certain data and metadata requirements, referred to by the <a href="https://open-research-europe.ec.europa.eu/for-authors/data-guidelines" target="_blank">Open Research Europe</a> (declined in France in the form of a <a href="https://www.ouvrirlascience.fr/second-national-plan-for-open-science/" target="_blank">National Open Science Plan</a>), in accordance with the <a href="https://open-research-europe.ec.europa.eu/for-authors/data-guidelines#fairdata" target="_blank">FAIR principles</a>.</li>
+</ul>
+</li>
+<li>to search datasets by their metadata (Accessibility)<ul>
+<li>Indeed, the descriptive metadata thus produced can be associated with the corresponding data directly in the storage space which is then scanned so that they are referenced in a database. It is then possible to perform a search on the metadata in order to find one or more sets of data. Only descriptive metadata is accessible by default.</li>
+</ul>
+</li>
+<li>to publish the metadata of datasets along with their data files into an <a href="https://open-research-europe.ec.europa.eu/for-authors/data-guidelines#approvedrepositories" target="_blank">Europe-approved repository</a> (Publication)</li>
+</ul>
+<p><br></p>
+<h3 id="overview-of-the-different-stages-of-metadata-management">Overview of the different stages of metadata management<a class="headerlink" href="#overview-of-the-different-stages-of-metadata-management" title="Permanent link">&para;</a></h3>
+<p><center>
+<a href="../images/overview_steps.png" data-lightbox="fig0"><img src="../images/overview_steps.png" width="600px"></a><br>
+<strong><em>Note:</em></strong>  <em>The step numbers indicated in the figure correspond to the different points developed below</em>
+</center></p>
+<p><br></p>
+<p><strong>1</strong> - First you must define all the metadata to enter (i.e. the container in relation to the content). It is possible to define all the metadata using a single file (in TSV format, therefore using a spreadsheet). The metadata proposed by default was established according to the DDI (Data Documentation Initiative) metadata schema. This schema also largely corresponds to that adopted by the Dataverse software. See the <a href="../configuration/config">Terminology Definition</a> section.</p>
+<p><strong>2</strong> - In order to facilitate the entry of metadata (content in relation to the container), it is possible and even strongly recommended to create dictionaries by metadata categories. The dictionaries offered by default are: people, funders, data producers, as well as a vocabulary dictionary allowing you to mix ontologies and thesauri from several sources. Each of these dictionaries allows you to enter a name or a main title by autocompletion. Then the information associated with it will be added during export (data deposit, JSON-LD format, OAI-PMH). See the <a href="../dictionaries">Dictionaries</a> section.</p>
+<hr />
+<p><a href="https://www6.bordeaux-aquitaine.inrae.fr/bfp_eng/" target="_blank"><img alt="Inrae" src="../images/inrae_logo.png" /></a></p>
                 
                   
                 

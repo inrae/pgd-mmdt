@@ -1,7 +1,21 @@
-h1, h2, h3
+/*h1, h2, h3
 {
     color:#2980B9!important;
-}
+}*/
+
+h1 {text-align:left; color:#337ab7}
+h1 {text-align:left; color:#fff}*/
+h2 {text-align:left; color:#c52d0d}
+h3 {text-align:left; color:#337ab7}
+h4 {text-align:left; color:#388e3c}
+
+em {font-size:12px;}
+
+ul li {font-size:18px;}
+
+img { max-width: 1200px; }
+
+.decal { position:relative; left: 50px; }
 
 /* To avoid repetition of title of page as first list item */
 /*
