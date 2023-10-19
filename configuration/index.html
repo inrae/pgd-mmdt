@@ -13,7 +13,7 @@
       
       
       
-        <link rel="prev" href="../install/">
+        <link rel="prev" href="../installation/infrastructure/">
       
       
         <link rel="next" href="config/">
@@ -83,6 +83,11 @@
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
+      
+        
+        <a href="#configuration-flexibility" class="md-skip">
+          Skip to content
+        </a>
       
     </div>
     <div data-md-component="announce">
@@ -242,7 +247,7 @@
   
   
     <li class="md-tabs__item">
-      <a href="../install/" class="md-tabs__link">
+      <a href="../installation/" class="md-tabs__link">
         
   
     
@@ -385,16 +390,71 @@
   
   
   
-    <li class="md-nav__item">
-      <a href="../install/" class="md-nav__link">
+    
+    
+    
+    
+    
+      
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
         
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../installation/" class="md-nav__link ">
+              
   
   <span class="md-ellipsis">
     Installation
   </span>
   
 
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3" id="__nav_3_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Installation
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../installation/infrastructure/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Infrastructure
+  </span>
+  
+
       </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
     </li>
   
 
@@ -610,7 +670,29 @@
 
   <h1>Definition files</h1>
 
+<style>.md-typeset h1 { display: none; }</style>
 
+<h3 id="configuration-flexibility">Configuration flexibility<a class="headerlink" href="#configuration-flexibility" title="Permanent link">&para;</a></h3>
+<p>The Maggot tool offers great flexibility in configuration. It allows you to completely choose all the metadata you want to describe your data. You can base yourself on an existing <a href="https://en.wikipedia.org/wiki/Metadata_standard" target="_blank">metadata schema</a>, invent <a href="https://committee.iso.org/files/live/sites/tc46sc11/files/documents/N800R1%20Where%20to%20start-advice%20on%20creating%20a%20metadata%20schema.pdf" target="_blank">your own schema</a><sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup> or, more pragmatically, mix one or more schemas by introducing some metadata specific to your field of application. However, keep in mind that if you want to add descriptive metadata to your data then a <a href="https://libraries.mit.edu/data-management/store/documentation/" target="_blank">certain amount of information</a> is expected. But a completely different use of the tool is possible, it's up to you.</p>
+<p>Definition files are made using a simple spreadsheet then exported in TSV format. There are two categories of definition files:</p>
+<ul>
+<li>
+<p>The first category concerns the definition of terminology (metadata + controlled vocabulary). Clearly, this category is more akin to application configuration files. They represent the heart of the application around which everything else is based. This is why a configuration and conversion step into JSON format is essential in order to be able to configure all the other modules (example: MongoDB database schema).</p>
+</li>
+<li>
+<p>The second category concerns the definitions of mapping to a differently structured metadata schema (e.g. <a href="dataverse">Dataverse</a>, <a href="json-ld">JSON-LD</a>, <a href="oai-pmh">OAI-PMH</a>). Simply place the definition files in the configuration directory (<strong><em>web/conf</em></strong>) for them to be taken into account, provided you have adjusted the configuration (<em><a href="https://github.com/inrae/pgd-mmdt/blob/main/web/inc/config/config.inc" target="_blank">web/inc/config/config.inc</a></em>).</p>
+</li>
+</ul>
+<hr />
+<p><a href="https://www6.bordeaux-aquitaine.inrae.fr/bfp_eng/" target="_blank"><img alt="Inrae" src="../images/inrae_logo.png" /></a></p>
+<div class="footnote">
+<hr />
+<ol>
+<li id="fn:1">
+<p><em>How to create a descriptive metadata plan</em>:  <a href="https://sustainableheritagenetwork.org/system/files/atoms/file/How_to_Create_a_Descriptive_Metadata_Plan.pdf">https://sustainableheritagenetwork.org/system/files/atoms/file/How_to_Create_a_Descriptive_Metadata_Plan.pdf</a>&#160;<a class="footnote-backref" href="#fnref:1" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+</li>
+</ol>
+</div>
 
 
 

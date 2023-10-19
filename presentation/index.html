@@ -16,7 +16,7 @@
         <link rel="prev" href="..">
       
       
-        <link rel="next" href="../install/">
+        <link rel="next" href="../installation/">
       
       
       <link rel="icon" href="../assets/images/favicon.png">
@@ -249,7 +249,7 @@
   
   
     <li class="md-tabs__item">
-      <a href="../install/" class="md-tabs__link">
+      <a href="../installation/" class="md-tabs__link">
         
   
     
@@ -440,16 +440,71 @@
   
   
   
-    <li class="md-nav__item">
-      <a href="../install/" class="md-nav__link">
+    
+    
+    
+    
+    
+      
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
         
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../installation/" class="md-nav__link ">
+              
   
   <span class="md-ellipsis">
     Installation
   </span>
   
 
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3" id="__nav_3_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Installation
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../installation/infrastructure/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Infrastructure
+  </span>
+  
+
       </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
     </li>
   
 
@@ -666,9 +721,12 @@
 <style>.md-typeset h1 { display: none; }</style>
 
 <h3 id="main-features-of-maggot">Main features of Maggot<a class="headerlink" href="#main-features-of-maggot" title="Permanent link">&para;</a></h3>
-<p>It allows you :</p>
 <ul>
-<li>to describe the <a href="https://en.wikipedia.org/wiki/Metadata" target="_blank">Metadata</a> of their datasets produced within a collective, thus making it possible :<ul>
+<li>See a short <a href="https://inrae.github.io/pgd-mmdt/pdf/MAGGOT_Metadata_Oct2023.pdf?download=false" target="_blank">Presentation</a> and <a href="https://inrae.github.io/pgd-mmdt/pdf/MAGGOT_Poster_Oct2023.pdf?download=false" target="_blank">Poster</a> for a quick overview.</li>
+</ul>
+<p>Maggot allows you :</p>
+<ul>
+<li>to describe the <a href="https://en.wikipedia.org/wiki/Metadata" target="_blank">Metadata</a> of your datasets produced within a collective, thus making it possible :<ul>
 <li>to answer certain questions of the <a href="https://en.wikipedia.org/wiki/Data_management_plan" target="_blank">Data Management Plan (DMP)</a> concerning the organization, documentation, storage and sharing of data in the data storage space, </li>
 <li>to meet certain data and metadata requirements, referred to by the <a href="https://open-research-europe.ec.europa.eu/for-authors/data-guidelines" target="_blank">Open Research Europe</a> (declined in France in the form of a <a href="https://www.ouvrirlascience.fr/second-national-plan-for-open-science/" target="_blank">National Open Science Plan</a>), in accordance with the <a href="https://open-research-europe.ec.europa.eu/for-authors/data-guidelines#fairdata" target="_blank">FAIR principles</a>.</li>
 </ul>
@@ -677,27 +735,20 @@
 <li>Indeed, the descriptive metadata thus produced can be associated with the corresponding data directly in the storage space which is then scanned so that they are referenced in a database. It is then possible to perform a search on the metadata in order to find one or more sets of data. Only descriptive metadata is accessible by default.</li>
 </ul>
 </li>
-<li>
-<p>to publish the metadata of datasets along with their data files into an <a href="https://open-research-europe.ec.europa.eu/for-authors/data-guidelines#approvedrepositories" target="_blank">Europe-approved repository</a> (Publication)</p>
-</li>
-<li>
-<p>See <a href="https://inrae.github.io/pgd-mmdt/pdf/MAGGOT_Metadata_Oct2023.pdf?download=false" target="_blank">Presentation</a> and <a href="https://inrae.github.io/pgd-mmdt/pdf/MAGGOT_Poster_Oct2023.pdf?download=false" target="_blank">Poster</a> for a short overview.</p>
-</li>
+<li>to publish the metadata of datasets along with their data files into an <a href="https://open-research-europe.ec.europa.eu/for-authors/data-guidelines#approvedrepositories" target="_blank">Europe-approved repository</a> (Publication)</li>
 </ul>
 <p><br></p>
 <h3 id="overview-of-the-different-stages-of-metadata-management">Overview of the different stages of metadata management<a class="headerlink" href="#overview-of-the-different-stages-of-metadata-management" title="Permanent link">&para;</a></h3>
-<p><center>
-<a href="../images/overview_steps.png" data-lightbox="fig0"><img src="../images/overview_steps.png" width="600px"></a><br>
+<p><center><img src="../images/overview_steps.png" width="700px"><br>
 <strong><em>Note:</em></strong>  <em>The step numbers indicated in the figure correspond to the different points developed below</em>
 </center></p>
-<p><br></p>
-<p><strong>1</strong> - First you must define all the metadata to enter (i.e. the container in relation to the content). It is possible to define all the metadata using a single file (in TSV<sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup> format, therefore using a spreadsheet). The metadata proposed by default was established according to the DDI (Data Documentation Initiative) metadata schema. This schema also largely corresponds to that adopted by the Dataverse software. See the <a href="../configuration/config">Terminology Definition</a> section.</p>
-<p><strong>2</strong> - In order to facilitate the entry of metadata (content in relation to the container), it is possible and even strongly recommended to create dictionaries by metadata categories. The dictionaries offered by default are: people, funders, data producers, as well as a vocabulary dictionary allowing you to mix ontologies and thesauri from several sources. Each of these dictionaries allows you to enter a name or a main title by autocompletion. Then the information associated with it will be added during export (data deposit, JSON-LD format, OAI-PMH). See the <a href="../dictionaries">Dictionaries</a> section.</p>
-<p><strong>3</strong> - The web interface for entering metadata is built from the terminology definition file (See the <a href="../configuration/config">Terminology definition</a> section). The metadata is thus divided into different sections, each constituting a tab. Mandatory fields are marked with a red star and must be documented in order to generate the metadata file. The entry of metadata governed by a controlled vocabulary is done by autocompletion<sup id="fnref:3"><a class="footnote-ref" href="#fn:3">3</a></sup>, i.e. entering the first letters generates a drop-down list containing the vocabulary corresponding to the search. Simply click to retrieve the full value. Once the mandatory fields (at a minimum) and other recommended fields have been entered, the metadata file can be generated in JSON<sup id="fnref:2"><a class="footnote-ref" href="#fn:2">2</a></sup> format.</p>
-<p><strong>4</strong> - </p>
-<p><strong>5</strong> - </p>
-<p><strong>6</strong> - </p>
-<p><strong>7</strong> - </p>
+<p><strong>1</strong> - First you must define all the metadata to enter (i.e. the container in relation to the content). It is possible to define all the metadata using a single file (in TSV<sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup> format, therefore using a spreadsheet). The metadata proposed by default was mainly established according to the DDI (Data Documentation Initiative) metadata schema. This schema also largely corresponds to that adopted by the Dataverse software. See the <a href="../configuration/config">Terminology Definition</a> section.</p>
+<p><strong>2</strong> - In order to facilitate the entry of metadata (content in relation to the container), it is possible and even strongly recommended to create dictionaries by metadata categories. The dictionaries offered by default are: people, funders, data producers, as well as a vocabulary dictionary allowing you to mix ontologies and thesauri from several sources. Each of these dictionaries allows you to enter a name or a main title by autocompletion<sup id="fnref:3"><a class="footnote-ref" href="#fn:3">3</a></sup>. Then the information associated with it will be added during export (data deposit, JSON-LD format, OAI-PMH). See the <a href="../dictionaries">Dictionaries</a> section.</p>
+<p><strong>3</strong> - The web interface for entering metadata is built in accordance with the terminology definition file (See <a href="../configuration/config">Terminology definition</a>). The metadata is thus distributed according to the different sections chosen, each constituting a tab. Mandatory fields are marked with a red star and must be documented in order to be able to generate the metadata file (see <a href="https://pmb-bordeaux.fr/maggot/entry" target="_blank">our online instance</a>). The entry of metadata governed by a controlled vocabulary (<i>dictionary, thesaurus or ontology</i>) is done by autocompletion<sup id="fnref2:3"><a class="footnote-ref" href="#fn:3">3</a></sup>. Once the mandatory fields (at least) and other recommended fields (the best) have been entered, the metadata file can be generated in JSON<sup id="fnref:2"><a class="footnote-ref" href="#fn:2">2</a></sup> format.</p>
+<p><strong>4</strong> - The file generated in JSON format must be placed in the <a href="..//installation/infrastructure">storage space</a> reserved for this purpose. The role played by this metadata file can be seen as a README file adapted for machines, but also readable by humans. With an internal structure, it offers coherence and consistency of information that a simple README file with a completely free and therefore unstructured text format does not allow. Furthermore, the central idea is to use the storage space as a local data repository, so that the metadata should go to the data and not the other way around. If the <a href="https://github.com/djacob65/maggot-fb" target="_blank">filebrowser</a> application is installed, then you can directly access the data space according to your access rights.</p>
+<p><strong>5</strong> - According to a fixed period (<a href="https://github.com/inrae/pgd-mmdt/blob/main/dockerscanpart/scripts/pgd-cron" target="_blank">30 min</a>), all the metadata files in JSON format are scanned, parsed then loaded into a <a href="https://www.mongodb.com/" target="_blank">MongoDB</a> database. This allows you to perform searches based on predefined metadata. The search form, in its compact shape on the left of the screen, is almost the same as the entry form (see <a href="https://pmb-bordeaux.fr/maggot/search" target="_blank">our online instance</a>). Depending on the search criteria, a list of data sets is provided, with for each of them a link pointing to the detailed sheet.</p>
+<p><strong>6</strong> - The detailed metadata sheet provides all the metadata divided by section. Unfilled metadata does not appear by default. When a URL can be associated with information (ORCID, Ontology, web site, etc.), you can click on it to go to the corresponding link. Likewise, it is possible to follow the associated link on each of the resources. From this sheet, you can also export the metadata according to different schemata (Dataverse, Zenodo, JSON-LD).</p>
+<p><strong>7</strong> - Finally, once you have decided to <a href="../publish">publish your metadata</a> with your data, you can choose the repository that suits you (currently repositories based on Dataverse and Zenodo are supported). You will first need to connect to the repository in order to retrieve the key (the API token) authorizing you to submit the dataset. This obviously assumes that you have the privileges (creation/modification rights) to do so.</p>
 <hr />
 <p><a href="https://www6.bordeaux-aquitaine.inrae.fr/bfp_eng/" target="_blank"><img alt="Inrae" src="../images/inrae_logo.png" /></a></p>
 <div class="footnote">
@@ -710,7 +761,7 @@
 <p><em>JavaScript Object Notation</em> : format used to represent structured information&#160;<a class="footnote-backref" href="#fnref:2" title="Jump back to footnote 2 in the text">&#8617;</a></p>
 </li>
 <li id="fn:3">
-<p><em>Autocomplete</em>: feature in which an application predicts the rest of a word a user is typing&#160;<a class="footnote-backref" href="#fnref:3" title="Jump back to footnote 3 in the text">&#8617;</a></p>
+<p><em>Autocomplete</em>: feature in which an application predicts the rest of a word a user is typing&#160;<a class="footnote-backref" href="#fnref:3" title="Jump back to footnote 3 in the text">&#8617;</a><a class="footnote-backref" href="#fnref2:3" title="Jump back to footnote 3 in the text">&#8617;</a></p>
 </li>
 </ol>
 </div>
