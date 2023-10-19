@@ -13,10 +13,6 @@
       
       
       
-        <link rel="prev" href="../config/">
-      
-      
-        <link rel="next" href="../dataverse/">
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
@@ -24,7 +20,7 @@
     
     
       
-        <title>Mapping Definition File - Maggot</title>
+        <title>Installation - Maggot</title>
       
     
     
@@ -84,6 +80,11 @@
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
+        
+        <a href="#install-on-your-linux-computer-or-linux-unix-server" class="md-skip">
+          Skip to content
+        </a>
+      
     </div>
     <div data-md-component="announce">
       
@@ -114,7 +115,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Mapping Definition File
+              Installation
             
           </span>
         </div>
@@ -242,7 +243,7 @@
   
   
     <li class="md-tabs__item">
-      <a href="../../installation/" class="md-tabs__link">
+      <a href="../" class="md-tabs__link">
         
   
     
@@ -257,11 +258,9 @@
         
   
   
-    
   
-  
-    <li class="md-tabs__item md-tabs__item--active">
-      <a href="../" class="md-tabs__link">
+    <li class="md-tabs__item">
+      <a href="../../configuration/" class="md-tabs__link">
         
   
     
@@ -386,7 +385,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../installation/" class="md-nav__link">
+      <a href="../" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -403,8 +402,6 @@
       
   
   
-    
-  
   
     
     
@@ -414,17 +411,17 @@
       
       
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
       
         
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
         
           
           
           <div class="md-nav__link md-nav__container">
-            <a href="../" class="md-nav__link ">
+            <a href="../../configuration/" class="md-nav__link ">
               
   
   <span class="md-ellipsis">
@@ -441,7 +438,7 @@
             
           </div>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_4">
             <span class="md-nav__icon md-icon"></span>
             Definition files
@@ -454,7 +451,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../config/" class="md-nav__link">
+      <a href="../../configuration/config/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -472,16 +469,9 @@
                 
   
   
-    
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../../configuration/mapping/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -490,7 +480,6 @@
   
 
       </a>
-      
     </li>
   
 
@@ -502,7 +491,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../dataverse/" class="md-nav__link">
+      <a href="../../configuration/dataverse/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -522,7 +511,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../json-ld/" class="md-nav__link">
+      <a href="../../configuration/json-ld/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -542,7 +531,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../oai-pmh/" class="md-nav__link">
+      <a href="../../configuration/oai-pmh/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -616,9 +605,102 @@
                   
 
 
-  <h1>Mapping</h1>
+  <h1>Installation</h1>
 
+<style>.md-typeset h1 { display: none; }</style>
 
+<h3 id="install-on-your-linux-computer-or-linux-unix-server">Install on your linux computer or linux / unix server<a class="headerlink" href="#install-on-your-linux-computer-or-linux-unix-server" title="Permanent link">&para;</a></h3>
+<p>Requirements: a recent OS that support Docker (see <a href="https://www.docker.com/get-started/" target="_blank">docker.com</a>)</p>
+<p><br></p>
+<h4 id="retrieving-the-code">Retrieving the code<a class="headerlink" href="#retrieving-the-code" title="Permanent link">&para;</a></h4>
+<p>Go to the destination directory of your choice then clone the repository and <code>cd</code> to your clone path:</p>
+<div class="highlight"><pre><span></span><code>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/inrae/pgd-mmdt.git<span class="w"> </span>pgd-mmdt
+<span class="nb">cd</span><span class="w"> </span>pgd-mmdt
+</code></pre></div>
+<p><br></p>
+<h4 id="installation-of-docker-containers">Installation of Docker containers<a class="headerlink" href="#installation-of-docker-containers" title="Permanent link">&para;</a></h4>
+<p>MAGGOT uses 3 Docker images for 3 distinct services:</p>
+<ul>
+<li><strong>pgd-mmdt-db</strong> which hosts the mongoDB database</li>
+<li><strong>pgd-mmdt-scan</strong> which scans the data and updates the contents of the database and the web interface</li>
+<li><strong>pgd-mmdt-web</strong> which hosts the web server and the web interface pages</li>
+</ul>
+<p><br></p>
+<h4 id="configuration">Configuration<a class="headerlink" href="#configuration" title="Permanent link">&para;</a></h4>
+<ul>
+<li><em><a href="https://github.com/inrae/pgd-mmdt/blob/main/run" target="_blank">run</a></em> : define web port, root of the data directory (including for development)</li>
+<li><em><a href="https://github.com/inrae/pgd-mmdt/blob/main/dockerdbpart/initialisation/setupdb-js.template" target="_blank">dockerdbpart/initialisation/setupdb-js.template</a></em> : define MongoDB settings</li>
+<li><em><a href="https://github.com/inrae/pgd-mmdt/blob/main/dockerscanpart/scripts/config.py" target="_blank">dockerscanpart/scripts/config.py</a></em> : define MongoDB settings (dbserver, dbport, username, password)</li>
+<li><em><a href="https://github.com/inrae/pgd-mmdt/blob/main/web/inc/config/config.inc" target="_blank">web/inc/config/config.inc</a></em> : define MongoDB settings and also the URL for the JSON schema (see below)</li>
+<li><em><a href="https://github.com/inrae/pgd-mmdt/blob/main/web/inc/config/mongodb.inc" target="_blank">web/inc/config/mongodb.inc</a></em> : define MongoDB settings (dbserver, dbport, username, password)</li>
+</ul>
+<p><strong><em>Warning</em></strong> : You have to pay attention to put the same MongoDB settings in all the above configuration files. It is best not to change anything. It would have been preferable to put a single configuration file but this was not yet done given the different languages involved (bash, javascript, python, PHP). To be done!</p>
+<p><strong><em>Note</em></strong> : If you want to run multiple instances, you will need to change in the <em><a href="https://github.com/inrae/pgd-mmdt/blob/main/run" target="_blank">run</a></em> file, <em>i)</em> the container names, <em>ii)</em> the data path, <em>iii)</em> the port number and the MongoDB volume name.</p>
+<p>The following two JSON files are defined by default but can be easily configured from the web interface. See the <a href="../configuration/config">Terminology Definition</a> section.</p>
+<ul>
+<li><strong><em>web/conf/config_terms.json</em></strong> : define the terminology (see below)</li>
+<li><strong><em>web/conf/maggot-schema.json</em></strong> : define the JSON schema used to validate metadata files (see below)</li>
+</ul>
+<p><br></p>
+<h4 id="commands">Commands<a class="headerlink" href="#commands" title="Permanent link">&para;</a></h4>
+<p>The <strong><em>run</em></strong> shell script allows you to perform multiple actions by specifying an option :</p>
+<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>pgd-mmdt
+sh<span class="w"> </span>./run<span class="w"> </span>&lt;option&gt;
+</code></pre></div>
+<p><strong>Options</strong>:</p>
+<ul>
+<li><strong><em>build</em></strong> : Create the 3 Docker images namely <strong><em>pgd-mmdt-db</em></strong>, <strong><em>pgd-mmdt-scan</em></strong> and <strong><em>pgd-mmdt-web</em></strong></li>
+<li><strong><em>start</em></strong> : <em>1</em>) Launch the 3 services by creating the Docker containers corresponding to the Docker images; <em>2</em>) Create also the MongoDB volume.</li>
+<li><strong><em>stop</em></strong> :  <em>1</em>) Remove all the 3 Docker containers; <em>2</em>) Remove the MongoDB volume.</li>
+<li><strong><em>initdb</em></strong> : Create and initialize the Mongo collection</li>
+<li><strong><em>scan</em></strong> : Scan the data and update the contents of the database and the web interface</li>
+<li><strong><em>fullstart</em></strong> : Perform the 3 actions <strong><em>start</em></strong>, <strong><em>initdb</em></strong> and <strong><em>scan</em></strong></li>
+<li><strong><em>restart</em></strong> : Perform the 2 actions <strong><em>stop</em></strong> then <strong><em>fullstart</em></strong></li>
+<li><strong><em>ps</em></strong> : Check that all containers are running correctly</li>
+<li><strong><em>passwd</em></strong> &lt;<em>user</em>&gt;: Define the admin password if no <em>user</em> is specified, allowing you to copy the new configuration file on the server via the web interface (see configuration above) and to add entries in dictionaries. If a <em>user</em> is specified, the dictionary consultation will be authorized for this user.</li>
+</ul>
+<p><br></p>
+<h4 id="starting-the-application">Starting the application<a class="headerlink" href="#starting-the-application" title="Permanent link">&para;</a></h4>
+<ul>
+<li>
+<p>You must first build the 3 docker container images if this has not already been done, by :
+   <div class="highlight"><pre><span></span><code>sh<span class="w"> </span>./run<span class="w"> </span>build
+</code></pre></div></p>
+</li>
+<li>
+<p>The application can be sequentially started :</p>
+<ul>
+<li>Starting the web interface
+ <div class="highlight"><pre><span></span><code>sh<span class="w"> </span>./run<span class="w"> </span>start
+</code></pre></div></li>
+<li>Initialization of the MongoDB database
+ <div class="highlight"><pre><span></span><code>sh<span class="w"> </span>./run<span class="w"> </span>initdb
+</code></pre></div></li>
+<li>Scanning the data directory for metadata files (META_XXXX.json)
+ <div class="highlight"><pre><span></span><code>sh<span class="w"> </span>./run<span class="w"> </span>scan
+</code></pre></div></li>
+</ul>
+</li>
+<li>
+<p>You can also launch these 3 steps with a single command:
+   <div class="highlight"><pre><span></span><code>sh<span class="w"> </span>./run<span class="w"> </span>fullstart
+</code></pre></div></p>
+</li>
+</ul>
+<p><br></p>
+<h4 id="stoping-the-application">Stoping the application<a class="headerlink" href="#stoping-the-application" title="Permanent link">&para;</a></h4>
+<ul>
+<li>To stop the application :
+   <div class="highlight"><pre><span></span><code>sh<span class="w"> </span>./run<span class="w"> </span>stop
+</code></pre></div></li>
+</ul>
+<hr />
+<h3 id="architecture-diagram">Architecture diagram<a class="headerlink" href="#architecture-diagram" title="Permanent link">&para;</a></h3>
+<p><center>
+<a href="../../images/schema.png" data-lightbox="fig0"><img src="../../images/schema.png" width="800px"></a>
+</center></p>
+<hr />
+<p><a href="https://www6.bordeaux-aquitaine.inrae.fr/bfp_eng/" target="_blank"><img alt="Inrae" src="../../images/inrae_logo.png" /></a></p>
 
 
 

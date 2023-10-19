@@ -13,7 +13,7 @@
       
       
       
-        <link rel="prev" href="../installation/infrastructure/">
+        <link rel="prev" href="../installation/">
       
       
         <link rel="next" href="config/">
@@ -390,71 +390,16 @@
   
   
   
-    
-    
-    
-    
-    
-      
-      
-    
-    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
-      
+    <li class="md-nav__item">
+      <a href="../installation/" class="md-nav__link">
         
-        
-        
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
-        
-          
-          
-          <div class="md-nav__link md-nav__container">
-            <a href="../installation/" class="md-nav__link ">
-              
   
   <span class="md-ellipsis">
     Installation
   </span>
   
 
-            </a>
-            
-              
-              <label class="md-nav__link " for="__nav_3" id="__nav_3_label" tabindex="">
-                <span class="md-nav__icon md-icon"></span>
-              </label>
-            
-          </div>
-        
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_3">
-            <span class="md-nav__icon md-icon"></span>
-            Installation
-          </label>
-          <ul class="md-nav__list" data-md-scrollfix>
-            
-              
-                
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../installation/infrastructure/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Infrastructure
-  </span>
-  
-
       </a>
-    </li>
-  
-
-              
-            
-          </ul>
-        </nav>
-      
     </li>
   
 
@@ -677,7 +622,7 @@
 <p>Definition files are made using a simple spreadsheet then exported in TSV format. There are two categories of definition files:</p>
 <ul>
 <li>
-<p>The first category concerns the definition of terminology (metadata + controlled vocabulary). Clearly, this category is more akin to application configuration files. They represent the heart of the application around which everything else is based. This is why a configuration and conversion step into JSON format is essential in order to be able to configure all the other modules (example: MongoDB database schema).</p>
+<p>The first category concerns the definition of terminology (metadata + controlled vocabulary). Clearly, this category is more akin to application configuration files. They represent the heart of the application around which everything else is based. The input and search interfaces are completely generated from these definition files (especially the <em><a href="../configuration/config/#definition-of-terminology">web/conf/config_terms.txt</a></em> file), thus defining each of the fields, their input type (checkbox, dropbox, textbox, ...) and the associated controlled vocabulary (ontology and thesaurus by autocompletion, drop-down list according to a list of fixed terms). This is why a configuration and conversion step into JSON format is essential in order to be able to configure all the other modules (example: creation of the MongoDB database schema when starting the application before filling it).</p>
 </li>
 <li>
 <p>The second category concerns the definitions of mapping to a differently structured metadata schema (e.g. <a href="dataverse">Dataverse</a>, <a href="json-ld">JSON-LD</a>, <a href="oai-pmh">OAI-PMH</a>). Simply place the definition files in the configuration directory (<strong><em>web/conf</em></strong>) for them to be taken into account, provided you have adjusted the configuration (<em><a href="https://github.com/inrae/pgd-mmdt/blob/main/web/inc/config/config.inc" target="_blank">web/inc/config/config.inc</a></em>).</p>
