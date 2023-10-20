@@ -97,9 +97,7 @@
     
       
 
-  
-
-<header class="md-header md-header--shadow" data-md-component="header">
+<header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
     <a href=".." title="Maggot" class="md-header__button md-logo" aria-label="Maggot" data-md-component="logo">
       
@@ -205,6 +203,170 @@
       
         
           
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href=".." class="md-tabs__link">
+        
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../presentation/" class="md-tabs__link">
+        
+  
+    
+  
+  Presentation
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../installation/" class="md-tabs__link">
+        
+  
+    
+  
+  Installation
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../infrastructure/" class="md-tabs__link">
+        
+  
+    
+  
+  Infrastructure
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../definitions/" class="md-tabs__link">
+        
+  
+    
+  
+  Definition files
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../configuration/" class="md-tabs__link">
+        
+  
+    
+  
+  Configuration
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+    
+  
+  
+    <li class="md-tabs__item md-tabs__item--active">
+      <a href="./" class="md-tabs__link">
+        
+  
+    
+  
+  Dictionaries
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../vocabulary/" class="md-tabs__link">
+        
+  
+    
+  
+  Vocabulary
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../publish/" class="md-tabs__link">
+        
+  
+    
+  
+  Publish your Metadata
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
         
       
       <main class="md-main" data-md-component="main">
@@ -218,10 +380,12 @@
                     
 
 
+  
+
 
   
 
-<nav class="md-nav md-nav--primary md-nav--integrated" aria-label="Navigation" data-md-level="0">
+<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
     <a href=".." title="Maggot" class="md-nav__button md-logo" aria-label="Maggot" data-md-component="logo">
       
@@ -320,7 +484,10 @@
     
     
     
-    <li class="md-nav__item md-nav__item--nested">
+      
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
       
         
         
@@ -341,7 +508,7 @@
             </a>
             
               
-              <label class="md-nav__link " for="__nav_5" id="__nav_5_label" tabindex="0">
+              <label class="md-nav__link " for="__nav_5" id="__nav_5_label" tabindex="">
                 <span class="md-nav__icon md-icon"></span>
               </label>
             
@@ -634,7 +801,7 @@ its information, once entered and saved in a file called a dictionary, can be su
 <li>
 <p>Like any dictionary, there must be 3 files (see below). Please note that the names of these files must always contain the name of the dictionary, i.e. same as the directory.
 <center>
-<a href="../../images/dico0.png" data-lightbox="fig0"><img src="../../images/dico0.png" width="800px"></a>
+<a href="../images/dico0.png" data-lightbox="fig0"><img src="../images/dico0.png" width="800px"></a>
 </center><br></p>
 </li>
 <li>
@@ -642,7 +809,7 @@ its information, once entered and saved in a file called a dictionary, can be su
 </li>
 </ul>
 <p><center>
-<a href="../../images/dico2.png" data-lightbox="fig2"><img src="../../images/dico2.png" width="600px"></a>
+<a href="../images/dico2.png" data-lightbox="fig2"><img src="../images/dico2.png" width="600px"></a>
 </center><br></p>
 <ul>
 <li>Thus, we know that the people dictionary must contain 5 columns (last name, first name, institution, ORCID number and email address) and that some fields are mandatory (last name, first name, institution) and others optional (ORCID number, email address).</li>
@@ -656,7 +823,7 @@ its information, once entered and saved in a file called a dictionary, can be su
 <li>
 <p>Below, an example is given when modifying a record. When you click on the <em>Institute</em> field which is connected to the ROR web API, the drop-down list of reseach organizations that can correspond in the register appears, if there are any.
 <center>
-<a href="../../images/dico1.png" data-lightbox="fig1"><img src="../../images/dico1.png" width="600px"></a>
+<a href="../images/dico1.png" data-lightbox="fig1"><img src="../images/dico1.png" width="600px"></a>
 </center></p>
 </li>
 <li>
@@ -669,19 +836,19 @@ its information, once entered and saved in a file called a dictionary, can be su
 <li>
 <p><strong>Funders</strong> : The dictionary of the funders allows you to define the funding agency, project ID and its corresponding URL.
 <center>
-<a href="../../images/dico3.png" data-lightbox="fig3"><img src="../../images/dico3.png" width="400px"></a>
+<a href="../images/dico3.png" data-lightbox="fig3"><img src="../images/dico3.png" width="400px"></a>
 </center><br></p>
 </li>
 <li>
 <p><strong>Producers</strong> : The dictionary of the data producers allows you to define their Institute and  project ID and their corresponding URL. Optionally, you can add the URL of the logo.
 <center>
-<a href="../../images/dico4.png" data-lightbox="fig4"><img src="../../images/dico4.png" width="400px"></a>
+<a href="../images/dico4.png" data-lightbox="fig4"><img src="../images/dico4.png" width="400px"></a>
 </center><br></p>
 </li>
 <li>
 <p><strong>Vocabulary</strong> : Use this dictionary for mixing thesauri and ontologies in order to better target the entire controlled vocabulary of its field of application. Only the vocabulary is mandatory, the URL linked to an ontology or a thesaurus is optional. See <a href="../vocabulary">Vocabulary</a> section to learn the extent of the possibilities concerning vocabulary in Maggot.
 <center>
-<a href="../../images/dico5.png" data-lightbox="fig5"><img src="../../images/dico5.png" width="400px"></a>
+<a href="../images/dico5.png" data-lightbox="fig5"><img src="../images/dico5.png" width="400px"></a>
 </center><br></p>
 </li>
 </ul>
@@ -707,6 +874,12 @@ its information, once entered and saved in a file called a dictionary, can be su
   <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var tab,labels=set.querySelector(".tabbed-labels");for(tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
 
         </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"/></svg>
+            Back to top
+          </button>
         
       </main>
       
@@ -737,7 +910,7 @@ its information, once entered and saved in a file called a dictionary, can be su
       <div class="md-dialog__inner md-typeset"></div>
     </div>
     
-    <script id="__config" type="application/json">{"base": "..", "features": ["toc.integrate", "search.suggest", "search.highlight", "content.tabs.link", "content.code.annotation", "content.code.copy"], "search": "../assets/javascripts/workers/search.a264c092.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.tabs", "navigation.sections", "navigation.top", "toc.integrate", "search.suggest", "search.highlight", "content.tabs.link", "content.code.annotation", "content.code.copy"], "search": "../assets/javascripts/workers/search.a264c092.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
     
     
       <script src="../assets/javascripts/bundle.726fbb30.min.js"></script>
