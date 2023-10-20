@@ -13,25 +13,25 @@
       
       
       
-        <link rel="prev" href="../json-ld/">
+        <link rel="prev" href="../infrastructure/">
       
       
-        <link rel="next" href="../../dictionaries/">
+        <link rel="next" href="terminology/">
       
       
-      <link rel="icon" href="../../assets/images/favicon.png">
+      <link rel="icon" href="../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.4.2">
     
     
       
-        <title>OAI-PMH Definition File - Maggot</title>
+        <title>Terminology Definition File - Maggot</title>
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.d451bc0e.min.css">
+      <link rel="stylesheet" href="../assets/stylesheets/main.d451bc0e.min.css">
       
         
-        <link rel="stylesheet" href="../../assets/stylesheets/palette.a5377069.min.css">
+        <link rel="stylesheet" href="../assets/stylesheets/palette.a5377069.min.css">
       
       
 
@@ -50,13 +50,13 @@
       
     
     
-      <link rel="stylesheet" href="../../css/extra.css">
+      <link rel="stylesheet" href="../css/extra.css">
     
-      <link rel="stylesheet" href="../../css/pdfextra.css">
+      <link rel="stylesheet" href="../css/pdfextra.css">
     
-      <link rel="stylesheet" href="../../css/lightbox.css">
+      <link rel="stylesheet" href="../css/lightbox.css">
     
-    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
@@ -84,6 +84,11 @@
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
+        
+        <a href="#configuration-flexibility" class="md-skip">
+          Skip to content
+        </a>
+      
     </div>
     <div data-md-component="announce">
       
@@ -92,9 +97,11 @@
     
       
 
-<header class="md-header" data-md-component="header">
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../.." title="Maggot" class="md-header__button md-logo" aria-label="Maggot" data-md-component="logo">
+    <a href=".." title="Maggot" class="md-header__button md-logo" aria-label="Maggot" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
@@ -114,7 +121,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              OAI-PMH Definition File
+              Terminology Definition File
             
           </span>
         </div>
@@ -198,119 +205,6 @@
       
         
           
-            
-<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
-  <div class="md-grid">
-    <ul class="md-tabs__list">
-      
-        
-  
-  
-  
-    <li class="md-tabs__item">
-      <a href="../.." class="md-tabs__link">
-        
-  
-    
-  
-  Home
-
-      </a>
-    </li>
-  
-
-      
-        
-  
-  
-  
-    <li class="md-tabs__item">
-      <a href="../../presentation/" class="md-tabs__link">
-        
-  
-    
-  
-  Presentation
-
-      </a>
-    </li>
-  
-
-      
-        
-  
-  
-  
-    <li class="md-tabs__item">
-      <a href="../../installation/" class="md-tabs__link">
-        
-  
-    
-  
-  Installation
-
-      </a>
-    </li>
-  
-
-      
-        
-  
-  
-    
-  
-  
-    <li class="md-tabs__item md-tabs__item--active">
-      <a href="../" class="md-tabs__link">
-        
-  
-    
-  
-  Definition files
-
-      </a>
-    </li>
-  
-
-      
-        
-  
-  
-  
-    <li class="md-tabs__item">
-      <a href="../../dictionaries/" class="md-tabs__link">
-        
-  
-    
-  
-  Dictionaries
-
-      </a>
-    </li>
-  
-
-      
-        
-  
-  
-  
-    <li class="md-tabs__item">
-      <a href="../../publish/" class="md-tabs__link">
-        
-  
-    
-  
-  Publish your Metadata
-
-      </a>
-    </li>
-  
-
-      
-    </ul>
-  </div>
-</nav>
-          
         
       
       <main class="md-main" data-md-component="main">
@@ -324,14 +218,12 @@
                     
 
 
-  
-
 
   
 
-<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="Navigation" data-md-level="0">
+<nav class="md-nav md-nav--primary md-nav--integrated" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../.." title="Maggot" class="md-nav__button md-logo" aria-label="Maggot" data-md-component="logo">
+    <a href=".." title="Maggot" class="md-nav__button md-logo" aria-label="Maggot" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
@@ -348,7 +240,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../.." class="md-nav__link">
+      <a href=".." class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -367,7 +259,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../presentation/" class="md-nav__link">
+      <a href="../presentation/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -386,11 +278,30 @@
   
   
     <li class="md-nav__item">
-      <a href="../../installation/" class="md-nav__link">
+      <a href="../installation/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
     Installation
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../infrastructure/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Infrastructure
   </span>
   
 
@@ -411,20 +322,17 @@
     
     
     
-      
-      
-    
-    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" checked>
         
           
           
           <div class="md-nav__link md-nav__container">
-            <a href="../" class="md-nav__link ">
+            <a href="./" class="md-nav__link md-nav__link--active">
               
   
   <span class="md-ellipsis">
@@ -435,14 +343,14 @@
             </a>
             
               
-              <label class="md-nav__link " for="__nav_4" id="__nav_4_label" tabindex="">
+              <label class="md-nav__link md-nav__link--active" for="__nav_5" id="__nav_5_label" tabindex="0">
                 <span class="md-nav__icon md-icon"></span>
               </label>
             
           </div>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
-          <label class="md-nav__title" for="__nav_4">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_5">
             <span class="md-nav__icon md-icon"></span>
             Definition files
           </label>
@@ -454,7 +362,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../config/" class="md-nav__link">
+      <a href="terminology/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -474,7 +382,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../mapping/" class="md-nav__link">
+      <a href="mapping/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -494,7 +402,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../dataverse/" class="md-nav__link">
+      <a href="dataverse/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -514,7 +422,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../json-ld/" class="md-nav__link">
+      <a href="json-ld/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -532,16 +440,9 @@
                 
   
   
-    
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="oai-pmh/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -550,7 +451,6 @@
   
 
       </a>
-      
     </li>
   
 
@@ -569,7 +469,26 @@
   
   
     <li class="md-nav__item">
-      <a href="../../dictionaries/" class="md-nav__link">
+      <a href="../configuration/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Configuration
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dictionaries/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -588,7 +507,26 @@
   
   
     <li class="md-nav__item">
-      <a href="../../publish/" class="md-nav__link">
+      <a href="../vocabulary/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Vocabulary
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../publish/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -616,9 +554,30 @@
                   
 
 
-  <h1>OAI-PMH</h1>
+  <h1>Definition files</h1>
 
+<style>.md-typeset h1 { display: none; }</style>
 
+<h3 id="configuration-flexibility">Configuration flexibility<a class="headerlink" href="#configuration-flexibility" title="Permanent link">&para;</a></h3>
+<p>The Maggot tool offers great flexibility in configuration. It allows you to completely choose all the metadata you want to describe your data. You can base yourself on an existing <a href="https://en.wikipedia.org/wiki/Metadata_standard" target="_blank">metadata schema</a>, invent <a href="https://committee.iso.org/files/live/sites/tc46sc11/files/documents/N800R1%20Where%20to%20start-advice%20on%20creating%20a%20metadata%20schema.pdf" target="_blank">your own schema</a><sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup> or, more pragmatically, mix one or more schemas by introducing some metadata specific to your field of application. However, keep in mind that if you want to add descriptive metadata to your data then a <a href="https://libraries.mit.edu/data-management/store/documentation/" target="_blank">certain amount of information</a> is expected. But a completely different use of the tool is possible, it's up to you.</p>
+<p>Definition files are made using a simple spreadsheet then exported in TSV format. There are two categories of definition files:</p>
+<ul>
+<li>
+<p>The first category concerns the definition of terminology (metadata + controlled vocabulary). Clearly, this category is more akin to application configuration files. They represent the heart of the application around which everything else is based. The input and search interfaces are completely generated from these definition files (especially the <em><a href="../configuration/config/#definition-of-terminology">web/conf/config_terms.txt</a></em> file), thus defining each of the fields, their input type (checkbox, dropbox, textbox, ...) and the associated controlled vocabulary (ontology and thesaurus by autocompletion, drop-down list according to a list of fixed terms). This is why a configuration and conversion step into JSON format is essential in order to be able to configure all the other modules (example: creation of the MongoDB database schema when starting the application before filling it).</p>
+</li>
+<li>
+<p>The second category concerns the definitions of mapping to a differently structured metadata schema (e.g. <a href="dataverse">Dataverse</a>, <a href="json-ld">JSON-LD</a>, <a href="oai-pmh">OAI-PMH</a>). Simply place the definition files in the configuration directory (<strong><em>web/conf</em></strong>) for them to be taken into account, provided you have adjusted the configuration (<em><a href="https://github.com/inrae/pgd-mmdt/blob/main/web/inc/config/config.inc" target="_blank">web/inc/config/config.inc</a></em>).</p>
+</li>
+</ul>
+<p><br></p>
+<div class="footnote">
+<hr />
+<ol>
+<li id="fn:1">
+<p><em>How to create a descriptive metadata plan</em>:  <a href="https://sustainableheritagenetwork.org/system/files/atoms/file/How_to_Create_a_Descriptive_Metadata_Plan.pdf">https://sustainableheritagenetwork.org/system/files/atoms/file/How_to_Create_a_Descriptive_Metadata_Plan.pdf</a>&#160;<a class="footnote-backref" href="#fnref:1" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+</li>
+</ol>
+</div>
 
 
 
@@ -632,12 +591,6 @@
   <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var tab,labels=set.querySelector(".tabbed-labels");for(tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
 
         </div>
-        
-          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
-            
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"/></svg>
-            Back to top
-          </button>
         
       </main>
       
@@ -668,16 +621,16 @@
       <div class="md-dialog__inner md-typeset"></div>
     </div>
     
-    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.tabs", "navigation.sections", "toc.integrate", "navigation.top", "search.suggest", "search.highlight", "content.tabs.link", "content.code.annotation", "content.code.copy"], "search": "../../assets/javascripts/workers/search.a264c092.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    <script id="__config" type="application/json">{"base": "..", "features": ["toc.integrate", "search.suggest", "search.highlight", "content.tabs.link", "content.code.annotation", "content.code.copy"], "search": "../assets/javascripts/workers/search.a264c092.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
     
     
-      <script src="../../assets/javascripts/bundle.726fbb30.min.js"></script>
+      <script src="../assets/javascripts/bundle.726fbb30.min.js"></script>
       
-        <script src="../../js/jquery-2.1.1.min.js"></script>
+        <script src="../js/jquery-2.1.1.min.js"></script>
       
-        <script src="../../js/lightbox.min.js"></script>
+        <script src="../js/lightbox.min.js"></script>
       
-        <script src="../../js/mermaid.min.js"></script>
+        <script src="../js/mermaid.min.js"></script>
       
     
   </body>
