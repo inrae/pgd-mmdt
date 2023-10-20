@@ -85,7 +85,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#main-configuration-steps-of-the-maggot-tool" class="md-skip">
+        <a href="#terminology-configuration" class="md-skip">
           Skip to content
         </a>
       
@@ -97,7 +97,9 @@
     
       
 
-<header class="md-header" data-md-component="header">
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
     <a href=".." title="Maggot" class="md-header__button md-logo" aria-label="Maggot" data-md-component="logo">
       
@@ -203,170 +205,6 @@
       
         
           
-            
-<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
-  <div class="md-grid">
-    <ul class="md-tabs__list">
-      
-        
-  
-  
-  
-    <li class="md-tabs__item">
-      <a href=".." class="md-tabs__link">
-        
-  
-    
-  
-  Home
-
-      </a>
-    </li>
-  
-
-      
-        
-  
-  
-  
-    <li class="md-tabs__item">
-      <a href="../presentation/" class="md-tabs__link">
-        
-  
-    
-  
-  Presentation
-
-      </a>
-    </li>
-  
-
-      
-        
-  
-  
-  
-    <li class="md-tabs__item">
-      <a href="../installation/" class="md-tabs__link">
-        
-  
-    
-  
-  Installation
-
-      </a>
-    </li>
-  
-
-      
-        
-  
-  
-  
-    <li class="md-tabs__item">
-      <a href="../infrastructure/" class="md-tabs__link">
-        
-  
-    
-  
-  Infrastructure
-
-      </a>
-    </li>
-  
-
-      
-        
-  
-  
-  
-    <li class="md-tabs__item">
-      <a href="../definitions/" class="md-tabs__link">
-        
-  
-    
-  
-  Definition files
-
-      </a>
-    </li>
-  
-
-      
-        
-  
-  
-    
-  
-  
-    <li class="md-tabs__item md-tabs__item--active">
-      <a href="./" class="md-tabs__link">
-        
-  
-    
-  
-  Configuration
-
-      </a>
-    </li>
-  
-
-      
-        
-  
-  
-  
-    <li class="md-tabs__item">
-      <a href="../dictionaries/" class="md-tabs__link">
-        
-  
-    
-  
-  Dictionaries
-
-      </a>
-    </li>
-  
-
-      
-        
-  
-  
-  
-    <li class="md-tabs__item">
-      <a href="../vocabulary/" class="md-tabs__link">
-        
-  
-    
-  
-  Vocabulary
-
-      </a>
-    </li>
-  
-
-      
-        
-  
-  
-  
-    <li class="md-tabs__item">
-      <a href="../publish/" class="md-tabs__link">
-        
-  
-    
-  
-  Publish your Metadata
-
-      </a>
-    </li>
-  
-
-      
-    </ul>
-  </div>
-</nav>
-          
         
       
       <main class="md-main" data-md-component="main">
@@ -380,12 +218,10 @@
                     
 
 
-  
-
 
   
 
-<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="Navigation" data-md-level="0">
+<nav class="md-nav md-nav--primary md-nav--integrated" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
     <a href=".." title="Maggot" class="md-nav__button md-logo" aria-label="Maggot" data-md-component="logo">
       
@@ -484,10 +320,7 @@
     
     
     
-      
-      
-    
-    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
@@ -508,7 +341,7 @@
             </a>
             
               
-              <label class="md-nav__link " for="__nav_5" id="__nav_5_label" tabindex="">
+              <label class="md-nav__link " for="__nav_5" id="__nav_5_label" tabindex="0">
                 <span class="md-nav__icon md-icon"></span>
               </label>
             
@@ -676,11 +509,11 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#main-configuration-steps-of-the-maggot-tool" class="md-nav__link">
-    Main configuration steps of the Maggot tool
+  <a href="#terminology-configuration" class="md-nav__link">
+    Terminology configuration
   </a>
   
-    <nav class="md-nav" aria-label="Main configuration steps of the Maggot tool">
+    <nav class="md-nav" aria-label="Terminology configuration">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -791,10 +624,10 @@
 
   <h1>Configuration</h1>
 
-<style>.md-typeset h1 { display: none; }</style>
+<style>.md-typeset h1 {display: none;} .md-nav__item {font-size: medium}</style>
 
-<h3 id="main-configuration-steps-of-the-maggot-tool">Main configuration steps of the Maggot tool<a class="headerlink" href="#main-configuration-steps-of-the-maggot-tool" title="Permanent link">&para;</a></h3>
-<p>A single file (web/conf/config_terms.txt) contains all the terminology. The input and search interfaces are completely generated from this definition file, thus defining each of the fields, their input type (checkbox, dropbox, textbox, ...) and the associated controlled vocabulary (ontology and thesaurus by autocompletion, drop-down list according to a list of fixed terms). This is why a configuration and conversion step into JSON format is essential in order to be able to configure all the other modules (example: creation of the MongoDB database schema when starting the application before filling it).</p>
+<h3 id="terminology-configuration">Terminology configuration<a class="headerlink" href="#terminology-configuration" title="Permanent link">&para;</a></h3>
+<p>A single file (<strong><em>web/conf/config_terms.txt</em></strong>) contains all the <a href="../definitions/terminology">terminology</a>. The input and search interfaces are completely generated from this definition file, thus defining each of the fields, their input type (<em>checkbox</em>, <em>dropbox</em>, <em>textbox</em>, ...) and the associated controlled vocabulary (ontology and thesaurus by autocompletion, drop-down list according to a list of fixed terms). This is why a configuration and conversion step into JSON<sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup> format is essential in order to be able to configure all the other modules (example: creation of the <a href="https://www.mongodb.com/basics" target="_blank">MongoDB</a> database schema when starting the application before filling it).</p>
 <p><center>
 <a href="../images/config.png" data-lightbox="fig0"><img src="../images/config.png" width="800px"></a>
 </center></p>
@@ -804,7 +637,7 @@
 <h4 id="tsv-to-json">TSV to JSON<a class="headerlink" href="#tsv-to-json" title="Permanent link">&para;</a></h4>
 <ul>
 <li>
-<p>This function is used to generate the terminology definition file in JSON<sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup> format (<strong><em>config_terms.json</em></strong>) and the corresponding JSON-Schema<sup id="fnref:2"><a class="footnote-ref" href="#fn:2">2</a></sup> file (<strong><em>maggot-schema.json</em></strong>) from a tabulated file (<strong>1</strong>). You can either create a terminology definition file in TSV format from scratch (see below to have more details), or extract the file from the current configuration (see JSON to TSV).</p>
+<p>This function is used to generate the terminology definition file in JSON<sup id="fnref2:1"><a class="footnote-ref" href="#fn:1">1</a></sup> format (<strong><em>config_terms.json</em></strong>) and the corresponding JSON-Schema<sup id="fnref:2"><a class="footnote-ref" href="#fn:2">2</a></sup> file (<strong><em>maggot-schema.json</em></strong>) from a tabulated file (<strong>1</strong>). You can either create a terminology definition file in TSV format from scratch (see below to have more details), or extract the file from the current configuration (see <a href="#json-to-tsv">JSON to TSV</a>).</p>
 </li>
 <li>
 <p>Once the terminology definition file has been obtained (<strong>2</strong>), you can load it and press 'Submit'.</p>
@@ -818,13 +651,13 @@
 <h4 id="tsv-to-doc">TSV to DOC<a class="headerlink" href="#tsv-to-doc" title="Permanent link">&para;</a></h4>
 <ul>
 <li>
-<p>This function generates the markdown documentation file (<strong><em>doc.md</em></strong>) from the template file (<strong><em>config_doc.txt</em></strong>) which is itself generated from the metadata definition file (<strong><em>config_terms.txt</em></strong>, cf TSV to JSON).</p>
+<p>This function generates the markdown<sup id="fnref:4"><a class="footnote-ref" href="#fn:4">4</a></sup> documentation file (<strong><em>doc.md</em></strong>) from the template file (<strong><em>config_doc.txt</em></strong>) which is itself generated from the metadata definition file (<strong><em>config_terms.txt</em></strong>, cf <a href="#tsv-to-json">TSV to JSON</a>).</p>
 </li>
 <li>
-<p>Once the template file for the documentation (<strong><em>config_doc.txt</em></strong>) has been edited and documented (<strong>6</strong>) (see below to have more details), you can load it and press 'Submit'.</p>
+<p>Once the template file for the documentation (<strong><em>config_doc.txt</em></strong>) has been edited and documented (<strong>6</strong>) (see below to have more details), you can load it and press <em>Submit</em> button.</p>
 </li>
 <li>
-<p>The documentation file in markdown format (<strong><em>doc.md</em></strong>) is thus generated (<strong>7</strong>) and must be placed in the <em>web/docs</em> directory (<strong>8</strong>). Users will have access to this documentation file via the web interface, in the documentation section, heading "Metadata".</p>
+<p>The documentation file in markdown format (<strong><em>doc.md</em></strong>) is thus generated (<strong>7</strong>) and must be placed in the <strong><em>web/docs</em></strong> directory (<strong>8</strong>). Users will have access to this documentation file via the web interface, in the documentation section, heading "<strong>Metadata</strong>".</p>
 </li>
 </ul>
 <h4 id="json-to-tsv">JSON to TSV<a class="headerlink" href="#json-to-tsv" title="Permanent link">&para;</a></h4>
@@ -836,7 +669,7 @@
 <hr />
 <ol>
 <li id="fn:1">
-<p><em>JavaScript Object Notation</em> : format used to represent structured information&#160;<a class="footnote-backref" href="#fnref:1" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+<p><em>JavaScript Object Notation</em> : format used to represent structured information&#160;<a class="footnote-backref" href="#fnref:1" title="Jump back to footnote 1 in the text">&#8617;</a><a class="footnote-backref" href="#fnref2:1" title="Jump back to footnote 1 in the text">&#8617;</a></p>
 </li>
 <li id="fn:2">
 <p><em>JSON-Schema</em>: vocabulary that allows you to annotate and validate JSON documents.&#160;<a class="footnote-backref" href="#fnref:2" title="Jump back to footnote 2 in the text">&#8617;</a></p>
@@ -846,9 +679,6 @@
 </li>
 <li id="fn:4">
 <p><em>Markdown</em>: Markdown is a lightweight markup language designed to provide easy-to-read and easy-to-write syntax. A Markdown document can be read as is without appearing to have been marked up or formatted with special instructions.&#160;<a class="footnote-backref" href="#fnref:4" title="Jump back to footnote 4 in the text">&#8617;</a></p>
-</li>
-<li id="fn:5">
-<p><em>Autocomplete</em>: feature in which an application predicts the rest of a word a user is typing&#160;<a class="footnote-backref" href="#fnref:5" title="Jump back to footnote 5 in the text">&#8617;</a></p>
 </li>
 </ol>
 </div>
@@ -865,12 +695,6 @@
   <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var tab,labels=set.querySelector(".tabbed-labels");for(tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
 
         </div>
-        
-          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
-            
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"/></svg>
-            Back to top
-          </button>
         
       </main>
       
@@ -901,7 +725,7 @@
       <div class="md-dialog__inner md-typeset"></div>
     </div>
     
-    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.tabs", "navigation.sections", "navigation.top", "toc.integrate", "search.suggest", "search.highlight", "content.tabs.link", "content.code.annotation", "content.code.copy"], "search": "../assets/javascripts/workers/search.a264c092.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    <script id="__config" type="application/json">{"base": "..", "features": ["toc.integrate", "search.suggest", "search.highlight", "content.tabs.link", "content.code.annotation", "content.code.copy"], "search": "../assets/javascripts/workers/search.a264c092.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
     
     
       <script src="../assets/javascripts/bundle.726fbb30.min.js"></script>

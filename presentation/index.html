@@ -97,7 +97,9 @@
     
       
 
-<header class="md-header" data-md-component="header">
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
     <a href=".." title="Maggot" class="md-header__button md-logo" aria-label="Maggot" data-md-component="logo">
       
@@ -203,170 +205,6 @@
       
         
           
-            
-<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
-  <div class="md-grid">
-    <ul class="md-tabs__list">
-      
-        
-  
-  
-  
-    <li class="md-tabs__item">
-      <a href=".." class="md-tabs__link">
-        
-  
-    
-  
-  Home
-
-      </a>
-    </li>
-  
-
-      
-        
-  
-  
-    
-  
-  
-    <li class="md-tabs__item md-tabs__item--active">
-      <a href="./" class="md-tabs__link">
-        
-  
-    
-  
-  Presentation
-
-      </a>
-    </li>
-  
-
-      
-        
-  
-  
-  
-    <li class="md-tabs__item">
-      <a href="../installation/" class="md-tabs__link">
-        
-  
-    
-  
-  Installation
-
-      </a>
-    </li>
-  
-
-      
-        
-  
-  
-  
-    <li class="md-tabs__item">
-      <a href="../infrastructure/" class="md-tabs__link">
-        
-  
-    
-  
-  Infrastructure
-
-      </a>
-    </li>
-  
-
-      
-        
-  
-  
-  
-    <li class="md-tabs__item">
-      <a href="../definitions/" class="md-tabs__link">
-        
-  
-    
-  
-  Definition files
-
-      </a>
-    </li>
-  
-
-      
-        
-  
-  
-  
-    <li class="md-tabs__item">
-      <a href="../configuration/" class="md-tabs__link">
-        
-  
-    
-  
-  Configuration
-
-      </a>
-    </li>
-  
-
-      
-        
-  
-  
-  
-    <li class="md-tabs__item">
-      <a href="../dictionaries/" class="md-tabs__link">
-        
-  
-    
-  
-  Dictionaries
-
-      </a>
-    </li>
-  
-
-      
-        
-  
-  
-  
-    <li class="md-tabs__item">
-      <a href="../vocabulary/" class="md-tabs__link">
-        
-  
-    
-  
-  Vocabulary
-
-      </a>
-    </li>
-  
-
-      
-        
-  
-  
-  
-    <li class="md-tabs__item">
-      <a href="../publish/" class="md-tabs__link">
-        
-  
-    
-  
-  Publish your Metadata
-
-      </a>
-    </li>
-  
-
-      
-    </ul>
-  </div>
-</nav>
-          
         
       
       <main class="md-main" data-md-component="main">
@@ -380,12 +218,10 @@
                     
 
 
-  
-
 
   
 
-<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="Navigation" data-md-level="0">
+<nav class="md-nav md-nav--primary md-nav--integrated" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
     <a href=".." title="Maggot" class="md-nav__button md-logo" aria-label="Maggot" data-md-component="logo">
       
@@ -534,10 +370,7 @@
     
     
     
-      
-      
-    
-    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
@@ -558,7 +391,7 @@
             </a>
             
               
-              <label class="md-nav__link " for="__nav_5" id="__nav_5_label" tabindex="">
+              <label class="md-nav__link " for="__nav_5" id="__nav_5_label" tabindex="0">
                 <span class="md-nav__icon md-icon"></span>
               </label>
             
@@ -771,7 +604,7 @@
 
   <h1>Presentation</h1>
 
-<style>.md-typeset h1 { display: none; }</style>
+<style>.md-typeset h1 {display: none;} .md-nav__item {font-size: medium}</style>
 
 <h3 id="main-features-of-maggot">Main features of Maggot<a class="headerlink" href="#main-features-of-maggot" title="Permanent link">&para;</a></h3>
 <ul>
@@ -797,9 +630,9 @@
 </center></p>
 <p><strong>1</strong> - First you must define all the metadata to enter (i.e. the container in relation to the content). It is possible to define all the metadata using a single file (in TSV<sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup> format, therefore using a spreadsheet). The metadata proposed by default was mainly established according to the DDI (Data Documentation Initiative) metadata schema. This schema also largely corresponds to that adopted by the Dataverse software. This is a primordial step because both input and search interfaces are completely generated from these definition files, defining in this way each of the fields, their input type (checkbox, dropbox, textbox, ...) and also the associated controlled vocabulary (ontology and thesaurus by autocompletion, drop-down list according to a list of fixed terms). See the <a href="../definitions/terminology">Terminology Definition</a> section.</p>
 <p><strong>2</strong> - In order to facilitate the entry of metadata (content in relation to the container), it is possible and even strongly recommended to create dictionaries by metadata categories. The dictionaries offered by default are: people, funders, data producers, as well as a vocabulary dictionary allowing you to mix ontologies and thesauri from several sources. Each of these dictionaries allows you to enter a name or a main title by autocompletion<sup id="fnref:3"><a class="footnote-ref" href="#fn:3">3</a></sup>. Then the information associated with it will be added during export (data deposit, JSON-LD format, OAI-PMH). See the <a href="../dictionaries">Dictionaries</a> section.</p>
-<p><strong>3</strong> - The web interface for entering metadata is built in accordance with the terminology definition file (See <a href="../definitions/terminology">Terminology definition</a>). The metadata is thus distributed according to the different sections chosen, each constituting a tab. Mandatory fields are marked with a red star and must be documented in order to be able to generate the metadata file (see <a href="https://pmb-bordeaux.fr/maggot/entry" target="_blank">our online instance</a>). The entry of metadata governed by a controlled vocabulary (<i>dictionary, thesaurus or ontology</i>) is done by autocompletion<sup id="fnref2:3"><a class="footnote-ref" href="#fn:3">3</a></sup>. Once the mandatory fields (at least) and other recommended fields (the best) have been entered, the metadata file can be generated in JSON<sup id="fnref:2"><a class="footnote-ref" href="#fn:2">2</a></sup> format.</p>
+<p><strong>3</strong> - The web interface for entering metadata is built in accordance with the terminology definition file (See <a href="../definitions/terminology">Terminology definition</a>). The metadata is thus distributed according to the different sections chosen, each constituting a tab. Mandatory fields are marked with a red star and must be documented in order to be able to generate the metadata file (see a <a href="../images/entry_fig.png" data-lightbox="fig1">screenshot</a>). The entry of metadata governed by a controlled vocabulary (<i>dictionary, thesaurus or ontology</i>) is done by autocompletion<sup id="fnref2:3"><a class="footnote-ref" href="#fn:3">3</a></sup>. Once the mandatory fields (at least) and other recommended fields (the best) have been entered, the metadata file can be generated in JSON<sup id="fnref:2"><a class="footnote-ref" href="#fn:2">2</a></sup> format.</p>
 <p><strong>4</strong> - The file generated in JSON format must be placed in the <a href="../infrastructure">storage space</a> reserved for this purpose. The role played by this metadata file can be seen as a README file adapted for machines, but also readable by humans. With an internal structure, it offers coherence and consistency of information that a simple README file with a completely free and therefore unstructured text format does not allow. Furthermore, the central idea is to use the storage space as a local data repository, so that the metadata should go to the data and not the other way around. If the <a href="https://github.com/djacob65/maggot-fb" target="_blank">filebrowser</a> application is installed, then you can directly access the data space according to your access rights.</p>
-<p><strong>5</strong> - According to a fixed period (<a href="https://github.com/inrae/pgd-mmdt/blob/main/dockerscanpart/scripts/pgd-cron" target="_blank">30 min</a>), all the metadata files in JSON format are scanned, parsed then loaded into a <a href="https://www.mongodb.com/" target="_blank">MongoDB</a> database. This allows you to perform searches based on predefined metadata. The search form, in its compact shape on the left of the screen, is almost the same as the entry form (see <a href="https://pmb-bordeaux.fr/maggot/search" target="_blank">our online instance</a>). Depending on the search criteria, a list of data sets is provided, with for each of them a link pointing to the detailed sheet.</p>
+<p><strong>5</strong> - According to a fixed period (<a href="https://github.com/inrae/pgd-mmdt/blob/main/dockerscanpart/scripts/pgd-cron" target="_blank">30 min</a>), all the metadata files in JSON format are scanned, parsed then loaded into a <a href="https://www.mongodb.com/basics" target="_blank">MongoDB</a> database. This allows you to perform searches based on predefined metadata. The search form, in its compact shape on the left of the screen, is almost the same as the entry form (see a <a href="../images/search_fig.png" data-lightbox="fig2">screenshot</a>). Depending on the search criteria, a list of data sets is provided, with for each of them a link pointing to the detailed sheet.</p>
 <p><strong>6</strong> - The detailed metadata sheet provides all the metadata divided by section. Unfilled metadata does not appear by default. When a URL can be associated with information (ORCID, Ontology, web site, etc.), you can click on it to go to the corresponding link. Likewise, it is possible to follow the associated link on each of the resources. From this sheet, you can also export the metadata according to different schemata (Dataverse, Zenodo, JSON-LD).</p>
 <p><strong>7</strong> - Finally, once you have decided to <a href="../publish">publish your metadata</a> with your data, you can choose the repository that suits you (currently repositories based on Dataverse and Zenodo are supported). You will first need to connect to the repository in order to retrieve the key (the API token) authorizing you to submit the dataset. This obviously assumes that you have the privileges (creation/modification rights) to do so.</p>
 <div class="footnote">
@@ -830,12 +663,6 @@
 
         </div>
         
-          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
-            
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"/></svg>
-            Back to top
-          </button>
-        
       </main>
       
         <footer class="md-footer">
@@ -865,7 +692,7 @@
       <div class="md-dialog__inner md-typeset"></div>
     </div>
     
-    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.tabs", "navigation.sections", "navigation.top", "toc.integrate", "search.suggest", "search.highlight", "content.tabs.link", "content.code.annotation", "content.code.copy"], "search": "../assets/javascripts/workers/search.a264c092.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    <script id="__config" type="application/json">{"base": "..", "features": ["toc.integrate", "search.suggest", "search.highlight", "content.tabs.link", "content.code.annotation", "content.code.copy"], "search": "../assets/javascripts/workers/search.a264c092.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
     
     
       <script src="../assets/javascripts/bundle.726fbb30.min.js"></script>
