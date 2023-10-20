@@ -83,6 +83,7 @@ if ($ret>0) {
 		for( var i = 0; i < elements.length; ++i ) {
 			var element = elements[i];
 			var name = element.name;
+			if (!Object.keys(obj).includes(name)) { continue; }
 			var value = element.value;
 			if (value.length>0) { continue; }
 			errmsg=errmsg+" "+obj[name]+"\n";
@@ -103,7 +104,7 @@ if ($ret>0) {
 <?php echo $header_title ?>
 <br><br>
 
-<h1>Publishing Datasets <a href="<? echo $dataverse_help ?>" target="_blank"><i class="bi bi-question-octagon-fill" style="color:grey; font-size: 20px"></i></a></h1>
+<h1>Publishing Datasets <a href="<? echo $maggot_doc_url.'publish' ?>" target="_blank"><i class="bi bi-question-octagon-fill" style="color:grey; font-size: 20px"></i></a></h1>
 <br>
 
 <section>

@@ -259,46 +259,46 @@ function get_term_info($dico, $name)
 	do {
 		if (gettype($dico[1])==='string' && in_array($dico[1], array('skosmos','bioportal')))
 		{
-		// Search term in the vocabulary cache file
-		$out=find_into_cache($name);
-		if (count($out)>0)
-			break;
-	
-		// Search term in the 'no found' cache file
-		$name_dic = strtolower(strtr($name, $accented_chr));
-		if (file_exists($nofound_cache_file)) {
-			$arr = explode( "\n", file_get_contents($nofound_cache_file));
-			if (in_array($name_dic, $arr))
+			// Search term in the vocabulary cache file
+			$out=find_into_cache($name);
+			if (count($out)>0)
 				break;
-		}
-	
-		// Search term by API in the thesaurus/ontology web site
-		$out = ($dico[1].'_search')($dico, $name);
-	
-		// if term found, save it in the vocabulary cache file
-		if (count($out)>0 && count(find_into_cache($name))==0) {
-			file_put_contents($vocab_cache_file, $name_dic."\t".$out[0]."\t".$out[1]."\n", FILE_APPEND | LOCK_EX);
-			break;
-		}
-	
-		// if no term found, save it in the 'no found' cache file
-		if (count($out)==0 && ! file_exists($nofound_cache_file)) {
-			file_put_contents($nofound_cache_file, $name_dic."\n", FILE_APPEND | LOCK_EX);
-			break;
-		}
-		if (count($out)==0 && file_exists($nofound_cache_file)) {
-			$arr = explode( "\n", file_get_contents($nofound_cache_file));
-			if (! in_array($name_dic, $arr))
+		
+			// Search term in the 'no found' cache file
+			$name_dic = strtolower(strtr($name, $accented_chr));
+			if (file_exists($nofound_cache_file)) {
+				$arr = explode( "\n", file_get_contents($nofound_cache_file));
+				if (in_array($name_dic, $arr))
+					break;
+			}
+		
+			// Search term by API in the thesaurus/ontology web site
+			$out = ($dico[1].'_search')($dico, $name);
+		
+			// if term found, save it in the vocabulary cache file
+			if (count($out)>0 && count(find_into_cache($name))==0) {
+				file_put_contents($vocab_cache_file, $name_dic."\t".$out[0]."\t".$out[1]."\n", FILE_APPEND | LOCK_EX);
+				break;
+			}
+		
+			// if no term found, save it in the 'no found' cache file
+			if (count($out)==0 && ! file_exists($nofound_cache_file)) {
 				file_put_contents($nofound_cache_file, $name_dic."\n", FILE_APPEND | LOCK_EX);
+				break;
+			}
+			if (count($out)==0 && file_exists($nofound_cache_file)) {
+				$arr = explode( "\n", file_get_contents($nofound_cache_file));
+				if (! in_array($name_dic, $arr))
+					file_put_contents($nofound_cache_file, $name_dic."\n", FILE_APPEND | LOCK_EX);
+				break;
+			}
 			break;
 		}
-		break;
-		}
-	
+
 		$idx=find_dico($dico, $name, array(0));
 		if ($idx>-1 && strlen($dico[$idx][1])>0 && strlen($dico[$idx][2])>0)
 		$out = array( $dico[$idx][1], $dico[$idx][2] );
-	
+
 	} while(0);
 	
 	return $out;

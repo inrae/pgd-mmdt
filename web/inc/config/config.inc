@@ -70,6 +70,9 @@ $OAI_IDENTIFIER='pmb-bordeaux.fr';
 $OAI_SET='maggot';
 $OAI_DATE='2023-01-01';
 
+// Help link (online documentation on GitHub)
+$maggot_doc_url="https://inrae.github.io/pgd-mmdt/";
+
 // Help links (Temporarily on nextcloud while waiting for online documentation on GitBook)
 $dataverse_help = "https://nextcloud.inrae.fr/s/otBMwKZXK62KtMj";
 $dictionary_help = "https://nextcloud.inrae.fr/s/mCjciEP687kbn8i";

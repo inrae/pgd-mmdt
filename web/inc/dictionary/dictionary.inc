@@ -69,7 +69,8 @@ if ($handle = opendir($cvdir)) {
 
 <section>
 	<form id="formdico" name="formdico" action="#" autocomplete="off" method="get" enctype="multipart/form-data">
-		<b>Dictionaries</b>:&nbsp;<select style="font-size: 1rem;" name="dico" id="dico" class="form-control form-control-sm" onchange="this.form.submit();"><? echo $html_options ?></select>
+		<b>Dictionaries</b>:&nbsp;<a href="<? echo $maggot_doc_url.'dictionaries' ?>" target="doc"><i class="bi-question-octagon-fill" style="color:#1b82c1; font-size: 12px"></i></a>
+		<select style="font-size: 1rem;" name="dico" id="dico" class="form-control form-control-sm" onchange="this.form.submit();"><? echo $html_options ?></select>
 	</form>
 	<br>
 	<div style="padding-bottom: 10px;"><div id="errbox" name="errbox" class="msgbox errbox">

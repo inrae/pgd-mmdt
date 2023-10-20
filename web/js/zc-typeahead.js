@@ -2,7 +2,7 @@ function zcTypeahead () {
 	$('#push .typeahead').typeahead({
 		hint: true,
 		highlight: true,
-		minLength: 3
+		minLength: 4
 	},
 	{
 		async: true,
