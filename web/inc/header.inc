@@ -99,10 +99,7 @@ $header_main = $header_open.$menu1.$header_close;
 #------------------------
 
 $header_doc = $header_open.'<div class="btn-group btn-group-lg" role="group">
-		<i class="bi bi-eye" style="color:grey;"><a href="'.$PATH.'doc/about" class="search_data"><button type="button" class="btn btn-primary" data-toggle="button" aria-pressed="false" autocomplete="off" name="btn-about">Overview</button></a>
-		<i class="bi bi-filter" style="color:grey;"><a href="'.$PATH.'doc/meta" class="search_data"><button type="button" class="btn btn-primary" data-toggle="button" aria-pressed="false" autocomplete="off" name="btn-doc">Metadata</button></a>'.$header_close;
-
-
+		<i class="bi bi-filter" style="color:grey;"><a href="'.$PATH.'doc/meta" class="search_data"><button type="button" class="btn btn-primary" data-toggle="button" aria-pressed="false" autocomplete="off" name="btn-doc">Metadata</button></a><i class="bi bi-eye" style="color:grey;"><a href="'.$PATH.'doc/about" class="search_data"><button type="button" class="btn btn-primary" data-toggle="button" aria-pressed="false" autocomplete="off" name="btn-about">About</button></a>'.$header_close;
 
 #------------------------
 
