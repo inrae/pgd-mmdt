@@ -84,6 +84,11 @@
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
+        
+        <a href="#dictionaries" class="md-skip">
+          Skip to content
+        </a>
+      
     </div>
     <div data-md-component="announce">
       
@@ -566,6 +571,17 @@
       
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Dictionaries
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
@@ -575,6 +591,43 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#dictionaries" class="md-nav__link">
+    Dictionaries
+  </a>
+  
+    <nav class="md-nav" aria-label="Dictionaries">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#example-with-the-people-dictionary" class="md-nav__link">
+    Example with the people dictionary
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -616,7 +669,48 @@
 
   <h1>Dictionaries</h1>
 
+<style>.md-typeset h1 { display: none; }</style>
 
+<h3 id="dictionaries">Dictionaries<a class="headerlink" href="#dictionaries" title="Permanent link">&para;</a></h3>
+<ul>
+<li>The use of dictionaries has no other purpose to facilitate the entry of metadata, entry which can be long and repetitive in generalist data warehouses (such as repository based on Dataverse).</li>
+<li>Dictionaries allow you to record multiple information necessary to define an entity, such as the names of people or even the funders. 
+its information, once entered and saved in a file called a dictionary, can be subsequently associated with the corresponding entity. </li>
+<li>The dictionaries offered by default are: people, funders, data producers, as well as a vocabulary dictionary allowing you to mix ontologies and thesauri from several sources. </li>
+<li>To add a new dictionary, simply create a directory under <strong><em>web/cvlist</em></strong> then putting the files corresponding to the dictionary inside.</li>
+</ul>
+<p><br></p>
+<h4 id="example-with-the-people-dictionary">Example with the people dictionary<a class="headerlink" href="#example-with-the-people-dictionary" title="Permanent link">&para;</a></h4>
+<ul>
+<li>
+<p>Like any dictionary, there must be 3 files (see below). Please note that the names of these files must always contain the name of the dictionary, i.e. the name of the directory.
+<center>
+<a href="../../images/dico0.png" data-lightbox="fig0"><img src="../../images/dico0.png" width="800px"></a>
+</center><br></p>
+</li>
+<li>
+<p>The format of the file containing the dictionary data (<em>people.txt</em>) is defined by another file (<em>people_format.txt</em>).</p>
+</li>
+</ul>
+<p><center>
+<a href="../../images/dico2.png" data-lightbox="fig2"><img src="../../images/dico2.png" width="600px"></a>
+</center><br></p>
+<ul>
+<li>Thus, we know that the people dictionary must contain 5 columns (last name, first name, institution, ORCID number and email address) and that some fields are mandatory (last name, first name, institution) and others optional (ORCID number, email address).</li>
+<li>Each of the fields must respect a format specified by a <a href="https://www.w3schools.com/js/js_regexp.asp" target="_blank">regular expression</a> in order to be accepted as valid.</li>
+<li>Optionally, you can connect an <a href="https://en.wikipedia.org/wiki/Web_API" target="_blank">web API</a> to one of the fields in order to make an entry by autocompletion from a remote register. Currently only ROR (<a href="https://ror.org/" target="_blank">Research Organization Registry </a>) API is possible but the mechanism is in place for new extensions.</li>
+<li>The third file written in javascript, defines the way to retrieve the list of names (here by containing the first and last name). Note that the name of the variable must always be identical to that of the dictionary.
+<div class="highlight"><pre><span></span><code><span class="kd">var</span><span class="w"> </span><span class="nx">people</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[];</span>
+<span class="c1">// Each item in the &#39;people&#39; list consists of the first two columns (0,1) separated by a space</span>
+<span class="nx">get_dictionary_values</span><span class="p">(</span><span class="s1">&#39;people&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">merge</span><span class="o">=</span><span class="p">[</span><span class="mf">0</span><span class="p">,</span><span class="s1">&#39; &#39;</span><span class="p">,</span><span class="mf">1</span><span class="p">])</span><span class="w"> </span>
+</code></pre></div></li>
+<li>Below, an example is given when modifying a record. When you click on the <em>Institute</em> field which is connected to the ROR web API, the drop-down list of reseach organizations that can correspond in the register appears, if there are any.
+<center>
+<a href="../../images/dico1.png" data-lightbox="fig1"><img src="../../images/dico1.png" width="600px"></a>
+</center><br></li>
+</ul>
+<hr />
+<p><a href="https://www6.bordeaux-aquitaine.inrae.fr/bfp_eng/" target="_blank"><img alt="Inrae" src="../images/inrae_logo.png" /></a></p>
 
 
 
