@@ -13,10 +13,8 @@
       
       
       
-        <link rel="prev" href="../installation/">
+        <link rel="prev" href="../publish/zenodo/">
       
-      
-        <link rel="next" href="../definitions/">
       
       
       <link rel="icon" href="../assets/images/favicon.png">
@@ -24,7 +22,7 @@
     
     
       
-        <title>Maggot - Infrastructure - Maggot</title>
+        <title>Maggot - About - Maggot</title>
       
     
     
@@ -85,7 +83,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#infrastructure-local-remote-or-mixed" class="md-skip">
+        <a href="#background" class="md-skip">
           Skip to content
         </a>
       
@@ -121,7 +119,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Maggot - Infrastructure
+              Maggot - About
             
           </span>
         </div>
@@ -295,27 +293,9 @@
       
   
   
-    
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  <span class="md-ellipsis">
-    Infrastructure
-  </span>
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../infrastructure/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -324,31 +304,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#infrastructure-local-remote-or-mixed" class="md-nav__link">
-    Infrastructure : Local, Remote or Mixed
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -656,9 +611,27 @@
       
   
   
+    
   
-    <li class="md-nav__item">
-      <a href="../about/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    About
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   <span class="md-ellipsis">
@@ -667,6 +640,79 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#background" class="md-nav__link">
+    Background
+  </a>
+  
+    <nav class="md-nav" aria-label="Background">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#motives" class="md-nav__link">
+    Motives
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#state-of-need" class="md-nav__link">
+    State of need
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#proposed-approach" class="md-nav__link">
+    Proposed approach
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#links" class="md-nav__link">
+    Links
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#designers-developers" class="md-nav__link">
+    Designers / Developers
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#contributors" class="md-nav__link">
+    Contributors
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -686,25 +732,58 @@
                   
 
 
-  <h1>Infrastructure</h1>
+  <h1>About</h1>
 
 <style>.md-typeset h1 {display: none;} .md-nav__item {font-size: medium}</style>
 
-<h3 id="infrastructure-local-remote-or-mixed">Infrastructure : Local, Remote or Mixed<a class="headerlink" href="#infrastructure-local-remote-or-mixed" title="Permanent link">&para;</a></h3>
-<p><center>
-<a href="../images/infrastructure2.png" data-lightbox="fig0"><img src="../images/infrastructure2.png" width="800px"></a>
-</center></p>
-<p>The necessary Infrastructure involves a machine running a Linux OS and a dedicated storage space.</p>
+<h3 id="background">Background<a class="headerlink" href="#background" title="Permanent link">&para;</a></h3>
+<h4 id="motives">Motives<a class="headerlink" href="#motives" title="Permanent link">&para;</a></h4>
 <ul>
-<li>The machine will most often be of "<a href="https://en.wikipedia.org/wiki/Virtual_machine" target="_blank">virtual</a>" type because more simpler to deploy, either locally (with VM providers such as <a href="https://www.virtualbox.org/" target="_blank">VirtualBox</a>, <a href="https://www.vmware.com/products/workstation-player.html" target="_blank">VMware Workstation</a> or <a href="https://www.youtube.com/watch?v=CaDzYUSdVn8&amp;ab_channel=URTechDotCa" target="_blank">MS Hyper-V</a>) or remotely (e.g <a href="https://www.vmware.com/products/esxi-and-esx.html" target="_blank">VMware ESXi</a>, <a href="https://www.openstack.org/" target="_blank">Openstack</a>: <a href="https://inrae.github.io/jupyterhub-vm/" target="_blank">example of deployment</a>). Moreover, the OS of your machine must allow you the deployment of <a href="https://www.docker.com/get-started/" target="_blank">docker</a> containers. See for more details on “<a href="https://opensource.com/resources/what-docker" target="_blank">What is Docker</a>”. The minimum characteristics of the VM are:  <em>2 cpu</em>, <em>2 Go RAM</em>, <em>8 Go HD</em>.</li>
-<li>The dedicated storage space could be either in the local space of the VM, or in a remote place on the network.<ul>
-<li>If the storage space is directly included in the VM, then tools like <a href="https://winscp.net/eng/download.php" target="_blank">WinSCP</a> or <a href="https://kapitainsky.github.io/RcloneBrowser/" target="_blank">RcloneBrowser</a> will allow you to easily transfer your files to the data space.</li>
-<li>If the storage space is your collective's NAS, you will need to make sure to open the <a href="https://www.upguard.com/blog/smb-port#:~:text=SMB%20ports%20are%20generally%20port,ports%20communicate%20via%20Port%20139." target="_blank">SMB port</a> on your network's firewall. If both VM and data storage are not in the same private network, it will probably also require installing the sofware layer corresponding to your corporate VPN on the VM so that it can access your NAS. See <a href="../images/infra_ex1.png" data-lightbox="fig1">example successfully tested</a>.</li>
-<li>If the storage space is in a <a href="https://en.wikipedia.org/wiki/Data_center#:~:text=A%20data%20center%20(American%20English,as%20telecommunications%20and%20storage%20systems." target="_blank">data center</a> (e.g. <a href="https://nextcloud.com/" target="_blank">NextCloud</a>, <a href="https://ucr-research-computing.github.io/Knowledge_Base/how_to_mount_google_drive.html" target="_blank">Google Drive</a>), then you will need to install a tool such as <a href="https://rclone.org/" target="_blank">rclone</a> on your VM in order to be able to mount the storage space on the VM's disk space. See <a href="../images/infra_ex2.png" data-lightbox="fig2">example successfully tested</a>.</li>
+<li>Meet the challenges of organizing, documenting, storing and sharing data from a site, a project or a structure (unit, platform, etc.).</li>
+<li>Have visibility of what is produced within the collective: datasets, software, databases, images, sounds, videos, analyses, codes, etc.</li>
+<li>Fall within an open science quality approach for sharing and reproducibility.</li>
+<li>Promote FAIR (at least the Findable &amp; Accessible criteria) within the collective</li>
+<li>Raise awareness among newcomers and students about a better description of what they produce</li>
+</ul>
+<h4 id="state-of-need">State of need<a class="headerlink" href="#state-of-need" title="Permanent link">&para;</a></h4>
+<ul>
+<li>Implementing a data management plan imposes prerequisites such as the externalization of data to be preserved outside of users' disk space. This does not only concern published data but all data produced during the duration of a project. Above all, this outsourcing makes it possible to gather the data in one place and already constitutes a first-level backup. This becomes even more necessary when temporary agents (doctoral students, post-docs, interns, fixed-term contracts) are involved in data production.</li>
+<li>Consequently, the concern arises about the organization of these storage spaces. Should they be harmonized, i.e. impose good practices such as <em>i</em>) the naming of folders and files, <em>ii</em>) a folder structure (docs, data, scripts, etc.), <em>iii</em>) the use of README files, etc.</li>
+<li>At a minimum, using a README file seems the simplest and least restrictive. But then the question arises “what to put in it”? Templates can be offered to simplify their writing. But then the question arises of how to use them effectively when we want to find information? With what vocabulary?</li>
+</ul>
+<h4 id="proposed-approach">Proposed approach<a class="headerlink" href="#proposed-approach" title="Permanent link">&para;</a></h4>
+<ul>
+<li>The two main ideas behind the tool are:<ul>
+<li>Make the storage space also become a data repository, ensuring that metadata gets to the data</li>
+<li>Be able to “capture” the user’s metadata as easily as possible by using their vocabulary</li>
 </ul>
 </li>
+<li>Concerning the first idea: "Just" place a metadata file (JSON format) describing the project data in each subdirectory, and then find the projects and/or data corresponding to specific criteria. The choice fell on the JSON format, very suitable for describing metadata, readable by both humans and machines.</li>
+<li>Concerning the second idea: Given the diversity of the fields, the approach chosen is to be both the most flexible and the most pragmatic possible by allowing users to choose their own vocabulary (controlled or not) corresponding to the reality of their field and their activities. However, a good approach is as much as possible to use only controlled vocabulary, that is to say relevant and sufficient vocabulary used as a reference in the field concerned to allow users to describe a project and its context without having to add additional terms. To this end, the tool must allow users a progressive approach towards the adoption of standardized controlled vocabularies (thesauri or even ontologies).</li>
 </ul>
-<p><br></p>
+<hr>
+
+<h3 id="links">Links<a class="headerlink" href="#links" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Source code on Github</strong> : <a href="https://github.com/inrae/pgd-mmdt" target="_blank">inrae/pgd-mmdt</a></li>
+<li><strong>Instance online</strong> : <a href="https://pmb-bordeaux.fr/maggot/" target="_blank">UMR 1322 BFP</a></li>
+</ul>
+<h3 id="designers-developers">Designers / Developers<a class="headerlink" href="#designers-developers" title="Permanent link">&para;</a></h3>
+<ul>
+<li>
+<p>Daniel Jacob (<a href="https://www6.bordeaux-aquitaine.inrae.fr/bfp_eng/" target="_blank">@UMR BFP</a>) | CATI <a href="https://prosodie.cati.inrae.fr/" target="_blank">@PROSODIe</a></p>
+</li>
+<li>
+<p>François Ehrenmann (<a href="https://www6.bordeaux-aquitaine.inrae.fr/biogeco_eng/" target="_blank">@UMR BioGECO</a>) | CATI <a href="https://gedeop.cati.inrae.fr/" target="_blank">@GEDEOP</a></p>
+</li>
+<li>
+<p>Philippe Chaumeil (<a href="https://www6.bordeaux-aquitaine.inrae.fr/biogeco_eng/" target="_blank">@UMR BioGECO</a>)</p>
+</li>
+</ul>
+<h3 id="contributors">Contributors<a class="headerlink" href="#contributors" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Edouard Guitton (<a href="https://www.inrae.fr/departements/sa" target="_blank">@INRAE Dept. SA</a>, <a href="https://www.emergin.fr/emergin_eng/" target="_blank">@Emerg'IN</a>)</li>
+</ul>
 
 
 

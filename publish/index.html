@@ -16,13 +16,15 @@
         <link rel="prev" href="../vocabulary/">
       
       
+        <link rel="next" href="dataverse/">
+      
       
       <link rel="icon" href="../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.4.2">
     
     
       
-        <title>Maggot - Publish your Metadata - Maggot</title>
+        <title>Maggot - Publish Metadata - Maggot</title>
       
     
     
@@ -83,7 +85,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#publish-your-metadata" class="md-skip">
+        <a href="#publish-metadata" class="md-skip">
           Skip to content
         </a>
       
@@ -119,7 +121,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Maggot - Publish your Metadata
+              Maggot - Publish Metadata
             
           </span>
         </div>
@@ -523,57 +525,107 @@
     
   
   
-    <li class="md-nav__item md-nav__item--active">
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9" checked>
+        
           
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="./" class="md-nav__link md-nav__link--active">
+              
   
   <span class="md-ellipsis">
     Publication
   </span>
   
 
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+            </a>
+            
+              
+              <label class="md-nav__link md-nav__link--active" for="__nav_9" id="__nav_9_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_9">
+            <span class="md-nav__icon md-icon"></span>
+            Publication
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="dataverse/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Publication
+    Dataverse
   </span>
   
 
       </a>
-      
-        
+    </li>
+  
 
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+              
+            
+              
+                
   
   
   
+    <li class="md-nav__item">
+      <a href="zenodo/" class="md-nav__link">
+        
   
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+  <span class="md-ellipsis">
+    Zenodo
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
       
-        <li class="md-nav__item">
-  <a href="#publish-your-metadata" class="md-nav__link">
-    Publish your Metadata
-  </a>
+    </li>
   
-</li>
+
+    
       
-    </ul>
+      
   
-</nav>
-      
+  
+  
+    <li class="md-nav__item">
+      <a href="../about/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    About
+  </span>
+  
+
+      </a>
     </li>
   
 
@@ -597,10 +649,19 @@
 
 <style>.md-typeset h1 {display: none;} .md-nav__item {font-size: medium}</style>
 
-<h3 id="publish-your-metadata">Publish your Metadata<a class="headerlink" href="#publish-your-metadata" title="Permanent link">&para;</a></h3>
+<h3 id="publish-metadata">Publish Metadata<a class="headerlink" href="#publish-metadata" title="Permanent link">&para;</a></h3>
 <ul>
-<li>In this section we will explain how to publish your metadata as well as your data in one of the supported repositories.</li>
-<li>Currently being written - Soon online</li>
+<li>Once we have decided to publish our metadata with possibly our data, we can choose the repository that suits us. Currently repositories based on <a href="https://dataverse.org/" target="_blank">Dataverse</a> and <a href="https://www.openaire.eu/zenodo-guide" target="_blank">Zenodo</a> are supported, both being <a href="https://open-research-europe.ec.europa.eu/for-authors/data-guidelines#approvedrepositories" target="_blank">Europe-approved repositories</a>.</li>
+<li>Using an approach that might be called “<a href="https://opendatahandbook.org/glossary/en/terms/machine-readable/" target="_blank">machine-readable</a> metadata,” it is possible to populate metadata for a dataset into one of the proposed data repositories via its <a href="https://en.wikipedia.org/wiki/Web_API" target="_blank">web API</a>. The principle is illustrated by the figure above.</li>
+</ul>
+<p><center>
+<a href="../../images/publish_fig1.png" data-lightbox="fig1"><img src="../../images/publish_fig1.png" width="800px"></a>
+</center></p>
+<ul>
+<li>We start from the Maggot JSON format metadata file generated from the web interface and based on the metadata profile defined by the terminology definition files. </li>
+<li>Then from a file defining the correspondence between the Maggot fields and those of the target repository, we can perform a conversion to the JSON format supported by the web API of the target repository.</li>
+<li>During the process we enrich the metadata with controlled vocabularies based either on dictionaries or on thesauri and/or ontologies. For the latter cases, we use the web APIs of these sources to perform the mapping (see the <a href="../definitions/mapping">definition of mapping</a>).</li>
+<li>Finally, to be able to carry out the transfer i.e. the submission to the target repository (we say "push" for short), we first need to connect to the repository in order to retrieve the key (the <a href="https://www.wallarm.com/what/what-is-an-api-token-quick-guide" target="_blank">API token</a>) authorizing us to submit the dataset. This obviously assumes that we have the privileges (creation/modification rights) to do so.</li>
 </ul>
 
 

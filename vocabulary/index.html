@@ -566,12 +566,103 @@
   
   
   
-    <li class="md-nav__item">
-      <a href="../publish/" class="md-nav__link">
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
         
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9" >
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../publish/" class="md-nav__link ">
+              
   
   <span class="md-ellipsis">
     Publication
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_9" id="__nav_9_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_9">
+            <span class="md-nav__icon md-icon"></span>
+            Publication
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../publish/dataverse/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Dataverse
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../publish/zenodo/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Zenodo
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../about/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    About
   </span>
   
 
@@ -602,8 +693,19 @@
 <h3 id="vocabulary">Vocabulary<a class="headerlink" href="#vocabulary" title="Permanent link">&para;</a></h3>
 <ul>
 <li>In this section we will expose the full extent of the possibilities concerning the vocabulary in Maggot.</li>
-<li>Currently being written - Soon online</li>
+<li>Currently being written</li>
 </ul>
+<hr>
+
+<p><strong>1</strong> - <strong>Vocabulary open for addition</strong> (<a href="../images/vocabulary_fig1.png" data-lightbox="fig1">checkbox with feature open=1</a>)</p>
+<ul>
+<li>allows you to collect the desired <em>Control Vocabulary</em> (CV) from users. In order to initiate the list, you can put some terms in the <em>predefined terms</em> column of the terminology definition file.</li>
+</ul>
+<p><strong>2</strong> - <strong>Input by <a href="https://en.wikipedia.org/wiki/Autocomplete" target="_blank">autocompletion</a> in a text field</strong> (<a href="../images/vocabulary_fig2.png" data-lightbox="fig2">textbox</a>) and based on a <a href="https://en.wikipedia.org/wiki/Web_API" target="_blank">web API</a>. </p>
+<ul>
+<li>The web API is defined in a JavaScript file with the same name as the assigned variable (here <em>cities</em>) and must present under <em>web/js/autocomplete</em>. For example, to enter a French city you can use the API <a href="https://geo.api.gouv.fr/decoupage-administratif" target="_blank">geo.api.gouv.fr</a>. See <a href="https://github.com/inrae/pgd-mmdt/blob/main/web/js/autocomplete/cities.js" target="_blank">cities.js</a></li>
+</ul>
+<p><br></p>
 
 
 
