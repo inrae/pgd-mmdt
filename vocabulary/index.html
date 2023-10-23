@@ -697,13 +697,32 @@
 </ul>
 <hr>
 
-<p><strong>1</strong> - <strong>Vocabulary open for addition</strong> (<a href="../images/vocabulary_fig1.png" data-lightbox="fig1">checkbox with feature open=1</a>)</p>
+<p><strong>1</strong> -  <strong>Vocabulary based on a list of terms fixed in advance</strong> (<a href="../images/vocabulary_fig1.png" data-lightbox="fig1">checbox with feature open=0</a>)</p>
+<ul>
+<li>List of well-chosen and limited Control Vocabulary e.g according to a reference e.g. Data Document Initiative.</li>
+</ul>
+<p><strong>2</strong> - <strong>Vocabulary open for addition</strong> (<a href="../images/vocabulary_fig2.png" data-lightbox="fig2">checkbox with feature open=1</a>)</p>
 <ul>
 <li>allows you to collect the desired <em>Control Vocabulary</em> (CV) from users. In order to initiate the list, you can put some terms in the <em>predefined terms</em> column of the terminology definition file.</li>
 </ul>
-<p><strong>2</strong> - <strong>Input by <a href="https://en.wikipedia.org/wiki/Autocomplete" target="_blank">autocompletion</a> in a text field</strong> (<a href="../images/vocabulary_fig2.png" data-lightbox="fig2">textbox</a>) and based on a <a href="https://en.wikipedia.org/wiki/Web_API" target="_blank">web API</a>. </p>
+<p><strong>3</strong> - <strong>Vocabulary based on a <a href="https://en.wikipedia.org/wiki/Web_API" target="_blank">web API</a> in a text field</strong> (<a href="../images/vocabulary_fig3.png" data-lightbox="fig3">textbox</a>)</p>
 <ul>
 <li>The web API is defined in a JavaScript file with the same name as the assigned variable (here <em>cities</em>) and must present under <em>web/js/autocomplete</em>. For example, to enter a French city you can use the API <a href="https://geo.api.gouv.fr/decoupage-administratif" target="_blank">geo.api.gouv.fr</a>. See <a href="https://github.com/inrae/pgd-mmdt/blob/main/web/js/autocomplete/cities.js" target="_blank">cities.js</a></li>
+</ul>
+<p><strong>4</strong> - <strong>Vocabulary based on a <a href="../dictionaries">dictionary</a> with multiple selection</strong> (<a href="../images/vocabulary_fig4.png" data-lightbox="fig4">multiselect</a>) </p>
+<ul>
+<li>Dictionaries allow you to record multiple information necessary to define an entity, such as the names of people or even the funders. These information, once entered and saved in a file called a dictionary. Based on a very simple JavaScript retrieving the complete list of items included in the dictionary, thus creating a sort of internal API, we can fill a Maggot field by  autocompletion related to a search for these items.</li>
+<li>The JavaScript file must be named <em><strong>dico.js</strong></em> and be present under <em><strong>web/cvlist/<em>dico</em>/</strong></em> where <em><strong>dico</strong></em> is the name of the dictionary. See for instance <em><a href="https://github.com/inrae/pgd-mmdt/tree/main/web/cvlist/people/people.js" target="_blank">people.js</a></em></li>
+</ul>
+<p><strong>5</strong> - <strong>Vocabulary based on a <a href="https://skosmos.org/" target="_blank">SKOSMOS Thesaurus</a> with multiple selection</strong> (<a href="../images/vocabulary_fig5.png" data-lightbox="fig5">multiselect</a>) </p>
+<ul>
+<li>SKOSMOS is a web tool facilitating the posting of controlled vocabulary online in the form of a <a href="https://en.wikipedia.org/wiki/Thesaurus_(information_retrieval)" target="_blank">thesaurus</a> according to the <a href="https://en.wikipedia.org/wiki/Simple_Knowledge_Organization_System" target="_blank">SKOS</a> data model. It offers a navigation interface as well as a web API interface. A simple JavaScript allows you to easily connect this web API with a multiselect field.</li>
+<li>The JavaScript file must have the same name as the assigned variable (here <em>VOvocab</em>) and must present under <em>web/js/autocomplete</em>. See for instance <a href="https://github.com/inrae/pgd-mmdt/blob/main/web/js/autocomplete/VOvocab.js" target="_blank">VOvocab.js</a>.</li>
+</ul>
+<p><strong>6</strong> - <strong>Vocabulary based on an <a href="https://ontoportal.org/" target="_blank">OntoPortal</a> with multiple selection</strong> (<a href="../images/vocabulary_fig6.png" data-lightbox="fig6">multiselect</a>) </p>
+<ul>
+<li>Portals based on OntoPortal offer the wealth of ontologies according to several domains of application (e.g. BioPortal in the biomedical domain with 1,073 ontologies, AgroPortal in the domain of plants with 157 ontologies). A simple JavaScript allows you to easily connect this web API with a multiselect field.</li>
+<li>No need of JavaScript file. The Bioportal Widget has been implemented into Maggot. You have to declare the ontology you want to use directly into the terminology definition file.</li>
 </ul>
 <p><br></p>
 
