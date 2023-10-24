@@ -675,14 +675,8 @@
 <center><img src="../images/definitions_fig1.png" width="600px"></center>
 <br></p>
 <p>There are two categories of definition files:</p>
-<ul>
-<li>
-<p>The first category concerns the definition of terminology (metadata + controlled vocabulary). Clearly, this category is more akin to application configuration files. They represent the heart of the application around which everything else is based. The input and search interfaces are completely generated from these definition files (especially the <em><a href="../definitions/terminology">web/conf/config_terms.txt</a></em> file), thus defining each of the fields, their input type (checkbox, dropbox, textbox, ...) and the associated controlled vocabulary (ontology and thesaurus by autocompletion, drop-down list according to a list of fixed terms). This is why a <a href="../configuration">configuration and conversion step</a> into JSON format is essential in order to be able to configure all the other modules.</p>
-</li>
-<li>
-<p>The second category concerns the definitions of mapping to a differently structured metadata schema (e.g. <a href="dataverse">Dataverse</a>, <a href="json-ld">JSON-LD</a>, <a href="oai-pmh">OAI-PMH</a>). Simply place the definition files in the configuration directory (<em><a href="https://github.com/inrae/pgd-mmdt/tree/main/web/conf" target="_blank">web/conf</a></em>) for them to be taken into account, provided you have adjusted the configuration (<em><a href="https://github.com/inrae/pgd-mmdt/blob/main/web/inc/config/config.inc" target="_blank">web/inc/config/config.inc</a></em>).</p>
-</li>
-</ul>
+<p><strong>1</strong> - The first category concerns the definition of terminology (metadata + controlled vocabulary). Clearly, this category is more akin to application configuration files. They represent the heart of the application around which everything else is based. The input and search interfaces are completely generated from these definition files (especially the <em><a href="../definitions/terminology">web/conf/config_terms.txt</a></em> file), thus defining each of the fields, their input type (checkbox, dropbox, textbox, ...) and the associated controlled vocabulary (ontology and thesaurus by autocompletion, drop-down list according to a list of fixed terms). This is why a <a href="../configuration">configuration and conversion step</a> into JSON format is essential in order to be able to configure all the other modules.</p>
+<p><strong>2</strong> - The second category concerns the definitions of mapping to a differently structured metadata schema (e.g. <a href="dataverse">Dataverse</a>, <a href="json-ld">JSON-LD</a>, <a href="oai-pmh">OAI-PMH</a>). Simply place the definition files in the configuration directory (<em><a href="https://github.com/inrae/pgd-mmdt/tree/main/web/conf" target="_blank">web/conf</a></em>) for them to be taken into account, provided you have adjusted the configuration (<em><a href="https://github.com/inrae/pgd-mmdt/blob/main/web/inc/config/config.inc" target="_blank">web/inc/config/config.inc</a></em>).</p>
 <p>All definition files are made using a simple spreadsheet then exported in TSV<sup id="fnref:2"><a class="footnote-ref" href="#fn:2">2</a></sup> format. </p>
 <p><br></p>
 <div class="footnote">
