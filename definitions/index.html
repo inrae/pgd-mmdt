@@ -651,7 +651,7 @@
 
 <h3 id="configuration-flexibility">Configuration flexibility<a class="headerlink" href="#configuration-flexibility" title="Permanent link">&para;</a></h3>
 <p>The Maggot tool offers <a href="https://inrae.github.io/pgd-mmdt/pdf/MAGGOT_OpenData_Oct2023.pdf?download=false" target="_blank">great flexibility in configuration</a>. It allows you to completely choose all the metadata you want to describe your data. You can base yourself on an existing <a href="https://en.wikipedia.org/wiki/Metadata_standard" target="_blank">metadata schema</a>, invent <a href="https://committee.iso.org/files/live/sites/tc46sc11/files/documents/N800R1%20Where%20to%20start-advice%20on%20creating%20a%20metadata%20schema.pdf" target="_blank">your own schema</a><sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup> or, more pragmatically, mix one or more schemas by introducing some metadata specific to your field of application. However, keep in mind that if you want to add descriptive metadata to your data then a <a href="https://libraries.mit.edu/data-management/store/documentation/" target="_blank">certain amount of information</a> is expected. But a completely different use of the tool is possible, it's up to you.</p>
-<p>Definition files are made using a simple spreadsheet then exported in TSV format. There are two categories of definition files:</p>
+<p>There are two categories of definition files:</p>
 <ul>
 <li>
 <p>The first category concerns the definition of terminology (metadata + controlled vocabulary). Clearly, this category is more akin to application configuration files. They represent the heart of the application around which everything else is based. The input and search interfaces are completely generated from these definition files (especially the <em><a href="../definitions/terminology">web/conf/config_terms.txt</a></em> file), thus defining each of the fields, their input type (checkbox, dropbox, textbox, ...) and the associated controlled vocabulary (ontology and thesaurus by autocompletion, drop-down list according to a list of fixed terms). This is why a <a href="../configuration">configuration and conversion step</a> into JSON format is essential in order to be able to configure all the other modules.</p>
@@ -660,12 +660,16 @@
 <p>The second category concerns the definitions of mapping to a differently structured metadata schema (e.g. <a href="dataverse">Dataverse</a>, <a href="json-ld">JSON-LD</a>, <a href="oai-pmh">OAI-PMH</a>). Simply place the definition files in the configuration directory (<em><a href="https://github.com/inrae/pgd-mmdt/tree/main/web/conf" target="_blank">web/conf</a></em>) for them to be taken into account, provided you have adjusted the configuration (<em><a href="https://github.com/inrae/pgd-mmdt/blob/main/web/inc/config/config.inc" target="_blank">web/inc/config/config.inc</a></em>).</p>
 </li>
 </ul>
+<p>All definition files are made using a simple spreadsheet then exported in TSV<sup id="fnref:2"><a class="footnote-ref" href="#fn:2">2</a></sup> format. </p>
 <p><br></p>
 <div class="footnote">
 <hr />
 <ol>
 <li id="fn:1">
 <p><em>How to create a descriptive metadata plan</em>:  <a href="https://sustainableheritagenetwork.org/system/files/atoms/file/How_to_Create_a_Descriptive_Metadata_Plan.pdf">https://sustainableheritagenetwork.org/system/files/atoms/file/How_to_Create_a_Descriptive_Metadata_Plan.pdf</a>&#160;<a class="footnote-backref" href="#fnref:1" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+</li>
+<li id="fn:2">
+<p><em>TSV</em>: open text format representing tabular data as "tab-separated values". Each row corresponds to a table row and the cells in a row are separated by a tab.&#160;<a class="footnote-backref" href="#fnref:2" title="Jump back to footnote 2 in the text">&#8617;</a></p>
 </li>
 </ol>
 </div>
