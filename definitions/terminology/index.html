@@ -481,6 +481,26 @@
   
   
     <li class="md-nav__item">
+      <a href="../zenodo/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Zenodo
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../json-ld/" class="md-nav__link">
         
   
@@ -749,7 +769,7 @@
 <li>column 6 - <strong>Type</strong> : indicates the way they will be entered via the web interface (possible values are: <strong><em>textbox</em></strong>, <strong><em>dropbox</em></strong>, <strong><em>checkbox</em></strong> and <strong><em>areabox</em></strong>).</li>
 <li>column 7 - <strong>Features</strong> : dependings on the Type value, one can specifiy some specific features. If several features, they must be separated by a comma.<ul>
 <li>for <strong>checkbox</strong>: open=0 or open=1 indicates if the selection is opened or not. See <a href="../../vocabulary">Vocabulary</a>.</li>
-<li>for <strong>textbox</strong>, <strong>checkbox</strong> &amp; <strong>multiselect</strong>: autocomplete=<em>items</em> : The <em>items.js</em> file must be present under <em>web/js/autocomplete</em>. See <a href="../../vocabulary">Vocabulary</a>.</li>
+<li>for <strong>textbox</strong>, <strong>checkbox</strong> &amp; <strong>multiselect</strong>: autocomplete=<em>items</em> : The <em>items.js</em> file must be present under <em><a href="https://github.com/inrae/pgd-mmdt/blob/main/web/js/autocomplete/" target="_blank">web/js/autocomplete</a></em>. See <a href="../../vocabulary">Vocabulary</a>.</li>
 <li>for <strong>textbox</strong> &amp; <strong>dropbox</strong>: width=NNNpx allows you to specify the width of the box. Usefull if you want put several fields in the same line. See note 1 below.</li>
 <li>for <strong>areabox</strong>: row=NN and cols=NN allows you to specify the row and column size of the textarea.</li>
 </ul>
@@ -766,8 +786,12 @@
 </ul>
 </li>
 </ul>
-<p>Below an example of Terminology definition file (TSV)</p>
-<p><center>
+<p>Example of Maggot JSON file generated based on the definition file itself given as an example below</p>
+<ul>
+<li><a href="https://pmb-bordeaux.fr/maggot/metadata/frim1?format=zenodo" target="_blank">Maggot JSON of the FRIM dataset</a></li>
+</ul>
+<p>Below an example of Terminology definition file (TSV)
+<center>
 <a href="../../images/config_terms_txt.png" data-lightbox="fig1"><img src="../../images/config_terms_txt.png" width="800px"></a>
 </center><br></p>
 <h3 id="structure-of-the-terminology-documentation-file-tsv">Structure of the Terminology documentation file (TSV)<a class="headerlink" href="#structure-of-the-terminology-documentation-file-tsv" title="Permanent link">&para;</a></h3>
@@ -777,8 +801,8 @@
 <li>column 2 - <strong>Name</strong> : Name of the element. The names of the sections, variables and drop-down options must be exactly the same as those specified in the terminology definition file.</li>
 <li>column 3 - <strong>Description</strong> : The description corresponding to the element, serving as much as possible to give indications on the information to be selected or entered, in order to remove possible ambiguities.</li>
 </ul>
-<p>Below an example of Terminology documentation file (TSV)</p>
-<p><center>
+<p>Below an example of Terminology documentation file (TSV)
+<center>
 <a href="../../images/config_doc_txt.png" data-lightbox="fig2"><img src="../../images/config_doc_txt.png" width="800px"></a>
 </center><br></p>
 <p><br></p>
