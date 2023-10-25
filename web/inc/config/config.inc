@@ -1,7 +1,7 @@
 <?php
 
-// Current year
-$YEAR='2022-2023';
+// Range of years for the Maggot project
+$YEAR='2022-'.date("Y");
 
 // Zoom out webpage
 $ZOOMWP = '90%';
@@ -9,29 +9,29 @@ $ZOOMWP = '90%';
 // Add a media type for each resource
 $RESMEDIA=1;
 
-// File Browser
-$FILEBROWSER=0;
-
-// Link to a FAIR website
-$FAIRLINK=1;
-$URL_FAIR="https://scholar.harvard.edu/files/mercecrosas/files/fairdata-dataverse-mercecrosas.pdf";
+#------------------------
 
 // Mode external (1) or not (0)
 $EXTERN=0;
-
-#docker mode : 0 = FALSE; 1 = TRUE;
-$docker_mode = 1;
 
 // Main title & title 
 $TITLE = 'Metadata management ';
 $TITLE .= ( isset( $_GET['extern'] ) || $EXTERN ) ? 'for Datasets' : 'within storage spaces';
 $MAINTITLE =$TITLE;
 
+// File Browser
+$FILEBROWSER=0;
+$URL_FILEBROWSER='/fb/';
+
+// Link to a FAIR website
+$FAIRLINK=1;
+$URL_FAIR="https://scholar.harvard.edu/files/mercecrosas/files/fairdata-dataverse-mercecrosas.pdf";
+
 #------------------------
 
 // Get the URL of the application
-$HOSTNAME=$_SERVER['HTTP_HOST'];
 $APPNAME='maggot';
+$HOSTNAME=$_SERVER['HTTP_HOST'];
 if (isset($_SERVER['HTTP_X_APP_NAME']) && strlen($_SERVER['HTTP_X_APP_NAME']))
    $APPNAME=$_SERVER['HTTP_X_APP_NAME'];
 
@@ -64,18 +64,13 @@ $COMMUNITIES='';
 // OAI-PMH
 $OAI_HTTP = 'http';
 $OAI_BASEURL=$OAI_HTTP.'://'.$APPURL.'/oai';
-//$OAI_EMAIL='pfmb-bordeaux@inra.fr';
-$OAI_EMAIL='daniel.jacob@inrae.fr';
+$OAI_EMAIL='pfmb-bordeaux@inra.fr';
 $OAI_IDENTIFIER='pmb-bordeaux.fr';
 $OAI_SET='maggot';
 $OAI_DATE='2023-01-01';
 
 // Help link (online documentation on GitHub)
 $maggot_doc_url="https://inrae.github.io/pgd-mmdt/";
-
-// Help links (Temporarily on nextcloud while waiting for online documentation on GitBook)
-$dataverse_help = "https://nextcloud.inrae.fr/s/otBMwKZXK62KtMj";
-$dictionary_help = "https://nextcloud.inrae.fr/s/mCjciEP687kbn8i";
 
 // Mapping file
 $mapping_conf= 'conf/mapping.txt';
@@ -103,7 +98,7 @@ $nofound_cache_file = 'cache/nofound.txt';
 // Directory of the Control Vocabulary Listes (cvlist)
 $cvdir='cvlist/';
 
-// Maggot name of the field corresponding to the title in dataverse
+// Maggot name of the field corresponding to the title in dataverse/zenodo
 $maggot_fulltitle='fulltitle';
 
 //Name of the file that must be present in the data directory to authorize the transfer of the data file

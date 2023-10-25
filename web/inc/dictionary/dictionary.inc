@@ -64,7 +64,7 @@ if ($handle = opendir($cvdir)) {
 <?php echo $header_title ?>
 <br><br>
 
-<!--h1>Dictionaries <a href="<? echo $dictionary_help ?>" target="_blank"><i class="bi bi-question-octagon-fill" style="color:grey; font-size: 20px"></i></a></h1>
+<!--h1>Dictionaries <a href="<? echo $maggot_doc_url.'dictionaries' ?>" target="_blank"><i class="bi bi-question-octagon-fill" style="color:grey; font-size: 20px"></i></a></h1>
 <br-->
 
 <section>

@@ -1,5 +1,8 @@
 <?php
 
+#docker mode : 0 = FALSE; 1 = TRUE;
+$docker_mode = 1;
+
 #------------------------
 // Mongo DB
 #------------------------

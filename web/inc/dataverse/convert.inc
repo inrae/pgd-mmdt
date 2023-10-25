@@ -8,6 +8,7 @@ function cmd_api_dataverse($cmd) {
     global $LOG;
     if ($LOG) echo "<script>console.log('".addslashes($cmd)."');</script>";
     $output_js=shell_exec($cmd);
+    if ($LOG) echo "<script>console.log('".$output_js."');</script>";
     $output_arr = json_decode($output_js, true);
 //echo "<br><pre>";  print_r($output_arr['data']); echo "</pre><br>";
     return $output_arr;
@@ -15,7 +16,7 @@ function cmd_api_dataverse($cmd) {
 
 function get_api_dataverse($request) {
     global $API_TOKEN, $SERVER_URL;
-    $cmd = 'curl -H X-Dataverse-key:'.$API_TOKEN.' -X GET --request "'.$SERVER_URL.'/api/v1/'.$request.'"';
+    $cmd = 'curl -H "X-Dataverse-key:'.$API_TOKEN.'" -X GET "'.$SERVER_URL.'/api/v1/'.$request.'"';
     return cmd_api_dataverse($cmd);
 }
 

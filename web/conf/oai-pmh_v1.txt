@@ -1,0 +1,17 @@
+Field	dcterm	Value type 	Value source	Index	Prefix
+fulltitle	dc:title	#VALUE			
+description	dc:description	#VALUE			
+authors	dc:creator	#VALUE			
+contacts	dc:creator	#VALUE			
+collectors	dc:contributor	#VALUE			
+curators	dc:contributor	#VALUE			
+members	dc:contributor	#VALUE			
+leader	dc:contributor	#VALUE			
+wpleader	dc:contributor	#VALUE			
+access_rights	dc:rights	#VALUE			
+language	dc:language	#VALUE			
+kindOfData	dc:type	#VALUE			
+subject	dc:subject	#VALUE			
+keywords	dc:subject	#VALUE			
+topics	dc:subject	#VALUE			
+resources	dc:relation	#VALUE	location		

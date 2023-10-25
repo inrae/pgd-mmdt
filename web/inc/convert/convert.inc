@@ -392,7 +392,7 @@ EOF;
 			continue;
 		}
 		if (($cnt%2)==0) { $TR='<tr class="tr1">'; } else { $TR='<tr class="tr2">'; }
-		$html .= $TR.'<td>'.join('</td><td>',preg_replace('/,(?! )/',', $1',$val)).'</td></tr>';
+		$html .= $TR.'<td>'.join('</td><td>',preg_replace('/([,:])(?! )/','$1 $2',$val)).'</td></tr>';
 		$cnt++;
 	}
 	$html .= '</table>'; // open table
