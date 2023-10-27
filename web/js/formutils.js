@@ -426,6 +426,23 @@ function insert_txtboite (identif_boite, req=false, shrunk=false)
 	return myfieldHTML;
 }
 
+function insert_dateboite (identif_boite, req=false, shrunk=false)
+{
+	var divclass=asterisk=mywidth=ac=plh=dico='';
+	mywidth = 'style="width: 100%"';
+	if (! shrunk && dateboite[identif_boite].hasOwnProperty('width'))
+		mywidth = 'style="width:'+dateboite[identif_boite]['width']+'"';
+	divclass='class="form-group2 '+ac+'" '+mywidth;
+	if (req) asterisk = mandatory
+	plh='placeholder="yyyy-mm-dd"';
+	var myfieldHTML =
+		'<div '+divclass+'>\
+			<label for="name" class="labeldiv">'+ dateboite[identif_boite]['titre'] +'</label>'+asterisk+htmlHelpIcon(dateboite[identif_boite]['titre'])+'\
+			<input class="form-control form-control-sm solo '+ac+'"'+dico+' type="text" name="'+ identif_boite +'" id="'+ identif_boite +'" '+ plh  +mywidth +'" onchange="statusentry=1;"/>\
+		</div>';
+	return myfieldHTML;
+}
+
 function insert_areaboite (identif_boite, req=false)
 {
 	var asterisk=''; if (req) asterisk = mandatory

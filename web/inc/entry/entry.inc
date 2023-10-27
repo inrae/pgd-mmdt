@@ -42,8 +42,9 @@
 		multiboite = arrItems[6];  // list of multi-select input along with their parameters
 		txtboite = arrItems[7];    // list of the input boxes along with their parameters
 		areaboite = arrItems[8];   // list of the textarea boxes along with their parameters
-		chkbxdico = arrItems[9];   // dictionnaries for checkboxes
-		listdico = arrItems[10];   // dictionnaries for dropboxes
+		dateboite = arrItems[9];   // list of the date boxes along with their parameters
+		chkbxdico = arrItems[10];   // dictionnaries for checkboxes
+		listdico = arrItems[11];   // dictionnaries for dropboxes
 	
 		var cnt=0;
 		var myhtml='<div id="tabs"><ul>';
@@ -76,6 +77,11 @@
 					fwidth=txtboite[mykey].hasOwnProperty('width');
 					if (frequired) { nameofrequired[mykey]=txtboite[mykey]['titre']; }
 					subhtml=insert_txtboite(mykey, req=frequired);
+			// dateboite
+				} else if (dateboite.hasOwnProperty(mykey)) {
+					fwidth=dateboite[mykey].hasOwnProperty('width');
+					if (frequired) { nameofrequired[mykey]=dateboite[mykey]['titre']; }
+					subhtml=insert_dateboite(mykey, req=frequired);
 			// listboite
 				} else if (listboite.hasOwnProperty(mykey)) {
 					fwidth=listboite[mykey].hasOwnProperty('width');
@@ -123,7 +129,13 @@
 	
 		myhtml += '</div>';
 		$('#fields').append(myhtml);
-	
+
+		// Add Listeners for dateboxes
+		for (var key in dateboite) {
+			$( "#"+key ).datepicker();
+			$( "#"+key ).datepicker("option", "dateFormat", "yy-mm-dd"); // 
+		}
+
 		// Add Listeners for checkoxes
 		for (var key in checkboite)
 			if (checkboite[key].hasOwnProperty('open') && checkboite[key]['open']==true)

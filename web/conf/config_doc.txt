@@ -1,10 +1,11 @@
 Type	Name	Description
-section	definition	This section allows you to define ...
+section	definition	This section allows you to describe shortly your dataset.  See https://libraries.mit.edu/data-management/store/documentation/
 field	title	Give your dataset a short name. This name will then be used to identify it and reference the metadata page via a URL. Do not use spaces or non-alphanumeric characters. Only letters, numbers and underscores are allowed.
-field	fulltitle	The main title of the dataset
+field	fulltitle	Concise and precise title of your dataset. Can sometimes use the title of the publication if it is not too long.
 field	subject	The area of the study relevant to the dataset
 field	description	A summary describing the purpose, nature and the scope of the dataset
-section	status	This section allows you to define the current status of the data and its durability.
+field	note	You can add a note which will be added in the data repository. Typically, put here the reference to funders who do not have an identifier recognized in international registers.
+section	status	This section allows you to define the status of the dataset, associated rights, dates, etc.
 field	status	Choose a status from 
 option	Processed	Data are available and have been curated
 option	In progress	Some data is available but more is to come
@@ -14,8 +15,12 @@ option	Public	access requiring rights
 option	Mixte	mix of public and private access
 option	Private	access possible to any person having access to the storage space (locally or remotely via VPN)
 field	language	A language that the dataset's files is written in
-field	license	License/Data Use Agreement (Etalab 2.0 is the recommended license for France)
-section	management	This section allows you to define ...
+field	lifeCycleStep	Specifies the event happening over the data life cycle that is considered significant enough to document
+field	license	License/Data Use Agreement (Etalab 2.0 is the recommended license for France). See https://choosealicense.com
+field	datestart	End date of sample or data collection. The date or even the month are important. The day is nevertheless mandatory to have a complete date.
+field	dateend	Start date of sample or data collection. The date or even the month are important. The day is nevertheless mandatory to have a complete date.
+field	dmpid	Preferably a URL pointing directly to the DMP but failing that it can also be a permanent identifier (DOI, etc.). See https://support.datacite.org/docs/what-is-a-dmp-id
+section	management	This section allows you to assign names of people or organizations who participated in the production of data and according to the type of participation.
 field	contacts	The entity, e.g. a person or organization, that users of the dataset can contact with questions
 field	authors	The entity, e.g. a person or organization, that created the dataset
 field	collectors	The entity, e.g. a person or organization, responsible for data collecting 
@@ -25,18 +30,22 @@ field	leader	The entity, e.g. a person or organization, responible for managing 
 field	wpleader	The entity, e.g. a person or organization, responsible for work project management
 field	depositor	The entity, e.g. a person or organization, that deposited the dataset in the repository
 field	producer	The entity that serves to produce the dataset
-field	grantNumbers	Information about the dataset's financial support
-section	descriptors	This section allows you to define ...
+field	grantNumbers	Information about organizations or agencies who funded the research
+section	descriptors	This section allows you to define elements characterizing the data themselves and certain experimental conditions for obtaining them.
 field	keywords	A key term that describes an important aspect of the dataset and information about any controlled vocabulary used
 field	topics	Indicates a broad, important topic or subject that the dataset covers and information about any controlled vocabulary used
 field	kindOfData	The type of data included in the files (e.g. survey data, machine-readable text, experimental data tables)
 field	dataOrigin	Origin of the data
-field	lifeCycleStep	Specifies the event happening over the data life cycle that is considered significant enough to document
+field	experimentfactor	Specify experimental factors i.e controlled independent variable. See https://en.wikipedia.org/wiki/Design_of_experiments
+field	measurement	Specify the types of measurements carried out, e.g metabolites, phenotypic data, environmental data, etc.
+field	technology	Specify the types of instrument used to carry out all or part of the measurements, e.g NMR, LC-MS, ...
 field	publication_citation	The full bibliographic citation for the related publication
 field	publication_idtype	The type of the identifier that uniquely identifies a related publication
 option	ark,arXiv,bibcode,doi,ean13,eissn,handle,isbn,issn,istc,lissn,lsid,pmid,purl,upc,url,urn	
 field	publication_idnumber	The identifier for a related publication
 field	publication_url	The URL of the publicqtion web page, e.g. a journal article webpage
+section	other	Additional information
+field	comment	Add any comments concerning the data which could prove useful in their generation (protocols), in their interpretation, in their location, ...
 section	resources	This section allows you to define all the resources you want
 field	type	Choose the type of the resoource
 field	description	Provide a concise and accurate description of the resource

@@ -52,15 +52,18 @@ $HEAD = $HEAD1.$HEAD2.'
 
 $HEADMAIN = $HEAD1.'
     <!-- CSS jQuery UI -->
-    <link rel="stylesheet" href="'.$PATH.'css/jquery/jquery-ui.min.css">
+    <!--link rel="stylesheet" href="'.$PATH.'css/jquery/jquery-ui.min.css"-->
+	<link rel="stylesheet" href="https://code.jquery.com/ui/1.13.2/themes/base/jquery-ui.min.css">
 '.$HEAD2.'
     <!-- CSS Maggot -->
 	<link rel="stylesheet" href="'.$PATH.'css/jquery.autocomplete.css">
     <link rel="stylesheet" href="'.$PATH.'css/style.css">
     <!-- jQuery -->
-    <script src="'.$PATH.'js/jquery/jquery.min.js"></script>
+    <!--script src="'.$PATH.'js/jquery/jquery.min.js"></script-->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <!-- jQuery UI -->
-    <script src="'.$PATH.'js/jquery/jquery-ui.min.js"></script>
+    <!--script src="'.$PATH.'js/jquery/jquery-ui.min.js"></script-->
+    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.min.js"></script>
 '.$HEAD3.'
     <!-- JS Maggot -->
     <script src="'.$PATH.'js/bpsearch.min.js"></script>

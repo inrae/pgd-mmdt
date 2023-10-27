@@ -3,7 +3,7 @@
 // JSON to TSV : Convert the current terminology definition file
 function json2tsv()
 {
-	global $section, $section_search, $required, $shortview, $checkboite, $txtboite, $listboite, $multiboite, $areaboite, $chkbxdico, $listdico;
+	global $section, $section_search, $required, $shortview, $checkboite, $txtboite, $dateboite, $listboite, $multiboite, $areaboite, $dateboite, $chkbxdico, $listdico;
 
 	$headers = "Field\tSection\tRequired\tSearch\tShortView\tType\tfeatures\tLabel\tPredefined terms\n";
 	$content = "";
@@ -38,6 +38,10 @@ function json2tsv()
 				$type='textbox';
 				$features = get_features($field, array('autocomplete', 'width'), $txtboite);
 			}
+			else if (array_key_exists($field, (array)$dateboite)) {
+				$type='datebox';
+				$features = get_features($field, array('width'), $dateboite);
+			}
 			else if (array_key_exists($field, (array)$areaboite)) {
 				$type='areabox';
 				$features = get_features($field, array('rows', 'cols'), $areaboite);
@@ -70,6 +74,7 @@ function tsv2json($filename, &$outjson)
 		$checkboite=[];
 		$multiboite=[];
 		$areaboite=[];
+		$dateboite=[];
 		$checkdico=[];
 		$listdico=[];
 
@@ -149,6 +154,16 @@ function tsv2json($filename, &$outjson)
 						$txtboite[$val[0]][$arr[0]]=$arr[1];
 					}
 			}
+			//dateboite
+			if ( $val[5]=='datebox' && ! array_key_exists($val[0], $dateboite) ) {
+				$dateboite[$val[0]]=[];
+				$dateboite[$val[0]]['titre']=utf8_encode($val[7]);
+				foreach ( $features as $value )
+					if (strlen($value)) {
+						$arr = explode('=',$value);
+						$dateboite[$val[0]][$arr[0]]=$arr[1];
+					}
+			}
 			//areaboite
 			if ( $val[5]=='areabox' && ! array_key_exists($val[0], $areaboite) ) {
 				$areaboite[$val[0]]=[];
@@ -190,7 +205,7 @@ function tsv2json($filename, &$outjson)
 		array_multisort($orderview, SORT_NUMERIC, SORT_ASC, $shortview);
 
 		$config_terms=array( 'sections'=>$section, 'sections_search'=>$section_search, 'required'=>$required, 'shortview'=>$shortview,
-							'checkboite'=>$checkboite, 'listboite'=>$listboite, 'multiboite'=>$multiboite, 'txtboite'=>$txtboite, 'areaboite'=>$areaboite,
+							'checkboite'=>$checkboite, 'listboite'=>$listboite, 'multiboite'=>$multiboite, 'txtboite'=>$txtboite, 'areaboite'=>$areaboite, 'dateboite'=>$dateboite,
 							'chkbxdico'=>$checkdico, 'listdico'=>$listdico );
 
 		$outjson = json_encode($config_terms, JSON_UNESCAPED_UNICODE);
@@ -304,7 +319,7 @@ function tsv2doctmpl($filename)
 // TSV to MD : Convert a terminology documentation file to Markdown
 function tsv2md($filename)
 {
-	global $section, $section_search, $shortview, $checkboite, $txtboite, $listboite, $areaboite, $chkbxdico, $listdico;
+	global $section, $checkboite;
 
 	$md .= "# Metadata documentation\n----\n\n.\n\n";
 	$section='';

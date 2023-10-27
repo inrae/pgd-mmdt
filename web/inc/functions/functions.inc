@@ -13,6 +13,7 @@ $listboite=$options['listboite'];
 $multiboite=$options['multiboite'];
 $txtboite=$options['txtboite'];
 $areaboite=$options['areaboite'];
+$dateboite=$options['dateboite'];
 $listdico=$options['listdico'];
 $chkbxdico=$options['chkbxdico'];
 
@@ -95,12 +96,13 @@ function display_array ($val)
 // Get the label corresponding to the field $field
 function get_label($field)
 {
-	global $checkboite, $txtboite, $listboite, $multiboite, $areaboite;
+	global $checkboite, $txtboite, $listboite, $multiboite, $areaboite, $dateboite;
 	if (array_key_exists($field, (array)$checkboite)) $label=$checkboite[$field]['titre'];
 	else if (array_key_exists($field, (array)$listboite)) $label=$listboite[$field]['titre'];
 	else if (array_key_exists($field, (array)$multiboite)) $label=$multiboite[$field]['titre'];
 	else if (array_key_exists($field, (array)$txtboite)) $label=$txtboite[$field]['titre'];
 	else if (array_key_exists($field, (array)$areaboite)) $label=$areaboite[$field]['titre'];
+	else if (array_key_exists($field, (array)$dateboite)) $label=$dateboite[$field]['titre'];
 	else $label='-';
 	return $label;
 }

@@ -40,8 +40,9 @@
         multiboite = arrItems[6];  // list of multi-select input along with their parameters
         txtboite = arrItems[7];    // list of the input boxes along with their parameters
         areaboite = arrItems[8];   // list of the textarea boxes along with their parameters
-        chkbxdico = arrItems[9];   // dictionnaries for checkboxes
-        listdico = arrItems[10];   // dictionnaries for dropboxes
+		dateboite = arrItems[9];   // list of the date boxes along with their parameters
+		chkbxdico = arrItems[10];   // dictionnaries for checkboxes
+		listdico = arrItems[11];   // dictionnaries for dropboxes
 
         // Insert HTML fields defined in arrItems
         cnt=0;
@@ -58,6 +59,9 @@
                 if (txtboite.hasOwnProperty(mykey)) {
                     fwidth=txtboite[mykey].hasOwnProperty('width');
                     elthtml=insert_txtboite(mykey, false, shrunk);
+				} else if (dateboite.hasOwnProperty(mykey)) {
+					fwidth=dateboite[mykey].hasOwnProperty('width');
+					elthtml=insert_dateboite(mykey, false, shrunk);
                 } else if (listboite.hasOwnProperty(mykey)) {
                     fwidth=listboite[mykey].hasOwnProperty('width');
                     elthtml=insert_listboite(mykey, false, shrunk);

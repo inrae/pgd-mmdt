@@ -33,7 +33,6 @@ if (db.getMongo().getDBNames().indexOf("pgd-db") == -1){
 { "publication_url": { $type: "string" } },
 { "subject": { $type: "array" } },
 { "language": { $type: "array" } },
-{ "team": { $type: "array" } },
 { "kindOfData": { $type: "array" } },
 { "dataOrigin": { $type: "array" } },
 { "status": { $type: "string" } },

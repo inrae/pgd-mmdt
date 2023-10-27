@@ -104,7 +104,7 @@ if ($ret>0) {
 <?php echo $header_title ?>
 <br><br>
 
-<h1>Publishing Datasets <a href="<? echo $maggot_doc_url.'publish' ?>" target="_blank"><i class="bi bi-question-octagon-fill" style="color:grey; font-size: 20px"></i></a></h1>
+<h1>Publishing Datasets <a href="<? echo $maggot_doc_url.'publish/dataverse' ?>" target="_blank"><i class="bi bi-question-octagon-fill" style="color:grey; font-size: 20px"></i></a></h1>
 <br>
 
 <section>

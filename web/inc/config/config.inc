@@ -1,5 +1,8 @@
 <?php
 
+#docker mode : 0 = FALSE; 1 = TRUE;
+$docker_mode = 1;
+
 // Range of years for the Maggot project
 $YEAR='2022-'.date("Y");
 

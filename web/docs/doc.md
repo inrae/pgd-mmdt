@@ -5,7 +5,7 @@
 
 ## DEFINITION
 
-* This section allows you to define ...
+* This section allows you to describe shortly your dataset.  See https://libraries.mit.edu/data-management/store/documentation/
 
 
 <div class="decal" markdown="1">
@@ -16,7 +16,7 @@
 
 ### Full title
 
-* The main title of the dataset
+* Concise and precise title of your dataset. Can sometimes use the title of the publication if it is not too long.
 
 
 ### Subject
@@ -24,9 +24,14 @@
 * The area of the study relevant to the dataset
 
 
-### Description of the dataset / Organization of directories
+### Description of the dataset
 
 * A summary describing the purpose, nature and the scope of the dataset
+
+
+### Notes
+
+* You can add a note which will be added in the data repository. Typically, put here the reference to funders who do not have an identifier recognized in international registers.
 
 
 </div>
@@ -34,7 +39,7 @@
 .
 ## STATUS
 
-* This section allows you to define the current status of the data and its durability.
+* This section allows you to define the status of the dataset, associated rights, dates, etc.
 
 
 <div class="decal" markdown="1">
@@ -65,19 +70,29 @@
 * A language that the dataset's files is written in
 
 
+### Life cycle step
+
+* Specifies the event happening over the data life cycle that is considered significant enough to document
+
+
 ### License
 
-* License/Data Use Agreement (Etalab 2.0 is the recommended license for France)
+* License/Data Use Agreement (Etalab 2.0 is the recommended license for France). See https://choosealicense.com
+
+
+### Start of collection
+
+* End date of sample or data collection. The date or even the month are important. The day is nevertheless mandatory to have a complete date.
+
+
+### End of collection
+
+* Start date of sample or data collection. The date or even the month are important. The day is nevertheless mandatory to have a complete date.
 
 
 ### DMP identifier
 
-* Preferably a URL pointing directly to the DMP but failing that it can also be a permanent identifier (DOI, etc.)
-
-
-### BFP Team
-
-* Indicate which team the dataset belongs to
+* Preferably a URL pointing directly to the DMP but failing that it can also be a permanent identifier (DOI, etc.). See https://support.datacite.org/docs/what-is-a-dmp-id
 
 
 </div>
@@ -85,7 +100,7 @@
 .
 ## MANAGEMENT
 
-* This section allows you to define ...
+* This section allows you to assign names of people or organizations who participated in the production of data and according to the type of participation.
 
 
 <div class="decal" markdown="1">
@@ -136,7 +151,7 @@
 
 ### Grant Information
 
-* Information about the dataset's financial support
+* Information about organizations or agencies who funded the research
 
 
 </div>
@@ -144,7 +159,7 @@
 .
 ## DESCRIPTORS
 
-* This section allows you to define ...
+* This section allows you to define elements characterizing the data themselves and certain experimental conditions for obtaining them.
 
 
 <div class="decal" markdown="1">
@@ -168,9 +183,19 @@
 * Origin of the data
 
 
-### Life cycle step
+### Experimental Factor
 
-* Specifies the event happening over the data life cycle that is considered significant enough to document
+* Specify experimental factors i.e controlled independent variable. See https://en.wikipedia.org/wiki/Design_of_experiments
+
+
+### Measurement type
+
+* Specify the types of measurements carried out, e.g metabolites, phenotypic data, environmental data, etc.
+
+
+### Technology type
+
+* Specify the types of instrument used to carry out all or part of the measurements, e.g NMR, LC-MS, ...
 
 
 ### Publication - Citation
@@ -193,6 +218,20 @@
 ### Publication - URL
 
 * The URL of the publicqtion web page, e.g. a journal article webpage
+
+
+</div>
+
+.
+## OTHER
+
+* Additional information
+
+
+<div class="decal" markdown="1">
+### Additional information
+
+* Add any comments concerning the data which could prove useful in their generation (protocols), in their interpretation, in their location, ...
 
 
 </div>
