@@ -752,7 +752,7 @@
 </ul>
 </li>
 <li>
-<p>For each section, fields are then defined. These fields can be defined according to the way they will be entered via the web interface. There are 5 different types of input: check boxes (<strong><em>checkbox</em></strong>), drop lists (<strong><em>dropbox</em></strong>), single-line text boxes (<strong><em>textbox</em></strong>), single-line text boxes with an additional box for multiple selection from a catalog of terms (<strong><em>multiselect</em></strong>), and multi-line text boxes (<strong><em>areabox</em></strong>).</p>
+<p>For each section, fields are then defined. These fields can be defined according to the way they will be entered via the web interface. There are 6 different <a href="../../images/terminology_types.png" data-lightbox="fig2">types of input</a>: check boxes (<strong><em>checkbox</em></strong>), drop lists (<strong><em>dropbox</em></strong>), single-line text boxes (<strong><em>textbox</em></strong>), single-line text boxes with an additional box for multiple selection from a catalog of terms (<strong><em>multiselect</em></strong>), date picker (<strong>datebox</strong>) and multi-line text boxes (<strong><em>areabox</em></strong>).</p>
 </li>
 <li>
 <p>For two types (<strong><em>checkbox</em></strong> and <strong><em>dropbox</em></strong>), it is possible to define the values to be selected (predefined terms).</p>
@@ -766,11 +766,11 @@
 <li>column 3 - <strong>Required</strong> : indicates if the field is mandatory ('Y') or not ('N')</li>
 <li>column 4 - <strong>Search</strong> : indicates if the field can be used as a criterion search ('Y') or not ('N')</li>
 <li>column 5 - <strong>Shortview</strong> : indicates with ordered numbers if the field serves for the overview table after the search (empty by default)</li>
-<li>column 6 - <strong>Type</strong> : indicates the way they will be entered via the web interface (possible values are: <strong><em>textbox</em></strong>, <strong><em>dropbox</em></strong>, <strong><em>checkbox</em></strong> , <strong><em>multiselect</em></strong> and <strong><em>areabox</em></strong>).</li>
+<li>column 6 - <strong>Type</strong> : indicates the way they will be entered via the web interface (possible values are: <strong><em>textbox</em></strong>, <strong><em>dropbox</em></strong>, <strong><em>checkbox</em></strong>, <strong><em>multiselect</em></strong>, <strong><em>datebox</em></strong> and <strong><em>areabox</em></strong>).</li>
 <li>column 7 - <strong>Features</strong> : dependings on the Type value, one can specifiy some specific features. If several features, they must be separated by a comma.<ul>
 <li><strong>open=0</strong> or <strong>open=1</strong> (<strong><em>checkbox</em></strong>) :  indicates if the selection is opened or not. See <a href="../../vocabulary">Vocabulary</a>.</li>
 <li><strong>autocomplete=<em>entity</em></strong> (<strong><em>textbox</em></strong>, <strong><em>checkbox</em></strong> &amp; <strong><em>multiselect</em></strong>) :  The <em>entity.js</em> file must be present under <strong><em>web/cvlist/entity/</em></strong> if the entity is a dictionary otherwise it must be present under <em><a href="https://github.com/inrae/pgd-mmdt/blob/main/web/cvlist/" target="_blank">web/js/autocomplete</a></em>. See <a href="../../vocabulary">Vocabulary</a>.</li>
-<li><strong>width=<em>NNNpx</em></strong> (<strong><em>textbox</em></strong> &amp; <strong><em>dropbox</em></strong>) : allows you to specify the width of the box. Usefull if you want put several fields in the same line. See note 1 below.</li>
+<li><strong>width=<em>NNNpx</em></strong> (<strong><em>textbox</em></strong>, <strong><em>dropbox</em></strong>, <strong><em>datebox</em></strong>) : allows you to specify the width of the box. Usefull if you want put several fields in the same line. See note 1 below.</li>
 <li><strong>row=<em>NN</em></strong> and <strong>cols=<em>NN</em></strong> (<strong><em>areabox</em></strong>) : allows you to specify the row and column size of the textarea.</li>
 </ul>
 </li>
