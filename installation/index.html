@@ -13,10 +13,10 @@
       
       
       
-        <link rel="prev" href="../presentation/">
+        <link rel="prev" href="../infrastructure/">
       
       
-        <link rel="next" href="../infrastructure/">
+        <link rel="next" href="../definitions/">
       
       
       <link rel="icon" href="../assets/images/favicon.png">
@@ -276,6 +276,25 @@
       
   
   
+  
+    <li class="md-nav__item">
+      <a href="../infrastructure/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Infrastructure
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
     
   
   
@@ -385,25 +404,6 @@
   
 </nav>
       
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../infrastructure/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Infrastructure
-  </span>
-  
-
-      </a>
     </li>
   
 
@@ -766,7 +766,7 @@
 <style>.md-typeset h1 {display: none;} .md-nav__item {font-size: medium}</style>
 
 <h3 id="install-on-your-linux-computer-or-linux-unix-server">Install on your linux computer or linux / unix server<a class="headerlink" href="#install-on-your-linux-computer-or-linux-unix-server" title="Permanent link">&para;</a></h3>
-<p>Requirements: a recent OS that support Docker (see <a href="https://www.docker.com/get-started/" target="_blank">docker.com</a>)</p>
+<p>Requirements: The installation must be carried out on a (virtual) machine with  a recent Linux OS that support <a href="https://www.docker.com/get-started/" target="_blank">Docker</a> (see <a href="../Infrastructure">Infrastructure</a>)</p>
 <p><br></p>
 <h4 id="retrieving-the-code">Retrieving the code<a class="headerlink" href="#retrieving-the-code" title="Permanent link">&para;</a></h4>
 <p>Go to the destination directory of your choice then clone the repository and <code>cd</code> to your clone path:</p>
@@ -795,8 +795,8 @@
 <p><strong><em>Note</em></strong> : If you want to run multiple instances, you will need to change in the <em><a href="https://github.com/inrae/pgd-mmdt/blob/main/run" target="_blank">run</a></em> file, <em>i)</em> the container names, <em>ii)</em> the data path, <em>iii)</em> the port number and the MongoDB volume name, and also the MongoDB port in the different configuration files.</p>
 <p>The following two JSON files are defined by default but can be easily configured from the web interface. See the <a href="../configuration/config">Terminology Definition</a> section.</p>
 <ul>
-<li><strong><em>web/conf/config_terms.json</em></strong> : define the terminology (see below)</li>
-<li><strong><em>web/conf/maggot-schema.json</em></strong> : define the JSON schema used to validate metadata files (see below)</li>
+<li><strong><em>web/conf/config_terms.json</em></strong> : define the <a href="../definitions/terminology">terminology</a></li>
+<li><strong><em>web/conf/maggot-schema.json</em></strong> : define the JSON schema used to validate metadata files.</li>
 </ul>
 <p><br></p>
 <h4 id="commands">Commands<a class="headerlink" href="#commands" title="Permanent link">&para;</a></h4>

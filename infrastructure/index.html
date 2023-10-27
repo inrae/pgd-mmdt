@@ -13,10 +13,10 @@
       
       
       
-        <link rel="prev" href="../installation/">
+        <link rel="prev" href="../presentation/">
       
       
-        <link rel="next" href="../definitions/">
+        <link rel="next" href="../installation/">
       
       
       <link rel="icon" href="../assets/images/favicon.png">
@@ -276,25 +276,6 @@
       
   
   
-  
-    <li class="md-nav__item">
-      <a href="../installation/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Installation
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-    
-      
-      
-  
-  
     
   
   
@@ -349,6 +330,25 @@
   
 </nav>
       
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../installation/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Installation
+  </span>
+  
+
+      </a>
     </li>
   
 
@@ -716,10 +716,12 @@
 </center></p>
 <p>The necessary Infrastructure involves <strong>1</strong>) a machine running a Linux OS and <strong>2</strong>) a dedicated storage space.</p>
 <p><strong>1</strong> - The machine will most often be of "<a href="https://en.wikipedia.org/wiki/Virtual_machine" target="_blank">virtual</a>" type because more simpler to deploy, either locally (with VM providers such as <a href="https://www.virtualbox.org/" target="_blank">VirtualBox</a>, <a href="https://www.vmware.com/products/workstation-player.html" target="_blank">VMware Workstation</a> or <a href="https://www.youtube.com/watch?v=CaDzYUSdVn8&amp;ab_channel=URTechDotCa" target="_blank">MS Hyper-V</a>) or remotely (e.g <a href="https://www.vmware.com/products/esxi-and-esx.html" target="_blank">VMware ESXi</a>, <a href="https://www.openstack.org/" target="_blank">Openstack</a>: <a href="https://inrae.github.io/jupyterhub-vm/" target="_blank">example of deployment</a>). Moreover, the OS of your machine must allow you the deployment of <a href="https://www.docker.com/get-started/" target="_blank">docker</a> containers. See for more details on “<a href="https://opensource.com/resources/what-docker" target="_blank">What is Docker</a>”. The minimum characteristics of the VM are:  <em>2 cpu</em>, <em>2 Go RAM</em>, <em>8 Go HD</em>.</p>
-<p><strong>2</strong> - The dedicated storage space could be either in the local space of the VM, or in a remote place on the network.
-* If the storage space is directly included in the VM, then tools like <a href="https://winscp.net/eng/download.php" target="_blank">WinSCP</a> or <a href="https://kapitainsky.github.io/RcloneBrowser/" target="_blank">RcloneBrowser</a> will allow you to easily transfer your files to the data space.
-* If the storage space is your collective's NAS, you will need to make sure to open the <a href="https://www.upguard.com/blog/smb-port#:~:text=SMB%20ports%20are%20generally%20port,ports%20communicate%20via%20Port%20139." target="_blank">SMB port</a> on your network's firewall. If both VM and data storage are not in the same private network, it will probably also require installing the sofware layer corresponding to your corporate VPN on the VM so that it can access your NAS. See <a href="../images/infra_ex1.png" data-lightbox="fig1">example successfully tested</a>.
-* If the storage space is in a <a href="https://en.wikipedia.org/wiki/Data_center#:~:text=A%20data%20center%20(American%20English,as%20telecommunications%20and%20storage%20systems." target="_blank">data center</a> (e.g. <a href="https://nextcloud.com/" target="_blank">NextCloud</a>, <a href="https://ucr-research-computing.github.io/Knowledge_Base/how_to_mount_google_drive.html" target="_blank">Google Drive</a>), then you will need to install a tool such as <a href="https://rclone.org/" target="_blank">rclone</a> on your VM in order to be able to mount the storage space on the VM's disk space. See <a href="../images/infra_ex2.png" data-lightbox="fig2">example successfully tested</a>.</p>
+<p><strong>2</strong> - The dedicated storage space could be either in the local space of the VM, or in a remote place on the network.</p>
+<ul>
+<li>If the storage space is directly included in the VM, then tools like <a href="https://winscp.net/eng/download.php" target="_blank">WinSCP</a> or <a href="https://kapitainsky.github.io/RcloneBrowser/" target="_blank">RcloneBrowser</a> will allow you to easily transfer your files to the data space.</li>
+<li>If the storage space is your collective's NAS, you will need to make sure to open the <a href="https://www.upguard.com/blog/smb-port#:~:text=SMB%20ports%20are%20generally%20port,ports%20communicate%20via%20Port%20139." target="_blank">SMB port</a> on your network's firewall. If both VM and data storage are not in the same private network, it will probably also require installing the sofware layer corresponding to your corporate VPN on the VM so that it can access your NAS. See <a href="../images/infra_ex1.png" data-lightbox="fig1">example successfully tested</a>.</li>
+<li>If the storage space is in a <a href="https://en.wikipedia.org/wiki/Data_center#:~:text=A%20data%20center%20(American%20English,as%20telecommunications%20and%20storage%20systems." target="_blank">data center</a> (e.g. <a href="https://nextcloud.com/" target="_blank">NextCloud</a>, <a href="https://ucr-research-computing.github.io/Knowledge_Base/how_to_mount_google_drive.html" target="_blank">Google Drive</a>), then you will need to install a tool such as <a href="https://rclone.org/" target="_blank">rclone</a> on your VM in order to be able to mount the storage space on the VM's disk space. See <a href="../images/infra_ex2.png" data-lightbox="fig2">example successfully tested</a>.</li>
+</ul>
 <p><br></p>
 
 
