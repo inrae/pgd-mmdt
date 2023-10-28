@@ -13,10 +13,6 @@
       
       
       
-        <link rel="prev" href="../vocabulary/">
-      
-      
-        <link rel="next" href="../dataverse/">
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
@@ -24,7 +20,7 @@
     
     
       
-        <title>Mapping Definition File - Maggot</title>
+        <title>Maggot - Terminlogy Definition - Maggot</title>
       
     
     
@@ -84,6 +80,11 @@
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
+        
+        <a href="#example-of-a-terminlogy-definition-file" class="md-skip">
+          Skip to content
+        </a>
+      
     </div>
     <div data-md-component="announce">
       
@@ -116,7 +117,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Mapping Definition File
+              Maggot - Terminlogy Definition
             
           </span>
         </div>
@@ -309,20 +310,18 @@
       
   
   
-    
-  
   
     
     
     
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
         
           
           
@@ -344,7 +343,7 @@
             
           </div>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_5">
             <span class="md-nav__icon md-icon"></span>
             Definition files
@@ -395,16 +394,9 @@
                 
   
   
-    
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../mapping/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -413,7 +405,6 @@
   
 
       </a>
-      
     </li>
   
 
@@ -669,44 +660,417 @@
                   
 
 
-  <h1>Mapping</h1>
+  <h1>Maggot - Terminlogy Definition</h1>
 
 <style>.md-typeset h1 {display: none;} .md-nav__item {font-size: medium}</style>
 
-<ul>
-<li>
-<p><strong>Mapping definition File</strong></p>
-<ul>
-<li>The mapping file is used as indicated by its name to match a term chosen by the user during entry with another term from an ontology or a thesaurus and therefore to obtain a URL which will be used for referencing. It can be used for each conversion requiring such a mapping (e.g. to the <a href="../dataverse">Dataverse</a>, <a href="../zenodo">Zenodo</a> or <a href="../json-ld">JSON-LD</a> format).
-<img alt="" src="../../images/blank.png" /></li>
-<li>
-<p>The role of this definition file is illustrated with the figure above
-<center>
-<a href="../../images/mapping_fig2.png" data-lightbox="fig2"><img src="../../images/mapping_fig2.png" width="600px"></a>
-</center>
-<br></p>
-</li>
-<li>
-<p>The file must have <strong><em>5 columns</em></strong> with headers defined as follows:</p>
-<ul>
-<li>column 1 - <strong>CVname</strong> : name of the mapping entry</li>
-<li>column 2 - <strong>CVtype</strong> : type of the CV target (must be either <em>bioportal</em> or <em>skosmos</em>)</li>
-<li>column 3 - <strong>CVurl</strong> : URL of the corresponding web API</li>
-<li>column 4 - <strong>CVterm</strong> : name of the thesaurus or the ontology list separated by a comma</li>
-<li>column 5 - <strong>CVlang</strong> : the chosen language (mainly for thesauri)
-<img alt="" src="../../images/blank.png" /></li>
-</ul>
-</li>
-<li>
-<p>Below an example of Mapping definition file (TSV)</p>
-</li>
-</ul>
-</li>
-</ul>
-<p><center>
-<a href="../../images/mapping_fig1.png" data-lightbox="fig1"><img src="../../images/mapping_fig1.png" width="800px"></a>
-</center>
-<br></p>
+<style>.md-typeset table:not([class]) th {
+    background-color: var(--md-default-fg-color--light);
+    color: var(--md-default-bg-color); min-width: 5rem; padding: 0.9375em 1.25em; vertical-align: top;}</style>
+
+<h3 id="example-of-a-terminlogy-definition-file">Example of a Terminlogy Definition file<a class="headerlink" href="#example-of-a-terminlogy-definition-file" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Section</th>
+<th>Required</th>
+<th>Search</th>
+<th>ShortView</th>
+<th>Type</th>
+<th>features</th>
+<th>Label</th>
+<th>Predefined terms</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>title</td>
+<td>definition</td>
+<td>Y</td>
+<td>N</td>
+<td>1</td>
+<td>textbox</td>
+<td>width=350px</td>
+<td>Short name</td>
+<td></td>
+</tr>
+<tr>
+<td>fulltitle</td>
+<td>definition</td>
+<td>Y</td>
+<td>Y</td>
+<td>2</td>
+<td>textbox</td>
+<td></td>
+<td>Full title</td>
+<td></td>
+</tr>
+<tr>
+<td>subject</td>
+<td>definition</td>
+<td>Y</td>
+<td>Y</td>
+<td></td>
+<td>checkbox</td>
+<td>open=0</td>
+<td>Subject</td>
+<td>Agricultural Sciences,Arts and Humanities,Astronomy and Astrophysics,Business and Management,Chemistry,Computer and Information Science,Earth and Environmental Sciences,Engineering,Law,Mathematical Sciences,Medicine Health and Life Sciences,Physics,Social Sciences,Other</td>
+</tr>
+<tr>
+<td>description</td>
+<td>definition</td>
+<td>Y</td>
+<td>Y</td>
+<td></td>
+<td>areabox</td>
+<td>rows=6,cols=30</td>
+<td>Description of the dataset</td>
+<td></td>
+</tr>
+<tr>
+<td>note</td>
+<td>definition</td>
+<td>N</td>
+<td>Y</td>
+<td></td>
+<td>areabox</td>
+<td>rows=4,cols=30</td>
+<td>Notes</td>
+<td></td>
+</tr>
+<tr>
+<td>status</td>
+<td>status</td>
+<td>N</td>
+<td>Y</td>
+<td>3</td>
+<td>dropbox</td>
+<td>width=350px</td>
+<td>Status of the dataset</td>
+<td>Processed,In progress,Unprocessed</td>
+</tr>
+<tr>
+<td>access_rights</td>
+<td>status</td>
+<td>N</td>
+<td>Y</td>
+<td>4</td>
+<td>dropbox</td>
+<td>width=350px</td>
+<td>Access rights to data</td>
+<td>Public,Mixte,Private</td>
+</tr>
+<tr>
+<td>language</td>
+<td>status</td>
+<td>N</td>
+<td>Y</td>
+<td></td>
+<td>checkbox</td>
+<td>open=0</td>
+<td>Language</td>
+<td>Czech,Danish,Dutch,English,Finnish,French,German,Greek,Hungarian,Icelandic,Italian,Lithuanian,Norwegian,Romanian,Slovenian,Spanish,Swedish</td>
+</tr>
+<tr>
+<td>lifeCycleStep</td>
+<td>status</td>
+<td>N</td>
+<td>Y</td>
+<td></td>
+<td>multiselect</td>
+<td>autocomplete=lifecycle,min=1</td>
+<td>Life cycle step</td>
+<td></td>
+</tr>
+<tr>
+<td>license</td>
+<td>status</td>
+<td>N</td>
+<td>Y</td>
+<td></td>
+<td>textbox</td>
+<td>autocomplete=license,min=1</td>
+<td>License</td>
+<td></td>
+</tr>
+<tr>
+<td>datestart</td>
+<td>status</td>
+<td>N</td>
+<td>Y</td>
+<td></td>
+<td>datebox</td>
+<td>width=350px</td>
+<td>Start of collection</td>
+<td></td>
+</tr>
+<tr>
+<td>dateend</td>
+<td>status</td>
+<td>N</td>
+<td>Y</td>
+<td></td>
+<td>datebox</td>
+<td>width=350px</td>
+<td>End of collection</td>
+<td></td>
+</tr>
+<tr>
+<td>dmpid</td>
+<td>status</td>
+<td>N</td>
+<td>Y</td>
+<td></td>
+<td>textbox</td>
+<td></td>
+<td>DMP identifier</td>
+<td></td>
+</tr>
+<tr>
+<td>contacts</td>
+<td>management</td>
+<td>Y</td>
+<td>Y</td>
+<td></td>
+<td>multiselect</td>
+<td>autocomplete=people,min=1</td>
+<td>Contacts</td>
+<td></td>
+</tr>
+<tr>
+<td>authors</td>
+<td>management</td>
+<td>Y</td>
+<td>Y</td>
+<td></td>
+<td>multiselect</td>
+<td>autocomplete=people,min=1</td>
+<td>Authors</td>
+<td></td>
+</tr>
+<tr>
+<td>collectors</td>
+<td>management</td>
+<td>N</td>
+<td>Y</td>
+<td></td>
+<td>multiselect</td>
+<td>autocomplete=people,min=1</td>
+<td>Data collectors</td>
+<td></td>
+</tr>
+<tr>
+<td>curators</td>
+<td>management</td>
+<td>N</td>
+<td>Y</td>
+<td></td>
+<td>multiselect</td>
+<td>autocomplete=people,min=1</td>
+<td>Data curators</td>
+<td></td>
+</tr>
+<tr>
+<td>members</td>
+<td>management</td>
+<td>N</td>
+<td>Y</td>
+<td></td>
+<td>multiselect</td>
+<td>autocomplete=people,min=1</td>
+<td>Project members</td>
+<td></td>
+</tr>
+<tr>
+<td>leader</td>
+<td>management</td>
+<td>N</td>
+<td>Y</td>
+<td></td>
+<td>multiselect</td>
+<td>autocomplete=people,min=1</td>
+<td>Project leader</td>
+<td></td>
+</tr>
+<tr>
+<td>wpleader</td>
+<td>management</td>
+<td>N</td>
+<td>Y</td>
+<td></td>
+<td>multiselect</td>
+<td>autocomplete=people,min=1</td>
+<td>WP leader</td>
+<td></td>
+</tr>
+<tr>
+<td>depositor</td>
+<td>management</td>
+<td>N</td>
+<td>Y</td>
+<td></td>
+<td>textbox</td>
+<td></td>
+<td>Depositor</td>
+<td></td>
+</tr>
+<tr>
+<td>producer</td>
+<td>management</td>
+<td>N</td>
+<td>Y</td>
+<td></td>
+<td>multiselect</td>
+<td>autocomplete=producer,min=1</td>
+<td>Producer</td>
+<td></td>
+</tr>
+<tr>
+<td>grantNumbers</td>
+<td>management</td>
+<td>N</td>
+<td>Y</td>
+<td></td>
+<td>multiselect</td>
+<td>autocomplete=grant,min=1</td>
+<td>Grant Information</td>
+<td></td>
+</tr>
+<tr>
+<td>kindOfData</td>
+<td>descriptors</td>
+<td>Y</td>
+<td>Y</td>
+<td></td>
+<td>checkbox</td>
+<td>open=0</td>
+<td>Kind of Data</td>
+<td>Audiovisual,Collection,Dataset,Event,Image,Interactive Resource,Model,Physical Object,Service,Software,Sound,Text,Workflow,Other</td>
+</tr>
+<tr>
+<td>keywords</td>
+<td>descriptors</td>
+<td>N</td>
+<td>Y</td>
+<td></td>
+<td>multiselect</td>
+<td>autocomplete=bioportal,onto=EFO:JERM:EDAM:MS:NMR:NCIT:OBI:PO:PTO:AGRO:ECOCORE:IOBC:NCBITAXON</td>
+<td>Keywords</td>
+<td></td>
+</tr>
+<tr>
+<td>topics</td>
+<td>descriptors</td>
+<td>N</td>
+<td>Y</td>
+<td></td>
+<td>multiselect</td>
+<td>autocomplete=VOvocab</td>
+<td>Topic Classification</td>
+<td></td>
+</tr>
+<tr>
+<td>dataOrigin</td>
+<td>descriptors</td>
+<td>N</td>
+<td>Y</td>
+<td></td>
+<td>checkbox</td>
+<td>open=0</td>
+<td>Data origin</td>
+<td>observational data,experimental data,survey data,analysis data,text corpus,simulation data,aggregate data,audiovisual corpus,computer code,Other</td>
+</tr>
+<tr>
+<td>experimentfactor</td>
+<td>descriptors</td>
+<td>N</td>
+<td>Y</td>
+<td></td>
+<td>multiselect</td>
+<td>autocomplete=vocabulary,min=1</td>
+<td>Experimental Factor</td>
+<td></td>
+</tr>
+<tr>
+<td>measurement</td>
+<td>descriptors</td>
+<td>N</td>
+<td>Y</td>
+<td></td>
+<td>multiselect</td>
+<td>autocomplete=vocabulary,min=1</td>
+<td>Measurement type</td>
+<td></td>
+</tr>
+<tr>
+<td>technology</td>
+<td>descriptors</td>
+<td>N</td>
+<td>Y</td>
+<td></td>
+<td>multiselect</td>
+<td>autocomplete=vocabulary,min=1</td>
+<td>Technology type</td>
+<td></td>
+</tr>
+<tr>
+<td>publication_citation</td>
+<td>descriptors</td>
+<td>N</td>
+<td>Y</td>
+<td></td>
+<td>areabox</td>
+<td>rows=5,cols=30</td>
+<td>Publication - Citation</td>
+<td></td>
+</tr>
+<tr>
+<td>publication_idtype</td>
+<td>descriptors</td>
+<td>N</td>
+<td>Y</td>
+<td></td>
+<td>dropbox</td>
+<td>width=200px</td>
+<td>Publication - ID Type</td>
+<td>-,ark,arXiv,bibcode,doi,ean13,eissn,handle,isbn,issn,istc,lissn,lsid,pmid,purl,upc,url,urn</td>
+</tr>
+<tr>
+<td>publication_idnumber</td>
+<td>descriptors</td>
+<td>N</td>
+<td>Y</td>
+<td></td>
+<td>textbox</td>
+<td>width=400px</td>
+<td>Publication - ID Number</td>
+<td></td>
+</tr>
+<tr>
+<td>publication_url</td>
+<td>descriptors</td>
+<td>N</td>
+<td>Y</td>
+<td></td>
+<td>textbox</td>
+<td></td>
+<td>Publication - URL</td>
+<td></td>
+</tr>
+<tr>
+<td>comment</td>
+<td>other</td>
+<td>N</td>
+<td>Y</td>
+<td></td>
+<td>areabox</td>
+<td>rows=15, cols=30</td>
+<td>Additional information</td>
+<td></td>
+</tr>
+</tbody>
+</table>
 
 
 

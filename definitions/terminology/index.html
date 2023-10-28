@@ -16,7 +16,7 @@
         <link rel="prev" href="../">
       
       
-        <link rel="next" href="../mapping/">
+        <link rel="next" href="../vocabulary/">
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
@@ -441,6 +441,26 @@
   
   
     <li class="md-nav__item">
+      <a href="../vocabulary/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Vocabulary
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../mapping/" class="md-nav__link">
         
   
@@ -585,25 +605,6 @@
   
   
   
-    <li class="md-nav__item">
-      <a href="../../vocabulary/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Vocabulary
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
     
     
     
@@ -614,7 +615,7 @@
         
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
         
           
           
@@ -630,14 +631,14 @@
             </a>
             
               
-              <label class="md-nav__link " for="__nav_9" id="__nav_9_label" tabindex="0">
+              <label class="md-nav__link " for="__nav_8" id="__nav_8_label" tabindex="0">
                 <span class="md-nav__icon md-icon"></span>
               </label>
             
           </div>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_9">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
             <span class="md-nav__icon md-icon"></span>
             Publication
           </label>
@@ -737,6 +738,9 @@
 <li><strong>The terminology documentation file</strong> (<strong><em>config_doc.txt</em></strong>) serving to documente all terminology definitions.</li>
 </ul>
 </li>
+<li>
+<p>Each time there is a change in these two definition files, it is necessary to <a href="../../configuration">convert</a> them so that they are taken into account by the application.</p>
+</li>
 </ul>
 <p>Terminology is the set of terms used to define the metadata of a dataset. A single file (<strong><em>web/conf/config_terms.txt</em></strong>) contains all the terminology. The input and search interfaces are completely generated from this definition file, thus defining each of the fields, their input type (checkbox, dropbox, textbox, ...) and the associated controlled vocabulary (ontology and thesaurus by autocompletion, drop-down list according to a list of fixed terms).  It is therefore necessary to create and fill it, according to the following scheme:</p>
 <ul>
@@ -768,8 +772,8 @@
 <li>column 5 - <strong>Shortview</strong> : indicates with ordered numbers if the field serves for the overview table after the search (empty by default)</li>
 <li>column 6 - <strong>Type</strong> : indicates the way they will be entered via the web interface (possible values are: <strong><em>textbox</em></strong>, <strong><em>dropbox</em></strong>, <strong><em>checkbox</em></strong>, <strong><em>multiselect</em></strong>, <strong><em>datebox</em></strong> and <strong><em>areabox</em></strong>).</li>
 <li>column 7 - <strong>Features</strong> : dependings on the Type value, one can specifiy some specific features. If several features, they must be separated by a comma.<ul>
-<li><strong>open=0</strong> or <strong>open=1</strong> (<strong><em>checkbox</em></strong>) :  indicates if the selection is opened or not. See <a href="../../vocabulary">Vocabulary</a>.</li>
-<li><strong>autocomplete=<em>entity</em></strong> (<strong><em>textbox</em></strong>, <strong><em>checkbox</em></strong> &amp; <strong><em>multiselect</em></strong>) :  The <em>entity.js</em> file must be present under <strong><em>web/cvlist/entity/</em></strong> if the entity is a dictionary otherwise it must be present under <em><a href="https://github.com/inrae/pgd-mmdt/blob/main/web/cvlist/" target="_blank">web/js/autocomplete</a></em>. See <a href="../../vocabulary">Vocabulary</a>.</li>
+<li><strong>open=0</strong> or <strong>open=1</strong> (<strong><em>checkbox</em></strong>) :  indicates if the selection is opened or not. See <a href="../vocabulary">Vocabulary</a>.</li>
+<li><strong>autocomplete=<em>entity</em></strong> (<strong><em>textbox</em></strong>, <strong><em>checkbox</em></strong> &amp; <strong><em>multiselect</em></strong>) :  The <em>entity.js</em> file must be present under <strong><em>web/cvlist/entity/</em></strong> if the entity is a dictionary otherwise it must be present under <em><a href="https://github.com/inrae/pgd-mmdt/blob/main/web/cvlist/" target="_blank">web/js/autocomplete</a></em>. See <a href="../vocabulary">Vocabulary</a>.</li>
 <li><strong>width=<em>NNNpx</em></strong> (<strong><em>textbox</em></strong>, <strong><em>dropbox</em></strong>, <strong><em>datebox</em></strong>) : allows you to specify the width of the box. Usefull if you want put several fields in the same line. See note 1 below.</li>
 <li><strong>row=<em>NN</em></strong> and <strong>cols=<em>NN</em></strong> (<strong><em>areabox</em></strong>) : allows you to specify the row and column size of the textarea.</li>
 </ul>
@@ -786,15 +790,17 @@
 </ul>
 </li>
 </ul>
-<p>Example of Maggot JSON file generated based on the definition file itself given as an example below</p>
-<ul>
-<li><a href="https://pmb-bordeaux.fr/maggot/metadata/frim1?format=maggot" target="_blank">Maggot JSON of the FRIM dataset</a></li>
-</ul>
 <p>Below an example of Terminology definition file (TSV)
 <center>
 <a href="../../images/config_terms_txt.png" data-lightbox="fig1"><img src="../../images/config_terms_txt.png" width="800px"></a>
 </center><br></p>
+<p>Example of Maggot JSON file generated based on the same definition file</p>
+<ul>
+<li><a href="https://pmb-bordeaux.fr/maggot/metadata/frim1?format=maggot" target="_blank">Maggot JSON of the FRIM dataset</a></li>
+</ul>
+<p><br></p>
 <h3 id="structure-of-the-terminology-documentation-file-tsv">Structure of the Terminology documentation file (TSV)<a class="headerlink" href="#structure-of-the-terminology-documentation-file-tsv" title="Permanent link">&para;</a></h3>
+<p>The documentation definition fileis used to have online help for each field (small icon placed next to each label on the form). So it should only be modified when a field is added or deleted, or moved to another section.</p>
 <p>The file must have 3 columns with headers defined as follows:</p>
 <ul>
 <li>column 1 - <strong>Type</strong> : The type of the element, namely 'section', 'field' or 'option'. An 'option' type must correspond to each of the options for a field corresponding to a drop-down list.</li>
