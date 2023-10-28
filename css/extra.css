@@ -60,3 +60,9 @@ p.justify {
 }
 
 p { text-align: justify; }
+
+
+.extra-hide-more { display: none; }	
+.extra-show-more {  display: inline; }
+.extra-hide-js { display: none; }	
+.extra-show-js {  display: inline; }
