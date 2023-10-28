@@ -735,9 +735,9 @@
 <a href="../../images/vocabulary_fig2.png" data-lightbox="fig2"><img src="../../images/vocabulary_fig2.png" width="800px"></a>
 </center>
 <br></p>
-<p><strong>3</strong> - <strong>Vocabulary based on a web API in a text field</strong> (<em>textbox</em>)</p>
+<p><strong>3</strong> - <strong>Vocabulary based on a web <abbr title="Application Program Interface in contrast with a User Interface. It is a way for two or more computer programs to communicate with each other.">API</abbr> in a text field</strong> (<em>textbox</em>)</p>
 <ul>
-<li>The <a href="https://en.wikipedia.org/wiki/Web_API" target="_blank">web API</a> is defined in a <a href="https://en.wikipedia.org/wiki/JavaScript" target="_blank">JavaScript</a> file with the same name as the assigned variable (here <em>cities</em>) and must present under <em>web/js/autocomplete</em>. For example, to enter a French city you can use the API <a href="https://geo.api.gouv.fr/decoupage-administratif" target="_blank">geo.api.gouv.fr</a>. See <a href="https://github.com/inrae/pgd-mmdt/blob/main/web/js/autocomplete/cities.js" target="_blank">cities.js</a></li>
+<li>The <a href="https://en.wikipedia.org/wiki/Web_API" target="_blank">web <abbr title="Application Program Interface in contrast with a User Interface. It is a way for two or more computer programs to communicate with each other.">API</abbr></a> is defined in a <a href="https://en.wikipedia.org/wiki/JavaScript" target="_blank">JavaScript</a> file with the same name as the assigned variable (here <em>cities</em>) and must present under <em>web/js/autocomplete</em>. For example, to enter a French city you can use the <abbr title="Application Program Interface in contrast with a User Interface. It is a way for two or more computer programs to communicate with each other.">API</abbr> <a href="https://geo.api.gouv.fr/decoupage-administratif" target="_blank">geo.api.gouv.fr</a>. See <a href="https://github.com/inrae/pgd-mmdt/blob/main/web/js/autocomplete/cities.js" target="_blank">cities.js</a></li>
 </ul>
 <p><center>
 <a href="../../images/vocabulary_fig3.png" data-lightbox="fig3"><img src="../../images/vocabulary_fig3.png" width="800px"></a>
@@ -745,7 +745,7 @@
 <br></p>
 <p><strong>4</strong> - <strong>Vocabulary based on a dictionary with multiple selection</strong> (<em>multiselect</em>) </p>
 <ul>
-<li><a href="../../dictionaries">Dictionaries</a> allow you to record multiple information necessary to define an entity, such as the names of people or even the funders. These information, once entered and saved in a file called a dictionary. Based on a very simple JavaScript retrieving the complete list of items included in the dictionary, thus creating a sort of internal API, we can fill a Maggot field by  autocompletion related to a search for these items.</li>
+<li><a href="../../dictionaries">Dictionaries</a> allow you to record multiple information necessary to define an entity, such as the names of people or even the funders. These information, once entered and saved in a file called a dictionary. Based on a very simple JavaScript retrieving the complete list of items included in the dictionary, thus creating a sort of internal <abbr title="Application Program Interface in contrast with a User Interface. It is a way for two or more computer programs to communicate with each other.">API</abbr>, we can fill a Maggot field by  autocompletion related to a search for these items.</li>
 <li>The JavaScript file must be named <em><strong>dico.js</strong></em> and be present under <em><strong>web/cvlist/<em>dico</em>/</strong></em> where <em><strong>dico</strong></em> is the name of the dictionary. See for instance <em><a href="https://github.com/inrae/pgd-mmdt/tree/main/web/cvlist/people/people.js" target="_blank">people.js</a></em></li>
 </ul>
 <p><center>
@@ -754,7 +754,7 @@
 <br></p>
 <p><strong>5</strong> - <strong>Vocabulary based on a SKOSMOS Thesaurus with multiple selection</strong> (<em>multiselect</em>) </p>
 <ul>
-<li><a href="https://skosmos.org/" target="_blank">SKOSMOS</a> is a web tool facilitating the posting of controlled vocabulary online in the form of a <a href="https://en.wikipedia.org/wiki/Thesaurus_(information_retrieval)" target="_blank">thesaurus</a> according to the <a href="https://en.wikipedia.org/wiki/Simple_Knowledge_Organization_System" target="_blank">SKOS</a> data model. It offers a navigation interface as well as a web API interface. A simple JavaScript allows you to easily connect this web API with a multiselect field.</li>
+<li><a href="https://skosmos.org/" target="_blank">SKOSMOS</a> is a web tool facilitating the posting of controlled vocabulary online in the form of a <a href="https://en.wikipedia.org/wiki/Thesaurus_(information_retrieval)" target="_blank">thesaurus</a> according to the <a href="https://en.wikipedia.org/wiki/Simple_Knowledge_Organization_System" target="_blank">SKOS</a> data model. It offers a navigation interface as well as a web <abbr title="Application Program Interface in contrast with a User Interface. It is a way for two or more computer programs to communicate with each other.">API</abbr>. A simple JavaScript allows you to easily connect this web <abbr title="Application Program Interface in contrast with a User Interface. It is a way for two or more computer programs to communicate with each other.">API</abbr> with a multiselect field.</li>
 <li>The JavaScript file must have the same name as the assigned variable (here <em>VOvocab</em>) and must present under <em>web/js/autocomplete</em>. See for instance <a href="https://github.com/inrae/pgd-mmdt/blob/main/web/js/autocomplete/VOvocab.js" target="_blank">VOvocab.js</a>.</li>
 </ul>
 <p><center>
