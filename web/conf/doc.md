@@ -82,12 +82,12 @@
 
 ### Start of collection
 
-* End date of sample or data collection. The date or even the month are important. The day is nevertheless mandatory to have a complete date.
+* Start date of sample or data collection. The date or even the month are important. The day is nevertheless mandatory to have a complete date.
 
 
 ### End of collection
 
-* Start date of sample or data collection. The date or even the month are important. The day is nevertheless mandatory to have a complete date.
+* End date of sample or data collection. The date or even the month are important. The day is nevertheless mandatory to have a complete date.
 
 
 ### DMP identifier

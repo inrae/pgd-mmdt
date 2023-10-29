@@ -16,9 +16,9 @@ option	Mixte	mix of public and private access
 option	Private	access possible to any person having access to the storage space (locally or remotely via VPN)
 field	language	A language that the dataset's files is written in
 field	lifeCycleStep	Specifies the event happening over the data life cycle that is considered significant enough to document
-field	license	License/Data Use Agreement (Etalab 2.0 is the recommended license for France). See https://choosealicense.com
-field	datestart	End date of sample or data collection. The date or even the month are important. The day is nevertheless mandatory to have a complete date.
-field	dateend	Start date of sample or data collection. The date or even the month are important. The day is nevertheless mandatory to have a complete date.
+field	license	License/Data Use Agreement (Etalab 2.0 is the recommended license for France)
+field	datestart	Start date of sample or data collection. The date or even the month are important. The day is nevertheless mandatory to have a complete date.
+field	dateend	End date of sample or data collection. The date or even the month are important. The day is nevertheless mandatory to have a complete date.
 field	dmpid	Preferably a URL pointing directly to the DMP but failing that it can also be a permanent identifier (DOI, etc.). See https://support.datacite.org/docs/what-is-a-dmp-id
 section	management	This section allows you to assign names of people or organizations who participated in the production of data and according to the type of participation.
 field	contacts	The entity, e.g. a person or organization, that users of the dataset can contact with questions
@@ -30,7 +30,7 @@ field	leader	The entity, e.g. a person or organization, responible for managing 
 field	wpleader	The entity, e.g. a person or organization, responsible for work project management
 field	depositor	The entity, e.g. a person or organization, that deposited the dataset in the repository
 field	producer	The entity that serves to produce the dataset
-field	grantNumbers	Information about organizations or agencies who funded the research
+field	grantNumbers	Information about the dataset's financial support
 section	descriptors	This section allows you to define elements characterizing the data themselves and certain experimental conditions for obtaining them.
 field	keywords	A key term that describes an important aspect of the dataset and information about any controlled vocabulary used
 field	topics	Indicates a broad, important topic or subject that the dataset covers and information about any controlled vocabulary used

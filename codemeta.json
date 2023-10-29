@@ -4,15 +4,15 @@
     "license": "https://spdx.org/licenses/GPL-3.0",
     "codeRepository": "https://github.com/inrae/pgd-mmdt",
     "dateCreated": "2021-01-01",
-    "datePublished": "2022-10-10",
-    "dateModified": "2022-10-10",
-    "downloadUrl": "https://github.com/inrae/pgd-mmdt/archive/refs/tags/1.1.tar.gz",
+    "datePublished": "2023-10-29",
+    "dateModified": "2023-10-29",
+    "downloadUrl": "https://github.com/inrae/pgd-mmdt/archive/refs/tags/2.0.tar.gz",
     "issueTracker": "https://github.com/inrae/pgd-mmdt/issues",
     "name": "Maggot",
-    "version": "1.1",
-    "description": "Maggot is a metadata management tool that addresses the problems of organising, documenting, storing and sharing data in a research unit or infrastructure, and fits perfectly into a structural data management plan.",
+    "version": "2.0",
+    "description": "Sharing descriptive metadata is the first essential step towards the so-called “Open Data” approach. With this in mind, the Maggot tool was specially designed to allow users to easily add descriptive metadata to datasets produced within a collective (research unit, platform, multi-partner project, etc.) while fitting perfectly into a structuring data management plan. Indeed, this approach addresses the issues of data organization and documentation, data storage and metadata sharing within this same collective and beyond.",
     "applicationCategory": "Data Management System",
-    "releaseNotes": "Fisrt stable release",
+    "releaseNotes": "New version completely revised and corrected with numerous extensions.",
     "developmentStatus": "active",
     "funder": {
         "@type": "Organization",
@@ -36,7 +36,7 @@
         "Docker or Hypervisor such as Oracle VirtualBox"
     ],
     "relatedLink": [
-        "https://pmb-bordeaux.fr/pgd-mmdt/doc/about"
+        "https://inrae.github.io/pgd-mmdt/"
     ],
     "author": [
         {
