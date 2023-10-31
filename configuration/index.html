@@ -94,6 +94,10 @@
       
     </div>
     
+      <div data-md-color-scheme="default" data-md-component="outdated" hidden>
+        
+      </div>
+    
     
       
 
@@ -720,7 +724,7 @@
 <style>.md-typeset h1 {display: none;} .md-nav__item {font-size: medium}</style>
 
 <h3 id="terminology-configuration">Terminology configuration<a class="headerlink" href="#terminology-configuration" title="Permanent link">&para;</a></h3>
-<p>A single file (<strong><em>web/conf/config_terms.txt</em></strong>) contains all the <a href="../definitions/terminology">terminology</a>. The input and search interfaces are completely generated from this definition file, thus defining each of the fields, their input type (<em>checkbox</em>, <em>dropbox</em>, <em>textbox</em>, ...) and the associated controlled vocabulary (ontology and thesaurus by autocompletion, drop-down list according to a list of fixed terms). This is why a configuration and conversion step into JSON<sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup> format is essential in order to be able to configure all the other modules (example: creation of the <a href="https://www.mongodb.com/basics" target="_blank">MongoDB</a> database schema when starting the application before filling it).</p>
+<p>A single file (<strong><em>web/conf/config_terms.txt</em></strong>) contains all the <a href="../definitions/terminology/">terminology</a>. The input and search interfaces are completely generated from this definition file, thus defining each of the fields, their input type (<em>checkbox</em>, <em>dropbox</em>, <em>textbox</em>, ...) and the associated controlled vocabulary (ontology and thesaurus by autocompletion, drop-down list according to a list of fixed terms). This is why a configuration and conversion step into JSON<sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup> format is essential in order to be able to configure all the other modules (example: creation of the <a href="https://www.mongodb.com/basics" target="_blank">MongoDB</a> database schema when starting the application before filling it).</p>
 <p><center>
 <a href="../images/config.png" data-lightbox="fig0"><img src="../images/config.png" width="800px"></a>
 </center></p>
@@ -818,7 +822,7 @@
       <div class="md-dialog__inner md-typeset"></div>
     </div>
     
-    <script id="__config" type="application/json">{"base": "..", "features": ["toc.integrate", "search.suggest", "search.highlight", "content.tabs.link", "content.code.annotation", "content.code.copy"], "search": "../assets/javascripts/workers/search.a264c092.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    <script id="__config" type="application/json">{"base": "..", "features": ["toc.integrate", "search.suggest", "search.highlight", "content.tabs.link", "content.code.annotation", "content.code.copy"], "search": "../assets/javascripts/workers/search.a264c092.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"default": "stable"}}</script>
     
     
       <script src="../assets/javascripts/bundle.726fbb30.min.js"></script>
