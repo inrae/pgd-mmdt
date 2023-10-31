@@ -5,7 +5,7 @@
 
 ## DEFINITION
 
-* This section allows you to describe shortly your dataset.  See https://libraries.mit.edu/data-management/store/documentation/
+* This section allows you to describe shortly your dataset.  See [Documentation on Data management](https://libraries.mit.edu/data-management/store/documentation/).
 
 
 <div class="decal" markdown="1">
@@ -21,12 +21,12 @@
 
 ### Subject
 
-* The area of the study relevant to the dataset
+* The area of the study relevant to the dataset. The list of terms is imposed by Dataverse. Adding, modifying or deleting them may prevent uploading to the repository. See [Dataverse  CV](https://docs.google.com/spreadsheets/d/13HP-jI_cwLDHBetn9UKTREPJ_F4iHdAvhjmlvmYdSSw/edit#gid=0)
 
 
 ### Description of the dataset
 
-* A summary describing the purpose, nature and the scope of the dataset
+* A summary describing the purpose, nature and the scope of the dataset. It is the equivalent of the abstract for an article.
 
 
 ### Notes
@@ -72,12 +72,12 @@
 
 ### Life cycle step
 
-* Specifies the event happening over the data life cycle that is considered significant enough to document
+* Specifies the event happening over the data life cycle that is considered significant enough to document.  The list of terms is imposed by Dataverse. Adding, modifying or deleting them may prevent uploading to the repository. See [Dataverse  CV](https://docs.google.com/spreadsheets/d/13HP-jI_cwLDHBetn9UKTREPJ_F4iHdAvhjmlvmYdSSw/edit#gid=0)
 
 
 ### License
 
-* License/Data Use Agreement (Etalab 2.0 is the recommended license for France). See https://choosealicense.com
+* License/Data Use Agreement. See  https://choosealicense.com/licenses/. <br>([Etalab 2.0](https://www.etalab.gouv.fr/wp-content/uploads/2017/04/ETALAB-Licence-Ouverte-v2.0.pdf) is the recommended license for France)
 
 
 ### Start of collection
@@ -100,58 +100,58 @@
 .
 ## MANAGEMENT
 
-* This section allows you to assign names of people or organizations who participated in the production of data and according to the type of participation.
+* This section allows you to assign names of people or organizations who participated in the production of data and according to the type of participation. Mainly based on [Datacite CV](http://purl.org/datacite/v4.4/ContributorType)
 
 
 <div class="decal" markdown="1">
 ### Contacts
 
-* The entity, e.g. a person or organization, that users of the dataset can contact with questions
+* The entity, e.g. a person or organization, that users of the dataset can contact with questions. Based on the [People](../dictionary?dico=people) dictionary.
 
 
 ### Authors
 
-* The entity, e.g. a person or organization, that created the dataset
+* The entity, e.g. a person or organization, that created the dataset. Based on the [People](../dictionary?dico=people) dictionary.
 
 
 ### Data collectors
 
-* The entity, e.g. a person or organization, responsible for data collecting 
+* The entity, e.g. a person or organization, responsible for data collecting. Based on the [People](../dictionary?dico=people) dictionary.
 
 
 ### Data curators
 
-* The entity, e.g. a person or organization, responsible for data curation
+* The entity, e.g. a person or organization, responsible for data curation. Based on the [People](../dictionary?dico=people) dictionary.
 
 
 ### Project members
 
-* The entity, e.g. a person or organization, who participated in the project
+* The entity, e.g. a person or organization, who participated in the project. Based on the [People](../dictionary?dico=people) dictionary.
 
 
 ### Project leader
 
-* The entity, e.g. a person or organization, responible for managing the project
+* The entity, e.g. a person or organization, responible for managing the project. Based on the [People](../dictionary?dico=people) dictionary.
 
 
 ### WP leader
 
-* The entity, e.g. a person or organization, responsible for work project management
+* The entity, e.g. a person or organization, responsible for work project management. Based on the [People](../dictionary?dico=people) dictionary.
 
 
 ### Depositor
 
-* The entity, e.g. a person or organization, that deposited the dataset in the repository
+* The entity, e.g. a person or organization, that deposited the dataset in the repository.
 
 
 ### Producer
 
-* The entity that serves to produce the dataset
+* The entity that serves to produce the dataset. Based on the [Producer](../dictionary?dico=producer) dictionary.
 
 
 ### Grant Information
 
-* Information about organizations or agencies who funded the research
+* Information about the dataset's financial support. Based on the [Grant](../dictionary?dico=grant) dictionary.
 
 
 </div>
@@ -165,37 +165,37 @@
 <div class="decal" markdown="1">
 ### Keywords
 
-* A key term that describes an important aspect of the dataset and information about any controlled vocabulary used
+* A key term that describes an important aspect of the dataset and information about any controlled vocabulary used. Based on [BioPortal ontologies](https://bioportal.bioontology.org/ontologies) : EFO, JERM, EDAM, MS, NM, NCI, OBI, PO, PTO, AGRO, ECOCORE, IOBC, NCBITAXON.
 
 
 ### Topic Classification
 
-* Indicates a broad, important topic or subject that the dataset covers and information about any controlled vocabulary used
+* Indicates a broad, important topic or subject that the dataset covers and information about any controlled vocabulary used. Based on [Thesaurus-INRAE](https://thesaurus.inrae.fr/thesaurus-inrae/en/).
 
 
 ### Kind of Data
 
-* The type of data included in the files (e.g. survey data, machine-readable text, experimental data tables)
+* The type of data included in the files (e.g. survey data, machine-readable text, experimental data tables). The list of terms is imposed by Dataverse. Adding, modifying or deleting them may prevent uploading to the repository. See [Dataverse  CV](https://docs.google.com/spreadsheets/d/13HP-jI_cwLDHBetn9UKTREPJ_F4iHdAvhjmlvmYdSSw/edit#gid=0)
 
 
 ### Data origin
 
-* Origin of the data
+* Origin of the data. The list of terms is imposed by Dataverse. Adding, modifying or deleting them may prevent uploading to the repository. See [Dataverse  CV](https://docs.google.com/spreadsheets/d/13HP-jI_cwLDHBetn9UKTREPJ_F4iHdAvhjmlvmYdSSw/edit#gid=0)
 
 
 ### Experimental Factor
 
-* Specify experimental factors i.e controlled independent variable. See https://en.wikipedia.org/wiki/Design_of_experiments
+* Specify experimental factors i.e controlled independent variable. Based on the [Vocabulary](../dictionary?dico=vocabulary) dictionary.
 
 
 ### Measurement type
 
-* Specify the types of measurements carried out, e.g metabolites, phenotypic data, environmental data, etc.
+* Specify the types of measurements carried out, e.g metabolites, phenotypic data, environmental data, etc. Based on the [Vocabulary](../dictionary?dico=vocabulary) dictionary.
 
 
 ### Technology type
 
-* Specify the types of instrument used to carry out all or part of the measurements, e.g NMR, LC-MS, ...
+* Specify the types of instrument used to carry out all or part of the measurements, e.g NMR, LC-MS, ... Based on the [Vocabulary](../dictionary?dico=vocabulary) dictionary.
 
 
 ### Publication - Citation
@@ -205,7 +205,7 @@
 
 ### Publication - ID Type
 
-* The type of the identifier that uniquely identifies a related publication
+* The type of the identifier that uniquely identifies a related publication. Based [Datacite CV](http://purl.org/datacite/v4.4/RelatedIdentifierType).
 
 
     *  **ark,arXiv,bibcode,doi,ean13,eissn,handle,isbn,issn,istc,lissn,lsid,pmid,purl,upc,url,urn** :  
@@ -245,7 +245,7 @@
 <div class="decal" markdown="1">
 ### Resource Type
 
-* Choose the type of the resoource
+* Choose the type of the resoource. Based on [Datacite CV](http://purl.org/datacite/v4.4/ResourceTypeGeneral).
 
 
 ### Description
