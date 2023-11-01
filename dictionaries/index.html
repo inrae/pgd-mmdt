@@ -722,8 +722,8 @@
 <li>Dictionaries allow you to record multiple information necessary to define an entity, such as the names of people or even the funders. These information, once entered and saved in a file called a dictionary, can be subsequently associated with the corresponding entity. </li>
 <li>The dictionaries offered by default are: people (<strong><em>people</em></strong>), funders (<strong><em>grant</em></strong>), data producers (<strong><em>producer</em></strong>), as well as a vocabulary dictionary (<strong><em>vocabulary</em></strong>) allowing you to mix ontologies and thesauri from several sources.</li>
 <li>To add a new dictionary, simply create a directory under <em><a href="https://github.com/inrae/pgd-mmdt/tree/main/web/cvlist" target="_blank">web/cvlist</a></em> then putting the files corresponding to the dictionary inside. Dictionaries will be automatically found by browsing this directory.</li>
-<li>Dictionary files are made using a simple spreadsheet then exported in TSV<sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup> format.</li>
-<li>Dictionaries are accessed through secure access limited to administrators allowing their editing. The login is by default 'admin'. You can add another account for consultation only using the following command: 
+<li>Dictionary files are made using a simple spreadsheet then exported in <abbr title="Open text format representing tabular data as &quot;Tab-Separated Values&quot;. Each row corresponds to a table row and the cells in a row are separated by a tab">TSV</abbr> format.</li>
+<li>Dictionaries are accessed through secure access limited to administrators allowing their editing. The login is by default '<strong><em>admin</em></strong>'. You can add another account for consultation only using the following command: 
 <div class="highlight"><pre><span></span><code>sh ./run passwd &lt;user&gt;
 </code></pre></div></li>
 </ul>
@@ -745,7 +745,7 @@
 <a href="../images/dico2.png" data-lightbox="fig2"><img src="../images/dico2.png" width="500px"></a>
 </center><br></p>
 <ul>
-<li>Thus, we know that the people dictionary must contain 5 columns (last name, first name, institution, ORCID number and email address) and that some fields are mandatory (last name, first name, institution) and others optional (ORCID number, email address).</li>
+<li>Thus, we know that the people dictionary must contain 5 columns (last name, first name, institution, <abbr title="Which stands for Open Researcher and Contributor ID, is a global, not-for-profit organization sustained by fees from our member organizations.">ORCID</abbr> number and email address) and that some fields are mandatory (last name, first name, institution) and others optional (<abbr title="Which stands for Open Researcher and Contributor ID, is a global, not-for-profit organization sustained by fees from our member organizations.">ORCID</abbr> number, email address).</li>
 <li>Each of the fields must respect a format specified by a <a href="https://www.w3schools.com/js/js_regexp.asp" target="_blank">regular expression</a> in order to be accepted as valid.</li>
 <li>Optionally, you can connect an <a href="https://en.wikipedia.org/wiki/Web_API" target="_blank">web API</a> to each of the fields in order to make an entry by autocompletion from a remote register. Currently only ROR (<a href="https://ror.org/" target="_blank">Research Organization Registry</a>) web API is possible but the mechanism is in place for new extensions.</li>
 <li>The third file, a very simple script written in <a href="https://en.wikipedia.org/wiki/JavaScript" target="_blank">JavaScript</a>, defines the way to retrieve the list of names (here by containing the first and last name). Note that the name of the variable must always be identical to that of the dictionary.
@@ -795,14 +795,6 @@
 </li>
 </ul>
 <p><br></p>
-<div class="footnote">
-<hr />
-<ol>
-<li id="fn:1">
-<p><em>TSV</em>: open text format representing tabular data as "tab-separated values". Each row corresponds to a table row and the cells in a row are separated by a tab.&#160;<a class="footnote-backref" href="#fnref:1" title="Jump back to footnote 1 in the text">&#8617;</a></p>
-</li>
-</ol>
-</div>
 
 
 
