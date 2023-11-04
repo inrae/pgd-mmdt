@@ -1,4 +1,10 @@
 <?php
+#
+# Dictionaries
+#
+# Auteur(s): D.JACOB 
+# Copyright: (c) INRAE - 2022-2023
+#
 
 # Get the entered user 
 $USER = $_SERVER['PHP_AUTH_USER'];
@@ -212,7 +218,7 @@ do {
 	// Write in the HTML document
 	echo "<script>var nameArray = [ ".$var1." ];\nvar requireArray = [ ".$var2." ];\nvar regexArray = [ ".$var3." ];\nvar apiArray = [ ".$var4." ];\nvar nbitems=".$cnt."\n$('#tbl-main').html('".$html_table."'); $('#dico-name').html('".$DICOSEL."');$('#divsearch').css('display','".$dispsearch."');$('#tbl-footer').css('display','block');$('#searchterm').val('".$searchterm."');select_row('".$searchterm."');</script>";
 
-    // If admin user then authorize to upload a file to replace the current dictionary
+	// If admin user then authorize to upload a file to replace the current dictionary
 	if ($USER == 'admin')
 		echo "<script>uploadDico.addEventListener('change', function(){ $('#savemsg').html(''); postDico(this.files[0]); })</script>";
 

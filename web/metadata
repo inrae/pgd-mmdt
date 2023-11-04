@@ -20,17 +20,17 @@ $MEDIA=0;
 $EMPTY=0;
 
 if (isset($_GET['format']) && $_GET['format']==='dataverse') {
-   include ('inc/dataverse/getfields.inc');
-   include ('inc/dataverse/convert.inc');
+	include ('inc/dataverse/getfields.inc');
+	include ('inc/dataverse/convert.inc');
 }
 
 if (isset($_GET['format']) && $_GET['format']==='jsonld') {
-   include ('inc/schema/schema.inc');
+	include ('inc/schema/schema.inc');
 }
 
 if (isset($_GET['format']) && $_GET['format']==='zenodo') {
-   include ('inc/zenodo/mapping.inc');
-   include ('inc/zenodo/convert.inc');
+	include ('inc/zenodo/mapping.inc');
+	include ('inc/zenodo/convert.inc');
 }
 
 include ('inc/search/cvlist.inc');

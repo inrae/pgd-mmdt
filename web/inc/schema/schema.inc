@@ -1,4 +1,11 @@
 <?php
+#
+# JSON-LD implementation 
+# Preliminary work (sept 2023)
+#
+# Auteur(s): D.JACOB 
+# Copyright: (c) INRAE - 2022-2023
+#
 
 $ror_cache = array();
 
@@ -81,7 +88,7 @@ function json2schema($metadata, $def, $map)
 		if (! in_array( $arr[$CF],array_keys($metadata))) { $cnt++; continue; }
 		// If there is a dico
 		if (strlen($arr[$VS])>0 && preg_match('/^cvlist:([a-zA-Z0-9_]+)/',$arr[$VS], $matches)) {
-            $dico=$matches[1];
+			$dico=$matches[1];
 			if (! in_array($dico, $cvlist)) {
 				${$dico} = tsvToArray($cvdir.$dico.'/'.$dico.'.txt');
 				array_push($cvlist, $dico);
@@ -147,7 +154,7 @@ function json2schema($metadata, $def, $map)
 				break;
 			}
 
-	// Open a simple array at level 0
+	// Simple array at level 0
 			if ($arr[$CA]==$Y && $arr[$CM]==$N) {
 				if (array_key_exists($arr[$CF], $metadata)) {
 					if ($level == 0 && $arr[$VT]=='#VALUE') {
@@ -319,7 +326,7 @@ function json2schema($metadata, $def, $map)
 				if ($level_type=='object') {
 					removeComma($jsoncore); 
 					$jsoncore .= '}';
-			}
+				}
 				if ($level_type=='array') {
 					removeComma($jsoncore); 
 					$jsoncore .= ']';
@@ -353,16 +360,6 @@ function maggot2schema ($input_json, &$output_json)
 {
 	global $jsonld_conf, $mapping_conf;
 	$msg='';
-
-	// Index of columns
-	$CS=0; $CF=1; $CT=2; $CL=3; $CA=4; $CM=5; $CP=6; $VT=7; $VS=8; $CI=9; $PR=10;
-	$CN=1; $CU=2;
-
-	// Boolean values
-	$Y='TRUE'; $N='FALSE';
-
-	// Types of values
-	$ValueTypes = array('#VALUE', '#DICO', '#ONTO');
 
 	do
 	{

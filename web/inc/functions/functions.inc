@@ -35,7 +35,7 @@ $accented_chr = array(
 # Generate a KEY (30  alpha-num. char. )
 function genKEY()
 {
-    return md5(uniqid(rand(),true));
+	return md5(uniqid(rand(),true));
 }
 
 // Sort a Multi-dimensional Array by Value

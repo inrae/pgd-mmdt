@@ -1,4 +1,10 @@
 <?php
+#
+# Dataverse implementation 
+#
+# Auteur(s): D.JACOB 
+# Copyright: (c) INRAE - 2022-2023
+#
 
 if (!isset($SERVER_URL)) $SERVER_URL=$dataverse_urls[0];
 if (!isset($API_TOKEN))  $API_TOKEN='';

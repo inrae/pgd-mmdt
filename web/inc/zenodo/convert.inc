@@ -5,33 +5,33 @@
 //----------------------------
 
 function cmd_api_zenodo($cmd) {
-    global $LOG;
-    if ($LOG) echo "<script>console.log('".addslashes($cmd)."');</script>";
-    $output_js=shell_exec($cmd);
-    $output_arr = json_decode($output_js, true);
-    return $output_arr;
+	global $LOG;
+	if ($LOG) echo "<script>console.log('".addslashes($cmd)."');</script>";
+	$output_js=shell_exec($cmd);
+	$output_arr = json_decode($output_js, true);
+	return $output_arr;
 }
 
 function get_api_zenodo($id='') {
-    global $ZENODO_API_TOKEN, $ZENODO_SERVER_URL;
+	global $ZENODO_API_TOKEN, $ZENODO_SERVER_URL;
 	if (strlen($id) > 0)
 		$cmd = 'curl --request GET '.$ZENODO_SERVER_URL.'/api/deposit/depositions/'.$id.'?access_token='.$ZENODO_API_TOKEN;
 	else
 		$cmd = 'curl --request GET '.$ZENODO_SERVER_URL.'/api/deposit/depositions?access_token='.$ZENODO_API_TOKEN;
-    return cmd_api_zenodo($cmd);
+	return cmd_api_zenodo($cmd);
 }
 
 function send_api_zenodo($content, $mode='POST') {
-    global $ZENODO_API_TOKEN, $ZENODO_SERVER_URL;
-    $content_type = "Content-type:application/json";
-    $cmd='curl -H "'.$content_type.'" -X '.$mode.' --data \''.$content.'\' '.$ZENODO_SERVER_URL.'/api/deposit/depositions?access_token='.$ZENODO_API_TOKEN;
-    return cmd_api_zenodo($cmd);
+	global $ZENODO_API_TOKEN, $ZENODO_SERVER_URL;
+	$content_type = "Content-type:application/json";
+	$cmd='curl -H "'.$content_type.'" -X '.$mode.' --data \''.$content.'\' '.$ZENODO_SERVER_URL.'/api/deposit/depositions?access_token='.$ZENODO_API_TOKEN;
+	return cmd_api_zenodo($cmd);
 }
 
 function send_file_zenodo($bucket_link, $file) {
-    global $ZENODO_API_TOKEN;
+	global $ZENODO_API_TOKEN;
 	$cmd='curl --upload-file '.$file.' --request PUT '.$bucket_link.'/'.basename($file).'?access_token='.$ZENODO_API_TOKEN;
-    return cmd_api_zenodo($cmd);
+	return cmd_api_zenodo($cmd);
 }
 
 //----------------------------
@@ -67,7 +67,7 @@ function json2zenodo($metadata, $def, $map, $COMMUNITIES='')
 		if (! in_array( $arr[$CF],array_keys($metadata))) { $cnt++; continue; }
 		// If there is a dico
 		if (strlen($arr[$VS])>0 && preg_match('/^cvlist:([a-zA-Z0-9_]+)/',$arr[$VS], $matches)) {
-            $dico=$matches[1];
+			$dico=$matches[1];
 			if (! in_array($dico, $cvlist)) {
 				${$dico} = tsvToArray($cvdir.$dico.'/'.$dico.'.txt');
 				array_push($cvlist, $dico);
@@ -135,7 +135,7 @@ function json2zenodo($metadata, $def, $map, $COMMUNITIES='')
 				break;
 			}
 
-	// Open a simple array at level 0
+	// Simple array at level 0
 			if ($arr[$CA]==$Y && $arr[$CM]==$N) {
 				if (strlen($arr[$CF])>0 && array_key_exists($arr[$CF], $metadata)) {
 					if ($level == 0 && $arr[$VT]=='#VALUE') {
@@ -315,7 +315,7 @@ function json2zenodo($metadata, $def, $map, $COMMUNITIES='')
 				if ($level_type=='object') {
 					removeComma($jsoncore); 
 					$jsoncore .= '}';
-			}
+				}
 				if ($level_type=='array') {
 					removeComma($jsoncore); 
 					$jsoncore .= ']';

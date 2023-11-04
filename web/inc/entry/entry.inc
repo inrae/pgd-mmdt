@@ -1,7 +1,10 @@
 <!DOCTYPE html>
+<!-
+  Copyright: (c) INRAE - 2022-2023
+->
 <html lang="en" >
 <head>
-    <title>Maggot - Metadata entry</title>
+	<title>Maggot - Metadata entry</title>
 	<?php echo $HEADMAIN ?>
 
 	<style>::-webkit-scrollbar{ width: 5px; }</style>
@@ -19,11 +22,11 @@
 	var statusentry=0;
 	var maxWidth=1200;
 	if ( $( window ).width()>maxWidth ) horiztabs = 0;
-	
+
 	function $_(id) { return document.getElementById(id) }
-	
+
 	$(document).ready(function() {
-	
+
 		// Load 'json/options.json' into the arrItems array
 		$.ajaxSetup({async:false});
 			$.getJSON("conf/options.json", function (data) {
@@ -33,7 +36,7 @@
 				});
 			});
 		$.ajaxSetup({async:true});
-	
+
 		// Get the different dictionnaries
 		sections = arrItems[0];    // sections which gathered one or severals variable
 		required = arrItems[2];    // required fields
@@ -43,9 +46,9 @@
 		txtboite = arrItems[7];    // list of the input boxes along with their parameters
 		areaboite = arrItems[8];   // list of the textarea boxes along with their parameters
 		dateboite = arrItems[9];   // list of the date boxes along with their parameters
-		chkbxdico = arrItems[10];   // dictionnaries for checkboxes
+		chkbxdico = arrItems[10];  // dictionnaries for checkboxes
 		listdico = arrItems[11];   // dictionnaries for dropboxes
-	
+
 		var cnt=0;
 		var myhtml='<div id="tabs"><ul>';
 		for (var key in sections['labels']) {
@@ -58,7 +61,7 @@
 			myhtml += '<li><b><a href="#tabs-'+cnt+'">'+key.toUpperCase()+asterisk+'</a></b></li>'
 		}
 		myhtml += '</ul>';
-	
+
 		cnt=0;
 		// Insert HTML fields defined in arrItems
 		for (var key in sections['labels']) {
@@ -101,7 +104,7 @@
 					if (frequired) { nameofrequired[mykey]=areaboite[mykey]['titre']; }
 					subhtml=insert_areaboite(mykey, req=frequired);
 				}
-			// Output html 
+			// Output html
 				if (cnt2>1 && (!fwidth || (fwidth && br==1))) myhtml+= '<br><br>';
 				if (!fwidth) br=1; else if( fwidth && br==1) br=0;
 				myhtml+=subhtml;
@@ -109,15 +112,15 @@
 			}
 			myhtml+='</div>';
 		}
-	
+
 		// Get "Resources" types
 		if (!listdico.hasOwnProperty('resources') || listdico['resources'].length==0) {
 			resourcetypes=[];
 			get_terms_from_bioportal('DATACITE-VOCAB', 'http://purl.org/datacite/v4.4/ResourceTypeGeneral', 'resourcetypes');
 			listdico['resources'] = resourcetypes;
 		}
-	
-		// "Resources" section 
+
+		// "Resources" section
 		if (sections['labels'].hasOwnProperty('resources')) {
 			id=1;
 			listboite['resources'] = { 'compteur': id };
@@ -126,21 +129,21 @@
 			myhtml+=insert_resources(id)
 			myhtml+='</div>';
 		}
-	
+
 		myhtml += '</div>';
 		$('#fields').append(myhtml);
 
 		// Add Listeners for dateboxes
 		for (var key in dateboite) {
 			$( "#"+key ).datepicker();
-			$( "#"+key ).datepicker("option", "dateFormat", "yy-mm-dd"); // 
+			$( "#"+key ).datepicker("option", "dateFormat", "yy-mm-dd"); //
 		}
 
 		// Add Listeners for checkoxes
 		for (var key in checkboite)
 			if (checkboite[key].hasOwnProperty('open') && checkboite[key]['open']==true)
 				add_button_click(key);
-	
+
 		function add_button_click(key) {
 			$('.add_button.'+key).click( function(e) { add_bouton(key); })
 			$('.field_wrapper.'+key).on('click', '.remove_button.'+key, function(e){
@@ -152,7 +155,7 @@
 				}
 			});
 		}
-	
+
 		// Add Listeners for resources
 		if (sections['labels'].hasOwnProperty('resources')) {
 			$('.add_button_r').click( function(e) { add_bouton_r(); })
@@ -168,30 +171,30 @@
 				}
 			});
 		}
-	
+
 		// Fill checkboxes && dropboxes with predefined vocabulary
 		fill_elements ();
-	
+
 		// Enable AutoComplete Update
 		active_update_autocomplete();
-	
+
 		// Handling the 'autocomplete_selected' event of the 'Bioportal' widget
 		// so that the selected term can be put into the corresponding input box
 		$(document).on( "autocomplete_selected", function(event, params) {
 			get_term_from_bpbox(params.input);
 		});
-	
+
 		// Handling the 'show_results' event of the 'Bioportal' widget
 		// so that the results box is docked to the corresponding input box when displayed
 		$(document).on('show_results', function(event){ dock_results_box(); });
-	
+
 		if (horiztabs) {
 			$( "#tabs" ).tabs().removeClass( "ui-corner-left" );
 		} else {
 			$( "#tabs" ).tabs().addClass( "ui-tabs-vertical ui-helper-clearfix" );
 			$( "#tabs li" ).removeClass( "ui-corner-top" ).addClass( "ui-corner-left" );
 		}
-	
+
 	});
     </script>
 </head>
@@ -204,46 +207,46 @@
 <br>
 
 <form enctype="multipart/form-data" autocomplete="off" action="#" method="post">
-     <table style="border:0; padding:0; max-width:1200px; width:100%">
-     <tr><td style="width:10px"><img src="img/arrow-right.png" width="20px" onclick="flip_form('SECTION1')" id="SECTION1img" class="link"></td><td><span class="sectiontitle">Pre-fill the form</span></td></tr>
-     <tr><td></td><td><div class="flip" id="SECTION1" style="display: none;">
-         <div class="input-group mb-3">
-             <div class="input-group-prepend">
-                 <span class="input-group-text">Select a JSON file</span>
-             </div>
-             <div class="custom-file">
-                 <input type="file" class="custom-file-input" id="selectFiles">
-                 <label class="custom-file-label" id="inputGroupFile01" for="inputGroupFile01"></label>
-             </div>
-         </div>
-     </div></td></tr>
-     </table>
-    <br>
+	<table style="border:0; padding:0; max-width:1200px; width:100%">
+	<tr><td style="width:10px"><img src="img/arrow-right.png" width="20px" onclick="flip_form('SECTION1')" id="SECTION1img" class="link"> </td><td><span class="sectiontitle">Pre-fill the form</span></td></tr>
+	<tr><td></td><td><div class="flip" id="SECTION1" style="display: none;">
+		<div class="input-group mb-3">
+			<div class="input-group-prepend">
+				<span class="input-group-text">Select a JSON file</span>
+			</div>
+			<div class="custom-file">
+				<input type="file" class="custom-file-input" id="selectFiles">
+				<label class="custom-file-label" id="inputGroupFile01" for="inputGroupFile01"></label>
+			</div>
+		</div>
+	</div></td></tr>
+	</table>
+	<br>
 </form>
 
 <!-- Save as JSON -->
-<div id="saveForm" class="saveForm" enctype="multipart/form-data" autocomplete="off" action="#" style="display: none;"> 
-   <strong>Download as a JSON file</strong>
-   <form id ="saveform" name="saveform" >
-       <br><label>Filename:</label>&nbsp;&nbsp;<b>META_</b>&nbsp;<input id="jsonName" name="jsonName" type="text">&nbsp;<b>.json</b><br><br>
-       <span><center>
-            <input type="submit" value="Save" class="btn btn-primary" />
-            <input type="reset" value="Cancel" class="btn btn-primary"/>
-        </center></span>
-    </form>
+<div id="saveForm" class="saveForm" enctype="multipart/form-data" autocomplete="off" action="#" style="display: none;">
+	<strong>Download as a JSON file</strong>
+	<form id ="saveform" name="saveform" >
+		<br><label>Filename:</label>&nbsp;&nbsp;<b>META_</b>&nbsp;<input id="jsonName" name="jsonName" type="text">&nbsp;<b>.json</b><br><br>
+		<span><center>
+			<input type="submit" value="Save" class="btn btn-primary" />
+			<input type="reset" value="Cancel" class="btn btn-primary"/>
+		</center></span>
+	</form>
 </div><!-- /div Save as JSON -->
 
 <form id="submitForm" enctype="multipart/form-data" autocomplete="off" action="#" method="post">
-    <center><p>
-       <input type="submit" value="Generate the metadata file" class="btn btn-primary" style="width: 250px;" />
-       <input type="reset" value="Empty the form" class="btn btn-primary" style="width: 250px;" onclick="window.location.reload();"/>
-    </p></center>
+	<center><p>
+		<input type="submit" value="Generate the metadata file" class="btn btn-primary" style="width: 250px;" />
+		<input type="reset" value="Empty the form" class="btn btn-primary" style="width: 250px;" onclick="window.location.reload();"/>
+	</p></center>
 </form>
 
 
 <form id="formulaire" enctype="multipart/form-data" autocomplete="off" action="#" method="post">
-    <div id='fields'></div>
-    <p><span style="color:#db0d0d;"><i class="bi-asterisk"></i></span>&nbsp;<i>mandatory fields</i></p>
+	<div id='fields'></div>
+	<p><span style="color:#db0d0d;"><i class="bi-asterisk"></i></span>&nbsp;<i>mandatory fields</i></p>
 </form>
 
 <br/>
@@ -285,5 +288,5 @@
 
 	window.addEventListener('beforeunload',(event) =>{
 		if (statusentry) event.returnValue = `Are you sure you want to leave?`;
-	});		
+	});
 </script>

@@ -1,3 +1,4 @@
+// Zenodo Communities API with help of Typeahead
 function zcTypeahead () {
 	$('#push .typeahead').typeahead({
 		hint: true,

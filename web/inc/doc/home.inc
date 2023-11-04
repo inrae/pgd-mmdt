@@ -1,8 +1,8 @@
 <?php
-    $links[0]="https://www.ouvrirlascience.fr/dmp-opidor-outil-pour-faciliter-la-redaction-de-plans-de-gestion-de-donnees/";
-    $links[1]="https://www.ouvrirlascience.fr/deuxieme-plan-national-pour-la-science-ouverte/";
-    $links[2]="https://entrepot.recherche.data.gouv.fr/";
-    $links[3]="https://www.ouvrirlascience.fr/fair-principles/";
+	$links[0]="https://www.ouvrirlascience.fr/dmp-opidor-outil-pour-faciliter-la-redaction-de-plans-de-gestion-de-donnees/";
+	$links[1]="https://www.ouvrirlascience.fr/deuxieme-plan-national-pour-la-science-ouverte/";
+	$links[2]="https://entrepot.recherche.data.gouv.fr/";
+	$links[3]="https://www.ouvrirlascience.fr/fair-principles/";
 	$links[4]="https://www.u-picardie.fr/open-science/wp-content/uploads/2021/07/Fiche-Synthetique-Metadonnees.pdf";
 	$links[5]="https://inrae.github.io/pgd-mmdt/pdf/MAGGOT_Metadata_Oct2023.pdf?download=false";
 	$links[6]="https://inrae.github.io/pgd-mmdt/pdf/MAGGOT_Poster_Oct2023.pdf?download=false";
@@ -12,33 +12,33 @@
 <html lang="en" >
 
 <head>
-    <title>Maggot - Home</title>
+	<title>Maggot - Home</title>
 	<?php echo $HEAD ?>
 
-    <style>.btn-primary { background-color: #fff; border-color: #fff; }
-    .overlay_cl { top: 0px; padding: 20px; background-color: #fafafa; width: 500px; font-size: 20px; font-family: Arial; color: rgb(70, 130, 183); text-align: justify; display: none; position: absolute; border: solid 1px #555; box-shadow:  0 0 10px  rgba(0,0,0,0.6); -moz-box-shadow: 0 0 10px  rgba(0,0,0,0.6); -webkit-box-shadow: 0 0 10px  rgba(0,0,0,0.6); -o-box-shadow: 0 0 10px  rgba(0,0,0,0.6);}
-    </style>
+	<style>.btn-primary { background-color: #fff; border-color: #fff; }
+	.overlay_cl { top: 0px; padding: 20px; background-color: #fafafa; width: 500px; font-size: 20px; font-family: Arial; color: rgb(70, 130, 183); text-align: justify; display: none; position: absolute; border: solid 1px #555; box-shadow:  0 0 10px  rgba(0,0,0,0.6); -moz-box-shadow: 0 0 10px  rgba(0,0,0,0.6); -webkit-box-shadow: 0 0 10px  rgba(0,0,0,0.6); -o-box-shadow: 0 0 10px  rgba(0,0,0,0.6);}
+	</style>
 
-    <script>
-        var maxWidth=1200;
-        $(document).ready(function() {
-            $('#image_map area').each(function() {
-                 var id = $(this).attr('id');
-                 $(this).mouseover(function(e) {
-                    mouseX = e.pageX;  mouseY = e.pageY;
-                    $('#overlay_' + id).css({'top':1.05*mouseY+75,'left':mouseX}).show();
-                 });
-                 $(this).mouseout(function() {
-                    var id = $(this).attr('id');
-                    $('#overlay_' + id).hide();
-                 });
-            });
-            $(window).on('resize', function(){ 
-                 $('#colitems').prop("rowspan", $( window ).width()>maxWidth ? 3 : -1 );
-                 $('#title').css('font-size', $( window ).width()>maxWidth ? '32px' : '28px' );
-            })
-        });
-  </script>
+	<script>
+		var maxWidth=1200;
+		$(document).ready(function() {
+			$('#image_map area').each(function() {
+				var id = $(this).attr('id');
+				$(this).mouseover(function(e) {
+					mouseX = e.pageX;  mouseY = e.pageY;
+					$('#overlay_' + id).css({'top':1.05*mouseY+75,'left':mouseX}).show();
+				});
+				$(this).mouseout(function() {
+					var id = $(this).attr('id');
+					$('#overlay_' + id).hide();
+				});
+			});
+			$(window).on('resize', function(){ 
+				$('#colitems').prop("rowspan", $( window ).width()>maxWidth ? 3 : -1 );
+				$('#title').css('font-size', $( window ).width()>maxWidth ? '32px' : '28px' );
+			})
+		});
+	</script>
 </head>
 
 <body style="zoom: <? echo $ZOOMWP ?>">
@@ -64,8 +64,8 @@
 <font style="font-size:18px; color: #3b618a;">
 The <b>Maggot</b> tool allows users to describe the <a href="<? echo $links[4]; ?>" target="_blank">Metadata</a> of their datasets produced within a collective (research unit, platform, multi-partner project, etc.), thus making it possible
 <ul>
-<li>to answer certain questions of the <b>Data Management Plan</b> (<a href="<? echo $links[0]; ?>" target="_blank">DMP</a>) concerning the <b>organization, documentation, storage and sharing of data</b> in the data storage space,</li>
-<li>to meet certain data and metadata requirements, referred to by the <a href="<? echo $links[1]; ?>" target="_blank">National Plan for Open Science</a> , in particular its second axis: “<b>Structure, Share and Open Research Data</b>” (<a href="<? echo $links[2]; ?>" target="_blank">Recherche Data Gouv</a>) in accordance with the <a href="<? echo $links[3]; ?>" target="_blank">FAIR principles</a>.</li>
+	<li>to answer certain questions of the <b>Data Management Plan</b> (<a href="<? echo $links[0]; ?>" target="_blank">DMP</a>) concerning the <b>organization, documentation, storage and sharing of data</b> in the data storage space,</li>
+	<li>to meet certain data and metadata requirements, referred to by the <a href="<? echo $links[1]; ?>" target="_blank">National Plan for Open Science</a> , in particular its second axis: “<b>Structure, Share and Open Research Data</b>” (<a href="<? echo $links[2]; ?>" target="_blank">Recherche Data Gouv</a>) in accordance with the <a href="<? echo $links[3]; ?>" target="_blank">FAIR principles</a>.</li>
 </ul>
 Maggot was designed to foster (local) <b>good data management</b>, with "(open) <b>data sharing</b>" in mind. See <a href="<? echo $links[6]; ?>" target="_blank">Poster</a> for a short overview.
 </font>
@@ -80,8 +80,8 @@ Maggot was designed to foster (local) <b>good data management</b>, with "(open) 
 	if ($EXTERN==0) echo '<img src="docs/'.$overview_png.'?raw=true" width="722" height="400" alt="Overview" usemap="#image_map"/>';
 	else echo '<img src="docs/overview3.png?raw=true" alt="Overview" usemap="#image_map"/>';
 ?>
-  <br><i sty0le="color: #0b2a68;">Move the mouse over the image then click on the desired functionality</i>
-  <map name="image_map" id="image_map">
+	<br><i sty0le="color: #0b2a68;">Move the mouse over the image then click on the desired functionality</i>
+	<map name="image_map" id="image_map">
 
 <?php
 	if ($EXTERN==0) echo
@@ -90,11 +90,11 @@ Maggot was designed to foster (local) <b>good data management</b>, with "(open) 
 	 <area href="./entry"                       coords="'.$coords[2].'"  shape="rect" id="r3">
 	 <area href="./search"                      coords="'.$coords[3].'"  shape="rect" id="r4">
 	 <area href="./dataverse"                   coords="'.$coords[4].'"  shape="rect" id="r5">
-     <area href="'.$links[5].'" target="_blank" coords="'.$coords[5].'"  shape="rect" id="r6">';
+	 <area href="'.$links[5].'" target="_blank" coords="'.$coords[5].'"  shape="rect" id="r6">';
 	else echo 
 	'<area href="./dictionary"  coords="29,28,487,62"    shape="rect" id="r2">
-     <area href="./entry"       coords="30,72,489,138"   shape="rect" id="r3">
-     <area href="./dataverse"   coords="119,216,366,297" shape="rect" id="r5">';
+	 <area href="./entry"       coords="30,72,489,138"   shape="rect" id="r3">
+	 <area href="./dataverse"   coords="119,216,366,297" shape="rect" id="r5">';
 
 	if ($FILEBROWSER==1)
 		echo '<area href="'.$URL_FILEBROWSER.'" target="_blank" coords="'.$coords[6].'" shape="rect" id="r7">';

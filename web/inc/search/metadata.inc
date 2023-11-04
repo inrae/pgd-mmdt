@@ -33,7 +33,7 @@ if (isset($_GET['format']) && strlen($id_metadata)) {
 		echo $json;
 		}
 	}
-   exit();
+	exit();
 }
 
 
@@ -50,7 +50,7 @@ if (isset($_GET['empty'])) {
 
 function getMetadata ($id_metadata) {
 	global $client, $txtboite, $listboite, $checkboite, $multiboite, $areaboite;
-	
+
 	// Options
 	$options = array('projection'=>[]);
 	foreach(array_keys((array)$txtboite) as $key) $options['projection'][$key]=true;
@@ -59,7 +59,7 @@ function getMetadata ($id_metadata) {
 	foreach(array_keys((array)$multiboite) as $key) $options['projection'][$key]=true;
 	foreach(array_keys((array)$areaboite) as $key) $options['projection'][$key]=true;
 	$options['projection']['chemin']=true;
-	
+
 	// Requête pour récupérer l'ensemble des champs de la table metadata pour ce jeu de donnée
 	$filter = [ 'title' => $id_metadata ];
 	$query = new MongoDB\Driver\Query($filter, $options);
@@ -75,7 +75,7 @@ function getMetadata ($id_metadata) {
 
 function build_table($section, $arr) {
 	global $array_values, $EMPTY;
-	
+
 	$tblhead =''; $tblcore='';
 	foreach($arr as $field) {
 		if ($field==='title' || $field==='description') continue;
@@ -90,7 +90,7 @@ function build_table($section, $arr) {
 			$tblhead .='<th scope="col">'.get_label($field).'</th>';
 			$tblcore .='<td>'.$value.'</td>';
 		}
-	}	
+	}
 	$myhtml='<table class="table"><thead class="thead-light"><tr>'.$tblhead.'</tr></thead><tbody><tr>'.$tblcore.'</tr></tbody></table>';
 	return $myhtml;
 }
@@ -103,7 +103,7 @@ function build_table($section, $arr) {
 <head>
 	<title>Maggot - Metadata</title>
 	<?php echo $HEAD ?>
-	
+
 	<script type="text/javascript">
 	function export_json(name, format) {
 		$.ajaxSetup({async:true});
@@ -155,27 +155,27 @@ do {
 		echo "<script>$('#errboxmsg').html('".$msg."'); $('#errbox').css('display','block');</script>";
 		break;
 	}
-	
+
 	// Get all values
 	$array_values = getMetadata ($id_metadata);
 	if (! is_array($array_values)) {
 		echo  '<div class="p-3 mb-2 bg-warning text-black">No metadata available for this dataset ...</div>';
 		break;
 	}
-	
+
 	// Title
 	$title="Title";
 	if (array_key_exists('title',$array_values))
 		$title=$array_values['title'];
-	
+
 	// Title + Export JSON
 	$my_html = '<table style="width: 100%;"><tr><td><h2 style="font-size: 24px;"><i class="bi bi-list" style="color:grey; font-size: 20px"></i>&nbsp;'.$title.'</h2></td><td align="right" style="width: 400px;"><div class="btn-group btn-group-lg" role="group"><select style="text-align-last:center;" id="export_sel" name="export_sel" class="form-control form-control-sm export_json" onchange="export_json(\''.$id_metadata.'\',$(this).val());"><option value="0">--- Metadata export ---</option><option value="maggot">Maggot JSON Format</option>';
-	
+
 	if ($FILEBROWSER)
 		echo "<script>$('#filebrowser').html('<a href=\"".$URL_FILEBROWSER."\" class=\"search_data\" target=\"_blank\"><button type=\"button\" class=\"btn btn-primary\" style=\"max-height: 32px;padding-top: 0.2rem;\" data-toggle=\"button\" aria-pressed=\"false\" autocomplete=\"off\" name=\"btn-search\">File Browser</button></a>');$('#filebrowsercont').css('display','inline-block')</script>";
-	
+
 	$dropselect = ($export_dataverse && $export_zenodo) ? 1 : 0;
-	
+
 	if ($export_dataverse && is_file($dataverse_conf) && is_file($mapping_conf)) {
 		if ($dropselect)
 			echo "<script>$('#publish_sel').append(`<option value=\"dataverse\">Dataverse repository</option>`); $('#exportcont').css('display','inline-block');</script>";
@@ -191,20 +191,20 @@ do {
 			echo "<script>$('#export').html('<a href=\"".$PATH."zenodo?dataset=".$id_metadata."\" class=\"search_data\"><button type=\"button\" class=\"btn btn-primary\" style=\"max-height: 32px;padding-top: 0.2rem;\" data-toggle=\"button\" aria-pressed=\"false\" autocomplete=\"off\" name=\"btn-search\">Publish the Dataset</button></a>');$('#exportcont').css('display','inline-block');</script>";
 		$my_html .= '<option value="zenodo">Zenodo JSON Format</option>';
 	}
-	
+
 	if ($export_jsonld)
 		$my_html .= '<option value="jsonld">JSON-LD Format</option>';
-	
+
 	$my_html .=  '</select></div><div id="waiting" style="display: none; max-width:1000px; margin:auto;"><img src="'.$PATH.'img/throbber.gif" width="100px"></div></td></tr></table><br>';
 	echo $my_html;
-	
+
 	// Description of the Dataset
 	if (array_key_exists('description',$array_values)) {
 		echo '<h3>DESCRIPTION</h3>';
 		$newval = preg_replace('"(https?://[^ ]+)"', '<a href="$1" target="_blank">$1</a>', str_replace( ['_NL_'], ['<br>'], $array_values['description']));
 		echo "<h2 class='description'>".$newval."</h2><br/>";
 	}
-	
+
 	//For each section
 	foreach($section['labels'] as $name => $text) {
 		if ($name==="resources") continue;
@@ -224,7 +224,7 @@ do {
 		if (preg_match('/scope/', $myhtml))
 			echo $myhtml;
 	}
-	
+
 	// Check if Resources
 	$path=$array_values['chemin'];
 	$json_file = str_replace('pgd_data','mnt',$path);
@@ -232,7 +232,7 @@ do {
 	if (! array_key_exists('resources',$json_content)) continue;
 	$res = $json_content['resources'];
 	if (count($res)<1) continue;
-	
+
 	// Resources
 	echo '<h3>RESOURCES</h3>';
 	$myhtml='<table class="table"><thead class="thead-light">';
@@ -243,7 +243,7 @@ do {
 	$myhtml=$myhtml.'<tr><th scope="col">Type</th>'.$headmedia.'<th scope="col">Description</th><th scope="col">Location</th></tr></thead><tbody>';
 	for($i=0; $i<count($res); $i++) {
 		$htmlmedia='';
-		if ($MEDIA) $htmlmedia = strlen($res[$i]['media']) ? 
+		if ($MEDIA) $htmlmedia = strlen($res[$i]['media']) ?
 			'<td><a target="_blank" href="'.$bpurl.str_replace('/','-',$res[$i]['media']).'">'.$res[$i]['media'].'</a></td>' :
 			'<td></td>';
 		$location=preg_replace('"(https?://[^ ]+)"', '<a href="$1" target="_blank">$1</a>',$res[$i]['location']);
@@ -251,7 +251,7 @@ do {
 	}
 	$myhtml=$myhtml.'</tbody></table><br/>';
 	echo $myhtml;
-	
+
 } while(0);
 
 ?>

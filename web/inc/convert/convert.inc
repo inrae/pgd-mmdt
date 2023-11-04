@@ -319,7 +319,7 @@ function tsv2doctmpl($filename)
 // TSV to MD : Convert a terminology documentation file to Markdown
 function tsv2md($filename)
 {
-	global $section, $checkboite;
+	global $section, $checkboite, $RESMEDIA;
 
 	$md .= "# Metadata documentation\n----\n\n.\n\n";
 	$section='';
@@ -336,10 +336,10 @@ function tsv2md($filename)
 			$val = explode("\t", $line);
 			// section
 			if ($val[0] == 'section') {
-			if ( strlen($section)>0 ) $md .= "</div>\n\n.\n";
-			$md .= "## ".strtoupper($val[1])."\n\n* ".$val[2]."\n\n<div class=\"decal\" markdown=\"1\">\n";
-			$section=$val[1];
-			continue;
+				if ( strlen($section)>0 ) $md .= "</div>\n\n.\n";
+				$md .= "## ".strtoupper($val[1])."\n\n* ".$val[2]."\n\n<div class=\"decal\" markdown=\"1\">\n";
+				$section=$val[1];
+				continue;
 			}
 			// field
 			if ($val[0] == 'field') {
@@ -363,7 +363,7 @@ function tsv2md($filename)
 		}
 		$md .= "</div>\n\n.\n";
 
-	}  while(0);
+	} while(0);
 	return $md;
 }
 

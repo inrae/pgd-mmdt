@@ -1,3 +1,4 @@
+// ROR API with help of Typeahead
 // See https://ror.readme.io/docs/create-ror-powered-typeaheads
 //     https://github.com/twitter/typeahead.js/blob/master/doc/jquery_typeahead.md
 

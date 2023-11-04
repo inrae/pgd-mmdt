@@ -1,4 +1,11 @@
 <?php
+#
+# Zenodo implementation 
+# Preliminary work (sept 2023)
+#
+# Auteur(s): D.JACOB 
+# Copyright: (c) INRAE - 2022-2023
+#
 
 if (!isset($ZENODO_SERVER_URL))  $ZENODO_SERVER_URL=$zenodo_urls[0];
 if (!isset($ZENODO_API_TOKEN))   $ZENODO_API_TOKEN='';
@@ -302,7 +309,7 @@ do
 	$ds=$metadata['fulltitle'];
 	$output_arr = get_api_zenodo();
 	$html_record_id = $record_id = $bucket_link = '';
-    if (is_array($output_arr) && count($output_arr)>0) {
+	if (is_array($output_arr) && count($output_arr)>0) {
 		for($k=0; $k<count($output_arr); $k++) {
 			$arr=$output_arr[$k];
 			//if (strlen($arr['doi'])==0 && $arr['submitted']==0 && $arr['title']==$ds) {
@@ -332,7 +339,7 @@ do
 //echo "<br><pre>"; print_r ($output_arr); echo "</pre><br>";
 
 	// Error
-    if (is_array($output_arr) && count($output_arr)>0 && array_key_exists('status',$output_arr)) {
+	if (is_array($output_arr) && count($output_arr)>0 && array_key_exists('status',$output_arr)) {
 		$status=$output_arr['status']; $message = str_replace("'","\\'", $output_arr['message']);
 		$htmloutput="Status: $status - $message<br>";
 		if (array_key_exists('errors',$output_arr))
@@ -346,7 +353,7 @@ do
 	}
 	
 	// Success
-    if (strlen($record_id)==0 && is_array($output_arr)) {
+	if (strlen($record_id)==0 && is_array($output_arr)) {
 		$link = $output_arr['links']['html'];
 		$bucket_link = $output_arr['links']['bucket'];
 		$record_id = $output_arr['record_id'];

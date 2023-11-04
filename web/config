@@ -19,11 +19,11 @@ require_once('inc/convert/convert.inc');
 include ('inc/header.inc');
 
 if ($FUNC=='view' || isset($_GET['view'])) {
-    include ('inc/convert/tsv2view.inc');
+	include ('inc/convert/tsv2view.inc');
 } elseif ($FUNC=='doc' || isset($_GET['doc'])) {
-    include ('inc/convert/tsv2md.inc');
+	include ('inc/convert/tsv2md.inc');
 } else {
-    include ('inc/convert/tsv2json.inc');
+	include ('inc/convert/tsv2json.inc');
 }
 
 include ('inc/footer.inc');

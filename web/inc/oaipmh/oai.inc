@@ -10,7 +10,7 @@
 ## http://www.openarchives.org/Register/ValidateSite
 #
 # Auteur(s): D.JACOB 
-# Copyright: (c) INRAE - 2015-2023
+# Copyright: (c) INRAE - 2022-2023
 #
 
 //----------------------------------------
@@ -29,7 +29,7 @@ function getMetadata ($id_metadata='')
 	foreach(array_keys((array)$multiboite) as $key) $options['projection'][$key]=true;
 	foreach(array_keys((array)$areaboite) as $key) $options['projection'][$key]=true;
 	$options['projection']['chemin']=true;
-	
+
 	// Requête pour récupérer l'ensemble des champs de la table metadata pour ce jeu de donnée
 	$filter = strlen($id_metadata)>0 ? [ 'title' => $id_metadata ] : array();
 	$query = new MongoDB\Driver\Query($filter, $options);
@@ -82,7 +82,7 @@ function get_dcterms ($def, $map, $record)
 		if (! in_array( $arr[$CF], array_keys($record))) { $cnt++; continue; }
 		// If there is a dico
 		if (strlen($arr[$VS])>0 && preg_match('/^cvlist:([a-zA-Z0-9_]+)/',$arr[$VS], $matches)) {
-            $dico=$matches[1];
+			$dico=$matches[1];
 			if (! in_array($dico, $cvlist)) {
 				${$dico} = tsvToArray($cvdir.$dico.'/'.$dico.'.txt');
 				array_push($cvlist, $dico);
@@ -352,7 +352,7 @@ do
   <oai-identifier xmlns="http://www.openarchives.org/OAI/2.0/oai-identifier"
              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
              xsi:schemaLocation="http://www.openarchives.org/OAI/2.0/oai-identifier http://www.openarchives.org/OAI/2.0/oai-identifier.xsd">
-			 <scheme>oai</scheme>
+            <scheme>oai</scheme>
             <repositoryIdentifier>'.$OAI_IDENTIFIER.'</repositoryIdentifier>
             <delimiter>:</delimiter>
             <sampleIdentifier>oai:'.$OAI_IDENTIFIER.'::frim1</sampleIdentifier>
