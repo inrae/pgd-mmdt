@@ -770,7 +770,7 @@
 <h4 id="installation-of-docker-containers">Installation of Docker containers<a class="headerlink" href="#installation-of-docker-containers" title="Permanent link">&para;</a></h4>
 <p>MAGGOT uses 3 Docker images for 3 distinct services:</p>
 <ul>
-<li><strong>pgd-mmdt-db</strong> which hosts the mongoDB database</li>
+<li><strong>pgd-mmdt-db</strong> which hosts the <a href="https://www.mongodb.com/basics" target="_blank">MongoDB</a> database</li>
 <li><strong>pgd-mmdt-scan</strong> which scans the data and updates the contents of the database and the web interface</li>
 <li><strong>pgd-mmdt-web</strong> which hosts the web server and the web interface pages</li>
 </ul>
@@ -803,7 +803,7 @@ sh<span class="w"> </span>./run<span class="w"> </span>&lt;option&gt;
 <li><strong><em>start</em></strong> : <em>1</em>) Launch the 3 services by creating the Docker containers corresponding to the Docker images; <em>2</em>) Create also the MongoDB volume.</li>
 <li><strong><em>stop</em></strong> :  <em>1</em>) Remove all the 3 Docker containers; <em>2</em>) Remove the MongoDB volume.</li>
 <li><strong><em>initdb</em></strong> : Create and initialize the Mongo collection</li>
-<li><strong><em>scan</em></strong> : Scan the data and update the contents of the database and the web interface</li>
+<li><strong><em>scan</em></strong> : Scan the data  according to a fixed period (<a href="https://github.com/inrae/pgd-mmdt/blob/main/dockerscanpart/scripts/pgd-cron" target="_blank">30 min</a>) and update the contents of the database and the web interface</li>
 <li><strong><em>fullstart</em></strong> : Perform the 3 actions <strong><em>start</em></strong>, <strong><em>initdb</em></strong> and <strong><em>scan</em></strong></li>
 <li><strong><em>restart</em></strong> : Perform the 2 actions <strong><em>stop</em></strong> then <strong><em>fullstart</em></strong></li>
 <li><strong><em>ps</em></strong> : Check that all containers are running correctly</li>
