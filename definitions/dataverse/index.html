@@ -84,6 +84,11 @@
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
+        
+        <a href="#dataverse-definition-file" class="md-skip">
+          Skip to content
+        </a>
+      
     </div>
     <div data-md-component="announce">
       
@@ -409,6 +414,17 @@
       
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Dataverse
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
@@ -418,6 +434,30 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#dataverse-definition-file" class="md-nav__link">
+    Dataverse definition File
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -658,22 +698,24 @@
 
 <style>.md-typeset h1 {display: none;} .md-nav__item {font-size: medium}</style>
 
-<p><img src="../../images/WIP.png""><br></p>
-<hr />
-<p><img src="../../images/dataverse_logo.png" width="400px"></p>
+<h3 id="dataverse-definition-file">Dataverse definition File<a class="headerlink" href="#dataverse-definition-file" title="Permanent link">&para;</a></h3>
+<p>This definition file will allow Maggot to automatically export the dataset into a data repository based on <a href="https://dataverse.org/" target="_blank">Dataverse</a>. The approach consists of starting from the Maggot metadata file in JSON format and transforming it into another JSON format compatible with Dataverse.</p>
+<p>The structure of the <a href="https://guides.dataverse.org/en/latest/api/native-api.html" target="_blank">Dataverse JSON</a> output file being known internally, a minimum of information is therefore necessary to carry out the correspondence.</p>
+<p>The file must have 4 columns with headers defined as follows:</p>
 <ul>
-<li><strong>Dataverse definition File</strong><ul>
-<li>Example of Dataverse JSON file generated based on the definition file itself given as an example below.<ul>
-<li><a href="https://pmb-bordeaux.fr/maggot/metadata/frim1?format=dataverse" target="_blank">Dataverse JSON of the FRIM dataset</a></li>
+<li>column 1 - <strong>Field</strong> : shortname of the Maggot fields</li>
+<li>column 2 - <strong>Typename</strong> : The corresponding Dataverse fields. </li>
+<li>column 3 - <strong>Type</strong> :The Dataverse field at the top level encapsulating the fields in the “Typename” column where applicable</li>
+<li>column 4 - <strong>Terminology</strong> : Indicates from which vocabulary the mapping should be performed. Concerning the vocabulary to be mapped: either on a dictionary, you must put the name of the corresponding <a href="../../dictionaries">dictionary</a> prefixed with 'cvlist:', or on ontologies or on a thesaurus, you must specify the corresponding entry in the <a href="../mapping">mapping definition file</a> and in prefixing it with 'cv:'.</li>
 </ul>
-</li>
-<li>Below an example of Dataverse definition file (TSV)
+<p>Below an example of Dataverse definition file (TSV)
 <center>
 <a href="../../images/dataverse_conf.png" data-lightbox="figconf"><img src="../../images/dataverse_conf.png" width="600px"></a>
 </center>
-<br></li>
-</ul>
-</li>
+<br></p>
+<p>Example of Dataverse JSON file generated based on the definition file itself given as an example above.</p>
+<ul>
+<li><a href="https://pmb-bordeaux.fr/maggot/metadata/frim1?format=dataverse" target="_blank">Dataverse JSON of the FRIM dataset</a></li>
 </ul>
 
 

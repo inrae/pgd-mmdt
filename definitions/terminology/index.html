@@ -395,19 +395,25 @@
     Definition of terminology
   </a>
   
-</li>
-      
-        <li class="md-nav__item">
+    <nav class="md-nav" aria-label="Definition of terminology">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
   <a href="#structure-of-the-terminology-definition-file-tsv" class="md-nav__link">
     Structure of the Terminology definition file (TSV)
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
+        
+          <li class="md-nav__item">
   <a href="#structure-of-the-terminology-documentation-file-tsv" class="md-nav__link">
     Structure of the Terminology documentation file (TSV)
   </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -737,7 +743,8 @@
 <a href="../../images/terminology_types.png" data-lightbox="fig0"><img src="../../images/terminology_types.png" width="600px"></a>
 </center></p>
 <p>For two types (<strong><em>checkbox</em></strong> and <strong><em>dropbox</em></strong>), it is possible to define the values to be selected (predefined terms).</p>
-<h3 id="structure-of-the-terminology-definition-file-tsv">Structure of the Terminology definition file (<abbr title="Open text format representing tabular data as &quot;Tab-Separated Values&quot;. Each row corresponds to a table row and the cells in a row are separated by a tab">TSV</abbr>)<a class="headerlink" href="#structure-of-the-terminology-definition-file-tsv" title="Permanent link">&para;</a></h3>
+<p><br></p>
+<h4 id="structure-of-the-terminology-definition-file-tsv">Structure of the Terminology definition file (<abbr title="Open text format representing tabular data as &quot;Tab-Separated Values&quot;. Each row corresponds to a table row and the cells in a row are separated by a tab">TSV</abbr>)<a class="headerlink" href="#structure-of-the-terminology-definition-file-tsv" title="Permanent link">&para;</a></h4>
 <p>The file must have 9 columns with headers defined as follows:</p>
 <ul>
 <li>column 1 - <strong>Field</strong> : shortname of the fields</li>
@@ -774,7 +781,7 @@
 <li><a href="https://pmb-bordeaux.fr/maggot/metadata/frim1?format=maggot" target="_blank">Maggot <abbr title="JavaScript Object Notation : format used to represent structured information">JSON</abbr> of the FRIM dataset</a> and its corresponding <a href="https://pmb-bordeaux.fr/maggot/conf/maggot-schema.json" target="_blank"><abbr title="JavaScript Object Notation : format used to represent structured information">JSON</abbr>-schema</a></li>
 </ul>
 <p><br></p>
-<h3 id="structure-of-the-terminology-documentation-file-tsv">Structure of the Terminology documentation file (<abbr title="Open text format representing tabular data as &quot;Tab-Separated Values&quot;. Each row corresponds to a table row and the cells in a row are separated by a tab">TSV</abbr>)<a class="headerlink" href="#structure-of-the-terminology-documentation-file-tsv" title="Permanent link">&para;</a></h3>
+<h4 id="structure-of-the-terminology-documentation-file-tsv">Structure of the Terminology documentation file (<abbr title="Open text format representing tabular data as &quot;Tab-Separated Values&quot;. Each row corresponds to a table row and the cells in a row are separated by a tab">TSV</abbr>)<a class="headerlink" href="#structure-of-the-terminology-documentation-file-tsv" title="Permanent link">&para;</a></h4>
 <p>The documentation definition file is used to have online help for each field (small icon placed next to each label on the form). So it should only be modified when a field is added or deleted, or moved to another section. This file will be used then to generate the online metadata documentation according to the figure below (See <a href="../../configuration">Configuration</a> to find out how to carry out this transformation).</p>
 <p><center>
 <a href="../../images/docwf_fig.png" data-lightbox="fig2"><img src="../../images/docwf_fig.png" width="600px"></a>

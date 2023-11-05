@@ -84,6 +84,11 @@
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
+        
+        <a href="#json-ld-definition-file" class="md-skip">
+          Skip to content
+        </a>
+      
     </div>
     <div data-md-component="announce">
       
@@ -449,6 +454,17 @@
       
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    JSON-LD
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
@@ -458,6 +474,30 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#json-ld-definition-file" class="md-nav__link">
+    JSON-LD definition File
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -658,32 +698,27 @@
 
 <style>.md-typeset h1 {display: none;} .md-nav__item {font-size: medium}</style>
 
-<p><img src="../../images/WIP.png""><br></p>
-<hr />
-<p><a href="../../images/jsonld_fig1.png" data-lightbox="fig0"><img src="../../images/jsonld_fig1.png" width="800px"></a></p>
+<h3 id="json-ld-definition-file">JSON-LD definition File<a class="headerlink" href="#json-ld-definition-file" title="Permanent link">&para;</a></h3>
+<p>This definition file will allow harvesters to collect structured metadata based on a semantic schema, i.e the fields themselves and not just their content can be associated with a semantic definition (ontology for example) which will then facilitate the link between the metadata and therefore the data (<a href="https://en.wikipedia.org/wiki/JSON-LD" target="_blank">JSON-LD</a>). The chosen semantic schema is based on several metadata schemas.</p>
+<p>Metadata schemas used to build the model proposed by default:</p>
 <ul>
-<li>
-<p><strong>JSON-LD definition File</strong></p>
-<ul>
-<li>Metadata schemas used to build the model proposed by default:<ul>
 <li><a href="https://schema.org/Dataset" target="_blank">Schema.org</a>, <a href="https://bioschemas.org/profiles/Dataset/1.0-RELEASE" target="_blank">Bioschemas.org</a>, <a href="https://support.datacite.org/docs/datacite-metadata-schema-44" target="_blank">Datacite</a>, <a href="https://rdf-vocabulary.ddialliance.org/discovery.html" target="_blank">DDI-RDF</a>, <a href="https://www.dublincore.org/specifications/dublin-core/dcmi-terms/" target="_blank">DubinCore</a>, <a href="https://docs.google.com/spreadsheets/d/13HP-jI_cwLDHBetn9UKTREPJ_F4iHdAvhjmlvmYdSSw/edit#gid=0" target="_blank">Dataverse</a></li>
 </ul>
-</li>
-<li>Example of JSON-LD file generated based on the definition file itself given as an example below.<ul>
-<li><a href="https://pmb-bordeaux.fr/maggot/metadata/frim1?format=jsonld" target="_blank">JSON-LD file of the FRIM dataset</a></li>
-</ul>
-</li>
-<li>Below an example of JSON-LD definition file (TSV)
+<p>Definition of the JSON-LD context using the metadata schemas proposed by default
 <center>
 <a href="../../images/jsonld_conf0.png" data-lightbox="conf0"><img src="../../images/jsonld_conf0.png" width="600px"></a>
+</center></p>
+<p>The structure of the JSON-LD is not known internally, information on the structure will therefore be necessary to carry out the correspondence.</p>
+<p>Example of JSON-LD definition file (partial) using the metadata schemas proposed by default (TSV)
+<center>
 <a href="../../images/jsonld_conf1.png" data-lightbox="conf1"><img src="../../images/jsonld_conf1.png" width="800px"></a>
-<a href="../../images/jsonld_conf2.png" data-lightbox="conf2"><img src="../../images/jsonld_conf2.png" width="800px"></a>
-<a href="../../images/jsonld_conf3.png" data-lightbox="conf3"><img src="../../images/jsonld_conf3.png" width="800px"></a>
-</center></li>
-</ul>
-</li>
+</center></p>
+<p>Example of JSON-LD file generated based on the definition file itself given as an example above.</p>
+<ul>
+<li><a href="https://pmb-bordeaux.fr/maggot/metadata/frim1?format=jsonld" target="_blank">JSON-LD file of the FRIM dataset</a></li>
 </ul>
 <p><br></p>
+<p><a href="../../images/jsonld_fig1.png" data-lightbox="fig0"><img src="../../images/jsonld_fig1.png" width="800px"></a></p>
 
 
 

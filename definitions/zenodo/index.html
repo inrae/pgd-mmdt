@@ -84,6 +84,11 @@
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
+        
+        <a href="#zenodo-definition-file" class="md-skip">
+          Skip to content
+        </a>
+      
     </div>
     <div data-md-component="announce">
       
@@ -429,6 +434,17 @@
       
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Zenodo
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
@@ -438,6 +454,30 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#zenodo-definition-file" class="md-nav__link">
+    Zenodo definition File
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -658,24 +698,17 @@
 
 <style>.md-typeset h1 {display: none;} .md-nav__item {font-size: medium}</style>
 
-<p><img src="../../images/WIP.png""><br></p>
-<hr />
-<p><img src="../../images/zenodo_logo.png" width="400px"></p>
-<ul>
-<li>
-<p><strong>Zenodo definition File</strong></p>
-<ul>
-<li>Example of Zenodo JSON file generated based on the definition file itself given as an example below.<ul>
-<li><a href="https://pmb-bordeaux.fr/maggot/metadata/frim1?format=zenodo" target="_blank">Zenodo JSON of the FRIM dataset</a></li>
-</ul>
-</li>
-<li>Below an example of Zenodo definition file (TSV)
+<h3 id="zenodo-definition-file">Zenodo definition File<a class="headerlink" href="#zenodo-definition-file" title="Permanent link">&para;</a></h3>
+<p>This definition file will allow Maggot to automatically export the dataset into a data repository based on <a href="https://www.openaire.eu/zenodo-guide" target="_blank">Zenodo</a>. The approach consists of starting from the Maggot metadata file in JSON format and transforming it into another JSON format compatible with Zenodo.</p>
+<p>The structure of the <a href="https://developers.zenodo.org/#rest-api" target="_blank">Zenodo JSON</a> output file is not known internally, information on the structure will therefore be necessary to carry out the correspondence.</p>
+<p>Below an example of Zenodo definition file (TSV)
 <center>
 <a href="../../images/zenodo_conf.png" data-lightbox="figconf"><img src="../../images/zenodo_conf.png" width="600px"></a>
 </center>
-<br></li>
-</ul>
-</li>
+<br></p>
+<p>Example of Zenodo JSON file generated based on the definition file itself given as an example above.</p>
+<ul>
+<li><a href="https://pmb-bordeaux.fr/maggot/metadata/frim1?format=zenodo" target="_blank">Zenodo JSON of the FRIM dataset</a></li>
 </ul>
 
 

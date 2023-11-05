@@ -84,6 +84,11 @@
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
+        
+        <a href="#mapping-definition-file" class="md-skip">
+          Skip to content
+        </a>
+      
     </div>
     <div data-md-component="announce">
       
@@ -389,6 +394,17 @@
       
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Mapping
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
@@ -398,6 +414,30 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#mapping-definition-file" class="md-nav__link">
+    Mapping definition File
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -658,36 +698,22 @@
 
 <style>.md-typeset h1 {display: none;} .md-nav__item {font-size: medium}</style>
 
-<ul>
-<li>
-<p><strong>Mapping definition File</strong></p>
-<ul>
-<li>The mapping file is used as indicated by its name to match a term chosen by the user during entry with another term from an ontology or a thesaurus and therefore to obtain a URL which will be used for referencing. It can be used for each conversion requiring such a mapping (e.g. to the <a href="../dataverse">Dataverse</a>, <a href="../zenodo">Zenodo</a> or <a href="../json-ld">JSON-LD</a> format).
-<img alt="" src="../../images/blank.png" /></li>
-<li>
+<h3 id="mapping-definition-file">Mapping definition File<a class="headerlink" href="#mapping-definition-file" title="Permanent link">&para;</a></h3>
+<p>The mapping file is used as indicated by its name to match a term chosen by the user during entry with another term from an ontology or a thesaurus and therefore to obtain a URL which will be used for referencing. It can be used for each conversion requiring such a mapping (e.g. to the <a href="../dataverse">Dataverse</a>, <a href="../zenodo">Zenodo</a> or <a href="../json-ld">JSON-LD</a> format).</p>
 <p>The role of this definition file is illustrated with the figure above
 <center>
 <a href="../../images/mapping_fig2.png" data-lightbox="fig2"><img src="../../images/mapping_fig2.png" width="600px"></a>
 </center>
 <br></p>
-</li>
-<li>
 <p>The file must have <strong><em>5 columns</em></strong> with headers defined as follows:</p>
 <ul>
 <li>column 1 - <strong>CVname</strong> : name of the mapping entry</li>
 <li>column 2 - <strong>CVtype</strong> : type of the CV target (must be either <em>bioportal</em> or <em>skosmos</em>)</li>
 <li>column 3 - <strong>CVurl</strong> : URL of the corresponding web API</li>
 <li>column 4 - <strong>CVterm</strong> : name of the thesaurus or the ontology list separated by a comma</li>
-<li>column 5 - <strong>CVlang</strong> : the chosen language (mainly for thesauri)
-<img alt="" src="../../images/blank.png" /></li>
+<li>column 5 - <strong>CVlang</strong> : the chosen language (mainly for thesauri)</li>
 </ul>
-</li>
-<li>
 <p>Below an example of Mapping definition file (TSV)</p>
-</li>
-</ul>
-</li>
-</ul>
 <p><center>
 <a href="../../images/mapping_fig1.png" data-lightbox="fig1"><img src="../../images/mapping_fig1.png" width="800px"></a>
 </center>
