@@ -18,6 +18,10 @@ listboite =  param['listboite']
 for key in listboite:
     str_fields.append('{ "'+key+'": { $type: "string" } }')
 
+dateboite =  param['dateboite']
+for key in dateboite:
+    str_fields.append('{ "'+key+'": { $type: "string" } }')
+
 areaboite =  param['areaboite']
 for key in areaboite:
     str_fields.append('{ "'+key+'": { $type: "string" } }')

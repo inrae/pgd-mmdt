@@ -1,15 +1,10 @@
 Field	Typename	Type	Terminology
-title			
 fulltitle	title		
 subject	subject		
 description	dsDescription		
 note	notesText		
-status			
-retention_time			
-access_rights			
 language	language		
 license	license		
-dmpid			
 contacts	datasetContact		cvlist:people
 authors	author		cvlist:people
 collectors	Data Collector	contributor	cvlist:people

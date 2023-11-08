@@ -310,14 +310,15 @@ function get_term_info($dico, $name)
 // Build a box of links
 //----------------------------
 
-function box_links($arr_links, $dwnld=0)
+function box_links($arr_links, $dwnld=0, $help=0)
 {
 	$html_output = '<fieldset class="border px-3 py-3 rounded">';
 	foreach(array_keys($arr_links) as $key) {
 		$arr = $arr_links[$key];
+		$htmlhelp = $help ? '&nbsp;<a href="'.$arr[5].'" target="doc"><i class="bi-question-octagon-fill" style="color:#1b82c1; font-size: 12px"></i></a>' : '';
 		$html_output .= '<div class="row mb-0">';
 			$html_output .= '<div class="col-4"><blockquote class="blockquote"><p><i class="bi-caret-right-fill"></i>&nbsp;&nbsp;'.$arr[0].'</p></blockquote></div>';
-			$html_output .= '<div class="col-4"><blockquote class="blockquote"><p><i class="bi-eye-fill"></i>&nbsp;&nbsp;<a class="icon-link" href="'.$arr[1].'" target="_blank">'.$arr[2].'</a></p></blockquote></div>';
+			$html_output .= '<div class="col-4"><blockquote class="blockquote"><p><i class="bi-eye-fill"></i>&nbsp;&nbsp;<a class="icon-link" href="'.$arr[1].'" target="_blank">'.$arr[2].'</a>'.$htmlhelp.'</p></blockquote></div>';
 			if($dwnld)
 				$html_output .= '<div class="col-4"><center><button title="Download '.$arr[4].'" class=\"btn btn-success btn-xs bi-download\" style=\"width: 50px;\" onclick="downloadFile(\\\''.$arr[3].$arr[2].'\\\',\\\''.basename($arr[2]).'\\\'); return false;"></button></center></div>';
 		$html_output .= '</div>';

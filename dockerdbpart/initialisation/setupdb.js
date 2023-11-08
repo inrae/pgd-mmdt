@@ -38,6 +38,8 @@ if (db.getMongo().getDBNames().indexOf("pgd-db") == -1){
 { "status": { $type: "string" } },
 { "access_rights": { $type: "string" } },
 { "publication_idtype": { $type: "string" } },
+{ "datestart": { $type: "string" } },
+{ "dateend": { $type: "string" } },
 { "description": { $type: "string" } },
 { "note": { $type: "string" } },
 { "publication_citation": { $type: "string" } },

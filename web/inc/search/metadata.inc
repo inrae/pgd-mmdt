@@ -49,7 +49,7 @@ if (isset($_GET['empty'])) {
 }
 
 function getMetadata ($id_metadata) {
-	global $client, $txtboite, $listboite, $checkboite, $multiboite, $areaboite;
+	global $client, $txtboite, $listboite, $checkboite, $multiboite, $dateboite, $areaboite;
 
 	// Options
 	$options = array('projection'=>[]);
@@ -57,6 +57,7 @@ function getMetadata ($id_metadata) {
 	foreach(array_keys((array)$listboite) as $key) $options['projection'][$key]=true;
 	foreach(array_keys((array)$checkboite) as $key) $options['projection'][$key]=true;
 	foreach(array_keys((array)$multiboite) as $key) $options['projection'][$key]=true;
+	foreach(array_keys((array)$dateboite) as $key) $options['projection'][$key]=true;
 	foreach(array_keys((array)$areaboite) as $key) $options['projection'][$key]=true;
 	$options['projection']['chemin']=true;
 
@@ -65,7 +66,7 @@ function getMetadata ($id_metadata) {
 	$query = new MongoDB\Driver\Query($filter, $options);
 	$obj = $client->executeQuery('pgd-db.metadata', $query)->toArray();
 	$ret = count($obj);
-	if ($ret > 0 ) {
+	if ($ret > 0) {
 		$ret = (array)($obj[0]);
 	} else {
 		$ret=0;

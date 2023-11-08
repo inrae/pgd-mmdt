@@ -16,8 +16,9 @@ function load_data(file)
 		var lists = Object.keys(listboite);
 		var multisel = Object.keys(multiboite);
 		var autotxt = Object.keys(txtboite);
+		var datetxt = Object.keys(dateboite);
 		var autoarea = Object.keys(areaboite);
-		var textarea = autotxt.concat(autoarea);
+		var textarea = autotxt.concat(autoarea).concat(datetxt);
 	
 		// Validation based on JSON schema
 		//indata = this.result;
