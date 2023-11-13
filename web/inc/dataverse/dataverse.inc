@@ -8,7 +8,7 @@
 
 if (!isset($SERVER_URL)) $SERVER_URL=$dataverse_urls[0];
 if (!isset($API_TOKEN))  $API_TOKEN='';
-if (!isset($PARENT))     $PARENT='tp';
+if (!isset($PARENT))     $PARENT='';
 
 $dataset = '';
 if (isset($_GET['dataset'])) $dataset = $_GET['dataset'];
@@ -62,6 +62,10 @@ if ($ret>0) {
 	<title>Maggot - Dataverse</title>
 
 	<?php echo $HEAD ?>
+	<link rel="stylesheet" href="<?php echo $PATH ?>css/ror-widget.css">
+	<script  src="<?php echo $PATH ?>js/typeahead.min.js"></script>
+	<script>var DV_API_URL = "<?php echo $SERVER_URL.$DV_API ?>";</script>
+	<script  src="<?php echo $PATH ?>js/dv-typeahead.js"></script>
 
 	<script type="text/javascript">
 	function selectjson(id) {
@@ -102,6 +106,10 @@ if ($ret>0) {
 		$('#errbox').css('display','none');
 		return ret;
 	}
+	$(document).on('click', '#server', function() {
+		dataverse_server = $('#server').find(":selected").val();
+		DV_API_URL = dataverse_server + '<?php echo $DV_API ?>';
+	})
 	</script>
 </head>
 
@@ -136,7 +144,7 @@ if ($ret>0) {
 			</div>
 			<div style="padding-bottom: 10px;"><b>Dataverse Server URL</b>:&nbsp;<select name="server" id="server" class="form-control form-control-sm"><? echo $options_server ?></select></div>
 			<div style="padding-bottom: 10px;"><b>API-Token</b>:&nbsp;<input class="form-control form-control-sm solo" type="text" name="token" id="token" value="<? echo $API_TOKEN ?>" /></div>
-			<div style="padding-bottom: 10px;"><b>Dataverse</b>:&nbsp;<input class="form-control form-control-sm solo" type="text" name="parent" id="parent" value="<? echo $PARENT ?>" /></div>
+			<div style="padding-bottom: 10px;"><b>Dataverse</b>:&nbsp;<input class="form-control form-control-sm solo typeahead" type="text" name="parent" id="parent" value="<? echo $PARENT ?>" /></div>
 			<input type="submit" class="btn btn-primary" style="width: 100px;" id="btnpush" name="btnpush" value="Publish"/>
 			<input type="hidden" name="jsontype" id="jsontype" value="1">
 			<br>
@@ -179,6 +187,7 @@ if ($ret>0) {
 			selectjson(2);
 		}
 	})
+	dvTypeahead();
 </script>
 
 <?php

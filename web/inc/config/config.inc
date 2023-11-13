@@ -49,9 +49,11 @@ $url_schema = "https://pmb-bordeaux.fr/maggot/conf/maggot-schema.json";
 $dataverse_urls = array('https://demo.recherche.data.gouv.fr',
                         'https://data-preproduction.inrae.fr',
                         'https://entrepot.recherche.data.gouv.fr');
+$DV_API = '/api/search';
 
 $SERVER_URL='https://entrepot.recherche.data.gouv.fr';
 $PARENT='';
+
 
 // Zenodo URLs
 $zenodo_urls = array('https://zenodo.org',
