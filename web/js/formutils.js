@@ -308,7 +308,7 @@ function insert_multiboite (identif_boite, req=false)
 
 	disabled=''
 	if (multiboite[identif_boite].hasOwnProperty('open') && ! multiboite[identif_boite]['open']) disabled=' disabled';
-	var myfieldHTML ='<div class="form-group2 div-group ui-widget"><label class="labeldiv" for="'+identif_boite+'">'+label+'</label>'+asterisk+htmlHelpIcon(label)+'<br><input class="form-control form-control-sm" id="'+identif_boite+'-sel" name="'+identif_boite+'-sel" onfocus="$(\'#'+identif_boite+'-sel-warn\').css(\'display\',\'block\');" onfocusout="cleanfield(this);" onchange="statusentry=1;" '+disabled+'>';
+	var myfieldHTML ='<div class="form-group2 div-group ui-widget"><span class="labeldiv">'+label+'</span>'+asterisk+htmlHelpIcon(label)+'<br><input class="form-control form-control-sm" id="'+identif_boite+'-sel" name="'+identif_boite+'-sel" onfocus="$(\'#'+identif_boite+'-sel-warn\').css(\'display\',\'block\');" onfocusout="cleanfield(this);" onchange="statusentry=1;" '+disabled+'>';
 
 	if (multiboite[identif_boite].hasOwnProperty('autocomplete')) {
 		var nameList = multiboite[identif_boite]['autocomplete'];
@@ -343,7 +343,7 @@ function insert_checkboite (identif_boite, additem=true, req=false)
 		'<div class="form-group2 div-group box-style-1">\
 			<div style="padding:3px; background-color:#fff;">\
 				<div id="'+identif_boite+'" class="form-group '+identif_boite+'">\
-					<label for="name" class="labeldiv">'+checkboite[identif_boite]['titre']+'</label>'+asterisk+htmlHelpIcon(checkboite[identif_boite]['titre'])+'\
+					<span class="labeldiv">'+checkboite[identif_boite]['titre']+'</span>'+asterisk+htmlHelpIcon(checkboite[identif_boite]['titre'])+'\
 					<fieldset></fieldset>\
 				</div>';
 	
@@ -360,7 +360,7 @@ function insert_checkboite (identif_boite, additem=true, req=false)
 		}
 		checkboite[identif_boite]['compteur'] =  2;
 		myfieldHTML += '\
-				<br><label for="select" class="labeldiv">OR enter an item (if missing in the above options) :</label>\
+				<br><span class="labeldiv">OR enter an item (if missing in the above options) :</span>\
 				<div class="field_wrapper '+identif_boite+'">\
 					<div '+divclass+' style="width:100%">\
 						<input class="form-control form-control-sm '+identif_boite+ac+'"'+dico+'" type="text" name="'+identif_boite+'-1" id="'+identif_boite+'-1" '+plh+'value=""/>\
@@ -393,7 +393,7 @@ function insert_listboite (identif_boite, req=false, shrunk=false)
 	}
 	var myfieldHTML =
 		'<div '+divclass+'id="'+identif_boite+'">\
-			<label for="name" class="labeldiv">'+listboite[identif_boite]['titre']+'</label>'+asterisk+htmlHelpIcon(listboite[identif_boite]['titre'])+'\
+			<span class="labeldiv">'+listboite[identif_boite]['titre']+'</span>'+asterisk+htmlHelpIcon(listboite[identif_boite]['titre'])+'\
 			<fieldset>\
 				<select id="'+identif_boite+'_select" name="'+identif_boite+'" class="form-control form-control-sm '+identif_boite+ac+'"'+dico+'" onchange="statusentry=1;"></select>\
 			</fieldset>\
@@ -420,7 +420,7 @@ function insert_txtboite (identif_boite, req=false, shrunk=false)
 	if (req) asterisk = mandatory
 	var myfieldHTML =
 		'<div '+divclass+'>\
-			<label for="name" class="labeldiv">'+ txtboite[identif_boite]['titre'] +'</label>'+asterisk+htmlHelpIcon(txtboite[identif_boite]['titre'])+'\
+			<span class="labeldiv">'+ txtboite[identif_boite]['titre'] +'</span>'+asterisk+htmlHelpIcon(txtboite[identif_boite]['titre'])+'\
 			<input class="form-control form-control-sm solo '+ac+'"'+dico+' type="text" name="'+ identif_boite +'" id="'+ identif_boite +'" '+ plh  +mywidth +'" onchange="statusentry=1;"/>\
 		</div>';
 	return myfieldHTML;
@@ -437,7 +437,7 @@ function insert_dateboite (identif_boite, req=false, shrunk=false)
 	plh='placeholder="yyyy-mm-dd"';
 	var myfieldHTML =
 		'<div '+divclass+'>\
-			<label for="name" class="labeldiv">'+ dateboite[identif_boite]['titre'] +'</label>'+asterisk+htmlHelpIcon(dateboite[identif_boite]['titre'])+'\
+			<span class="labeldiv">'+ dateboite[identif_boite]['titre'] +'</span>'+asterisk+htmlHelpIcon(dateboite[identif_boite]['titre'])+'\
 			<input class="form-control form-control-sm solo '+ac+'"'+dico+' type="text" name="'+ identif_boite +'" id="'+ identif_boite +'" '+ plh  +mywidth +'" onchange="statusentry=1;"/>\
 		</div>';
 	return myfieldHTML;
@@ -448,7 +448,7 @@ function insert_areaboite (identif_boite, req=false)
 	var asterisk=''; if (req) asterisk = mandatory
 	var myfieldHTML =
 		'<div class="form-group2 div-group">\
-			<label for="'+ identif_boite +'" class="labeldiv">'+ areaboite[identif_boite]['titre'] +'</label>'+asterisk+htmlHelpIcon(areaboite[identif_boite]['titre'])+'\
+			<span class="labeldiv">'+ areaboite[identif_boite]['titre'] +'</span>'+asterisk+htmlHelpIcon(areaboite[identif_boite]['titre'])+'\
 			<textarea class="form-control form-control-sm" name="'+ identif_boite +'" rows="'+ areaboite[identif_boite]['rows'] +'" cols="'+ areaboite[identif_boite]['cols'] +'" id="'+ identif_boite +'" onchange="statusentry=1;"></textarea>\
 		</div>';
 	return myfieldHTML;
@@ -529,9 +529,9 @@ function fill_elements (search=false)
 				localcpt++;
 				idobj=key+obj[i].replace(/ /g, "_");
 				var htmltemplate = '<div class="form-check form-check-inline">\
-									<label class="form-check-label" for="'+ key + obj[i] +'">\
+									<span class="form-check-label">\
 									<input type="checkbox" name="'+ key + '-' + localcpt + '" value="'+ obj[i] +'" class="form-check-input '+ key +'" id="'+ idobj +'" onchange="statusentry=1;">\
-									'+ obj[i] +'</label></div>';
+									'+ obj[i] +'</span></div>';
 				$('#' + key + ' fieldset').append(htmltemplate);
 			}
 		}

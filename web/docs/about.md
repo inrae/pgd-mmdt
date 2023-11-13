@@ -33,7 +33,7 @@
 [3]: https://www.emergin.fr/emergin_eng/
 [4]: https://prosodie.cati.inrae.fr/
 [5]: https://gedeop.cati.inrae.fr/
-[6]: https://www.inrae.fr/departements/sa
+[6]: https://www.inrae.fr/en/divisions/sa
 [7]: https://nextcloud.inrae.fr/s/HxEWSybeBW8rzke
 [8]: https://recherche.data.gouv.fr/en
 [9]: https://nextcloud.inrae.fr/s/iLHQYoAZp2i6ij7

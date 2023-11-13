@@ -216,7 +216,7 @@
 			</div>
 			<div class="custom-file">
 				<input type="file" class="custom-file-input" id="selectFiles">
-				<label class="custom-file-label" id="inputGroupFile01" for="inputGroupFile01"></label>
+				<label class="custom-file-label" id="inputGroupFile01" for="selectFiles"></label>
 			</div>
 		</div>
 	</div></td></tr>
@@ -228,7 +228,7 @@
 <div id="saveForm" class="saveForm" enctype="multipart/form-data" autocomplete="off" action="#" style="display: none;">
 	<strong>Download as a JSON file</strong>
 	<form id ="saveform" name="saveform" >
-		<br><label>Filename:</label>&nbsp;&nbsp;<b>META_</b>&nbsp;<input id="jsonName" name="jsonName" type="text">&nbsp;<b>.json</b><br><br>
+		<br><span>Filename:</span>&nbsp;&nbsp;<b>META_</b>&nbsp;<input id="jsonName" name="jsonName" type="text">&nbsp;<b>.json</b><br><br>
 		<span><center>
 			<input type="submit" value="Save" class="btn btn-primary" />
 			<input type="reset" value="Cancel" class="btn btn-primary"/>
