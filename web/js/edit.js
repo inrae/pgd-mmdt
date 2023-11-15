@@ -273,7 +273,8 @@ $(document).on('click', '.save', function()
 });
 
 
-$(document).on('click', '.delete', function() {
+$(document).on('click', '.delete', function()
+{
 	var value = 'x';
 	var editCurrentCell = false;
 	if (newflg || editflg) {
@@ -294,7 +295,8 @@ $(document).on('click', '.delete', function() {
 });
 
 
-$(document).on('click', '.add, .btn-add', function() {
+$(document).on('click', '.add, .btn-add', function()
+{
 	var tdcols='';
 	var api_id=-1;
 	nbitems += 1;
