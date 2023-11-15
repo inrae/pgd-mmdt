@@ -3,7 +3,7 @@ FROM php:7.4-apache
 
 LABEL version-date="2023-11-14"
 
-# Set TIMEZONE - Important for PHP to work well
+# Set TIMEZONE - Important for PHP
 ENV TZ=Europe/Paris
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 
@@ -16,5 +16,5 @@ RUN apt-get update && apt-get install -y openssl libssl-dev libcurl4-openssl-dev
 # Do some cleaning
 RUN mkdir /etc/pgd-mmdt && rm -rf /tmp/pear
 
-# Set header is in respect of CORS into the Apache configuration
+# Apache configuration : Set header in respect of CORS
 RUN a2enmod headers && sed -ri -e 's/^([ \t]*)(<\/VirtualHost>)/\1\tHeader set Access-Control-Allow-Origin "*"\n\1\2/g' /etc/apache2/sites-available/*.conf
