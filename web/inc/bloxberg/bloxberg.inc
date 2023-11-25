@@ -14,7 +14,7 @@ $dataset = '';
 if (isset($_GET['dataset'])) $dataset = $_GET['dataset'];
 
 if( isset($_POST['btnpush']) ) {
-	$API_TOKEN=$_POST['token'];
+	$BC_API_TOKEN=$_POST['token'];
 	$BC_SERVER_URL=$_POST['server'];
 	$PUBLICKEY=$_POST['publickey'];
 	$jsontype = intval($_POST['jsontype']);
@@ -209,6 +209,11 @@ do
 	if ($jsontype==1 && strlen(trim($_POST['dataset']))) {
 		$path = dirname(str_replace('/pgd_data', '/mnt', $array_dataset[ $_POST['dataset'] ]));
 		$name = basename(str_replace('/pgd_data', '/mnt', $array_dataset[ $_POST['dataset'] ]));
+		if (!file_exists($path.'/'.$auth_bloxberg_file)) {
+			$msg='Error: Certifaction of the metadata in the Bloxberg blockchain is not allow for this dataset !!!';
+			echo "<script>$('#errboxmsg').html('".$msg."'); $('#errbox').css('display','block');</script>";
+			break;
+		}
 		if (is_dir($path) && is_readable($path)) {
 			$json = file_get_contents($path.'/'.$name);
 		}

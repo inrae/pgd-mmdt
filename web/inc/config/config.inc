@@ -104,6 +104,10 @@ $BB_API_TOKEN='';
 $bloxberg_urls = array('https://certify.bloxberg.org/');
 $export_bloxberg = 0;
 
+// Name of the file that must be present in the data directory to authorize 
+// the transfer of the metadata file to the Bloxberg Blockchain
+$auth_bloxberg_file = 'META_bloxberg_ok.txt';
+
 #------------------------
 
 // Vocabulary cache file
