@@ -110,7 +110,7 @@ if ($ret>0) {
 <?php echo $header_title ?>
 <br><br>
 
-<h1>Bloxberg Blockchain <a href="https://forgemia.inra.fr/blockchain-esr" target="_blank"><i class="bi bi-question-octagon-fill" style="color:grey; font-size: 20px"></i></a></h1>
+<h1>EXPERIMENTAL - Bloxberg Blockchain <a href=<? echo $maggot_doc_url.'bloxberg' ?>" target="_blank"><i class="bi bi-question-octagon-fill" style="color:grey; font-size: 20px"></i></a></h1>
 <br>
 
 <section>
@@ -210,7 +210,7 @@ do
 		$path = dirname(str_replace('/pgd_data', '/mnt', $array_dataset[ $_POST['dataset'] ]));
 		$name = basename(str_replace('/pgd_data', '/mnt', $array_dataset[ $_POST['dataset'] ]));
 		if (!file_exists($path.'/'.$auth_bloxberg_file)) {
-			$msg='Error: Certifaction of the metadata in the Bloxberg blockchain is not allow for this dataset !!!';
+			$msg='Error: Certification of the metadata in the Bloxberg blockchain is not allowed for this dataset !!!';
 			echo "<script>$('#errboxmsg').html('".$msg."'); $('#errbox').css('display','block');</script>";
 			break;
 		}
