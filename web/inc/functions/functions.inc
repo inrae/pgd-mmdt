@@ -76,6 +76,17 @@ function tsvToArray($tsv, $header=false)
 	return $tsvArray;
 }
 
+// Read a dictionnary
+function getDicoValues ($diconame)
+{
+	global $cvdir;
+	$dicovalues = array();
+	$dicofile = $cvdir.$diconame.'/'.$diconame.'.txt';
+	if ( is_dir($cvdir.$diconame) && file_exists($dicofile) )
+		$dicovalues = tsvToArray($dicofile);
+	return $dicovalues;
+}
+
 // Get the html code for $val
 function display_array ($val)
 {

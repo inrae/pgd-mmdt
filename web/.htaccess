@@ -27,14 +27,14 @@ Header set Access-Control-Allow-Origin "*"
 </Files>
 
 # PDF, XML & Images
-<Files ~ "\.(pdf|xml|xsl|jpg|gif|png|ico|svg)$">
+<Files ~ "\.(pdf|xml|xsl|jpg|gif|png|ico|svg|zip)$">
   Order allow,deny
   allow from all
 </Files>
 
 
 # entries
-<Files ~ "(entry|search|view|metadata|config|check|doc|dataverse|zenodo|oai)$">
+<Files ~ "(entry|search|view|metadata|config|check|doc|dataverse|zenodo|oai|bloxberg)$">
   Order allow,deny
   allow from all
   AcceptPathInfo On

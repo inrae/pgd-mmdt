@@ -7,9 +7,11 @@ function dvTypeahead () {
 		minLength: 3
 	},
 	{
+		limitget: 10,
+        limitview : 6,
 		async: true,
 		source: function (query, processSync, processAsync) {
-			url = DV_API_URL + '?type=dataverse&q=' + encodeURIComponent(query);
+			url = DV_API_URL + '?type=dataverse&q=' + encodeURIComponent(query)+'*';
 			return $.ajax({
 				url: url,
 				type: 'GET',

@@ -96,6 +96,16 @@ $export_zenodo = 1;
 $oaipmh_conf= 'conf/oai-pmh.txt';
 $export_oai = 1;
 
+#------------------------
+
+// EXPERIMENTAL : Bloxberg Blockchain
+$BB_PUBLICKEY='0xC604ffa8adE14dc9A22B6B19bdFC07E489156E53';
+$BB_API_TOKEN='';
+$bloxberg_urls = array('https://certify.bloxberg.org/');
+$export_bloxberg = 0;
+
+#------------------------
+
 // Vocabulary cache file
 $vocab_cache_file = 'cache/vocabulary.txt';
 $nofound_cache_file = 'cache/nofound.txt';

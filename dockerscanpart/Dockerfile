@@ -1,5 +1,6 @@
 # syntax=docker/dockerfile:1
 FROM ubuntu:20.04
+LABEL version-date="2022-07-29"
 
 # Install modules
 RUN apt-get update && \
