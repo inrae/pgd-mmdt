@@ -110,14 +110,14 @@ if ($ret>0) {
 <?php echo $header_title ?>
 <br><br>
 
-<h1>EXPERIMENTAL - Bloxberg Blockchain <a href=<? echo $maggot_doc_url.'bloxberg' ?>" target="_blank"><i class="bi bi-question-octagon-fill" style="color:grey; font-size: 20px"></i></a></h1>
+<h1>EXPERIMENTAL - Bloxberg Blockchain <a href="<? echo $maggot_doc_url.'bloxberg' ?>" target="_blank"><i class="bi bi-question-octagon-fill" style="color:grey; font-size: 20px"></i></a></h1>
 <br>
 
 <section>
 	<div id="push" style="display: block; max-width:1000px; margin:auto;">
 		<br/>
 		<form id="formpush" name="formpush" action="?dataset=<? echo $dataset ?>" onsubmit="return check()" autocomplete="off" method="post" enctype="multipart/form-data">
-			<h2>Certify metadata on the Bloxberg blockchain</h2>
+			<h2>Registration of Metadata on the Bloxberg blockchain</h2>
 			<div class="btn-group gr-jsontype" role="group">
 				<button type="button" id="jsontype1" class="btn btn-secondary activated" onclick="selectjson(1);">Internal JSON</button>
 				<button type="button" id="jsontype2" class="btn btn-secondary" onclick="selectjson(2);">External JSON</button>
