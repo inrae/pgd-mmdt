@@ -143,7 +143,7 @@ if ($ret>0) {
 		</form>
 	</div>
 	<div id="waiting" style="display: none; max-width:1000px; margin:auto;">
-		<br><br><img src="img/throbber.gif" width="100px">
+		<br><br><img src="<? echo $PATH ?>img/throbber.gif" width="100px">
 	</div>
 	<div id="result" style="display: block">
 		<br>
