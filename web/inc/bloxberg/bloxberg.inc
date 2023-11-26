@@ -273,9 +273,9 @@ do
 	// Display links to input/output JSON files
 	$ds=$metadata['title'];
 	$arr_links = array();
-	$arr_links[0]=array('Metadata file',$PATH.$input_url,$name);
-	$arr_links[1]=array('Bloxberg query',$PATH.$BBjson_url,'bloxberg_query_'.$ds.'.json');
-	$arr_links[2]=array('Bloxberg response',$PATH.$RESPjson_url,'bloxberg_response_'.$ds.'.json');
+	$arr_links[0]=array('Metadata file',$PATH.$input_url,$name,$PATH,"Metadata");
+	$arr_links[1]=array('Bloxberg query',$PATH.$BBjson_url,'bloxberg_query_'.$ds.'.json',$PATH,"Query");
+	$arr_links[2]=array('Bloxberg response',$PATH.$RESPjson_url,'bloxberg_response_'.$ds.'.json',$PATH,"Response");
 
 	echo "<script>$('#push').css('display','none');</script>";
 	echo "<script>$('#link').html('".box_links($arr_links)."');</script>";
@@ -292,20 +292,22 @@ do
 	# CURL request to the bloxberg API (/generatePDF)
 	$output_js = generatePDF_api_bloxberg($response_js, $ZIP_url);
 	if (file_exists($ZIP_url)) {
-		$arr_links[3]=array('Bloxberg certificate',$PATH.$ZIP_url,'bloxberg_certificate_'.$ds.'.zip');
+		$arr_links[3]=array('Bloxberg certificate',$PATH.$ZIP_url,'bloxberg_certificate_'.$ds.'.zip',$PATH,"Certificate");
 		$htmlsuccess = "Success : the metadata file has been certified on the bloxberg blockchain";
 		$htmlsuccess.= "<br>Download the ZIP which contains the corresponding certificate as a PDF file";
 		echo "<script>$('#successmsg').html('".$htmlsuccess."'); $('#successresp').css('display','block');</script>";
+		$flglink=1;
 	} else {
 		$error_url = 'tmp/'.genKEY().'.json';
 		file_put_contents($error_url, $output_js);
-		$arr_links[3]=array('Bloxberg error',$PATH.$error_url,'bloxberg_error_'.$ds.'.json');
+		$arr_links[3]=array('Bloxberg error',$PATH.$error_url,'bloxberg_error_'.$ds.'.json',$PATH,"Error");
 		$msg='Error: Fail to generate the PDF of the bloxberg certificate !!!';
 		echo "<script>$('#errboxmsg').html('".$msg."'); $('#errbox').css('display','block');</script>";
+		$flglink=0;
 	}
 
 	echo "<script>$('#push').css('display','none');</script>";
-	echo "<script>$('#link').html('".box_links($arr_links)."');</script>";
+	echo "<script>$('#link').html('".box_links($arr_links, $flglink)."');</script>";
 
 } while(0);
 

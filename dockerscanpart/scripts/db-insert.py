@@ -78,13 +78,13 @@ if os.path.getsize(db_final_commands)>10:
     final_file_dict = get_json(db_final_commands)
 
     # Creation base + insertion des données
-    database = urllib.parse.quote_plus('pgd-db')
+    database = urllib.parse.quote_plus(config.database)
     username = urllib.parse.quote_plus(config.username)
     password = urllib.parse.quote_plus(config.password)
     dbserver = urllib.parse.quote_plus(config.dbserver)
     dbport = str(config.dbport)
     client = MongoClient("mongodb://"+username+":"+password+"@"+dbserver+":"+dbport+"/"+database)
-    db = client['pgd-db']
+    db = client[config.database]
     collection_metadata = db['metadata']
     collection_metadata.drop()
     collection_metadata.insert_many(final_file_dict)

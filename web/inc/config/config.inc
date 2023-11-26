@@ -94,7 +94,7 @@ $export_zenodo = 1;
 
 // OAI-PMH
 $oaipmh_conf= 'conf/oai-pmh.txt';
-$export_oai = 1;
+$export_oai = 0;
 
 #------------------------
 

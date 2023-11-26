@@ -65,10 +65,10 @@ function certify_api_bloxberg($BBjson, $mode='POST') {
 	$header = 'api_key:'.$BC_API_TOKEN;
 	$content_type = "Content-Type: application/json";
 	$accept = 'accept: application/json';
-    $request = 'createBloxbergCertificate';
+	$request = 'createBloxbergCertificate';
 	$jqBBjson = preg_replace('/\s+/', ' ', str_replace("\r", '', str_replace("\n", '', $BBjson)));
 	$upload = '{ "publicKey": "'.$PUBLICKEY.'", "crid": [ "'.hash('sha256', $jqBBjson).'" ],  "cridType": "sha2-256",  "enableIPFS": false, "metadataJson": "'.addslashes($jqBBjson).'" }';
-    if ($LOG) echo "<script>console.log('".addslashes($upload)."');</script>";
+	if ($LOG) echo "<script>console.log('".addslashes($upload)."');</script>";
 	$cmd='curl -H "'.$header.'" -H "'.$accept.'" -H "'.$content_type.'" -X '.$mode.' '.$BC_SERVER_URL.$request.' -d \''.$upload.'\'';
 	return exec_cmd_api($cmd);
 }
@@ -83,7 +83,7 @@ function generatePDF_api_bloxberg($BBjson, $output_zip, $mode='POST') {
 	$header = 'api_key:'.$BC_API_TOKEN;
 	$content_type = "Content-Type: application/json";
 	$accept = 'accept: application/json';
-    $request = 'generatePDF';
+	$request = 'generatePDF';
 	$jqBBjson = preg_replace('/\s+/', ' ', str_replace("\r", '', str_replace("\n", '', $BBjson)));
 	//$upload = addslashes($jqBBjson);
 	$upload = $jqBBjson;
