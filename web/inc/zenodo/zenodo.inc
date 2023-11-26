@@ -298,9 +298,9 @@ do
 
 	$ds=$metadata['title'];
 	$arr_links = array();
-	$arr_links[0]=array('Zendo definition file',$output1,$zenodo_conf, $PATH, "Zenodo");
-	$arr_links[1]=array('Input file',$PATH.$input_url,$name, $PATH, "Input");
-	$arr_links[2]=array('Output file',$PATH.$json_url,'zenodo_'.$ds.'.json',$PATH, "Output");
+	$arr_links[0]=array('Zendo definition file',$output1,$zenodo_conf, $PATH.$zenodo_conf, "Zenodo");
+	$arr_links[1]=array('Input file',$PATH.$input_url,$name, $PATH.$input_url, "Input");
+	$arr_links[2]=array('Output file',$PATH.$json_url,'zenodo_'.$ds.'.json',$PATH.$json_url, "Output");
 	
 	echo "<script>$('#push').css('display','none');</script>";
 	echo "<script>$('#link').html('".box_links($arr_links,0)."');</script>";

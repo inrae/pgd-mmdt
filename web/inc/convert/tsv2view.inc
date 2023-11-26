@@ -54,7 +54,7 @@ do
 		$output1 = 'tmp/'.genKEY().'.html';
 		file_put_contents($output_txt, json2tsv());
 		file_put_contents($output1, tsv2html($output_txt));
-		$arr_links[$nb_links]=array('Terminology definition file',$PATH.$output1,$terms_url,$PATH,"Terminology", $maggot_doc_url.'definitions/terminology/');
+		$arr_links[$nb_links]=array('Terminology definition file',$PATH.$output1,$terms_url,$PATH.$output_txt,"Terminology", $maggot_doc_url.'definitions/terminology/');
 		$nb_links++;
 	}
 
@@ -65,7 +65,7 @@ do
 		// Display link to the Dataverse definition files
 		$output2 = 'tmp/'.genKEY().'.html';
 		file_put_contents($output2, tsv2html($doc_url));
-		$arr_links[$nb_links]=array('Documentation definition file',$PATH.$output2,$doc_url,$PATH, "Documentation", $maggot_doc_url.'definitions/terminology/');
+		$arr_links[$nb_links]=array('Documentation definition file',$PATH.$output2,$doc_url,$PATH.$doc_url, "Documentation", $maggot_doc_url.'definitions/terminology/');
 		$nb_links++;
 	}
 
@@ -76,7 +76,7 @@ do
 		// Display link to the Mapping definition files
 		$output4 = 'tmp/'.genKEY().'.html';
 		file_put_contents($output4, tsv2html($mapping_conf));
-		$arr_links[$nb_links]=array('Mapping definition file',$PATH.$output4,$mapping_conf,$PATH, "Mapping", $maggot_doc_url.'definitions/mapping/');
+		$arr_links[$nb_links]=array('Mapping definition file',$PATH.$output4,$mapping_conf,$PATH.$mapping_conf, "Mapping", $maggot_doc_url.'definitions/mapping/');
 		$nb_links++;
 	}
 
@@ -88,7 +88,7 @@ do
 			// Display link to the Dataverse definition files
 			$output3 = 'tmp/'.genKEY().'.html';
 			file_put_contents($output3, tsv2html($dataverse_conf));
-			$arr_links[$nb_links]=array('Dataverse definition file',$PATH.$output3,$dataverse_conf,$PATH,"Dataverse", $maggot_doc_url.'definitions/dataverse/');
+			$arr_links[$nb_links]=array('Dataverse definition file',$PATH.$output3,$dataverse_conf,$PATH.$dataverse_conf,"Dataverse", $maggot_doc_url.'definitions/dataverse/');
 			$nb_links++;
 		}
 
@@ -100,7 +100,7 @@ do
 			// Display link to the Mapping definition files
 			$output6 = 'tmp/'.genKEY().'.html';
 			file_put_contents($output6, tsv2html($zenodo_conf));
-			$arr_links[$nb_links]=array('Zenodo definition file',$PATH.$output6,$zenodo_conf,$PATH, "Zenodo", $maggot_doc_url.'definitions/zenodo/');
+			$arr_links[$nb_links]=array('Zenodo definition file',$PATH.$output6,$zenodo_conf,$PATH.$zenodo_conf, "Zenodo", $maggot_doc_url.'definitions/zenodo/');
 			$nb_links++;
 		}
 
@@ -112,7 +112,7 @@ do
 			// Display link to the Mapping definition files
 			$output5 = 'tmp/'.genKEY().'.html';
 			file_put_contents($output5, tsv2html($jsonld_conf));
-			$arr_links[$nb_links]=array('JSON-LD definition file',$PATH.$output5,$jsonld_conf,$PATH, "JSON-LD", $maggot_doc_url.'definitions/json-ld/');
+			$arr_links[$nb_links]=array('JSON-LD definition file',$PATH.$output5,$jsonld_conf,$PATH.$jsonld_conf, "JSON-LD", $maggot_doc_url.'definitions/json-ld/');
 			$nb_links++;
 		}
 
@@ -124,7 +124,7 @@ do
 			// Display link to the Mapping definition files
 			$output7 = 'tmp/'.genKEY().'.html';
 			file_put_contents($output7, tsv2html($oaipmh_conf));
-			$arr_links[$nb_links]=array('OAI-PMH definition file',$PATH.$output7,$oaipmh_conf,$PATH, "OAI-PMH", $maggot_doc_url.'definitions/oai-pmh/');
+			$arr_links[$nb_links]=array('OAI-PMH definition file',$PATH.$output7,$oaipmh_conf,$PATH.$oaipmh_conf, "OAI-PMH", $maggot_doc_url.'definitions/oai-pmh/');
 			$nb_links++;
 		}
 
