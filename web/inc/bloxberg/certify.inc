@@ -26,7 +26,7 @@ function json2bloxberg($metadata)
 	foreach ($metadata['contacts'] as $contact)
 		$BBjson .= '  "dc:creator": "https://orcid.org/'. $dico[find_dico($dico, $contact)][3].'",';
 	$BBjson .= '  "dc:language": "en",
-  "dc:format": "application/ld+json",
+  "dc:format": "application/json",
   "dc:title": "'.$metadata[$maggot_fulltitle].'",
   "dc:subject": "https://id.loc.gov/authorities/subjects/sh96000740",
   "dc:date": "'.date('Y-m-d\TH:i:s').substr((string)microtime(), 1, 8).'Z",
@@ -38,7 +38,7 @@ function json2bloxberg($metadata)
 	$BBjson .= join(',',$ror_array).'],
   "dc:rights":"http://spdx.org/licenses/CC-BY-NC-SA-4.0.json",
   "dc:identifier": {
-    "@value": "'.$APPURL.'/metadata/'.$metadata['title'].'?format=jsonld",
+    "@value": "'.$APPURL.'/metadata/'.$metadata['title'].'?format=maggot",
     "@type": "http://purl.org/dc/terms/URI"
     }
 }';
@@ -52,7 +52,8 @@ function json2bloxberg($metadata)
 # PUBLICKEY : Bloxberg wallet address (Positional parameter 2).
 # --------------------------------------------------------------------------------------------
 
-function exec_cmd_api($cmd) {
+function exec_cmd_api($cmd)
+{
 	global $LOG;
 	if ($LOG) echo "<script>console.log('".addslashes($cmd)."');</script>";
 	$output_js=shell_exec($cmd);
@@ -60,14 +61,21 @@ function exec_cmd_api($cmd) {
 	return $output_js;
 }
 
-function certify_api_bloxberg($BBjson, $mode='POST') {
-	global $BC_API_TOKEN, $BC_SERVER_URL, $PUBLICKEY, $LOG;
+function get_json_request($BBjson, $metadata_json)
+{
+	global $PUBLICKEY;
+	$jqBBjson = preg_replace('/\s+/', ' ', str_replace("\r", '', str_replace("\n", '', $BBjson)));
+	$upload = '{ "publicKey": "'.$PUBLICKEY.'", "crid": [ "'.hash('sha256', $metadata_json).'" ],  "cridType": "sha2-256",  "enableIPFS": false, "metadataJson": "'.addslashes($jqBBjson).'" }';
+	return $upload;
+}
+
+function certify_api_bloxberg($upload, $mode='POST')
+{
+	global $BC_API_TOKEN, $BC_SERVER_URL, $LOG;
 	$header = 'api_key:'.$BC_API_TOKEN;
 	$content_type = "Content-Type: application/json";
 	$accept = 'accept: application/json';
 	$request = 'createBloxbergCertificate';
-	$jqBBjson = preg_replace('/\s+/', ' ', str_replace("\r", '', str_replace("\n", '', $BBjson)));
-	$upload = '{ "publicKey": "'.$PUBLICKEY.'", "crid": [ "'.hash('sha256', $jqBBjson).'" ],  "cridType": "sha2-256",  "enableIPFS": false, "metadataJson": "'.addslashes($jqBBjson).'" }';
 	if ($LOG) echo "<script>console.log('".addslashes($upload)."');</script>";
 	$cmd='curl -H "'.$header.'" -H "'.$accept.'" -H "'.$content_type.'" -X '.$mode.' '.$BC_SERVER_URL.$request.' -d \''.$upload.'\'';
 	return exec_cmd_api($cmd);
@@ -78,7 +86,8 @@ function certify_api_bloxberg($BBjson, $mode='POST') {
 # The JSON content that must be sent to the API is the JSON response obtained after certification
 # --------------------------------------------------------------------------------------------
 
-function generatePDF_api_bloxberg($BBjson, $output_zip, $mode='POST') {
+function generatePDF_api_bloxberg($BBjson, $output_zip, $mode='POST')
+{
 	global $BC_API_TOKEN, $BC_SERVER_URL, $PUBLICKEY, $LOG;
 	$header = 'api_key:'.$BC_API_TOKEN;
 	$content_type = "Content-Type: application/json";

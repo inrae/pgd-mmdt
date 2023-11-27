@@ -203,6 +203,7 @@ do
 
 	$input_url = 'tmp/'.genKEY().'.json';
 	$BBjson_url = 'tmp/'.genKEY().'.json';
+	$Upload_url = 'tmp/'.genKEY().'.json';
 	$RESPjson_url = 'tmp/'.genKEY().'.json';
 	$ZIP_url = 'tmp/'.genKEY().'.zip';
 
@@ -215,7 +216,7 @@ do
 			break;
 		}
 		if (is_dir($path) && is_readable($path)) {
-			$json = file_get_contents($path.'/'.$name);
+			$meta_json = file_get_contents($path.'/'.$name);
 		}
 	}
 
@@ -233,25 +234,20 @@ do
 		$tmpName = $_FILES['jsonfile']['tmp_name'];
 		echo "<script>$('#label').html('".$name."');</script>"; // document.getElementById('label').innerHTML='$name';
 	
-		$json = file_get_contents($tmpName);
+		$meta_json = file_get_contents($tmpName);
 	}
 
-	$metadata = json_decode($json, true);
+	$metadata = json_decode($meta_json, true);
 	if ( gettype($metadata)!== 'array' || count($metadata)==0 ) {
 		$msg='Error: '.$name.' is not a valid json file !!!';
 		echo "<script>$('#errboxmsg').html('".$msg."'); $('#errbox').css('display','block');</script>";
 		break;
 	}
+	file_put_contents($input_url, $meta_json);
+
 //echo "<br><pre>"; print_r ($metadata); echo "</pre><br>";
 //echo "<br><pre>"; print_r (array_keys($metadata)); echo "</pre><br>"; 
 
-	$meta_json=$json;
-	if ($export_jsonld) {
-		$meta_json='';
-		$msg = maggot2schema ($json, $meta_json);
-		if (strlen($msg)) $meta_json=$json;
-	}
-	file_put_contents($input_url, $meta_json);
 
 	// Create the Bloxberg JSON file
 	$BBjson= json2bloxberg($metadata);
@@ -260,10 +256,12 @@ do
 		echo "<script>$('#errboxmsg').html('".$msg."'); $('#errbox').css('display','block');</script>";
 		break;
 	}
-	file_put_contents($BBjson_url, $BBjson);	
+	file_put_contents($BBjson_url, $BBjson);
 
 	# Bloxberg API calling  to certify the metadata file on the bloxberg blockchain.
-	$response_js = certify_api_bloxberg($BBjson);
+	$upload_js = get_json_request($BBjson,$meta_json);
+	$response_js = certify_api_bloxberg($upload_js);
+	file_put_contents($Upload_url, $upload_js);
 	file_put_contents($RESPjson_url, $response_js);
 
 //$test_url = 'tmp/bloxberg_json_response.json';
@@ -275,8 +273,9 @@ do
 	$path='tmp/';
 	$arr_links = array();
 	$arr_links[0]=array('Metadata file',$PATH.$input_url,$name,$PATH.$input_url,"Metadata");
-	$arr_links[1]=array('Bloxberg query',$PATH.$BBjson_url,'bloxberg_query_'.$ds.'.json',$PATH.$BBjson_url,"Query");
-	$arr_links[2]=array('Bloxberg response',$PATH.$RESPjson_url,'bloxberg_response_'.$ds.'.json',$PATH.$RESPjson_url,"Response");
+	$arr_links[1]=array('Bloxberg metadata',$PATH.$BBjson_url,'bloxberg_metadata_'.$ds.'.json',$PATH.$BBjson_url,"Metadata");
+	$arr_links[2]=array('Bloxberg query',$PATH.$Upload_url,'bloxberg_query_'.$ds.'.json',$PATH.$Upload_url,"Query");
+	$arr_links[3]=array('Bloxberg response',$PATH.$RESPjson_url,'bloxberg_response_'.$ds.'.json',$PATH.$RESPjson_url,"Response");
 	$flglink=0;
 	echo "<script>$('#push').css('display','none');</script>";
 	echo "<script>$('#link').html('".box_links($arr_links, $flglink)."');</script>";
@@ -293,7 +292,7 @@ do
 	# CURL request to the bloxberg API (/generatePDF)
 	$output_js = generatePDF_api_bloxberg($response_js, $ZIP_url);
 	if (file_exists($ZIP_url)) {
-		$arr_links[3]=array('Bloxberg certificate',$PATH.$ZIP_url,'bloxberg_certificate_'.$ds.'.zip',$PATH.$ZIP_url,"Certificate");
+		$arr_links[4]=array('Bloxberg certificate',$PATH.$ZIP_url,'bloxberg_certificate_'.$ds.'.zip',$PATH.$ZIP_url,"Certificate");
 		$htmlsuccess = "Success : the metadata file has been certified on the bloxberg blockchain";
 		$htmlsuccess.= "<br>Download the ZIP which contains the corresponding certificate as a PDF file";
 		echo "<script>$('#successmsg').html('".$htmlsuccess."'); $('#successresp').css('display','block');</script>";
@@ -301,7 +300,7 @@ do
 	} else {
 		$error_url = 'tmp/'.genKEY().'.json';
 		file_put_contents($error_url, $output_js);
-		$arr_links[3]=array('Bloxberg error',$PATH.$error_url,'bloxberg_error_'.$ds.'.json',$PATH.$error_url,"Error");
+		$arr_links[4]=array('Bloxberg error',$PATH.$error_url,'bloxberg_error_'.$ds.'.json',$PATH.$error_url,"Error");
 		$msg='Error: Fail to generate the PDF of the bloxberg certificate !!!';
 		echo "<script>$('#errboxmsg').html('".$msg."'); $('#errbox').css('display','block');</script>";
 		$flglink=0;
