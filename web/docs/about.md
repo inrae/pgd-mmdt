@@ -4,6 +4,9 @@
 # About
 ----
 
+[![bio.tools](https://img.shields.io/badge/bio.tools-maggot-orange)](https://bio.tools/maggot)
+[![identifiers](https://img.shields.io/badge/identifiers-maggot-blue)](https://registry.identifiers.org/registry/maggot)
+
 .
 
 ## Links
@@ -37,4 +40,5 @@
 [7]: https://nextcloud.inrae.fr/s/HxEWSybeBW8rzke
 [8]: https://recherche.data.gouv.fr/en
 [9]: https://nextcloud.inrae.fr/s/iLHQYoAZp2i6ij7
+[10]: https://registry.identifiers.org/registry/maggot
 
