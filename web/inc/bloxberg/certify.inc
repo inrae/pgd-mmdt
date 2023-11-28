@@ -1,6 +1,6 @@
 <?php
 #
-# Bloxberg Blockchain implementation 
+# bloxberg Blockchain implementation 
 #
 # Auteur(s): D.JACOB 
 # Copyright: (c) INRAE - 2022-2023
@@ -47,7 +47,7 @@ function json2bloxberg($metadata)
 
 
 # --------------------------------------------------------------------------------------------
-# Bloxberg API calling  to certify the metadata file on the bloxberg blockchain.
+# bloxberg API calling  to certify the metadata file on the bloxberg blockchain.
 # BC_API_TOKEN : API key provided by bloxberg (Positional parameter 1).
 # PUBLICKEY : Bloxberg wallet address (Positional parameter 2).
 # --------------------------------------------------------------------------------------------

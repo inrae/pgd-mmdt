@@ -1,6 +1,6 @@
 <?php
 #
-# Bloxberg Blockchain implementation 
+# bloxberg Blockchain implementation 
 #
 # Auteur(s): D.JACOB 
 # Copyright: (c) INRAE - 2022-2023
@@ -135,8 +135,8 @@ if ($ret>0) {
 				</div>
 			</div>
 			<div style="padding-bottom: 10px;"><b>bloxberg Server URL</b>:&nbsp;<select name="server" id="server" class="form-control form-control-sm"><? echo $options_server ?></select></div>
-			<div style="padding-bottom: 10px;"><b>Wallet bloxberg</b>:&nbsp;<input class="form-control form-control-sm solo" type="text" name="publickey" id="publickey" value="<? echo $PUBLICKEY ?>" /></div>
-			<div style="padding-bottom: 10px;"><b>API bloxberg</b>:&nbsp;<input class="form-control form-control-sm solo" type="text" name="token" id="token" value="<? echo $BC_API_TOKEN ?>" /></div>
+			<div style="padding-bottom: 10px;"><b>bloxberg Wallet identifier</b>:&nbsp;<input class="form-control form-control-sm solo" type="text" name="publickey" id="publickey" value="<? echo $PUBLICKEY ?>" /></div>
+			<div style="padding-bottom: 10px;"><b>bloxberg API Token</b>:&nbsp;<input class="form-control form-control-sm solo" type="text" name="token" id="token" value="<? echo $BC_API_TOKEN ?>" /></div>
 			<input type="submit" class="btn btn-primary" style="width: 100px;" id="btnpush" name="btnpush" value="Publish"/>
 			<input type="hidden" name="jsontype" id="jsontype" value="1">
 			<br>
