@@ -59,7 +59,7 @@ if ($ret>0) {
 <html lang="en" >
 
 <head>
-	<title>Maggot - Bloxberg Blockchain</title>
+	<title>Maggot - bloxberg blockchain</title>
 
 	<?php echo $HEAD ?>
 
@@ -85,7 +85,7 @@ if ($ret>0) {
 		var elements = form.querySelectorAll( "input.solo[type=text]" );
 		errmsg = "=== WARNING ===\nThe following field(s) must be defined :\n";
 		ret=true;
-		obj = { token: "API Bloxberg", publickey: "Wallet Bloxberg" }
+		obj = { token: "API bloxberg", publickey: "Wallet bloxberg" }
 		for( var i = 0; i < elements.length; ++i ) {
 			var element = elements[i];
 			var name = element.name;
@@ -110,14 +110,14 @@ if ($ret>0) {
 <?php echo $header_title ?>
 <br><br>
 
-<h1>EXPERIMENTAL - Bloxberg Blockchain <a href="<? echo $maggot_doc_url.'bloxberg' ?>" target="_blank"><i class="bi bi-question-octagon-fill" style="color:grey; font-size: 20px"></i></a></h1>
+<h1>EXPERIMENTAL - bloxberg Blockchain <a href="<? echo $maggot_doc_url.'bloxberg' ?>" target="_blank"><i class="bi bi-question-octagon-fill" style="color:grey; font-size: 20px"></i></a></h1>
 <br>
 
 <section>
 	<div id="push" style="display: block; max-width:1000px; margin:auto;">
 		<br/>
 		<form id="formpush" name="formpush" action="?dataset=<? echo $dataset ?>" onsubmit="return check()" autocomplete="off" method="post" enctype="multipart/form-data">
-			<h2>Registration of Metadata on the Bloxberg blockchain</h2>
+			<h2>Certification of metadata file on the bloxberg blockchain</h2>
 			<div class="btn-group gr-jsontype" role="group">
 				<button type="button" id="jsontype1" class="btn btn-secondary activated" onclick="selectjson(1);">Internal JSON</button>
 				<button type="button" id="jsontype2" class="btn btn-secondary" onclick="selectjson(2);">External JSON</button>
@@ -134,9 +134,9 @@ if ($ret>0) {
 					<label id="label" class="custom-file-label" for="jsonfile"></label>
 				</div>
 			</div>
-			<div style="padding-bottom: 10px;"><b>Bloxberg Server URL</b>:&nbsp;<select name="server" id="server" class="form-control form-control-sm"><? echo $options_server ?></select></div>
-			<div style="padding-bottom: 10px;"><b>Wallet Bloxberg</b>:&nbsp;<input class="form-control form-control-sm solo" type="text" name="publickey" id="publickey" value="<? echo $PUBLICKEY ?>" /></div>
-			<div style="padding-bottom: 10px;"><b>API Bloxberg</b>:&nbsp;<input class="form-control form-control-sm solo" type="text" name="token" id="token" value="<? echo $BC_API_TOKEN ?>" /></div>
+			<div style="padding-bottom: 10px;"><b>bloxberg Server URL</b>:&nbsp;<select name="server" id="server" class="form-control form-control-sm"><? echo $options_server ?></select></div>
+			<div style="padding-bottom: 10px;"><b>Wallet bloxberg</b>:&nbsp;<input class="form-control form-control-sm solo" type="text" name="publickey" id="publickey" value="<? echo $PUBLICKEY ?>" /></div>
+			<div style="padding-bottom: 10px;"><b>API bloxberg</b>:&nbsp;<input class="form-control form-control-sm solo" type="text" name="token" id="token" value="<? echo $BC_API_TOKEN ?>" /></div>
 			<input type="submit" class="btn btn-primary" style="width: 100px;" id="btnpush" name="btnpush" value="Publish"/>
 			<input type="hidden" name="jsontype" id="jsontype" value="1">
 			<br>
@@ -185,7 +185,7 @@ if ($ret>0) {
 
 do
 {
-	// Push a Maggot JSON to the Bloxberg Blockchain
+	// Push a Maggot JSON to the bloxberg blockchain
 	if ( ! isset($_POST['btnpush']) ) break;
 
 	$jsontype = intval($_POST['jsontype']);
@@ -211,7 +211,7 @@ do
 		$path = dirname(str_replace('/pgd_data', '/mnt', $array_dataset[ $_POST['dataset'] ]));
 		$name = basename(str_replace('/pgd_data', '/mnt', $array_dataset[ $_POST['dataset'] ]));
 		if (!file_exists($path.'/'.$auth_bloxberg_file)) {
-			$msg='Error: Certification of the metadata in the Bloxberg blockchain is not allowed for this dataset !!!';
+			$msg='Error: Certification of the metadata in the bloxberg blockchain is not allowed for this dataset !!!';
 			echo "<script>$('#errboxmsg').html('".$msg."'); $('#errbox').css('display','block');</script>";
 			break;
 		}
@@ -249,16 +249,16 @@ do
 //echo "<br><pre>"; print_r (array_keys($metadata)); echo "</pre><br>"; 
 
 
-	// Create the Bloxberg JSON file
+	// Create the bloxberg JSON file
 	$BBjson= json2bloxberg($metadata);
 	if (strlen($BBjson)==0) {
-		$msg='Error: Creation of the Bloxberg JSON file failed !!!';
+		$msg='Error: Creation of the bloxberg JSON file failed !!!';
 		echo "<script>$('#errboxmsg').html('".$msg."'); $('#errbox').css('display','block');</script>";
 		break;
 	}
 	file_put_contents($BBjson_url, $BBjson);
 
-	# Bloxberg API calling  to certify the metadata file on the bloxberg blockchain.
+	# bloxberg API calling  to certify the metadata file on the bloxberg blockchain.
 	$upload_js = get_json_request($BBjson,$meta_json);
 	$response_js = certify_api_bloxberg($upload_js);
 	file_put_contents($Upload_url, $upload_js);
@@ -273,9 +273,9 @@ do
 	$path='tmp/';
 	$arr_links = array();
 	$arr_links[0]=array('Metadata file',$PATH.$input_url,$name,$PATH.$input_url,"Metadata");
-	$arr_links[1]=array('Bloxberg metadata',$PATH.$BBjson_url,'bloxberg_metadata_'.$ds.'.json',$PATH.$BBjson_url,"Metadata");
-	$arr_links[2]=array('Bloxberg query',$PATH.$Upload_url,'bloxberg_query_'.$ds.'.json',$PATH.$Upload_url,"Query");
-	$arr_links[3]=array('Bloxberg response',$PATH.$RESPjson_url,'bloxberg_response_'.$ds.'.json',$PATH.$RESPjson_url,"Response");
+	$arr_links[1]=array('bloxberg metadata',$PATH.$BBjson_url,'bloxberg_metadata_'.$ds.'.json',$PATH.$BBjson_url,"Metadata");
+	$arr_links[2]=array('bloxberg query',$PATH.$Upload_url,'bloxberg_query_'.$ds.'.json',$PATH.$Upload_url,"Query");
+	$arr_links[3]=array('bloxberg response',$PATH.$RESPjson_url,'bloxberg_response_'.$ds.'.json',$PATH.$RESPjson_url,"Response");
 	$flglink=0;
 	echo "<script>$('#push').css('display','none');</script>";
 	echo "<script>$('#link').html('".box_links($arr_links, $flglink)."');</script>";
@@ -292,7 +292,7 @@ do
 	# CURL request to the bloxberg API (/generatePDF)
 	$output_js = generatePDF_api_bloxberg($response_js, $ZIP_url);
 	if (file_exists($ZIP_url)) {
-		$arr_links[4]=array('Bloxberg certificate',$PATH.$ZIP_url,'bloxberg_certificate_'.$ds.'.zip',$PATH.$ZIP_url,"Certificate");
+		$arr_links[4]=array('bloxberg certificate',$PATH.$ZIP_url,'bloxberg_certificate_'.$ds.'.zip',$PATH.$ZIP_url,"Certificate");
 		$htmlsuccess = "Success : the metadata file has been certified on the bloxberg blockchain";
 		$htmlsuccess.= "<br>Download the ZIP which contains the corresponding certificate as a PDF file";
 		echo "<script>$('#successmsg').html('".$htmlsuccess."'); $('#successresp').css('display','block');</script>";
@@ -300,7 +300,7 @@ do
 	} else {
 		$error_url = 'tmp/'.genKEY().'.json';
 		file_put_contents($error_url, $output_js);
-		$arr_links[4]=array('Bloxberg error',$PATH.$error_url,'bloxberg_error_'.$ds.'.json',$PATH.$error_url,"Error");
+		$arr_links[4]=array('bloxberg error',$PATH.$error_url,'bloxberg_error_'.$ds.'.json',$PATH.$error_url,"Error");
 		$msg='Error: Fail to generate the PDF of the bloxberg certificate !!!';
 		echo "<script>$('#errboxmsg').html('".$msg."'); $('#errbox').css('display','block');</script>";
 		$flglink=0;
