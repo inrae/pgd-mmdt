@@ -380,6 +380,13 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#updating-the-application" class="md-nav__link">
+    Updating the application
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -904,6 +911,13 @@ server<span class="w"> </span><span class="o">{</span>
 <li>To stop the application :
    <div class="highlight"><pre><span></span><code>sh<span class="w"> </span>./run<span class="w"> </span>stop
 </code></pre></div></li>
+</ul>
+<p><br></p>
+<h4 id="updating-the-application">Updating the application<a class="headerlink" href="#updating-the-application" title="Permanent link">&para;</a></h4>
+<p>When updating the application, it is imperative to preserve a whole set of configuration files as well as the content of certain directories (dictionaries, javascripts dedicated to vocabularies, etc.). An update script is available (<a href="https://github.com/inrae/pgd-mmdt/blob/main/etc/update-maggot.sh" target="_blank">./etc/update-maggot.sh</a>) preferably placed under '<strong>/usr/local/bin</strong>'. To preserve your configuration, it is recommended to create local configuration files.</p>
+<ul>
+<li>A first file '<strong>local.conf</strong>' will contain all the parameters to be preserved initially contained in the '<em><a href="https://github.com/inrae/pgd-mmdt/blob/main/run" target="_blank">run</a></em>' file.</li>
+<li>A second file '<strong>./web/inc/config/local.inc</strong>' will contain all the parameters to be preserved initially contained in the '<em><a href="https://github.com/inrae/pgd-mmdt/blob/main/web/inc/config/config.inc" target="_blank">./web/inc/config/config.inc</a></em>' file.</li>
 </ul>
 <hr />
 <h3 id="architecture-diagram">Architecture diagram<a class="headerlink" href="#architecture-diagram" title="Permanent link">&para;</a></h3>
