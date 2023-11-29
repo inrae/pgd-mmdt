@@ -33,14 +33,10 @@ $URL_FAIR="https://scholar.harvard.edu/files/mercecrosas/files/fairdata-datavers
 #------------------------
 
 // Get http protocol
-if (isset($_SERVER['HTTPS']) &&
-    ($_SERVER['HTTPS'] == 'on' || $_SERVER['HTTPS'] == 1) ||
-    isset($_SERVER['HTTP_X_FORWARDED_PROTO']) &&
-    $_SERVER['HTTP_X_FORWARDED_PROTO'] == 'https') {
-  $HTTP = 'https://';
-}
-else {
-  $HTTP = 'http://';
+if (isset($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROTO'] == 'https') {
+   $HTTP = 'https://';
+} else {
+   $HTTP = 'http://';
 }
 
 // Get the URL of the application
