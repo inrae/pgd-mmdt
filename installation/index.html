@@ -367,6 +367,13 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#launching-the-web-application-on-your-web-browser" class="md-nav__link">
+    Launching the web application on your web browser
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#stoping-the-application" class="md-nav__link">
     Stoping the application
   </a>
@@ -835,6 +842,59 @@ sh<span class="w"> </span>./run<span class="w"> </span>&lt;option&gt;
 <li>
 <p>You can also launch these 3 steps with a single command:
    <div class="highlight"><pre><span></span><code>sh<span class="w"> </span>./run<span class="w"> </span>fullstart
+</code></pre></div></p>
+</li>
+</ul>
+<p><br></p>
+<h4 id="launching-the-web-application-on-your-web-browser">Launching the web application on your web browser<a class="headerlink" href="#launching-the-web-application-on-your-web-browser" title="Permanent link">&para;</a></h4>
+<ul>
+<li>
+<p>Once the application is started, we can see if the containers are started using the following command:
+   <div class="highlight"><pre><span></span><code>docker<span class="w"> </span>ps<span class="w"> </span>-a
+</code></pre></div></p>
+</li>
+<li>
+<p>which should produce a result similar to the following:</p>
+</li>
+</ul>
+<pre style="color:#060606; font-size: 12px;">
+CONTAINER ID  IMAGE          COMMAND                 CREATED STATUS                  PORTS                                  NAMES
+5914504f456d  pgd-mmdt-web   "docker-php-entrypoi."  12 seconds ago   Up 10 seconds  0.0.0.0:8087->80/tcp, :::8087->80/tcp  mmdt-web
+226b13ed9467  pgd-mmdt-scan  "cron -f"               12 seconds ago   Up 11 seconds                                         mmdt-scan
+81fecbb56d23  pgd-mmdt-db    "docker-entrypoint.s."  13 seconds ago   Up 12 seconds  27017/tcp                              mmdt-db
+</pre>
+
+<ul>
+<li>
+<p>On the first line, the one which corresponds to the web interface, we see that port 80 of the docker is exported to port 8087 of the VM.
+Let's say that the IP address of your VM is 192.168.56.2, then in your browser you will need to put the URL <a href="http://192.168.56.2:8087/">http://192.168.56.2:8087/</a>. You can of course change the port number in the '<em><a href="https://github.com/inrae/pgd-mmdt/blob/main/run" target="_blank">run</a></em>' file.</p>
+</li>
+<li>
+<p>It may be preferable to use a lightweight http server like <a href="https://docs.nginx.com/nginx/admin-guide/web-server/web-server/" target="_blank">nginx</a> so that the Maggot URL will be <a href="http://192.168.56.2/maggot/">http://192.168.56.2/maggot/</a>. Below an example of config:
+   <div class="highlight"><pre><span></span><code><span class="c1">## /etc/nginx/nginx.conf</span>
+
+<span class="w">      </span><span class="c1"># Maggot</span>
+<span class="w">        </span>upstream<span class="w"> </span>maggot<span class="w">  </span><span class="o">{</span><span class="w"> </span>server<span class="w"> </span><span class="m">127</span>.0.0.1:8087<span class="p">;</span><span class="w"> </span><span class="o">}</span>
+
+
+<span class="c1">## /etc/nginx/conf.d/my-site.conf</span>
+
+server<span class="w"> </span><span class="o">{</span>
+<span class="w">    </span>listen<span class="w"> </span><span class="m">80</span><span class="w"> </span>default<span class="p">;</span>
+<span class="w">    </span>server_name<span class="w"> </span><span class="nv">$host</span><span class="p">;</span>
+
+
+<span class="w">    </span>location<span class="w"> </span>/maggot/<span class="w"> </span><span class="o">{</span>
+<span class="w">        </span>proxy_set_header<span class="w"> </span>Host<span class="w"> </span><span class="nv">$host</span><span class="p">;</span>
+<span class="w">        </span>proxy_set_header<span class="w"> </span>X-App-Name<span class="w"> </span><span class="s1">&#39;maggot&#39;</span><span class="p">;</span>
+<span class="w">        </span>proxy_set_header<span class="w"> </span>X-Real-Ip<span class="w"> </span><span class="nv">$remote_addr</span><span class="p">;</span>
+<span class="w">        </span>proxy_set_header<span class="w"> </span>X-Forwarded-Host<span class="w"> </span><span class="nv">$host</span><span class="p">;</span>
+<span class="w">        </span>proxy_set_header<span class="w"> </span>X-Forwarded-For<span class="w"> </span><span class="nv">$proxy_add_x_forwarded_for</span><span class="p">;</span>
+<span class="w">        </span>proxy_pass<span class="w"> </span>http://maggot/<span class="p">;</span>
+<span class="w">    </span><span class="o">}</span>
+
+
+<span class="o">}</span>
 </code></pre></div></p>
 </li>
 </ul>
