@@ -879,10 +879,13 @@ Let's say that the IP address of your VM is 192.168.56.2, then in your browser y
 <li>
 <p>It may be preferable to use a lightweight http server like <a href="https://docs.nginx.com/nginx/admin-guide/web-server/web-server/" target="_blank">nginx</a> so that the Maggot URL will be <a href="http://192.168.56.2/maggot/">http://192.168.56.2/maggot/</a>. Below an example of config:
    <div class="highlight"><pre><span></span><code><span class="c1">## /etc/nginx/nginx.conf</span>
+http<span class="w"> </span><span class="o">{</span>
 
-<span class="w">      </span><span class="c1"># Maggot</span>
-<span class="w">        </span>upstream<span class="w"> </span>maggot<span class="w">  </span><span class="o">{</span><span class="w"> </span>server<span class="w"> </span><span class="m">127</span>.0.0.1:8087<span class="p">;</span><span class="w"> </span><span class="o">}</span>
+...
+<span class="w">    </span>upstream<span class="w"> </span>maggot<span class="w">  </span><span class="o">{</span><span class="w"> </span>server<span class="w"> </span><span class="m">127</span>.0.0.1:8087<span class="p">;</span><span class="w"> </span><span class="o">}</span>
+...
 
+<span class="o">}</span>
 
 <span class="c1">## /etc/nginx/conf.d/my-site.conf</span>
 
@@ -890,6 +893,7 @@ server<span class="w"> </span><span class="o">{</span>
 <span class="w">    </span>listen<span class="w"> </span><span class="m">80</span><span class="w"> </span>default<span class="p">;</span>
 <span class="w">    </span>server_name<span class="w"> </span><span class="nv">$host</span><span class="p">;</span>
 
+...
 
 <span class="w">    </span>location<span class="w"> </span>/maggot/<span class="w"> </span><span class="o">{</span>
 <span class="w">        </span>proxy_set_header<span class="w"> </span>Host<span class="w"> </span><span class="nv">$host</span><span class="p">;</span>
@@ -900,6 +904,7 @@ server<span class="w"> </span><span class="o">{</span>
 <span class="w">        </span>proxy_pass<span class="w"> </span>http://maggot/<span class="p">;</span>
 <span class="w">    </span><span class="o">}</span>
 
+...
 
 <span class="o">}</span>
 </code></pre></div></p>
@@ -916,8 +921,35 @@ server<span class="w"> </span><span class="o">{</span>
 <h4 id="updating-the-application">Updating the application<a class="headerlink" href="#updating-the-application" title="Permanent link">&para;</a></h4>
 <p>When updating the application, it is imperative to preserve a whole set of configuration files as well as the content of certain directories (dictionaries, javascripts dedicated to vocabularies, etc.). An update script is available (<a href="https://github.com/inrae/pgd-mmdt/blob/main/etc/update-maggot.sh" target="_blank">./etc/update-maggot.sh</a>) preferably placed under '<strong>/usr/local/bin</strong>'. To preserve your configuration, it is recommended to create local configuration files.</p>
 <ul>
-<li>A first file '<strong>local.conf</strong>' will contain all the parameters to be preserved initially contained in the '<em><a href="https://github.com/inrae/pgd-mmdt/blob/main/run" target="_blank">run</a></em>' file.</li>
-<li>A second file '<strong>./web/inc/config/local.inc</strong>' will contain all the parameters to be preserved initially contained in the '<em><a href="https://github.com/inrae/pgd-mmdt/blob/main/web/inc/config/config.inc" target="_blank">./web/inc/config/config.inc</a></em>' file.</li>
+<li>
+<p>A first file '<strong>local.conf</strong>' will contain all the parameters to be preserved, initially contained in the '<em><a href="https://github.com/inrae/pgd-mmdt/blob/main/run" target="_blank">run</a></em>' file. A small example could be as follow :
+   <div class="highlight"><pre><span></span><code><span class="ch">#!/bin/bash</span>
+
+<span class="c1"># Local HTTP Port for web application</span>
+<span class="nv">WEB_PORT</span><span class="o">=</span><span class="m">8088</span>
+
+<span class="c1"># Path to the data</span>
+<span class="nv">DATADIR</span><span class="o">=</span>/media/Workdir/Share/DATA/
+</code></pre></div></p>
+</li>
+<li>
+<p>A second file '<strong>./web/inc/config/local.inc</strong>' will contain all the parameters to be preserved, initially contained in the '<em><a href="https://github.com/inrae/pgd-mmdt/blob/main/web/inc/config/config.inc" target="_blank">./web/inc/config/config.inc</a></em>' file. A small example could be as follow :
+   <div class="highlight"><pre><span></span><code><span class="cp">&lt;?php</span>
+
+<span class="c1"># Main title</span>
+<span class="nv">$TITLE</span> <span class="o">=</span><span class="s1">&#39;Metadata management - My Labs&#39;</span><span class="p">;</span>
+<span class="nv">$MAINTITLE</span> <span class="o">=</span><span class="nv">$TITLE</span><span class="p">;</span>
+
+<span class="c1"># File Browser</span>
+<span class="nv">$FILEBROWSER</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span>
+<span class="nv">$URL_FILEBROWSER</span><span class="o">=</span><span class="s1">&#39;/fb/&#39;</span><span class="p">;</span>
+
+<span class="c1"># Enable some functionalities</span>
+<span class="nv">$export_oai</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+
+<span class="cp">?&gt;</span>
+</code></pre></div></p>
+</li>
 </ul>
 <hr />
 <h3 id="architecture-diagram">Architecture diagram<a class="headerlink" href="#architecture-diagram" title="Permanent link">&para;</a></h3>
