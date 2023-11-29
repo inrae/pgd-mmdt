@@ -3,10 +3,24 @@
 # Application update script from the Git repository
 # (Bash scripts to move under /usr/local/bin)
 
+# List of files to be preserved
+# ./local.conf
+# ./etc/.htpasswd
+# ./dockerscanpart/scripts/config.py
+# ./web/inc/config/mongodb.inc
+# ./web/inc/config/local.inc
+# ./web/docs/doc.md
+
+# List of directory to be preserved
+# ./web/conf/
+# ./web/cvlist/
+# ./web/cache
+# ./web/js/autocomplete/
+
 ROOTDIR=/opt/apps
 APP=pgd-mmdt
 
-GITREPOS=https://github.com/inrae/pgd-mmdt.git
+GITREPOS=https://github.com/inrae/${APP}.git
 
 (
   cd $ROOTDIR
