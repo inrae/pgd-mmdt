@@ -13,8 +13,7 @@
 # --------------------------------------------------------------------------------------------
 function json2bloxberg($metadata)
 {
-	global $maggot_fulltitle;
-	$APPURL = "https://pmb-bordeaux.fr/maggot";
+	global $APPURL, $maggot_fulltitle;
 	$BBjson = '
 {
   "@context": {
