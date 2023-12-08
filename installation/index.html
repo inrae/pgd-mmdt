@@ -777,9 +777,8 @@
 <p><br></p>
 <h4 id="retrieving-the-code">Retrieving the code<a class="headerlink" href="#retrieving-the-code" title="Permanent link">&para;</a></h4>
 <p>Go to the destination directory of your choice then clone the repository and <code>cd</code> to your clone path:</p>
-<div class="highlight"><pre><span></span><code>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/inrae/pgd-mmdt.git<span class="w"> </span>pgd-mmdt
-<span class="nb">cd</span><span class="w"> </span>pgd-mmdt
-</code></pre></div>
+<pre class="highlight"><code class="language-sh">git clone https://github.com/inrae/pgd-mmdt.git pgd-mmdt
+cd pgd-mmdt</code></pre>
 <p><br></p>
 <h4 id="installation-of-docker-containers">Installation of Docker containers<a class="headerlink" href="#installation-of-docker-containers" title="Permanent link">&para;</a></h4>
 <p>MAGGOT uses 3 Docker images for 3 distinct services:</p>
@@ -809,9 +808,8 @@
 <p><br></p>
 <h4 id="commands">Commands<a class="headerlink" href="#commands" title="Permanent link">&para;</a></h4>
 <p>The <strong><em>run</em></strong> shell script allows you to perform multiple actions by specifying an option :</p>
-<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>pgd-mmdt
-sh<span class="w"> </span>./run<span class="w"> </span>&lt;option&gt;
-</code></pre></div>
+<pre class="highlight"><code class="language-sh">cd pgd-mmdt
+sh ./run &lt;option&gt;</code></pre>
 <p><strong>Options</strong>:</p>
 <ul>
 <li><strong><em>build</em></strong> : Create the 3 Docker images namely <strong><em>pgd-mmdt-db</em></strong>, <strong><em>pgd-mmdt-scan</em></strong> and <strong><em>pgd-mmdt-web</em></strong></li>
@@ -829,27 +827,22 @@ sh<span class="w"> </span>./run<span class="w"> </span>&lt;option&gt;
 <ul>
 <li>
 <p>You must first build the 3 docker container images if this has not already been done, by :
-   <div class="highlight"><pre><span></span><code>sh<span class="w"> </span>./run<span class="w"> </span>build
-</code></pre></div></p>
+   <pre class="highlight"><code class="language-sh">sh ./run build</code></pre></p>
 </li>
 <li>
 <p>The application can be sequentially started :</p>
 <ul>
 <li>Starting the web interface
- <div class="highlight"><pre><span></span><code>sh<span class="w"> </span>./run<span class="w"> </span>start
-</code></pre></div></li>
+ <pre class="highlight"><code class="language-sh">sh ./run start</code></pre></li>
 <li>Initialization of the MongoDB database
- <div class="highlight"><pre><span></span><code>sh<span class="w"> </span>./run<span class="w"> </span>initdb
-</code></pre></div></li>
+ <pre class="highlight"><code class="language-sh">sh ./run initdb</code></pre></li>
 <li>Scanning the data directory for metadata files (META_XXXX.json)
- <div class="highlight"><pre><span></span><code>sh<span class="w"> </span>./run<span class="w"> </span>scan
-</code></pre></div></li>
+ <pre class="highlight"><code class="language-sh">sh ./run scan</code></pre></li>
 </ul>
 </li>
 <li>
 <p>You can also launch these 3 steps with a single command:
-   <div class="highlight"><pre><span></span><code>sh<span class="w"> </span>./run<span class="w"> </span>fullstart
-</code></pre></div></p>
+   <pre class="highlight"><code class="language-sh">sh ./run fullstart</code></pre></p>
 </li>
 </ul>
 <p><br></p>
@@ -857,8 +850,7 @@ sh<span class="w"> </span>./run<span class="w"> </span>&lt;option&gt;
 <ul>
 <li>
 <p>Once the application is started, we can see if the containers are started using the following command:
-   <div class="highlight"><pre><span></span><code>docker<span class="w"> </span>ps<span class="w"> </span>-a
-</code></pre></div></p>
+   <pre class="highlight"><code class="language-sh">docker ps -a</code></pre></p>
 </li>
 <li>
 <p>which should produce a result similar to the following:</p>
@@ -878,44 +870,42 @@ Let's say that the IP address of your VM is 192.168.56.2, then in your browser y
 </li>
 <li>
 <p>It may be preferable to use a lightweight http server like <a href="https://docs.nginx.com/nginx/admin-guide/web-server/web-server/" target="_blank">nginx</a> so that the Maggot URL will be <a href="http://192.168.56.2/maggot/">http://192.168.56.2/maggot/</a>. Below an example of config:
-   <div class="highlight"><pre><span></span><code><span class="c1">## /etc/nginx/nginx.conf</span>
-http<span class="w"> </span><span class="o">{</span>
+   <pre class="highlight"><code class="language-sh">## /etc/nginx/nginx.conf
+http {
 
 ...
-<span class="w">    </span>upstream<span class="w"> </span>maggot<span class="w">  </span><span class="o">{</span><span class="w"> </span>server<span class="w"> </span><span class="m">127</span>.0.0.1:8087<span class="p">;</span><span class="w"> </span><span class="o">}</span>
+    upstream maggot  { server 127.0.0.1:8087; }
 ...
 
-<span class="o">}</span>
+}
 
-<span class="c1">## /etc/nginx/conf.d/my-site.conf</span>
+## /etc/nginx/conf.d/my-site.conf
 
-server<span class="w"> </span><span class="o">{</span>
-<span class="w">    </span>listen<span class="w"> </span><span class="m">80</span><span class="w"> </span>default<span class="p">;</span>
-<span class="w">    </span>server_name<span class="w"> </span><span class="nv">$host</span><span class="p">;</span>
-
-...
-
-<span class="w">    </span>location<span class="w"> </span>/maggot/<span class="w"> </span><span class="o">{</span>
-<span class="w">        </span>proxy_set_header<span class="w"> </span>Host<span class="w"> </span><span class="nv">$host</span><span class="p">;</span>
-<span class="w">        </span>proxy_set_header<span class="w"> </span>X-App-Name<span class="w"> </span><span class="s1">&#39;maggot&#39;</span><span class="p">;</span>
-<span class="w">        </span>proxy_set_header<span class="w"> </span>X-Real-Ip<span class="w"> </span><span class="nv">$remote_addr</span><span class="p">;</span>
-<span class="w">        </span>proxy_set_header<span class="w"> </span>X-Forwarded-Host<span class="w"> </span><span class="nv">$host</span><span class="p">;</span>
-<span class="w">        </span>proxy_set_header<span class="w"> </span>X-Forwarded-For<span class="w"> </span><span class="nv">$proxy_add_x_forwarded_for</span><span class="p">;</span>
-<span class="w">        </span>proxy_pass<span class="w"> </span>http://maggot/<span class="p">;</span>
-<span class="w">    </span><span class="o">}</span>
+server {
+    listen 80 default;
+    server_name $host;
 
 ...
 
-<span class="o">}</span>
-</code></pre></div></p>
+    location /maggot/ {
+        proxy_set_header Host $host;
+        proxy_set_header X-App-Name 'maggot';
+        proxy_set_header X-Real-Ip $remote_addr;
+        proxy_set_header X-Forwarded-Host $host;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_pass http://maggot/;
+    }
+
+...
+
+}</code></pre></p>
 </li>
 </ul>
 <p><br></p>
 <h4 id="stoping-the-application">Stoping the application<a class="headerlink" href="#stoping-the-application" title="Permanent link">&para;</a></h4>
 <ul>
 <li>To stop the application :
-   <div class="highlight"><pre><span></span><code>sh<span class="w"> </span>./run<span class="w"> </span>stop
-</code></pre></div></li>
+   <pre class="highlight"><code class="language-sh">sh ./run stop</code></pre></li>
 </ul>
 <p><br></p>
 <h4 id="updating-the-application">Updating the application<a class="headerlink" href="#updating-the-application" title="Permanent link">&para;</a></h4>
@@ -923,32 +913,30 @@ server<span class="w"> </span><span class="o">{</span>
 <ul>
 <li>
 <p>A first file '<strong>local.conf</strong>' will contain all the parameters to be preserved, initially contained in the '<em><a href="https://github.com/inrae/pgd-mmdt/blob/main/run" target="_blank">run</a></em>' file. A small example could be as follow :
-   <div class="highlight"><pre><span></span><code><span class="ch">#!/bin/bash</span>
+   <pre class="highlight"><code class="language-sh">#!/bin/bash
 
-<span class="c1"># Local HTTP Port for web application</span>
-<span class="nv">WEB_PORT</span><span class="o">=</span><span class="m">8088</span>
+# Local HTTP Port for web application
+WEB_PORT=8088
 
-<span class="c1"># Path to the data</span>
-<span class="nv">DATADIR</span><span class="o">=</span>/media/Workdir/Share/DATA/
-</code></pre></div></p>
+# Path to the data
+DATADIR=/media/Workdir/Share/DATA/</code></pre></p>
 </li>
 <li>
 <p>A second file '<strong>./web/inc/config/local.inc</strong>' will contain all the parameters to be preserved, initially contained in the '<em><a href="https://github.com/inrae/pgd-mmdt/blob/main/web/inc/config/config.inc" target="_blank">./web/inc/config/config.inc</a></em>' file. A small example could be as follow :
-   <div class="highlight"><pre><span></span><code><span class="cp">&lt;?php</span>
+   <pre class="highlight"><code class="language-php">&lt;?php
 
-<span class="c1"># Main title</span>
-<span class="nv">$TITLE</span> <span class="o">=</span><span class="s1">&#39;Metadata management - My Labs&#39;</span><span class="p">;</span>
-<span class="nv">$MAINTITLE</span> <span class="o">=</span><span class="nv">$TITLE</span><span class="p">;</span>
+# Main title
+$TITLE ='Metadata management - My Labs';
+$MAINTITLE =$TITLE;
 
-<span class="c1"># File Browser</span>
-<span class="nv">$FILEBROWSER</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span>
-<span class="nv">$URL_FILEBROWSER</span><span class="o">=</span><span class="s1">&#39;/fb/&#39;</span><span class="p">;</span>
+# File Browser
+$FILEBROWSER=1;
+$URL_FILEBROWSER='/fb/';
 
-<span class="c1"># Enable some functionalities</span>
-<span class="nv">$export_oai</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+# Enable some functionalities
+$export_oai = 1;
 
-<span class="cp">?&gt;</span>
-</code></pre></div></p>
+?&gt;</code></pre></p>
 </li>
 </ul>
 <hr />
