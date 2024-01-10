@@ -1,0 +1,25 @@
+[Unit]
+Description=Maggot Application
+Documentation=
+After=docker.service
+Wants=
+
+[Service]
+Type=oneshot
+ExecStartPre=/usr/local/bin/dockpurge
+ExecStart=/usr/local/bin/maggot fullstart
+ExecStop=/usr/local/bin/maggot stop
+ExecReload=/usr/local/bin/maggot restart
+LimitNOFILE=1048576
+LimitNPROC=1048576
+LimitCORE=infinity
+MountFlags=slave
+RemainAfterExit=True
+
+[Install]
+WantedBy=multi-user.target
+
+#-- /usr/local/bin/maggot --
+# #!/bin/bash
+# ( cd /opt/apps/pgd-mmdt; sh ./run $@ )
+

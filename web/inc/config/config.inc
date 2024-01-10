@@ -1,5 +1,7 @@
 <?php
 
+session_start();
+
 #docker mode : 0 = FALSE; 1 = TRUE;
 $docker_mode = 1;
 
@@ -129,6 +131,9 @@ $maggot_fulltitle='fulltitle';
 
 //Name of the file that must be present in the data directory to authorize the transfer of the data file
 $auth_senddata_file = 'META_datafile_ok.txt';
+
+// Name of the private access file
+$private_auth_file = 'META_auth.txt';
 
 // Some links (see inc/schema/schema.inc)
 $url_raw_licences = 'https://raw.githubusercontent.com/spdx/license-list-data/main/json/licenses.json';

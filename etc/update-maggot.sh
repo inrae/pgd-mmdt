@@ -19,13 +19,15 @@
 
 ROOTDIR=/opt/apps
 APP=pgd-mmdt
+SYSTEMCTL=0
 
 GITREPOS=https://github.com/inrae/${APP}.git
 
 (
   cd $ROOTDIR
   # Stop APP
-  sudo sh ./$APP/run stop
+  [ $SYSTEMCTL -eq 0 ] && sudo sh ./$APP/run stop
+  [ $SYSTEMCTL -eq 1 ] && systemctl stop $APP
   echo
   echo "----------------------------------"
   echo "update $APP"
@@ -62,7 +64,8 @@ GITREPOS=https://github.com/inrae/${APP}.git
      ( cd $APP; sudo rm -f .gitignore AUTHORS codemeta.json LICENSE README.md )
 
      # Restart APP
-     ( cd $APP; sudo sh ./run fullstart )
+     [ $SYSTEMCTL -eq 0 ] && ( cd $APP; sudo sh ./run fullstart )
+     [ $SYSTEMCTL -eq 1 ] && systemctl start $APP
 
      # Delete old APP directory
      sudo rm -rf ./$PREV

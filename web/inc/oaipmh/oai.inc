@@ -43,6 +43,7 @@ function getMetadata ($id_metadata='')
 	return $ret;
 }
 
+
 //----------------------------------------
 // Get the datestamp corresponding to the record
 //----------------------------------------
@@ -408,6 +409,7 @@ do
 		if (is_array($records))
 			for ($k=0; $k<count($records); $k++) {
 				$record = (array)($records[$k]);
+				if (is_private ($record)) continue;
 				$datestamp = getDatestamp($record);
 				if ($datestamp>=$from && $datestamp<=$until)
 					$LIST .= "\n".'<header>'."\n".'<identifier>oai:'.$OAI_IDENTIFIER.'::'.$record['title'].'</identifier>'."\n".'<datestamp>'.$datestamp.'</datestamp>'."\n".'<setSpec>maggot</setSpec>'."\n".'</header>';
@@ -429,6 +431,7 @@ do
 		$LIST = '';
 		if (is_array($records)) for ($k=0; $k<count($records); $k++) {
 			$record = (array)($records[$k]);
+			if (is_private ($record)) continue;
 			$datestamp = getDatestamp($record);
 			if ($datestamp>=$from && $datestamp<=$until) {
 				$LIST .= "\n".'<record id="'.$record['title'].'">'."\n".'<header>'."\n".'<identifier>oai:'.$OAI_IDENTIFIER.'::'.$record['title'].'</identifier>'."\n".'  <datestamp>'.$datestamp.'</datestamp>'."\n".'<setSpec>maggot</setSpec>'."\n".'</header>'."\n".'<metadata>'."\n".'<oai_dc:dc '.$OAI_DC_HEADER;
@@ -453,6 +456,10 @@ do
 		if (is_array($records))
 			$record = (array)($records[0]);
 		else {
+			echo "\n".'<error code="badArgument">The argument &#039;identifier&#039; (value=&#039;'.$identifier.'&#039;) included in the request is not valid.</error>';
+			break;
+		}
+		if (is_private ($record)) {
 			echo "\n".'<error code="badArgument">The argument &#039;identifier&#039; (value=&#039;'.$identifier.'&#039;) included in the request is not valid.</error>';
 			break;
 		}

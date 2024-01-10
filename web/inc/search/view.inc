@@ -90,10 +90,10 @@ if( isset( $_POST['param'] ) ){
 	echo display_request($operator, $arr_query);
 
 	// Find all datasets matching the entered criteria
+	$options['projection']['chemin']=true;
 	$query = new MongoDB\Driver\Query($where_search, $options);
 	$obj = $client->executeQuery('pgd-db.metadata', $query)->toArray();
 	$ret = count($obj);
-//echo "<br><pre>"; print_r($obj); echo "</pre><br>";
 
 	// has the serach failed ?
 	if ($ret <1  ) {
@@ -114,9 +114,12 @@ if( isset( $_POST['param'] ) ){
 
 		$countdataset = 0;
 		foreach($obj as $key => $value) {
+			$arr = (array)($value);
+			if (is_private ($arr)) continue;
 			$cnt=0;
 			$arr_out = $array_view;
 			foreach($value as $key => $val) {
+				if ($key == "chemin") { continue; }
 				if ($key == "_id") { $countdataset++; continue; }
 				if ($key == "title") { $idmetadata = $val; }
 				if ($key == "description") $val = preg_replace('"(https?://[^ ]+)"', '<a href="$1" target="_blank">$1</a>',preg_replace("/(_NL_)+/",'<br>',$val));

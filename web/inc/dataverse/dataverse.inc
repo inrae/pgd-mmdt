@@ -46,6 +46,7 @@ $options_dataset='<option value="">---</option>';
 if ($ret>0) {
 	foreach($obj as $arr) {
 		$value = (array)$arr;
+		if (is_private ($value)) continue;
 		$array_dataset[$value['title']] = $value['chemin'];
 		$selected='';
 		if (isset($_GET['dataset']) && $_GET['dataset'] === $value['title']) $selected='selected';

@@ -11,27 +11,32 @@ if (isset($_GET['format']) && strlen($id_metadata)) {
 	$array_values = getMetadata ($id_metadata);
 	if (is_array($array_values)) {
 		$path = str_replace('pgd_data', 'mnt', $array_values['chemin']);
-		if (is_file($path)) {
-		$json = file_get_contents($path);
-		if ($export_dataverse && $_GET['format']==='dataverse') {
-			$output_json='';
-			$msg = maggot2dataverse ($json, $output_json);
-			$json = $output_json;
-		}
-		if ($export_jsonld && $_GET['format']==='jsonld') {
-			$output_json='';
-			$msg = maggot2schema ($json, $output_json);
-			$json = $output_json;
-		}
-		if ($export_zenodo && $_GET['format']==='zenodo') {
-			$output_json='';
-			$msg = maggot2zenodo ($json, $output_json);
-			$json = $output_json;
-		}
-		if (! $LOG) header('content-type:application/json');
-		echo header('content-type:application/json');
-		echo $json;
-		}
+		do {
+			if (! is_file($path)) break;
+			if (is_private ($array_values)) break;
+			$json = file_get_contents($path);
+			if ($export_dataverse && $_GET['format']==='dataverse') {
+				$output_json='';
+				$msg = maggot2dataverse ($json, $output_json);
+				$json = $output_json;
+				break;
+			}
+			if ($export_jsonld && $_GET['format']==='jsonld') {
+				$output_json='';
+				$msg = maggot2schema ($json, $output_json);
+				$json = $output_json;
+				break;
+			}
+			if ($export_zenodo && $_GET['format']==='zenodo') {
+				$output_json='';
+				$msg = maggot2zenodo ($json, $output_json);
+				$json = $output_json;
+				break;
+			}
+			if (! $LOG) header('content-type:application/json');
+			echo header('content-type:application/json');
+			echo $json;
+		} while(0);
 	}
 	exit();
 }
@@ -160,6 +165,12 @@ do {
 	// Get all values
 	$array_values = getMetadata ($id_metadata);
 	if (! is_array($array_values)) {
+		echo  '<div class="p-3 mb-2 bg-warning text-black">No metadata available for this dataset ...</div>';
+		break;
+	}
+
+	// If Private access file exits
+	if (is_private ($array_values)) {
 		echo  '<div class="p-3 mb-2 bg-warning text-black">No metadata available for this dataset ...</div>';
 		break;
 	}

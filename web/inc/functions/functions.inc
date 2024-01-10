@@ -128,6 +128,19 @@ function get_features($field, $arr_names, $typeboite)
 	return $features;
 }
 
+// Check if a mongodb record has a private access file
+function is_private ($record)
+{
+	global $private_auth_file;
+	$path = str_replace('pgd_data', 'mnt', $record['chemin']);
+	$file_auth= dirname($path)."/".$private_auth_file;
+	$ret=FALSE;
+	if (file_exists($path) && file_exists($file_auth)) {
+		$userkey = file_get_contents($file_auth);
+		$ret = ! isset($_SESSION['privatekey']) || ($_SESSION['privatekey'] !== $userkey);
+	}
+	return $ret;
+}
 
 // Check if a JSON string is valid based on the JSON-Schema
 function isJSONValid($json, $schema_file="conf/maggot-schema.json")
