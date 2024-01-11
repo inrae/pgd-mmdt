@@ -8,13 +8,23 @@ if( isset( $_GET['id'] ) ){
 }
 
 if (isset($_GET['format']) && strlen($id_metadata)) {
+	$error1 = '{ "error" : "file system error" }';
+	$error2 = '{ "error" : "dataset seems unavailable" }';
+	$error3 = '{ "error" : "Unknown format or feature not enabled" }';
 	$array_values = getMetadata ($id_metadata);
+	$json = $error2;
 	if (is_array($array_values)) {
 		$path = str_replace('pgd_data', 'mnt', $array_values['chemin']);
 		do {
+			$json = $error1;
 			if (! is_file($path)) break;
+			$json = $error2;
 			if (is_accessible ($array_values)) break;
-			$json = file_get_contents($path);
+			$json = $error3;
+			if ($_GET['format']==='maggot') {
+				$json = file_get_contents($path);
+				break;
+			}
 			if ($export_dataverse && $_GET['format']==='dataverse') {
 				$output_json='';
 				$msg = maggot2dataverse ($json, $output_json);
@@ -33,11 +43,10 @@ if (isset($_GET['format']) && strlen($id_metadata)) {
 				$json = $output_json;
 				break;
 			}
-			if (! $LOG) header('content-type:application/json');
-			echo header('content-type:application/json');
-			echo $json;
 		} while(0);
 	}
+	echo header('content-type:application/json');
+	echo $json;
 	exit();
 }
 
