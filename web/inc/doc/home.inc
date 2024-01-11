@@ -75,8 +75,8 @@ Maggot was designed to foster (local) <b>good data management</b>, with "(open) 
 <div class="box-home"><div style="padding: 20px;">
 <p align="center">
 <?php
-	$overview_png = ($export_zenodo) ? 'overview2b.png' : 'overview2.png';
-	$coords = array( "7,8,464,43", "7,51,464,86", "7,94,219,161", "255,95,464,162", "471,226,712,299", "509,32,638,161", "206,221,364,382", "464,317,657,383" );
+	$overview_png = ($export_zenodo) ? $PRIVATE_ACCESS ? 'overview2c.png' : 'overview2b.png' : 'overview2.png';
+	$coords = array( "7,8,464,43", "7,8,228,43", "230,8,464,43", "7,51,464,86", "7,94,219,161", "255,95,464,162", "471,226,712,299", "509,32,638,161", "206,221,364,382", "464,317,657,383" );
 	if ($EXTERN==0) echo '<img src="docs/'.$overview_png.'?raw=true" width="722" height="400" alt="Overview" usemap="#image_map"/>';
 	else echo '<img src="docs/overview3.png?raw=true" alt="Overview" usemap="#image_map"/>';
 ?>
@@ -84,24 +84,30 @@ Maggot was designed to foster (local) <b>good data management</b>, with "(open) 
 	<map name="image_map" id="image_map">
 
 <?php
-	if ($EXTERN==0) echo
-	'<area href="./config/view"                 coords="'.$coords[0].'"  shape="rect" id="r1">
-	 <area href="./dictionary"                  coords="'.$coords[1].'"  shape="rect" id="r2">
-	 <area href="./entry"                       coords="'.$coords[2].'"  shape="rect" id="r3">
-	 <area href="./search"                      coords="'.$coords[3].'"  shape="rect" id="r4">
-	 <area href="./dataverse"                   coords="'.$coords[4].'"  shape="rect" id="r5">
-	 <area href="'.$links[5].'" target="_blank" coords="'.$coords[5].'"  shape="rect" id="r6">';
+	if ($EXTERN==0) {
+		if ($PRIVATE_ACCESS) echo
+	'<area href="./config/view"                 coords="'.$coords[1].'"  shape="rect" id="r1">
+	 <area href="./access"                      coords="'.$coords[2].'"  shape="rect" id="r1b">';
+		else echo
+	'<area href="./config/view"                 coords="'.$coords[0].'"  shape="rect" id="r1">';
+		echo
+	'<area href="./dictionary"                  coords="'.$coords[3].'"  shape="rect" id="r2">
+	 <area href="./entry"                       coords="'.$coords[4].'"  shape="rect" id="r3">
+	 <area href="./search"                      coords="'.$coords[5].'"  shape="rect" id="r4">
+	 <area href="./dataverse"                   coords="'.$coords[6].'"  shape="rect" id="r5">
+	 <area href="'.$links[5].'" target="_blank" coords="'.$coords[7].'"  shape="rect" id="r6">';
+	}
 	else echo 
 	'<area href="./dictionary"  coords="29,28,487,62"    shape="rect" id="r2">
 	 <area href="./entry"       coords="30,72,489,138"   shape="rect" id="r3">
 	 <area href="./dataverse"   coords="119,216,366,297" shape="rect" id="r5">';
 
 	if ($FILEBROWSER==1)
-		echo '<area href="'.$URL_FILEBROWSER.'" target="_blank" coords="'.$coords[6].'" shape="rect" id="r7">';
+		echo '<area href="'.$URL_FILEBROWSER.'" target="_blank" coords="'.$coords[8].'" shape="rect" id="r7">';
 	if ($export_zenodo==0 && $FAIRLINK==1)
-		echo '<area href="'.$URL_FAIR.'"        target="_blank" coords="'.$coords[7].'" shape="rect" id="r8">';
+		echo '<area href="'.$URL_FAIR.'"        target="_blank" coords="'.$coords[9].'" shape="rect" id="r8">';
 	if ($export_zenodo==1)
-		echo '<area href="./zenodo"             target="_blank" coords="'.$coords[7].'" shape="rect" id="r8">';
+		echo '<area href="./zenodo"             target="_blank" coords="'.$coords[9].'" shape="rect" id="r8">';
 ?>
   </map>
 </p>
@@ -110,6 +116,7 @@ Maggot was designed to foster (local) <b>good data management</b>, with "(open) 
 </center>
 
 <div id="overlay_r1" class="overlay_cl"><b>Configure</b> the terminology definition file</div>
+<div id="overlay_r1b" class="overlay_cl"><b>Manage</b> private access keys</div>
 <div id="overlay_r2" class="overlay_cl"><b>Edit</b> the dictionaries (need admin access to edit or just use 'maggot' user for viewing only)</div>
 <div id="overlay_r3" class="overlay_cl"><b>Describe</b> a dataset using metadata of different types by facilitating their entry and avoiding their re-entry thanks to personalized dictionaries, then generate the metadata file</div>
 <div id="overlay_r4" class="overlay_cl"><b>Search</b> datasets based on some metadata - assuming the metadata were previously deposited in the storage space</div>

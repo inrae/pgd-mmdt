@@ -12,6 +12,9 @@ $ZOOMWP = '90%';
 // Add a media type for each resource
 $RESMEDIA=1;
 
+// Private access key management
+$PRIVATE_ACCESS=0;
+
 #------------------------
 
 // Mode external (1) or not (0)

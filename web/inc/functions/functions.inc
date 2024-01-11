@@ -131,13 +131,13 @@ function get_features($field, $arr_names, $typeboite)
 // Check if a MongoDB record is accessible
 function is_accessible ($record)
 {
-	global $private_auth_file;
+	global $PRIVATE_ACCESS, $private_auth_file;
 	#$GLOB = $_COOKIE; # see inc/access/access.inc
 	$GLOB = $_SESSION;
 	$path = str_replace('pgd_data', 'mnt', $record['chemin']);
 	$file_auth= dirname($path)."/".$private_auth_file;
 	$ret=FALSE;
-	if (file_exists($path) && file_exists($file_auth)) {
+	if ($PRIVATE_ACCESS && file_exists($path) && file_exists($file_auth)) {
 		$userkey = file_get_contents($file_auth);
 		$ret = ! isset($GLOB['privatekey']) || ($GLOB['privatekey'] !== $userkey);
 	}

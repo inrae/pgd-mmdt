@@ -44,7 +44,7 @@ do {
 
 <body style="zoom: <? echo $ZOOMWP ?>">
 
-<?php echo $header_crypt ?>
+<?php echo $header_title ?>
 <br><br>
 
 <h1>Private access key management <a href="<? echo $maggot_doc_url.'images/private_access.png' ?>" target="_blank"><i class="bi bi-question-octagon-fill" style="color:grey; font-size: 20px"></i></a></h1>

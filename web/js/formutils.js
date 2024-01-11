@@ -82,7 +82,8 @@ function autocompleteScript(index=-1)
 }
 
 // Load a dictionary values
-function get_dictionary_values(dico, merge=[]) {
+function get_dictionary_values(dico, merge=[])
+{
 	var tsvData='';
 	var url_nocache = cvdir+'/'+dico+'/'+dico+'.txt?nocahe='+Math.random();
 	

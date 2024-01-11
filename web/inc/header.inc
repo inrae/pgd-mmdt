@@ -81,7 +81,7 @@ $header_open='<div class="entete"><table width="100%"><tr>
 
 $header_close='</td></tr></table></div>';
 
-$header_title=$header_open.$header_close;
+$header_title = $header_open.$header_close;
 
 #------------------------
 
@@ -112,8 +112,6 @@ $header_config = $header_open.'<div class="btn-group btn-group-lg" role="group">
 	<i class="bi bi-filetype-md" style="color:grey;"><a href="'.$PATH.'config/doc" class="search_data"><button type="button" class="btn btn-primary" data-toggle="button" aria-pressed="false" autocomplete="off" name="btn-conv3">TSV to DOC</button></a>
 	<i class="bi bi-question-octagon-fill" style="color:grey;"></i><a href="'.$maggot_doc_url.'configuration/" class="search_data" target="_blank"><button type="button" class="btn btn-primary" data-toggle="button" aria-pressed="false" autocomplete="off">Documentation</button></a>
 	</div>'.$header_close;
-
-$header_crypt = $header_open.$header_close;
 
 #------------------------
 
