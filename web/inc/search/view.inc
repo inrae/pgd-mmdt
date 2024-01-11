@@ -112,10 +112,12 @@ if( isset( $_POST['param'] ) ){
 		}
 		echo '<th>Metadata</th></tr></thead><tr>';
 
+if (isset($_SESSION['privatekey'])) echo $_SESSION['privatekey']."<br>";
+
 		$countdataset = 0;
 		foreach($obj as $key => $value) {
 			$arr = (array)($value);
-			if (is_private ($arr)) continue;
+			if (is_accessible ($arr)) continue;
 			$cnt=0;
 			$arr_out = $array_view;
 			foreach($value as $key => $val) {

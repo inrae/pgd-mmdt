@@ -13,7 +13,7 @@ if (isset($_GET['format']) && strlen($id_metadata)) {
 		$path = str_replace('pgd_data', 'mnt', $array_values['chemin']);
 		do {
 			if (! is_file($path)) break;
-			if (is_private ($array_values)) break;
+			if (is_accessible ($array_values)) break;
 			$json = file_get_contents($path);
 			if ($export_dataverse && $_GET['format']==='dataverse') {
 				$output_json='';
@@ -169,8 +169,8 @@ do {
 		break;
 	}
 
-	// If Private access file exits
-	if (is_private ($array_values)) {
+	// Check if the dataset is accessible
+	if (is_accessible ($array_values)) {
 		echo  '<div class="p-3 mb-2 bg-warning text-black">No metadata available for this dataset ...</div>';
 		break;
 	}

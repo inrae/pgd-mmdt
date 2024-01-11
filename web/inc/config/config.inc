@@ -1,7 +1,5 @@
 <?php
 
-session_start();
-
 #docker mode : 0 = FALSE; 1 = TRUE;
 $docker_mode = 1;
 

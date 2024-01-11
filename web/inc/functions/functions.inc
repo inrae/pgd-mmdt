@@ -128,16 +128,18 @@ function get_features($field, $arr_names, $typeboite)
 	return $features;
 }
 
-// Check if a mongodb record has a private access file
-function is_private ($record)
+// Check if a MongoDB record is accessible
+function is_accessible ($record)
 {
 	global $private_auth_file;
+	#$GLOB = $_COOKIE; # see inc/access/access.inc
+	$GLOB = $_SESSION;
 	$path = str_replace('pgd_data', 'mnt', $record['chemin']);
 	$file_auth= dirname($path)."/".$private_auth_file;
 	$ret=FALSE;
 	if (file_exists($path) && file_exists($file_auth)) {
 		$userkey = file_get_contents($file_auth);
-		$ret = ! isset($_SESSION['privatekey']) || ($_SESSION['privatekey'] !== $userkey);
+		$ret = ! isset($GLOB['privatekey']) || ($GLOB['privatekey'] !== $userkey);
 	}
 	return $ret;
 }
