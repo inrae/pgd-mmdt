@@ -109,7 +109,7 @@ $export_oai = 0;
 #------------------------
 
 // EXPERIMENTAL : Bloxberg Blockchain
-$BB_PUBLICKEY='0xC604ffa8adE14dc9A22B6B19bdFC07E489156E53';
+$BB_PUBLICKEY='';
 $BB_API_TOKEN='';
 $bloxberg_urls = array('https://certify.bloxberg.org/');
 $export_bloxberg = 0;

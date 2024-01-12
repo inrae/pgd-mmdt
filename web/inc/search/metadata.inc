@@ -195,7 +195,7 @@ do {
 	if ($FILEBROWSER)
 		echo "<script>$('#filebrowser').html('<a href=\"".$URL_FILEBROWSER."\" class=\"search_data\" target=\"_blank\"><button type=\"button\" class=\"btn btn-primary\" style=\"max-height: 32px;padding-top: 0.2rem;\" data-toggle=\"button\" aria-pressed=\"false\" autocomplete=\"off\" name=\"btn-search\">File Browser</button></a>');$('#filebrowsercont').css('display','inline-block')</script>";
 
-	$dropselect = ($export_dataverse && $export_zenodo) ? 1 : 0;
+	$dropselect = ($export_dataverse || $export_zenodo || $export_bloxberg) ? 1 : 0;
 
 	if ($export_dataverse && is_file($dataverse_conf) && is_file($mapping_conf)) {
 		if ($dropselect)
@@ -215,6 +215,10 @@ do {
 
 	if ($export_jsonld)
 		$my_html .= '<option value="jsonld">JSON-LD Format</option>';
+
+	if ($export_bloxberg && $dropselect) {
+		echo "<script>$('#publish_sel').append(`<option value=\"bloxberg\">bloxberg blockchain</option>`); $('#exportcont').css('display','inline-block');</script>";
+	}
 
 	$my_html .=  '</select></div><div id="waiting" style="display: none; max-width:1000px; margin:auto;"><img src="'.$PATH.'img/throbber.gif" width="100px"></div></td></tr></table><br>';
 	echo $my_html;

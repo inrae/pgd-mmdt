@@ -4,7 +4,7 @@
 	$links[2]="https://entrepot.recherche.data.gouv.fr/";
 	$links[3]="https://www.ouvrirlascience.fr/fair-principles/";
 	$links[4]="https://www.u-picardie.fr/open-science/wp-content/uploads/2021/07/Fiche-Synthetique-Metadonnees.pdf";
-	$links[5]="https://inrae.github.io/pgd-mmdt/pdf/MAGGOT_Metadata_Oct2023.pdf?download=false";
+	$links[5]="https://inrae.github.io/pgd-mmdt/pdf/MAGGOT_Metadata_Jan2024.pdf?download=false";
 	$links[6]="https://inrae.github.io/pgd-mmdt/pdf/MAGGOT_Poster_Oct2023.pdf?download=false";
 ?>
 

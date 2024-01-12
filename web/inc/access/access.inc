@@ -7,10 +7,11 @@ $keysession = isset($_POST['keysession']) ? $_POST['keysession'] : '';
 
 $disp1 = 'none';
 $disp2 = 'none';
+$nbcar = 6;
 
 do {
 	// checks if the 'encrypt' button is pressed
-	if( isset($_POST['encrypt']) && strlen($_POST['key'])>7 ) {
+	if( isset($_POST['encrypt']) && strlen($_POST['key'])>=$nbcar ) {
 		exec("/usr/bin/htpasswd -nbs - ".$_POST['key']." | cut -d':' -f2", $key1, $retval);
 		if ($reval==0) {
 			file_put_contents($crypt_url, $key1[0]);
@@ -54,7 +55,7 @@ do {
 	<br/>
 	<form id="formconvert" name="formconvert" action="#" autocomplete="off" method="post" enctype="multipart/form-data">
 		<h2>Generate a private access key file</h2>
-		<span><b>Private Key</b> : <input class="input-setval " type="password" name="key" id="key" style="width:350px" placeholder="8 characters at least" value="<? echo $key ?>"></span>
+		<span><b>Private Key</b> : <input class="input-setval " type="password" name="key" id="key" style="width:350px" placeholder="at least <? echo $nbcar ?> characters" value="<? echo $key ?>"></span>
 		<input type="submit" class="btn btn-success btn-xs" style="width: 100px;" name="encrypt" value="Encryption" />
 		<br><br>
 		<input id="download" type="download" value="Download the Private Access File" class="btn btn-success btn-xs" style="width: 300px; display:<? echo $disp1 ?>;" onclick="downloadFile('<? echo $PATH.$crypt_url ?>','<? echo $private_auth_file ?>');"/></td>
@@ -62,10 +63,10 @@ do {
 		<hr>
 		<br>
 		<h2>Record a private access key into the current session</h2>
-		<span><b>Private Key</b> : <input class="input-setval " type="password" name="keysession" id="keysession" style="width:350px" placeholder="8 characters at least" value="<? echo $keysession ?>" onclick="document.getElementById('message').style.display='none';"></span>
+		<span><b>Private Key</b> : <input class="input-setval " type="password" name="keysession" id="keysession" style="width:350px" placeholder="at least <? echo $nbcar ?> characters" value="<? echo $keysession ?>" onclick="document.getElementById('message').style.display='none';"></span>
 		<input type="submit" class="btn btn-success btn-xs" style="width: 100px;" name="reckey" value="Record key" onclick="document.getElementById('message').style.display='none';"/>
 		<br>
-		<div id="message" style="display: <? echo $disp2 ?>;"><p style="color:#68b893">Success: your private access key has been reccorded into session</p><div>
+		<div id="message" style="display: <? echo $disp2 ?>;"><p style="color:#68b893">Success: your private access key has been reccorded</p><div>
 	</form>
 </section>
 <br>
