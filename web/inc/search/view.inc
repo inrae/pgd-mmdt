@@ -112,8 +112,6 @@ if( isset( $_POST['param'] ) ){
 		}
 		echo '<th>Metadata</th></tr></thead><tr>';
 
-if (isset($_SESSION['privatekey'])) echo $_SESSION['privatekey']."<br>";
-
 		$countdataset = 0;
 		foreach($obj as $key => $value) {
 			$arr = (array)($value);
