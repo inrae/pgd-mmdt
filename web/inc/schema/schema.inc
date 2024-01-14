@@ -106,7 +106,8 @@ function json2schema($metadata, $def, $map)
 		$cnt++;
 	}
 
-//$dico ='people'; echo "<br><pre>"; print_r (${$dico}); echo "</pre><br>"; $msg='break'; break;
+#echo "<br><pre>"; print_r ($metadata); echo "</pre><br>";
+#$dico ='people'; echo "<br><pre>"; print_r (${$dico}); echo "</pre><br>"; $msg='break';
 
 	//----------------------------------------
 	// Parse the schema definition file

@@ -20,26 +20,27 @@ if (isset($_GET['format']) && strlen($id_metadata)) {
 			if (! is_file($path)) break;
 			$json = $error2;
 			if (is_accessible ($array_values)) break;
+			$input_json = file_get_contents($path);
 			$json = $error3;
 			if ($_GET['format']==='maggot') {
-				$json = file_get_contents($path);
+				$json = $input_json;
 				break;
 			}
 			if ($export_dataverse && $_GET['format']==='dataverse') {
 				$output_json='';
-				$msg = maggot2dataverse ($json, $output_json);
-				$json = $output_json;
-				break;
-			}
-			if ($export_jsonld && $_GET['format']==='jsonld') {
-				$output_json='';
-				$msg = maggot2schema ($json, $output_json);
+				$msg = maggot2dataverse ($input_json, $output_json);
 				$json = $output_json;
 				break;
 			}
 			if ($export_zenodo && $_GET['format']==='zenodo') {
 				$output_json='';
-				$msg = maggot2zenodo ($json, $output_json);
+				$msg = maggot2zenodo ($input_json, $output_json);
+				$json = $output_json;
+				break;
+			}
+			if ($export_jsonld && $_GET['format']==='jsonld') {
+				$output_json='';
+				$msg = maggot2schema ($input_json, $output_json);
 				$json = $output_json;
 				break;
 			}
