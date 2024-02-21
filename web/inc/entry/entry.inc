@@ -10,7 +10,7 @@
 	<style>::-webkit-scrollbar{ width: 5px; }</style>
 	<script src="js/entry.js"></script>
 	<script type="text/javascript">
-	var DEBUG = 1;
+	var DEBUG = 0;
 	var arrItems;
 	var url_schema = '<?php echo $url_schema; ?>';
 	var resource_media = '<?php echo $RESMEDIA; ?>';
@@ -277,7 +277,7 @@ if (DEBUG) for(i=0; i<vartocomplete.length; i++) console.log(vartocomplete[i])
 		if($.active > 0)
 			$(document).ajaxStop(function(){ $(document).unbind("ajaxStop"); setTimeout(final_loading,300); });
 		else
-			final_loading();
+			setTimeout(final_loading,8000);
 	})
 
 	$(window).on('resize', function(){
