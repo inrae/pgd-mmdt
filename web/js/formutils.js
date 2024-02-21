@@ -65,7 +65,7 @@ function autocompleteScript(index=-1)
 			if (externalDicoList.includes(dico) || internalDicoList.includes(dico)) break; // if dico already in cache
 			url_script='js/autocomplete/'+dico+'.js' // external dictionary (bioportal, skosmos, ...) 
 			if (UrlExists(url_script)) {
-if (DEBUG) console.log('autocompleteScript: Index='+idx+', External - loadScript '+url_script+', active='+active)
+				if (DEBUG) console.log('autocompleteScript: Index='+idx+', External - loadScript '+url_script+', active='+active)
 				loadScript(url_script,active);
 				externalDicoList.push(dico); // put into cache
 				if (! active) vartocomplete[idx]['listener'] = 1;
@@ -75,7 +75,7 @@ if (DEBUG) console.log('autocompleteScript: Index='+idx+', External - loadScript
 			if (UrlExists(url_script)) {
 				internalDicoList.push(dico); // put into cache
 				if (! active) break // script will be loaded later when clicking in the input box (cf active_update_autocomplete)
-if (DEBUG) console.log('autocompleteScript: Index='+idx+', Internal - loadScript '+url_script+', active='+active)
+				if (DEBUG) console.log('autocompleteScript: Index='+idx+', Internal - loadScript '+url_script+', active='+active)
 				loadScript(url_script,active);
 				break;
 			}
@@ -319,13 +319,13 @@ function insert_multiboite (identif_boite, req=false)
 		var bponto='', ac='', dico='';
 		for(i=0; i<bioportal_sites.length; i++)  {
 			if (nameList !== bioportal_sites[i].BP_NAME) continue
-if (DEBUG) console.log('multiselect: '+identif_boite+' autocomplete by '+bioportal_sites[i].BP_NAME+':'+multiboite[identif_boite]['onto'])
+			if (DEBUG) console.log('multiselect: '+identif_boite+' autocomplete by '+bioportal_sites[i].BP_NAME+':'+multiboite[identif_boite]['onto'])
 			onto='all'; if (multiboite[identif_boite].hasOwnProperty('onto')) { onto=multiboite[identif_boite]['onto']; onto=onto.split(':').join(','); }
 			bponto=bioportal_sites[i].BP_matchString+'-'+onto+'-name ';
 			break
 		}
 		if (bponto == '') {
-if (DEBUG) console.log('multiselect: '+identif_boite+' autocomplete by dico:'+nameList)
+			if (DEBUG) console.log('multiselect: '+identif_boite+' autocomplete by dico:'+nameList)
 			minlen=3; if (multiboite[identif_boite].hasOwnProperty('min')) minlen=multiboite[identif_boite]['min'];
 			vartocomplete[vartocomplete.length]= { variable : identif_boite, dico: nameList, minlen: minlen, listener: 0, type: 1 };
 			autocompleteScript()
@@ -391,7 +391,7 @@ function insert_listboite (identif_boite, req=false, shrunk=false)
 	var ac='', dico='';
 	if (listboite[identif_boite].hasOwnProperty('terms')) {
 		var nameList = listboite[identif_boite]['terms']
-if (DEBUG) console.log('dropbox: '+identif_boite+' autocomplete by dico:'+nameList)
+		if (DEBUG) console.log('dropbox: '+identif_boite+' autocomplete by dico:'+nameList)
 		vartocomplete[vartocomplete.length]= { variable : identif_boite, dico: nameList, listener: 0, type: 2};
 		autocompleteScript()
 		ac=' autocomplete ';
@@ -416,7 +416,7 @@ function insert_txtboite (identif_boite, req=false, shrunk=false)
 	if (txtboite[identif_boite].hasOwnProperty('autocomplete')) {
 		var nameList = txtboite[identif_boite]['autocomplete']
 		minlen=3; if (txtboite[identif_boite].hasOwnProperty('min')) minlen=txtboite[identif_boite]['min'];
-if (DEBUG) console.log('Textbox: '+identif_boite+' autocomplete by dico:'+nameList)
+		if (DEBUG) console.log('Textbox: '+identif_boite+' autocomplete by dico:'+nameList)
 		vartocomplete[vartocomplete.length]= { variable : identif_boite, dico: nameList, listener: 0, type: 0, minlen: minlen };
 		autocompleteScript()
 		ac='autocomplete ';
@@ -492,7 +492,7 @@ function insert_resource(id, resTypes)
 	var myfieldHTML = '<table class="resource" width="100%"><tr><td width="200px"><span class="labeldiv">Resource Type</span></td><td><select id="resource-f1-'+id+'" name="resource-f1-'+id+'" class="form-control form-control-sm resource" onchange="statusentry=1;">'+opthml_1+'</select></td></tr>';
 
 	if (resource_media>0) {
-		vartocomplete[vartocomplete.length]= { variable : 'resource-f4-'+id, dico: 'mediatypes', listener: 1, type: 0, minlen: 3 };
+		vartocomplete[vartocomplete.length]= { variable : 'resource-f4-'+id, dico: 'mediatypes', minlen: 3, listener: 1, type: 0 };
 		autocompleteScript()
 		myfieldHTML += '<tr><td><span class="labeldiv">Media Type</span></td><td><div class="autocomplete form-group" style="width: 100%"><input class="form-control form-control-sm solo autocomplete" dico="mediatypes" type="text" name="resource-f4-'+id+'" id="resource-f4-'+id+'" placeholder="e.g. pdf, csv, xml, png, json, tab-separated-values, openxml, opendoc, msexcel, msword, ..." style="width: 100%" onchange="statusentry=1;"/></div><td></tr>';
 	}
@@ -586,7 +586,7 @@ function active_autocomplete(set_all=0)
 			if (vartocomplete[i]['type']==0) {
 				try {
 					var key=vartocomplete[i]['variable']
-		console.log('active_autocomplete 0: '+key+', dico: '+vartocomplete[i]['dico'])
+					if (DEBUG) console.log('active_autocomplete 0: '+key+', dico: '+vartocomplete[i]['dico'])
 					autocomplete(document.getElementById(key), listTerms, vartocomplete[i]['minlen']);
 				} catch(e) {}
 				continue;
@@ -595,7 +595,7 @@ function active_autocomplete(set_all=0)
 			// Type 1 : multiboite (dico)
 			if (vartocomplete[i]['type']==1) {
 			box = vartocomplete[i]['variable'];
-		console.log('active_autocomplete 1: '+box+', dico: '+vartocomplete[i]['dico'])
+				if (DEBUG) console.log('active_autocomplete 1: '+box+', dico: '+vartocomplete[i]['dico'])
 				$('#'+box).keydown(function(event){
 					if(event.keyCode == 13) {
 						event.preventDefault();
@@ -629,7 +629,7 @@ function active_autocomplete(set_all=0)
 			// Type 2 : listboite
 			if (vartocomplete[i]['type']==2) {
 				var key=vartocomplete[i]['variable']
-		console.log('active_autocomplete 2: '+key+', dico: '+vartocomplete[i]['dico'])
+				if (DEBUG) console.log('active_autocomplete 2: '+key+', dico: '+vartocomplete[i]['dico'])
 				var htmltemplate = '';
 				for( var j = 0; j < listTerms.length; ++j )
 					htmltemplate += '<option value="'+ listTerms[j] +'">'+ listTerms[j] +'</option>';
@@ -665,7 +665,7 @@ function active_update_autocomplete()
 			internalDicoList = jQuery.grep(internalDicoList, function(value) { // remove internal dico from cache 
 					return value !== dicoName;
 			});
-		console.log('active_update_autocomplete : '+idName+', dico: '+dicoName)
+			if (DEBUG) console.log('active_update_autocomplete : '+idName+', dico: '+dicoName)
 			autocompleteScript(index)
 			if($.active > 0)
 				$(document).ajaxStop(function(){ 

@@ -10,6 +10,8 @@
 	<style>::-webkit-scrollbar{ width: 0px; }</style>
 	<script src="js/search.js"></script>
 	<script type="text/javascript">
+	var DEBUG = "<? echo $_GET['debug'] ?>";
+	var AJAXWAIT = "<? echo isset($_GET['wait']) ? $_GET['wait'] : 8000 ?>";
 	var arrItems;
 	var maxField = 10; //Checkboxes increment limitation
 	var maxWidth=1200;
@@ -95,7 +97,7 @@
 		// Handling the 'autocomplete_selected' event of the 'Bioportal' widget
 		// so that the selected term can be put into the corresponding input box
 		$(document).on( "autocomplete_selected", function(event, params) {
-		get_term_from_bpbox(params.input);
+			get_term_from_bpbox(params.input);
 		});
 
 		// Handling the 'show_results' event of the 'Bioportal' widget
@@ -158,9 +160,11 @@
 	$("[name='btn-search']").removeClass('btn-primary');  $("[name='btn-search']").addClass('menu-select');
 
 	function final_loading() {
+		if (DEBUG) console.log('--- BEGIN final_loading ...')
 		bioportal_setup();
 		active_autocomplete()
 		$('#loadmessage').css('display','none');
+		if (DEBUG) console.log('--- END final_loading ...')
 	}
 
 	$(window).on('load', function(){
@@ -168,7 +172,7 @@
 		if($.active > 0)
 			$(document).ajaxStop(function(){ $(document).unbind("ajaxStop"); window.setTimeout(final_loading(),300); });
 		else
-			final_loading();
+			setTimeout(final_loading,AJAXWAIT);
 		sendData();
 	})
 

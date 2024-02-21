@@ -9,7 +9,9 @@ var get_terms_from_skosmos = function(apiurl, radicals, varname, lang='en', pare
 	if (group.length>0) url = url + '&group='+group
 	url = url + '&query='
 	skosmos[varname] = {'url' : url, 'pageCount': 0, 'error' : '', 'count': 0 };
-	
+
+	if (DEBUG) console.log('get terms from skosmos : '+url)
+
 	// Parses the json and retrieves all prefLabels.
 	var successFunc = function(json) {
 		$.each(json['results'], function (index, value) {
