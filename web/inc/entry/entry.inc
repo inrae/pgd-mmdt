@@ -10,6 +10,7 @@
 	<style>::-webkit-scrollbar{ width: 5px; }</style>
 	<script src="js/entry.js"></script>
 	<script type="text/javascript">
+	var DEBUG = 1;
 	var arrItems;
 	var url_schema = '<?php echo $url_schema; ?>';
 	var resource_media = '<?php echo $RESMEDIA; ?>';
@@ -264,14 +265,17 @@
 	$("[name='btn-input']").removeClass('btn-primary');  $("[name='btn-input']").addClass('menu-select');
 
 	function final_loading() {
+if (DEBUG) console.log('--- BEGIN final_loading ...')
 		bioportal_setup();
 		active_autocomplete()
 		$('#loadmessage').css('display','none');
+if (DEBUG) console.log('--- END final_loading ...')
+if (DEBUG) for(i=0; i<vartocomplete.length; i++) console.log(vartocomplete[i])
 	}
 
 	$(window).on('load', function(){
 		if($.active > 0)
-			$(document).ajaxStop(function(){ $(document).unbind("ajaxStop"); window.setTimeout(final_loading(),300); });
+			$(document).ajaxStop(function(){ $(document).unbind("ajaxStop"); setTimeout(final_loading,300); });
 		else
 			final_loading();
 	})

@@ -46,8 +46,10 @@ GITREPOS=https://github.com/inrae/${APP}.git
      [ -f ./$PREV/web/inc/config/local.inc ] && sudo cp ./$PREV/web/inc/config/local.inc ./$APP/web/inc/config/
      sudo cp ./$PREV/web/conf/* ./$APP/web/conf/
      sudo cp -rf ./$PREV/web/cache ./$APP/web/
+     sudo chmod -R 777 ./$APP/web/cache
      sudo rm -rf ./$APP/web/cvlist/*
      sudo cp -rf ./$PREV/web/cvlist/* ./$APP/web/cvlist/
+     find $APP/web/cvlist/ -name "*.txt" -a ! -name "*_format.txt" -exec sudo chmod 777 {} \;
 
      # Autocomplete
      #sudo cp ./$PREV/web/js/autocomplete/*.js ./${APP}/web/js/autocomplete/

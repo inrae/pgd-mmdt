@@ -65,6 +65,7 @@ function autocompleteScript(index=-1)
 			if (externalDicoList.includes(dico) || internalDicoList.includes(dico)) break; // if dico already in cache
 			url_script='js/autocomplete/'+dico+'.js' // external dictionary (bioportal, skosmos, ...) 
 			if (UrlExists(url_script)) {
+if (DEBUG) console.log('autocompleteScript: Index='+idx+', External - loadScript '+url_script+', active='+active)
 				loadScript(url_script,active);
 				externalDicoList.push(dico); // put into cache
 				if (! active) vartocomplete[idx]['listener'] = 1;
@@ -74,6 +75,7 @@ function autocompleteScript(index=-1)
 			if (UrlExists(url_script)) {
 				internalDicoList.push(dico); // put into cache
 				if (! active) break // script will be loaded later when clicking in the input box (cf active_update_autocomplete)
+if (DEBUG) console.log('autocompleteScript: Index='+idx+', Internal - loadScript '+url_script+', active='+active)
 				loadScript(url_script,active);
 				break;
 			}
@@ -317,11 +319,13 @@ function insert_multiboite (identif_boite, req=false)
 		var bponto='', ac='', dico='';
 		for(i=0; i<bioportal_sites.length; i++)  {
 			if (nameList !== bioportal_sites[i].BP_NAME) continue
+if (DEBUG) console.log('multiselect: '+identif_boite+' autocomplete by '+bioportal_sites[i].BP_NAME+':'+multiboite[identif_boite]['onto'])
 			onto='all'; if (multiboite[identif_boite].hasOwnProperty('onto')) { onto=multiboite[identif_boite]['onto']; onto=onto.split(':').join(','); }
 			bponto=bioportal_sites[i].BP_matchString+'-'+onto+'-name ';
 			break
 		}
 		if (bponto == '') {
+if (DEBUG) console.log('multiselect: '+identif_boite+' autocomplete by dico:'+nameList)
 			minlen=3; if (multiboite[identif_boite].hasOwnProperty('min')) minlen=multiboite[identif_boite]['min'];
 			vartocomplete[vartocomplete.length]= { variable : identif_boite, dico: nameList, minlen: minlen, listener: 0, type: 1 };
 			autocompleteScript()
@@ -387,6 +391,7 @@ function insert_listboite (identif_boite, req=false, shrunk=false)
 	var ac='', dico='';
 	if (listboite[identif_boite].hasOwnProperty('terms')) {
 		var nameList = listboite[identif_boite]['terms']
+if (DEBUG) console.log('dropbox: '+identif_boite+' autocomplete by dico:'+nameList)
 		vartocomplete[vartocomplete.length]= { variable : identif_boite, dico: nameList, listener: 0, type: 2};
 		autocompleteScript()
 		ac=' autocomplete ';
@@ -411,6 +416,7 @@ function insert_txtboite (identif_boite, req=false, shrunk=false)
 	if (txtboite[identif_boite].hasOwnProperty('autocomplete')) {
 		var nameList = txtboite[identif_boite]['autocomplete']
 		minlen=3; if (txtboite[identif_boite].hasOwnProperty('min')) minlen=txtboite[identif_boite]['min'];
+if (DEBUG) console.log('Textbox: '+identif_boite+' autocomplete by dico:'+nameList)
 		vartocomplete[vartocomplete.length]= { variable : identif_boite, dico: nameList, listener: 0, type: 0, minlen: minlen };
 		autocompleteScript()
 		ac='autocomplete ';

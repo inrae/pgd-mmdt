@@ -22,6 +22,7 @@ WEB_CONTAINER=mmdt-web
 
 # Volume name for Mondo DB
 MONGO_VOL=mmdt-mongodb
+MONGO_PORT=27017
 
 # default user for htpasswd file
 USER=admin
@@ -44,7 +45,7 @@ case "$CMD" in
         VOLDBSRC="-v $MYDIR/dockerdbpart/initialisation:/js"
         VOLSCANSRC=
         [ $DEV -eq 1 ] && VOLSRCSCAN="-v $MYDIR/dockerscanpart/scripts:/pgd"
-        sudo docker run -d -v $MONGO_VOL:/data/db -v $DATADIR:/pgd_data -v $MYDIR/web/conf:/json $VOLDBSRC --name $DB_CONTAINER $DB_IMAGE
+        sudo docker run -d -v $MONGO_VOL:/data/db -v $DATADIR:/pgd_data -v $MYDIR/web/conf:/json $VOLDBSRC -p $MONGO_PORT:27017 --name $DB_CONTAINER $DB_IMAGE
         sudo docker run -d -v $DATADIR:/pgd_data -v $MYDIR/web/conf:/json $VOLSRCSCAN --link $DB_CONTAINER --name $SCAN_CONTAINER $SCAN_IMAGE
         sudo docker run -d -p $WEB_PORT:80 -v $MYDIR/web:/var/www/html -v $DATADIR:/mnt -v $MYDIR/etc:/etc/pgd-mmdt --link $DB_CONTAINER --name $WEB_CONTAINER $WEB_IMAGE
         for d in `find $MYDIR/web/cvlist/ -type d -mindepth 1 -maxdepth 1 2>/dev/null`; do f=$(basename $d); sudo chmod 777 "$d/$f.txt"; done

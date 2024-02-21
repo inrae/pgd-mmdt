@@ -53,7 +53,7 @@ $APPURL=$HTTP.$HOSTNAME.'/'.$APPNAME;
 #------------------------
 
 // JSON schema
-$url_schema = "https://pmb-bordeaux.fr/maggot/conf/maggot-schema.json";
+$url_schema = $APPURL."/conf/maggot-schema.json";
 
 // Dataverse URL
 $dataverse_urls = array('https://demo.recherche.data.gouv.fr',
