@@ -275,11 +275,19 @@
 		if (DEBUG) for(i=0; i<vartocomplete.length; i++) console.log(vartocomplete[i])
 	}
 
-	$(window).on('load', function(){
-		if($.active > 0)
+	function differ_ajaxtest() {
+		if($.active > 0) {
+			if (DEBUG) console.log('Wait for AJAX to finish ...')
 			$(document).ajaxStop(function(){ $(document).unbind("ajaxStop"); setTimeout(final_loading,300); });
-		else
+		}
+		else {
+			if (DEBUG) console.log('Wait '+AJAXWAIT+' ms')
 			setTimeout(final_loading,AJAXWAIT);
+		}
+	}
+	
+	$(window).on('load', function(){
+		setTimeout(differ_ajaxtest, 1000)
 	})
 
 	$(window).on('resize', function(){

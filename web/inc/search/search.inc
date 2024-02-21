@@ -167,12 +167,20 @@
 		if (DEBUG) console.log('--- END final_loading ...')
 	}
 
-	$(window).on('load', function(){
-		if ( $( window ).width()>maxWidth ) $('#colitems').prop("rowspan", 3);
-		if($.active > 0)
-			$(document).ajaxStop(function(){ $(document).unbind("ajaxStop"); window.setTimeout(final_loading(),300); });
-		else
+	function differ_ajaxtest() {
+		if($.active > 0) {
+			if (DEBUG) console.log('Wait for AJAX to finish ...')
+			$(document).ajaxStop(function(){ $(document).unbind("ajaxStop"); setTimeout(final_loading,300); });
+		}
+		else {
+			if (DEBUG) console.log('Wait '+AJAXWAIT+' ms')
 			setTimeout(final_loading,AJAXWAIT);
+		}
+	}
+	
+	$(window).on('load', function(){
+		setTimeout(differ_ajaxtest, 1000)
+		if ( $( window ).width()>maxWidth ) $('#colitems').prop("rowspan", 3);
 		sendData();
 	})
 
