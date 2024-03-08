@@ -12,7 +12,7 @@
 	<script src="js/autocomplete/resourcetypes.js"></script>
 	<script type="text/javascript">
 	var DEBUG = "<? echo $_GET['debug'] ?>";
-	var AJAXWAIT = "<? echo isset($_GET['wait']) ? $_GET['wait'] : 8000 ?>";
+	var AJAXWAIT = "<? echo isset($_GET['wait']) ? $_GET['wait'] : 5000 ?>";
 	var arrItems;
 	var url_schema = '<?php echo $url_schema; ?>';
 	var resource_media = '<?php echo $RESMEDIA; ?>';
@@ -255,7 +255,7 @@
 <br/>
 
 <script>
-	/* Montrer le nom du fichier selectionner pour chargement : https://www.codeply.com/p/LtpNZllird */
+	// Show file name select for loading : https://www.codeply.com/p/LtpNZllird
 	document.querySelector('.custom-file-input').addEventListener('change',function(e){
 	var fileName = document.getElementById("selectFiles").files[0].name;
 	var nextSibling = e.target.nextElementSibling
@@ -281,11 +281,11 @@
 			$(document).ajaxStop(function(){ $(document).unbind("ajaxStop"); setTimeout(final_loading,300); });
 		}
 		else {
-			if (DEBUG) console.log('Wait '+AJAXWAIT+' ms')
+			if (DEBUG) console.log('Wait '+AJAXWAIT+' ms ...')
 			setTimeout(final_loading,AJAXWAIT);
 		}
 	}
-	
+
 	$(window).on('load', function(){
 		setTimeout(differ_ajaxtest, 1000)
 	})

@@ -301,10 +301,11 @@ do
 	$arr_links[1]=array('Dataverse definition file',$output1,$dataverse_conf);
 	$arr_links[2]=array('Mapping definition file',$output2,$mapping_conf);
 	$arr_links[3]=array('Output file',$PATH.$json_url,'dataverse_'.$ds.'.json');
-	
+
 	// Test if a dataset is already present in the data repository
 	$persistentid=''; $state='';
-	$SEARCH_OPTIONS='q=Maggot&show_facets=true&fq=otherIdAgency:Maggot&fq=otherIdValue:'.$ds.'&sort=name&order=desc&type=dataset';
+	$SEARCH_OPTIONS  ='q=Maggot&show_facets=true&fq=otherIdAgency:Maggot&fq=otherIdValue:'.otherID($ds);
+	$SEARCH_OPTIONS .='&sort=name&order=desc&type=dataset';
 	$output_arr = get_api_dataverse('search?'.$SEARCH_OPTIONS);
 	if (gettype($output_arr) !== 'array' || ! array_key_exists('data', $output_arr)) {
 		$msg = 'ERROR: The data repository '.$SERVER_URL.' seemns unreachable or unavailable !!!';

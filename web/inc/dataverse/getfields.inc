@@ -61,7 +61,7 @@ function getfield_notesText($metadata, $df, $dico)
 function getfield_otherId($metadata)
 {
 	$json = '{"otherIdAgency": '.simpleField('otherIdAgency','Maggot').
-			',"otherIdValue":'.simpleField('otherIdValue',$metadata['title']).'}';
+			',"otherIdValue":'.simpleField('otherIdValue',otherID($metadata['title'])).'}';
 	return compoundArray('otherId',$json);
 }
 

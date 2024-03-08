@@ -27,13 +27,13 @@ GITREPOS=https://github.com/inrae/${APP}.git
   cd $ROOTDIR
   # Stop APP
   [ $SYSTEMCTL -eq 0 ] && sudo sh ./$APP/run stop
-  [ $SYSTEMCTL -eq 1 ] && systemctl stop $APP
+  [ $SYSTEMCTL -eq 1 ] && sudo systemctl stop $APP
   echo
   echo "----------------------------------"
   echo "update $APP"
   echo "----------------------------------"
   # Add 'prev' as postfix to the current APP directory
-  mv $APP ${APP}.prev
+  sudo mv $APP ${APP}.prev
   PREV=${APP}.prev
   # Get the source code from github
   sudo git clone $GITREPOS $APP

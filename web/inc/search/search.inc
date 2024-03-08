@@ -11,7 +11,7 @@
 	<script src="js/search.js"></script>
 	<script type="text/javascript">
 	var DEBUG = "<? echo $_GET['debug'] ?>";
-	var AJAXWAIT = "<? echo isset($_GET['wait']) ? $_GET['wait'] : 8000 ?>";
+	var AJAXWAIT = "<? echo isset($_GET['wait']) ? $_GET['wait'] : 5000 ?>";
 	var arrItems;
 	var maxField = 10; //Checkboxes increment limitation
 	var maxWidth=1200;

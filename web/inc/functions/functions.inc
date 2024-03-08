@@ -29,13 +29,16 @@ $accented_chr = array(
 	'ö'=>'o', 'ø'=>'o', 'ù'=>'u', 'ú'=>'u', 'û'=>'u', 'ý'=>'y', 'þ'=>'b', 'ÿ'=>'y'
 );
 
-/********************************************************
-* genKEY
-********************************************************/
 # Generate a KEY (30  alpha-num. char. )
 function genKEY()
 {
 	return md5(uniqid(rand(),true));
+}
+
+# Generate an identifier compliant with the otherId field in Dataverse
+function otherID ($id)
+{
+    return str_replace('-','',$id).date("Y");
 }
 
 // Sort a Multi-dimensional Array by Value
