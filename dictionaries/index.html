@@ -724,7 +724,8 @@
 <li>To add a new dictionary, simply create a directory under <em><a href="https://github.com/inrae/pgd-mmdt/tree/main/web/cvlist" target="_blank">web/cvlist</a></em> then putting the files corresponding to the dictionary inside. Dictionaries will be automatically found by browsing this directory.</li>
 <li>Dictionary files are made using a simple spreadsheet then exported in <abbr title="Open text format representing tabular data as &quot;Tab-Separated Values&quot;. Each row corresponds to a table row and the cells in a row are separated by a tab">TSV</abbr> format.</li>
 <li>Dictionaries are accessed through secure access limited to administrators allowing their editing. The login is by default '<strong><em>admin</em></strong>'. You can add another account for consultation only using the following command: 
-<pre class="highlight"><code>sh ./run passwd &lt;user&gt;</code></pre></li>
+<div class="highlight"><pre><span></span><code>sh ./run passwd &lt;user&gt;
+</code></pre></div></li>
 </ul>
 <p><br></p>
 <h4 id="the-people-dictionary">The people dictionary<a class="headerlink" href="#the-people-dictionary" title="Permanent link">&para;</a></h4>
@@ -748,9 +749,10 @@
 <li>Each of the fields must respect a format specified by a <a href="https://www.w3schools.com/js/js_regexp.asp" target="_blank">regular expression</a> in order to be accepted as valid.</li>
 <li>Optionally, you can connect an <a href="https://en.wikipedia.org/wiki/Web_API" target="_blank">web API</a> to each of the fields in order to make an entry by autocompletion from a remote register. Currently only ROR (<a href="https://ror.org/" target="_blank">Research Organization Registry</a>) web API is possible but the mechanism is in place for new extensions.</li>
 <li>The third file, a very simple script written in <a href="https://en.wikipedia.org/wiki/JavaScript" target="_blank">JavaScript</a>, defines the way to retrieve the list of names (here by containing the first and last name). Note that the name of the variable must always be identical to that of the dictionary.
-<pre class="highlight"><code class="language-js">var people = [];
-// Each item in the 'people' list consists of the first two columns (0,1) separated by a space
-get_dictionary_values('people', merge=[0,' ',1]) </code></pre></li>
+<div class="highlight"><pre><span></span><code><span class="kd">var</span><span class="w"> </span><span class="nx">people</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[];</span>
+<span class="c1">// Each item in the &#39;people&#39; list consists of the first two columns (0,1) separated by a space</span>
+<span class="nx">get_dictionary_values</span><span class="p">(</span><span class="s1">&#39;people&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">merge</span><span class="o">=</span><span class="p">[</span><span class="mf">0</span><span class="p">,</span><span class="s1">&#39; &#39;</span><span class="p">,</span><span class="mf">1</span><span class="p">])</span><span class="w"> </span>
+</code></pre></div></li>
 <li>
 <p>Below, an example is given when modifying a record. When you click on the <em>Institute</em> field which is connected to the ROR web API, the drop-down list of reseach organizations that can correspond in the register appears, if there are any.
 <center>
