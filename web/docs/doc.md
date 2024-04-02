@@ -11,17 +11,17 @@
 <div class="decal" markdown="1">
 ### Short name
 
-* Give your dataset a short name. This name will then be used to identify it and reference the metadata page via a URL. Do not use spaces or non-alphanumeric characters. Only letters, numbers and underscores are allowed.
+* Give your dataset a short name. This name will then be used to identify it and reference the metadata page via a URL. Do not use spaces or non-alphanumeric characters. Only letters, numbers and underscores are allowed. The number of characters is limited to 20.
 
 
 ### Full title
 
-* Concise and precise title of your dataset. Can sometimes use the title of the publication if it is not too long.
+* Concise and precise title of your dataset. It is this title that will appear on the data repository (dataverse and zenodo) as the main title. Can sometimes use the title of the publication if it is not too long.
 
 
 ### Subject
 
-* The area of the study relevant to the dataset. The list of terms is imposed by Dataverse. Adding, modifying or deleting them may prevent uploading to the repository. See [Dataverse  CV](https://docs.google.com/spreadsheets/d/13HP-jI_cwLDHBetn9UKTREPJ_F4iHdAvhjmlvmYdSSw/edit#gid=0)
+* The area of the study relevant to the dataset. The list of terms is imposed by Dataverse. Adding, modifying or deleting them may prevent uploading to the repository. See [OECD](https://www.oecd.org/science/inno/38235147.pdf) and [European Commission](https://joinup.ec.europa.eu/collection/eu-semantic-interoperability-catalogue/solution/field-science-and-technology-classification/about) about field of science and technology classification.
 
 
 ### Description of the dataset
@@ -48,22 +48,22 @@
 * Choose a status from 
 
 
-    *  **Processed** :  Data are available and have been curated
+    *  **Processed** :  Data are available and have been curated. Which means that the data is in a stable and redistributable version as is.
 
-    *  **In progress** :  Some data is available but more is to come
+    *  **In progress** :  Some data is available but more is to come. Some are stable but others are not.
 
-    *  **Unprocessed** :  Data are available but not curated
+    *  **Unprocessed** :  The data is available but not curated. Which means that the data is not yet stable and therefore cannot be distributed as is.
 
 ### Access rights to data
 
 * Indicates the status of the data regarding access and dissemination
 
 
-    *  **Public** :  access requiring rights
+    *  **Public** :  Either a link to the data is provided as a resource with password-free access (e.g filebrowser) or access to the data is possible to anyone with access to the storage space (locally or remotely via VPN).
 
-    *  **Mixte** :  mix of public and private access
+    *  **Private** :  Access requiring specific rights (e.g. filebrowser or on storage space).
 
-    *  **Private** :  access possible to any person having access to the storage space (locally or remotely via VPN)
+    *  **Mixte** :  Mix of public and private access
 
 ### Language
 
@@ -72,27 +72,27 @@
 
 ### Life cycle step
 
-* Specifies the event happening over the data life cycle that is considered significant enough to document.  The list of terms is imposed by Dataverse. Adding, modifying or deleting them may prevent uploading to the repository. See [Dataverse  CV](https://docs.google.com/spreadsheets/d/13HP-jI_cwLDHBetn9UKTREPJ_F4iHdAvhjmlvmYdSSw/edit#gid=0)
+* Specifies the event happening over the data life cycle that is considered significant enough to document.  The list of terms is imposed by Dataverse. Adding, modifying or deleting them may prevent uploading to the repository. See [DDI -CV](https://ddialliance.org/Specification/DDI-CV/LifecycleEventType_1.0.html)
 
 
 ### License
 
-* License/Data Use Agreement. See  https://choosealicense.com/licenses/. <br>([Etalab 2.0](https://www.etalab.gouv.fr/wp-content/uploads/2017/04/ETALAB-Licence-Ouverte-v2.0.pdf) is the recommended license for France)
+* License/Data Use Agreement. See  [Choose a license](https://choosealicense.com/licenses/) and [CC-BY licenses](https://creativecommons.org/share-your-work/cclicenses/). <br>(Note: [Etalab 2.0](https://www.etalab.gouv.fr/wp-content/uploads/2017/04/ETALAB-Licence-Ouverte-v2.0.pdf) is the recommended license in accordance with France's open data policy)
 
 
 ### Start of collection
 
-* Start date of sample or data collection. The date or even the month are important. The day is nevertheless mandatory to have a complete date.
+* Start date of sample or data collection. A full date in [ISO-8601 format](https://en.wikipedia.org/wiki/ISO_8601) is required even if the month and day are fictitious.
 
 
 ### End of collection
 
-* End date of sample or data collection. The date or even the month are important. The day is nevertheless mandatory to have a complete date.
+* End date of sample or data collection. A full date in [ISO-8601 format](https://en.wikipedia.org/wiki/ISO_8601) is required even if the month and day are fictitious.
 
 
 ### DMP identifier
 
-* Preferably a URL pointing directly to the DMP but failing that it can also be a permanent identifier (DOI, etc.). See https://support.datacite.org/docs/what-is-a-dmp-id
+* Preferably a URL pointing directly to the [DMP](https://en.wikipedia.org/wiki/Data_management_plan) but failing that it can also be a permanent identifier (DOI, etc.). See [what-is-a-dmp-id](https://support.datacite.org/docs/what-is-a-dmp-id).
 
 
 </div>
@@ -106,7 +106,7 @@
 <div class="decal" markdown="1">
 ### Contacts
 
-* The entity, e.g. a person or organization, that users of the dataset can contact with questions. Based on the [People](../dictionary?dico=people) dictionary.
+* The entity, e.g. a person or organization, that users of the dataset can contact with questions. Based on the [People](../dictionary?dico=people) dictionary. Note that people defined as contact must have an email address defined via the dictionary.
 
 
 ### Authors
@@ -175,12 +175,12 @@
 
 ### Kind of Data
 
-* The type of data included in the files (e.g. survey data, machine-readable text, experimental data tables). The list of terms is imposed by Dataverse. Adding, modifying or deleting them may prevent uploading to the repository. See [Dataverse  CV](https://docs.google.com/spreadsheets/d/13HP-jI_cwLDHBetn9UKTREPJ_F4iHdAvhjmlvmYdSSw/edit#gid=0)
+* The type of data included in the files (e.g. survey data, machine-readable text, experimental data tables). The list of terms is imposed by Dataverse. Adding, modifying or deleting them may prevent uploading to the repository. See [DDI-CV](https://ddialliance.org/Specification/DDI-CV/KindOfDataFormat_1.0.html)
 
 
 ### Data origin
 
-* Origin of the data. The list of terms is imposed by Dataverse. Adding, modifying or deleting them may prevent uploading to the repository. See [Dataverse  CV](https://docs.google.com/spreadsheets/d/13HP-jI_cwLDHBetn9UKTREPJ_F4iHdAvhjmlvmYdSSw/edit#gid=0)
+* Origin of the data. The list of terms is imposed by Dataverse. Adding, modifying or deleting them may prevent uploading to the repository.
 
 
 ### Experimental Factor
@@ -212,12 +212,12 @@
 
 ### Publication - ID Number
 
-* The identifier for a related publication
+* The identifier for a related publication corresponding to the specified identifier type.
 
 
 ### Publication - URL
 
-* The URL of the publicqtion web page, e.g. a journal article webpage
+* The URL of the publication web page, e.g. a journal article webpage
 
 
 </div>
@@ -231,7 +231,7 @@
 <div class="decal" markdown="1">
 ### Additional information
 
-* Add any comments concerning the data which could prove useful in their generation (protocols), in their interpretation, in their location, ...
+* Although it is preferable to put all data documents online via appropriate repositories (e.g. [protocols.io](https://www.protocols.io/) for protocols) or in an electronic laboratory notebook (e.g [eLabFTW](https://www.elabftw.net/)), you can nethertheless add any comments concerning the data which could prove useful in their generation, in their interpretation, in their location, ...
 
 
 </div>
@@ -239,18 +239,23 @@
 .
 ## RESOURCES
 
-* This section allows you to define all the resources you want
+* This section allows you to define all the resources you want. <br>- External resources will be specified by a URL with preference for a permanent identifier (e.g. DOI) but also any URL pointing to data whether they comply with the FAIR principle (e.g. [ODAM](https://inrae.github.io/ODAM/)) or not. <br>- Internal resources will be the data files to be uploaded to the data repository at push time. In the latter case the exact name of the file on the storage space must appear in the location field. <br>- Furthermore, in the case of local data management, it would be wise to indicate in which space the data is located if it is not located in the same place as the metadata (e.g. NextCloud, Unit NAS, etc.)
 
 
 <div class="decal" markdown="1">
 ### Resource Type
 
-* Choose the type of the resoource. Based on [Datacite CV](http://purl.org/datacite/v4.4/ResourceTypeGeneral).
+* Choose the type of the resource. Based on [Datacite CV](http://purl.org/datacite/v4.4/ResourceTypeGeneral).
+
+
+### Media Type
+
+* Choose a media type. Based on [Datacite CV](https://bioportal.bioontology.org/ontologies/FDC-GDMT/?p=classes&conceptid=http%3A%2F%2Fvocab.fairdatacollective.org%2Fgdmt%2FMIMEType).
 
 
 ### Description
 
-* Provide a concise and accurate description of the resource
+* Provide a concise and accurate description of the resource. Must not exceed 30 characters.
 
 
 ### Location

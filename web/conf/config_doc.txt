@@ -1,7 +1,7 @@
 Type	Name	Description
 section	definition	This section allows you to describe shortly your dataset.  See [Documentation on Data management](https://libraries.mit.edu/data-management/store/documentation/).
 field	title	Give your dataset a short name. This name will then be used to identify it and reference the metadata page via a URL. Do not use spaces or non-alphanumeric characters. Only letters, numbers and underscores are allowed. The number of characters is limited to 20.
-field	fulltitle	Concise and precise title of your dataset. Can sometimes use the title of the publication if it is not too long.
+field	fulltitle	Concise and precise title of your dataset. It is this title that will appear on the data repository (dataverse and zenodo) as the main title. Can sometimes use the title of the publication if it is not too long.
 field	subject	The area of the study relevant to the dataset. The list of terms is imposed by Dataverse. Adding, modifying or deleting them may prevent uploading to the repository. See [OECD](https://www.oecd.org/science/inno/38235147.pdf) and [European Commission](https://joinup.ec.europa.eu/collection/eu-semantic-interoperability-catalogue/solution/field-science-and-technology-classification/about) about field of science and technology classification.
 field	description	A summary describing the purpose, nature and the scope of the dataset. It is the equivalent of the abstract for an article.
 field	note	You can add a note which will be added in the data repository. Typically, put here the reference to funders who do not have an identifier recognized in international registers.

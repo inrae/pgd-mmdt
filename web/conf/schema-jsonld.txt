@@ -1,13 +1,13 @@
 #datasetField	Field	Type	Level	Array	Multiple	Property	Value type	Value source	Index	Prefix
 	@type		0	FALSE	FALSE		schema:Dataset			
 	@id		0	FALSE	FALSE					https://pmb-bordeaux.fr/maggot/metadata/
-		schema:version	0	FALSE	FALSE		1.0			
+		schema:version	0	FALSE	FALSE		1			
 	title	schema:identifier	0	FALSE	FALSE		#VALUE			maggot:
 	fulltitle	schema:name	0	FALSE	FALSE		#VALUE			
 	description	schema:description	0	FALSE	FALSE		#VALUE			
-	note	schema:comment	0	FALSE	FALSE	#VALUE
+	note	schema:comment	0	FALSE	FALSE		#VALUE			
 	license	schema:license	0	FALSE	FALSE		#VALUE			
-	access_rights	accessRights	0	FALSE	FALSE		#VALUE
+	access_rights	accessRights	0	FALSE	FALSE		#VALUE			
 	contacts	schema:creator	0	TRUE	TRUE					
 	contacts	schema:creator	1	FALSE	FALSE	@type	schema:Person			
 	contacts	schema:creator	1	FALSE	FALSE	name	#VALUE			
@@ -125,7 +125,7 @@
 	inDefinedTermSet	http://schema.org/inDefinedTermSet								
 	additionalType	http://schema.org/additionalType								
 	encodingFormat	http://schema.org/encodingFormat								
-	accessRights	http://purl.org/dc/terms/accessRights
+	accessRights	http://purl.org/dc/terms/accessRights								
 	citation	https://dataverse.org/schema/citation/								
 	contributor	http://purl.org/dc/terms/contributor								
 	contributorType	http://purl.org/datacite/v4.4/ContributorType								

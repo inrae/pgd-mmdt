@@ -16,7 +16,7 @@
 
 ### Full title
 
-* Concise and precise title of your dataset. Can sometimes use the title of the publication if it is not too long.
+* Concise and precise title of your dataset. It is this title that will appear on the data repository (dataverse and zenodo) as the main title. Can sometimes use the title of the publication if it is not too long.
 
 
 ### Subject
