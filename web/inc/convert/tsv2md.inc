@@ -63,8 +63,8 @@ do {
 
 	//if there was an error uploading the file
 	if ($_FILES["configdoc"]["error"] > 0) {
-	echo "Return Code: " . $_FILES["configdoc"]["error"] . "<br />";
-	break;
+		echo "Return Code: " . $_FILES["configdoc"]["error"] . "<br />";
+		break;
 	}
 
 	$name = $_FILES['configdoc']['name'];

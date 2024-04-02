@@ -11,17 +11,17 @@
 <div class="decal" markdown="1">
 ### Short name
 
-* Give your dataset a short name. This name will then be used to identify it and reference the metadata page via a URL. Do not use spaces or non-alphanumeric characters. Only letters, numbers and underscores are allowed. The number of characters is limited to 20.
+* Give your dataset a short name that can be seen as either an accession number or a persistent identifier. This name will then be mainly used to identify it and reference the metadata page via a URL. So it is not the main title of the dataset (see full title). Do not use spaces or non-alphanumeric characters. Only letters, numbers and underscores are allowed. The number of characters is limited to 20.
 
 
 ### Full title
 
-* Concise and precise title of your dataset. It is this title that will appear on the data repository (dataverse and zenodo) as the main title. Can sometimes use the title of the publication if it is not too long.
+* Concise and precise title of your dataset. It is this title that will appear on the data repository (Dataverse and Zenodo) as the main title. Can sometimes use the title of the publication if it is not too long.
 
 
 ### Subject
 
-* The area of the study relevant to the dataset. The list of terms is imposed by Dataverse. Adding, modifying or deleting them may prevent uploading to the repository. See [OECD](https://www.oecd.org/science/inno/38235147.pdf) and [European Commission](https://joinup.ec.europa.eu/collection/eu-semantic-interoperability-catalogue/solution/field-science-and-technology-classification/about) about field of science and technology classification.
+* The area of the study relevant to the dataset. The list of terms is imposed by Dataverse. Adding, modifying or deleting them may prevent uploading to the repository. See [OECD](https://web-archive.oecd.org/2012-06-15/138575-38235147.pdf) and [European Commission](https://joinup.ec.europa.eu/collection/eu-semantic-interoperability-catalogue/solution/field-science-and-technology-classification/about) about field of science and technology classification.
 
 
 ### Description of the dataset
@@ -31,7 +31,7 @@
 
 ### Notes
 
-* You can add a note which will be added in the data repository. Typically, put here the reference to funders who do not have an identifier recognized in international registers.
+* You can add a note which will be added in the data repository. Typically, put here the reference to funders who do not have an identifier recognized in international registers. This field will push into the data repository (Dataverse and Zenodo).
 
 
 </div>
@@ -82,17 +82,17 @@
 
 ### Start of collection
 
-* Start date of sample or data collection. A full date in [ISO-8601 format](https://en.wikipedia.org/wiki/ISO_8601) is required even if the month and day are fictitious.
+* Start date of sample or data collection. A full date in [ISO-8601 format](https://en.wikipedia.org/wiki/ISO_8601) is required even if the month and day are fictitious. This date allows us to know when the implementation of the experimental process began.
 
 
 ### End of collection
 
-* End date of sample or data collection. A full date in [ISO-8601 format](https://en.wikipedia.org/wiki/ISO_8601) is required even if the month and day are fictitious.
+* End date of sample or data collection. A full date in [ISO-8601 format](https://en.wikipedia.org/wiki/ISO_8601) is required even if the month and day are fictitious. This date allows you to know when data collection is complete.
 
 
 ### DMP identifier
 
-* Preferably a URL pointing directly to the [DMP](https://en.wikipedia.org/wiki/Data_management_plan) but failing that it can also be a permanent identifier (DOI, etc.). See [what-is-a-dmp-id](https://support.datacite.org/docs/what-is-a-dmp-id).
+* Preferably a URL pointing directly to the [DMP](https://en.wikipedia.org/wiki/Data_management_plan) but it can also be a permanent identifier (DOI, etc.). See [what-is-a-dmp-id](https://support.datacite.org/docs/what-is-a-dmp-id).
 
 
 </div>
@@ -106,42 +106,42 @@
 <div class="decal" markdown="1">
 ### Contacts
 
-* The entity, e.g. a person or organization, that users of the dataset can contact with questions. Based on the [People](../dictionary?dico=people) dictionary. Note that people defined as contact must have an email address defined via the dictionary.
+* Person that users of the dataset can contact with questions. Based on the [People](../dictionary?dico=people) dictionary. Note that people defined as contact must have an email address defined via the dictionary.
 
 
 ### Authors
 
-* The entity, e.g. a person or organization, that created the dataset. Based on the [People](../dictionary?dico=people) dictionary.
+* Person that created the dataset. Based on the [People](../dictionary?dico=people) dictionary.
 
 
 ### Data collectors
 
-* The entity, e.g. a person or organization, responsible for data collecting. Based on the [People](../dictionary?dico=people) dictionary.
+* Person responsible for finding, gathering/collecting data under the guidelines of the author(s) or Principal Investigator (PI). Based on the [People](../dictionary?dico=people) dictionary.
 
 
 ### Data curators
 
-* The entity, e.g. a person or organization, responsible for data curation. Based on the [People](../dictionary?dico=people) dictionary.
+* Person who organizes, integrates, and annotates data collected from various sources in order that the value of the data is maintained over time and the data remains available for reuse and preservation. Based on the [People](../dictionary?dico=people) dictionary.
 
 
 ### Project members
 
-* The entity, e.g. a person or organization, who participated in the project. Based on the [People](../dictionary?dico=people) dictionary.
+* Person on the membership list of a designated project/project team.. Based on the [People](../dictionary?dico=people) dictionary.
 
 
 ### Project leader
 
-* The entity, e.g. a person or organization, responible for managing the project. Based on the [People](../dictionary?dico=people) dictionary.
+* Person officially designated as head of project team or sub- project team instrumental in the work necessary to development of the resource. Based on the [People](../dictionary?dico=people) dictionary.
 
 
 ### WP leader
 
-* The entity, e.g. a person or organization, responsible for work project management. Based on the [People](../dictionary?dico=people) dictionary.
+* The Work Package Leader is responsible for ensuring the comprehensive contents, versioning, and availability of the Work Package during the development of the resource. Based on the [People](../dictionary?dico=people) dictionary.
 
 
 ### Depositor
 
-* The entity, e.g. a person or organization, that deposited the dataset in the repository.
+* Person or organization, that deposited the dataset in the repository.
 
 
 ### Producer
@@ -250,7 +250,7 @@
 
 ### Media Type
 
-* Choose a media type. Based on [Datacite CV](https://bioportal.bioontology.org/ontologies/FDC-GDMT/?p=classes&conceptid=http%3A%2F%2Fvocab.fairdatacollective.org%2Fgdmt%2FMIMEType).
+* Choose a media type if applicable. Based on [Datacite CV](https://bioportal.bioontology.org/ontologies/FDC-GDMT/?p=classes&conceptid=http%3A%2F%2Fvocab.fairdatacollective.org%2Fgdmt%2FMIMEType).
 
 
 ### Description
@@ -260,7 +260,7 @@
 
 ### Location
 
-* A location can be anything:  a URL link, an absolute path in a tree, a text, ...
+* Preferably indicate a URL to an external resource accessible to all. But it can also be a password-protected resource (e.g. a disk space on the cloud). This can also be text clearly indicating where the resource is located (internal disk space). Finally, this can be the name of a file deposited on the same disk space as the metadata file, in order to be able to push it in the data repository at the same time as the metadata (see [Publication](https://inrae.github.io/pgd-mmdt/publish/) on the online documentation).
 
 
 </div>

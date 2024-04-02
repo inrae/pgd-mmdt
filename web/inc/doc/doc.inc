@@ -15,6 +15,7 @@
 <br><br>
 
 <section>
+<div id="core" style="inline-size: 92%; overflow-wrap: break-word; text-align: justify;">
 
 <?php
 
@@ -29,6 +30,7 @@ echo preg_replace('/<h2>([^<]+)<\/h2>/', '<a name="\1"></a><h2>\1</h2>',
 #     str_replace('>http',' target="_blank">http',
 ?>
 
+</div>
 </section>
 
 <br/>
