@@ -11,7 +11,7 @@ var mandatory ='&nbsp;<i class="bi-asterisk" style="color:#db0d0d; font-size: 13
 
 // Help icon linked to the corresponding metadata information
 function htmlHelpIcon(item) {
-	return '&nbsp;<a href="doc/meta#'+encodeURI(item)+'" target="doc"><i class="bi-question-octagon-fill" style="color:#1b82c1; font-size: 12px"></i></a>'
+	return '&nbsp;<a href="doc/meta#'+encodeURI(item)+'" target="doc"><i class="bi-question-octagon-fill" style="color:#1b82c1; font-size: 12px" onmouseover="$(this).css('font-size','18px');" onmouseleave="$(this).css('font-size','12px');"></i></a>'
 }
 
 // Download a File : 

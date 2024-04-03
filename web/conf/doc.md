@@ -31,7 +31,7 @@
 
 ### Notes
 
-* You can add a note which will be added in the data repository. Typically, put here the reference to funders who do not have an identifier recognized in international registers. This field will push into the data repository (Dataverse and Zenodo).
+* You can add a note which will be added in the data repository. Typically, put here the reference to funders who do not have an identifier recognized in international registers. This field will be pushed into the data repository (Dataverse and Zenodo).
 
 
 </div>
