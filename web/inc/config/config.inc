@@ -16,7 +16,7 @@ $RESMEDIA=1;
 $PRIVATE_ACCESS=0;
 
 // Waiting time while loading vocabulary via Ajax API
-$AJAXWAIT=5000
+$AJAXWAIT=5000;
 
 #------------------------
 
