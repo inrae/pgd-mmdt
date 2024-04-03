@@ -13,6 +13,10 @@
       
       
       
+        <link rel="prev" href="..">
+      
+      
+        <link rel="next" href="../infrastructure/">
       
       
       <link rel="icon" href="../assets/images/favicon.png">
@@ -20,7 +24,7 @@
     
     
       
-        <title>Maggot - Private access - Maggot</title>
+        <title>Maggot - Quick tutorial - Maggot</title>
       
     
     
@@ -95,7 +99,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#private-access" class="md-skip">
+        <a href="#quick-tutorial" class="md-skip">
           Skip to content
         </a>
       
@@ -135,7 +139,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Maggot - Private access
+              Maggot - Quick tutorial
             
           </span>
         </div>
@@ -271,9 +275,29 @@
       
   
   
+    
   
-    <li class="md-nav__item">
-      <a href="../tutorial/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Quick tutorial
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   <span class="md-ellipsis">
@@ -282,6 +306,74 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#quick-tutorial_1" class="md-nav__link">
+    Quick tutorial
+  </a>
+  
+    <nav class="md-nav" aria-label="Quick tutorial">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#overview" class="md-nav__link">
+    Overview
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dictionaries" class="md-nav__link">
+    Dictionaries
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#controlled-vocabulary" class="md-nav__link">
+    Controlled Vocabulary
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#resources" class="md-nav__link">
+    Resources
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#metadata-file" class="md-nav__link">
+    Metadata file
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -678,44 +770,127 @@
                   
 
 
-  <h1>Maggot - Private access</h1>
+  <h1>Quick tutorial</h1>
 
-<h1 id="private-access">Private access<a class="headerlink" href="#private-access" title="Permanent link">&para;</a></h1>
+<h1 id="quick-tutorial">Quick tutorial<a class="headerlink" href="#quick-tutorial" title="Permanent link">&para;</a></h1>
 <style>.md-typeset h1 {display: none;} .md-nav__item {font-size: medium}</style>
 
-<h3 id="private-access-key-management">Private access key management<a class="headerlink" href="#private-access-key-management" title="Permanent link">&para;</a></h3>
-<h4 id="motivation">Motivation<a class="headerlink" href="#motivation" title="Permanent link">&para;</a></h4>
-<p>Although the Maggot tool is designed to foster the sharing of metadata within a collective, it may be necessary to temporarily privatize access to the metadata of an ongoing project with confidentiality constraints. So even within our own collective, access to metadata must be restricted to authorized users only.</p>
-<h4 id="implementation">Implementation<a class="headerlink" href="#implementation" title="Permanent link">&para;</a></h4>
-<p>The choice of not wanting to manage users in the Maggot tool was made in order to make the metadata completely open by default within a collective. Furthermore, access rights to the storage space are managed independently of the Maggot tool by the administrator of this space. It is therefore through the storage space that we must give or not access to the metadata via the web interface.</p>
-<p>The chosen mechanism for privatizing access is described below. It has the dual advantage of being simple to implement and simple to use.</p>
-<ol>
+<h3 id="quick-tutorial_1">Quick tutorial<a class="headerlink" href="#quick-tutorial_1" title="Permanent link">&para;</a></h3>
+<p>This is a quick tutorial of how to use the Maggot tool in practice and therefore preferably targeting the end user. The figures are given here for illustration purposes but certain elements may be different for you given that this will depend on the configuration on your instance, in particular the choice of metadata, and the associated vocabulary sources. Indeed, the choice of vocabulary sources (ontologies, thesauri, dictionaries) as well as the choice of metadata fields to enter must in principle have been the subject of discussion during the implementation of the Maggot tool in order to find the best compromise between the choice of sources and all the scientific fields targeted (see <a href="../definitions">Definition files</a>). However a later addition is always possible.</p>
+<p><br></p>
+<h4 id="overview">Overview<a class="headerlink" href="#overview" title="Permanent link">&para;</a></h4>
+<ul>
 <li>
-<p>First we have to generate a file containing the encrypted key for a private access. This file must be generated from the web interface then downloaded as shown in the figure below. Then this file must be manually deposited in the data directory corresponding to the dataset whose access we wish to privatize. The presence of this file within a directory is enough to block access to metadata and data by default. It should be noted that we can put this same file containing the encrypted private key in several data directories (included within the same project for example). The deposit must be done by hand because the Maggot tool must only have access to the storage space in read mode. This also guarantees that the user has writing rights to this space without having to manage user accounts on the Maggot side.</p>
-<p><center>
-<a href="../images/private_access_1.png" data-lightbox="fig0"><img src="../images/private_access_1.png" width="800px"></a>
-</center></p>
-<p><center>
-<em>By default, ‘untwist1’ metadata are not accessible to anyone</em><br>
-<a href="../images/private_access_1b.png" data-lightbox="fig0"><img src="../images/private_access_1b.png" width="600px"></a>
-</center></p>
+<p>All the fields (metadata) to be filled in are distributed between several tabs, also called sections. Each section tries to group together a set of fields relating to the same topic.</p>
 </li>
 <li>
-<p>When we want to have access to the metadata of this dataset, we have to simply enter the private key in the current session.
-This will have the effect of unlocking access to the metadata via the web interface only in the current session of our web browser. This means that we will have to enter the private key for each session (by default, a session lasts a maximum of 1 hour).</p>
-<p><center>
-<a href="../images/private_access_2.png" data-lightbox="fig0"><img src="../images/private_access_2.png" width="600px"></a>
-</center></p>
-<p><center>
-<em>Now the ‘untwist1’ metadata are accessible only to us</em><br>
-<a href="../images/private_access_2b.png" data-lightbox="fig0"><img src="../images/private_access_2b.png" width="600px"></a>
-</center></p>
+<p>You can reload a previously created metadata file. All form fields will then be initialized with the value(s) defined in the metadata file.</p>
 </li>
 <li>
-<p>When we want to give access to the metadata to the entire collective, we simply need to delete the private access file (named by default '<em>META_auth.txt</em>') from the concerned data directory.</p>
+<p>You must at least complete the mandatory fields marked with a red star.</p>
 </li>
-</ol>
-<p><br><br></p>
+<li>
+<p>It is possible to obtain help for each field to be completed. A mini-icon with a question mark is placed after each field label. By clicking on this icon, a web page opens with the focus on the definition of the corresponding field. This help should provide you with at least a definition of a field and, if necessary, instructions on how to fill it in. It should be noted that the quality of the documentation depends on each instance and its configuration.</p>
+</li>
+<li>
+<p>Once the form has been completed, even partially (at least those which are mandatory and marked with a red star), you can export your metadata in the form of a file. See <a href="#metadata-file">further</a></p>
+</li>
+</ul>
+<p>All these points are summarized in the figure below.</p>
+<p><center>
+<a href="../images/tuto_fig1.png" data-lightbox="fig0"><img src="../images/tuto_fig1.png" width="800px"></a><br>
+</center></p>
+<p><br></p>
+<h4 id="dictionaries">Dictionaries<a class="headerlink" href="#dictionaries" title="Permanent link">&para;</a></h4>
+<p><a href="../dictionaries/">Dictionary-based metadata</a> (e.g. people's names) can easily be entered by <abbr title="feature in which an application predicts the rest of a word a user is typing">autocomplete</abbr> in the 'Search value' box provided the name appears in the corresponding dictionary.</p>
+<p><center>
+<a href="../images/tuto_fig2.png" data-lightbox="fig1"><img src="../images/tuto_fig2.png" width="500px"></a><br>
+</center></p>
+<p>However, if the name does not yet appear in the dictionary, simply enter the full name (first name &amp; last name) in the main box, making sure to separate each name with a comma and then a space as shown in the figure below.</p>
+<p><center>
+<a href="../images/tuto_fig3.png" data-lightbox="fig2"><img src="../images/tuto_fig3.png" width="800px"></a><br>
+</center></p>
+<p>Then you can request to add the additional person name(s) to the dictionary later as described below:</p>
+<p><center>
+<a href="../images/tuto_fig4.png" data-lightbox="fig3"><img src="../images/tuto_fig4.png" width="800px"></a><br>
+</center></p>
+<ul>
+<li>
+<p>From the home page, select "<strong>Dictionaries</strong>". As username, just put "<em>maggot</em>" (this might be different within your instance).</p>
+</li>
+<li>
+<p>Then after choosing the "<strong>people</strong>" dictionary, you can download the entire dictionary in a <abbr title="Open text format representing tabular data as &quot;Tab-Separated Values&quot;. Each row corresponds to a table row and the cells in a row are separated by a tab">TSV</abbr> file (<a href="https://en.wikipedia.org/wiki/Tab-separated_values" target="_blank">Tab-Separated Values</a>) ready to be edited with your favorite spreadsheet.</p>
+</li>
+<li>
+<p>Add all the desired people's names with their institution, and possibly their <a href="https://info.orcid.org/what-is-orcid/" target="_blank">ORCID</a> and their email address. Please note that emails are required for authors and contacts</p>
+</li>
+<li>
+<p>You will then just have to send it to the data manager so that he can add new people's names to the online dictionary.</p>
+</li>
+</ul>
+<p>Please proceed in the same way for all <a href="../dictionaries/">dictionaries</a> (<em>people</em>, <em>funders</em>, <em>producer</em>, <em>vocabulary</em>)</p>
+<p><br></p>
+<h4 id="controlled-vocabulary">Controlled Vocabulary<a class="headerlink" href="#controlled-vocabulary" title="Permanent link">&para;</a></h4>
+<p>Depending on the configuration of your instance, it is very likely that certain fields (eg. keywords) are connected to a controlled vocabulary source (e.g. ontology, thesaurus). <a href="../definitions/vocabulary">Vocabulary</a> based on ontologies, thesauri or even dictionaries can easily be entered by <abbr title="feature in which an application predicts the rest of a word a user is typing">autocomplete</abbr> in the "search for a value" box provided that the term exists in the corresponding vocabulary source. </p>
+<p><center>
+<a href="../images/tuto_fig5.png" data-lightbox="fig4"><img src="../images/tuto_fig5.png" width="500px"></a><br>
+</center></p>
+<p>If a term cannot be found by <abbr title="feature in which an application predicts the rest of a word a user is typing">autocomplete</abbr>, you can enter the term directly in the main box, making sure to separate each term with a comma and a space as shown in the figure below.</p>
+<p><center>
+<a href="../images/tuto_fig6.png" data-lightbox="fig5"><img src="../images/tuto_fig6.png" width="600px"></a><br>
+</center></p>
+<p>The data steward will later try to link it to a vocabulary source that may be suitable for the domain in question. Furthermore, even if the choice of vocabulary sources was made before the tool was put into service, a later addition is always possible. You must make the request to your data manager.</p>
+<p><br></p>
+<h4 id="resources">Resources<a class="headerlink" href="#resources" title="Permanent link">&para;</a></h4>
+<p>Because data is often scattered across various platforms, databases, and file formats, this making it challenging to locate and access. This is called <a href="https://www.cohesity.com/glossary/data-fragmentation/" target="_blank">data fragmentation</a>. So the Maggot tool allows you to specify resources, i.e. data in the broader sense, whether external or internal, allowing to centralize all links towards data.</p>
+<ul>
+<li>External resources will be specified by a URL with preference for a permanent identifier (e.g. <a href="https://en.wikipedia.org/wiki/Digital_Object_Identifier" target="_blank">DOI</a>) but also any URL pointing to data whether they comply with the FAIR principle (e.g. <a href="https://inrae.github.io/ODAM/" target="_blank">ODAM</a>) or not.</li>
+<li>Internal resources will be the data files to be uploaded to the data repository at push time. In the latter case the exact name of the file on the storage space must appear in the location field.</li>
+<li>Furthermore, in the case of local data management, it would be wise to indicate in which space the data is located if it is not located in the same place as the metadata (e.g. NextCloud, Unit NAS, etc.)</li>
+</ul>
+<p>Four fields must be filled in :</p>
+<p><center>
+<a href="../images/tuto_fig9.png" data-lightbox="fig9"><img src="../images/tuto_fig9.png" width="800px"></a>
+</center></p>
+<ul>
+<li>
+<p><strong>Resource Type</strong> : Choose the type of the resource in the droplist.</p>
+</li>
+<li>
+<p><strong>Media Type</strong> : Choose a media type if applicable by <abbr title="feature in which an application predicts the rest of a word a user is typing">autocomplete</abbr>.</p>
+</li>
+<li>
+<p><strong>Description</strong> : Provide a concise and accurate description of the resource. Must not exceed 30 characters.</p>
+</li>
+<li>
+<p><strong>Location</strong> : Preferably indicate an URL to an external resource accessible to all. But it can also be a password-protected resource (e.g. a disk space on the cloud). This can also be text clearly indicating where the resource is located (internal disk space). Finally, this can be the name of a file deposited on the same disk space as the metadata file, in order to be able to push it in the data repository at the same time as the metadata (see <a href="../publish">Publication</a>).</p>
+</li>
+</ul>
+<p><br></p>
+<h4 id="metadata-file">Metadata file<a class="headerlink" href="#metadata-file" title="Permanent link">&para;</a></h4>
+<p>Once the form has been completed, even partially (at least those which are mandatory and marked with a red star), you can export your metadata in the form of a file. The file is in <abbr title="JavaScript Object Notation : format used to represent structured information">JSON</abbr> format and must have the prefix 'META_'.</p>
+<p>Two uses of this file are possible:</p>
+<dl>
+<dt><strong>1.</strong> The first use is the recommended one because it allows metadata management within your collective.</dt>
+<dd><p>You drop the metadata file directly under the data directory corresponding to the metadata. Indeed, when installing the tool, a storage space dedicated to the tool had to be provided for this purpose. See <a href="../infrastructure">infrastructure</a>. Once deposited, you just have to wait around 30 minutes maximum so that the tool has had time to scan the root of the data directories looking for new files in order to update the database. After this period, the description of your dataset will be visible from the interface, and a selection of criteria will be made in order to restrict the search.</p></dd>
+</dl>
+<p><center>
+<a href="../images/tuto_fig7.png" data-lightbox="fig7"><img src="../images/tuto_fig7.png" width="800px"></a>
+</center></p>
+<dl>
+<dt><br></dt>
+<dd><p>You will then have the possibility to publish the metadata later with possibly the corresponding data in a data repository such as <a href="../publish/dataverse/">Dataverse</a> or <a href="../publish/zenodo/">Zenodo</a>.</p></dd>
+<dt><strong>2.</strong> The second use is only to deposit the metadata into a data repository</dt>
+<dd><p>Whether with <a href="../publish/dataverse/">Dataverse</a> or <a href="../publish/zenodo/">Zenodo</a>, you have the possibility of publishing metadata directly in one or other of these repositories without using the storage space.</p></dd>
+</dl>
+<p><center>
+<a href="../images/tuto_fig8.png" data-lightbox="fig8"><img src="../images/tuto_fig8.png" width="800px"></a>
+</center></p>
+<dl>
+<dt><br></dt>
+<dd><p>Please note that you cannot also deposit the data files in this way. You will have to do this manually for each of them directly online in the repository.</p></dd>
+</dl>
+<p><br><br><br></p>
 
 
 
