@@ -15,6 +15,9 @@ $RESMEDIA=1;
 // Private access key management
 $PRIVATE_ACCESS=0;
 
+// Waiting time while loading vocabulary via Ajax API
+$AJAXWAIT=5000
+
 #------------------------
 
 // Mode external (1) or not (0)

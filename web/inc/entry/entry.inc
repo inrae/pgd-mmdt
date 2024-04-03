@@ -12,7 +12,7 @@
 	<script src="js/autocomplete/resourcetypes.js"></script>
 	<script type="text/javascript">
 	var DEBUG = "<? echo $_GET['debug'] ?>";
-	var AJAXWAIT = "<? echo isset($_GET['wait']) ? $_GET['wait'] : 5000 ?>";
+	var AJAXWAIT = "<? echo isset($_GET['wait']) ? $_GET['wait'] : $AJAXWAIT ?>";
 	var arrItems;
 	var url_schema = '<?php echo $url_schema; ?>';
 	var resource_media = '<?php echo $RESMEDIA; ?>';
