@@ -276,16 +276,88 @@
   
   
   
-    <li class="md-nav__item">
-      <a href="../tutorial/" class="md-nav__link">
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
         
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../tutorial/" class="md-nav__link ">
+              
   
   <span class="md-ellipsis">
     Quick tutorial
   </span>
   
 
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2" id="__nav_2_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Quick tutorial
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tutorial/describe/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Metadata Entry
+  </span>
+  
+
       </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tutorial/metadata/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Metadata File
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
     </li>
   
 
@@ -704,10 +776,11 @@
 </center></p>
 <ul>
 <li>We start from the Maggot JSON format metadata file generated from the web interface and based on the metadata profile defined by the terminology definition files. </li>
-<li>Then from a file defining the correspondence between the Maggot fields and those of the target repository, we can perform a <a href="https://www.google.com/search?q=metadata+crosswalk+definition&amp;oq=metadata+crosswalk" target="_blank">metadata crosswalk</a> to the JSON format supported by the web API of the target repository.</li>
+<li>Then from a file defining the correspondence between the Maggot fields and those of the target repository, we can perform a <a href="https://en.wikipedia.org/wiki/Schema_crosswalk" target="_blank">metadata crosswalk</a> to the JSON format supported by the web API of the target repository.</li>
 <li>During the process we enrich the metadata with controlled vocabularies based either on dictionaries or on thesauri and/or ontologies. For the latter cases, we use the web APIs of these sources to perform the mapping (see the <a href="../definitions/mapping">definition of mapping</a>).</li>
 <li>Finally, to be able to carry out the transfer i.e. the submission to the target repository (we say "push" for short), we first need to connect to the repository in order to retrieve the key (the <a href="https://www.wallarm.com/what/what-is-an-api-token-quick-guide" target="_blank">API token</a>) authorizing us to submit the dataset. This obviously assumes that we have the privileges (creation/modification rights) to do so.</li>
 </ul>
+<h1 id="httpswwwgooglecomsearchqmetadatacrosswalkdefinitionoqmetadatacrosswalk"><a href="https://www.google.com/search?q=metadata+crosswalk+definition&amp;oq=metadata+crosswalk">https://www.google.com/search?q=metadata+crosswalk+definition&amp;oq=metadata+crosswalk</a><a class="headerlink" href="#httpswwwgooglecomsearchqmetadatacrosswalkdefinitionoqmetadatacrosswalk" title="Permanent link">&para;</a></h1>
 
 
 
