@@ -874,7 +874,7 @@ Indeed, all the <abbr title="JavaScript Object Notation : format used to represe
 <dt><strong>Metadata Entry</strong></dt>
 <dd><p>This is the main module allowing the <abbr title="The data producer is the person who produced data and by extension has rights over it. She is also the one who has the best knowledge of it.">data producer</abbr> to enter their metadata relating to a dataset. See the corresponding tutorial for <a href="#tutorial-describe">Metadata Entry</a>.</p></dd>
 <dt><strong>Search datasets</strong></dt>
-<dd><p>This module allows <abbr title="The user are the persons who want to use the data.">users</abbr> to search datasets based on the associated metadata, to see all the metadata and possibly to have access to the data itself. This obviously assumes that the metadata files have been deposited in the correct directory in the storage space dedicated to data management within your collective. See <a href="#infrastructure">infrastructure</a>.</p></dd>
+<dd><p>This module allows <abbr title="The user are the persons who want to use the data.">users</abbr> to search datasets based on the associated metadata, to see all the metadata and possibly to have access to the data itself. This obviously assumes that the metadata files have been deposited in the correct directory in the storage space dedicated to data management within your collective. See <a href="#infrastructure">Infrastructure</a>.</p></dd>
 <dt><strong>File Browser</strong></dt>
 <dd><p>This module gives <abbr title="The data producer is the person who produced data and by extension has rights over it. She is also the one who has the best knowledge of it.">data producer</abbr> access to a <a href="https://filebrowser.org/features" target="_blank">file browser</a> provided that the <abbr title="The data manager is the person who sets the data policy, i.e. its implementation and governance.">data manager</abbr> has installed it. See <a href="#installation-file-browser">File Browser</a></p></dd>
 <dt><strong>Publication</strong></dt>
@@ -888,7 +888,7 @@ Indeed, all the <abbr title="JavaScript Object Notation : format used to represe
 
 <h3 id="tutorial-describe-metadata-entry">Metadata Entry<a class="headerlink" href="#tutorial-describe-metadata-entry" title="Permanent link">&para;</a></h3>
 <p>The figures are given here for illustration purposes but certain elements may be different for you given that this will depend on the configuration on your instance, in particular the choice of metadata, and the associated vocabulary sources.</p>
-<p>Indeed, the choice of vocabulary sources (ontologies, thesauri, dictionaries) as well as the choice of metadata fields to enter must in principle have been the subject of discussion during the implementation of the Maggot tool in order to find the best compromise between the choice of sources and all the scientific fields targeted (see <a href="#tutorial-definitions">Definition files</a>). However a later addition is always possible.</p>
+<p>Indeed, the choice of vocabulary sources (ontologies, thesauri, dictionaries) as well as the choice of metadata fields to enter must in principle have been the subject of discussion during the implementation of the Maggot tool in order to find the best compromise between the choice of sources and all the scientific fields targeted (see <a href="#definitions">Definition files</a>). However a later addition is always possible.</p>
 <p><br></p>
 <h4 id="tutorial-describe-overview">Overview<a class="headerlink" href="#tutorial-describe-overview" title="Permanent link">&para;</a></h4>
 <ul>
@@ -914,7 +914,7 @@ Indeed, all the <abbr title="JavaScript Object Notation : format used to represe
 </center></p>
 <p><br></p>
 <h4 id="tutorial-describe-dictionaries">Dictionaries<a class="headerlink" href="#tutorial-describe-dictionaries" title="Permanent link">&para;</a></h4>
-<p><a href="#tutorial-dictionaries">Dictionary-based metadata</a> (e.g. people's names) can easily be entered by <abbr title="feature in which an application predicts the rest of a word a user is typing.">autocomplete</abbr> in the 'Search value' box provided the name appears in the corresponding dictionary.</p>
+<p><a href="#dictionaries">Dictionary-based metadata</a> (e.g. people's names) can easily be entered by <abbr title="feature in which an application predicts the rest of a word a user is typing.">autocomplete</abbr> in the 'Search value' box provided the name appears in the corresponding dictionary.</p>
 <p><center>
 <a href="../images/tuto2_fig2.png" data-lightbox="fig1"><img src="../images/tuto2_fig2.png" width="500px"></a><br>
 </center></p>
@@ -940,10 +940,10 @@ Indeed, all the <abbr title="JavaScript Object Notation : format used to represe
 <p>You will then just have to send it to the <abbr title="The data manager is the person who sets the data policy, i.e. its implementation and governance.">data manager</abbr> so that he can add new people's names to the online dictionary.</p>
 </li>
 </ul>
-<p>Please proceed in the same way for all <a href="#tutorial-dictionaries">dictionaries</a> (<em>people</em>, <em>funders</em>, <em>producer</em>, <em>vocabulary</em>)</p>
+<p>Please proceed in the same way for all <a href="#dictionaries">dictionaries</a> (<em>people</em>, <em>funders</em>, <em>producer</em>, <em>vocabulary</em>)</p>
 <p><br></p>
 <h4 id="tutorial-describe-controlled-vocabulary">Controlled Vocabulary<a class="headerlink" href="#tutorial-describe-controlled-vocabulary" title="Permanent link">&para;</a></h4>
-<p>Depending on the configuration of your instance, it is very likely that certain fields (eg. keywords) are connected to a controlled vocabulary source (e.g. ontology, thesaurus). <a href="#tutorial-definitions-vocabulary">Vocabulary</a> based on ontologies, thesauri or even dictionaries can easily be entered by <abbr title="feature in which an application predicts the rest of a word a user is typing.">autocomplete</abbr> in the "search for a value" box provided that the term exists in the corresponding vocabulary source. </p>
+<p>Depending on the configuration of your instance, it is very likely that certain fields (eg. keywords) are connected to a controlled vocabulary source (e.g. ontology, thesaurus). <a href="#definitions-vocabulary">Vocabulary</a> based on ontologies, thesauri or even dictionaries can easily be entered by <abbr title="feature in which an application predicts the rest of a word a user is typing.">autocomplete</abbr> in the "search for a value" box provided that the term exists in the corresponding vocabulary source. </p>
 <p><center>
 <a href="../images/tuto2_fig5.png" data-lightbox="fig4"><img src="../images/tuto2_fig5.png" width="500px"></a><br>
 </center></p>
@@ -975,7 +975,7 @@ Indeed, all the <abbr title="JavaScript Object Notation : format used to represe
 <p><strong>Description</strong> : Provide a concise and accurate description of the resource. Must not exceed 30 characters.</p>
 </li>
 <li>
-<p><strong>Location</strong> : Preferably indicate an URL to an external resource accessible to all. But it can also be a password-protected resource (e.g. a disk space on the cloud). This can also be text clearly indicating where the resource is located (internal disk space). Finally, this can be the name of a file deposited on the same disk space as the metadata file, in order to be able to push it in the data repository at the same time as the metadata (see <a href="#tutorial-publish">Publication</a>).</p>
+<p><strong>Location</strong> : Preferably indicate an URL to an external resource accessible to all. But it can also be a password-protected resource (e.g. a disk space on the cloud). This can also be text clearly indicating where the resource is located (internal disk space). Finally, this can be the name of a file deposited on the same disk space as the metadata file, in order to be able to push it in the data repository at the same time as the metadata (see <a href="#publish">Publication</a>).</p>
 </li>
 </ul>
 <p><br><br><br></p></section><section class="print-page" id="tutorial-metadata"><h1 id="tutorial-metadata-quick-tutorial">Quick tutorial<a class="headerlink" href="#tutorial-metadata-quick-tutorial" title="Permanent link">&para;</a></h1>
