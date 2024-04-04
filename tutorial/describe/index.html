@@ -291,16 +291,24 @@
         <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
         
           
-          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
-            
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../" class="md-nav__link ">
+              
   
   <span class="md-ellipsis">
     Quick tutorial
   </span>
   
 
-            <span class="md-nav__icon md-icon"></span>
-          </label>
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2" id="__nav_2_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
         
         <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_2">
@@ -308,26 +316,6 @@
             Quick tutorial
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
-            
-              
-                
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Quick tutorial
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
             
               
                 
@@ -859,6 +847,10 @@
 <p>Indeed, the choice of vocabulary sources (ontologies, thesauri, dictionaries) as well as the choice of metadata fields to enter must in principle have been the subject of discussion during the implementation of the Maggot tool in order to find the best compromise between the choice of sources and all the scientific fields targeted (see <a href="../../definitions">Definition files</a>). However a later addition is always possible.</p>
 <p><br></p>
 <h4 id="overview">Overview<a class="headerlink" href="#overview" title="Permanent link">&para;</a></h4>
+<p>When you enter the metadata entry module you should see a page that looks like the figure below:</p>
+<p><center>
+<a href="../../images/tuto2_fig1.png" data-lightbox="fig0"><img src="../../images/tuto2_fig1.png" width="800px"></a><br>
+</center></p>
 <ul>
 <li>
 <p>All the fields (metadata) to be filled in are distributed between several tabs, also called sections. Each section tries to group together a set of fields relating to the same topic.</p>
@@ -876,10 +868,6 @@
 <p>Once the form has been completed, even partially (at least those which are mandatory and marked with a red star), you can export your metadata in the form of a file. See <a href="../metadata">Metadata File</a></p>
 </li>
 </ul>
-<p>All these points are summarized in the figure below.</p>
-<p><center>
-<a href="../../images/tuto2_fig1.png" data-lightbox="fig0"><img src="../../images/tuto2_fig1.png" width="800px"></a><br>
-</center></p>
 <p><br></p>
 <h4 id="dictionaries">Dictionaries<a class="headerlink" href="#dictionaries" title="Permanent link">&para;</a></h4>
 <p><a href="../../dictionaries/">Dictionary-based metadata</a> (e.g. people's names) can easily be entered by <abbr title="feature in which an application predicts the rest of a word a user is typing.">autocomplete</abbr> in the 'Search value' box provided the name appears in the corresponding dictionary.</p>
