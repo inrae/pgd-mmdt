@@ -276,6 +276,7 @@ function cleanfield(elm) {
 function get_term_from_bpbox (bpinput) {
 	var box = $(bpinput).attr('name');
 	var selterm = $("input[name="+box+"]").val();
+	if (selterm.match(/\(/)) selterm = selterm.substring(0,selterm.match(/\(/)['index']-1)
 	var terms = $('#'+box+'-sel' ).val();
 	if (terms.length>0) terms=terms.split( /,\s*/ ); else terms=[];
 	terms.push( selterm ); 

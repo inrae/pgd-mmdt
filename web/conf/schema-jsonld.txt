@@ -70,6 +70,11 @@
 	grantNumbers	schema:funding	1	FALSE	TRUE	funder				
 	grantNumbers	schema:funding	2	FALSE	FALSE	@type	schema:Organization			
 	grantNumbers	schema:funding	2	FALSE	FALSE	name	#DICO	cvlist:grant	1	
+	species1	scientificName	0	TRUE	TRUE					
+	species1	scientificName	1	FALSE	FALSE	@type	schema:DefinedTerm			
+	species1	scientificName	1	FALSE	FALSE	name	#VALUE			
+	species1	scientificName	1	FALSE	FALSE	url	#ONTO	cv:agonto	1	
+	species1	scientificName	1	FALSE	FALSE	inDefinedTermSet	#ONTO	cv:agonto	0	
 	keywords	schema:keywords	0	TRUE	TRUE					
 	keywords	schema:keywords	1	FALSE	FALSE	@type	schema:DefinedTerm			
 	keywords	schema:keywords	1	FALSE	FALSE	name	#VALUE			
@@ -78,8 +83,8 @@
 	topics	citation:topicClassification	0	TRUE	TRUE					
 	topics	citation:topicClassification	1	FALSE	FALSE	@type	schema:DefinedTerm			
 	topics	citation:topicClassification	1	FALSE	FALSE	name	#VALUE			
-	topics	citation:topicClassification	1	FALSE	FALSE	url	#ONTO	cv:voinrae	1	
-	topics	citation:topicClassification	1	FALSE	FALSE	inDefinedTermSet	#ONTO	cv:voinrae	0	
+	topics	citation:topicClassification	1	FALSE	FALSE	url	#ONTO	cv:agonto	1	
+	topics	citation:topicClassification	1	FALSE	FALSE	inDefinedTermSet	#ONTO	cv:agonto	0	
 	measurement	schema:variableMeasured	0	TRUE	TRUE		#VALUE			
 	measurement	schema:variableMeasured	1	FALSE	FALSE	@type	schema:PropertyValue			
 	measurement	schema:variableMeasured	1	FALSE	FALSE	name	#VALUE			
@@ -125,6 +130,7 @@
 	inDefinedTermSet	http://schema.org/inDefinedTermSet								
 	additionalType	http://schema.org/additionalType								
 	encodingFormat	http://schema.org/encodingFormat								
+	scientificName	https://bioschemas.org/types/Taxon/1.0-RELEASE#scientificName								
 	accessRights	http://purl.org/dc/terms/accessRights								
 	citation	https://dataverse.org/schema/citation/								
 	contributor	http://purl.org/dc/terms/contributor								

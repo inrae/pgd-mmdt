@@ -145,6 +145,10 @@ $url_ror = 'https://api.ror.org/organizations?query=';
 
 #------------------------
 
+$sendMail=NULL;
+
+#------------------------
+
 // URL of the JSON Schema Validation API
 // see https://assertible.com/json-schema-validation
 $JSVAPI_URL="https://assertible.com/json";

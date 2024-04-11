@@ -12,6 +12,8 @@ ini_set("include_path", ".:/usr/share/php");
 ini_set("display_errors", 1);
 
 include ('inc/config/config.inc');
+if (! is_null($sendMail))
+	include ('inc/functions/sendmail.inc');
 include ('inc/header.inc');
 include ('inc/entry/entry.inc');
 include ('inc/footer.inc');

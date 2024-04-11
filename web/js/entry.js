@@ -29,6 +29,7 @@ function load_data(file)
 				.done(function(outdata) { resp=JSON.parse(outdata); })
 				.fail(function(outdata) { console.log(outdata); });
 		$.ajaxSetup({async:true});
+        if (DEBUG) console.log(resp);
 		// If no errors
 		if (resp.errors.length==0) {
 		//ok=1; if (ok==1) {
