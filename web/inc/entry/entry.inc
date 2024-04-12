@@ -12,6 +12,7 @@
 	<script src="js/autocomplete/resourcetypes.js"></script>
 	<script type="text/javascript">
 	var DEBUG = "<? echo $_GET['debug'] ?>";
+	var SEND = "<? echo ! is_null($sendMail) ?>";
 	var AJAXWAIT = "<? echo isset($_GET['wait']) ? $_GET['wait'] : $AJAXWAIT ?>";
 	var arrItems;
 	var url_schema = '<?php echo $url_schema; ?>';
@@ -229,11 +230,16 @@
 
 <!-- Save as JSON -->
 <div id="saveForm" class="saveForm" enctype="multipart/form-data" autocomplete="off" action="#" style="display: none;">
-	<strong>Download as a JSON file</strong>
+	<strong>Generate a JSON file</strong>
 	<form id ="saveform" name="saveform" >
 		<br><span>Filename:</span>&nbsp;&nbsp;<b>META_</b>&nbsp;<input id="jsonName" name="jsonName" type="text">&nbsp;<b>.json</b><br><br>
+		<div id="divSend">
+			<input type="checkbox" id="jsonSend" name="jsonSend" value="">
+			<label id="labelSend" for="SEND">Send the metadata file to the data manager(s)</label><br><br>
+			<textarea class="form-control form-control-sm" id="jsonMsg"  name="jsonMsg" rows="8" style="display: none;" placeholder="Please put your comment here"></textarea>
+		</div><br>
 		<span><center>
-			<input type="submit" value="Save" class="btn btn-primary" />
+			<input type="submit" id="btnSave" value="Save" class="btn btn-primary" />
 			<input type="reset" value="Cancel" class="btn btn-primary"/>
 		</center></span>
 	</form>
@@ -265,6 +271,13 @@
 	load_data(file);
 	});
 	$("[name='btn-input']").removeClass('btn-primary');  $("[name='btn-input']").addClass('menu-select');
+
+	// Disable the Send button if sendMail id not configurated
+	if (SEND.length==0) {
+		$("#jsonSend").attr("disabled", true);
+		$("#divSend").hide();
+		if (DEBUG) console.log('SEND is disable');
+	}
 
 	function final_loading() {
 		if (DEBUG) console.log('--- BEGIN final_loading ...')

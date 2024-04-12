@@ -1,0 +1,69 @@
+<?php
+
+# Nom du fichier: send
+# Auteur(s): D.JACOB 
+# Copyright: (c) INRAE - 2015-2024
+#
+session_start([ 'cookie_lifetime' => 3600 ]);
+
+date_default_timezone_set('Europe/Paris');
+ini_set('error_reporting', E_ALL & ~E_NOTICE);
+ini_set("include_path", ".:/usr/share/php");
+ini_set("display_errors", 1);
+
+// Chargement fichier config
+include ('inc/config/config.inc');
+include ('inc/functions/functions.inc');
+
+$RET="0";
+
+do {
+	if (is_null($sendMail) || ! gettype($sendMail)=="array")
+		break;
+
+	include ('inc/functions/sendmail.inc');
+
+	if (! isset($_GET['json']) || ! isset($_GET['name']))
+		break;
+
+	$json = base64_decode($_GET['json']);
+	$jsonArray = json_decode(isJSONValid($json), true);
+	if (gettype($jsonArray) != "array" || ! in_array('errors', $jsonArray))
+		break;
+
+	if (count($jsonArray['errors']) != 0) {
+		echo var_dump($jsonArray);
+		break;
+	}
+
+	if (! in_array('valid', $jsonArray) || ! $jsonArray['valid'])
+		break;
+
+	$jsontmp = 'tmp/META_'.$_GET['name'].'.json';
+	file_put_contents($jsontmp, $json);
+
+	$HOST = $_SERVER['SERVER_NAME'];
+	$APPNAME = $_SERVER['HTTP_X_APP_NAME'];
+	$REQUEST = $_SERVER['REQUEST_URI'];
+	$Timezone = date_default_timezone_get();
+	$Date = date('Y-m-d H:i:s');
+	$Filename = $_GET['name'];
+	$Msg = isset($_GET['body']) && strlen($_GET['body']) ? 
+		"Comment left by the submitter:\n\n".utf8_decode(urldecode(html_entity_decode($_GET['body']))) : 
+		'No comment left' ;
+	$Subject = "[Maggot] JSON Metadata file from $HOST";
+	$Body = <<<EOT
+$HOST - $APPNAME
+$Timezone - $Date
+FileName : $Filename
+
+$Msg
+EOT;
+	$msg_return = sendMailObj ($Subject, $Body, '', 0, $jsontmp);
+	if (strlen($msg_return)==0) $RET="1";
+
+} while(0);
+
+echo $RET;
+
+?>

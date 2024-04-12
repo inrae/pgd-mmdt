@@ -32,8 +32,7 @@ field	depositor	The entity, e.g. a person or organization, that deposited the da
 field	producer	The entity that serves to produce the dataset. Based on the [Producer](../dictionary?dico=producer) dictionary.
 field	grantNumbers	Information about the dataset's financial support. Based on the [Grant](../dictionary?dico=grant) dictionary.
 section	descriptors	This section allows you to define elements characterizing the data themselves and certain experimental conditions for obtaining them.
-field	species1	Select the main species relevant to the study and/or data. Based on the [NCBI Taxonomy](https://bioportal.bioontology.org/ontologies/NCBITAXON).
-field	species2	Select the secondary species relevant to the study and/or data. Based on the [NCBI Taxonomy](https://bioportal.bioontology.org/ontologies/NCBITAXON).
+Taxonomy](https://bioportal.bioontology.org/ontologies/NCBITAXON).
 field	keywords	A key term that describes an important aspect of the dataset and information about any controlled vocabulary used. Based on [BioPortal ontologies](https://bioportal.bioontology.org/ontologies) : EFO, JERM, EDAM, MS, NM, NCI, OBI, PO, PTO, AGRO, ECOCORE, IOBC, NCBITAXON.
 field	topics	Indicates a broad, important topic or subject that the dataset covers and information about any controlled vocabulary used. Based on [Thesaurus-INRAE](https://thesaurus.inrae.fr/thesaurus-inrae/en/).
 field	kindOfData	The type of data included in the files (e.g. survey data, machine-readable text, experimental data tables). The list of terms is imposed by Dataverse. Adding, modifying or deleting them may prevent uploading to the repository. See [DDI-CV](https://ddialliance.org/Specification/DDI-CV/KindOfDataFormat_1.0.html)

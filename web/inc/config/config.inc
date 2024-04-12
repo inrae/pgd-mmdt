@@ -145,6 +145,7 @@ $url_ror = 'https://api.ror.org/organizations?query=';
 
 #------------------------
 
+// Configuring messaging for sending metadata to data managers
 $sendMail=NULL;
 
 #------------------------
@@ -164,7 +165,7 @@ if (is_file('inc/config/local.inc'))
     include ('inc/config/local.inc');
 
 // For development version only
-$DEV=0;
+$DEV=1;
 $LOG=0;
 if (is_file('inc/config/dev.inc'))
     include ('inc/config/dev.inc');

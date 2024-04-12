@@ -70,11 +70,6 @@
 	grantNumbers	schema:funding	1	FALSE	TRUE	funder				
 	grantNumbers	schema:funding	2	FALSE	FALSE	@type	schema:Organization			
 	grantNumbers	schema:funding	2	FALSE	FALSE	name	#DICO	cvlist:grant	1	
-	species1	scientificName	0	TRUE	TRUE					
-	species1	scientificName	1	FALSE	FALSE	@type	schema:DefinedTerm			
-	species1	scientificName	1	FALSE	FALSE	name	#VALUE			
-	species1	scientificName	1	FALSE	FALSE	url	#ONTO	cv:agonto	1	
-	species1	scientificName	1	FALSE	FALSE	inDefinedTermSet	#ONTO	cv:agonto	0	
 	keywords	schema:keywords	0	TRUE	TRUE					
 	keywords	schema:keywords	1	FALSE	FALSE	@type	schema:DefinedTerm			
 	keywords	schema:keywords	1	FALSE	FALSE	name	#VALUE			

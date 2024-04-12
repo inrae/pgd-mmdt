@@ -228,6 +228,18 @@ function check_required(json, required)
 	return ret;
 }
 
+function sendJSON(json, corename, message)
+{
+	indata = Base64.encode(json);
+	resp='';
+	$.ajaxSetup({async:false});
+	$.get( "send", { name: corename, json: indata, body: encodeURI(message) } )
+		.done(function(outdata) { resp=outdata; })
+		.fail(function(outdata) { console.log(outdata); });
+	$.ajaxSetup({async:true});
+	if (DEBUG) console.log('SendJson:'+resp);
+}
+
 // Download as a JSON file
 function saveFormAsTextFile(json, corename)
 {
@@ -274,14 +286,17 @@ function getJsonName() {
 		var form2 = document.getElementById("saveForm");
 		var fdata = document.forms["formulaire"];
 		var jsonName = document.getElementById("jsonName");
-	
+		var jsonSend = document.getElementById("jsonSend");
+		var jsonMsg = document.getElementById("jsonMsg");
+		var btnGenerate = document.getElementById("btnGenerate");
+
 		form.addEventListener( "submit", function( e ) {
 			e.preventDefault();
 			var jsonform = toJSONString( fdata );
 			if (check_required(jsonform, required)) {
 				jsonName.value = getJsonName();
 				form2.style.display = 'block';
-				$(form2).css('top', ($("input[type=submit]").position().top+150)+'px')
+				$(form2).css('top', '300px')
 				$(form2).css('left', ($(window).width()/2 - 250)+'px')
 			}
 		}, false);
@@ -289,14 +304,30 @@ function getJsonName() {
 		form2.addEventListener( "submit", function( e ) {
 			e.preventDefault();
 			var jsonform = toJSONString( fdata );
-			if (check_required(jsonform, required))
-				saveFormAsTextFile(jsonform, jsonName.value);
+			if (check_required(jsonform, required)) {
+				if (jsonSend.checked)
+					sendJSON(jsonform, jsonName.value, $(jsonMsg).val());
+				else
+					saveFormAsTextFile(jsonform, jsonName.value);
+			}
 			this.style.display= "none";
 		}, false);
-	
+
 		form2.addEventListener( "reset", function( e ) {
 			e.preventDefault();
 			this.style.display= "none";
+		}, false);
+
+		jsonSend.addEventListener( "change", function( e ) {
+			if (this.checked) {
+				$(form2).css('height','450px')
+				$("#btnSave").prop("value", "Send")
+				$(jsonMsg).show()
+			} else {
+				$(form2).css('height','250px')
+				$("#btnSave").prop("value", "Save")
+				$(jsonMsg).hide()
+			}
 		}, false);
 	});
 })();
