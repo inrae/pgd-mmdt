@@ -968,8 +968,23 @@
 <td>Name of the private access file</td>
 <td>META_auth.txt</td>
 </tr>
+<tr>
+<td>sendMail</td>
+<td>Configuring messaging for sending metadata to data managers (see below)</td>
+<td>NULL</td>
+</tr>
 </tbody>
 </table>
+<p><br></p>
+<p>The messaging configuration is done using the following array in the <strong>inc/config/config.inc</strong> file (or more judiciously in <strong>inc/config/local.inc</strong> in order to be preserved during an update) - To understand how it works see <a href="https://wpwebinfotech.com/blog/send-emails-using-php/" target="_blank">Send Emails using PHPmailer</a></p>
+<div class="highlight"><pre><span></span><code><span class="x">$sendMail[&#39;smtpHost&#39;] = &#39;smtp.example.org&#39;;                 //  Set the SMTP server to send through</span>
+<span class="x">$sendMail[&#39;smtpSecure&#39;] = &#39;tls&#39;;                            //  Enable TLS encryption</span>
+<span class="x">$sendMail[&#39;smtpPort&#39;] = 587;                                //  Set the TCP port to connect to</span>
+<span class="x">$sendMail[&#39;CheckEmail&#39;] = &#39;maggot@exemple.org&#39;;             //  Email address authorized to send emails</span>
+<span class="x">$sendMail[&#39;CheckPass&#39;] = &#39;password&#39;;                        //  corresponding password</span>
+<span class="x">$sendMail[&#39;CheckName&#39;] = &#39;Maggot&#39;;                          //  Alias name of</span>
+<span class="x">$sendMail[&#39;UserEmail&#39;] = &#39;mickey.mouse@disney.com&#39;;         //  Email of data managers, separated by a comma</span>
+</code></pre></div>
 <p><br></p>
 <h4 id="run">run<a class="headerlink" href="#run" title="Permanent link">&para;</a></h4>
 <p>This file contains the essential parameters to be set before any use.</p>

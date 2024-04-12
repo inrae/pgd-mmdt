@@ -889,7 +889,7 @@ Indeed, all the <abbr title="JavaScript Object Notation : format used to represe
 
 <h3 id="tutorial-describe-metadata-entry">Metadata Entry<a class="headerlink" href="#tutorial-describe-metadata-entry" title="Permanent link">&para;</a></h3>
 <p>The figures are given here for illustration purposes but certain elements may be different for you given that this will depend on the configuration on your instance, in particular the choice of metadata, and the associated vocabulary sources.</p>
-<p>Indeed, the choice of vocabulary sources (ontologies, thesauri, dictionaries) as well as the choice of metadata fields to enter must in principle have been the subject of discussion during the implementation of the Maggot tool in order to find the best compromise between the choice of sources and all the scientific fields targeted (see <a href="#definitions">Definition files</a>). However a later addition is always possible.</p>
+<p>Indeed, the choice of vocabulary sources (ontologies, thesauri, dictionaries) as well as the choice of metadata fields to enter must in principle have been the subject of discussion between data producers and <abbr title="The data manager is the person who sets the data policy, i.e. its implementation and governance.">data manager</abbr> during the implementation of the Maggot tool in order to find the best compromise between the choice of sources and all the scientific fields targeted (see <a href="#definitions">Definition files</a>). However a later addition is always possible.</p>
 <p><br></p>
 <h4 id="tutorial-describe-overview">Overview<a class="headerlink" href="#tutorial-describe-overview" title="Permanent link">&para;</a></h4>
 <p>When you enter the metadata entry module you should see a page that looks like the figure below:</p>
@@ -984,7 +984,15 @@ Indeed, all the <abbr title="JavaScript Object Notation : format used to represe
 
 <h3 id="tutorial-metadata-metadata-file">Metadata File<a class="headerlink" href="#tutorial-metadata-metadata-file" title="Permanent link">&para;</a></h3>
 <p>Once the form has been completed, even partially (at least those which are mandatory and marked with a red star), you can export your metadata in the form of a file. The file is in <abbr title="JavaScript Object Notation : format used to represent structured information.">JSON</abbr> format and must have the prefix 'META_'.</p>
-<p>Two uses of this file are possible:</p>
+<p>By clicking on the "Generate the metadata file" button, you can save it on your disk space. </p>
+<p><center>
+<a href="../images/tuto2_fig10.png" data-lightbox="fig10"><img src="../images/tuto2_fig10.png" width="600px"></a>
+</center></p>
+<p>Furthermore, if email sending has been configured (see <a href="#settings">settings</a>), then you have the possibility of sending the metadata file to the data managers for curation, and possibly also its storage on the data disk space.</p>
+<p><center>
+<a href="../images/tuto2_fig11.png" data-lightbox="fig11"><img src="../images/tuto2_fig11.png" width="500px"></a>
+</center></p>
+<p>In the (most common) case where you want to save the metadata file to your disk space, two uses of this file are possible:</p>
 <dl>
 <dt><strong>1.</strong> The first use is the recommended one because it allows metadata management within your collective.</dt>
 <dd><p>You drop the metadata file directly under the data directory corresponding to the metadata. Indeed, when installing the tool, a storage space dedicated to the tool had to be provided for this purpose. See <a href="#tutorial-infrastructure">infrastructure</a>. Once deposited, you just have to wait around 30 minutes maximum so that the tool has had time to scan the root of the data directories looking for new files in order to update the database. After this period, the description of your dataset will be visible from the interface, and a selection of criteria will be made in order to restrict the search.</p></dd>
