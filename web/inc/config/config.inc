@@ -165,7 +165,7 @@ if (is_file('inc/config/local.inc'))
     include ('inc/config/local.inc');
 
 // For development version only
-$DEV=1;
+$DEV=0;
 $LOG=0;
 if (is_file('inc/config/dev.inc'))
     include ('inc/config/dev.inc');
