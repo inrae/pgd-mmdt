@@ -1182,7 +1182,7 @@ server<span class="w"> </span><span class="o">{</span>
 <p>When updating the application, it is imperative to preserve a whole set of configuration files as well as the content of certain directories (dictionaries, javascripts dedicated to vocabularies, etc.). An update script is available (<a href="https://github.com/inrae/pgd-mmdt/blob/main/etc/update-maggot.sh" target="_blank">./etc/update-maggot.sh</a>) preferably placed under '<strong>/usr/local/bin</strong>'. To preserve your configuration, it is recommended to create local configuration files.</p>
 <ul>
 <li>
-<p>A first file '<strong>local.conf</strong>' will contain all the parameters to be preserved, initially contained in the '<em><a href="https://github.com/inrae/pgd-mmdt/blob/main/run" target="_blank">run</a></em>' file. A small example could be as follow :
+<p>A first file '<strong>local.conf</strong>' will contain all the parameters to be preserved, initially contained in the '<em><a href="#settings-run">run</a></em>' file. A small example could be as follow :
    <div class="highlight"><pre><span></span><code><span class="ch">#!/bin/bash</span>
 
 <span class="c1"># Local HTTP Port for web application</span>
@@ -1795,7 +1795,7 @@ https://www.getty.edu/research/publications/electronic_publications/intrometadat
 <p>Concerning the second idea: Given the diversity of the fields, the approach chosen is to be both the most flexible and the most pragmatic possible by allowing users to choose their own vocabulary (controlled or not) corresponding to the reality of their field and their activities. However, a good approach is as much as possible to use only controlled vocabulary, that is to say relevant and sufficient vocabulary used as a reference in the field concerned to allow users to describe a project and its context without having to add additional terms. To this end, the tool must allow users a progressive approach towards the adoption of standardized controlled vocabularies (thesauri or even ontologies).</p>
 </li>
 <li>
-<p>With the approach proposed by Maggot, initially there is no question of opening the data, but of managing metadata associated with the data on a storage space with a precise perimeter represented by the collective (unit, team, project , platform, …). The main characteristic of the tool is, above all, to “capture” the metadata as easily as possible according to a well-chosen metadata schema. However, the opening of data via their metadata must be a clearly stated objective within the framework of projects financed by public institutions (e.g Europe). Therefore if you have taken care to correctly define your metadata schema so that it is possible to make a <a href="https://www.google.com/search?q=metadata+crosswalk+definition&amp;oq=metadata+crosswalk" target="_blank">metadata crosswalk</a> (using a mapping file) with a data repository recognized by the international community, then you can easily "push" its metadata with the data without having re-enter anything.</p>
+<p>With the approach proposed by Maggot, initially there is no question of opening the data, but of managing metadata associated with the data on a storage space with a precise perimeter represented by the collective (unit, team, project , platform, …). The main characteristic of the tool is, above all, to “capture” the metadata as easily as possible according to a well-chosen metadata schema. However, the opening of data via their metadata must be a clearly stated objective within the framework of projects financed by public institutions (e.g Europe). Therefore if you have taken care to correctly define your metadata schema so that it is possible to make a <a href="https://chatgpt.com/share/9ba4693f-6135-4f37-adda-5cd3d136fb11" target="_blank">metadata crosswalk</a> (using a mapping file) with a data repository recognized by the international community, then you can easily "push" its metadata with the data without having re-enter anything.</p>
 </li>
 </ul>
 <hr />
@@ -1833,6 +1833,8 @@ https://www.getty.edu/research/publications/electronic_publications/intrometadat
 <p>Joseph TRAN (<a href="https://eng-egfv.bordeaux-aquitaine.hub.inrae.fr/" target="_blank">INRAE UMR EGFV</a>) | CATI <a href="https://www.cesgo.org/catibaric/" target="_blank">BARIC</a></p>
 </li>
 </ul>
+<!-- https://www.google.com/search?q=metadata+crosswalk+definition&oq=metadata+crosswalk -->
+
 <p><br><br></p>
 <p><center>
 <a href="../images/LogoCloud.png" data-lightbox="fig1"><img src="../images/LogoCloud.png" width="800px"></a>
