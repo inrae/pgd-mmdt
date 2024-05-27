@@ -2,7 +2,7 @@
 
 [![bio.tools](https://img.shields.io/badge/bio.tools-maggot-orange)](https://bio.tools/maggot)
 [![HAL INRAE](https://img.shields.io/badge/HAL%20INRAE-04256711-green)](https://hal.inrae.fr/hal-04256711)
-[![GitHub release](https://img.shields.io/badge/release-2.0-blue)](https://github.com/inrae/pgd-mmdt/releases/tag/2.0)
+[![GitHub release](https://img.shields.io/badge/release-2.1-blue)](https://github.com/inrae/pgd-mmdt/releases/tag/2.1)
 
 ### Metadata Management Tool for Data Storage Spaces
 
