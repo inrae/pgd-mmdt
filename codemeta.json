@@ -5,7 +5,7 @@
     "codeRepository": "https://github.com/inrae/pgd-mmdt",
     "dateCreated": "2021-01-01",
     "datePublished": "2023-10-29",
-    "dateModified": "2023-10-29",
+    "dateModified": "2024-04-27",
     "downloadUrl": "https://github.com/inrae/pgd-mmdt/archive/refs/tags/2.0.tar.gz",
     "issueTracker": "https://github.com/inrae/pgd-mmdt/issues",
     "name": "Maggot",
@@ -41,6 +41,17 @@
     "author": [
         {
             "@type": "Person",
+            "@id": "https://orcid.org/0000-0002-6687-7169",
+            "givenName": "Daniel",
+            "familyName": "Jacob",
+            "email": "daniel.jacob@inrae.fr",
+            "affiliation": {
+                "@type": "Organization",
+                "name": "INRAE UMR 1332 Biologie du Fruit et Pathogènes"
+            }
+        },
+        {
+            "@type": "Person",
             "@id": "https://orcid.org/0000-0003-2727-0070",
             "givenName": "François",
             "familyName": "Ehrenmann",
@@ -58,17 +69,6 @@
             "affiliation": {
                 "@type": "Organization",
                 "name": "INRAE UMR 1202 BioGeCo"
-            }
-        },
-        {
-            "@type": "Person",
-            "@id": "https://orcid.org/0000-0002-6687-7169",
-            "givenName": "Daniel",
-            "familyName": "Jacob",
-            "email": "daniel.jacob@inrae.fr",
-            "affiliation": {
-                "@type": "Organization",
-                "name": "INRAE UMR 1332 Biologie du Fruit et Pathogènes"
             }
         }
     ],

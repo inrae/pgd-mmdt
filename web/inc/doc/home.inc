@@ -4,8 +4,8 @@
 	$links[2]="https://entrepot.recherche.data.gouv.fr/";
 	$links[3]="https://www.ouvrirlascience.fr/fair-principles/";
 	$links[4]="https://www.u-picardie.fr/open-science/wp-content/uploads/2021/07/Fiche-Synthetique-Metadonnees.pdf";
-	$links[5]="https://inrae.github.io/pgd-mmdt/pdf/MAGGOT_Metadata_Jan2024.pdf?download=false";
-	$links[6]="https://inrae.github.io/pgd-mmdt/pdf/MAGGOT_Poster_Oct2023.pdf?download=false";
+	$links[5]="./doc/meta";
+	$links[6]="https://inrae.github.io/pgd-mmdt/tutorial/";
 ?>
 
 <!DOCTYPE html>
@@ -67,7 +67,7 @@ The <b>Maggot</b> tool allows users to describe the <a href="<? echo $links[4]; 
 	<li>to answer certain questions of the <b>Data Management Plan</b> (<a href="<? echo $links[0]; ?>" target="_blank">DMP</a>) concerning the <b>organization, documentation, storage and sharing of data</b> in the data storage space,</li>
 	<li>to meet certain data and metadata requirements, referred to by the <a href="<? echo $links[1]; ?>" target="_blank">National Plan for Open Science</a> , in particular its second axis: “<b>Structure, Share and Open Research Data</b>” (<a href="<? echo $links[2]; ?>" target="_blank">Recherche Data Gouv</a>) in accordance with the <a href="<? echo $links[3]; ?>" target="_blank">FAIR principles</a>.</li>
 </ul>
-Maggot was designed to foster (local) <b>good data management</b>, with "(open) <b>data sharing</b>" in mind. See <a href="<? echo $links[6]; ?>" target="_blank">Poster</a> for a short overview.
+See <a href="<? echo $links[6]; ?>" target="_blank">Quick tutorail</a>.
 </font>
 </div></div>
 
@@ -121,7 +121,7 @@ Maggot was designed to foster (local) <b>good data management</b>, with "(open) 
 <div id="overlay_r3" class="overlay_cl"><b>Describe</b> a dataset using metadata of different types by facilitating their entry and avoiding their re-entry thanks to personalized dictionaries, then generate the metadata file</div>
 <div id="overlay_r4" class="overlay_cl"><b>Search</b> datasets based on some metadata - assuming the metadata were previously deposited in the storage space</div>
 <div id="overlay_r5" class="overlay_cl"><b>Publish</b> the metadata of datasets along with their data files into the <i>Recherche Data Gouv</i> repository</div>
-<div id="overlay_r6" class="overlay_cl"><b>Metadata</b> schema in Maggot</div>
+<div id="overlay_r6" class="overlay_cl"><b>Metadata</b> documentation</div>
 <div id="overlay_r7" class="overlay_cl"><b>File Browser</b> allows you to browse data directories using cloud-like software</div>
 <?php
 	if ($export_zenodo==0 && $FAIRLINK==1)

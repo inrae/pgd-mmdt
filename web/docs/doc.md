@@ -1,6 +1,5 @@
 # Metadata documentation
 ----
-
 .
 
 ## DEFINITION

@@ -42,7 +42,7 @@ $query = new MongoDB\Driver\Query(array(), $options);
 $obj = $client->executeQuery('pgd-db.metadata', $query)->toArray();
 $ret = count($obj);
 
-$options_dataset='<option value="">---</option>';
+$options_dataset='<option value="">--- Select a dataset ---</option>';
 if ($ret>0) {
 	foreach($obj as $arr) {
 		$value = (array)$arr;
@@ -144,8 +144,8 @@ if ($ret>0) {
 				</div>
 			</div>
 			<div style="padding-bottom: 10px;"><b>Dataverse Server URL</b>:&nbsp;<select name="server" id="server" class="form-control form-control-sm"><? echo $options_server ?></select></div>
-			<div style="padding-bottom: 10px;"><b>API-Token</b>:&nbsp;<input class="form-control form-control-sm solo" type="text" name="token" id="token" value="<? echo $API_TOKEN ?>" /></div>
-			<div style="padding-bottom: 10px;"><b>Dataverse</b>:&nbsp;<input class="form-control form-control-sm solo typeahead" type="text" name="parent" id="parent" value="<? echo $PARENT ?>" /></div>
+			<div style="padding-bottom: 10px;"><b>API-Token</b>:&nbsp;<input class="form-control form-control-sm solo" type="text" name="token" id="token" value="<? echo $API_TOKEN ?>" placeholder="Copy-paste here the API Token from your corresponding Dataverse account" /></div>
+			<div style="padding-bottom: 10px;"><b>Dataverse</b>:&nbsp;<input class="form-control form-control-sm solo typeahead" type="text" name="parent" id="parent" value="<? echo $PARENT ?>" placeholder="Entrer the first 3 letters of targeted dataverse name"/></div>
 			<input type="submit" class="btn btn-primary" style="width: 100px;" id="btnpush" name="btnpush" value="Publish"/>
 			<input type="hidden" name="jsontype" id="jsontype" value="1">
 			<br>
