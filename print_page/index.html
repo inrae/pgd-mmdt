@@ -1075,6 +1075,7 @@ sh<span class="w"> </span>./run<span class="w"> </span>&lt;option&gt;
 <p><strong>Options</strong>:</p>
 <ul>
 <li><strong><em>build</em></strong> : Create the 3 Docker images namely <strong><em>pgd-mmdt-db</em></strong>, <strong><em>pgd-mmdt-scan</em></strong> and <strong><em>pgd-mmdt-web</em></strong></li>
+<li><strong><em>getimages</em></strong> : Get (pull) from DockerHub the 3 Docker images namely <strong><em>pgd-mmdt-db</em></strong>, <strong><em>pgd-mmdt-scan</em></strong> and <strong><em>pgd-mmdt-web</em></strong></li>
 <li><strong><em>start</em></strong> : <em>1</em>) Launch the 3 services by creating the Docker containers corresponding to the Docker images; <em>2</em>) Create also the MongoDB volume.</li>
 <li><strong><em>stop</em></strong> :  <em>1</em>) Remove all the 3 Docker containers; <em>2</em>) Remove the MongoDB volume.</li>
 <li><strong><em>initdb</em></strong> : Create and initialize the Mongo collection</li>
@@ -1090,6 +1091,11 @@ sh<span class="w"> </span>./run<span class="w"> </span>&lt;option&gt;
 <li>
 <p>You must first build the 3 docker container images if this has not already been done, by :
    <div class="highlight"><pre><span></span><code>sh<span class="w"> </span>./run<span class="w"> </span>build
+</code></pre></div></p>
+</li>
+<li>
+<p>or getting the 3 images from DockerHub :
+   <div class="highlight"><pre><span></span><code>sh<span class="w"> </span>./run<span class="w"> </span>getimages
 </code></pre></div></p>
 </li>
 <li>
