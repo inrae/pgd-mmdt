@@ -32,7 +32,7 @@ USER=admin
 
 CMD=$1
 
-usage() { echo "usage: sh $0 start|stop|restart|fullstart|ps|build|initdb|scan";  exit 1; }
+usage() { echo "usage: sh $0 start|stop|restart|fullstart|ps|build|getimages|initdb|scan";  exit 1; }
 
 case "$CMD" in
    start)
@@ -70,6 +70,14 @@ case "$CMD" in
    ps)
         sudo docker ps | head -1
         sudo docker ps | grep "mmdt-"
+        ;;
+   getimages)
+        sudo docker pull djacob65/maggot-db:latest;
+        sudo docker image tag djacob65/maggot-db $DB_IMAGE
+        sudo docker pull djacob65/maggot-scan:latest;
+        sudo docker image tag djacob65/maggot-scan $SCAN_IMAGE
+        sudo docker pull djacob65/maggot-web:latest;
+        sudo docker image tag djacob65/maggot-web $WEB_IMAGE
         ;;
    build)
         ( cd $MYDIR/dockerdbpart; sudo docker build -t $DB_IMAGE . )

@@ -8,6 +8,8 @@
 [![bio.tools](https://img.shields.io/badge/bio.tools-maggot-orange)](https://bio.tools/maggot)
 [![identifiers](https://img.shields.io/badge/RDA:MSC-t81-brown)](https://rdamsc.bath.ac.uk/msc/t81)
 [![identifiers](https://img.shields.io/badge/CatOPDIPoR-maggot-magenta)](https://cat.opidor.fr/index.php/Maggot)
+[![identifiers](https://img.shields.io/badge/HAL-04589638-lightseagreen)](https://hal.inrae.fr/hal-04589638)
+
 <!--
 [![identifiers](https://img.shields.io/badge/identifiers-maggot-blue)](https://registry.identifiers.org/registry/maggot)
 [![identifiers](https://img.shields.io/badge/HAL-04256711-lightseagreen)](https://hal.inrae.fr/hal-04256711)
