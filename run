@@ -35,7 +35,7 @@ USER=admin
 
 CMD=$1
 
-usage() { echo "usage: sh $0 start|stop|restart|fullstart|ps|build|getimages|initdb|scan";  exit 1; }
+usage() { echo "usage: sh $0 start|stop|restart|fullstart|ps|build|pull|initdb|scan";  exit 1; }
 
 case "$CMD" in
    start)
@@ -74,7 +74,7 @@ case "$CMD" in
         sudo docker ps | head -1
         sudo docker ps | grep "mmdt-"
         ;;
-   getimages)
+   pull)
         sudo docker pull $DOCKERACCOUNT/maggot-db:latest;
         sudo docker image tag $DOCKERACCOUNT/maggot-db $DB_IMAGE
         sudo docker pull $DOCKERACCOUNT/maggot-scan:latest;
