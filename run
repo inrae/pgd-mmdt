@@ -24,6 +24,9 @@ WEB_CONTAINER=mmdt-web
 MONGO_VOL=mmdt-mongodb
 MONGO_PORT=27017
 
+# Docker account for retrieving the images
+DOCKERACCOUNT=djacob65
+
 # default user for htpasswd file
 USER=admin
 
@@ -72,12 +75,12 @@ case "$CMD" in
         sudo docker ps | grep "mmdt-"
         ;;
    getimages)
-        sudo docker pull djacob65/maggot-db:latest;
-        sudo docker image tag djacob65/maggot-db $DB_IMAGE
-        sudo docker pull djacob65/maggot-scan:latest;
-        sudo docker image tag djacob65/maggot-scan $SCAN_IMAGE
-        sudo docker pull djacob65/maggot-web:latest;
-        sudo docker image tag djacob65/maggot-web $WEB_IMAGE
+        sudo docker pull $DOCKERACCOUNT/maggot-db:latest;
+        sudo docker image tag $DOCKERACCOUNT/maggot-db $DB_IMAGE
+        sudo docker pull $DOCKERACCOUNT/maggot-scan:latest;
+        sudo docker image tag $DOCKERACCOUNT/maggot-scan $SCAN_IMAGE
+        sudo docker pull $DOCKERACCOUNT/maggot-web:latest;
+        sudo docker image tag $DOCKERACCOUNT/maggot-web $WEB_IMAGE
         ;;
    build)
         ( cd $MYDIR/dockerdbpart; sudo docker build -t $DB_IMAGE . )
