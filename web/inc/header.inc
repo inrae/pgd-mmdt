@@ -58,6 +58,7 @@ $HEADMAIN = $HEAD1.'
 	<!-- CSS Maggot -->
 	<link rel="stylesheet" href="'.$PATH.'css/jquery.autocomplete.css">
 	<link rel="stylesheet" href="'.$PATH.'css/style.css">
+	<link rel="stylesheet" href="'.$PATH.'css/ror-widget.css">
 	<!-- jQuery -->
 	<!--script src="'.$PATH.'js/jquery/jquery.min.js"></script-->
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -70,6 +71,7 @@ $HEADMAIN = $HEAD1.'
 	<script src="'.$PATH.'js/formutils.js"></script>
 	<script src="'.$PATH.'js/bioportal.js"></script>
 	<script src="'.$PATH.'js/skosmos.js"></script>
+	<script src="'.$PATH.'js/typeahead.min.js"></script>
 ';
 
 #------------------------

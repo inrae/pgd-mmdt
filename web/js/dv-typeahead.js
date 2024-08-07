@@ -1,4 +1,3 @@
-
 // Dataverse Search API with help of Typeahead
 function dvTypeahead () {
 	$('#push .typeahead').typeahead({
@@ -25,6 +24,13 @@ function dvTypeahead () {
 		templates: {
 			pending: [
 				'<div class="empty-message">',
+				'<img src="https://guides.dataverse.org/en/latest/_images/dataverse-icon.jpg" style="width:30px;"/>&nbsp;&nbsp;'+
+				'<b><i>&nbsp; ... wait ...</i></b>',
+				'</div>'
+			].join('\n'),
+			empty: [
+				'<div class="empty-message">',
+				'<img src="https://guides.dataverse.org/en/latest/_images/dataverse-icon.jpg" style="width:30px;"/>&nbsp;&nbsp;'+
 				'<b><i>&nbsp;this dataverse seems not to exist...</i></b>',
 				'</div>'
 			].join('\n'),

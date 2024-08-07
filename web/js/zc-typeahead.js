@@ -21,6 +21,7 @@ function zcTypeahead () {
 		templates: {
 			pending: [
 				'<div class="empty-message">',
+				'<img src="https://seekvectorlogo.com/wp-content/uploads/2023/03/zenodo-vector-logo.png" style="width:50px;"/>&nbsp;&nbsp;'+
 				'<b><i>&nbsp;this community seems not to exist...</i></b>',
 				'</div>'
 			].join('\n'),

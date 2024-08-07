@@ -1,3 +1,4 @@
+// Deprecated - Instead use VO via the typeahead mechanism (see VO_typeahead.js)
 apiurl='https://consultation.vocabulaires-ouverts.inrae.fr/rest/v1/thesaurus-inrae'
 
 radicals = [

@@ -285,10 +285,10 @@ function find_into_cache($name)
 //----------------------------
 function get_term_info($dico, $name)
 {
-	global $vocab_cache_file, $nofound_cache_file, $accented_chr;
+	global $vocab_cache_file, $nofound_cache_file, $accented_chr, $WSAPI_IDS;
 	$out = array();
 	do {
-		if (gettype($dico[1])==='string' && in_array($dico[1], array('skosmos','bioportal')))
+		if (gettype($dico[1])==='string' && in_array($dico[1], array_merge(array('skosmos','bioportal'), $WSAPI_IDS)))
 		{
 			// Search term in the vocabulary cache file
 			$out=find_into_cache($name);
@@ -302,7 +302,10 @@ function get_term_info($dico, $name)
 				if (in_array($name_dic, $arr))
 					break;
 			}
-		
+
+			// include the search function for the dico if belonging to Twitter Typeahead based web API
+			if (in_array($dico[1], $WSAPI_IDS)) include_once('inc/mapping/'.$dico[1].'.inc');
+
 			// Search term by API in the thesaurus/ontology web site
 			$out = ($dico[1].'_search')($dico, $name);
 		

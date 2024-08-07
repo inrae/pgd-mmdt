@@ -1,3 +1,4 @@
+// Deprecated - Instead use the typeahead mechanism 
 var skosmos = [];
 
 var get_terms_from_skosmos = function(apiurl, radicals, varname, lang='en', parent='', group='', asyncmode=true)
