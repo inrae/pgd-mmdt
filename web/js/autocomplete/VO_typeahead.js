@@ -1,9 +1,14 @@
-var VO_api='https://consultation.vocabulaires-ouverts.inrae.fr/rest/v1/'
+// Mandatory variable : <ws>_ontology 
+// it will be initialized with the 'onto' parameter specified in the 'festures' column of the 'config_term.txt' configuration file.
 var VO_ontology='thesaurus-inrae'
+
+// other variables used only in this script.
+var VO_api='https://consultation.vocabulaires-ouverts.inrae.fr/rest/v1/'
 var VO_options='lang=en&type=skos:Concept&parent=&group='
 
 
 // VOINRAE Search API with help of Typeahead
+// this function must be named as <ws>_typeahead
 function VO_typeahead () {
 	$('#VO .typeahead').typeahead({
 		hint: true,

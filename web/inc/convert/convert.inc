@@ -32,7 +32,7 @@ function json2tsv()
 			}
 			else if (array_key_exists($field, (array)$multiboite)) {
 				$type='multiselect';
-				$features = get_features($field, array('autocomplete', 'min', 'width', 'onto'), $multiboite);
+				$features = get_features($field, array('autocomplete', 'min', 'width', 'ws', 'onto'), $multiboite);
 			}
 			else if (array_key_exists($field, (array)$txtboite)) {
 				$type='textbox';

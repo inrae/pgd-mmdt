@@ -1,8 +1,13 @@
-var ols_api="https://www.ebi.ac.uk/ols4/api/search"
-var ols_options="exact=false&obsoletes=false&local=false&rows=100&format=json&lang=en"
+// Mandatory variable : <ws>_ontology 
+// it will be initialized with the 'onto' parameter specified in the 'festures' column of the 'config_term.txt' configuration file.
 var ols_ontology=''
 
+// other variables used only in this script.
+var ols_api="https://www.ebi.ac.uk/ols4/api/search"
+var ols_options="exact=false&obsoletes=false&local=false&rows=100&format=json&lang=en"
+
 // EBI OLS Search API with help of Typeahead
+// this function must be named as <ws>_typeahead
 function ols_typeahead () {
 	$('#ols .typeahead').typeahead({
 		hint: true,
