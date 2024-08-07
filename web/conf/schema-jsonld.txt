@@ -78,8 +78,8 @@
 	topics	citation:topicClassification	0	TRUE	TRUE					
 	topics	citation:topicClassification	1	FALSE	FALSE	@type	schema:DefinedTerm			
 	topics	citation:topicClassification	1	FALSE	FALSE	name	#VALUE			
-	topics	citation:topicClassification	1	FALSE	FALSE	url	#ONTO	cv:voinrae	1	
-	topics	citation:topicClassification	1	FALSE	FALSE	inDefinedTermSet	#ONTO	cv:voinrae	0	
+	topics	citation:topicClassification	1	FALSE	FALSE	url	#ONTO	cv:bponto	1	
+	topics	citation:topicClassification	1	FALSE	FALSE	inDefinedTermSet	#ONTO	cv:bponto	0	
 	measurement	schema:variableMeasured	0	TRUE	TRUE		#VALUE			
 	measurement	schema:variableMeasured	1	FALSE	FALSE	@type	schema:PropertyValue			
 	measurement	schema:variableMeasured	1	FALSE	FALSE	name	#VALUE			

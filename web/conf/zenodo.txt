@@ -44,7 +44,7 @@ grantNumbers	grants	0	TRUE	TRUE
 grantNumbers	grants	1	FALSE	FALSE	id	#DICO	cvlist:grant	2	
 keywords	keywords	0	TRUE	FALSE		#VALUE			
 topics	subjects	0	TRUE	TRUE					
-topics	subjects	1	FALSE	FALSE	identifier	#ONTO	cv:voinrae	1	
+topics	subjects	1	FALSE	FALSE	identifier	#ONTO	cv:bponto	1	
 topics	subjects	1	FALSE	FALSE	term	#VALUE			
 resources	related_identifiers	0	TRUE	TRUE					
 resources	related_identifiers	1	FALSE	FALSE	relation	hasPart			
