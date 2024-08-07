@@ -123,10 +123,10 @@ $auth_bloxberg_file = 'META_bloxberg_ok.txt';
 
 #------------------------
 
-// Additional Web API - Used for CV mapping 
+// Web API - Used for CV mapping 
 // * Must be declared in the mapping file (see $mapping_conf)
 // * a PHP file must be present under inc/mapping/<ID>.inc implementing the <ID>_search function searching for a term via the API
-$WSAPI_IDS = array('ols');
+$WSAPI_IDS = array('bioportal','skosmos','ols');
 
 // Vocabulary cache file
 $vocab_cache_file = 'cache/vocabulary.txt';

@@ -1,4 +1,5 @@
-var VO_api='https://consultation.vocabulaires-ouverts.inrae.fr/rest/v1/thesaurus-inrae'
+var VO_api='https://consultation.vocabulaires-ouverts.inrae.fr/rest/v1/'
+var VO_ontology='thesaurus-inrae'
 var VO_options='lang=en&type=skos:Concept&parent=&group='
 
 
@@ -14,7 +15,7 @@ function VO_typeahead () {
 		limitview : 30,
 		async: true,
 		source: function (query, processSync, processAsync) {
-			url = VO_api+'/search?'+VO_options+'&query='+query+'*'
+			url = VO_api+VO_ontology+'/search?'+VO_options+'&query='+query+'*'
 			return $.ajax({
 				url: url,
 				type: 'GET',
@@ -25,6 +26,12 @@ function VO_typeahead () {
 			});
 		},
 		templates: {
+			header: [
+				'<div class="empty-message" style="display: inline-block;">',
+				'<img src="https://vocabulaires-ouverts.inrae.fr/wp-content/uploads/sites/50/2022/09/cropped-logo-VOINRAE-267x66.png" style="width:60px;"/>&nbsp;&nbsp;'+
+				'<b><i><font color="grey" size=-1>&nbsp;'+VO_ontology+'</font></i></b>',
+				'</div>'
+			].join('\n'),
 			pending: [
 				'<div class="empty-message" style="display: inline-block;">',
 				'<img src="https://vocabulaires-ouverts.inrae.fr/wp-content/uploads/sites/50/2022/09/cropped-logo-VOINRAE-267x66.png" style="width:60px;"/>&nbsp;&nbsp;'+
@@ -39,12 +46,7 @@ function VO_typeahead () {
 			].join('\n'),
 			suggestion: function (data) {
 				return '<p>'+data.prefLabel+'</p>';
-			},
-			header: [
-				'<div class="empty-message" style="display: inline-block;">',
-				'<img src="https://vocabulaires-ouverts.inrae.fr/wp-content/uploads/sites/50/2022/09/cropped-logo-VOINRAE-267x66.png" style="width:60px;"/>&nbsp;&nbsp;'+
-				'</div>'
-			].join('\n')
+			}
 		},
 		display: function (data) {
 			return data.prefLabel;

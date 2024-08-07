@@ -179,51 +179,6 @@ function isJSONValid($json, $schema_file="conf/maggot-schema.json")
 	return $resp;
 }
 
-//----------------------------
-// Skosmos API
-//----------------------------
-
-function skosmos_search($map, $query)
-{
-	global $LOG;
-	$ret=array();
-	$server_url=$map[2];
-	$vocab=$map[3];
-	$lang=$map[4];
-	$cmd='curl -X GET "'.$server_url.'/rest/v1/search?type=skos%3AConcept&offset=0&vocab='.$vocab.'&lang='.$lang.'&query='.urlencode($query).'"';
-	if ($LOG) echo "<script>console.log('".$cmd."');</script>";
-	$output_js=shell_exec($cmd);
-	$output_arr = json_decode($output_js, true);
-	if (gettype($output_arr) == 'array' && array_key_exists('results', $output_arr)) {
-		$output_arr = $output_arr['results'];
-		if (! empty($output_arr))
-			$ret = array( $output_arr[0]['vocab'], $output_arr[0]['uri'] ); 
-	}
-	return $ret;
-}
-
-//----------------------------
-// BioPortal API
-//----------------------------
-
-function bioportal_search($map, $query)
-{
-	global $LOG;
-	$ret=array();
-	$server_url=$map[2];
-	$ontology=$map[3];
-	$request = $server_url.'/search/json_search/?q='.urlencode($query);
-	$request .= '&target_property=name&ontologies=';
-	if (strlen($ontology)>0 && $ontology !== 'all') $request .= $ontology;
-	$cmd='curl -X GET "'.$request.'"';
-	if ($LOG) echo "<script>console.log('".$cmd."');</script>";
-	$output_str=shell_exec($cmd);
-	if (gettype($output_str) == 'string' && strlen($output_str)) {
-		$arr = explode('|', explode('~!~', $output_str)[0]);
-		$ret = array( $arr[3], $arr[1] );
-	}
-	return $ret;
-}
 
 //----------------------------
 // Find value into Mapping
@@ -288,7 +243,7 @@ function get_term_info($dico, $name)
 	global $vocab_cache_file, $nofound_cache_file, $accented_chr, $WSAPI_IDS;
 	$out = array();
 	do {
-		if (gettype($dico[1])==='string' && in_array($dico[1], array_merge(array('skosmos','bioportal'), $WSAPI_IDS)))
+		if (gettype($dico[1])==='string' && in_array($dico[1], $WSAPI_IDS))
 		{
 			// Search term in the vocabulary cache file
 			$out=find_into_cache($name);
@@ -304,7 +259,7 @@ function get_term_info($dico, $name)
 			}
 
 			// include the search function for the dico if belonging to Twitter Typeahead based web API
-			if (in_array($dico[1], $WSAPI_IDS)) include_once('inc/mapping/'.$dico[1].'.inc');
+			if (file_exists('inc/mapping/'.$dico[1].'.inc')) include_once('inc/mapping/'.$dico[1].'.inc');
 
 			// Search term by API in the thesaurus/ontology web site
 			$out = ($dico[1].'_search')($dico, $name);

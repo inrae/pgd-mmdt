@@ -652,8 +652,8 @@ function active_autocomplete(set_all=0)
 					$('#'+key+'_select').append(htmltemplate);
 				continue;
 			}
-			
-			// Type 1 : multiboite (typeahead)
+
+			// Type 4 : multiboite (typeahead)
 			if (vartocomplete[i]['type']==4) {
 				box = vartocomplete[i]['variable'];
 				if (DEBUG) console.log('active_autocomplete 4: '+box+', dico: '+vartocomplete[i]['dico'])
