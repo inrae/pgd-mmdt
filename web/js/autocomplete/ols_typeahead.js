@@ -1,5 +1,4 @@
-// Mandatory variable : <ws>_ontology 
-// it will be initialized with the 'onto' parameter specified in the 'festures' column of the 'config_term.txt' configuration file.
+// Mandatory variable : ols_ontology 
 var ols_ontology=''
 
 // other variables used only in this script.

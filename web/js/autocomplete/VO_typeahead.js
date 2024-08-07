@@ -1,5 +1,4 @@
-// Mandatory variable : <ws>_ontology 
-// it will be initialized with the 'onto' parameter specified in the 'festures' column of the 'config_term.txt' configuration file.
+// Mandatory variable : VO_ontology 
 var VO_ontology='thesaurus-inrae'
 
 // other variables used only in this script.
