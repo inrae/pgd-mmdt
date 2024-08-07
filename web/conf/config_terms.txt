@@ -24,7 +24,7 @@ producer	management	N	Y		multiselect	autocomplete=producer,min=1	Producer
 grantNumbers	management	N	Y		multiselect	autocomplete=grant,min=1	Grant Information	
 kindOfData	descriptors	Y	Y		checkbox	open=0	Kind of Data	Audiovisual,Collection,Dataset,Event,Image,Interactive Resource,Model,Physical Object,Service,Software,Sound,Text,Workflow,Other
 keywords	descriptors	N	Y		multiselect	autocomplete=bioportal,onto=EFO:JERM:EDAM:MS:NMR:NCIT:OBI:PO:PTO:AGRO:ECOCORE:IOBC:NCBITAXON	Keywords	
-topics	descriptors	N	Y		multiselect	autocomplete=agroportal,onto=INRAETHES	Topic Classification	
+topics	descriptors	N	Y		multiselect	autocomplete=VOvocab	Topic Classification	
 dataOrigin	descriptors	N	Y		checkbox	open=0	Data origin	observational data,experimental data,survey data,analysis data,text corpus,simulation data,aggregate data,audiovisual corpus,computer code,Other
 experimentfactor	descriptors	N	Y		multiselect	autocomplete=vocabulary,min=1	Experimental Factor	
 measurement	descriptors	N	Y		multiselect	autocomplete=vocabulary,min=1	Measurement type	
