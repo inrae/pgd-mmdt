@@ -3,6 +3,7 @@ var ols_ontology=''
 
 // other variables used only in this script.
 var ols_api="https://www.ebi.ac.uk/ols4/api/search"
+var ols_limit=99
 var ols_options="exact=false&obsoletes=false&local=false&rows=100&format=json&lang=en"
 
 // EBI OLS Search API with help of Typeahead
@@ -14,8 +15,8 @@ function ols_typeahead () {
 		minLength: 3
 	},
 	{
-		limitget: 50,
-		limitview : 30,
+		limitget: ols_limit,
+		limitview : ols_limit,
 		async: true,
 		source: function (query, processSync, processAsync) {
 			onto='?'
@@ -24,6 +25,7 @@ function ols_typeahead () {
 				items.forEach((item) => { onto = onto + 'ontology='+item.toLowerCase()+'&'; });
 			}
 			url = ols_api+onto+ols_options+'&start=0&q='+query+'*'
+			if (DEBUG) console.log('GET '+url)
 			return $.ajax({
 				url: url,
 				type: 'GET',

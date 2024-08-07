@@ -20,6 +20,7 @@ function VO_typeahead () {
 		async: true,
 		source: function (query, processSync, processAsync) {
 			url = VO_api+VO_ontology+'/search?'+VO_options+'&query='+query+'*'
+			if (DEBUG) console.log('GET '+url)
 			return $.ajax({
 				url: url,
 				type: 'GET',

@@ -1,11 +1,14 @@
 
 // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 // Replace all '<ws>' by your web service identifier and complete the script where there are 3 dots (...)
-// See https://github.com/twitter/typeahead.js/blob/master/doc/jquery_typeahead.md
-// See ROR example
-//     API Doc : https://ror.readme.io/docs/rest-api
-//     Demo : https://ror-community.github.io/ror-typeahead-demos/
-//     Source code : https://github.com/ror-community/ror-typeahead-demos
+//    <ws> must correspond to the ws parameter specified in the 'features' column of the 'config_term.txt' configuration file.
+//
+// Web service managed using Twitter Typeahead
+//    See https://github.com/twitter/typeahead.js/blob/master/doc/jquery_typeahead.md
+//    See ROR API example
+//        API Doc : https://ror.readme.io/docs/rest-api
+//        Demo : https://ror-community.github.io/ror-typeahead-demos/
+//        Source code : https://github.com/ror-community/ror-typeahead-demos
 // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
 // Mandatory variable : <ws>_ontology 
