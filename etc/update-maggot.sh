@@ -16,6 +16,7 @@
 # ./web/cvlist/
 # ./web/cache
 # ./web/js/autocomplete/
+# ./web/inc/mapping/
 
 ROOTDIR=/opt/apps
 APP=pgd-mmdt
@@ -53,8 +54,20 @@ GITREPOS=https://github.com/inrae/${APP}.git
 
      # Autocomplete
      #sudo cp ./$PREV/web/js/autocomplete/*.js ./${APP}/web/js/autocomplete/
+     for f in $(ls ./$PREV/web/js/autocomplete/*.js); do
+         F=$(basename $f)
+         [ ! -f ./$APP/web/js/autocomplete/$F ] && cp -f $f ./$APP/web/js/autocomplete/$F;
+     done
      sudo chmod 755 ./$APP/web/js/autocomplete/
      sudo chmod 644 ./$APP/web/js/autocomplete/*
+
+     # Mapping
+     for f in $(ls ./$PREV/web/inc/mapping/*.inc); do
+         F=$(basename $f)
+         [ ! -f ./$APP/web/inc/mapping/$F ] && cp -f $f ./$APP/web/inc/mapping/$F;
+     done
+     sudo chmod 755 ./$APP/web/inc/mapping/
+     sudo chmod 644 ./$APP/web/inc/mapping/*
 
      # Docs
      sudo cp ./$PREV/web/docs/doc.md ./$APP/web/docs/

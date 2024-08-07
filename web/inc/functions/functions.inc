@@ -258,7 +258,7 @@ function get_term_info($dico, $name)
 					break;
 			}
 
-			// include the search function for the dico if belonging to Twitter Typeahead based web API
+			// include the search function for the vocabulary/ontology if based on an Web API
 			if (file_exists('inc/mapping/'.$dico[1].'.inc')) include_once('inc/mapping/'.$dico[1].'.inc');
 
 			// Search term by API in the thesaurus/ontology web site
