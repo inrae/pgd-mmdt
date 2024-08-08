@@ -16,8 +16,9 @@
 var <ws>_api='https://...'
 var <ws>_options='...'
 
-
 // this function must be named as <ws>_typeahead
+// idName : the magggot field name 
+// ontology : vocabulary/ontology name(s)
 var <ws>_typeahead = function (idName, ontology) {
 	$('#<ws>-'+idName+' .typeahead').typeahead({
 		hint: true,
@@ -29,7 +30,7 @@ var <ws>_typeahead = function (idName, ontology) {
 		limitview : 30,
 		async: true,
 		source: function (query, processSync, processAsync) {
-			url = <ws>_api + ...+ <ws>_options + ...
+			url = <ws>_api + ...+ <ws>_options + ... + encodeURIComponent(query)
 			return $.ajax({
 				url: url, type: 'GET', dataType: 'json',
 				success: function (json) {
