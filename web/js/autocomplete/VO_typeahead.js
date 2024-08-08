@@ -1,15 +1,12 @@
-// Mandatory variable : VO_ontology 
-var VO_ontology='thesaurus-inrae'
-
-// other variables used only in this script.
+// Variables used only in this script.
 var VO_api='https://consultation.vocabulaires-ouverts.inrae.fr/rest/v1/'
 var VO_options='lang=en&type=skos:Concept&parent=&group='
 
 
 // VOINRAE Search API with help of Typeahead
 // this function must be named as <ws>_typeahead
-function VO_typeahead () {
-	$('#VO .typeahead').typeahead({
+var VO_typeahead = function (idName, ontology) {
+	$('#VO-'+idName+' .typeahead').typeahead({
 		hint: true,
 		highlight: true,
 		minLength: 3
@@ -19,7 +16,7 @@ function VO_typeahead () {
 		limitview : 30,
 		async: true,
 		source: function (query, processSync, processAsync) {
-			url = VO_api+VO_ontology+'/search?'+VO_options+'&query='+query+'*'
+			url = VO_api+ontology+'/search?'+VO_options+'&query='+query+'*'
 			if (DEBUG) console.log('GET '+url)
 			return $.ajax({
 				url: url,
@@ -34,7 +31,7 @@ function VO_typeahead () {
 			header: [
 				'<div class="empty-message" style="display: inline-block;">',
 				'<img src="https://vocabulaires-ouverts.inrae.fr/wp-content/uploads/sites/50/2022/09/cropped-logo-VOINRAE-267x66.png" style="width:60px;"/>&nbsp;&nbsp;'+
-				'<b><i><font color="grey" size=-1>&nbsp;'+VO_ontology+'</font></i></b>',
+				'<b><i><font color="grey" size=-1>&nbsp;'+ontology+'</font></i></b>',
 				'</div>'
 			].join('\n'),
 			pending: [

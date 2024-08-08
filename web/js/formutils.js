@@ -331,7 +331,7 @@ function insert_multiboite (identif_boite, req=false)
 			if (DEBUG) console.log('multiselect: '+identif_boite+' autocomplete by dico:'+wstypeahead)
 			onto=''; if (multiboite[identif_boite].hasOwnProperty('onto')) onto=multiboite[identif_boite]['onto'];
 			minlen=3; if (multiboite[identif_boite].hasOwnProperty('min')) minlen=multiboite[identif_boite]['min'];
-			vartocomplete[vartocomplete.length]= { variable : identif_boite, dico: wstypeahead, minlen: minlen, ws: ws, onto: onto, listener: 0, type: 4 };
+			vartocomplete[vartocomplete.length]= { variable : identif_boite, dico: wstypeahead, minlen: minlen, ws: ws, onto: onto, listener: 1, type: 4 };
 			autocompleteScript()
 			dico=' dico="'+wstypeahead+'"';
 			cl='typeahead'
@@ -348,7 +348,7 @@ function insert_multiboite (identif_boite, req=false)
 		if (nameList != 'typeahead')
 			myfieldHTML += '<p class="selval"><span class="selval">Search a value</span>:&nbsp;<input class="'+bponto+'input-selval'+ac+'"'+dico+'id="'+identif_boite+'" name="'+identif_boite+'" placeholder="enter the first letters"></p>'
 		if (nameList == 'typeahead')
-			myfieldHTML += '<table><tr><td><span class="selval">Search a value</span>:&nbsp;</td><td><div id="'+ws+'" style="display: inline-block; width="100%;"><input class="input-selval typeahead" type="text" size=35 id="'+identif_boite+'" name="'+identif_boite+'" placeholder="enter the first letters"></div></td></tr></table>'
+			myfieldHTML += '<table><tr><td><span class="selval">Search a value</span>:&nbsp;</td><td><div id="'+ws+'-'+identif_boite+'" style="display: inline-block; width="100%;"><input class="input-selval typeahead" type="text" size=35 id="'+identif_boite+'" name="'+identif_boite+'" placeholder="enter the first letters"></div></td></tr></table>'
 		if (disabled.length>0)
 			myfieldHTML += '<button type="button" class="btn btn-primary btn-xs" onclick="$(\'#'+identif_boite+'-sel\').val(\'\');">Reset</button>';
 		myfieldHTML += '</div>';
@@ -589,15 +589,17 @@ function active_autocomplete(set_all=0)
 			if (vartocomplete[i]['dico'].length>15 || vartocomplete[i]['dico'].search("[,/?()=:;@$.]")>=0) continue;
 	
 			var listTerms=[]
-			try {
-				listTerms = eval(vartocomplete[i]['dico']);
-				vartocomplete[i]['listener']=0;
-			} catch (e) {
-				console.log('active_autocomplete - eval:'+e.message)
-				vartocomplete[i]['listener']=1;
-				break
+			if (vartocomplete[i]['type']<4) {
+				try {
+					listTerms =window[vartocomplete[i]['dico']]
+					vartocomplete[i]['listener']=0;
+				} catch (e) {
+					console.log('active_autocomplete - eval:'+e.message)
+					vartocomplete[i]['listener']=1;
+					break
+				}
 			}
-	
+
 			// Type 0 : checkboite, txtboite, resource (media)
 			if (vartocomplete[i]['type']==0) {
 				try {
@@ -657,11 +659,7 @@ function active_autocomplete(set_all=0)
 			if (vartocomplete[i]['type']==4) {
 				box = vartocomplete[i]['variable'];
 				if (DEBUG) console.log('active_autocomplete 4: '+box+', dico: '+vartocomplete[i]['dico'])
-				if (vartocomplete[i]['onto'].length>0) {
-					const myVarName = vartocomplete[i]['ws']+'_ontology'
-					window[myVarName] = vartocomplete[i]['onto']
-				}
-				window[vartocomplete[i]['dico']]();
+				window[vartocomplete[i]['dico']](box, vartocomplete[i]['onto']);
 				$('#'+box).bind('typeahead:select', function(event, suggestion) {
 					event.preventDefault();
 					box=$(event.target).prop('id')
@@ -672,6 +670,7 @@ function active_autocomplete(set_all=0)
 					$('#'+box+'-sel').focus().val($('#'+box+'-sel').val());
 					return false;
 				});
+				vartocomplete[i]['listener']=0;
 				continue;
 			}
 

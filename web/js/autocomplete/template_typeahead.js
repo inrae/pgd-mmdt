@@ -11,18 +11,15 @@
 //        Source code : https://github.com/ror-community/ror-typeahead-demos
 // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
-// Mandatory variable : <ws>_ontology 
-// it will be initialized with the 'onto' parameter specified in the 'features' column of the 'config_term.txt' configuration file.
-var <ws>_ontology=''
 
-// other variables used only in this script.
-var api='https://...'
-var options='...'
+// Variables used only in this script.
+var <ws>_api='https://...'
+var <ws>_options='...'
 
 
 // this function must be named as <ws>_typeahead
-function <ws>_typeahead () {
-	$('#<ws> .typeahead').typeahead({
+var <ws>_typeahead = function (idName, ontology) {
+	$('#<ws>-'+idName+' .typeahead').typeahead({
 		hint: true,
 		highlight: true,
 		minLength: 3
@@ -32,7 +29,7 @@ function <ws>_typeahead () {
 		limitview : 30,
 		async: true,
 		source: function (query, processSync, processAsync) {
-			url = api + ...
+			url = <ws>_api + ...+ <ws>_options + ...
 			return $.ajax({
 				url: url, type: 'GET', dataType: 'json',
 				success: function (json) {
