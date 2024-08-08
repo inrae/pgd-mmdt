@@ -4,7 +4,7 @@ var ols_ontology=''
 // other variables used only in this script.
 var ols_api="https://www.ebi.ac.uk/ols4/api/search"
 var ols_limit=99
-var ols_options="exact=false&obsoletes=false&local=false&rows=100&format=json&lang=en"
+var ols_options="exact=false&obsoletes=false&local=false&isLeaf=false&inclusive=false&queryFields=label&type=class&rows=200&format=json&lang=en"
 
 // EBI OLS Search API with help of Typeahead
 // this function must be named as <ws>_typeahead
@@ -31,7 +31,9 @@ function ols_typeahead () {
 				type: 'GET',
 				dataType: 'json',
 				success: function (json) {
-					return processAsync(json.response.docs);
+					//return processAsync(json.response.docs);
+					//return processAsync(json.response.docs.filter(el=>!el.ontology_prefix.includes('undefined')));
+					return processAsync([...new Map(json.response.docs.map(item => [item.label, item])).values()]);
 				}
 			});
 		},
@@ -56,7 +58,7 @@ function ols_typeahead () {
 				'</div>'
 			].join('\n'),
 			suggestion: function (data) {
-				return '<p>'+data.label+'</p>';
+				return '<p>'+data.label+'&nbsp;<font color=grey><i>('+data.ontology_prefix+')</i></font></p>';
 			}
 		},
 		display: function (data) {
