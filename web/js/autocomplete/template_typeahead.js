@@ -30,7 +30,8 @@ var <ws>_typeahead = function (idName, ontology) {
 		limitview : 30,
 		async: true,
 		source: function (query, processSync, processAsync) {
-			url = <ws>_api + ...+ <ws>_options + ... + encodeURIComponent(query)
+			url = <ws>_api + ...+ <ws>_options + ... + '*'+encodeURIComponent(query)+'*'
+			if (DEBUG) console.log('GET '+url)
 			return $.ajax({
 				url: url, type: 'GET', dataType: 'json',
 				success: function (json) {

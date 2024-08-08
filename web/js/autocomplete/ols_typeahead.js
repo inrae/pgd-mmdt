@@ -36,7 +36,7 @@ var ols_typeahead = function (idName, ontology)
 				items=ontology.split(':');
 				items.forEach((item) => { onto = onto + 'ontology='+item.toLowerCase()+'&'; });
 			}
-			url = ols_api+onto+ols_options+'&start=0&q='+encodeURIComponent(query)+'*'
+			url = ols_api+onto+ols_options+'&start=0&q=*'+encodeURIComponent(query)+'*'
 			if (DEBUG) console.log('GET '+url)
 			return $.ajax({
 				url: url,

@@ -19,7 +19,7 @@ var VO_typeahead = function (idName, thesaurus)
 		limitview : VO_limit,
 		async: true,
 		source: function (query, processSync, processAsync) {
-			url = VO_api+thesaurus+'/search?'+VO_options+'&query='+encodeURIComponent(query)+'*'
+			url = VO_api+thesaurus+'/search?'+VO_options+'&query=*'+encodeURIComponent(query)+'*'
 			if (DEBUG) console.log('GET '+url)
 			return $.ajax({
 				url: url,
