@@ -19,7 +19,9 @@ var <ws>_api='https://...'
 var <ws>_options='...'
 var <ws>_limit='...'
 
-// this function must be named as <ws>_typeahead
+// this function must be named as <ws>_typeahead, where <ws> must correspond to the name of the web service
+// specified  in the 'ws' attribute in the 'features' column in the line relating to the field concerned.
+
 // idName : the magggot field name 
 // ontology : vocabulary/ontology name(s)
 var <ws>_typeahead = function (idName, ontology)

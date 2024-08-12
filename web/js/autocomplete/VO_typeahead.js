@@ -8,12 +8,14 @@ let VO_logo = 'https://vocabulaires-ouverts.inrae.fr/wp-content/uploads/sites/50
 let VO_limit = 99
 
 // VOINRAE Search API with help of Typeahead
-// this function must be named as <ws>_typeahead
+// this function must be named as <ws>_typeahead, where <ws> must correspond to the name of the web service
+// specified  in the 'ws' attribute in the 'features' column in the line relating to the field concerned.
+
 // idName : the magggot field name 
 // thesaurus : name of the thesaurus
 var VO_typeahead = function (idName, thesaurus)
 {
-	$('#VO-'+idName+' .typeahead').typeahead({ 	hint: true,	highlight: true, minLength: 3 },
+	$('#VO-'+idName+' .typeahead').typeahead({ hint: true,	highlight: true, minLength: 3 },
 	{
 		limitget: VO_limit,
 		limitview : VO_limit,
