@@ -1,3 +1,6 @@
+// NOTE : You can copy and paste this script and use the copy for another SKOSMOS portal.
+// Simply 1) change all 'VO' occurrences to the name of the new portal; 2) change the URL, logo and options according to the new portal.
+
 // Variables used only in this script.
 let VO_api = 'https://consultation.vocabulaires-ouverts.inrae.fr/rest/v1/'
 let VO_options = 'lang=en&type=skos:Concept&parent=&group='

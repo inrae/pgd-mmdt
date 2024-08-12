@@ -1,3 +1,7 @@
+// NOTE : You can copy and paste this script and use the copy for another OntoPortal site.
+// Simply 1) change all 'agroportal' occurrences to the name of the new portal; 2) change the URL, logo and options according to the new portal.
+
+// Variables used only in this script.
 let agroportal_api='https://agroportal.lirmm.fr/search/json_search/?target_property=name&ontologies='
 let agroportal_logo = 'https://ontoportal.org/images/logo.png'
 let agroportal_limit=99

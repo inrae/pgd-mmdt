@@ -1,10 +1,10 @@
 <?php
 
 //----------------------------
-// AgroPortal API
+// OntoPortal API
 //----------------------------
 
-function agroportal_search($map, $query)
+function ontoportal_search($map, $query)
 {
 	global $LOG;
 	$ret=array();

@@ -1,3 +1,7 @@
+// NOTE : You can copy and paste this script and use the copy for another OntoPortal site.
+// Simply 1) change all 'bioportal' occurrences to the name of the new portal; 2) change the URL, logo and options according to the new portal.
+
+// Variables used only in this script.
 let bioportal_api='https://bioportal.bioontology.org/search/json_search/?target_property=name&ontologies='
 let bioportal_logo = 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTmvaQl_K9V8g9qv1oywrfUCjBT8_rZXtolGg&s'
 //let bioportal_logo = 'https://ontoportal.org/images/logo.png'
