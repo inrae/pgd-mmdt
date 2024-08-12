@@ -851,40 +851,43 @@
 <ul>
 <li>Maggot embeds <a href="https://twitter.github.io/typeahead.js/" target="_blank">Twitter's Typeahead library</a> making it relatively easy for a data manager to implement a new vocabulary from its web <abbr title="Application Program Interface in contrast with a User Interface. It is a way for two or more computer programs to communicate with each other.">API</abbr>. To do this, it is necessary to create two scripts (<em>&lt;ws&gt;_typeahead.js</em> and <em>&lt;wstype&gt;.inc</em>) which will each be used at one stage of the process as shown in the following figure:</li>
 </ul>
-<p><center>
+<p><br>
+<center>
 <a href="../../images/vocabulary_fig7.png" data-lightbox="fig7"><img src="../../images/vocabulary_fig7.png" width="600px"></a>
-</center>
-<br></p>
-<ul>
+</center></p>
+<ol>
 <li>
 <p><em>&lt;ws&gt;_typeahead.js</em> : This file corresponds to the <abbr title="Application Program Interface in contrast with a User Interface. It is a way for two or more computer programs to communicate with each other.">API</abbr> call when entering vocabulary using Twitter's Typeahead library. The prefix <em>&lt;ws&gt;</em> standing for web service, must be positioned so as to correspond to the name of the service indicated in the <em>CVname</em> column of the mapping file (<a href="../mapping"><em>web/conf/mapping.txt</em></a>) as well as to the corresponding value for the '<em>ws</em>' attribute in the column '<em>features</em>' of the terminology definition file (see <a href="../terminology">definitions</a>). This file must then be placed under the <em>web/js/autocomplete</em> directory. You will find a <a href="https://github.com/inrae/pgd-mmdt/blob/main/web/js/autocomplete/template_typeahead.js" target="_blank">template file</a> in this directory.</p>
 </li>
 <li>
 <p><em>&lt;wstype&gt;.inc</em> : This file corresponds to the <abbr title="Application Program Interface in contrast with a User Interface. It is a way for two or more computer programs to communicate with each other.">API</abbr> call while metadata crosswalks processus and based on the mapping file (<a href="../mapping"><em>web/conf/mapping.txt</em></a>).The prefix <em>&lt;ws_type&gt;</em> standing for web service type, must be positioned so as to correspond to the type of the service indicated in the <em>CVtype</em> column of the mapping file. This file must then be placed under the <em>web/inc/mapping/</em> directory. You will find a <a href="https://github.com/inrae/pgd-mmdt/blob/main/web/inc/mapping/template.inc" target="_blank">template file</a> in this directory.</p>
 </li>
+</ol>
+<p><br></p>
+<ul>
 <li>
-<p>With the help of this library, this allows users to select a term from a list of vocabulary terms within a drop-down list. See figure below. The list of terms has been pre-selected based on the first letters entered in the “Search for value” box. This list is dynamically refreshed when letters are added or modified. So, unlike a single call to the <abbr title="Application Program Interface in contrast with a User Interface. It is a way for two or more computer programs to communicate with each other.">API</abbr> returning the entire list of terms in memory, which can take a very long time to load, the calls are made dynamically on the basis of a portion of a word, thus limiting the number of terms to retrieve. Thus this makes use very fluid.</p>
+<p>By defaut, Maggot already provides some vocaburay web services implemented in this way such as The <a href="https://skosmos.org/" target="_blank">SKOSMOS</a> thesauri, the ontology portals based on <a href="https://ontoportal.org/" target="_blank">OntoPortal</a> and the <a href="https://www.ebi.ac.uk/ols4" target="_blank">EMBL-EBI Ontology Lookup Service</a>. The figure below shows the configuration in the terminology definition file and the corresponding screenshots for each vocabulary.</p>
 </li>
 <li>
-<p>By defaut, Maggot already provides some vocaburay web services implemented in this way such as The <a href="https://skosmos.org/" target="_blank">SKOSMOS</a> thesauri, the ontology portals based on <a href="https://ontoportal.org/" target="_blank">OntoPortal</a> and the <a href="https://www.ebi.ac.uk/ols4" target="_blank">EMBL-EBI Ontology Lookup Service</a> (OLS) The figure shows the configuration in the terminology definition file and the corresponding screenshots for each vocabulary.</p>
+<p>With the help of this library, this allows users to select a term from a list of vocabulary terms within a drop-down list. The list of terms has been pre-selected based on the first letters entered in the “Search for value” box. This list is dynamically refreshed when letters are added or modified. So, unlike a single call to the <abbr title="Application Program Interface in contrast with a User Interface. It is a way for two or more computer programs to communicate with each other.">API</abbr> returning the entire list of terms in memory, which can take a very long time to load, the calls are made dynamically on the basis of a portion of a word, thus limiting the number of terms to retrieve. Thus this makes use very fluid.</p>
 </li>
 </ul>
 <p><center>
 <a href="../../images/vocabulary_fig7b.png" data-lightbox="fig7b"><img src="../../images/vocabulary_fig7b.png" width="800px"></a>
 </center>
 <br></p>
-<ul>
-<li>
-<p><a href="https://skosmos.org/" target="_blank">SKOSMOS</a> is a web tool facilitating the posting of controlled vocabulary online in the form of a <a href="https://en.wikipedia.org/wiki/Thesaurus_(information_retrieval)" target="_blank">thesaurus</a> according to the <a href="https://en.wikipedia.org/wiki/Simple_Knowledge_Organization_System" target="_blank">SKOS</a> data model. It offers a navigation interface as well as a web <abbr title="Application Program Interface in contrast with a User Interface. It is a way for two or more computer programs to communicate with each other.">API</abbr>. See for example the <a href="https://thesaurus.inrae.fr/thesaurus-inrae/en/" target="_blank">VOINRAE thesaurus</a></p>
-</li>
+<ol>
 <li>
 <p><a href="https://agroportal.lirmm.fr/" target="_blank">AgroPortal</a> and <a href="https://bioportal.bioontology.org/" target="_blank">BioPortal</a> are both based on <a href="https://ontoportal.org/" target="_blank">OntoPortal</a> which is a generic technology to build ontology repositories or semantic artefact catalogues.</p>
+</li>
+<li>
+<p><a href="https://skosmos.org/" target="_blank">SKOSMOS</a> is a web tool facilitating the posting of controlled vocabulary online in the form of a <a href="https://en.wikipedia.org/wiki/Thesaurus_(information_retrieval)" target="_blank">thesaurus</a> according to the <a href="https://en.wikipedia.org/wiki/Simple_Knowledge_Organization_System" target="_blank">SKOS</a> data model. It offers a navigation interface as well as a web <abbr title="Application Program Interface in contrast with a User Interface. It is a way for two or more computer programs to communicate with each other.">API</abbr>. See for example the <a href="https://thesaurus.inrae.fr/thesaurus-inrae/en/" target="_blank">VOINRAE thesaurus</a></p>
 </li>
 <li>
 <p><a href="https://www.ebi.ac.uk/ols4" target="_blank">EMBL-EBI Ontology Lookup Service</a> is a repository for biomedical ontologies that aims to provide a single point of access to the latest ontology versions. You can browse the ontologies through the website as well as programmatically via the OLS <abbr title="Application Program Interface in contrast with a User Interface. It is a way for two or more computer programs to communicate with each other.">API</abbr>. 
 <br></p>
 </li>
-</ul>
+</ol>
 
 
 
