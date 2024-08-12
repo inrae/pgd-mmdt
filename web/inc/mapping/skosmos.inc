@@ -3,7 +3,8 @@
 //----------------------------
 // Skosmos API
 //----------------------------
-
+// Corresponding mapping script when 'skosmos' is specified in the CVtype column of the mapping file (conf/mapping.txt)
+// 
 function skosmos_search($map, $query)
 {
 	global $LOG;

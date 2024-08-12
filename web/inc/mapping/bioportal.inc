@@ -3,7 +3,9 @@
 //----------------------------
 // BioPortal API
 //----------------------------
-
+// Corresponding mapping script when 'bioportal' is specified in the CVtype column of the mapping file (conf/mapping.txt)
+// Note : Script kept for backwards compatibility reasons. You must replace all occurrences of 'bioportal' with 'ontoportal'
+//
 function bioportal_search($map, $query)
 {
 	global $LOG;

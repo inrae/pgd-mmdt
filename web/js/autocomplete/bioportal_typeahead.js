@@ -1,10 +1,10 @@
-// NOTE : You can copy and paste this script and use the copy for another OntoPortal site.
-// Simply 1) change all 'bioportal' occurrences to the name of the new portal; 2) change the URL, logo and options according to the new portal.
+// NOTE : You can copy this script to use it for another OntoPortal site (cf https://ontoportal.org/).
+// Simply 1) change all 'bioportal' occurrences to the name of the new portal; 2) change the URL according to the new portal.
 
 // Variables used only in this script.
-let bioportal_api='https://bioportal.bioontology.org/search/json_search/?target_property=name&ontologies='
+let bioportal_url='https://bioportal.bioontology.org'
 let bioportal_logo = 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTmvaQl_K9V8g9qv1oywrfUCjBT8_rZXtolGg&s'
-//let bioportal_logo = 'https://ontoportal.org/images/logo.png'
+let bioportal_options='/search/json_search/?target_property=name&ontologies='
 let bioportal_limit=99
 
 // BioPortal Search API with help of Typeahead
@@ -18,7 +18,7 @@ var bioportal_typeahead = function (idName, ontology)
 		limitview : bioportal_limit,
 		async: true,
 		source: function (query, processSync, processAsync) {
-				url = bioportal_api+ontology.replace(/:/g,',')+'&q=*'+encodeURIComponent(query)+'*&response=json&callback=?'
+				url = bioportal_url+bioportal_options+ontology.replace(/:/g,',')+'&q=*'+encodeURIComponent(query)+'*&response=json&callback=?'
 				if (DEBUG) console.log('GET '+url)
 				return $.ajax({
 						url: url,

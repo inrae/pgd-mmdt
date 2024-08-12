@@ -1,9 +1,10 @@
-// NOTE : You can copy and paste this script and use the copy for another OntoPortal site.
-// Simply 1) change all 'agroportal' occurrences to the name of the new portal; 2) change the URL, logo and options according to the new portal.
+// NOTE : You can copy this script to use it for another OntoPortal site (cf https://ontoportal.org/).
+// Simply 1) change all 'agroportal' occurrences to the name of the new portal; 2) change the URL according to the new portal.
 
 // Variables used only in this script.
-let agroportal_api='https://agroportal.lirmm.fr/search/json_search/?target_property=name&ontologies='
+let agroportal_url='https://agroportal.lirmm.fr'
 let agroportal_logo = 'https://ontoportal.org/images/logo.png'
+let agroportal_options='/search/json_search/?target_property=name&ontologies='
 let agroportal_limit=99
 
 // AgroPortal Search API with help of Typeahead
@@ -17,7 +18,7 @@ var agroportal_typeahead = function (idName, ontology)
 		limitview : agroportal_limit,
 		async: true,
 		source: function (query, processSync, processAsync) {
-				url = agroportal_api+ontology.replace(/:/g,',')+'&q=*'+encodeURIComponent(query)+'*&response=json&callback=?'
+				url = agroportal_url+agroportal_options+ontology.replace(/:/g,',')+'&q=*'+encodeURIComponent(query)+'*&response=json&callback=?'
 				if (DEBUG) console.log('GET '+url)
 				return $.ajax({
 						url: url,

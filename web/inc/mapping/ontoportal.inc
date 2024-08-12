@@ -3,7 +3,8 @@
 //----------------------------
 // OntoPortal API
 //----------------------------
-
+// Corresponding mapping script when 'ontoportal' is specified in the CVtype column of the mapping file (conf/mapping.txt)
+// 
 function ontoportal_search($map, $query)
 {
 	global $LOG;

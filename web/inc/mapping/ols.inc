@@ -3,7 +3,8 @@
 //----------------------------
 // OLS API
 //----------------------------
-
+// Corresponding mapping script when 'ols' is specified in the CVtype column of the mapping file (conf/mapping.txt)
+//
 function ols_search($map, $query)
 {
 	global $LOG;

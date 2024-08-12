@@ -240,10 +240,10 @@ function find_into_cache($name)
 //----------------------------
 function get_term_info($dico, $name)
 {
-	global $vocab_cache_file, $nofound_cache_file, $accented_chr, $WSAPI_IDS;
+	global $vocab_cache_file, $nofound_cache_file, $accented_chr;
 	$out = array();
 	do {
-		if (gettype($dico[1])==='string' && in_array($dico[1], $WSAPI_IDS))
+		if (gettype($dico[1])==='string' && file_exists('inc/mapping/'.$dico[1].'.inc'))
 		{
 			// Search term in the vocabulary cache file
 			$out=find_into_cache($name);
@@ -259,7 +259,7 @@ function get_term_info($dico, $name)
 			}
 
 			// include the search function for the vocabulary/ontology if based on an Web API
-			if (file_exists('inc/mapping/'.$dico[1].'.inc')) include_once('inc/mapping/'.$dico[1].'.inc');
+			include_once('inc/mapping/'.$dico[1].'.inc');
 
 			// Search term by API in the thesaurus/ontology web site
 			$out = ($dico[1].'_search')($dico, $name);
