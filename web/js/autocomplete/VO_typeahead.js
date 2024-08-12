@@ -1,7 +1,8 @@
 // Variables used only in this script.
-let VO_api='https://consultation.vocabulaires-ouverts.inrae.fr/rest/v1/'
-let VO_options='lang=en&type=skos:Concept&parent=&group='
-let VO_limit=99
+let VO_api = 'https://consultation.vocabulaires-ouverts.inrae.fr/rest/v1/'
+let VO_options = 'lang=en&type=skos:Concept&parent=&group='
+let VO_logo = 'https://vocabulaires-ouverts.inrae.fr/wp-content/uploads/sites/50/2022/09/cropped-logo-VOINRAE-267x66.png'
+let VO_limit = 99
 
 // VOINRAE Search API with help of Typeahead
 // this function must be named as <ws>_typeahead
@@ -9,11 +10,7 @@ let VO_limit=99
 // thesaurus : name of the thesaurus
 var VO_typeahead = function (idName, thesaurus)
 {
-	$('#VO-'+idName+' .typeahead').typeahead({
-		hint: true,
-		highlight: true,
-		minLength: 3
-	},
+	$('#VO-'+idName+' .typeahead').typeahead({ 	hint: true,	highlight: true, minLength: 3 },
 	{
 		limitget: VO_limit,
 		limitview : VO_limit,
@@ -33,19 +30,19 @@ var VO_typeahead = function (idName, thesaurus)
 		templates: {
 			header: [
 				'<div class="empty-message" style="display: inline-block;">',
-				'<img src="https://vocabulaires-ouverts.inrae.fr/wp-content/uploads/sites/50/2022/09/cropped-logo-VOINRAE-267x66.png" style="width:60px;"/>&nbsp;&nbsp;'+
+				'<img src="'+VO_logo+'" style="width:60px;"/>&nbsp;&nbsp;'+
 				'<b><i><font color="grey" size=-1>&nbsp;'+thesaurus+'</font></i></b>',
 				'</div>'
 			].join('\n'),
 			pending: [
 				'<div class="empty-message" style="display: inline-block;">',
-				'<img src="https://vocabulaires-ouverts.inrae.fr/wp-content/uploads/sites/50/2022/09/cropped-logo-VOINRAE-267x66.png" style="width:60px;"/>&nbsp;&nbsp;'+
+				'<img src="'+VO_logo+'" style="width:60px;"/>&nbsp;&nbsp;'+
 				'<b><i>&nbsp;... wait ...</i></b>',
 				'</div>'
 			].join('\n'),
 			empty: [
 				'<div class="empty-message" style="display: inline-block;">',
-				'<img src="https://vocabulaires-ouverts.inrae.fr/wp-content/uploads/sites/50/2022/09/cropped-logo-VOINRAE-267x66.png" style="width:60px;"/>&nbsp;&nbsp;'+
+				'<img src="'+VO_logo+'" style="width:60px;"/>&nbsp;&nbsp;'+
 				'<b><i>&nbsp; this term seems not exist !! </i></b>',
 				'</div>'
 			].join('\n'),

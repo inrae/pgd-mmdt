@@ -1,31 +1,17 @@
 // Variables used only in this script.
-let ols_api="https://www.ebi.ac.uk/ols4/api/search"
-let ols_limit=99
-let ols_options="exact=false&obsoletes=false&local=false&isLeaf=false&inclusive=false&queryFields=label&type=class&rows=200&format=json&lang=en"
-
-let ols_shrink = function(str, len) {
-	str_shrinked=str
-	if (str.length>len) {
-		for (var P=[],i=1;i++,i<=str.length;) if (str[i]==":") P.push(i);  
-		for (var p=0,i=1;i++,i<=P.length;) if (P[i]<len) p=i;
-		str_shrinked = str.substring(0,P[p]+1)
-		if (str_shrinked.length<str.length) str_shrinked += ' ...'
-	} else if (str.length==0)
-		str_shrinked ='all'
-	return str_shrinked
-}
+let ols_api ='https://www.ebi.ac.uk/ols4/api/search'
+let ols_logo = 'https://www.ebi.ac.uk/ols4/logo.svg'
+let ols_limit = 99
+let ols_options  = 'exact=false&obsoletes=false&local=false'
+    ols_options += '&isLeaf=false&inclusive=false&queryFields=label'
+    ols_options += '&type=class&rows=200&format=json&lang=en'
 
 // EBI OLS Search API with help of Typeahead
-// this function must be named as <ws>_typeahead
 // idName : the magggot field name 
 // ontology : ontology list separated by a colon (':')
 var ols_typeahead = function (idName, ontology)
 {
-	$('#ols-'+idName+' .typeahead').typeahead({
-		hint: true,
-		highlight: true,
-		minLength: 3
-	},
+	$('#ols-'+idName+' .typeahead').typeahead({	hint: true,	highlight: true, minLength: 3 },
 	{
 		limitget: ols_limit,
 		limitview : ols_limit,
@@ -51,20 +37,25 @@ var ols_typeahead = function (idName, ontology)
 			header: [
 				// EBI Logo : https://avatars.githubusercontent.com/u/31919308?v=4
 				'<div class="empty-message" style="display: inline-block;">',
-				'<img src="https://www.ebi.ac.uk/ols4/logo.svg" style="width:30px;"/>&nbsp;&nbsp;'+
-				'<b><i><font color="grey" size=-1>&nbsp;'+ols_shrink(ontology,40)+'</font></i></b>',
+				'<img src="'+ols_logo+'" style="width:30px;"/>&nbsp;&nbsp;'+
+				'<b><i><font color="grey" size=-1>&nbsp;'+shrink_ontolist(ontology,40)+'</font></i></b>',
 				'</div>'
 			].join('\n'),
 			pending: [
 				'<div class="empty-message" style="display: inline-block;">',
-				'<img src="https://www.ebi.ac.uk/ols4/logo.svg" style="width:30px;"/>&nbsp;&nbsp;'+
+				'<img src="'+ols_logo+'" style="width:30px;"/>&nbsp;&nbsp;'+
 				'<b><i>&nbsp;... wait ...</i></b>',
 				'</div>'
 			].join('\n'),
 			empty: [
 				'<div class="empty-message" style="display: inline-block;">',
-				'<img src="https://www.ebi.ac.uk/ols4/logo.svg" style="width:30px;"/>&nbsp;&nbsp;'+
+				'<img src="'+ols_logo+'" style="width:30px;"/>&nbsp;&nbsp;'+
 				'<b><i>&nbsp; this term seems not exist !! </i></b>',
+				'</div>'
+			].join('\n'),
+			footer: [
+				'<div class="empty-message" style="display: inline-block;">',
+				'<b><i><font color="grey" size=-1>Result provided by EMBL-EBI Ontology Lookup Service</font></i></b>',
 				'</div>'
 			].join('\n'),
 			suggestion: function (data) {

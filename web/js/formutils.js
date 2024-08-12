@@ -14,6 +14,19 @@ function htmlHelpIcon(item) {
 	return '&nbsp;<a href="doc/meta#'+encodeURI(item)+'" target="doc"><i class="bi-question-octagon-fill" style="color:#1b82c1; font-size: 12px" onmouseover="$(this).css(\'font-size\',\'18px\');" onmouseleave="$(this).css(\'font-size\',\'12px\');"></i></a>'
 }
 
+// Shrink the item list if greater than len characters. The item list must be a string (str) with the colon character as separator.
+function shrink_ontolist(str, len) {
+	str_shrinked=str
+	if (str.length>len) {
+			for (var P=[],i=1;i++,i<=str.length;) if (str[i]==":") P.push(i);
+			for (var p=0,i=1;i++,i<=P.length;) if (P[i]<len) p=i;
+			str_shrinked = str.substring(0,P[p]+1)
+			if (str_shrinked.length<str.length) str_shrinked += ' ...'
+	} else if (str.length==0)
+			str_shrinked ='all'
+	return str_shrinked
+}
+
 // Download a File : 
 //   * urlToSend : URL of the file to download
 //   * filename : Name taken by the downloaded file
@@ -586,7 +599,7 @@ function active_autocomplete(set_all=0)
 		if (vartocomplete.length==0) break;
 		for( var i = 0; i < vartocomplete.length; ++i ) {
 			if (set_all==0 && vartocomplete[i]['listener']==0) continue;
-			if (vartocomplete[i]['dico'].length>15 || vartocomplete[i]['dico'].search("[,/?()=:;@$.]")>=0) continue;
+			if (vartocomplete[i]['dico'].length>20 || vartocomplete[i]['dico'].search("[,/?()=:;@$.]")>=0) continue;
 	
 			var listTerms=[]
 			if (vartocomplete[i]['type']<4) {
