@@ -989,7 +989,7 @@ Indeed, all the <abbr title="JavaScript Object Notation : format used to represe
 <p><center>
 <a href="../images/tuto2_fig10.png" data-lightbox="fig10"><img src="../images/tuto2_fig10.png" width="600px"></a>
 </center></p>
-<p>Furthermore, if email sending has been configured (see <a href="#settings-incconfigconfiginc">settings</a>), then you have the possibility of sending the metadata file to the data managers for conservation, and possibly also for supporting its storage on data disk space if specific rights are required.</p>
+<p>Furthermore, if email sending has been configured (see <a href="#settings-incconfigconfiginc">settings</a>), then you have the possibility to send the metadata file to the data managers for curation, and possibly also to support its storage on data disk space if specific rights are required.</p>
 <p><center>
 <a href="../images/tuto2_fig11.png" data-lightbox="fig11"><img src="../images/tuto2_fig11.png" width="500px"></a>
 </center></p>
@@ -1005,7 +1005,7 @@ Indeed, all the <abbr title="JavaScript Object Notation : format used to represe
 <dt><br></dt>
 <dd><p>You will then have the possibility to publish the metadata later with possibly the corresponding data in a data repository such as <a href="#publish-dataverse">Dataverse</a> or <a href="#publish-zenodo">Zenodo</a>.</p></dd>
 <dt><strong>2.</strong> The second use is only to deposit the metadata into a data repository</dt>
-<dd><p>Whether with <a href="#publish-dataverse">Dataverse</a> or <a href="#publish-zenodo">Zenodo</a>, you have the possibility of publishing metadata directly in one or other of these repositories without using the storage space.</p></dd>
+<dd><p>Whether with <a href="#publish-dataverse">Dataverse</a> or <a href="#publish-zenodo">Zenodo</a>, you have the possibility to publish metadata directly in one or other of these repositories without using the storage space.</p></dd>
 </dl>
 <p><center>
 <a href="../images/tuto2_fig8.png" data-lightbox="fig8"><img src="../images/tuto2_fig8.png" width="800px"></a>
@@ -1393,7 +1393,7 @@ https://www.getty.edu/research/publications/electronic_publications/intrometadat
 </center></p>
 <ol>
 <li>
-<p><em>&lt;ws&gt;_typeahead.js</em> : This file corresponds to the <abbr title="Application Program Interface in contrast with a User Interface. It is a way for two or more computer programs to communicate with each other.">API</abbr> call when entering vocabulary using Twitter's Typeahead library. The prefix <em>&lt;ws&gt;</em> standing for web service, must be positioned so as to correspond to the name of the service indicated in the <em>CVname</em> column of the mapping file (<a href="#definitions-mapping"><em>web/conf/mapping.txt</em></a>) as well as to the corresponding value for the '<em>ws</em>' attribute in the column '<em>features</em>' of the terminology definition file (see <a href="#definitions-terminology">definitions</a>). This file must then be placed under the <em>web/js/autocomplete</em> directory. You will find a <a href="https://github.com/inrae/pgd-mmdt/blob/main/web/js/autocomplete/template_typeahead.js" target="_blank">template file</a> in this directory.</p>
+<p><em>&lt;ws&gt;_typeahead.js</em> : This file corresponds to the <abbr title="Application Program Interface in contrast with a User Interface. It is a way for two or more computer programs to communicate with each other.">API</abbr> call when entering vocabulary using Twitter's Typeahead library. The prefix <em>&lt;ws&gt;</em> standing for web service, must be positioned so as to correspond to the name of the service indicated in the <em>CVname</em> column of the mapping file (see <a href="#definitions-mapping">mapping</a>) as well as to the corresponding value for the '<em>ws</em>' attribute in the column '<em>features</em>' of the terminology definition file (see <a href="#definitions-terminology">definitions</a>). This file must then be placed under the <em>web/js/autocomplete</em> directory. You will find a <a href="https://github.com/inrae/pgd-mmdt/blob/main/web/js/autocomplete/template_typeahead.js" target="_blank">template file</a> in this directory.</p>
 </li>
 <li>
 <p><em>&lt;wstype&gt;.inc</em> : This file corresponds to the <abbr title="Application Program Interface in contrast with a User Interface. It is a way for two or more computer programs to communicate with each other.">API</abbr> call while metadata crosswalks processus and based on the mapping file (<a href="#definitions-mapping"><em>web/conf/mapping.txt</em></a>).The prefix <em>&lt;ws_type&gt;</em> standing for web service type, must be positioned so as to correspond to the type of the service indicated in the <em>CVtype</em> column of the mapping file. This file must then be placed under the <em>web/inc/mapping/</em> directory. You will find a <a href="https://github.com/inrae/pgd-mmdt/blob/main/web/inc/mapping/template.inc" target="_blank">template file</a> in this directory.</p>
@@ -1417,17 +1417,24 @@ https://www.getty.edu/research/publications/electronic_publications/intrometadat
 <p><a href="https://agroportal.lirmm.fr/" target="_blank">AgroPortal</a> and <a href="https://bioportal.bioontology.org/" target="_blank">BioPortal</a> are both based on <a href="https://ontoportal.org/" target="_blank">OntoPortal</a> which is a generic technology to build ontology repositories or semantic artefact catalogues.</p>
 </li>
 <li>
-<p><a href="https://skosmos.org/" target="_blank">SKOSMOS</a> is a web tool facilitating the posting of controlled vocabulary online in the form of a <a href="https://en.wikipedia.org/wiki/Thesaurus_(information_retrieval)" target="_blank">thesaurus</a> according to the <a href="https://en.wikipedia.org/wiki/Simple_Knowledge_Organization_System" target="_blank">SKOS</a> data model. It offers a navigation interface as well as a web <abbr title="Application Program Interface in contrast with a User Interface. It is a way for two or more computer programs to communicate with each other.">API</abbr>. See for example the <a href="https://thesaurus.inrae.fr/thesaurus-inrae/en/" target="_blank">VOINRAE thesaurus</a></p>
+<p><a href="https://skosmos.org/" target="_blank">SKOSMOS</a> is a web tool facilitating the posting of controlled vocabulary online in the form of a <a href="https://en.wikipedia.org/wiki/Thesaurus_(information_retrieval)" target="_blank">thesaurus</a> according to the <a href="https://en.wikipedia.org/wiki/Simple_Knowledge_Organization_System" target="_blank">SKOS</a> data model. It offers a navigation interface as well as a web <abbr title="Application Program Interface in contrast with a User Interface. It is a way for two or more computer programs to communicate with each other.">API</abbr>.</p>
 </li>
 <li>
-<p><a href="https://www.ebi.ac.uk/ols4" target="_blank">EMBL-EBI Ontology Lookup Service</a> is a repository for biomedical ontologies that aims to provide a single point of access to the latest ontology versions. You can browse the ontologies through the website as well as programmatically via the OLS <abbr title="Application Program Interface in contrast with a User Interface. It is a way for two or more computer programs to communicate with each other.">API</abbr>. 
-<br></p>
+<p><a href="https://www.ebi.ac.uk/ols4" target="_blank">EMBL-EBI Ontology Lookup Service</a> is a repository for biomedical ontologies that aims to provide a single point of access to the latest ontology versions. You can browse the ontologies through the website as well as programmatically via the OLS <abbr title="Application Program Interface in contrast with a User Interface. It is a way for two or more computer programs to communicate with each other.">API</abbr>. </p>
 </li>
-</ol></section><section class="print-page" id="definitions-mapping"><h1 id="definitions-mapping-mapping-definition-file">Mapping Definition File<a class="headerlink" href="#definitions-mapping-mapping-definition-file" title="Permanent link">&para;</a></h1>
+</ol>
+<p><br></p>
+<ul>
+<li>Here is, for example, the implementation of the <a href="https://thesaurus.inrae.fr/thesaurus-inrae/en/" target="_blank">INRAE Thesaurus</a>, a web service based on <a href="https://skosmos.org/" target="_blank">SKOSMOS</a>. The figure below shows in more detail how to fill in the definition files linked to the two scripts necessary for implementing the web service :</li>
+</ul>
+<p><center>
+<a href="../images/vocabulary_fig7c.png" data-lightbox="fig7b"><img src="../images/vocabulary_fig7c.png" width="800px"></a>
+</center>
+<br></p></section><section class="print-page" id="definitions-mapping"><h1 id="definitions-mapping-mapping-definition-file">Mapping Definition File<a class="headerlink" href="#definitions-mapping-mapping-definition-file" title="Permanent link">&para;</a></h1>
 <style>.md-typeset h1 {display: none;} .md-nav__item {font-size: medium}</style>
 
 <h3 id="definitions-mapping-mapping-definition-file_1">Mapping definition File<a class="headerlink" href="#definitions-mapping-mapping-definition-file_1" title="Permanent link">&para;</a></h3>
-<p>The mapping file is used as indicated by its name to match a term chosen by the user during entry with another term from an ontology or a thesaurus and therefore to obtain a URL which will be used for referencing. It can be used for each <a href="https://www.google.com/search?q=metadata+crosswalk+definition&amp;oq=metadata+crosswalk" target="_blank">metadata crosswalk</a> requiring such a mapping (e.g. to the <a href="#definitions-dataverse">Dataverse</a>, <a href="#definitions-zenodo">Zenodo</a> or <a href="#definitions-json-ld">JSON-LD</a> format).</p>
+<p><strong>The mapping file</strong> (<strong><em>mapping.txt</em></strong>) is used as indicated by its name to match a term chosen by the user during entry with another term from an ontology or a thesaurus and therefore to obtain a URL which will be used for referencing. It can be used for each <a href="https://www.google.com/search?q=metadata+crosswalk+definition&amp;oq=metadata+crosswalk" target="_blank">metadata crosswalk</a> requiring such a mapping (e.g. to the <a href="#definitions-dataverse">Dataverse</a>, <a href="#definitions-zenodo">Zenodo</a> or <a href="#definitions-json-ld">JSON-LD</a> format).</p>
 <p>The role of this definition file is illustrated with the figure above
 <center>
 <a href="../images/mapping_fig2.png" data-lightbox="fig2"><img src="../images/mapping_fig2.png" width="600px"></a>
