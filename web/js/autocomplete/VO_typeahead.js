@@ -7,7 +7,7 @@ let VO_options = 'lang=en&type=skos:Concept&parent=&group='
 let VO_logo = 'https://vocabulaires-ouverts.inrae.fr/wp-content/uploads/sites/50/2022/09/cropped-logo-VOINRAE-267x66.png'
 let VO_limit = 99
 
-// VOINRAE Search API with help of Typeahead
+// VOINRAE API with help of Typeahead
 // this function must be named as <ws>_typeahead, where <ws> must correspond to the name of the web service
 // specified  in the 'ws' attribute in the 'features' column in the line relating to the field concerned.
 

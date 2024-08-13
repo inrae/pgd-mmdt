@@ -7,7 +7,7 @@ let bioportal_logo = 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTmva
 let bioportal_options='/search/json_search/?target_property=name&ontologies='
 let bioportal_limit=99
 
-// BioPortal Search API with help of Typeahead
+// BioPortal API with help of Typeahead
 // idName : the magggot field name
 // ontology : name(s) of the ontology
 var bioportal_typeahead = function (idName, ontology)

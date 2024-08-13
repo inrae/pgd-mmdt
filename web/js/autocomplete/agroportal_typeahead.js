@@ -7,7 +7,7 @@ let agroportal_logo = 'https://ontoportal.org/images/logo.png'
 let agroportal_options='/search/json_search/?target_property=name&ontologies='
 let agroportal_limit=99
 
-// AgroPortal Search API with help of Typeahead
+// AgroPortal API with help of Typeahead
 // idName : the magggot field name
 // ontology : name(s) of the ontology
 var agroportal_typeahead = function (idName, ontology)

@@ -6,7 +6,7 @@ let ols_options  = 'exact=false&obsoletes=false&local=false'
     ols_options += '&isLeaf=false&inclusive=false&queryFields=label'
     ols_options += '&type=class&rows=200&format=json&lang=en'
 
-// EBI OLS Search API with help of Typeahead
+// EBI OLS API with help of Typeahead
 // idName : the magggot field name 
 // ontology : ontology list separated by a colon (':')
 var ols_typeahead = function (idName, ontology)
