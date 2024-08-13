@@ -849,10 +849,14 @@
 <br></p>
 <p><strong>5</strong> - <strong>Multi-select vocabulary, based on an <abbr title="Application Program Interface in contrast with a User Interface. It is a way for two or more computer programs to communicate with each other.">API</abbr> managed by Twitter's Typeahead library.</strong> (<em>multiselect</em>) </p>
 <ul>
-<li>Maggot embeds <a href="https://twitter.github.io/typeahead.js/" target="_blank">Twitter's Typeahead library</a> making it relatively easy for a data manager to implement a new vocabulary from its web <abbr title="Application Program Interface in contrast with a User Interface. It is a way for two or more computer programs to communicate with each other.">API</abbr>. To do this, it is necessary to create two scripts (<em>&lt;ws&gt;_typeahead.js</em> and <em>&lt;wstype&gt;.inc</em>) which will each be used at one stage of the process as shown in the following figure:</li>
+<li>
+<p>Maggot embeds <a href="https://twitter.github.io/typeahead.js/" target="_blank">Twitter's Typeahead library</a> making it relatively easy for a data manager to implement a new vocabulary from its web <abbr title="Application Program Interface in contrast with a User Interface. It is a way for two or more computer programs to communicate with each other.">API</abbr>. With the help of this library, this allows users to select a term from a list of vocabulary terms within a drop-down list. The list of terms has been pre-selected based on the first letters entered in the “Search for value” box. This list is dynamically refreshed when letters are added or modified. So, unlike a single call to the <abbr title="Application Program Interface in contrast with a User Interface. It is a way for two or more computer programs to communicate with each other.">API</abbr> returning the entire list of terms in memory, which can take a very long time to load, the calls are made dynamically on the basis of a portion of a word, thus limiting the number of terms to retrieve. Thus this makes use very fluid.</p>
+</li>
+<li>
+<p>To immplement an <abbr title="Application Program Interface in contrast with a User Interface. It is a way for two or more computer programs to communicate with each other.">API</abbr>-based web service, it is necessary to create two scripts (<em>&lt;ws&gt;_typeahead.js</em> and <em>&lt;wstype&gt;.inc</em>) which will each be used at one stage of the process as shown in the following figure:</p>
+</li>
 </ul>
-<p><br>
-<center>
+<p><center>
 <a href="../../images/vocabulary_fig7.png" data-lightbox="fig7"><img src="../../images/vocabulary_fig7.png" width="600px"></a>
 </center></p>
 <ol>
@@ -865,17 +869,11 @@
 </ol>
 <p><br></p>
 <ul>
-<li>
-<p>By defaut, Maggot already provides some vocaburay web services implemented in this way such as The <a href="https://skosmos.org/" target="_blank">SKOSMOS</a> thesauri, the ontology portals based on <a href="https://ontoportal.org/" target="_blank">OntoPortal</a> and the <a href="https://www.ebi.ac.uk/ols4" target="_blank">EMBL-EBI Ontology Lookup Service</a>. The figure below shows the configuration in the terminology definition file and the corresponding screenshots for each vocabulary.</p>
-</li>
-<li>
-<p>With the help of this library, this allows users to select a term from a list of vocabulary terms within a drop-down list. The list of terms has been pre-selected based on the first letters entered in the “Search for value” box. This list is dynamically refreshed when letters are added or modified. So, unlike a single call to the <abbr title="Application Program Interface in contrast with a User Interface. It is a way for two or more computer programs to communicate with each other.">API</abbr> returning the entire list of terms in memory, which can take a very long time to load, the calls are made dynamically on the basis of a portion of a word, thus limiting the number of terms to retrieve. Thus this makes use very fluid.</p>
-</li>
+<li>By defaut, Maggot already provides some vocaburay web services implemented in this way such as The <a href="https://skosmos.org/" target="_blank">SKOSMOS</a> thesauri, the ontology portals based on <a href="https://ontoportal.org/" target="_blank">OntoPortal</a> and the <a href="https://www.ebi.ac.uk/ols4" target="_blank">EMBL-EBI Ontology Lookup Service</a>. The figure below shows the configuration in the terminology definition file and the corresponding screenshots for each vocabulary.</li>
 </ul>
 <p><center>
 <a href="../../images/vocabulary_fig7b.png" data-lightbox="fig7b"><img src="../../images/vocabulary_fig7b.png" width="800px"></a>
-</center>
-<br></p>
+</center></p>
 <ol>
 <li>
 <p><a href="https://agroportal.lirmm.fr/" target="_blank">AgroPortal</a> and <a href="https://bioportal.bioontology.org/" target="_blank">BioPortal</a> are both based on <a href="https://ontoportal.org/" target="_blank">OntoPortal</a> which is a generic technology to build ontology repositories or semantic artefact catalogues.</p>
@@ -889,12 +887,21 @@
 </ol>
 <p><br></p>
 <ul>
-<li>Here is, for example, the implementation of the <a href="https://thesaurus.inrae.fr/thesaurus-inrae/en/" target="_blank">INRAE Thesaurus</a>, a web service based on <a href="https://skosmos.org/" target="_blank">SKOSMOS</a>. The figure below shows in more detail how to fill in the definition files linked to the two scripts necessary for implementing the web service :</li>
+<li>Here is, for example, the implementation of the <a href="https://thesaurus.inrae.fr/thesaurus-inrae/en/" target="_blank">INRAE Thesaurus</a>, a web service based on <a href="https://skosmos.org/" target="_blank">SKOSMOS</a>. The figure below shows in more details how to fill in the definition files linked to the two scripts necessary for implementing the web service :</li>
 </ul>
 <p><center>
 <a href="../../images/vocabulary_fig7c.png" data-lightbox="fig7b"><img src="../../images/vocabulary_fig7c.png" width="800px"></a>
 </center>
 <br></p>
+<ul>
+<li>
+<p>Links to the two scripts :</p>
+<ul>
+<li><a href="https://github.com/inrae/pgd-mmdt/blob/main/web/js/autocomplete/VO_typeahead.js" target="_blank">web/js/autocomplete/VO_typeahead.js</a></li>
+<li><a href="https://github.com/inrae/pgd-mmdt/blob/main/web/inc/mapping/skosmos.inc" target="_blank">web/inc/mapping/skosmos.inc</a></li>
+</ul>
+</li>
+</ul>
 
 
 
