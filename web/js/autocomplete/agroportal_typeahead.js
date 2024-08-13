@@ -18,6 +18,7 @@ var agroportal_typeahead = function (idName, ontology)
 		limitview : agroportal_limit,
 		async: true,
 		source: function (query, processSync, processAsync) {
+			if (ontology.length>0 && ontology != 'all')  ontology='';
 			url = agroportal_url+agroportal_options+ontology.replace(/:/g,',')+'&q=*'+encodeURIComponent(query)+'*&response=json&callback=?'
 			if (DEBUG) console.log('GET '+url)
 			return $.ajax({
