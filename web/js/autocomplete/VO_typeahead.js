@@ -1,3 +1,5 @@
+// -- skosmos type --
+
 // NOTE : You can copy this script to use it for another SKOSMOS portal (cf https://skosmos.org/).
 // Simply 1) change all 'VO' occurrences to the name of the new portal; 2) change the URL, logo and options according to the new portal.
 
@@ -5,7 +7,7 @@
 let VO_api = 'https://consultation.vocabulaires-ouverts.inrae.fr/rest/v1/'
 let VO_options = 'lang=en&type=skos:Concept&parent=&group='
 let VO_logo = 'https://vocabulaires-ouverts.inrae.fr/wp-content/uploads/sites/50/2022/09/cropped-logo-VOINRAE-267x66.png'
-let VO_limit = 99
+let VO_limit = 1000
 
 // VOINRAE API with help of Typeahead
 // this function must be named as <ws>_typeahead, where <ws> must correspond to the name of the web service

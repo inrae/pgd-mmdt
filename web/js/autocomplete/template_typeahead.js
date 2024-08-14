@@ -1,3 +1,5 @@
+// -- XXXX type --
+//  note : XXXX type must be put in the CVtype column for the corresponding web service <ws> (CVname column) in the web/conf/mapping.txt file
 
 // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 // Replace all '<ws>' by your web service identifier and complete the script where there are 3 dots (...)
@@ -19,7 +21,7 @@ var <ws>_api='https://...'
 var <ws>_options='...'
 var <ws>_limit='...'
 
-// this function must be named as <ws>_typeahead, where <ws> must correspond to the name of the web service
+// note: this function must be named as <ws>_typeahead, where <ws> must correspond to the name of the web service
 // specified  in the 'ws' attribute in the 'features' column in the line relating to the field concerned.
 
 // idName : the magggot field name 

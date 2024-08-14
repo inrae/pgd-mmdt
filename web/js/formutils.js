@@ -1,6 +1,6 @@
 // global variables
 var vartocomplete = [];     // List of information for each variable having an autocomplete entry (type, minlen, status, dictionary)
-var externalDicoList = [];  // Cache for dictionary names already loaded from external dictionary (bioportal, skosmos) 
+var externalDicoList = [];  // Cache for dictionary names already loaded from external dictionary (bioportal, skosmos, ols, ...) 
 var internalDicoList = [];  // Cache for dictionary names already loaded from internal dictionary (cvlist)
 var cvdir ='cvlist';        // Directory of the internal dictionaries
 
@@ -565,14 +565,14 @@ function fill_elements (search=false)
 				localcpt++;
 				idobj=key+obj[i].replace(/ /g, "_");
 				var htmltemplate = '<div class="form-check form-check-inline">\
-									<span class="form-check-label">\
-									<input type="checkbox" name="'+ key + '-' + localcpt + '" value="'+ obj[i] +'" class="form-check-input '+ key +'" id="'+ idobj +'" onchange="statusentry=1;">\
-									'+ obj[i] +'</span></div>';
+					<span class="form-check-label">\
+					<input type="checkbox" name="'+ key + '-' + localcpt + '" value="'+ obj[i] +'" class="form-check-input '+ key +'" id="'+ idobj +'" onchange="statusentry=1;">\
+						'+ obj[i] +'</span></div>';
 				$('#' + key + ' fieldset').append(htmltemplate);
 			}
 		}
 	}
-	
+
 	//==== dropbox options ====
 	for (var key in listdico) {
 		if (search) {
@@ -580,11 +580,11 @@ function fill_elements (search=false)
 			$('#'+key+' fieldset select').append(htmltemplate);
 		}
 		if (listdico.hasOwnProperty(key)) {
-		var obj = listdico[key];
-		for( var i = 0; i < obj.length; ++i ) {
+			var obj = listdico[key];
+			for( var i = 0; i < obj.length; ++i ) {
 				var htmltemplate = '<option value="'+ obj[i] +'">'+ obj[i] +'</option>';
 				$('#'+key+' fieldset select').append(htmltemplate);
-		}
+			}
 		}
 	}
 }
@@ -599,7 +599,7 @@ function active_autocomplete(set_all=0)
 		if (vartocomplete.length==0) break;
 		for( var i = 0; i < vartocomplete.length; ++i ) {
 			if (set_all==0 && vartocomplete[i]['listener']==0) continue;
-			if (vartocomplete[i]['dico'].length>20 || vartocomplete[i]['dico'].search("[,/?()=:;@$.]")>=0) continue;
+			if (vartocomplete[i]['dico'].length>25 || vartocomplete[i]['dico'].search("[,/?()=:;@$.]")>=0) continue;
 	
 			var listTerms=[]
 			if (vartocomplete[i]['type']<4) {
@@ -664,7 +664,7 @@ function active_autocomplete(set_all=0)
 				var htmltemplate = '';
 				for( var j = 0; j < listTerms.length; ++j )
 					htmltemplate += '<option value="'+ listTerms[j] +'">'+ listTerms[j] +'</option>';
-					$('#'+key+'_select').append(htmltemplate);
+				$('#'+key+'_select').append(htmltemplate);
 				continue;
 			}
 

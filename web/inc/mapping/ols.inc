@@ -17,7 +17,7 @@ function ols_search($map, $query)
 		$arr_onto=explode(",",$ontolist);
 		foreach($arr_onto as $onto) $ontology .= 'ontology='.strtolower($onto).'&';
 	}
-	$cmd='curl -X GET "'.$server_url.'?'.$ontology.'exact=true&obsoletes=false&local=false&rows=100&format=json&lang='.$lang.'&q='.urlencode($query).'"';
+	$cmd='curl -X GET "'.$server_url.'/api/search?'.$ontology.'exact=true&obsoletes=false&local=false&rows=100&format=json&lang='.$lang.'&q='.urlencode($query).'"';
 	if ($LOG) echo "<script>console.log('".$cmd."');</script>";
 	$output_js=shell_exec($cmd);
 	$output_arr = json_decode($output_js, true);

@@ -1,3 +1,5 @@
+// -- ontoportal type --
+
 // NOTE : You can copy this script to use it for another OntoPortal site (cf https://ontoportal.org/).
 // Simply 1) change all 'bioportal' occurrences to the name of the new portal; 2) change the URL according to the new portal.
 
@@ -29,6 +31,7 @@ var bioportal_typeahead = function (idName, ontology)
 					res=[];
 					arr = json.data.split(/~.~/);
 					arr.forEach((el) => res.push(JSON.parse('{"label":"'+el.split('|')[0]+'", "ontology":"'+el.split('|')[3]+'"}' )));
+					res.splice(-1,1)
 					return processAsync(res);
 				}
 			});

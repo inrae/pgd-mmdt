@@ -1,3 +1,5 @@
+// -- ontoportal type --
+
 // NOTE : You can copy this script to use it for another OntoPortal site (cf https://ontoportal.org/).
 // Simply 1) change all 'agroportal' occurrences to the name of the new portal; 2) change the URL according to the new portal.
 

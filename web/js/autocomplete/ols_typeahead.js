@@ -1,7 +1,12 @@
+// -- ols type --
+
+// NOTE : You can copy this script to use it for another OLS site
+// Simply 1) change all 'ols' occurrences to the name of the new portal; 2) change the URL according to the new portal.
+
 // Variables used only in this script.
 let ols_api ='https://www.ebi.ac.uk/ols4/api/search'
 let ols_logo = 'https://www.ebi.ac.uk/ols4/logo.svg'
-let ols_limit = 99
+let ols_limit = 200
 let ols_options  = 'exact=false&obsoletes=false&local=false'
     ols_options += '&isLeaf=false&inclusive=false&queryFields=label'
     ols_options += '&type=class&rows=200&format=json&lang=en'
@@ -35,7 +40,6 @@ var ols_typeahead = function (idName, ontology)
 		},
 		templates: {
 			header: [
-				// EBI Logo : https://avatars.githubusercontent.com/u/31919308?v=4
 				'<div class="empty-message" style="display: inline-block;">',
 				'<img src="'+ols_logo+'" style="width:30px;"/>&nbsp;&nbsp;'+
 				'<b><i><font color="grey" size=-1>&nbsp;'+shrink_ontolist(ontology,40)+'</font></i></b>',
