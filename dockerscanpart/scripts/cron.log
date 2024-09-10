@@ -1,0 +1,30 @@
+Traceback (most recent call last):
+  File "./db-insert.py", line 89, in <module>
+    collection_metadata.drop()
+  File "/usr/lib/python3/dist-packages/pymongo/collection.py", line 1103, in drop
+    dbo.drop_collection(self.__name, session=session)
+  File "/usr/lib/python3/dist-packages/pymongo/database.py", line 914, in drop_collection
+    with self.__client._socket_for_writes(session) as sock_info:
+  File "/usr/lib/python3.8/contextlib.py", line 113, in __enter__
+    return next(self.gen)
+  File "/usr/lib/python3/dist-packages/pymongo/mongo_client.py", line 1221, in _get_socket
+    with server.get_socket(
+  File "/usr/lib/python3.8/contextlib.py", line 113, in __enter__
+    return next(self.gen)
+  File "/usr/lib/python3/dist-packages/pymongo/pool.py", line 1138, in get_socket
+    sock_info.check_auth(all_credentials)
+  File "/usr/lib/python3/dist-packages/pymongo/pool.py", line 712, in check_auth
+    auth.authenticate(credentials, self)
+  File "/usr/lib/python3/dist-packages/pymongo/auth.py", line 564, in authenticate
+    auth_func(credentials, sock_info)
+  File "/usr/lib/python3/dist-packages/pymongo/auth.py", line 539, in _authenticate_default
+    return _authenticate_scram(credentials, sock_info, 'SCRAM-SHA-1')
+  File "/usr/lib/python3/dist-packages/pymongo/auth.py", line 263, in _authenticate_scram
+    res = sock_info.command(source, cmd)
+  File "/usr/lib/python3/dist-packages/pymongo/pool.py", line 603, in command
+    return command(self.sock, dbname, spec, slave_ok,
+  File "/usr/lib/python3/dist-packages/pymongo/network.py", line 165, in command
+    helpers._check_command_response(
+  File "/usr/lib/python3/dist-packages/pymongo/helpers.py", line 159, in _check_command_response
+    raise OperationFailure(msg % errmsg, code, response)
+pymongo.errors.OperationFailure: Authentication failed.

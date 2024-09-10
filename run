@@ -89,8 +89,12 @@ case "$CMD" in
         ;;
    initdb)
         echo -n "Init DB ... "
+        # Mongo command (ver 4.0: mongo ; ver 5.0+: mongosh)
+        MONGO=mongo
+        RET=$(sudo docker exec -t $DB_CONTAINER which $MONGO)
+        [ -z "$RET" ] && MONGO=mongosh
         sudo docker exec -t $DB_CONTAINER /bin/bash -c "cd /js; python3 ./generate_setupdb.py"
-        sudo docker exec -t $DB_CONTAINER mongo /js/setupdb.js 1>/dev/null 2>/dev/null
+        sudo docker exec -t $DB_CONTAINER $MONGO /js/setupdb.js 1>/dev/null 2>/dev/null
         [ $? -eq 0 ] && echo OK
         [ $? -ne 0 ] && echo FAILED
         ;;
