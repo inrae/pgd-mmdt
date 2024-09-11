@@ -207,6 +207,7 @@ do
 	$Upload_url = 'tmp/'.genKEY().'.json';
 	$RESPjson_url = 'tmp/'.genKEY().'.json';
 	$ZIP_url = 'tmp/'.genKEY().'.zip';
+	//$ZIP_url = 'tmp/'.genKEY().'.json';
 
 	if ($jsontype==1 && strlen(trim($_POST['dataset']))) {
 		$path = dirname(str_replace('/pgd_data', '/mnt', $array_dataset[ $_POST['dataset'] ]));
@@ -265,9 +266,11 @@ do
 	file_put_contents($Upload_url, $upload_js);
 	file_put_contents($RESPjson_url, $response_js);
 
-//$test_url = 'tmp/bloxberg_json_response.json';
-//if (is_readable($test_url)) $response_js = file_get_contents($test_url);
-//file_put_contents($RESPjson_url, $response_js);
+if ($DEV) {
+	$test_url = 'tmp/bloxberg_json_response.json';
+	if (is_readable($test_url)) $response_js = file_get_contents($test_url);
+	file_put_contents($RESPjson_url, $response_js);
+}
 
 	// Display links to input/output JSON files
 	$ds=$metadata['title'];
@@ -282,8 +285,9 @@ do
 	echo "<script>$('#link').html('".box_links($arr_links, $flglink)."');</script>";
 
 	$output_arr = json_decode($response_js, true);
-//if (! is_readable($test_url)) {
-	if (is_array($output_arr) && array_key_exists('detail', $output_arr) && strlen($output_arr['detail'])>0) {
+	$COND = is_array($output_arr) && array_key_exists('detail', $output_arr) && strlen($output_arr['detail'])>0;
+if ($DEV) $COND = ! is_readable($test_url);
+	if ($COND) {
 		$msg='Error: Fail to certify the metadata file on the bloxberg blockchain!!!';
 		$msg.= "<br><pre>".$output_arr['detail']."</pre>";
 		echo "<script>$('#errboxmsg').html('".$msg."'); $('#errbox').css('display','block');</script>";
@@ -291,8 +295,8 @@ do
 	}
 
 	# CURL request to the bloxberg API (/generatePDF)
-	$output_js = generatePDF_api_bloxberg($response_js, $ZIP_url);
-	if (file_exists($ZIP_url)) {
+	$html_code = generatePDF_api_bloxberg($response_js, $ZIP_url);
+	if ($html_code=='200' && file_exists($ZIP_url)) {
 		$arr_links[4]=array('bloxberg certificate',$PATH.$ZIP_url,'bloxberg_certificate_'.$ds.'.zip',$PATH.$ZIP_url,"Certificate");
 		$htmlsuccess = "Success : the metadata file has been certified on the bloxberg blockchain";
 		$htmlsuccess.= "<br>Download the ZIP which contains the corresponding certificate as a PDF file";
@@ -300,7 +304,7 @@ do
 		$flglink=1;
 	} else {
 		$error_url = 'tmp/'.genKEY().'.json';
-		file_put_contents($error_url, $output_js);
+		copy($ZIP_url, $error_url);
 		$arr_links[4]=array('bloxberg error',$PATH.$error_url,'bloxberg_error_'.$ds.'.json',$PATH.$error_url,"Error");
 		$msg='Error: Fail to generate the PDF of the bloxberg certificate !!!';
 		echo "<script>$('#errboxmsg').html('".$msg."'); $('#errbox').css('display','block');</script>";

@@ -160,14 +160,12 @@ require_once('inc/config/mongodb.inc');
 
 #------------------------
 
-// If local configuration
-if (is_file('inc/config/local.inc'))
-    include ('inc/config/local.inc');
-
 // For development version only
 $DEV=0;
 $LOG=0;
-if (is_file('inc/config/dev.inc'))
-    include ('inc/config/dev.inc');
+
+// If local configuration
+if (is_file('inc/config/local.inc'))
+    include ('inc/config/local.inc');
 
 ?>

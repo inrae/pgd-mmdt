@@ -46,9 +46,9 @@ function json2bloxberg($metadata)
 
 
 # --------------------------------------------------------------------------------------------
-# bloxberg API calling  to certify the metadata file on the bloxberg blockchain.
-# BC_API_TOKEN : API key provided by bloxberg (Positional parameter 1).
-# PUBLICKEY : Bloxberg wallet address (Positional parameter 2).
+# bloxberg API calling  to certify the metadata file on the bloxberg blockchain (/createBloxbergCertificate)
+# PUBLICKEY : Bloxberg wallet address 
+# BC_API_TOKEN : API key provided by bloxberg
 # --------------------------------------------------------------------------------------------
 
 function exec_cmd_api($cmd)
@@ -95,9 +95,11 @@ function generatePDF_api_bloxberg($BBjson, $output_zip, $mode='POST')
 	$jqBBjson = preg_replace('/\s+/', ' ', str_replace("\r", '', str_replace("\n", '', $BBjson)));
 	//$upload = addslashes($jqBBjson);
 	$upload = $jqBBjson;
-	$cmd='curl -H "'.$header.'" -H "'.$accept.'" -H "'.$content_type.'" -X '.$mode.' '.$BC_SERVER_URL.$request;
+	$cmd='curl --write-out "%{http_code}" -H "'.$header.'" -H "'.$accept.'" -H "'.$content_type.'" -X '.$mode.' '.$BC_SERVER_URL.$request;
 	$cmd .= ' -d \''.$upload.'\'';
 	$cmd .= ' --output '.$output_zip.' --silent';
 	if ($LOG) echo "<script>console.log('".addslashes($cmd)."');</script>";
-	return shell_exec($cmd);
+	$html_code = shell_exec($cmd);
+	if ($LOG) echo "<script>console.log('".$html_code."');</script>";
+	return $html_code;
 }
