@@ -1060,7 +1060,7 @@ Indeed, all the <abbr title="JavaScript Object Notation : format used to represe
 </ul>
 <p>See <a href="#settings">Configuration settings</a></p>
 <p><strong><em>Warning</em></strong> : You have to pay attention to put the same MongoDB settings in all the above configuration files. It is best not to change anything. It would have been preferable to put a single configuration file but this was not yet done given the different languages involved (bash, javascript, python, PHP). To be done!</p>
-<p><strong><em>Warning</em></strong> : If you are using VirtualBox with Windows then you must make sure to enable AVX support. See <a href="#avx_win11_vbox">AVX support with VirtualBox under Windows 11</a></p>
+<p><strong><em>Warning</em></strong> : If you are using VirtualBox with Windows then you must make sure to <a href="#avx_win11_vbox">Enable AVX</a></p>
 <p><strong><em>Note</em></strong> : If you want to run multiple instances, you will need to change in the <em><a href="#settings-run">run</a></em> file, <em>i)</em> the container names, <em>ii)</em> the data path, <em>iii)</em> the MongoDB volume name and <em>iv)</em> the MongoDB port</p>
 <p>The following two JSON files are defined by default but can be easily configured from the web interface. See the <a href="#configuration">Terminology Configuration</a> section.</p>
 <ul>
@@ -1090,12 +1090,12 @@ sh<span class="w"> </span>./run<span class="w"> </span>&lt;option&gt;
 <h4 id="installation-starting-the-application">Starting the application<a class="headerlink" href="#installation-starting-the-application" title="Permanent link">&para;</a></h4>
 <ul>
 <li>
-<p>You must first either build the 3 docker container images ... (using MongoDB 6.0+ with the needed AVX support)
+<p>You must first either build the 3 docker container images ... (using MongoDB 6.0+ with <a href="#avx_win11_vbox">AVX enabled</a>)
    <div class="highlight"><pre><span></span><code>sh<span class="w"> </span>./run<span class="w"> </span>build
 </code></pre></div></p>
 </li>
 <li>
-<p>... or pull the 3 images from DockerHub (using MongoDB 4.4 without the needed AVX support)
+<p>... or pull the 3 images from DockerHub (using MongoDB 4.4)
    <div class="highlight"><pre><span></span><code>sh<span class="w"> </span>./run<span class="w"> </span>pull
 </code></pre></div></p>
 </li>

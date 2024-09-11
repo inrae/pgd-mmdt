@@ -20,7 +20,7 @@
     
     
       
-        <title>Maggot - AVX support - Maggot</title>
+        <title>Maggot - Enable AVX - Maggot</title>
       
     
     
@@ -95,7 +95,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#avx-support" class="md-skip">
+        <a href="#enable-avx" class="md-skip">
           Skip to content
         </a>
       
@@ -135,7 +135,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Maggot - AVX support
+              Maggot - Enable AVX
             
           </span>
         </div>
@@ -750,42 +750,38 @@
                   
 
 
-  <h1>Maggot - AVX support</h1>
+  <h1>Maggot - Enable AVX</h1>
 
-<h1 id="avx-support">AVX support<a class="headerlink" href="#avx-support" title="Permanent link">&para;</a></h1>
+<h1 id="enable-avx">Enable AVX<a class="headerlink" href="#enable-avx" title="Permanent link">&para;</a></h1>
 <style>.md-typeset h1 {display: none;} .md-nav__item {font-size: medium}</style>
 
 <style>.md-typeset table:not([class]) th {
     background-color: var(--md-default-fg-color--light);
     color: var(--md-default-bg-color); min-width: 5rem; padding: 0.9375em 1.25em; vertical-align: top;}</style>
 
-<h3 id="avx-support-with-virtualbox-under-windows-11">AVX support with VirtualBox under Windows 11<a class="headerlink" href="#avx-support-with-virtualbox-under-windows-11" title="Permanent link">&para;</a></h3>
-<p>From MongoDB version 5.0 and higher, your machine must support <a href="https://en.wikipedia.org/wiki/Advanced_Vector_Extensions" target="_blank">AVX</a>. To enable AVX support on virtual machines in VirtualBox under Windows 11, you must disable <a href="https://learn.microsoft.com/en-us/virtualization/hyper-v-on-windows/about/" target="_blank">HYPER-V</a>. Which is not easy because generally, trying to disable Hyper-V by unchecking boxes the "Windows Features" often does not disable Hyper-V.</p>
+<h3 id="enable-avx-in-virtualbox-under-windows-11">Enable AVX in VirtualBox under Windows 11<a class="headerlink" href="#enable-avx-in-virtualbox-under-windows-11" title="Permanent link">&para;</a></h3>
+<p>From MongoDB version 5.0 and higher, your guest machine must support <a href="https://en.wikipedia.org/wiki/Advanced_Vector_Extensions" target="_blank">AVX</a>. To enable AVX on virtual machines in VirtualBox under Windows 11, you must disable <a href="https://learn.microsoft.com/en-us/virtualization/hyper-v-on-windows/about/" target="_blank">Hyper-V</a>. Which is not easy because generally, trying to disable Hyper-V by unchecking boxes the "Windows Features" often does not disable Hyper-V.</p>
 <p>To turn Hyper-V off completely, see this post : <a href="https://forums.virtualbox.org/viewtopic.php?f=25&amp;t=99390" target="_blank">HMR3Init: Attempting fall back to NEM (Hyper-V is active)</a></p>
-<p><br></p>
 <p>To know if your Linux virtual machine supports AVX, run the command <code>cat /proc/cpuinfo</code> , then check that in the 'flags', you have 'avx' and 'avx2'.</p>
-<p><br></p>
+<h4 id="summary-of-the-steps-to-follow-you-must-have-administrator-rights">Summary of the steps to follow (You must have administrator rights)<a class="headerlink" href="#summary-of-the-steps-to-follow-you-must-have-administrator-rights" title="Permanent link">&para;</a></h4>
 <ul>
-<li>
-<p>Summary of the steps to follow (You must have administrator rights)</p>
-<ul>
-<li>
-<p>Turn off the Windows Memory Integrity security feature</p>
-<p>Start &gt; Settings &gt; Update &amp; Security &gt; Windows Security &gt; Device security &gt; Core isolation &gt; Memory integrity.</p>
-</li>
 <li>
 <p>cmd window: </p>
 <p><code>bcdedit /set hypervisorlaunchtype off</code></p>
 </li>
 <li>
 <p>Regedit:</p>
-<p><code>Computer\HKEY_local_machine\system\CurrentControlSet\Control\DeviceGuard\EnableVirtualizationBaseSecurity -&gt; put to 0</code></p>
-<p><code>Computer\HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\DeviceGuard\Scenarios\SystemGuard -&gt; put to 0</code></p>
+<p><code>Computer\HKEY_local_machine\system\CurrentControlSet\Control\DeviceGuard\EnableVirtualizationBaseSecurity &lt;- 0</code></p>
+<p><code>Computer\HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\DeviceGuard\Scenarios\SystemGuard &lt;- 0</code></p>
 </li>
 <li>
-<p>Rebooted the machine.</p>
+<p>Rebooted the host machine (i.e. Windows)</p>
 </li>
-</ul>
+<li>
+<p>Then, you need to enable AVX for the corresponding virtual machine ("Maggot VM")</p>
+<div class="highlight"><pre><span></span><code>VBoxManage.exe setextradata &lt;Maggot VM&gt; VBoxInternal/CPUM/IsaExts/AVX 1 
+VBoxManage.exe setextradata &lt;Maggot VM&gt; VBoxInternal/CPUM/IsaExts/AVX2 1 
+</code></pre></div>
 </li>
 </ul>
 
