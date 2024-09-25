@@ -67,7 +67,7 @@ The <b>Maggot</b> tool allows users to describe the <a href="<? echo $links[4]; 
 	<li>to answer certain questions of the <b>Data Management Plan</b> (<a href="<? echo $links[0]; ?>" target="_blank">DMP</a>) concerning the <b>organization, documentation, storage and sharing of data</b> in the data storage space,</li>
 	<li>to meet certain data and metadata requirements, referred to by the <a href="<? echo $links[1]; ?>" target="_blank">National Plan for Open Science</a> , in particular its second axis: “<b>Structure, Share and Open Research Data</b>” (<a href="<? echo $links[2]; ?>" target="_blank">Recherche Data Gouv</a>) in accordance with the <a href="<? echo $links[3]; ?>" target="_blank">FAIR principles</a>.</li>
 </ul>
-See <a href="<? echo $links[6]; ?>" target="_blank">Quick tutorail</a>.
+See <a href="<? echo $links[6]; ?>" target="_blank">Quick tutorial</a>.
 </font>
 </div></div>
 
