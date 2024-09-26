@@ -137,7 +137,7 @@ if ($ret>0) {
 			</div>
 			<div style="padding-bottom: 10px;"><b>bloxberg Server URL</b>:&nbsp;<select name="server" id="server" class="form-control form-control-sm"><? echo $options_server ?></select></div>
 			<div style="padding-bottom: 10px;"><b>bloxberg Wallet identifier</b>:&nbsp;<input class="form-control form-control-sm solo" type="text" name="publickey" id="publickey" value="<? echo $PUBLICKEY ?>" /></div>
-			<div style="padding-bottom: 10px;"><b>bloxberg API Token</b>:&nbsp;<input class="form-control form-control-sm solo" type="text" name="token" id="token" value="<? echo $BC_API_TOKEN ?>" /></div>
+			<div style="padding-bottom: 10px;"><b>bloxberg API Token</b>:&nbsp;<input class="form-control form-control-sm solo" type="password" name="token" id="token" value="<? echo $BC_API_TOKEN ?>" /></div>
 			<input type="submit" class="btn btn-primary" style="width: 100px;" id="btnpush" name="btnpush" value="Publish"/>
 			<input type="hidden" name="jsontype" id="jsontype" value="1">
 			<br>
@@ -235,7 +235,7 @@ do
 		$type = $_FILES['jsonfile']['type'];
 		$tmpName = $_FILES['jsonfile']['tmp_name'];
 		echo "<script>$('#label').html('".$name."');</script>"; // document.getElementById('label').innerHTML='$name';
-	
+
 		$meta_json = file_get_contents($tmpName);
 	}
 
@@ -266,12 +266,6 @@ do
 	file_put_contents($Upload_url, $upload_js);
 	file_put_contents($RESPjson_url, $response_js);
 
-if ($DEV) {
-	$test_url = 'tmp/bloxberg_json_response.json';
-	if (is_readable($test_url)) $response_js = file_get_contents($test_url);
-	file_put_contents($RESPjson_url, $response_js);
-}
-
 	// Display links to input/output JSON files
 	$ds=$metadata['title'];
 	$path='tmp/';
@@ -286,7 +280,6 @@ if ($DEV) {
 
 	$output_arr = json_decode($response_js, true);
 	$COND = is_array($output_arr) && array_key_exists('detail', $output_arr) && strlen($output_arr['detail'])>0;
-if ($DEV) $COND = ! is_readable($test_url);
 	if ($COND) {
 		$msg='Error: Fail to certify the metadata file on the bloxberg blockchain!!!';
 		$msg.= "<br><pre>".$output_arr['detail']."</pre>";

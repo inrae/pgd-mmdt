@@ -76,6 +76,7 @@ function certify_api_bloxberg($upload, $mode='POST')
 	$accept = 'accept: application/json';
 	$request = 'createBloxbergCertificate';
 	if ($LOG) echo "<script>console.log('".addslashes($upload)."');</script>";
+	if ($LOG) echo "<script>console.log('certify_api_bloxberg:');</script>";
 	$cmd='curl -H "'.$header.'" -H "'.$accept.'" -H "'.$content_type.'" -X '.$mode.' '.$BC_SERVER_URL.$request.' -d \''.$upload.'\'';
 	return exec_cmd_api($cmd);
 }
