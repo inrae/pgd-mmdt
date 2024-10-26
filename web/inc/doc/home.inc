@@ -52,7 +52,7 @@
 <br>
 
 <div style="background-image: url(docs/Data-sharing-background.png); background-repeat: no-repeat; background-size: cover; padding: 20px 40px;"><center>
-<font style="font-size:32px; color:white; font-weight: 700;">An ecosystem for sharing metadata</font>
+<font style="font-size:32px; color:white; font-weight: 700;">An ecosystem for producing and sharing metadata</font>
 </center>
 </div>
 <br><br>
