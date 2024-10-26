@@ -43,8 +43,8 @@ usage() { echo "usage: sh $0 start|stop|restart|fullstart|ps|build|pull|initdb|s
 case "$CMD" in
    start)
         # Create Network
-        RET=$($DOCKER network ls | grep $MYNET 1>/dev/null 2>/dev/null; echo $?)
-        [ $RET -ne 0 ] && $DOCKER network create -d bridge $MYNET
+        RET=$(sudo docker network ls | grep $MYNET 1>/dev/null 2>/dev/null; echo $?)
+        [ $RET -ne 0 ] && sudo docker network create -d bridge $MYNET
         echo "Lauching ... "
         [ ! -d $MYDIR/web/tmp ] && sudo mkdir -p $MYDIR/web/tmp
         [ -d $MYDIR/web/tmp ] && sudo chmod 777 $MYDIR/web/tmp
