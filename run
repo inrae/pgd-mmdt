@@ -42,6 +42,9 @@ usage() { echo "usage: sh $0 start|stop|restart|fullstart|ps|build|pull|initdb|s
 
 case "$CMD" in
    start)
+        # Create Network
+        RET=$($DOCKER network ls | grep $MYNET 1>/dev/null 2>/dev/null; echo $?)
+        [ $RET -ne 0 ] && $DOCKER network create -d bridge $MYNET
         echo "Lauching ... "
         [ ! -d $MYDIR/web/tmp ] && sudo mkdir -p $MYDIR/web/tmp
         [ -d $MYDIR/web/tmp ] && sudo chmod 777 $MYDIR/web/tmp
@@ -61,6 +64,9 @@ case "$CMD" in
         ( sh $0 start ; sh $0 initdb ; sh $0 scan )
         ;;
    stop)
+        sudo docker network disconnect $MYNET $WEB_CONTAINER
+        sudo docker network disconnect $MYNET $SCAN_CONTAINER
+        sudo docker network disconnect $MYNET $DB_CONTAINER
         sudo docker rm -f $WEB_CONTAINER $SCAN_CONTAINER $DB_CONTAINER
         echo -n "Remove volumes ... "
         for v in $(sudo docker volume ls | grep local | grep -v $MONGO_VOL | cut -d' ' -f6); do
