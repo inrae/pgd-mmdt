@@ -5,7 +5,7 @@
 * site pages : gh-pages branch
 
 
-Site web : https://djacob65.github.io/maggot-mkdocs/
+Site web : https://inrae.github.io/pgd-mmdt/ 
 
 ------
 
