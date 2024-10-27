@@ -1,0 +1,155 @@
+site_name: Maggot
+site_description: Maggot, Metadata aggregation on data storage
+site_author: Daniel Jacob
+copyright: INRAE, 2022-2024
+docs_dir: docs/
+
+repo_name: GitHub
+remote_branch: gh-pages
+
+theme: 
+  name: material
+  highlightjs: true
+  features:
+#    - navigation.tabs
+#    - navigation.sections
+#    - navigation.top
+    - toc.integrate
+    - search.suggest
+    - search.highlight
+    - content.tabs.link
+    - content.code.annotation
+    - content.code.copy
+  language: en
+  palette:
+    - scheme: default
+      toggle:
+        icon: material/toggle-switch-off-outline 
+        name: Switch to dark mode
+      primary: teal
+      accent: purple 
+    - scheme: slate 
+      toggle:
+        icon: material/toggle-switch
+        name: Switch to light mode    
+      primary: teal
+      accent: lime
+
+#favicon: assets/favicon.png
+
+extra:
+  version:
+    default: stable 
+
+extra_javascript:
+  - js/jquery-2.1.1.min.js
+  - js/lightbox.min.js
+  - js/mermaid.min.js
+  - js/extra.js
+#  - https://unpkg.com/mermaid@8.8.0/dist/mermaid.min.js
+
+extra_css:
+  - css/extra.css
+  - css/pdfextra.css
+  - css/lightbox.css
+#  - css/mermaid.min.css
+#  - https://unpkg.com/browse/mermaid@7.0.4/dist/mermaid.forest.min.css
+
+plugins:
+  - section-index
+  - search
+#  - enumerate-headings
+  - print-site:
+      add_to_navigation: false
+      print_page_title: 'Maggot Documentation'
+      add_print_site_banner: false
+      # Table of contents
+      add_table_of_contents: true
+      toc_title: 'Table of Contents'
+      toc_depth: 3
+      # Content-related
+      add_full_urls: false
+      enumerate_headings: false
+      enumerate_figures: false
+      add_cover_page: true
+      cover_page_template: ""
+      path_to_pdf: ""
+      include_css: true
+      enabled: true
+
+#  - with-pdf
+#    - pdf-with-js
+
+markdown_extensions:
+  - abbr
+  - admonition
+  - attr_list
+  - codehilite:
+      guess_lang: false
+      linenums: true
+  - def_list
+  - footnotes
+  - meta
+  - toc:
+      permalink: true
+  - pymdownx.highlight:
+      use_pygments: true
+  - pymdownx.arithmatex
+  - pymdownx.betterem:
+      smart_enable: all
+  - pymdownx.caret
+  - pymdownx.critic
+  - pymdownx.details
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+  - pymdownx.inlinehilite
+  - pymdownx.keys
+  - pymdownx.magiclink:
+      repo_url_shorthand: true
+      user: squidfunk
+      repo: mkdocs-material
+  - pymdownx.mark
+  - pymdownx.smartsymbols
+  - pymdownx.snippets:
+      check_paths: true
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_div_format
+  - pymdownx.tabbed
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - pymdownx.tilde
+
+validation:
+  omitted_files: ignore
+  absolute_links: warn
+  unrecognized_links: ignore
+
+
+nav:
+    - Home: index.md
+    - Quick tutorial:
+      - tutorial/index.md
+      - Metadata Entry : tutorial/describe.md
+      - Metadata File : tutorial/metadata.md
+    - Infrastructure: infrastructure.md
+    - Installation: installation.md
+    - Definition files:
+      - definitions/index.md
+      - Terminology : definitions/terminology.md
+      - Vocabulary: definitions/vocabulary.md
+      - Mapping: definitions/mapping.md
+      - Dataverse: definitions/dataverse.md
+      - Zenodo: definitions/zenodo.md
+      - JSON-LD: definitions/json-ld.md
+      - OAI-PMH: definitions/oai-pmh.md
+    - Configuration: configuration.md
+    - Dictionaries: dictionaries.md
+    - Publication:
+      - publish/index.md
+      - Dataverse: publish/dataverse.md
+      - Zenodo: publish/zenodo.md
+    - About: about.md
