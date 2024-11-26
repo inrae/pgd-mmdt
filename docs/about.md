@@ -71,6 +71,13 @@ some_url:
 
 * Joseph TRAN ([INRAE UMR EGFV][12]{:target="_blank"}) | CATI [BARIC][13]{:target="_blank"}
 
+
+
+## License
+
+* GNU GENERAL PUBLIC LICENSE Version 3, 29 June 2007 - (GPLv3)[20]{:target="_blank"}
+
+
 *[JSON]: JavaScript Object Notation : format used to represent structured information
 *[autocompletion]: feature in which an application predicts the rest of a word a user is typing
 *[FAIR]: Findable, Accessible, Interoperable and Reusable
@@ -96,6 +103,8 @@ some_url:
 
 [16]: https://github.com/inrae/pgd-mmdt/issues
 [17]: https://orcid.org/0000-0002-6687-7169
+
+[20]: https://www.gnu.org/licenses/gpl-3.0.html
 
 <br><br>
 
