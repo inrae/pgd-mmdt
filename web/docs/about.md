@@ -49,3 +49,7 @@
 [9]: https://nextcloud.inrae.fr/s/iLHQYoAZp2i6ij7
 [10]: https://registry.identifiers.org/registry/maggot
 
+
+## License
+
+* GNU GENERAL PUBLIC LICENSE Version 3, 29 June 2007 - (GPLv3)[https://www.gnu.org/licenses/gpl-3.0.html]
