@@ -73,9 +73,9 @@ some_url:
 
 
 
-## License
+### License
 
-* GNU GENERAL PUBLIC LICENSE Version 3, 29 June 2007 - (GPLv3)[20]{:target="_blank"}
+* GNU GENERAL PUBLIC LICENSE Version 3, 29 June 2007 - [GPLv3][20]{:target="_blank"}
 
 
 *[JSON]: JavaScript Object Notation : format used to represent structured information
