@@ -76,6 +76,16 @@ $HEADMAIN = $HEAD1.'
 
 #------------------------
 
+$infolog ='';
+if (! is_null($AUTH_TOKEN)) {
+    $ROLES = '';
+    if (count($AUTH_ROLES)>0) $ROLES = implode(', ',$AUTH_ROLES);
+    $infolog = '<div style="position: absolute; top: -1px; left: 10px;"><font size="-1">
+            <i>&nbsp;<b>'.$AUTH_TOKEN['name']."</b> ( ".$ROLES.' ) - <a href="'.$PATH.'logout">Logout</a></i></font></div>';
+}
+
+#------------------------
+
 $header_open='<div class="entete"><table width="100%"><tr>
 <td align="left"><img src="'.$PATH.'img/maggot-icon.png" height="32" width="35">&nbsp;<a class="entete" href="'.$PATH.'">'.$TITLE.'</a></td>
 <td>&nbsp;</td>
@@ -83,7 +93,7 @@ $header_open='<div class="entete"><table width="100%"><tr>
 
 $header_close='</td></tr></table></div>';
 
-$header_title = $header_open.$header_close;
+$header_title = $infolog.$header_open.$header_close;
 
 #------------------------
 
@@ -99,7 +109,7 @@ $menu1 ='<div class="btn-group btn-group-lg" role="group">
 	<a href="./dataverse" class="search_data"><button type="button" class="btn btn-primary" data-toggle="button" aria-pressed="false" autocomplete="off" name="btn-search">Publish Dataset</button></a>
 	</div>';
 
-$header_main = $header_open.$menu1.$header_close;
+$header_main = $infolog.$header_open.$menu1.$header_close;
 
 #------------------------
 
@@ -129,7 +139,7 @@ if ($export_dataverse || $export_zenodo || $export_bloxberg)
 		<select style="text-align-last:center; border:0; background: #edf1f6;" id="publish_sel" name="publish_sel" class="form-control-sm" onchange="gotoURL(this.value)">
 		<option value="none">Publish the datasets</option></select></div>&nbsp;&nbsp;';
 
-$header_meta = $header_open.$header_meta_1.$header_meta_2.$header_close;
+$header_meta = $infolog.$header_open.$header_meta_1.$header_meta_2.$header_close;
 
 
 

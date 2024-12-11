@@ -37,6 +37,12 @@
 
 * Edouard Guitton ([@INRAE Dept. SA][6], [@Emerg'IN][3])
 
+.
+
+## License
+
+* GNU GENERAL PUBLIC LICENSE Version 3, 29 June 2007 - [GPLv3][11]
+
 
 [1]: https://www6.bordeaux-aquitaine.inrae.fr/biogeco_eng/
 [2]: https://www6.bordeaux-aquitaine.inrae.fr/bfp_eng/
@@ -48,8 +54,5 @@
 [8]: https://recherche.data.gouv.fr/en
 [9]: https://nextcloud.inrae.fr/s/iLHQYoAZp2i6ij7
 [10]: https://registry.identifiers.org/registry/maggot
+[11]: https://www.gnu.org/licenses/gpl-3.0.html
 
-
-## License
-
-* GNU GENERAL PUBLIC LICENSE Version 3, 29 June 2007 - (GPLv3)[https://www.gnu.org/licenses/gpl-3.0.html]

@@ -18,11 +18,13 @@
 # ./web/js/autocomplete/
 # ./web/inc/mapping/
 
-ROOTDIR=/opt/apps
-APP=pgd-mmdt
-SYSTEMCTL=0
+REPOS=pgd-mmdt     # name of the github repository
+ 
+ROOTDIR=/opt/apps  # the path of the root directory where the maggot application is installed
+APP=pgd-mmdt       # name of the directory under the root directory corresponding to the maggot application
+SYSTEMCTL=0        # indicates if systemcl is used for stopping / starting the maggot application
 
-GITREPOS=https://github.com/inrae/${APP}.git
+GITREPOS=https://github.com/inrae/${REPOS}.git
 
 (
   cd $ROOTDIR

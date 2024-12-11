@@ -3,13 +3,11 @@
 $config_file = './conf/config_terms.json';
 $schema_file = './conf/maggot-schema.json';
 
-$USER = $_SERVER['PHP_AUTH_USER'];
-
 $OK=0;
 
 // Traitement de la demande
 do {
-	if ($USER !== 'admin') {
+	if ($USER !== $ADMINGROUP) {
 		echo "<p style=\"color:red\">ERROR: Only the admin account is allowed to copy</p><br>";
 		break;
 	}

@@ -47,11 +47,11 @@ Header set Access-Control-Allow-Origin "*"
   allow from all
   AcceptPathInfo On
   ForceType application/x-httpd-php
-  AuthName "Unauthorized access"
-  ErrorDocument 401 "<html><meta http-equiv=\"refresh\" content=\"0;url=check?redirect\"></html>"
-  AuthType Basic
-  AuthUserFile /etc/pgd-mmdt/.htpasswd
-  Require valid-user
+#>  AuthName "Unauthorized access"
+#>  ErrorDocument 401 "<html><meta http-equiv=\"refresh\" content=\"0;url=check?redirect\"></html>"
+#>  AuthType Basic
+#>  AuthUserFile /etc/pgd-mmdt/.htpasswd
+#>  Require valid-user
 </Files>
 
 AddDefaultCharset ISO-8859-1

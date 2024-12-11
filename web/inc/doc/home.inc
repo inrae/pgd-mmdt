@@ -42,7 +42,7 @@
 </head>
 
 <body style="zoom: <? echo $ZOOMWP ?>">
-
+<?php echo $infolog; ?>
 <div style="color: #557ca7; font-size: 20px;"><?php echo $menu1; ?></div>
 <br>
 

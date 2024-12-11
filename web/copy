@@ -11,7 +11,7 @@ ini_set('error_reporting', E_ALL & ~E_NOTICE);
 ini_set("include_path", ".:/usr/share/php");
 ini_set("display_errors", 1);
 
-// Chargement fichier config
+include ('inc/config/config.inc');
 include ('inc/convert/copy.inc');
 
 ?>

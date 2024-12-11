@@ -20,6 +20,11 @@ $AJAXWAIT=5000;
 
 #------------------------
 
+# Name of the group with administrator rights (e.g dictionaries)
+$ADMINGROUP = 'admin';
+
+#------------------------
+
 // Mode external (1) or not (0)
 $EXTERN=0;
 
@@ -70,7 +75,7 @@ $PARENT='';
 
 // Zenodo URLs
 $zenodo_urls = array('https://zenodo.org',
-					 'https://zenodo-rdm-qa.web.cern.ch');
+                     'https://zenodo-rdm-qa.web.cern.ch');
 //                     'https://sandbox.zenodo.org');
 
 $ZC_API = '/api/communities/';
@@ -167,5 +172,7 @@ $LOG=0;
 // If local configuration
 if (is_file('inc/config/local.inc'))
     include ('inc/config/local.inc');
+
+include ('inc/functions/auth.inc');
 
 ?>

@@ -6,10 +6,7 @@
 # Copyright: (c) INRAE - 2022-2023
 #
 
-# Get the entered user 
-$USER = $_SERVER['PHP_AUTH_USER'];
-
-$upload_mode = (strlen($USER) && $USER === 'admin') ? 'inline' : 'none';
+$upload_mode = (strlen($USER) && $USER === $ADMINGROUP) ? 'inline' : 'none';
 
 # Dictionary name if specified
 $DICOSEL='';
@@ -185,7 +182,7 @@ do {
 		$html_thread .= '<th class="tablehead"><a href="javascript:getsort(\\\''.$url.$scol.'\\\');">'.$line[0].'</a>'.$star.'</th>';
 		$sep=',';
 	}
-	if ($USER === 'admin') $html_thread .= '<th class="tablehead tbl-btn" style="width: 140px;"><button class="add">Add new</button></th>';
+	if ($USER === $ADMINGROUP) $html_thread .= '<th class="tablehead tbl-btn" style="width: 140px;"><button class="add">Add new</button></th>';
 	$html_thread .= '</tr></thead>';
 
 	// tbody
@@ -204,7 +201,7 @@ do {
 			}
 			$col++;
 		}
-		if ($USER === 'admin') $html_tbody .= '<td class="td-btn"><button class="btn save">Save</button><button class="btn edit">Edit</button>&nbsp;<button class="btn delete">Del</button><button class="btn cancel">Cancel</button></td></tr>';
+		if ($USER === $ADMINGROUP) $html_tbody .= '<td class="td-btn"><button class="btn save">Save</button><button class="btn edit">Edit</button>&nbsp;<button class="btn delete">Del</button><button class="btn cancel">Cancel</button></td></tr>';
 		$cnt++;
 	}
 	$html_tbody .="</tbody>";
@@ -219,7 +216,7 @@ do {
 	echo "<script>var nameArray = [ ".$var1." ];\nvar requireArray = [ ".$var2." ];\nvar regexArray = [ ".$var3." ];\nvar apiArray = [ ".$var4." ];\nvar nbitems=".$cnt."\n$('#tbl-main').html('".$html_table."'); $('#dico-name').html('".$DICOSEL."');$('#divsearch').css('display','".$dispsearch."');$('#tbl-footer').css('display','block');$('#searchterm').val('".$searchterm."');select_row('".$searchterm."');</script>";
 
 	// If admin user then authorize to upload a file to replace the current dictionary
-	if ($USER == 'admin')
+	if ($USER == $ADMINGROUP)
 		echo "<script>uploadDico.addEventListener('change', function(){ $('#savemsg').html(''); postDico(this.files[0]); })</script>";
 
 } while(0);

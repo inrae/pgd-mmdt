@@ -46,6 +46,10 @@ do {
       echo phpinfo();
       break;
    }
+   if ($DEV && isset($_GET['token']) && ! is_null($AUTH_TOKEN)) {
+      print("<pre>"); print_r($AUTH_TOKEN); print("</pre><br>");
+      break;
+   }
    echo "$APPURL";
 } while(0);
 

@@ -1,9 +1,7 @@
 <?php
 
-$USER = $_SERVER['PHP_AUTH_USER'];
-
 do {
-	if ($USER !== 'admin') {
+	if ($USER !== $ADMINGROUP) {
 		$msg = 'ERROR Only the admin account is allowed to save !!!';
 		break;
 	}
