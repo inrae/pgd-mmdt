@@ -45,18 +45,18 @@ usage() { echo "usage: sh $0 start|stop|restart|fullstart|ps|build|pull|initdb|s
 
 case "$CMD" in
    start)
-        # Create Network
+        # Check / Create Network
         RET=$(sudo docker network ls | grep $MYNET 1>/dev/null 2>/dev/null; echo $?)
         [ $RET -ne 0 ] && sudo docker network create -d bridge $MYNET
         echo "Lauching ... "
-        # Check / create some directories (cache, tmp) with full privileges
+        # Check / Create some directories (cache, tmp) with full privileges
         [ ! -d $MYDIR/web/tmp ] && sudo mkdir -p $MYDIR/web/tmp
         [ -d $MYDIR/web/tmp ] && sudo chmod 777 $MYDIR/web/tmp
         [ ! -d $MYDIR/web/cache ] && sudo mkdir -p $MYDIR/web/cache
         [ -d $MYDIR/web/cache ] && sudo chmod 777 $MYDIR/web/cache
         # set full privileges to json configuration files
         sudo chmod 777 $MYDIR/web/conf/*.json
-        # Active htpasswd if necessary
+        # Activate access via htpasswd if necessary
         sudo cp $MYDIR/web/.htaccess.tmpl $MYDIR/web/.htaccess
         [ $SSO -eq 0 ] && sudo sed -i -e "s/^#>//g" $MYDIR/web/.htaccess
         # Launch DB container

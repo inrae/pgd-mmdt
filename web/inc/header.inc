@@ -76,6 +76,8 @@ $HEADMAIN = $HEAD1.'
 
 #------------------------
 
+# Authentication information if applicable
+
 $infolog ='';
 if (! is_null($AUTH_TOKEN)) {
     $ROLES = '';
@@ -85,6 +87,8 @@ if (! is_null($AUTH_TOKEN)) {
 }
 
 #------------------------
+
+# Header for Home page / Publish data / Dictionaries / bloxberg / ...
 
 $header_open='<div class="entete"><table width="100%"><tr>
 <td align="left"><img src="'.$PATH.'img/maggot-icon.png" height="32" width="35">&nbsp;<a class="entete" href="'.$PATH.'">'.$TITLE.'</a></td>
@@ -96,6 +100,8 @@ $header_close='</td></tr></table></div>';
 $header_title = $infolog.$header_open.$header_close;
 
 #------------------------
+
+# Header for Entry / Search
 
 if( ! isset( $_GET['extern'] ) && ! $EXTERN )
 $menu1 ='<div class="btn-group btn-group-lg align-to-right" role="group">
@@ -113,12 +119,16 @@ $header_main = $infolog.$header_open.$menu1.$header_close;
 
 #------------------------
 
+# Header for Documentation
+
 $header_doc = $header_open.'<div class="btn-group btn-group-lg" role="group">
 	<i class="bi bi-filter" style="color:grey;"><a href="'.$PATH.'doc/meta" class="search_data"><button type="button" class="btn btn-primary" data-toggle="button" aria-pressed="false" autocomplete="off" name="btn-doc">Metadata</button></a><i class="bi bi-eye" style="color:grey;"><a href="'.$PATH.'doc/about" class="search_data"><button type="button" class="btn btn-primary" data-toggle="button" aria-pressed="false" autocomplete="off" name="btn-about">About</button></a>'.$header_close;
 
 #------------------------
 
-$header_config = $header_open.'<div class="btn-group btn-group-lg" role="group">
+# Header for Configuration
+
+$header_config = $infolog.$header_open.'<div class="btn-group btn-group-lg" role="group">
 	<i class="bi bi-eye" style="color:grey;"><a href="'.$PATH.'config/view" class="search_data"><button type="button" class="btn btn-primary" data-toggle="button" aria-pressed="false" autocomplete="off" name="btn-conv2">View all TSV</button></a>
 	<i class="bi bi-filetype-json" style="color:grey;"><a href="'.$PATH.'config" class="search_data"><button type="button" class="btn btn-primary" data-toggle="button" aria-pressed="false" autocomplete="off" name="btn-conv1">TSV to JSON</button></a>
 	<i class="bi bi-filetype-md" style="color:grey;"><a href="'.$PATH.'config/doc" class="search_data"><button type="button" class="btn btn-primary" data-toggle="button" aria-pressed="false" autocomplete="off" name="btn-conv3">TSV to DOC</button></a>
@@ -126,6 +136,8 @@ $header_config = $header_open.'<div class="btn-group btn-group-lg" role="group">
 	</div>'.$header_close;
 
 #------------------------
+
+# Header for Metadata
 
 $header_meta_1 = '
 	<div class="form-group2" id="exportcont" style="display: none"><i class="bi bi-hand-index-thumb" style="color:grey;"></i><span id="export"></span></div>&nbsp;&nbsp;';

@@ -7,8 +7,7 @@ function getAuthorizationHeader(){
     $headers = null;
     if (isset($_SERVER['Authorization'])) {
         $headers = trim($_SERVER["Authorization"]);
-    }
-    else if (isset($_SERVER['HTTP_AUTHORIZATION'])) { //Nginx or fast CGI
+    } else if (isset($_SERVER['HTTP_AUTHORIZATION'])) { //Nginx or fast CGI
         $headers = trim($_SERVER["HTTP_AUTHORIZATION"]);
     } elseif (function_exists('apache_request_headers')) {
         $requestHeaders = apache_request_headers();
@@ -31,11 +30,10 @@ function getBearerToken() {
     // HEADER: Get the access token from the header
     if (!empty($headers)) {
         if (preg_match('/Bearer\s((.*)\.(.*)\.(.*))/', $headers, $matches)) {
-            if ($DEV) { print "<br><b>Authorization</b><br><pre>"; print_r($matches); print "</pre><br>"; }
             $payload = $matches[3];
             $jsondata = base64_decode($payload);
+            if ($DEV) print "<script>console.log(".$jsondata.")</script>";
             $data = json_decode($jsondata, true);
-            if ($DEV) { print "<br><b>Payload</b><br><pre>"; print_r($data); print "</pre><br>"; }
             return $data;
         }
     }
@@ -47,7 +45,7 @@ function getBearerToken() {
    $AUTH_TOKEN : payload from the JWT as an array
    $AUTH_USER : login name
    $AUTH_ROLES : array of roles 
-   $USER : login name depending on how the user logs in. If it belongs to the admin group, then position as admin.
+   $USER : login name depending on how the user logs in. If it belongs to the admin group, then populate as admin.
  * */
 $AUTH_TOKEN=getBearerToken();
 if (! is_null($AUTH_TOKEN)) {
