@@ -6,7 +6,7 @@
 # List of files to be preserved
 # ./local.conf
 # ./etc/.htpasswd
-# ./dockerscanpart/scripts/config.py
+# ./docker/scan/scripts/config.py
 # ./web/inc/config/mongodb.inc
 # ./web/inc/config/local.inc
 # ./web/docs/doc.md
@@ -44,7 +44,7 @@ GITREPOS=https://github.com/inrae/${REPOS}.git
      # Config
      [ -f $PREV/local.conf ] && sudo cp ./$PREV/local.conf ./$APP/
      sudo cp ./$PREV/etc/.htpasswd ./$APP/etc/
-     sudo cp ./$PREV/dockerscanpart/scripts/config.py ./$APP/dockerscanpart/scripts/
+     sudo cp ./$PREV/docker/scan/scripts/config.py ./$APP/docker/scan/scripts/
      sudo cp ./$PREV/web/inc/config/mongodb.inc ./$APP/web/inc/config/
      [ -f ./$PREV/web/inc/config/local.inc ] && sudo cp ./$PREV/web/inc/config/local.inc ./$APP/web/inc/config/
      sudo cp ./$PREV/web/conf/* ./$APP/web/conf/
