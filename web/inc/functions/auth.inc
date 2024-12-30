@@ -1,8 +1,8 @@
 <?php
 
-/**
+/*
  * Get key value in header
- * */
+ */
 function getHeader($key)
 {
     $headers = null;
@@ -20,9 +20,9 @@ function getHeader($key)
     return $headers;
 }
 
-/**
+/*
  * get access token from header
- * */
+ */
 function getBearerToken()
 {
     global $DEV;
@@ -39,23 +39,18 @@ function getBearerToken()
     return null;
 }
 
-/**
- * populate some global variables relative to access rigths
-   $AUTH_TOKEN : payload from the JWT as an array
-   $AUTH_USER : login name
-   $AUTH_ROLES : array of roles 
-   $USER : login name depending on how the user logs in. If it belongs to the admin group, then populate as admin.
- * */
+/*
+ *  populate some global variables relative to access rigths
+ *  $AUTH_TOKEN : payload from the JWT as an array
+ *  $AUTH_USER : login name
+ *  $AUTH_ROLES : array of roles 
+ *  $USER : login name depending on how the user logs in. If it belongs to the admin group, then populate as admin.
+ */
 do {
 
    $AUTH_TOKEN = NULL;
    $AUTH_ROLES = array();
    $USER = '';
-
-   if (is_null($AUTH_IP)) {
-       $USER = isset($_SERVER['PHP_AUTH_USER']) ? $_SERVER['PHP_AUTH_USER'] : '';
-       break;
-   }
 
    $AUTH_TOKEN=getBearerToken();
    if (is_null($AUTH_TOKEN)) {
@@ -81,7 +76,7 @@ do {
       break;
    }
 
-   if (isset($AUTH_IP[$AUTH_IP_NAME])) {
+   if (! is_null($AUTH_IP) && isset($AUTH_IP[$AUTH_IP_NAME])) {
       $USERINFO_ENDPOINT = $AUTH_IP[$AUTH_IP_NAME];
       $cmd = "curl -X GET -H \"Authorization: Bearer ".$AUTH_ID_TOKEN."\" $USERINFO_ENDPOINT";
       if ($DEV) echo "<script>console.log('".addslashes($cmd)."');</script>";
