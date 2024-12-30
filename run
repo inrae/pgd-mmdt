@@ -54,7 +54,7 @@ case "$CMD" in
         [ -d $MYDIR/web/tmp ] && sudo chmod 777 $MYDIR/web/tmp
         [ ! -d $MYDIR/web/cache ] && sudo mkdir -p $MYDIR/web/cache
         [ -d $MYDIR/web/cache ] && sudo chmod 777 $MYDIR/web/cache
-        # set full privileges to json configuration files
+        # Set full privileges to json configuration files
         sudo chmod 777 $MYDIR/web/conf/*.json
         # Activate access via htpasswd if necessary
         sudo cp $MYDIR/web/.htaccess.tmpl $MYDIR/web/.htaccess

@@ -20,11 +20,6 @@ $AJAXWAIT=5000;
 
 #------------------------
 
-# Name of the group with administrator rights (e.g dictionaries)
-$ADMINGROUP = 'admin';
-
-#------------------------
-
 // Mode external (1) or not (0)
 $EXTERN=0;
 
@@ -155,6 +150,14 @@ $sendMail=NULL;
 
 #------------------------
 
+# Name of the group with administrator rights (e.g dictionaries)
+$ADMINGROUP = 'admin';
+
+# Userinfo endpoints for each Identity Provider
+$AUTH_IP = NULL;
+
+#------------------------
+
 // URL of the JSON Schema Validation API
 // see https://assertible.com/json-schema-validation
 $JSVAPI_URL="https://assertible.com/json";
@@ -172,6 +175,8 @@ $LOG=0;
 // If local configuration
 if (is_file('inc/config/local.inc'))
     include ('inc/config/local.inc');
+
+#------------------------
 
 include ('inc/functions/auth.inc');
 
