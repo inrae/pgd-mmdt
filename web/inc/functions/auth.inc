@@ -39,6 +39,9 @@ function getBearerToken()
     return null;
 }
 
+// DEV mode only for the home page if request
+//if (isset($_GET['dev']) && strlen($_SERVER['QUERY_STRING']) == 3) $DEV=1;
+
 /*
  *  populate some global variables relative to access rigths
  *  $AUTH_TOKEN : payload from the JWT as an array
@@ -48,7 +51,6 @@ function getBearerToken()
  */
 do {
 
-   $AUTH_TOKEN = NULL;
    $AUTH_ROLES = array();
    $USER = '';
 
@@ -72,12 +74,13 @@ do {
          array_key_exists($AUTH_TOKEN['azp'], $AUTH_TOKEN['resource_access']) && 
          array_key_exists('roles', $AUTH_TOKEN['resource_access'][$AUTH_TOKEN['azp']]))
          $AUTH_ROLES = $AUTH_TOKEN['resource_access'][$AUTH_TOKEN['azp']]['roles'];
-      $USER = in_array($ADMINGROUP, $AUTH_ROLES) ? $ADMINGROUP : $AUTH_USER;
+      $USER = in_array($ADMINGROUP, $AUTH_ROLES) || in_array($AUTH_USER, $ADMINUSERS) ? $ADMINGROUP : $AUTH_USER;
       break;
    }
 
    if (! is_null($AUTH_IP) && isset($AUTH_IP[$AUTH_IP_NAME])) {
-      $USERINFO_ENDPOINT = $AUTH_IP[$AUTH_IP_NAME];
+      $INFOS = $AUTH_IP[$AUTH_IP_NAME];
+      $USERINFO_ENDPOINT =  $INFOS[0];
       $cmd = "curl -X GET -H \"Authorization: Bearer ".$AUTH_ID_TOKEN."\" $USERINFO_ENDPOINT";
       if ($DEV) echo "<script>console.log('".addslashes($cmd)."');</script>";
       $output_js=shell_exec($cmd);
@@ -87,8 +90,17 @@ do {
       $AUTH_TOKEN = array_merge($AUTH_TOKEN, $output_arr);
       if ($DEV) echo "<script>console.log(".json_encode($AUTH_TOKEN).");</script>";
       $AUTH_USER = $AUTH_TOKEN['preferred_username'];
-      //$AUTH_ROLES = array($ADMINGROUP);
-      $USER = in_array($ADMINGROUP, $AUTH_ROLES) ? $ADMINGROUP : $AUTH_USER;
+      if (isset($AUTH_TOKEN[$INFOS[1]]))
+          if (is_array($AUTH_TOKEN[$INFOS[1]])) {
+              $AUTH_ROLES = $AUTH_TOKEN[$INFOS[1]];
+          } else {
+              $AUTH_ROLES = array($AUTH_TOKEN[$INFOS[1]]);
+          }
+      if (count($INFOS)>2 && is_array($INFOS[2]) && count($INFOS[2])>0 && count(array_intersect($INFOS[2], $AUTH_ROLES))==0) {
+          header('HTTP/1.0 403 Forbidden');
+          exit;
+      }
+      $USER = in_array($AUTH_USER, $ADMINUSERS) ? $ADMINGROUP : $AUTH_USER;
       break;
    }
 

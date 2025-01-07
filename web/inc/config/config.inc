@@ -156,6 +156,9 @@ $ADMINGROUP = 'admin';
 # Userinfo endpoints for each Identity Provider
 $AUTH_IP = NULL;
 
+# List of admin users (login names)
+$ADMINUSERS = array();
+
 #------------------------
 
 // URL of the JSON Schema Validation API
