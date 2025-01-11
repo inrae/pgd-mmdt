@@ -45,9 +45,9 @@ some_url:
 * **Issues tracker** : [inrae/pgd-mmdt/issues][16]{:target="_blank"}
 * **Instance online** : [INRAE UMR 1322 BFP][11]{:target="_blank"}
 
-### Preprint
+### Publication
 
-* D. Jacob, F. Ehrenmann, R. David, J. Tran, C. Mirande-Ney, P. Chaumeil (2024) Maggot: An ecosystem for sharing metadata within the web of FAIR Data, BioRxiv, [DOI:10.1101/2024.05.24.595703](https://www.biorxiv.org/content/10.1101/2024.05.24.595703v1.full){:target="_blank"}
+* Daniel Jacob, François Ehrenmann, Romain David, Joseph Tran, Cathleen Mirande-Ney, Philippe Chaumeil, An ecosystem for producing and sharing metadata within the web of FAIR Data, GigaScience, Volume 14, 2025, giae111, [DOI:10.1093/gigascience/giae111](https://academic.oup.com/gigascience/article/doi/10.1093/gigascience/giae111/7945442){:target="_blank"}
 
 
 ### Contacts
