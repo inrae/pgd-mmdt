@@ -1,7 +1,7 @@
 // -- skosmos type --
 
 // NOTE : You can copy this script to use it for another SKOSMOS portal (cf https://skosmos.org/).
-// Simply 1) change all 'VO' occurrences to the name of the new portal; 2) change the URL, logo and options according to the new portal.
+// Simply 1) change all 'LOTERRE' occurrences to the name of the new portal; 2) change the URL, logo and options according to the new portal.
 
 // Variables used only in this script.
 let LOTERRE_api = 'https://loterre.istex.fr/rest/v1/'
