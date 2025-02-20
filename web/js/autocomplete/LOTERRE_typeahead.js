@@ -9,7 +9,6 @@ let LOTERRE_options = 'lang=en&type=skos:Concept&parent=&group='
 let LOTERRE_logo = 'https://loterre.istex.fr/images//istex.png'
 let LOTERRE_limit = 1000
 
-// VOINRAE API with help of Typeahead
 // this function must be named as <ws>_typeahead, where <ws> must correspond to the name of the web service
 // specified  in the 'ws' attribute in the 'features' column in the line relating to the field concerned.
 
