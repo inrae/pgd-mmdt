@@ -1,0 +1,76 @@
+Options FollowSymLinks Includes MultiViews SymLinksIfOwnerMatch
+Header set Access-Control-Allow-Origin "*"
+
+<Files *>
+  Order allow,deny
+  Deny from all
+</Files>
+
+<Files ~ "^$">
+  Order allow,deny
+  allow from all
+  AcceptPathInfo On
+  ForceType application/x-httpd-php
+</Files>
+
+<Files ~ "^index.php$">
+  Order allow,deny
+  allow from all
+  AcceptPathInfo On
+  ForceType application/x-httpd-php
+</Files>
+
+# Others Scripts
+<Files ~ "\.(css|js|txt|json|html|md)$">
+  Order allow,deny
+  allow from all
+</Files>
+
+# PDF, XML & Images
+<Files ~ "\.(pdf|xml|xsl|jpg|gif|png|ico|svg|zip)$">
+  Order allow,deny
+  allow from all
+</Files>
+
+
+# entries
+<Files ~ "(entry|search|view|metadata|config|check|send|doc|dataverse|zenodo|oai|bloxberg|access)$">
+  Order allow,deny
+  allow from all
+  AcceptPathInfo On
+  ForceType application/x-httpd-php
+</Files>
+
+# config / admin
+<Files ~ "(copy|save|dictionary)$">
+  Order allow,deny
+  allow from all
+  AcceptPathInfo On
+  ForceType application/x-httpd-php
+  AuthName "Unauthorized access"
+  ErrorDocument 401 "<html><meta http-equiv=\"refresh\" content=\"0;url=check?redirect\"></html>"
+  AuthType Basic
+  AuthUserFile /etc/pgd-mmdt/.htpasswd
+  Require valid-user
+</Files>
+
+AddDefaultCharset ISO-8859-1
+
+# PHP error handling for development servers
+php_flag register_globals on
+php_flag display_startup_errors on
+php_flag display_errors on
+php_flag html_errors on
+php_flag log_errors on
+php_flag ignore_repeated_errors off
+php_flag ignore_repeated_source off
+php_flag report_memleaks on
+php_flag track_errors on
+php_value session.gc_maxlifetime 3600
+php_value docref_root 0
+php_value docref_ext 0
+php_value error_reporting -1
+php_value log_errors_max_len 0
+php_value error_log  /tmp/php.log
+
+
