@@ -537,13 +537,13 @@ function insert_resources(id)
 	return myfieldHTML;
 }
 
-function add_bouton_r()
+function add_bouton_r(i=0)
 {
 	var cur_cpt = listboite['resources']['compteur'];
 	if(cur_cpt < maxResource){
 		cur_cpt++; //Increment counter
 		listboite['resources']['compteur'] =  cur_cpt;
-		var fieldHTML = '<div><br/>'+insert_resource(cur_cpt, listdico['resources'])+'<a href="javascript:void(0);" class="remove_button_r"><button type="button" class="btn btn-danger btn-xs" id="addrow"><i class="fa fa-plus-circle" aria-hidden="true"></i> Remove the resource</button></a></div>';
+		var fieldHTML = '<div><br/>'+insert_resource(cur_cpt, listdico['resources'])+'<a href="javascript:void(0);" class="remove_button_r"><button type="button" class="btn btn-danger btn-xs" id="addrow'+i+'"><i class="fa fa-plus-circle" aria-hidden="true"></i> Remove the resource</button></a></div>';
 		$('.resource_wrapper').append(fieldHTML); //Add html
 		if (resource_media>0)
 			active_autocomplete();

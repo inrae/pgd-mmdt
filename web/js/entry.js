@@ -34,6 +34,7 @@ function load_data(file)
 		if (resp.errors.length==0) {
 		//ok=1; if (ok==1) {
 			var result = JSON.parse(e.target.result);
+			if (DEBUG) console.log(result);
 			// For each item in the json: assignment of values in the form 
 			$.each(result, function(item, obj) {
 				for (var prop in obj) {
