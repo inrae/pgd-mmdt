@@ -35,6 +35,7 @@ function load_data(file)
 		//ok=1; if (ok==1) {
 			var result = JSON.parse(e.target.result);
 			if (DEBUG) console.log(result);
+			allItems = []; checkItems = []; multiItems=[]; listItems=[]; textItems=[];
 			// For each item in the json: assignment of values in the form 
 			$.each(result, function(item, obj) {
 				for (var prop in obj) {
@@ -45,6 +46,7 @@ function load_data(file)
 						// Test if the box is present or not in the form
 						if (document.getElementById(id)) {
 							document.getElementById(id).checked=true;
+							if (! checkItems.includes(item)) checkItems.push(item);
 						} else {
 							alert('Please re-enter this value in the corresponding text field of the form : '+id_info);
 						}
@@ -53,18 +55,24 @@ function load_data(file)
 					if (multisel.includes(item)) {
 						var element = document.getElementById(item+'-sel')
 						if (element != null) element.value = obj.join(', ');
+						if (! multiItems.includes(item)) multiItems.push(item);
 					}
 					// Lists
 					if (lists.includes(item)) {
 						var element = document.getElementById(item+'_select')
 						if (element != null) element.value = obj;
+						if (! listItems.includes(item)) listItems.push(item);
 					}
 					// Text
 					if (textarea.includes(item)) {
 						document.getElementById(item).value = obj;
+						if (! textItems.includes(item)) textItems.push(item);
 					}
 				}
 			});
+			allItems['checkbox']=checkItems; allItems['multi-select']=multiItems; allItems['dropbox']=listItems; allItems['textbox']=textItems;
+			if (DEBUG) console.log(allItems)
+
 			// Resources
 			res=result['resources'];
 			for( var i = 1; i <= res.length; ++i ) {
