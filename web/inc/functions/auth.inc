@@ -97,7 +97,7 @@ do {
    // External IP without going through Keycloak
    if (! is_null($AUTH_IP) && isset($AUTH_IP[$AUTH_IP_NAME])) {
       $INFOS = $AUTH_IP[$AUTH_IP_NAME];
-      if (count($INFOS)==0) break;
+      if (count($INFOS)<3) break;
 
       // CURL command
       $USERINFO_ENDPOINT =  $INFOS[0];
@@ -106,6 +106,14 @@ do {
 
       // Get Userinfo
       $output_js=shell_exec($cmd);
+      if (is.null($output_js) || ! $output_js) {
+          echo "<center>";
+          echo "<br><img src=\"$PATH"."docs/logo2.svg\" width=\"12%\"><br><br>";
+          echo "<b>Userinfo Endpoint</b> : $USERINFO_ENDPOINT<br><br>";
+          echo "<b>ERROR : Failed to get user information</b><br>";
+          echo "</center>";
+          exit;
+      }
       $output_arr = json_decode($output_js, true);
       if ($DEV) echo "<script>console.log(".$output_js.");</script>";
 
@@ -117,12 +125,20 @@ do {
       if ($DEV) echo "<script>console.log(".json_encode($AUTH_TOKEN).");</script>";
 
       // Get attributes defined by the scope in AUTH_IP (2nd parameter)
-      if (isset($AUTH_TOKEN[$INFOS[1]]))
-          if (is_array($AUTH_TOKEN[$INFOS[1]])) {
-              $AUTH_ROLES = $AUTH_TOKEN[$INFOS[1]];
-          } else {
-              $AUTH_ROLES = array($AUTH_TOKEN[$INFOS[1]]);
-          }
+      if (!isset($AUTH_TOKEN[$INFOS[1]])) {
+          echo "<center>";
+          echo "<br><img src=\"$PATH"."docs/logo2.svg\" width=\"12%\"><br><br>";
+          echo "<br>Welcome <b>".$AUTH_TOKEN['name']."</b><br><br>";
+          echo "<b>ERROR : Acces refused</b><br>";
+          echo "<br>The scope <i>".$INFOS[1]."</i> is not defined<br>Please, contact the Administrator <br>";
+          echo "</center>";
+          exit;
+      }
+      if (is_array($AUTH_TOKEN[$INFOS[1]])) {
+          $AUTH_ROLES = $AUTH_TOKEN[$INFOS[1]];
+      } else {
+          $AUTH_ROLES = array($AUTH_TOKEN[$INFOS[1]]);
+      }
 
       // Check if some items restrict access in AUTH_IP (3rd parameter)
       if (count($INFOS)>2 && is_array($INFOS[2]) && count($INFOS[2])>0 && count(array_intersect($INFOS[2], $AUTH_ROLES))==0) {
