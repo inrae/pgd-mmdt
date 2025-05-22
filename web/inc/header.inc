@@ -4,7 +4,7 @@ $PATH='./';
 $FUNC='';
 
 
-if ($_SERVER['PATH_INFO']) {
+if (isset($_SERVER['PATH_INFO']) && $_SERVER['PATH_INFO']) {
 	$urloptions = explode("/",$_SERVER['PATH_INFO']);
 	array_shift($urloptions);
 	if (count($urloptions)>0) {

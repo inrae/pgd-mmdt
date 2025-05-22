@@ -5,23 +5,23 @@
 <html lang="en" >
 <head>
 	<title>Maggot - Metadata entry</title>
-	<?php echo $HEADMAIN ?>
+	<? echo $HEADMAIN ?>
 
 	<style>::-webkit-scrollbar{ width: 5px; }</style>
 	<script src="js/entry.js"></script>
 	<script src="js/autocomplete/resourcetypes.js"></script>
 	<script type="text/javascript">
-	var DEBUG = "<? echo $_GET['debug'] ?>";
-	var SEND = "<? echo ! is_null($sendMail) ?>";
+	var DEBUG = <? echo isset($_GET['debug']) ? $_GET['debug'] : 0 ?>;
+	var SEND = <? echo ! is_null($sendMail) ?>;
 	var AJAXWAIT = "<? echo isset($_GET['wait']) ? $_GET['wait'] : $AJAXWAIT ?>";
 	var arrItems;
-	var url_schema = '<?php echo $url_schema; ?>';
-	var resource_media = '<?php echo $RESMEDIA; ?>';
+	var url_schema = '<? echo $url_schema; ?>';
+	var resource_media = '<? echo $RESMEDIA; ?>';
 	var maxField = 10; //Checkboxes increment limitation
 	var maxResource = 20; //Resources increment limitation
 	var nameofrequired = [];
-	var extern= <?php $EXTERN = isset($_GET['extern']) ? 1 : $EXTERN; if($EXTERN){ echo "true"; } else { echo "false"; } ?> ;
-	var cvdir=<?php echo "'".$cvdir."'" ?>;
+	var extern= <? $EXTERN = isset($_GET['extern']) ? 1 : $EXTERN; if($EXTERN){ echo "true"; } else { echo "false"; } ?> ;
+	var cvdir=<? echo "'".$cvdir."'" ?>;
 	var horiztabs = 1;
 	var statusentry=0;
 	var maxWidth=1200;

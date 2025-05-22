@@ -10,7 +10,7 @@
 	<style>::-webkit-scrollbar{ width: 0px; }</style>
 	<script src="js/search.js"></script>
 	<script type="text/javascript">
-	var DEBUG = "<? echo $_GET['debug'] ?>";
+	var DEBUG = <? echo isset($_GET['debug']) ? $_GET['debug'] : 0 ?>;
 	var AJAXWAIT = "<? echo isset($_GET['wait']) ? $_GET['wait'] : $AJAXWAIT ?>";
 	var arrItems;
 	var maxField = 10; //Checkboxes increment limitation

@@ -95,12 +95,13 @@ function build_table($section, $arr) {
 	$tblhead =''; $tblcore='';
 	foreach($arr as $field) {
 		if ($field==='title' || $field==='description') continue;
-		if (is_array($array_values[$field])) {
+		if (isset($array_values[$field]) && is_array($array_values[$field])) {
 			$arr_val=array();
 			foreach( $array_values[$field] as $val ) array_push($arr_val, metadata_render($val));
 			$value = display_array($arr_val);
 		} else {
-			$value = display_array(metadata_render($array_values[$field]));
+			$value='-';
+			if (isset($array_values[$field])) $value = display_array(metadata_render($array_values[$field]));
 		}
 		if ($EMPTY>0 || $value !== '-') {
 			$tblhead .='<th scope="col">'.get_label($field).'</th>';
@@ -240,8 +241,8 @@ do {
 		for($i=0; $i<count($fields); $i+=$NBCOLS) {
 			$arr=[]; $jmax=$i+$NBCOLS;
 			for($j=$i; $j<$jmax; $j++) {
-				if ($fields[$j]==='title') { $jmax++; continue; }
-				if ($fields[$j]==='description') { $jmax++; continue; }
+				if (isset($fields[$j]) && $fields[$j]==='title') { $jmax++; continue; }
+				if (isset($fields[$j]) && $fields[$j]==='description') { $jmax++; continue; }
 				if ($j<count($fields)) { array_push($arr, $fields[$j]); }
 			}
 			$myhtml=$myhtml.build_table($name, $arr);

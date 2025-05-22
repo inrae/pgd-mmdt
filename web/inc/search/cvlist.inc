@@ -19,7 +19,7 @@ function metadata_render ($val)
 			foreach ($dicovalues as $values) {
 				if ($diconame !== 'people' && $val === $values[0]) {
 					for($i=1; $i<count($values); $i++)
-						if (preg_match('"^https?://"', $values[$i])) {
+						if (is_string($values[$i]) && preg_match('"^https?://"', $values[$i])) {
 							$return_val = '<a href="'.$values[$i].'" target="_blank">'.$val.'</a>';
 							break;
 						}

@@ -1,6 +1,6 @@
 # syntax=docker/dockerfile:1
-FROM php:7.4.18-apache
-LABEL version-date="2024-04-11"
+FROM php:8.2-apache
+LABEL version-date="2025-05-22"
 
 # Set TIMEZONE - Important for PHP
 ENV TZ=Europe/Paris

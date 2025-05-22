@@ -59,6 +59,10 @@ function aasort (&$array, $key)
 	else               $array = $ret;
 }
 
+function utf8_enc ($iso8859_1_string)
+{
+    mb_convert_encoding($iso8859_1_string, 'UTF-8', 'ISO-8859-1');
+}
 // PHP function to read TSV file to an array
 function tsvToArray($tsv, $header=false)
 {
@@ -68,7 +72,7 @@ function tsvToArray($tsv, $header=false)
 		while (! feof($tsvToRead)) {
 			$data = fgetcsv($tsvToRead, 1000, "\t");
 			if (gettype($data)==='array') {
-				$tsvArray[] = array_map("utf8_encode", $data);
+				$tsvArray[] = array_map("utf8_enc", $data);
 			}
 			if (gettype($data)==='string') {
 				$tsvArray[] = utf8_encode($data);
@@ -101,7 +105,9 @@ function display_array ($val)
 			if (empty($val_display)) { $val_display = '-'; }
 		}
 	} else {
-		$val_display = preg_replace('"^(https?://[^ ]+)"', '<a href="$1" target="_blank">$1</a>',$val);
+		$val_display ='';
+		if (is_string($val))
+			$val_display = preg_replace('"^(https?://[^ ]+)"', '<a href="$1" target="_blank">$1</a>',$val);
 		if (empty($val_display)) { $val_display = '-'; }
 	}
 	return $val_display;
@@ -208,7 +214,8 @@ function find_dico($dico, $value, $arr_concat=array(0,' ',1))
 			if (gettype($val)==='integer') { $target .= $dico[$i][$val]; continue; }
 			if (gettype($val)==='string') { $target .= $val; continue; }
 		}
-		if (strtolower(strtr($value, $accented_chr)) === strtolower(strtr($target, $accented_chr))) { $ret=$i; break; }
+		if (is_string($value) && is_string($target) && 
+			strtolower(strtr($value, $accented_chr)) === strtolower(strtr($target, $accented_chr))) { $ret=$i; break; }
 	}
 	return $ret;
 }
