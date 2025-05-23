@@ -63,6 +63,15 @@ function utf8_enc ($iso8859_1_string)
 {
     mb_convert_encoding($iso8859_1_string, 'UTF-8', 'ISO-8859-1');
 }
+
+function utf8_converter($array)
+{
+	array_walk_recursive($array, function(&$item, $key) {
+		if(!mb_detect_encoding($item, 'utf-8', true)) $item = mb_convert_encoding($item, 'UTF-8', 'ISO-8859-1');
+	});
+	return $array;
+}
+
 // PHP function to read TSV file to an array
 function tsvToArray($tsv, $header=false)
 {
@@ -72,10 +81,11 @@ function tsvToArray($tsv, $header=false)
 		while (! feof($tsvToRead)) {
 			$data = fgetcsv($tsvToRead, 1000, "\t");
 			if (gettype($data)==='array') {
-				$tsvArray[] = array_map("utf8_enc", $data);
+				//$tsvArray[] = array_map("utf8_enc", $data);
+				$tsvArray[] = utf8_converter($data);
 			}
 			if (gettype($data)==='string') {
-				$tsvArray[] = utf8_encode($data);
+				$tsvArray[] = mb_convert_encoding($data, 'UTF-8', 'ISO-8859-1');
 			}
 		}
 		fclose($tsvToRead);

@@ -187,14 +187,16 @@ do {
 
 	// tbody
 	$html_tbody ="<tbody id=\"container\">";
+	$lines ='';
 	$cnt=0;
 	foreach($dico as $line) {
 		$html_tbody .="<tr id=\"line".$cnt."\">";
 		$col=0;
 		foreach($line as $info) {
-			if (preg_match('/^http/',$info)) { # URL
+			$lines .= '<!-- '.$info." -->\n";
+			if (is_string($info) && preg_match('/^http/',$info)) { # URL
 				$html_tbody .= '<td class="data" id=\"col'.$col.'\"><a target=\"_blank\" href=\"'.$info.'\">'.$info.'</a></td>';
-			} elseif (preg_match('/^\d{4}-\d{4}-\d{4}-\d{3}[0-9|X]$/',$info)) { # ORCID
+			} elseif (is_string($info) && preg_match('/^\d{4}-\d{4}-\d{4}-\d{3}[0-9|X]$/',$info)) { # ORCID
 				$html_tbody .= '<td class="data" id=\"col'.$col.'\"><a target=\"_blank\" href=\"https://orcid.org/'.$info.'\">'.$info.'</a></td>';
 			} else {
 				$html_tbody .= '<td class="data" id=\"col'.$col.'\">'.$info.'</td>';
@@ -214,7 +216,7 @@ do {
 
 	// Write in the HTML document
 	echo "<script>var nameArray = [ ".$var1." ];\nvar requireArray = [ ".$var2." ];\nvar regexArray = [ ".$var3." ];\nvar apiArray = [ ".$var4." ];\nvar nbitems=".$cnt."\n$('#tbl-main').html('".$html_table."'); $('#dico-name').html('".$DICOSEL."');$('#divsearch').css('display','".$dispsearch."');$('#tbl-footer').css('display','block');$('#searchterm').val('".$searchterm."');select_row('".$searchterm."');</script>";
-
+echo $lines;
 	// If admin user then authorize to upload a file to replace the current dictionary
 	if ($USER == $ADMINGROUP)
 		echo "<script>uploadDico.addEventListener('change', function(){ $('#savemsg').html(''); postDico(this.files[0]); })</script>";

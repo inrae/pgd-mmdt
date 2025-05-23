@@ -301,9 +301,16 @@ function tsv2doctmpl($filename)
 			if ($val[0] == 'title')
 				$desc = 'Give your dataset a short name. This name will then be used to identify it and reference the metadata page via a URL. Do not use spaces or non-alphanumeric characters. Only letters, numbers and underscores are allowed.';
 			$doctmpl .= "field\t".$val[0]."\t$desc\n";
-			if ($val[5] =='dropbox' )
-				foreach( explode(",", $val[8]) as $text)
-					$doctmpl .= "option\t".preg_replace('~[[:cntrl:]]~', '',$text)."\t\n";
+			if ($val[5] =='dropbox' ) {
+				$opts = explode(",", $val[8]);
+				if ($opts[0]=='-') {
+					array_shift($opts);
+					$doctmpl .= "option\t".str_replace(array("\r\n", "\n", "\r"), '', implode(',',$opts))."\t\n";
+				} else {
+					foreach( $opts as $text)
+						$doctmpl .= "option\t".preg_replace('~[[:cntrl:]]~', '',$text)."\t\n";
+				}
+			}
 		}
 		$doctmpl .= "section\tresources\tThis section allows you to define all the resources you want\n";
 		$doctmpl .= "field\ttype\tChoose the type of the resoource\n";
@@ -319,7 +326,7 @@ function tsv2doctmpl($filename)
 // TSV to MD : Convert a terminology documentation file to Markdown
 function tsv2md($filename)
 {
-	global $section, $checkboite, $RESMEDIA;
+	global $checkboite, $RESMEDIA;
 
 	$md .= "# Metadata documentation\n----\n\n.\n\n";
 	$section='';
@@ -343,17 +350,17 @@ function tsv2md($filename)
 			}
 			// field
 			if ($val[0] == 'field') {
-			if ($section != 'resources') {
-				$md .= "### ".get_label($val[1])."\n\n* ".$val[2]."\n\n";
-				if (array_key_exists($val[1], (array)$checkboite) && $checkboite[$val[1]]['open'])
-					$md .= "* If an item does not appear in the choices proposed, it is possible to enter it manually in the field provided for this purpose. Create a line for each new item to be added.\n\n";
-			} else {
-				if ($val[1]=='type') $md .= "### Resource Type\n\n* ".$val[2]."\n\n";
-				if ($RESMEDIA && $val[1]=='media') $md .= "### Media Type\n\n* ".$val[2]."\n\n";
-				if ($val[1]=='description') $md .= "### Description\n\n* ".$val[2]."\n\n";
-				if ($val[1]=='location') $md .= "### Location\n\n* ".$val[2]."\n\n";
-			}
-			continue;
+				if ($section != 'resources') {
+					$md .= "### ".get_label($val[1])."\n\n* ".$val[2]."\n\n";
+					if (array_key_exists($val[1], (array)$checkboite) && $checkboite[$val[1]]['open'])
+						$md .= "* If an item does not appear in the choices proposed, it is possible to enter it manually in the field provided for this purpose. Create a line for each new item to be added.\n\n";
+				} else {
+					if ($val[1]=='type') $md .= "### Resource Type\n\n* ".$val[2]."\n\n";
+					if ($RESMEDIA && $val[1]=='media') $md .= "### Media Type\n\n* ".$val[2]."\n\n";
+					if ($val[1]=='description') $md .= "### Description\n\n* ".$val[2]."\n\n";
+					if ($val[1]=='location') $md .= "### Location\n\n* ".$val[2]."\n\n";
+				}
+				continue;
 			}
 			// option
 			if ($val[0] == 'option') {
@@ -415,5 +422,11 @@ EOF;
 	}  while(0);
 	return $html;
 }
+
+// Transfers all descriptions from a config_doc file to the new one
+//function mergeDoc2tmpl($docFile, $doctmplFile)
+//{
+//
+//}
 
 ?>

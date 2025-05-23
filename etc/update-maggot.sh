@@ -55,7 +55,6 @@ GITREPOS=https://github.com/inrae/${REPOS}.git
      find $APP/web/cvlist/ -name "*.txt" -a ! -name "*_format.txt" -exec sudo chmod 777 {} \;
 
      # Autocomplete
-     #sudo cp ./$PREV/web/js/autocomplete/*.js ./${APP}/web/js/autocomplete/
      for f in $(ls ./$PREV/web/js/autocomplete/*.js); do
          F=$(basename $f)
          [ ! -f ./$APP/web/js/autocomplete/$F ] && cp -f $f ./$APP/web/js/autocomplete/$F;

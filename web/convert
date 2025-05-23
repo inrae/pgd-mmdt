@@ -1,0 +1,62 @@
+<?php
+
+# Nom du fichier: convert
+# Auteur(s): D.JACOB 
+# Copyright: (c) INRAE - 2015-2025
+#
+
+date_default_timezone_set('Europe/Paris');
+error_reporting(0);
+error_reporting(E_ERROR);
+
+// Chargement fichier config
+require_once('inc/config/config.inc');
+require_once('inc/functions/functions.inc');
+require_once('inc/convert/convert.inc');
+
+$termsFile = 'conf/config_terms.txt';
+$docFile = 'conf/config_doc.txt';
+$jsonFile = 'conf/config_terms.json';
+$schemaFile = 'conf/maggot-schema.json';
+$mdFile = 'docs/doc.md';
+
+$ID = genKEY();
+#$jsonFile = 'tmp/'.$ID.'.json';
+#$schemaFile = 'tmp/'.$ID.'-schema.json';
+$htmlFile = 'tmp/'.$ID.'.html';
+$html2File = 'tmp/'.$ID.'-2.html';
+$doctmplFile = 'tmp/'.$ID.'.txt';
+#$mdFile = 'tmp/'.$ID.'.md';
+
+do {
+	// Convert TSV to JSON
+	$msg = tsv2json($termsFile, $outjson);
+	if (strlen($msg)) {
+		echo "ERROR: $msg";
+		break;
+	}
+	file_put_contents($jsonFile, $outjson);
+
+	// Convert TSV to JSON-Schema
+	$outschema = tsv2schema($termsFile, $url_schema);
+	file_put_contents($schemaFile, $outschema);
+
+	// Convert TSV to HTML
+	$outhtml = tsv2html($termsFile);
+	file_put_contents($htmlFile, $outhtml);
+
+	// Convert TSV to a template for documentation
+	file_put_contents($doctmplFile, tsv2doctmpl($termsFile));
+	//file_put_contents($doctmplFile, mergeDoc2tmpl($docFile, $doctmplFile));
+
+	// Convert TSV to MD
+	$options = json_decode(file_get_contents($jsonFile), NULL, 512, JSON_OBJECT_AS_ARRAY);
+	$checkboite=$options['checkboite'];
+	$outmd = tsv2md($docFile);
+	file_put_contents($mdFile, $outmd);
+	file_put_contents($html2File, tsv2html($docFile));
+
+} while(0);
+
+?>
+

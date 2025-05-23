@@ -1,8 +1,5 @@
 <?php
 
-#docker mode : 0 = FALSE; 1 = TRUE;
-$docker_mode = 1;
-
 #------------------------
 // Mongo DB
 #------------------------
@@ -15,8 +12,7 @@ $database = 'pgd-db';
 $collection = 'metadata';
 $port = '27017';
 
-$uritarget = '127.0.0.1';
-if ($docker_mode==1){$uritarget='mmdt-db';}
+$uritarget='mmdt-db';
 $uri = "mongodb://$username:$password@$uritarget:$port/$database";
 $client = new MongoDB\Driver\Manager($uri);
 

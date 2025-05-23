@@ -1,5 +1,6 @@
 # Metadata documentation
 ----
+
 .
 
 ## DEFINITION
@@ -10,7 +11,7 @@
 <div class="decal" markdown="1">
 ### Short name
 
-* Give your dataset a short name that can be seen as either an accession number or a persistent identifier. This name will then be mainly used to identify it and reference the metadata page via a URL. So it is not the main title of the dataset (see full title). Do not use spaces or non-alphanumeric characters. Only letters, numbers and underscores are allowed. The number of characters is limited to 20.
+* Give your dataset a short name that can be seen as a unique persistent identifier or a name that will serve as a reference such as a project name. This name will then be mainly used to identify it and reference the metadata page via a URL. So it is not the main title of the dataset (see full title). Do not use spaces or non-alphanumeric characters. Only letters, numbers and underscores are allowed. The number of characters is limited to 20.
 
 
 ### Full title
@@ -20,7 +21,7 @@
 
 ### Subject
 
-* The area of the study relevant to the dataset. The list of terms is imposed by Dataverse. Adding, modifying or deleting them may prevent uploading to the repository. See [OECD](https://web-archive.oecd.org/2012-06-15/138575-38235147.pdf) and [European Commission](https://joinup.ec.europa.eu/collection/eu-semantic-interoperability-catalogue/solution/field-science-and-technology-classification/about) about field of science and technology classification.
+* The area of the study relevant to the dataset. The list of terms is imposed by Dataverse. It is also a mandatory field. Adding, modifying or deleting them may prevent uploading to the repository. See [OECD](https://web-archive.oecd.org/2012-06-15/138575-38235147.pdf) and [European Commission](https://joinup.ec.europa.eu/collection/eu-semantic-interoperability-catalogue/solution/field-science-and-technology-classification/about) about field of science and technology classification.
 
 
 ### Description of the dataset
@@ -30,7 +31,7 @@
 
 ### Notes
 
-* You can add a note which will be added in the data repository. Typically, put here the reference to funders who do not have an identifier recognized in international registers. This field will push into the data repository (Dataverse and Zenodo).
+* You can add a note which will be added in the data repository. Typically, put here the reference to funders who do not have an identifier recognized in international registers. This field will be pushed into the data repository (Dataverse and Zenodo).
 
 
 </div>
@@ -44,18 +45,18 @@
 <div class="decal" markdown="1">
 ### Status of the dataset
 
-* Choose a status from 
+* Choose a status for the dataset. This field is used for data management and will not subsequently be reported in the data repository (Dataverse or Zenodo).
 
 
-    *  **Processed** :  Data are available and have been curated. Which means that the data is in a stable and redistributable version as is.
+    *  **Processed** :  Data are available and have been curated. Which means that the data is in a stable and redistributable version as is. Any dataset that must be published must have this status.
 
-    *  **In progress** :  Some data is available but more is to come. Some are stable but others are not.
+    *  **In progress** :  Some data is available but more is to come. Some are stable but others are not. Any dataset with this status must only be shared between partners of the same project.
 
-    *  **Unprocessed** :  The data is available but not curated. Which means that the data is not yet stable and therefore cannot be distributed as is.
+    *  **Unprocessed** :  The data is available but not curated. Which means that the data is not yet stable and therefore cannot be distributed as is. Any dataset with this status must only be shared between partners of the same project.
 
 ### Access rights to data
 
-* Indicates the status of the data regarding access and dissemination
+* Indicates the status of the data regarding access and dissemination. This field is used for data management and will not subsequently be reported in the data repository (Dataverse or Zenodo).
 
 
     *  **Public** :  Either a link to the data is provided as a resource with password-free access (e.g filebrowser) or access to the data is possible to anyone with access to the storage space (locally or remotely via VPN).
@@ -66,12 +67,12 @@
 
 ### Language
 
-* A language that the dataset's files is written in
+* The language in which the dataset files are documented.
 
 
 ### Life cycle step
 
-* Specifies the event happening over the data life cycle that is considered significant enough to document.  The list of terms is imposed by Dataverse. Adding, modifying or deleting them may prevent uploading to the repository. See [DDI -CV](https://ddialliance.org/Specification/DDI-CV/LifecycleEventType_1.0.html)
+* This concerns all stages of the data life cycle. Specifies the event happening over the data life cycle that is considered significant enough to document.  The list of terms is imposed by Dataverse. Adding, modifying or deleting them may prevent uploading to the repository. See [DDI -CV](https://ddialliance.org/Specification/DDI-CV/LifecycleEventType_1.0.html). <br>Note: It can be omitted if you don't know what to put.
 
 
 ### License
@@ -140,7 +141,7 @@
 
 ### Depositor
 
-* Person or organization, that deposited the dataset in the repository.
+* The entity, e.g. a person or organization, that deposited the dataset in the repository.
 
 
 ### Producer
@@ -224,7 +225,7 @@
 .
 ## OTHER
 
-* Additional information
+* This section allows you  to enter miscellious information (protocols, comments, issues, ...)
 
 
 <div class="decal" markdown="1">
