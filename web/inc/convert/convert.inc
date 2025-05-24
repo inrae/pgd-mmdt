@@ -113,7 +113,7 @@ function tsv2json($filename, &$outjson)
 			//checkboite
 			if ( $val[5]=='checkbox' && ! array_key_exists($val[0], $checkboite) ) {
 				$checkboite[$val[0]]=[];
-				$checkboite[$val[0]]['titre']=utf8_encode($val[7]);
+				$checkboite[$val[0]]['titre']=utf8_enc($val[7]);
 				foreach ( $features as $value )
 					if (strlen($value)) {
 						$arr = explode('=',$value);
@@ -125,7 +125,7 @@ function tsv2json($filename, &$outjson)
 			//listboite
 			if ( $val[5]=='dropbox' && ! array_key_exists($val[0], $listboite) ) {
 				$listboite[$val[0]]=[];
-				$listboite[$val[0]]['titre']=utf8_encode($val[7]);
+				$listboite[$val[0]]['titre']=utf8_enc($val[7]);
 				foreach ( $features as $value )
 					if (strlen($value)) {
 						$arr = explode('=',$value);
@@ -135,7 +135,7 @@ function tsv2json($filename, &$outjson)
 			//multiboite
 			if ( $val[5]=='multiselect' && ! array_key_exists($val[0], $multiboite) ) {
 				$multiboite[$val[0]]=[];
-				$multiboite[$val[0]]['titre']=utf8_encode($val[7]);
+				$multiboite[$val[0]]['titre']=utf8_enc($val[7]);
 				foreach ( $features as $value )
 					if (strlen($value)) {
 						$arr = explode('=',$value);
@@ -147,7 +147,7 @@ function tsv2json($filename, &$outjson)
 			//txtboite
 			if ( $val[5]=='textbox' && ! array_key_exists($val[0], $txtboite) ) {
 				$txtboite[$val[0]]=[];
-				$txtboite[$val[0]]['titre']=utf8_encode($val[7]);
+				$txtboite[$val[0]]['titre']=utf8_enc($val[7]);
 				foreach ( $features as $value )
 					if (strlen($value)) {
 						$arr = explode('=',$value);
@@ -157,7 +157,7 @@ function tsv2json($filename, &$outjson)
 			//dateboite
 			if ( $val[5]=='datebox' && ! array_key_exists($val[0], $dateboite) ) {
 				$dateboite[$val[0]]=[];
-				$dateboite[$val[0]]['titre']=utf8_encode($val[7]);
+				$dateboite[$val[0]]['titre']=utf8_enc($val[7]);
 				foreach ( $features as $value )
 					if (strlen($value)) {
 						$arr = explode('=',$value);
@@ -167,7 +167,7 @@ function tsv2json($filename, &$outjson)
 			//areaboite
 			if ( $val[5]=='areabox' && ! array_key_exists($val[0], $areaboite) ) {
 				$areaboite[$val[0]]=[];
-				$areaboite[$val[0]]['titre']=utf8_encode($val[7]);
+				$areaboite[$val[0]]['titre']=utf8_enc($val[7]);
 				foreach ( $features as $value )
 					if (strlen($value)) {
 						$arr = explode('=',$value);
@@ -177,13 +177,13 @@ function tsv2json($filename, &$outjson)
 			//checkdico
 			if ( $val[5]=='checkbox' && ! array_key_exists($val[0], $checkdico) ) {
 				$checkdico[$val[0]]= [];
-				$str_dico = str_replace("\n", '', str_replace("\r\n", '', preg_replace('/, ?/','@',utf8_encode($val[8]))));
+				$str_dico = str_replace("\n", '', str_replace("\r\n", '', preg_replace('/, ?/','@',utf8_enc($val[8]))));
 				foreach ( explode('@',$str_dico) as $value ) array_push( $checkdico[$val[0]], $value );
 			}
 			//listdico && resources
 			if ( ($val[5]=='dropbox' || $val[0]=='resources') && ! array_key_exists($val[0], $listdico) ) {
 				$listdico[$val[0]]=[];
-				$str_dico = str_replace("\n", '', str_replace("\r\n", '', preg_replace('/, ?/','@',utf8_encode($val[8]))));
+				$str_dico = str_replace("\n", '', str_replace("\r\n", '', preg_replace('/, ?/','@',utf8_enc($val[8]))));
 				foreach ( explode('@',$str_dico) as $value ) array_push( $listdico[$val[0]], $value );
 			}
 		}
@@ -424,9 +424,28 @@ EOF;
 }
 
 // Transfers all descriptions from a config_doc file to the new one
-//function mergeDoc2tmpl($docFile, $doctmplFile)
-//{
-//
-//}
+function mergeDoc2tmpl($docFile, $doctmplFile)
+{
+	$doc = tsvToArray($docFile, $header=true);
+	$doctmpl="Type\tName\tDescription\n";
+	do {
+		$handle = fopen($doctmplFile, "r");
+		if (! $handle) break;
+
+		// Header
+		if (! fgets($handle)) break;
+
+		// Content
+		while (($line = fgets($handle)) !== false) {
+			$val = explode("\t", $line);
+			$desc = $val[2];
+			foreach($doc as $arr)
+				if (count($arr)==3 && $arr[0]==$val[0] && $arr[1]==$val[1]) { $desc=$arr[2]; break; }
+			$doctmpl .= $val[0]."\t".$val[1]."\t$desc\n";
+		}
+		fclose($handle);
+	}  while(0);
+	return $doctmpl;
+}
 
 ?>

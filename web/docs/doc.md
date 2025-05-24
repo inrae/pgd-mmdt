@@ -61,9 +61,9 @@
 
     *  **Public** :  Either a link to the data is provided as a resource with password-free access (e.g filebrowser) or access to the data is possible to anyone with access to the storage space (locally or remotely via VPN).
 
-    *  **Private** :  Access requiring specific rights (e.g. filebrowser or on storage space).
-
     *  **Mixte** :  Mix of public and private access
+
+    *  **Private** :  Access requiring specific rights (e.g. filebrowser or on storage space).
 
 ### Language
 
@@ -163,6 +163,11 @@
 
 
 <div class="decal" markdown="1">
+### Kind of Data
+
+* The type of data included in the files (e.g. survey data, machine-readable text, experimental data tables). The list of terms is imposed by Dataverse. Adding, modifying or deleting them may prevent uploading to the repository. See [DDI-CV](https://ddialliance.org/Specification/DDI-CV/KindOfDataFormat_1.0.html)
+
+
 ### Keywords
 
 * A key term that describes an important aspect of the dataset and information about any controlled vocabulary used. Based on [BioPortal ontologies](https://bioportal.bioontology.org/ontologies) : EFO, JERM, EDAM, MS, NM, NCI, OBI, PO, PTO, AGRO, ECOCORE, IOBC, NCBITAXON.
@@ -171,11 +176,6 @@
 ### Topic Classification
 
 * Indicates a broad, important topic or subject that the dataset covers and information about any controlled vocabulary used. Based on [Thesaurus-INRAE](https://thesaurus.inrae.fr/thesaurus-inrae/en/).
-
-
-### Kind of Data
-
-* The type of data included in the files (e.g. survey data, machine-readable text, experimental data tables). The list of terms is imposed by Dataverse. Adding, modifying or deleting them may prevent uploading to the repository. See [DDI-CV](https://ddialliance.org/Specification/DDI-CV/KindOfDataFormat_1.0.html)
 
 
 ### Data origin
@@ -255,7 +255,7 @@
 
 ### Description
 
-* Provide a concise and accurate description of the resource. Must not exceed 30 characters.
+* A summary describing the purpose, nature and the scope of the dataset. It is the equivalent of the abstract for an article.
 
 
 ### Location

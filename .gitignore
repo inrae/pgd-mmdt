@@ -1,6 +1,6 @@
 local.conf
-dockerscanpart/scripts/__pycache__/
-dockerscanpart/scripts/*.json
+docker/scan/scripts/__pycache__/
+docker/scan/scripts/*.json
 web/tmp/*
 web/cache/*
 web/json/*.json.old

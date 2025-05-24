@@ -21,12 +21,9 @@ $schemaFile = 'conf/maggot-schema.json';
 $mdFile = 'docs/doc.md';
 
 $ID = genKEY();
-#$jsonFile = 'tmp/'.$ID.'.json';
-#$schemaFile = 'tmp/'.$ID.'-schema.json';
+$doctmplFile = 'tmp/'.$ID.'.txt';
 $htmlFile = 'tmp/'.$ID.'.html';
 $html2File = 'tmp/'.$ID.'-2.html';
-$doctmplFile = 'tmp/'.$ID.'.txt';
-#$mdFile = 'tmp/'.$ID.'.md';
 
 do {
 	// Convert TSV to JSON
@@ -42,19 +39,21 @@ do {
 	file_put_contents($schemaFile, $outschema);
 
 	// Convert TSV to HTML
-	$outhtml = tsv2html($termsFile);
-	file_put_contents($htmlFile, $outhtml);
+	if ($DEV) {
+		$outhtml = tsv2html($termsFile);
+		file_put_contents($htmlFile, $outhtml);
+	}
 
 	// Convert TSV to a template for documentation
 	file_put_contents($doctmplFile, tsv2doctmpl($termsFile));
-	//file_put_contents($doctmplFile, mergeDoc2tmpl($docFile, $doctmplFile));
+	file_put_contents($docFile, mergeDoc2tmpl($docFile, $doctmplFile));
 
 	// Convert TSV to MD
 	$options = json_decode(file_get_contents($jsonFile), NULL, 512, JSON_OBJECT_AS_ARRAY);
 	$checkboite=$options['checkboite'];
 	$outmd = tsv2md($docFile);
 	file_put_contents($mdFile, $outmd);
-	file_put_contents($html2File, tsv2html($docFile));
+	if ($DEV) file_put_contents($html2File, tsv2html($docFile));
 
 } while(0);
 

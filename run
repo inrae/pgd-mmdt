@@ -121,10 +121,10 @@ case "$CMD" in
             echo "ERROR: AVX support is disabled - See https://inrae.github.io/pgd-mmdt/avx_win11_vbox/"
             exit 1
         fi
-        # echo -n "Convert config. files from TSV to JSON ..."
-        # sudo docker exec -i $WEB_CONTAINER php ./convert
-        # [ $? -eq 0 ] && echo OK
-        # [ $? -ne 0 ] && echo FAILED
+        #echo -n "Convert config. files from TSV to JSON ..."
+        #sudo docker exec -i $WEB_CONTAINER php ./convert
+        #[ $? -eq 0 ] && echo OK
+        #[ $? -ne 0 ] && echo FAILED
         echo -n "Init DB ... "
         sudo docker exec -t $DB_CONTAINER /bin/bash -c "cd /js; python3 ./generate_setupdb.py"
         sudo docker exec -t $DB_CONTAINER $MONGO /js/setupdb.js 1>/dev/null 2>/dev/null
