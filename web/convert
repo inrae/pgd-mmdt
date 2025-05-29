@@ -7,7 +7,6 @@
 
 // Loading config file
 require_once('inc/config/config.inc');
-error_reporting(E_ERROR);
 require_once('inc/functions/functions.inc');
 require_once('inc/convert/convert.inc');
 

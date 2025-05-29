@@ -223,20 +223,6 @@
 </div>
 
 .
-## MODEL
-
-* This section allows you to define ... 
-
-
-<div class="decal" markdown="1">
-### Species
-
-*  
-
-
-</div>
-
-.
 ## OTHER
 
 * This section allows you  to enter miscellious information (protocols, comments, issues, ...)

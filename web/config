@@ -17,7 +17,7 @@ if ($FUNC=='view' || isset($_GET['view'])) {
 	include ('inc/convert/tsv2md.inc');
 } else {
 	include ('inc/convert/tsv2json.inc');
-	// include ('inc/convert/config_terms.inc');
+	//include ('inc/convert/config_terms.inc');
 }
 
 include ('inc/footer.inc');
