@@ -35,6 +35,29 @@ function genKEY()
 	return md5(uniqid(rand(),true));
 }
 
+# Extract the parameter names from a string of type "par1=value1,par2=value2,par3=value3"
+function extractNames($string)
+{
+	$ret = [];
+	if (strlen($string))
+		$ret = array_map(fn($p) => explode('=', $p, 2)[0], explode(',', $string));
+	return $ret;
+}
+
+# Build an associative array from a string of type "par1=value1,par2=value2,par3=value3"
+function assocPars($string)
+{
+	$arr_assoc = [];
+	if (strlen($string)) {
+		$pairs = explode(',', $string);
+		foreach ($pairs as $pair) {
+			list($key, $value) = explode('=', $pair, 2);
+			$arr_assoc[strtolower(trim($key))] = trim($value);
+		}
+	}
+	return $arr_assoc;
+}
+
 # Generate an identifier compliant with the otherId field in Dataverse
 function otherID ($id)
 {
@@ -186,10 +209,10 @@ function isJSONValid($json, $schema_file="conf/maggot-schema.json")
 				'content' => '{"schema":'.$schema.',"json":'.$my_json.'}',
 			),
 		);
-		
+
 		/* Creation of the HTTP context */
 		$context  = stream_context_create($options);
-		
+
 		/* Execution of the request */
 		$resp = file_get_contents($JSVAPI_URL, false, $context);
 	} while(0);

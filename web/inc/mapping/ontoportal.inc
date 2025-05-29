@@ -19,7 +19,8 @@ function ontoportal_search($map, $query)
 	$output_str=shell_exec($cmd);
 	if (gettype($output_str) == 'string' && strlen($output_str)) {
 		$arr = explode('|', explode('~!~', $output_str)[0]);
-		$ret = array( $arr[3], $arr[1] );
+		if (! empty($arr) && count($arr)>3)
+			$ret = array( $arr[3], $arr[1] );
 	}
 	return $ret;
 }

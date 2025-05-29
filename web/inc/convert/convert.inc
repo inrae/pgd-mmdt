@@ -15,7 +15,7 @@ function json2tsv()
 			if ($field==='resources') continue;
 			$req="N"; $search="N"; $view=''; $type='textbox'; $features=''; $label=''; $terms='';
 			if (in_array($field, (array)$required)) $req="Y";
-			if (in_array($field, (array)$section_search[$sec])) $search="Y";
+			if (isset($section_search[$sec]) && in_array($field, (array)$section_search[$sec])) $search="Y";
 			if (in_array($field, (array)$shortview)) $view=array_search($field, (array)$shortview, TRUE)+1;
 			$label = get_label($field);
 			if (array_key_exists($field, (array)$checkboite)) {
@@ -328,7 +328,7 @@ function tsv2md($filename)
 {
 	global $checkboite, $RESMEDIA;
 
-	$md .= "# Metadata documentation\n----\n\n.\n\n";
+	$md = "# Metadata documentation\n----\n\n.\n\n";
 	$section='';
 
 	do {
@@ -424,12 +424,14 @@ EOF;
 }
 
 // Transfers all descriptions from a config_doc file to the new one
-function mergeDoc2tmpl($docFile, $doctmplFile)
+function mergeDoc2tmpl($docFile, $docNewFile)
 {
+	// Source
 	$doc = tsvToArray($docFile, $header=true);
-	$doctmpl="Type\tName\tDescription\n";
+	// Target
+	$docNew="Type\tName\tDescription\n";
 	do {
-		$handle = fopen($doctmplFile, "r");
+		$handle = fopen($docNewFile, "r");
 		if (! $handle) break;
 
 		// Header
@@ -438,14 +440,17 @@ function mergeDoc2tmpl($docFile, $doctmplFile)
 		// Content
 		while (($line = fgets($handle)) !== false) {
 			$val = explode("\t", $line);
-			$desc = $val[2];
+			if (count($val)<3) continue;
+			// target description
+			$desc = str_replace (array("\r\n", "\n", "\r"), ' ', $val[2]);
+			// Gets the source description of the same entry
 			foreach($doc as $arr)
 				if (count($arr)==3 && $arr[0]==$val[0] && $arr[1]==$val[1]) { $desc=$arr[2]; break; }
-			$doctmpl .= $val[0]."\t".$val[1]."\t$desc\n";
+			$docNew .= $val[0]."\t".$val[1]."\t$desc\n";
 		}
 		fclose($handle);
 	}  while(0);
-	return $doctmpl;
+	return $docNew;
 }
 
 ?>

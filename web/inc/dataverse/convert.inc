@@ -114,15 +114,17 @@ function json2dataverse($metadata, $def, $map)
 				$dico=array();
 				foreach($arr as $subarr) {
 	//print_r($dkey.', '.$subarr[0].', '.$subarr[1].', '.$subarr[2].', '.$subarr[3]); echo "<br>";
-					$dico[]=${$subarr[3]};
+					if (strlen($subarr[3]) && isset( ${$subarr[3]} ))
+						$dico[]=${$subarr[3]};
 				}
 				$json = ('getfield_'.$dkey)($metadata, $df[$dkey], $dico);
 			} else {
 				$dico=$arr[2];
 	//print_r($dkey.', '.$dico); echo "<br>";
-				$json = ('getfield_'.$dkey)($metadata, $df[$dkey], ${$dico});
+				$dic = strlen($dico) && isset( ${$dico} ) ? ${$dico} : "";
+				$json = ('getfield_'.$dkey)($metadata, $df[$dkey], $dic);
 			}
-			if (strlen($json)) $JSONcore .= $sep.$json;
+			if (strlen($json)) { $JSONcore .= $sep.$json; }
 			$sep=',';
 		}
 		if ( ($dkey==='title') && function_exists('getfield_otherId') )

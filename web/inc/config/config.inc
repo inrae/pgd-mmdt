@@ -1,5 +1,12 @@
 <?php
 
+session_start([ 'cookie_lifetime' => 3600 ]);
+
+date_default_timezone_set('Europe/Paris');
+ini_set('error_reporting', E_ERROR);
+ini_set("include_path", ".:/usr/share/php");
+ini_set("display_errors", 1);
+
 #docker mode : 0 = FALSE; 1 = TRUE;
 $docker_mode = 1;
 
@@ -39,15 +46,15 @@ $URL_FAIR="https://scholar.harvard.edu/files/mercecrosas/files/fairdata-datavers
 #------------------------
 
 // Get http protocol
-if (isset($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROTO'] == 'https') {
+$HTTP = 'http://';
+if (isset($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROTO'] == 'https')
    $HTTP = 'https://';
-} else {
-   $HTTP = 'http://';
-}
 
 // Get the URL of the application
+$HOSTNAME='localhost';
 $APPNAME='maggot';
-$HOSTNAME=$_SERVER['HTTP_HOST'];
+if (isset($_SERVER['HTTP_HOST']) && strlen($_SERVER['HTTP_HOST']))
+   $HOSTNAME=$_SERVER['HTTP_HOST'];
 if (isset($_SERVER['HTTP_X_APP_NAME']) && strlen($_SERVER['HTTP_X_APP_NAME']))
    $APPNAME=$_SERVER['HTTP_X_APP_NAME'];
 

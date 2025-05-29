@@ -6,12 +6,14 @@
 
 function simpleField($field, $value)
 {
-	return '{"typeName": "'.$field.'","multiple": false,"typeClass": "primitive","value": "'.str_replace("\n", '', $value).'"}';
+	$value = $value ? str_replace("\n", '', $value) : '';
+	return '{"typeName": "'.$field.'","multiple": false,"typeClass": "primitive","value": "'.$value.'"}';
 }
 
 function simpleArray($field, $value)
 {
-	return '{"typeName": "'.$field.'","multiple": true,"typeClass": "primitive","value":['.str_replace("\n", '', $value).']}';
+	$value = $value ? str_replace("\n", '', $value) : '';
+	return '{"typeName": "'.$field.'","multiple": true,"typeClass": "primitive","value":['.$value.']}';
 }
 
 function compoundArray($field, $json)

@@ -79,7 +79,6 @@ a, a:visited, a:hover { text-decoration: none; color: #2578cf; }
 .entete a:visited, .entete a:hover
 {
 	text-decoration: none;
-	decoration: none;
 	color: var(--text-color);
 }
 
@@ -97,7 +96,7 @@ a, a:visited, a:hover { text-decoration: none; color: #2578cf; }
 .progress-container {
 	width: 100%;
 	height: 8px;
-	background: ##f3f3f3;
+	background: #f3f3f3;
 	max-width: 1160px;
 }
 
@@ -159,7 +158,7 @@ a, a:visited, a:hover { text-decoration: none; color: #2578cf; }
 }
 
 .table th td {
-	border-color-rigth: #fafafa;
+	border-right-color: #fafafa;
 }
 
 .table td, .table th {
@@ -180,9 +179,14 @@ span.selval {
 	color: brown;
 }
 
+span.blue {
+	color: lightsteelblue;
+}
+
 .labeldiv {
 	font-size:16px;
 	font-weight:bold;
+	color: #5f5b5b;
 }
 
 .menu-select { color: var(--btn-menu-color); /*background-color: var(--btn-menu-bg); border-color: var(--btn-menu-bg);*/ }
@@ -302,9 +306,8 @@ div.table-responsive {
 
 .msgbox {
 	display: none;
-	color: #f8f8f8;
 	font-weight: bold;
-	border-radius: 15px;
+	border-radius: 0.55rem!important;
 	border-top: 1px solid #dee2e6;
 	border-right: 1px solid #dee2e6;
 	border-left: 1px solid #dee2e6;
@@ -312,15 +315,18 @@ div.table-responsive {
 }
 
 .errbox {
-	background: #c47c86;
+	color: #b73838;
 }
 
 .successbox {
-	background: #76c177;
+	color: #37926c;
+}
+
+.cautionbox {
+	color: #e4640c;
 }
 
 .filemsgbox {
-	background: #dfd7cf;
 	color: #52499e;
 }
 
@@ -350,6 +356,28 @@ p.selval {
 	margin-top: 0.2rem;
 }
 
+.fieldset_section {
+    min-width: 0;
+    display: block;
+    min-inline-size: min-content;
+    margin-inline: 2px;
+    border-width: 0.1rem;
+    border-style: groove;
+    border-color: lightsteelblue;
+    border-image: initial;
+    padding-block: 0.35em 0.625em;
+    padding-inline: 0.75em;
+}
+
+.legend_section {
+    float: none;
+    width: 8%;
+    color: #337ab7;
+    padding: 0;
+    margin-bottom: .5rem;
+    font-size: calc(1.275rem + .3vw);
+    line-height: inherit;
+}
 .input-selval {
 	width: 300px;
 	outline: none !important;
@@ -516,7 +544,7 @@ p.selval {
 	border-color: var(--btn-color);
 }
 
-.btn-primary:hover, .btn-primary:active,{
+.btn-primary:hover, .btn-primary:active {
 	border-color: var(--btn-color);
 }
 
