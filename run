@@ -126,7 +126,6 @@ case "$CMD" in
         sudo docker exec -t $DB_CONTAINER $MONGO /js/setupdb.js 1>/dev/null 2>/dev/null
         [ $? -eq 0 ] && echo OK
         [ $? -ne 0 ] && echo FAILED
-        echo -n "Convert config. files"
         sudo docker exec -i $WEB_CONTAINER php ./convert
         [ $? -ne 0 ] && echo "FAILED to convert some configuration files"
         ;;
