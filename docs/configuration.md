@@ -13,39 +13,57 @@ some_url:
 
 ### Terminology configuration
 
-A single file (***web/conf/config_terms.txt***) contains all the [terminology](../definitions/terminology/). The input and search interfaces are completely generated from this definition file, thus defining each of the fields, their input type (*checkbox*, *dropbox*, *textbox*, ...) and the associated controlled vocabulary (ontology and thesaurus by autocompletion, drop-down list according to a list of fixed terms). This is why a configuration and conversion step into JSON format is essential in order to be able to configure all the other modules (example: creation of the [MongoDB][1]{:target="_blank"} database schema when starting the application before filling it).
+A single file (***web/conf/config_terms.txt***) contains all the [terminology](../definitions/terminology/). The input and search interfaces are completely generated from this definition file, thus defining each of the fields, their input type (*checkbox*, *dropbox*, *textbox*, ...) and the associated controlled vocabulary (ontology and thesaurus by autocompletion, drop-down list according to a list of fixed terms). Internally, this file is converted to JSON format which is more suitable for use by the various modules, and in particular the creation of the [MongoDB][1]{:target="_blank"} database schema when starting the application before filling it. A second file (***web/conf/config_docs.txt***) is used to document the terminology and its content is therefore closely linked to the previous file.
+
+There are two main ways to update these two files (TSV format) on the server.
+
+<br>
+
+#### Update from external files
+
+In this approach, you edit the two terminology files yourself in your favorite spreadsheet (**1** & **2**), then you drop the two files on the disk space of the server where the Maggot application is installed (**3**), and finally you restart the application (**4**) so that the conversions and the generation of additional files can integrate the updates. The following schema illustrates the process :
 
 <center>
-<a href="../images/config.png" data-lightbox="fig0"><img src="../images/config.png" width="800px"></a>
+<a href="../images/config1.png" data-lightbox="fig1"><img src="../images/config1.png" width="800px"></a>
 </center>
 
-* **_Note_** : _The step numbers shown in the figure above are mentioned in brackets in the text below_.
+<br>
 
+#### Update from the web interface
 
-#### TSV to JSON
+In this approach, both terminology files are updated directly from Maggot's web interface. The following schema illustrates the process:
 
-* This function is used to generate the terminology definition file in JSON format (**_config_terms.json_**) and the corresponding JSON-Schema file (**_maggot-schema.json_**) from a tabulated file (**1**). You can either create a terminology definition file in TSV format from scratch (see below to have more details), or extract the file from the current configuration (see [JSON to TSV](#json-to-tsv)).
+<center>
+<a href="../images/config2.png" data-lightbox="fig2"><img src="../images/config2.png" width="800px"></a>
+</center>
 
-* Once the terminology definition file has been obtained (**2**), you can load it and press 'Submit'.
+<br>
 
-* Three files are generated (**3** & **5**):
-   * **_config_terms.json_** and **_maggot-schema.json_** : These files should be placed in the web/conf directory (**3**). A (re)start of the application must be done in full mode (**4**) (**_sh ./run fullstart_**)
-   * **_config_doc.txt_** (**5**) : This file serves as a template for the documentation of the metadata profile. You should edit it with a spreadsheet program, and fill in the description column (**6**). Then it is used to generate the documentation file in markdown format (see TSV to DOC).
+First, you select an existing section or define one to create, as well as a field to modify or create. Then an entry form guides you through the definition of the field to be added or updated. Once the field is fully defined, you update the terminology definition file by validating the entry. This also modifies the terminology documentation file accordingly. (**1**). The figure below shows an example of a new section creation along with a new field. 
 
+<center>
+<a href="../images/config2b.png" data-lightbox="fig2b"><img src="../images/config2b.png" width="600px"></a>
+</center>
 
-#### TSV to DOC
+<br>
 
-* This function generates the markdown documentation file (**_doc.md_**) from the template file (**_config_doc.txt_**) which is itself generated from the metadata definition file (**_config_terms.txt_**, cf [TSV to JSON](#tsv-to-json)).
+The next step is to entry a description for each newly created field and/or section (**2**). The figure below shows an example of documentation of the new section along with its field. Selecting the section alone without the field allows you to document it. Selecting a field also allows you to document it.
 
-* Once the template file for the documentation (**_config_doc.txt_**) has been edited and documented (**6**) (see below to have more details), you can load it and press _Submit_ button.
+<center>
+<a href="../images/config2c.png" data-lightbox="fig2c"><img src="../images/config2c.png" width="600px"></a>
+</center>
 
-* The documentation file in markdown format (**_doc.md_**) is thus generated (**7**) and must be placed in the **_web/docs_** directory (**8**). Users will have access to this documentation file via the web interface, in the documentation section, heading "**Metadata**".
+<br>
 
+Finally you restart the application (**3**) so that the conversions and the generation of additional files can integrate the updates. Below, the input interface with its new section and associated field, as well as the corresponding documentation. 
 
+<center>
+<a href="../images/config2d.png" data-lightbox="fig2d"><img src="../images/config2d.png" width="400px"></a>
+</center>
 
-#### JSON to TSV
+<br>
 
-* This function allows you to extract the terminology definition file in TSV format (**_config_terms.txt_**) from the current configuration. This allows you to start from this file, either to adapt your own metadata profile or simply to modify it slightly.
+**Note** : Both functions to create / update the terminilogy files (definition & documentation) require to have **_admin privileges_**. See **_passwd_** in the [Commands](../installation/#commands) paragraph in the installation section.
 
 <br>
 

@@ -45,6 +45,7 @@ See an example on line : [https://pmb-bordeaux.fr/maggot/config/view](https://pm
 [5]: https://github.com/inrae/pgd-mmdt/blob/main/web/inc/config/config.inc
 [6]: https://inrae.github.io/pgd-mmdt/pdf/MAGGOT_OpenData_Oct2023.pdf?download=false
 [7]: https://sustainableheritagenetwork.org/system/files/atoms/file/How_to_Create_a_Descriptive_Metadata_Plan.pdf
+[8]: https://docs.google.com/spreadsheets/d/1uVYIMeOZTqEAuehiuEsc_zFTt5pVkxLL/edit?usp=sharing&ouid=104271698711998131792&rtpof=true&sd=true
 
 <!--
 https://rd-alliance.github.io/Research-Metadata-Schemas-WG/

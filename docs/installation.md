@@ -40,8 +40,8 @@ MAGGOT uses 3 Docker images for 3 distinct services:
 #### Configuration
 
 *  *[run][23]{:target="_blank"}* : defines root of the data directory (including for development)
-*  *[dockerdbpart/initialisation/setupdb-js.template][20]{:target="_blank"}* : defines MongoDB settings
-*  *[dockerscanpart/scripts/config.py][21]{:target="_blank"}* : defines MongoDB settings (dbserver, dbport, username, password)
+*  *[docker/db/initialisation/setupdb-js.template][20]{:target="_blank"}* : defines MongoDB settings
+*  *[docker/scan/scripts/config.py][21]{:target="_blank"}* : defines MongoDB settings (dbserver, dbport, username, password)
 *  *[web/inc/config/mongodb.inc][24]{:target="_blank"}* : defines MongoDB settings (dbserver, dbport, username, password)
 *  *[web/inc/config/config.inc][22]{:target="_blank"}* : defines many of web parameters (modify only if necessary)
 *  ***web/inc/config/local.inc*** : defines the application parameters specific to the local installation (not erase when updating).
@@ -81,7 +81,7 @@ sh ./run <option>
 * ***fullstart*** : Perform the 3 actions ***start***, ***initdb*** and ***scan***
 * ***restart*** : Perform the 2 actions ***stop*** then ***fullstart***
 * ***ps*** : Check that all containers are running correctly
-* ***passwd*** <_user_>: Define the admin password if no _user_ is specified, allowing you to copy the new configuration file on the server via the web interface (see [configuration](../configuration) and to add entries in dictionaries. If a _user_ is specified, the dictionary consultation will be authorized for this user.
+* ***passwd*** <_user_>: Define the admin password if no _user_ is specified, allowing you to add entries in dictionaries or to add/update the terminology files (_definition_ & _documentation_, see [configuration](../configuration)). If a _user_ is specified, the dictionary consultation will be authorized for this user.
 
 <br>
 
@@ -275,10 +275,10 @@ The initial choice was not to manage users in the Maggot tool. This choice was m
 [15]: https://ucr-research-computing.github.io/Knowledge_Base/how_to_mount_google_drive.html
 [16]: https://www.youtube.com/watch?v=CaDzYUSdVn8&ab_channel=URTechDotCa
 [17]: https://www.mongodb.com/basics
-[18]: https://github.com/inrae/pgd-mmdt/blob/main/dockerscanpart/scripts/pgd-cron
+[18]: https://github.com/inrae/pgd-mmdt/blob/main/docker/scan/scripts/pgd-cron
 [19]: https://github.com/inrae/pgd-mmdt/blob/main/etc/update-maggot.sh
-[20]: https://github.com/inrae/pgd-mmdt/blob/main/dockerdbpart/initialisation/setupdb-js.template
-[21]: https://github.com/inrae/pgd-mmdt/blob/main/dockerscanpart/scripts/config.py
+[20]: https://github.com/inrae/pgd-mmdt/blob/main/docker/db/initialisation/setupdb-js.template
+[21]: https://github.com/inrae/pgd-mmdt/blob/main/docker/scan/scripts/config.py
 [22]: https://github.com/inrae/pgd-mmdt/blob/main/web/inc/config/config.inc
 [23]: https://github.com/inrae/pgd-mmdt/blob/main/run
 [24]: https://github.com/inrae/pgd-mmdt/blob/main/web/inc/config/mongodb.inc

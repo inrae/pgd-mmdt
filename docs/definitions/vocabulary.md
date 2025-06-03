@@ -129,4 +129,4 @@ Note: we also support the [Terminology Service for NFDI4Health][26]{:target="_bl
 [23]: https://bioportal.bioontology.org/
 [24]: https://github.com/inrae/pgd-mmdt/blob/main/web/js/autocomplete/VO_typeahead.js
 [25]: https://github.com/inrae/pgd-mmdt/blob/main/web/inc/mapping/skosmos.inc
-[26]: https://semanticlookup.zbmed.de/ols/index
+[26]: https://semanticlookup.zbmed.de

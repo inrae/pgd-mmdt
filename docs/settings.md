@@ -120,5 +120,5 @@ USER | Admin user in the htpasswd file | admin
 
 <br><br>
 
-[1]: https://github.com/inrae/pgd-mmdt/blob/main/dockerdbpart/initialisation/setupdb-js.template
+[1]: https://github.com/inrae/pgd-mmdt/blob/main/docker/db/initialisation/setupdb-js.template
 [2]: https://wpwebinfotech.com/blog/send-emails-using-php/
