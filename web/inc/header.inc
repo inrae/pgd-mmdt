@@ -129,10 +129,10 @@ $header_doc = $header_open.'<div class="btn-group btn-group-lg" role="group">
 # Header for Configuration
 
 $header_config = $infolog.$header_open.'<div class="btn-group btn-group-lg" role="group">
-	<i class="bi bi-eye" style="color:grey;"><a href="'.$PATH.'config/view" class="search_data"><button type="button" class="btn btn-primary" data-toggle="button" aria-pressed="false" autocomplete="off" name="btn-conv2">View all TSV</button></a>
-	<i class="bi bi-filetype-json" style="color:grey;"><a href="'.$PATH.'config" class="search_data"><button type="button" class="btn btn-primary" data-toggle="button" aria-pressed="false" autocomplete="off" name="btn-conv1">TSV to JSON</button></a>
-	<i class="bi bi-filetype-md" style="color:grey;"><a href="'.$PATH.'config/doc" class="search_data"><button type="button" class="btn btn-primary" data-toggle="button" aria-pressed="false" autocomplete="off" name="btn-conv3">TSV to DOC</button></a>
-	<i class="bi bi-question-octagon-fill" style="color:grey;"></i><a href="'.$maggot_doc_url.'configuration/" class="search_data" target="_blank"><button type="button" class="btn btn-primary" data-toggle="button" aria-pressed="false" autocomplete="off">Documentation</button></a>
+	<i class="bi bi-eye" style="color:grey;"><a href="'.$PATH.'viewconf" class="search_data"><button type="button" class="btn btn-primary" data-toggle="button" aria-pressed="false" autocomplete="off" name="btn-conv2">View config.</button></a>
+	<i class="bi bi-filetype-json" style="color:grey;"><a href="'.$PATH.'config?terms" class="search_data"><button type="button" class="btn btn-primary" data-toggle="button" aria-pressed="false" autocomplete="off" name="btn-conv1">Terminlogy</button></a>
+	<i class="bi bi-filetype-md" style="color:grey;"><a href="'.$PATH.'config?docs" class="search_data"><button type="button" class="btn btn-primary" data-toggle="button" aria-pressed="false" autocomplete="off" name="btn-conv3">Documentation</button></a>
+	<i class="bi bi-question-octagon-fill" style="color:grey;"></i><a href="'.$maggot_doc_url.'configuration/" class="search_data" target="_blank"><button type="button" class="btn btn-primary" data-toggle="button" aria-pressed="false" autocomplete="off">Help</button></a>
 	</div>'.$header_close;
 
 #------------------------

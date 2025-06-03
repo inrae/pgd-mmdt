@@ -1,9 +1,15 @@
 <?php
 
-// Load 'conf/options.json' into the $options array
-$options = json_decode(file_get_contents("./conf/options.json"), NULL, 512, JSON_OBJECT_AS_ARRAY);
+// Get the different dictionnaries from options / terms
+if (file_exists("./conf/options.json"))
+	$options = json_decode(file_get_contents("./conf/options.json"), NULL, 512, JSON_OBJECT_AS_ARRAY);
+else
+	$options = json_decode(file_get_contents("./conf/config_terms.json"), NULL, 512, JSON_OBJECT_AS_ARRAY);
+$listdico=$options['listdico'];
+$chkbxdico=$options['chkbxdico'];
 
-// Get the different dictionnaries
+// Get the different dictionnaries from config_terms.json
+$options = json_decode(file_get_contents("./conf/config_terms.json"), NULL, 512, JSON_OBJECT_AS_ARRAY);
 $section=$options['sections'];
 $section_search=$options['sections_search'];
 $required=$options['required'];
@@ -14,8 +20,6 @@ $multiboite=$options['multiboite'];
 $txtboite=$options['txtboite'];
 $areaboite=$options['areaboite'];
 $dateboite=$options['dateboite'];
-$listdico=$options['listdico'];
-$chkbxdico=$options['chkbxdico'];
 
 // minimum required fields
 $required_fields = array('title', 'description');
@@ -85,14 +89,17 @@ function aasort (&$array, $key)
 // UFT-8 encode for a string
 function utf8_enc ($iso8859_1_string)
 {
-	return str_replace(array("\r", "\n"), '', mb_convert_encoding($iso8859_1_string, 'UTF-8', 'ISO-8859-1'));
+	if (!is_null($iso8859_1_string))
+		return str_replace(array("\r", "\n"), '', mb_convert_encoding($iso8859_1_string, 'UTF-8', 'ISO-8859-1'));
+	else
+		return iso8859_1_string;
 }
 
 // UFT-8 encode for an array
 function utf8_converter($array)
 {
 	array_walk_recursive($array, function(&$item, $key) {
-		if(!mb_detect_encoding($item, 'utf-8', true)) $item = utf8_enc($item);
+		if (!is_null($item) && !mb_detect_encoding($item, 'utf-8', true)) $item = utf8_enc($item);
 	});
 	return $array;
 }

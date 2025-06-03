@@ -86,10 +86,10 @@ See <a href="<? echo $links[6]; ?>" target="_blank">Quick tutorial</a>.
 <?php
 	if ($EXTERN==0) {
 		if ($PRIVATE_ACCESS) echo
-	'<area href="./config/view"                 coords="'.$coords[1].'"  shape="rect" id="r1">
+	'<area href="./viewconf"                 	coords="'.$coords[1].'"  shape="rect" id="r1">
 	 <area href="./access"                      coords="'.$coords[2].'"  shape="rect" id="r1b">';
 		else echo
-	'<area href="./config/view"                 coords="'.$coords[0].'"  shape="rect" id="r1">';
+	'<area href="./viewconf" 	                coords="'.$coords[0].'"  shape="rect" id="r1">';
 		echo
 	'<area href="./dictionary"                  coords="'.$coords[3].'"  shape="rect" id="r2">
 	 <area href="./entry"                       coords="'.$coords[4].'"  shape="rect" id="r3">

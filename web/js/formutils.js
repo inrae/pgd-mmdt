@@ -281,8 +281,14 @@ function flip_all(state)
 function cleanfield(elm) {
 	result = theval = $(elm).val().trim();
 	if (theval.substr(theval.length-1,1)==',') result = theval.substr(0,theval.length-1) ;
-	$(elm).val(result)
+	$(elm).val(result);
 	$('#'+$(elm).prop('id')+'-warn').css('display','none');
+}
+
+function escape_quote(elm) {
+	theval = $(elm).val().trim();
+	result = theval.replace(/(?<!\\)(["])/g, '\\$1');
+	$(elm).val(result);
 }
 
 // Put the selected term from Bioportal results into the corresponding input box
@@ -485,7 +491,7 @@ function insert_areaboite (identif_boite, req=false)
 	var myfieldHTML =
 		'<div class="form-group2 div-group">\
 			<span class="labeldiv">'+ areaboite[identif_boite]['titre'] +'</span>'+asterisk+htmlHelpIcon(areaboite[identif_boite]['titre'])+'\
-			<textarea class="form-control form-control-sm" name="'+ identif_boite +'" rows="'+ areaboite[identif_boite]['rows'] +'" cols="'+ areaboite[identif_boite]['cols'] +'" id="'+ identif_boite +'" onchange="statusentry=1;"></textarea>\
+			<textarea class="form-control form-control-sm" name="'+ identif_boite +'" rows="'+ areaboite[identif_boite]['rows'] +'" cols="'+ areaboite[identif_boite]['cols'] +'" id="'+ identif_boite +'" onchange="statusentry=1;" onfocusout="escape_quote(this);"></textarea>\
 		</div>';
 	return myfieldHTML;
 }

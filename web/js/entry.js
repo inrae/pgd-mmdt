@@ -31,7 +31,7 @@ function load_data(file)
 		$.ajaxSetup({async:true});
         if (DEBUG) console.log(resp);
 		// If no errors
-		if (resp.errors.length==0) {
+		if (resp.errors && resp.errors.length==0) {
 		//ok=1; if (ok==1) {
 			var result = JSON.parse(e.target.result);
 			if (DEBUG) console.log(result);
@@ -86,7 +86,8 @@ function load_data(file)
 		} else {
 		// If errors
 			message = 'ERROR: the uploaded file seems not a valid Maggot JSON file.';
-			for (line of resp.errors) message = message + "\n"+line
+			if( resp.message && resp.message.length>0)
+				message = message + "\n"+resp.message
 			alert(message);
 			return false;
 		}

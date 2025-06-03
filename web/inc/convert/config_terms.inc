@@ -1,106 +1,4 @@
-<?php
-
-// Configuration files
-$termsFile = 'conf/config_terms.txt';
-$docFile = 'conf/config_doc.txt';
-$mdFile = 'docs/doc.md';
-$optionFile = "./conf/options.json";
-
-// temporary files
-$ID = genKEY();
-$doctmplFile = 'tmp/'.$ID.'-2.txt';
-$htmlFile = 'tmp/'.$ID.'.html';
-$html2File = 'tmp/'.$ID.'-2.html';
-
-# Initialise
-$arr_types = array('textbox' => array('autocomplete','min','width'),
-                   'areabox' =>  array('rows','cols'),
-                   'checkbox' =>  array('open'),
-                   'datebox' =>  array('width'),
-                   'dropbox' =>  array('width'),
-                   'multiselect' =>  array('autocomplete','ws','onto','min'));
-
-$actions = array('Create','Update');
-
-
-# Get the array for section options
-function get_optSection($sect) {
-	global $sections;
-	$opt_sections = '<option value="">---</option>';
-	foreach($sections as $section => $value) {
-		$selected = $section == $sect ? 'selected' : '';
-		$opt_sections .= '<option value="'.$section.'"'.$selected.'>'.$section.'</option>';
-	}
-	return $opt_sections;
-}
-
-# Get the term options array for a specific section
-function get_optTerms($section, $term_select) {
-	global $sections;
-	$terms = $sections[$section];
-	$opt_terms='<option value="">---</option>';
-	foreach($terms as $term) {
-		$selected = $term == $term_select ? 'selected' : '';
-		$opt_terms .= '<option value="'.$term.'"'.$selected.'>'.$term.'</option>';
-	}
-	return $opt_terms;
-}
-
-# Saves the modified terminology definition file and tranferts the modification into the termninology documentation file
-function save_and_Finalise ($outTXT) {
-	global $termsFile, $docFile, $mdFile, $doctmplFile, $htmlFile, $html2File, $optionFile;
-
-	$ret='';
-	try {
-		// Write the new Terminology definition file
-		file_put_contents($termsFile, $outTXT);
-
-		// Convert TSV to HTML
-		$outhtml = tsv2html($termsFile);
-		file_put_contents($htmlFile, $outhtml);
-
-		// Convert TSV to a template for documentation
-		file_put_contents($doctmplFile, tsv2doctmpl($termsFile));
-		file_put_contents($docFile, mergeDoc2tmpl($docFile, $doctmplFile));
-
-		// Convert TSV to MD
-		$options = json_decode(file_get_contents($optionFile), NULL, 512, JSON_OBJECT_AS_ARRAY);
-		$checkboite=$options['checkboite'];
-		$outmd = tsv2md($docFile);
-		file_put_contents($mdFile, $outmd);
-		file_put_contents($html2File, tsv2html($docFile));
-	} catch (Exception $e) {
-		$ret = $e->getMessage();
-	}
-	return $ret;
-}
-
-
-# Read the terminology definition file
-$arrterms = tsvToArray($termsFile, $header=true);
-
-# Initialise some arrays (dictionaries) : $sections and $terms
-$sections = array();
-$terms = array();
-foreach($arrterms as $arr) {
-	$section = trim($arr[1]);
-	$field = trim($arr[0]);
-	if (! isset($sections[$section])) $sections[$section] = array();
-	array_push($sections[$section], $field);
-	array_shift($arr);
-	$terms[$field] = $arr;
-}
-
-# Section creation / selection values
-$section_create = isset($_POST['section_create']) ? $_POST['section_create'] : '';
-$section_select = strlen($section_create)==0 && isset($_GET['section_select']) ? $_GET['section_select'] : '';
-
-# Term creation / selection values
-$term_create = isset($_POST['term_create']) ? $_POST['term_create'] : '';
-$term_create = strlen($term_create) && isset($_POST['field']) ? $_POST['field'] : $term_create;
-$term_select = strlen($term_create)==0 && isset($_GET['term_select']) ? $_GET['term_select'] : '';
-
-?>
+<?php require_once('inc/convert/common.inc'); ?>
 
 <!DOCTYPE html>
 <html lang="en" >
@@ -121,17 +19,17 @@ $term_select = strlen($term_create)==0 && isset($_GET['term_select']) ? $_GET['t
 	sectionChange = function() {
 		var arr = document.getElementById('section_select') ;
 		if (arr.value) 
-			window.open("?section_select="+arr.value, "_self");
+			window.open("?terms&section_select="+arr.value, "_self");
 		else
-			window.open("?", "_self");
+			window.open("?terms", "_self");
 	}
 
 	termChange = function() {
 		var arr = document.getElementById('term_select') ;
 		if (arr.value) 
-			window.open("?section_select="+section_select+"&term_select="+arr.value, "_self");
+			window.open("?terms&section_select="+section_select+"&term_select="+arr.value, "_self");
 		else
-			window.open("?section_select="+section_select, "_self");
+			window.open("?terms&section_select="+section_select, "_self");
 	}
 
 	typeChange = function() {
@@ -156,7 +54,7 @@ $term_select = strlen($term_create)==0 && isset($_GET['term_select']) ? $_GET['t
 	}
 
 	clickReset = function() {
-		window.open("?", "_self");
+		window.open("?terms", "_self");
 	}
 
 	$(document).ready(function() {
@@ -180,14 +78,14 @@ $term_select = strlen($term_create)==0 && isset($_GET['term_select']) ? $_GET['t
 <?php echo $header_config ?>
 <br><br>
 
-<h1>Terminology configuration <a href="<? echo $maggot_doc_url.'definitions/terminology/' ?>" target="doc"><i class="bi bi-question-octagon-fill" style="color:grey; font-size: 20px"></i></a></h1>
+<h1>Terminology definition <a href="<? echo $maggot_doc_url.'definitions/terminology/' ?>" target="doc"><i class="bi bi-question-octagon-fill" style="color:grey; font-size: 20px"></i></a></h1>
 <br>
 
 <section>
 <form id="formulaire" enctype="multipart/form-data" autocomplete="off" action="#" method="post">
 
 <fieldset class="form-group2 fieldset_section">
-	<legend class="legend_section">Section</legend>
+	<legend class="legend_section"><span style="background-color:white">&nbsp;&nbsp;Selection&nbsp;&nbsp;</span></legend>
 <center>
 
 <!-- Section -->
@@ -270,7 +168,7 @@ foreach($arr_types as $type => $value) {
 if (strlen($section_create) || strlen($term_select) || strlen($term_create)) {
 	echo '
 <fieldset class="form-group2 fieldset_section">
-    <legend class="legend_section">Term</legend>
+    <legend class="legend_section"><span style="background-color:white">&nbsp;&nbsp;Documentation&nbsp;&nbsp;</span></legend>
 
 <div class="form-group2" style="width:200px">
     <span class="labeldiv">Field name</span>
@@ -405,7 +303,7 @@ echo '</form>
 	</div></div>
 	<div style="padding-bottom: 10px;"><div id="caution" name="caution" class="msgbox cautionbox">
 		<div style="margin-left: 2rem; margin-top: 1rem; margin-bottom: 0rem;">
-			<span>CAUTION: Don\'t forget to restart the Maggot application in command line mode on the server to take into account the modification in the terminology definition file</span></p>
+			<span id="cautionmsg">CAUTION !!!</span></p>
 		</div>
 	</div></div>
 </div>';
@@ -593,8 +491,9 @@ do
 			}
 
 			$successmsg = 'the new line has been insert / update. View the <a href="'.$PATH.$htmlFile.'" target="_blank">terminology definition file</a> and the <a href="'.$PATH.$html2File.'" target="_blank">terminology documentation file</a>';
-			$htmloutput="SUCESS: ".addslashes($successmsg);
-			echo "<script>$('#successresp').css('display','block'); $('#successmsg').html('".$htmloutput."'); $('#caution').css('display','block'); $('#action1').css('display','none'); $('#action2').css('display','none'); $('#confirmation').css('display','none'); $('#action3').css('display','inline-block');</script>";
+			$htmloutput1="SUCESS: ".addslashes($successmsg);
+			$htmloutput2="CAUTION: Don\'t forget to restart the Maggot application in command line mode on the server to take into account the modification in the terminology definition file";
+			echo "<script>$('#successresp').css('display','block'); $('#successmsg').html('".$htmloutput1."'); $('#caution').css('display','block'); $('#cautionmsg').html('".$htmloutput2."'); $('#action1').css('display','none'); $('#action2').css('display','none'); $('#confirmation').css('display','none'); $('#action3').css('display','inline-block');</script>";
 
 		}  while(0);
 		break;
@@ -646,8 +545,9 @@ do
 			}
 
 			$successmsg = 'the field <i>'.$term.'</i> has been remove from the section <i>'.$section.'</i>. View the <a href="'.$PATH.$htmlFile.'" target="_blank">terminology definition file</a>';
-			$htmloutput="SUCESS: ".addslashes($successmsg);
-			echo "<script>$('#successresp').css('display','block'); $('#successmsg').html('".$htmloutput."'); $('#caution').css('display','block'); $('#action1').css('display','none'); $('#action2').css('display','none'); $('#confirmation').css('display','none'); $('#action3').css('display','inline-block');</script>";
+			$htmloutput1="SUCESS: ".addslashes($successmsg);
+			$htmloutput2="CAUTION: Don\'t forget to restart the Maggot application in command line mode on the server to take into account the modification in the terminology definition file";
+			echo "<script>$('#successresp').css('display','block'); $('#successmsg').html('".$htmloutput1."'); $('#caution').css('display','block'); $('#cautionmsg').html('".$htmloutput2."'); $('#action1').css('display','none'); $('#action2').css('display','none'); $('#confirmation').css('display','none'); $('#action3').css('display','inline-block');</script>";
 
 		}  while(0);
 		break;

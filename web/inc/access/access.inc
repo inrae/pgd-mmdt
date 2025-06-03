@@ -13,7 +13,7 @@ do {
 	// checks if the 'encrypt' button is pressed
 	if( isset($_POST['encrypt']) && strlen($_POST['key'])>=$nbcar ) {
 		exec("/usr/bin/htpasswd -nbs - ".$_POST['key']." | cut -d':' -f2", $key1, $retval);
-		if ($reval==0) {
+		if ($retval==0) {
 			file_put_contents($crypt_url, $key1[0]);
 			$disp1 = 'block';
 		}
@@ -23,7 +23,7 @@ do {
 	// checks if the 'reckey' button is pressed
 	if( isset($_POST['reckey']) && strlen($_POST['keysession'])>7 ) {
 		exec("/usr/bin/htpasswd -nbs - ".$_POST['keysession']." | cut -d':' -f2", $key2, $retval);
-		if ($reval==0) {
+		if ($retval==0) {
 			#setcookie('privatekey', $key2[0], time() + 24*3600); # see is_accessible() in inc/functions/functions.inc
 			$_SESSION['privatekey'] = $key2[0];
 			$disp2 = 'block';

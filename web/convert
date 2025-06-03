@@ -45,8 +45,6 @@ do {
 	file_put_contents($docFile, mergeDoc2tmpl($docFile, $doctmplFile));
 
 	// Convert TSV to MD
-	$options = json_decode(file_get_contents($jsonFile), NULL, 512, JSON_OBJECT_AS_ARRAY);
-	$checkboite=$options['checkboite'];
 	$outmd = tsv2md($docFile);
 	file_put_contents($mdFile, $outmd);
 	if ($DEV) file_put_contents($html2File, tsv2html($docFile));

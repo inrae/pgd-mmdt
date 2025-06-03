@@ -1,8 +1,8 @@
 <?php
 
-# Nom du fichier: search
+# Nom du fichier: config
 # Auteur(s): D.JACOB 
-# Copyright: (c) INRAE - 2015-2021
+# Copyright: (c) INRAE - 2021-2025
 #
 # Loading config file
 require_once('inc/config/config.inc');
@@ -11,13 +11,12 @@ require_once('inc/convert/convert.inc');
 
 include ('inc/header.inc');
 
-if ($FUNC=='view' || isset($_GET['view'])) {
-	include ('inc/convert/tsv2view.inc');
-} elseif ($FUNC=='doc' || isset($_GET['doc'])) {
-	include ('inc/convert/tsv2md.inc');
+if (isset($_GET['terms'])) {
+	include ('inc/convert/config_terms.inc');
+} elseif (isset($_GET['docs'])) {
+	include ('inc/convert/config_docs.inc');
 } else {
-	include ('inc/convert/tsv2json.inc');
-	//include ('inc/convert/config_terms.inc');
+	include ('inc/convert/tsv2view.inc');
 }
 
 include ('inc/footer.inc');
