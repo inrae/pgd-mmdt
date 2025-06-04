@@ -287,7 +287,7 @@ function cleanfield(elm) {
 
 function escape_quote(elm) {
 	theval = $(elm).val().trim();
-	result = theval.replace(/(?<!\\)(["])/g, '\\$1');
+	result = theval.replace(/(?<!\\)(["])/g, '\$1');
 	$(elm).val(result);
 }
 

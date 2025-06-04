@@ -1,4 +1,9 @@
-<?php require_once('inc/convert/common.inc'); ?>
+<?php
+
+require_once('inc/convert/common.inc'); 
+require_once('inc/convert/features.inc'); 
+
+?>
 
 <!DOCTYPE html>
 <html lang="en" >
@@ -34,11 +39,23 @@
 
 	typeChange = function() {
 		const types = ["checkbox", "dropbox"];
-		var arr = document.getElementById('type') ;
+		var arr = document.getElementById('type');
+
 		if (types.includes(arr.value)) 
 			showdiv('listdiv');
 		else
 			hidediv('listdiv');
+		hidediv('features_multiselect'); hidediv('features_textbox'); hidediv('features_areabox'); 
+		hidediv('features_checkbox'); hidediv('features_datebox'); hidediv('features_dropbox'); 
+		showdiv('features_'+arr.value);
+	}
+
+	autocomplChange = function(seltype) {
+		var arr = document.getElementById(seltype+'_autocompl') ;
+		if (arr.value == 'typeahead') { showdiv('feature_ws'); showdiv('feature_onto'); }
+		else                          { hidediv('feature_ws'); hidediv('feature_onto'); }
+		if (arr.value == '') { hidediv(seltype+'_feature_min'); }
+		else                 { showdiv(seltype+'_feature_min'); }
 	}
 
 	clickRemove = function() {
@@ -146,6 +163,8 @@ if (isset($_POST['action']) && in_array($_POST['action'], $actions)) {
 	$shortview = isset($_POST['shortview']) ? $_POST['shortview'] : $infos[3];
 	$seltype = isset($_POST['type']) ? $_POST['type'] : $infos[4];
 	$features = isset($_POST['features']) ? $_POST['features'] : $infos[5];
+	if (isset($_POST['confirm']) && $_POST['confirm']=='Yes')
+		$features = get_features_line ();
 	$label = isset($_POST['label']) ? $_POST['label'] : $infos[6];
 	$termlist = isset($_POST['termlist']) ? $_POST['termlist'] : $infos[7];
 	$infos = array($section, $required, $search, $shortview, $seltype, $features, $label, $termlist);
@@ -168,7 +187,7 @@ foreach($arr_types as $type => $value) {
 if (strlen($section_create) || strlen($term_select) || strlen($term_create)) {
 	echo '
 <fieldset class="form-group2 fieldset_section">
-    <legend class="legend_section"><span style="background-color:white">&nbsp;&nbsp;Documentation&nbsp;&nbsp;</span></legend>
+    <legend class="legend_section"><span style="background-color:white">&nbsp;&nbsp;Definition&nbsp;&nbsp;</span></legend>
 
 <div class="form-group2" style="width:200px">
     <span class="labeldiv">Field name</span>
@@ -203,17 +222,16 @@ if (strlen($section_create) || strlen($term_select) || strlen($term_create)) {
 		<select id="type" name="type" class="form-control form-control-sm section" onchange="typeChange()">'.$opt_types.'</select>
 	</fieldset>
 </div>
-&nbsp;
-<div class="form-group2">
-    <span class="labeldiv">Features</span>
-    <input class="form-control form-control-sm solo" type="text" name="features" id="features" style="width:1050px" value="'.$infos[5].'">
-</div>';
+&nbsp;';
+
+	echo get_feature_form ($infos);
+
 	$display = in_array($infos[4], array('checkbox', 'dropbox')) ? "inline-block" : "none";
 	echo '
 <div class="form-group2" id="listdiv" style="display:'.$display.'">
-	<br>
+    <br>
     <span class="labeldiv">Predefined terms</span>
-    <input class="form-control form-control-sm solo" type="text" name="termlist" id="termlist" style="width:1260px" value="'.$infos[7].'">
+    <input class="form-control form-control-sm solo" type="text" name="termlist" id="termlist" style="width:1260px" placeholder="Predefined terms separated by a comma" value="'.$infos[7].'">
 </div>';
 
 	$opt_after = '<option value="after" selected>After</option><option value="before">Before</option>';
@@ -224,8 +242,7 @@ if (strlen($section_create) || strlen($term_select) || strlen($term_create)) {
 
 	if (strlen($section_create))
 		echo '
-<div class="form-group2" style="width:200px">
-	<br>
+<br><br><div class="form-group2" style="width:200px">
     <span class="labeldiv">Insert</span>
 	<fieldset>
 		<select id="insert" name="insert" class="form-control form-control-sm section">'.$opt_insert.'</select>
@@ -241,8 +258,7 @@ if (strlen($section_create) || strlen($term_select) || strlen($term_create)) {
 
 	if (! strlen($section_create) && strlen($term_create))
 		echo '
-<div class="form-group2" style="width:200px">
-	<br>
+<br><br><div class="form-group2" style="width:200px">
 	<span class="labeldiv">Insert</span>
 	<fieldset>
 		<select id="insert" name="insert" class="form-control form-control-sm section">'.$opt_insert.'</select>
@@ -303,7 +319,7 @@ echo '</form>
 	</div></div>
 	<div style="padding-bottom: 10px;"><div id="caution" name="caution" class="msgbox cautionbox">
 		<div style="margin-left: 2rem; margin-top: 1rem; margin-bottom: 0rem;">
-			<span id="cautionmsg">CAUTION !!!</span></p>
+			<span id="cautionmsg">Caution !!!</span></p>
 		</div>
 	</div></div>
 </div>';
@@ -315,17 +331,14 @@ echo '</form>
 
 do
 {
+
 	if (! isset($_POST['action'])) break;
 
 	$action_post = $_POST['action'];
 
-
 	// Confirmation : Create / Update a Term into a (New) Section
 	if (isset($_POST['confirm']) && $_POST['confirm']=='Yes' && in_array($action_post, $actions))
 	{
-		//echo "<pre>"; print_r($_POST); echo "</pre>";
-
-
 	// == Do some checking ==
 
 		// Check if empty
@@ -504,8 +517,6 @@ do
 
 	if (isset($_POST['confirm']) && $_POST['confirm']=='Yes' && $action_post=='Remove')
 	{
-		//echo "<pre>"; print_r($_POST); echo "</pre>";
-
 		// Init some variables
 		$outTXT = '';
 		$ok_rmline = 0;

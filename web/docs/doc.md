@@ -72,7 +72,7 @@
 
 ### Life cycle step
 
-* This concerns all stages of the data life cycle. Specifies the event happening over the data life cycle that is considered significant enough to document.  The list of terms is imposed by Dataverse. Adding, modifying or deleting them may prevent uploading to the repository. See [DDI -CV](https://ddialliance.org/Specification/DDI-CV/LifecycleEventType_1.0.html). <br>Note: It can be omitted if you don't know what to put.
+* This concerns all stages of the data life cycle. Specifies the event happening over the data life cycle that is considered significant enough to document.  The list of terms is imposed by Dataverse. Adding, modifying or deleting them may prevent uploading to the repository. See [DDI -CV](https://rdf-vocabulary.ddialliance.org/ddi-cv/LifecycleEventType/1.0.2/LifecycleEventType.html). <br>Note: It can be omitted if you don't know what to put.
 
 
 ### License
@@ -165,7 +165,7 @@
 <div class="decal" markdown="1">
 ### Kind of Data
 
-* The type of data included in the files (e.g. survey data, machine-readable text, experimental data tables). The list of terms is imposed by Dataverse. Adding, modifying or deleting them may prevent uploading to the repository. See [DDI-CV](https://ddialliance.org/Specification/DDI-CV/KindOfDataFormat_1.0.html)
+* The type of data included in the files (e.g. survey data, machine-readable text, experimental data tables). The list of terms is imposed by Dataverse. Adding, modifying or deleting them may prevent uploading to the repository.
 
 
 ### Keywords

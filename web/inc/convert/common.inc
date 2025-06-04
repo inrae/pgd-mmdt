@@ -9,9 +9,9 @@ $docFile = 'conf/config_doc.txt';
 
 // temporary files
 $ID = genKEY();
-$doctmplFile = 'tmp/'.$ID.'-2.txt';
-$htmlFile = 'tmp/'.$ID.'.html';
-$html2File = 'tmp/'.$ID.'-2.html';
+$doctmplFile = 'tmp/doc-'.$ID.'.txt';
+$htmlFile = 'tmp/terms-'.$ID.'.html';
+$html2File = 'tmp/doc-'.$ID.'.html';
 
 # Initialise
 $arr_types = array('textbox' => array('autocomplete','min','width'),
@@ -23,6 +23,16 @@ $arr_types = array('textbox' => array('autocomplete','min','width'),
 
 $actions = array('Create','Update');
 
+# Get the HTML select options
+function get_HTML_options($arr, $val_select)
+{
+	$opt_terms='<option value="">---</option>';
+	foreach($arr as $value) {
+		$selected = $value == $val_select ? 'selected' : '';
+		$opt_terms .= '<option value="'.$value.'"'.$selected.'>'.$value.'</option>';
+	}
+	return $opt_terms;
+}
 
 # Get the array for section options
 function get_optSection($sect) {
@@ -36,19 +46,15 @@ function get_optSection($sect) {
 }
 
 # Get the term options array for a specific section
-function get_optTerms($section, $term_select) {
+function get_optTerms($section, $term_select)
+{
 	global $sections;
-	$terms = $sections[$section];
-	$opt_terms='<option value="">---</option>';
-	foreach($terms as $term) {
-		$selected = $term == $term_select ? 'selected' : '';
-		$opt_terms .= '<option value="'.$term.'"'.$selected.'>'.$term.'</option>';
-	}
-	return $opt_terms;
+	return get_HTML_options($sections[$section], $term_select);
 }
 
 # Get documentation for a specific section/term pair
-function get_doc($arrdoc, $section, $term='') {
+function get_doc($arrdoc, $section, $term='')
+{
     $termdetail = array();
     $oksection = $okfield = 0;
 	foreach($arrdoc as $key => $arr) {
@@ -75,8 +81,50 @@ function get_doc($arrdoc, $section, $term='') {
     return $termdetail;
 }
 
+# Get the list of dictionnaries
+function get_dico_array()
+{
+	global $cvdir;
+	$arr_dico = array();
+	// Find dictionaries under the cvlist directory
+	if ($handle = opendir($cvdir)) {
+		while (false !== ($entry = readdir($handle))) {
+			$radical=$cvdir.$entry.'/'.$entry;
+			if (file_exists($radical.'.txt') && file_exists($radical.'_format.txt') && file_exists($radical.'.js'))
+				array_push($arr_dico, $entry);
+		}
+	}
+	closedir($handle);
+	return $arr_dico;
+}
+
+# Get the list of autocomplete scripts based on whether it is typeahead or not
+function get_vocab_array($typeahead=0)
+{
+	$jsdir = 'js/autocomplete';
+	$arr_vocab = array();
+	// Find vocabularies under the vocab directory
+	if ($handle = opendir($jsdir)) {
+		while (false !== ($entry = readdir($handle))) {
+			$path=$jsdir.'/'.$entry;
+			if (! file_exists($path) || ! preg_match('/.js$/', $entry)) continue;
+			$entry = str_replace('.js', '', $entry);
+			if ($typeahead && $entry !== 'template_typeahead') {
+				if (preg_match('/_typeahead/', $entry))
+					array_push($arr_vocab, str_replace('_typeahead', '', $entry));
+			} else {
+				if (!preg_match('/typeahead/', $entry))
+					array_push($arr_vocab, $entry);
+			}
+		}
+	}
+	closedir($handle);
+	return $arr_vocab;
+}
+
 # Saves the modified terminology definition file and tranferts the modification into the termninology documentation file
-function save_and_Finalise ($outTXT) {
+function save_and_Finalise ($outTXT)
+{
 	global $termsFile, $docFile, $doctmplFile, $htmlFile, $html2File;
 
 	$ret='';
