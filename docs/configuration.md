@@ -45,6 +45,12 @@ First, you select an existing section or define one to create, as well as a fiel
 <a href="../images/config2b.png" data-lightbox="fig2b"><img src="../images/config2b.png" width="600px"></a>
 </center>
 
+In particular, support is provided for setting feature attributes as shown below :
+
+<center>
+<a href="../images/config2e.png" data-lightbox="fig2e"><img src="../images/config2e.png" width="600px"></a>
+</center>
+
 <br>
 
 The next step is to entry a description for each newly created field and/or section (**2**). The figure below shows an example of documentation of the new section along with its field. Selecting the section alone without the field allows you to document it. Selecting a field also allows you to document it.
