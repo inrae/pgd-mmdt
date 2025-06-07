@@ -4,8 +4,9 @@
 
 var ROR_API_URL = "https://api.ror.org/organizations?query="
 
-function rorTypeahead () {
-	$('#container .typeahead').typeahead({
+function rorTypeahead ()
+{
+	$('#container .ROR').typeahead({
 		hint: true,
 		highlight: true,
 		minLength: 3

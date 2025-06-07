@@ -2,7 +2,7 @@ var newflg = false;
 var editflg = false;
 var prevalues =[];
 
-let apiHash = { ROR:'rorTypeahead' };  // Typeahead
+let apiHash = { ROR:'rorTypeahead', ORCID:'orcidTypeahead' };  // Typeahead
 
 String.prototype.no_utf8 = function()
 {
@@ -166,18 +166,21 @@ $(document).on('click', '.edit', function()
 	if (!editflg) {
 		$('#searchterm').prop('disabled', true);
 		prevalues =[];
+		firtcell = '';
 		$(this).parent().siblings('td.data').each(function() {
 			var content = ($(this).children('a').length > 0 ) ? $(this).children('a').text() : $(this).html();
+			if ($(this).attr('id')=='col0')  firtcell = content;
 			api = apiArray[$(this).attr('id').match(/\d+/)[0]];
 			if (api.length>0 && Object.keys(apiHash).includes(api)) {  // Typeahead
-				$(this).html('<input class="tdico typeahead" value="' + content + '" />');
+				$(this).html('<input class="tdico typeahead '+api+'" id="Cell'+$(this).attr('id')+'" value="' + content + '" />');
 				(1, eval(apiHash[api]))()
 			}
 			else
-				$(this).html('<input class="tdico" value="' + content + '" />');
+				$(this).html('<input class="tdico" id="Cell'+$(this).attr('id')+'" value="' + content + '" />');
 			prevalues.push(content);
 		});
 		editflg=true
+		select_row(firtcell);
 		$(this).hide();
 		$(this).siblings('.delete').hide();
 		$(this).siblings('.save').show();
@@ -202,13 +205,13 @@ $(document).on('click', '.cancel', function()
 				$(this).contents().unwrap();
 			}
 		} else { // Typeahead
-			$(this).parent().parent().html(prevalues.shift());
+			$(this).parent().parent().html(getItemForTable(prevalues.shift()));
 			$(this).contents().unwrap();
 		}
 	});
 	$( "tr" ).find( "td.data" ).each(function(index, element) {
 		var content = $(element).html();
-		if (content.match('<input class="tdico" value="">')) $(element).html('');
+		if (content.match('<input class="tdico" id="Cellcol[0-9]" value="">')) $(element).html('');
 	});
 	$(this).siblings('.save').hide();
 	$(this).siblings('.cancel').hide();
@@ -217,7 +220,7 @@ $(document).on('click', '.cancel', function()
 	$(this).hide();
 	$('#errvalid').css('display','none');
 	$('#searchterm').prop('disabled', false);
-	$('#savemsg').html('');
+	select_row($('#searchterm').val());
 	editflg=false;
 });
 
@@ -249,14 +252,14 @@ $(document).on('click', '.save', function()
 				$(this).contents().unwrap();
 			} else { // Typeahead
 				val = $(this).next()[0].outerText;
-				if (val.length==0) val=$(this).val();
+				if (val.length==0) val=getItemForTable($(this).val());
 				$(this).parent().parent().html(val);
 				$(this).contents().unwrap();
 			}
 		});
 		$( "tr" ).find( "td.data" ).each(function(index, element) {
 			var content = $(element).html();
-			if (content.match('<input class="tdico" value="">')) $(element).html('');
+			if (content.match('<input class="tdico" id="Cellcol[0-9]" value="">')) $(element).html('');
 		});
 		$(this).siblings('.save').hide();
 		$(this).siblings('.cancel').hide();
@@ -269,7 +272,7 @@ $(document).on('click', '.save', function()
 		saveData();
 	}
 	$('#searchterm').prop('disabled', false);
-	$('#savemsg').html('');
+	select_row($('#searchterm').val());
 });
 
 
@@ -288,7 +291,7 @@ $(document).on('click', '.delete', function()
 		$('#errvalid').css('display','none');
 		editflg=false
 		$('#searchterm').prop('disabled', false);
-		$('#savemsg').html('');
+		select_row($('#searchterm').val());
 		if (!newflg) saveData();
 		newflg=false
 	}
@@ -298,14 +301,15 @@ $(document).on('click', '.delete', function()
 $(document).on('click', '.add, .btn-add', function()
 {
 	var tdcols='';
-	var api_id=-1;
+	var api_ids = [];
 	nbitems += 1;
+	select_row('dfdsffd');
 	for (let i = 0; i < nameArray.length; i++)
 		if (apiArray[i].length>0 && Object.keys(apiHash).includes(apiArray[i])) { // Typeahead
-			tdcols += '<td class="data" id="line'+nbitems+'"><input class="tdico typeahead" value="" /></td>';
-			api_id=i;
+			tdcols += '<td class="data" id="line'+nbitems+'"><input class="tdico typeahead '+apiArray[i]+'" id="Cellcol'+i+'" value="" /></td>';
+			api_ids.push(i);
 		} else
-			tdcols += '<td class="data" id="line'+nbitems+'"><input class="tdico" value="" /></td>';
+			tdcols += '<td class="data" id="line'+nbitems+'"><input class="tdico" id="Cellcol'+i+'" value="" /></td>';
 	tbl=tableToJson(document.getElementById('mytable'),false)
 	$('#container').append('<tr id="line'+tbl.length+'">'+tdcols+'<td><button class="btn save">Save</button><button class="btn edit">Edit</button>&nbsp;<button class="btn delete">Del</button><button class="btn cancel">Cancel</button></td></tr>');
 	$("#tbl-main").animate({ scrollTop: $('#tbl-main').prop("scrollHeight")}, 100);
@@ -315,10 +319,8 @@ $(document).on('click', '.add, .btn-add', function()
 	edit=$(lastCell).find('.edit')[0]; $(edit).hide()
 	newflg=true
 	editflg=true
-	if (api_id!==-1) // Typeahead
-		(1, eval(apiHash[apiArray[api_id]]))()
-
+	if (api_ids.length) // Typeahead
+		api_ids.forEach( (id) => { (1, eval(apiHash[apiArray[id]]))() } )
 	$('#searchterm').prop('disabled', true);
-	$('#savemsg').html('');
 });
 

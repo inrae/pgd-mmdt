@@ -6,8 +6,6 @@
 # Copyright: (c) INRAE - 2022-2023
 #
 
-$upload_mode = (strlen($USER) && $USER === $ADMINGROUP) ? 'inline' : 'none';
-
 # Dictionary name if specified
 $DICOSEL='';
 if (isset($_GET['dico'])) $DICOSEL=$_GET['dico'];
@@ -34,6 +32,8 @@ if ($handle = opendir($cvdir)) {
 	closedir($handle);
 }
 
+$upload_mode = (strlen($USER) && $USER === $ADMINGROUP) ? 'inline' : 'none';
+
 ?>
 
 <!DOCTYPE html>
@@ -47,6 +47,7 @@ if ($handle = opendir($cvdir)) {
 	<link rel="stylesheet" href="<?php echo $PATH ?>css/edit.css">
 	<script  src="<?php echo $PATH ?>js/typeahead.min.js"></script>
 	<script  src="<?php echo $PATH ?>js/ror-typeahead.js"></script>
+	<script  src="<?php echo $PATH ?>js/orcid-typeahead.js"></script>
 	<script  src="<?php echo $PATH ?>js/edit.js"></script>
 
 	<script>history.pushState(null, 'Maggot - Dictionary', 'dictionary');</script>
@@ -113,10 +114,10 @@ do {
 	if (strlen($USER)==0) break;
 
 	# No dictionary or unavailable dictionary
-
 	if (! in_array($DICOSEL, $cvlist) || strlen($DICOSEL)==0 ||  $DICOSEL === '---') break;
+
 	// Get the column number to be sorted from the url otherwise keep the default one
-	$SORTCOL=1; if (isset($_GET['sort'])) $SORTCOL=$_GET['sort'];
+	$SORTCOL = isset($_GET['sort']) ? $_GET['sort'] : 1;
 
 	// Get the search term from the url if specified
 	$searchterm=''; if (isset($_GET['search'])) $searchterm=$_GET['search'];
@@ -165,12 +166,13 @@ do {
 	// Sort dictionary
 	aasort($dico, $SORTCOL);
 
-	// Build the HTML Table
+	// === Build the HTML Table ===
 
 	// thead
 	$var1=$var2=$var3=$var4=''; $sep='';
 	$html_thread = '<thead class="thread-light"><tr>';
 	$url = basename($_SERVER['SCRIPT_NAME']).'?dico='.$DICOSEL.'&sort=';
+
 	$cnt=0;
 	foreach($format as $line) {
 		$req=0; $star='';
@@ -187,13 +189,11 @@ do {
 
 	// tbody
 	$html_tbody ="<tbody id=\"container\">";
-	$lines ='';
 	$cnt=0;
 	foreach($dico as $line) {
 		$html_tbody .="<tr id=\"line".$cnt."\">";
 		$col=0;
 		foreach($line as $info) {
-			$lines .= '<!-- '.$info." -->\n";
 			if (is_string($info) && preg_match('/^http/',$info)) { # URL
 				$html_tbody .= '<td class="data" id=\"col'.$col.'\"><a target=\"_blank\" href=\"'.$info.'\">'.$info.'</a></td>';
 			} elseif (is_string($info) && preg_match('/^\d{4}-\d{4}-\d{4}-\d{3}[0-9|X]$/',$info)) { # ORCID
@@ -216,12 +216,11 @@ do {
 
 	// Write in the HTML document
 	echo "<script>var nameArray = [ ".$var1." ];\nvar requireArray = [ ".$var2." ];\nvar regexArray = [ ".$var3." ];\nvar apiArray = [ ".$var4." ];\nvar nbitems=".$cnt."\n$('#tbl-main').html('".$html_table."'); $('#dico-name').html('".$DICOSEL."');$('#divsearch').css('display','".$dispsearch."');$('#tbl-footer').css('display','block');$('#searchterm').val('".$searchterm."');select_row('".$searchterm."');</script>";
-echo $lines;
+
 	// If admin user then authorize to upload a file to replace the current dictionary
 	if ($USER == $ADMINGROUP)
 		echo "<script>uploadDico.addEventListener('change', function(){ $('#savemsg').html(''); postDico(this.files[0]); })</script>";
 
 } while(0);
-
 
 ?>

@@ -152,6 +152,14 @@ $url_ror = 'https://api.ror.org/organizations?query=';
 
 #------------------------
 
+// ORCID API parameters
+$ORCID_CLIENT_ID = 'APP-81Z4YTAMWUMD62N2';
+$ORCID_CLIENT_SECRET = '45eb72e7-84ef-455a-8016-bfdde2527861';
+$ORCID_OAUTH_URL = 'https://orcid.org/oauth';
+$ORCID_API_URL = 'https://pub.orcid.org/v3.0/csv-search';
+
+#------------------------
+
 // Configuring messaging for sending metadata to data managers
 $sendMail=NULL;
 

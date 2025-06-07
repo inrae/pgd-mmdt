@@ -124,6 +124,24 @@ function tsvToArray($tsv, $header=false)
 	return $tsvArray;
 }
 
+// Convert TSV to JSON
+function csv2json($csv)
+{
+	$lines = explode("\n", trim($csv));
+	$headers = str_getcsv(array_shift($lines));
+	$data = [];
+	foreach ($lines as $line) {
+		$values = str_getcsv($line);
+		$row = [];
+		foreach ($headers as $i => $header) {
+			$row[$header] = $values[$i] ?? '';
+		}
+		$data[] = $row;
+	}
+	$json = json_encode($data, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
+	return $json;
+}
+
 // Read a dictionnary
 function getDicoValues ($diconame)
 {
