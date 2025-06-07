@@ -20,8 +20,9 @@ $parser = new ParsedownExtra();
 echo str_replace('<p>.</p>','<br>', 
      preg_replace('/<a(.*?)href="([^"]+)"(.*?)>/i','<a$1href="$2"$3 target="_blank">',
      str_replace('>@',' target="_blank">',
+     str_replace('@@VER@@',$VERSION,
             $parser->text(file_get_contents($about_file))
-     )));
+     ))));
 
 ?>
 

@@ -62,6 +62,11 @@ $APPURL=$HTTP.$HOSTNAME.'/'.$APPNAME;
 
 #------------------------
 
+$VERSION='1.0';
+if (file_exists('./conf/VERSION')) $VERSION = file_get_contents('./conf/VERSION');
+
+#------------------------
+
 // JSON schema
 $url_schema = $APPURL."/conf/maggot-schema.json";
 

@@ -16,11 +16,24 @@
 -->
 .
 
+## VERSION 
+
+* **Current version** : @@VER@@
+
+.
+
+## CHANGE LOG
+
+* Change log on Github : <https://github.com/inrae/pgd-mmdt/blob/main/CHANGES.md>
+
+.
+
 ## Links
 
 * **Documentation** : <https://inrae.github.io/pgd-mmdt/>
 * **Source code on Github** : <https://github.com/inrae/pgd-mmdt>
 * **Issues tracker** : <https://github.com/inrae/pgd-mmdt/issues>
+
 .
 
 ## Developers
