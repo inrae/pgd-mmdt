@@ -40,7 +40,7 @@ sh ./run passwd <user>
 
 * Thus, we know that the people dictionary must contain 5 columns (last name, first name, institution, [ORCID][5]{:target="_blank"} number and email address) and that some fields are mandatory (last name, first name, institution) and others optional (ORCID number, email address).
 * Each of the fields must respect a format specified by a [regular expression][1]{:target="_blank"} in order to be accepted as valid.
-* Optionally, you can connect an [web API][2]{:target="_blank"} to each of the fields in order to make an entry by autocompletion from a remote register. Currently only ROR ([Research Organization Registry][3]{:target="_blank"}) web API is possible but the mechanism is in place for new extensions.
+* Optionally, you can connect an [web API][2]{:target="_blank"} to each of the fields in order to make an entry by autocompletion from a remote register. Currently only ROR ([Research Organization Registry][3]{:target="_blank"}) and [ORCID][6]{:target="_blank"} are possible but the mechanism is in place for new extensions.
 * The third file, a very simple script written in [JavaScript][4]{:target="_blank"}, defines the way to retrieve the list of names (here by containing the first and last name). Note that the name of the variable must always be identical to that of the dictionary.
 ```js
 var people = [];
@@ -50,6 +50,11 @@ get_dictionary_values('people', merge=[0,' ',1])
 * Below, an example is given when modifying a record. When you click on the *Institute* field which is connected to the ROR web API, the drop-down list of reseach organizations that can correspond in the register appears, if there are any.
 <center>
 <a href="../images/dico1.png" data-lightbox="fig1"><img src="../images/dico1.png" width="600px"></a>
+</center>
+
+* As for the [ORCID API][6]{:target="_blank"}, the search is not done from the target cell but from the last name and first name given in the first two cells. If the search gives nothing, then a second query will be done only from the last name, because of the many possibilities of spelling first names, with or without accents, with hyphens or not in the case of a compound first name, etc.
+<center>
+<a href="../images/dico1b.png" data-lightbox="fig1b"><img src="../images/dico1b.png" width="600px"></a>
 </center>
 
 * **Note**: It is possible to edit dictionaries, by adding an entry for example, and at the same time be able to immediately find this new entry in the metadata entry in the Maggot tool. Indeed each dictionary is reloaded into memory as soon as the corresponding input box is clicked. See <a href="../images/dico6.png" data-lightbox="fig6">an illustration</a>.
@@ -96,5 +101,6 @@ get_dictionary_values('people', merge=[0,' ',1])
 [3]: https://ror.org/
 [4]: https://en.wikipedia.org/wiki/JavaScript
 [5]: https://info.orcid.org/researchers/
+[6]: https://info.orcid.org/documentation/api-tutorials/api-tutorial-searching-the-orcid-registry/
 
 [10]: https://github.com/inrae/pgd-mmdt/tree/main/web/cvlist
