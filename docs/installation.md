@@ -92,7 +92,7 @@ sh ./run <option>
    sh ./run build
    ```
 
-* ... or pull the 3 images from DockerHub (using MongoDB 4.4)
+* ... or pull the 3 images from DockerHub
    ```sh
    sh ./run pull
    ```
