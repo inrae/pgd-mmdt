@@ -4,7 +4,8 @@ LABEL version-date="2022-07-29"
 
 # Install modules
 RUN apt-get update && \
-    apt-get install -y cron python3 python3-pymongo vim && \
+    apt-get install -y cron python3 python3-pymongo vim pip && \
+    pip install requests && \
     rm -rf /var/lib/apt/lists/* && \
     mkdir /pgd && mkdir /json
 
