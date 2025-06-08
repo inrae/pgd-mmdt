@@ -77,7 +77,7 @@ GITREPOS=https://github.com/inrae/${REPOS}.git
 
      # Delete the .git directory
      ( cd $APP; sudo rm -rf ./.git )
-     ( cd $APP; sudo rm -f .gitignore AUTHORS codemeta.json LICENSE README.md )
+     ( cd $APP; sudo rm -f .gitignore AUTHORS codemeta.json LICENSE README.md CHANGES.md )
 
      # Restart APP
      [ $SYSTEMCTL -eq 0 ] && ( cd $APP; sudo sh ./run fullstart )

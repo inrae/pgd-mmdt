@@ -32,6 +32,8 @@
    * Added a confirmation key to generate a private access key file. See [issue #3](https://github.com/inrae/pgd-mmdt/issues/3)
 
    * Fixed issue when scanning while some metadata files have incorrect format. See [issue #2](https://github.com/inrae/pgd-mmdt/issues/2)
+   
+   * It is now possible to check the version of Maggot after an installation. We can access the current version from the About tab and a file named VERSION under the root contains the version number. See [issue #5](https://github.com/inrae/pgd-mmdt/issues/5)
 
 
 * **Release 2.1** - September 2024
