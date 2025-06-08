@@ -25,9 +25,11 @@
 
    * Simplifies the terminology update process. You can now update both terminology definitions and documentation from the web interface. However, this requires administrator privileges.
    
-   * Added the ability to search for an ORCID number from the last name and first name in the people dictionary.
+   * Added the ability to search for an ORCID number from the last name and first name in the people dictionary. See [issues #6](https://github.com/inrae/pgd-mmdt/issues/6)
 
    * Proposes as an option, a SSO layer (https://github.com/djacob65/maggot-sso/wiki). As authentication are manage by the SSO layer, the authorisation are manage by Maggot.
+   
+   * Added a confirmation key to generate a private access key file. See [issues #3](https://github.com/inrae/pgd-mmdt/issues/3)
 
 
 * **Release 2.1** - September 2024
