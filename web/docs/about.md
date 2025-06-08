@@ -24,7 +24,7 @@
 
 ## CHANGE LOG
 
-* Change log on Github : <https://github.com/inrae/pgd-mmdt/blob/main/CHANGES.md>
+* **Change log on Github** : <https://github.com/inrae/pgd-mmdt/blob/main/CHANGES.md>
 
 .
 
