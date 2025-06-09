@@ -67,16 +67,17 @@ def scan_dir(dir,dico):
         if os.path.islink(path):
             continue
         if os.path.isfile(path):
-            if p.match(name):
-                if is_valid_json_file(path) is False:
-                    continue
-                mydata = get_json(path)
-                for key,value in mydata.items():
-                    #print(type(value))
-                    if isinstance(value,list):
-                        if key != 'resources' and key in dico:
-                            dico[key].update(set(mydata[key]))
-        else:
+            if not p.match(name):
+                continue
+            if is_valid_json_file(path) is False:
+                continue
+            mydata = get_json(path)
+            for key,value in mydata.items():
+                #print(type(value))
+                if isinstance(value,list):
+                    if key != 'resources' and key in dico:
+                        dico[key].update(set(mydata[key]))
+        else
             scan_dir(path,dico)
 
 # Reorganizes the data in the master file format (i.e. chkbxdico and listdico) and returns the dictionary

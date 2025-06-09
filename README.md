@@ -13,9 +13,9 @@
 
 ### Funded by:
 
-* INRAE UMR 1202 BIOGECO, Biodiversité Gènes et Communautés
-* INRAE UMR 1332 BFP, Biologie du Fruit & Pathologie
+* INRAE UR BIA-BIBS, Biopolymères Interactions Assemblages
 * INRAE, UR BIA, plate-forme BIBS
+* INRAE UMR BIOGECO, Biodiversité Gènes et Communautés
 
 ### License
 
