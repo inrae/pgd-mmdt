@@ -107,7 +107,7 @@ if( ! isset( $_GET['extern'] ) && ! $EXTERN )
 $menu1 ='<div class="btn-group btn-group-lg align-to-right" role="group">
 	<i class="bi bi-filetype-json" style="color:grey;"></i><a href="./entry" class="search_data"><button type="button" class="btn btn-primary" data-toggle="button" aria-pressed="false" autocomplete="off" name="btn-input">Metadata input</button></a>&nbsp;&nbsp;&nbsp;
 	<i class="bi bi-search" style="color:grey;"></i><a href="./search" class="search_data"><button type="button" class="btn btn-primary" data-toggle="button" aria-pressed="false" autocomplete="off" name="btn-search">Dataset research</button></a>&nbsp;&nbsp;&nbsp;
-	<i class="bi bi-question-octagon-fill" style="color:grey;"></i><a href="./doc/about" class="search_data" target="_blank"><button type="button" class="btn btn-primary" data-toggle="button" aria-pressed="false" autocomplete="off">About</button></a>
+	<i class="bi bi-question-octagon-fill" style="color:grey;"></i><a href="./doc/about" class="search_data"><button type="button" class="btn btn-primary" data-toggle="button" aria-pressed="false" autocomplete="off">About</button></a>
 	</div>';
 
 if( isset( $_GET['extern'] ) || $EXTERN )
