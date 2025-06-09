@@ -52,11 +52,11 @@ some_url:
 
 ### Contacts
 
-* Daniel Jacob ([INRAE UMR BFP][2]{:target="_blank"}) : [daniel.jacob @ inrae.fr][17]{:target="_blank"}
+* Daniel Jacob ([INRAE UR BIA-BIBS][2]{:target="_blank"}) : [daniel.jacob @ inrae.fr][17]{:target="_blank"}
 
 ### Designers / Developers
 
-* Daniel Jacob ([INRAE UMR BFP][2]{:target="_blank"}) | CATI [PROSODIe][4]{:target="_blank"}
+* Daniel Jacob ([INRAE UR BIA-BIBS][2]{:target="_blank"}) | CATI [PROSODIe][4]{:target="_blank"}
 
 * François Ehrenmann ([INRAE UMR BioGECO][1]{:target="_blank"}) | CATI [GEDEOP][5]{:target="_blank"}
 
@@ -83,7 +83,7 @@ some_url:
 *[FAIR]: Findable, Accessible, Interoperable and Reusable
 
 [1]: https://www6.bordeaux-aquitaine.inrae.fr/biogeco_eng/
-[2]: https://eng-bfp.bordeaux-aquitaine.hub.inrae.fr/
+[2]: https://eng-ur-bia.angers-nantes.hub.inrae.fr/
 [3]: https://www.emergin.fr/emergin_eng/
 [4]: https://prosodie.cati.inrae.fr/
 [5]: https://gedeop.cati.inrae.fr/
