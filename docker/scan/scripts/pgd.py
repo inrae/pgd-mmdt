@@ -77,7 +77,7 @@ def scan_dir(dir,dico):
                 if isinstance(value,list):
                     if key != 'resources' and key in dico:
                         dico[key].update(set(mydata[key]))
-        else
+        else:
             scan_dir(path,dico)
 
 # Reorganizes the data in the master file format (i.e. chkbxdico and listdico) and returns the dictionary

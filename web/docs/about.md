@@ -16,13 +16,17 @@
 -->
 .
 
-## VERSION 
+## Maggot, a research data cataloging tool
+
+.
+
+## Version 
 
 * **Current version** : @@VER@@
 
 .
 
-## CHANGE LOG
+## Change Log
 
 * **Change log on Github** : <https://github.com/inrae/pgd-mmdt/blob/main/CHANGES.md>
 
