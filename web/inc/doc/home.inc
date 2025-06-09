@@ -3,7 +3,7 @@
 	$links[1]="https://www.ouvrirlascience.fr/deuxieme-plan-national-pour-la-science-ouverte/";
 	$links[2]="https://entrepot.recherche.data.gouv.fr/";
 	$links[3]="https://www.ouvrirlascience.fr/fair-principles/";
-	$links[4]="https://www.u-picardie.fr/open-science/wp-content/uploads/2021/07/Fiche-Synthetique-Metadonnees.pdf";
+	$links[4]="https://wp.u-picardie.fr/open-science/wp-content/uploads/sites/22/2021/07/Fiche-Synthetique-Metadonnees.pdf";
 	$links[5]="./doc/meta";
 	$links[6]="https://inrae.github.io/pgd-mmdt/tutorial/";
 ?>
