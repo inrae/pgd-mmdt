@@ -21,7 +21,7 @@ except ImportError as e:
 ### functions ###
 
 def is_valid_json_file(filename):
-    path_str = filename.replace("/pgd_data", "")
+    path_str = filename.replace("/pgd_data/", "")
     try:
         with open(filename, 'r', encoding='utf-8') as f:
             content = json.load(f)
@@ -43,7 +43,7 @@ def isJSONValid(path):
     # Load metadata file
     json_data = get_json(path)
 
-    # URL & header
+    # URL & header : see https://assertible.com/json-schema-validation
     url = "https://assertible.com/json"
     headers = {"Content-Type":"application/json; charset=utf-8"}
 
@@ -55,7 +55,7 @@ def isJSONValid(path):
 
     # Default return value
     ret = False
-    path_str = path.replace("/pgd_data", "")
+    path_str = path.replace("/pgd_data/", "")
 
     try:
         # Send the POST request
@@ -88,27 +88,28 @@ def scan_dir(dir):
         if os.path.islink(path):
             continue
         if os.path.isfile(path):
-            if p.match(name):
-                if is_valid_json_file(path) is False:
-                    continue
-                spec = importlib.util.find_spec('requests')
-                if spec is not None and isJSONValid(path) is False:
-                    continue
-                filename.write("\t{")
-                mydata = get_json(path)
-                for key,value in mydata.items():
-                    if isinstance(value,list):
-                        field = "\""+key+"\":"+json.dumps(list(value), ensure_ascii=False)+","
-                        filename.write(field)
-                    else:
-                        value = regex.sub("", value)
-                        value = value.replace('"','\\"')
-                        field = "\""+key+"\":\""+value+"\","
-                        filename.write(field)
-                field = "\"chemin\":\""+path+"\""
-                filename.write(field)
-                field = "},\n"
-                filename.write(field)
+            if not p.match(name):
+                continue
+            if is_valid_json_file(path) is False:
+                continue
+            spec = importlib.util.find_spec('requests')
+            if spec is not None and isJSONValid(path) is False:
+                continue
+            filename.write("\t{")
+            mydata = get_json(path)
+            for key,value in mydata.items():
+                if isinstance(value,list):
+                    field = "\""+key+"\":"+json.dumps(list(value), ensure_ascii=False)+","
+                    filename.write(field)
+                else:
+                    value = regex.sub("", value)
+                    value = value.replace('"','\\"')
+                    field = "\""+key+"\":\""+value+"\","
+                    filename.write(field)
+            field = "\"chemin\":\""+path+"\""
+            filename.write(field)
+            field = "},\n"
+            filename.write(field)
         else:
             scan_dir(path)
 
@@ -119,7 +120,7 @@ p = re.compile('META_.*\.json')
 regex = re.compile(r'[\n\r\t]')
 
 ## Data to be inserted into the database
-db_commands = 'DB_commands.json' # Fichier contenant commandes insertion de données
+db_commands = 'DB_commands.json' # File containing data insertion commands
 filename = open(db_commands, "w")
 filename.write("[\n")
 
@@ -140,10 +141,10 @@ final_command_file.write(chaineTriee)
 final_command_file.close()
 
 if os.path.getsize(db_final_commands)>10:
-    # Get json du fichier à insérer dans la base
+    # Load JSON file to insert into the database
     final_file_dict = get_json(db_final_commands)
 
-    # Creation base + insertion des données
+    # data insertion
     database = urllib.parse.quote_plus(config.database)
     username = urllib.parse.quote_plus(config.username)
     password = urllib.parse.quote_plus(config.password)
@@ -155,6 +156,6 @@ if os.path.getsize(db_final_commands)>10:
     collection_metadata.drop()
     collection_metadata.insert_many(final_file_dict)
 
-    # Fermeture client Mongo
+    # Mongo Client Closure
     client.close()
 

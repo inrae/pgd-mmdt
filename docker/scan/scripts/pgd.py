@@ -5,7 +5,7 @@ import json
 from pprint import pprint
 from pprint import pformat
 
-### fonctions ###
+### functions ###
 
 def is_valid_json_file(filename):
     try:
@@ -20,14 +20,14 @@ def get_json(filename):
         content = json.load(f)
     return content
 
-#transforme un dico clé/set en clé/liste
+# Transforms a key/set dictionary into a key/list
 def set_to_list_dic(mydicset):
     mydiclist = dict()
     for key,value in mydicset.items():
         mydiclist[key] = sorted(value)
     return mydiclist
 
-#charge le dico des options actives et retourne dico clé/set
+# loads the dictionary of active options and returns the key/set dictionary
 def load_active_dic(masterdic):
     activedic = dict()
     for key,value in masterdic['chkbxdico'].items():
@@ -36,14 +36,14 @@ def load_active_dic(masterdic):
         activedic[key] = set(value)
     return activedic
 
-#crée un dico vide clé/set sur la base d'un dico modéle
+# Creates an empty key/set dictionary based on a template dictionary
 def init_dic(modeldic):
     maindic = dict()
     for key,value in modeldic.items():
         maindic[key] = set()
     return maindic
 
-#fusionne dico issu du scan avec celui des options actives
+# Merges the dictionary from the scan with that of the active options
 def merge_dic(activedic, maindic):
     mergeddic = dict()
     for key, value in activedic.items():
@@ -53,12 +53,12 @@ def merge_dic(activedic, maindic):
             mergeddic[key] = set(activedic[key])
     return mergeddic
 
-#supprime les éléments vides d'un dico clé/set
+# Removes empty elements from a key/set dictionary
 def clean_dic(dico):
     for key, value in dico.items():
         dico[key].discard('')
 
-#parcours arborescence et ajoute les données des json dans dico unique
+# Traverses the tree and add json data into a single dictionary
 def scan_dir(dir,dico):
     listedirpgd = os.listdir(dir)
     if '#snapshot' in listedirpgd: listedirpgd.remove('#snapshot')
@@ -79,7 +79,7 @@ def scan_dir(dir,dico):
         else:
             scan_dir(path,dico)
 
-#ré-organise les données au format du fichier master (i.e. chkbxdico et listdico) et retourne le dictionnaire
+# Reorganizes the data in the master file format (i.e. chkbxdico and listdico) and returns the dictionary
 def format_dico(mydico,master):
     formated = dict()
     for key in master:

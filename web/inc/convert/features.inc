@@ -6,9 +6,9 @@ function get_feature_form ($infos)
 	// defaut feature values
 	$arr1 = get_vocab_array($typeahead=0); array_push($arr1, 'typeahead');
 	$arr2 = get_vocab_array($typeahead=1);
-	$min = 3;
 	$autocompl = $ws = $width = $onto = '';
 	$open=0; $rows=6; $cols=30;
+	$min = 3;
 
 	$arr = assocPars($infos[5]);
 //echo "<pre>"; print_r($arr); echo "</pre>";
@@ -23,7 +23,7 @@ function get_feature_form ($infos)
 		$autocompl = isset($arr['autocomplete']) ? $arr['autocomplete'] : 'typeahead';
 		$ws = isset($arr['ws']) ? $arr['ws'] : 'bioportal';
 		$onto = isset($arr['onto']) ? $arr['onto'] : '';
-		$min = isset($arr['min']) ? $arr['min'] : $min;
+		$min = isset($arr['min']) ? $arr['min'] : 3;
 		$display = 'inline-block';
 		if ($autocompl !== '') $display_min = 'inline-block';
 		if ($autocompl == 'typeahead') $display_ws = $display_onto = 'inline-block';
@@ -71,7 +71,7 @@ function get_feature_form ($infos)
 <div class="form-group2" style="width:200px">
 	<span class="labeldiv">Autocomplete</span>
 	<fieldset>
-		<select id="text_autocompl" name="text_autocompl" class="form-control form-control-sm section" onchange="autocomplChange(\'text\')">'.get_HTML_options(get_vocab_array($typeahead=0), $autocompl).'</select>
+		<select id="text_autocompl" name="text_autocompl" class="form-control form-control-sm section" onchange="autocomplChange(\'text\')">'.get_HTML_options(get_vocab_array(), $autocompl).'</select>
 	</fieldset>
 </div>
 &nbsp;

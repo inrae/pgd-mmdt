@@ -35,14 +35,10 @@ function get_HTML_options($arr, $val_select)
 }
 
 # Get the array for section options
-function get_optSection($sect) {
+function get_optSection($sect)
+{
 	global $sections;
-	$opt_sections = '<option value="">---</option>';
-	foreach($sections as $section => $value) {
-		$selected = $section == $sect ? 'selected' : '';
-		$opt_sections .= '<option value="'.$section.'"'.$selected.'>'.$section.'</option>';
-	}
-	return $opt_sections;
+	return get_HTML_options(array_keys($sections), $sect);
 }
 
 # Get the term options array for a specific section

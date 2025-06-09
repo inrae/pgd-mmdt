@@ -389,6 +389,10 @@ do
 				$errormsg = '<i>ws</i> and <i>onto</i> features need to specify the <i>autocomplete</i> one';
 			elseif (isset($arr['autocomplete']) && $arr['autocomplete']=='typeahead' && ( !isset($arr['ws']) || !isset($arr['onto'])))
 				$errormsg = '<i>autocomplete=typeahead</i> implies to specify <i>ws</i> and <i>onto</i> features';
+			elseif (isset($arr['autocomplete']) && $arr['autocomplete']=='typeahead' && ! strlen($arr['ws']))
+				$errormsg = '<i>autocomplete=typeahead</i> implies to select a WS value';
+			elseif (isset($arr['autocomplete']) && $arr['autocomplete']=='typeahead' && ! strlen($arr['onto']))
+				$errormsg = '<i>autocomplete=typeahead</i> implies to specify at least one ontology / thesaurus';
 			elseif (isset($arr['onto']) && preg_match('/[,; ]/', $arr['onto']))
 				$errormsg = 'the separator for the <i>onto</i> feature is the colon (:)';
 			elseif (isset($arr['rows']) && !ctype_digit($arr['rows']))

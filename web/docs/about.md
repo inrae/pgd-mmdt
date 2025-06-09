@@ -36,36 +36,14 @@
 
 .
 
-## Developers
-
-* Daniel Jacob ([@UMR BFP][2]) | CATI [@PROSODIe][4]
-
-* François Ehrenmann ([@UMR BioGECO][1]) | CATI [@GEDEOP][5]
-
-* Philippe Chaumeil ([@UMR BioGECO][1])
-
-.
-
-## Contributors
-
-* Edouard Guitton ([@INRAE Dept. SA][6], [@Emerg'IN][3])
-
-.
-
 ## License
 
-* GNU GENERAL PUBLIC LICENSE Version 3, 29 June 2007 - [GPLv3][11]
+* GNU GENERAL PUBLIC LICENSE Version 3, 29 June 2007 - [GPLv3][5]
 
 
-[1]: https://www6.bordeaux-aquitaine.inrae.fr/biogeco_eng/
-[2]: https://www6.bordeaux-aquitaine.inrae.fr/bfp_eng/
-[3]: https://www.emergin.fr/emergin_eng/
-[4]: https://prosodie.cati.inrae.fr/
-[5]: https://gedeop.cati.inrae.fr/
-[6]: https://www.inrae.fr/en/divisions/sa
-[7]: https://nextcloud.inrae.fr/s/HxEWSybeBW8rzke
-[8]: https://recherche.data.gouv.fr/en
-[9]: https://nextcloud.inrae.fr/s/iLHQYoAZp2i6ij7
-[10]: https://registry.identifiers.org/registry/maggot
-[11]: https://www.gnu.org/licenses/gpl-3.0.html
-
+[1]: https://eng-ur-bia.angers-nantes.hub.inrae.fr/
+[2]: https://eng-ur-bia.angers-nantes.hub.inrae.fr/research-teams/bibs/plateform-members
+[3]: https://www6.bordeaux-aquitaine.inrae.fr/biogeco_eng/
+[4]: https://www.emergin.fr/emergin_eng/
+[5]: https://www.gnu.org/licenses/gpl-3.0.html
+[6]: https://infrastructures-recherche.inrae.fr/en/infrastructure-list/irs/probe
