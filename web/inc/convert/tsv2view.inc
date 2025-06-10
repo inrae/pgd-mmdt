@@ -56,6 +56,12 @@ do
 		file_put_contents($output1, tsv2html($output_txt));
 		$arr_links[$nb_links]=array('Terminology definition file',$PATH.$output1,$terms_url,$PATH.$output_txt,"Terminology", $maggot_doc_url.'definitions/terminology/');
 		$nb_links++;
+		if ($DEV) {
+			$output1b = 'tmp/'.genKEY().'.json';
+			file_put_contents($output1b, tsv2schema($output_txt, $url_schema));
+			$arr_links[$nb_links]=array('JSON Schema file',$PATH.$output1b,$schema_url,$PATH.$output1b,"JSON Schema", $maggot_doc_url.'definitions/terminology/');
+			$nb_links++;
+		}
 	}
 
 	// Read Documentation definition file

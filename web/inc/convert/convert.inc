@@ -253,11 +253,26 @@ function tsv2schema($filename, $url_schema)
 			$val = explode("\t", $line);
 			// resources
 			if ( $val[0]=='resources' ) continue;
-			// checkboite, multiboite
-			if ( in_array($val[5], array("checkbox", "multiselect")) ) {
+			$arr = assocPars($val[6]);
+			// checkbox
+			if ( $val[5]=='checkbox' && $arr['open']==1) {
+				array_push($properties, '"'.$val[0].'": { "title" : "'.$val[7].'", "$ref": "#/definitions/def_array" }');
+			} elseif ( $val[5]=='checkbox' && $arr['open']==0) {
+				$min = in_array($val[0], $required) ? 1 : 0;
+				$arr_terms = explode(',', str_replace(array("\r", "\n"), '', $val[8]));
+				array_push($definitions, '"'.$val[0].'_items": { "type": "string", "enum": ["'.implode('","',$arr_terms).'"]}');
+				array_push($definitions,'"'.$val[0].'_array": { "type": "array", "minItems": '.$min.', "items": { "$ref": "#/definitions/'.$val[0].'_items" } }');
+				array_push($properties, '"'.$val[0].'": { "title" : "'.$val[7].'", "$ref": "#/definitions/'.$val[0].'_array" }');
+			// dropbox
+			} elseif ( $val[5]=='dropbox') {
+				$arr_terms = explode(',', str_replace(array("\r", "\n"), '', $val[8]));
+				array_push($definitions, '"'.$val[0].'_items": { "type": "string", "enum": ["'.implode('","',$arr_terms).'"]}');
+				array_push($properties, '"'.$val[0].'": { "title" : "'.$val[7].'", "$ref": "#/definitions/'.$val[0].'_items" }');
+			// multiselect
+			} elseif ( $val[5]=='multiselect' ) {
 				array_push($properties, '"'.$val[0].'": { "title" : "'.$val[7].'", "$ref": "#/definitions/def_array" }');
 			} else {
-			// listboite, txtboite, areaboite
+			// textbox, areabox
 				array_push($properties, '"'.$val[0].'": { "title" : "'.$val[7].'", "type": "string" }');
 			}
 		}
