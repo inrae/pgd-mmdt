@@ -86,8 +86,7 @@ function load_data(file)
 		} else {
 		// If errors
 			message = 'ERROR: the uploaded file seems not a valid Maggot JSON file.';
-			if( resp.message && resp.message.length>0)
-				message = message + "\n"+resp.message
+			console.log(JSON.stringify(resp))
 			alert(message);
 			return false;
 		}
