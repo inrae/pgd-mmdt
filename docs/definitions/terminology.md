@@ -121,7 +121,7 @@ Same example as above converted to HTML format using Markdown format
 
 [1]: https://github.com/inrae/pgd-mmdt/blob/main/web/js/autocomplete/
 [2]: https://pmb-bordeaux.fr/maggot/metadata/frim1?format=maggot
-[3]: https://pmb-bordeaux.fr/maggot/conf/maggot-schema.json
+[3]: https://json-schema.app/view/%23?url=https%3A%2F%2Fpmb-bordeaux.fr%2Fmaggot%2Fconf%2Fmaggot-schema.json
 [4]: https://en.wikipedia.org/wiki/Metadata_standard
 [5]: https://ddialliance.org/
 [6]: https://ddialliance.org/project/the-dataverse-project
