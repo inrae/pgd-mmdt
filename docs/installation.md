@@ -222,7 +222,9 @@ When updating the application, it is imperative to preserve a whole set of confi
 
 <center>
 <a href="../images/schema.png" data-lightbox="fig0"><img src="../images/schema.png" width="800px"></a><br>
+
 **_Note:_**  See how to do proceed for [configuration steps](../configuration).
+
 </center>
 
 -----
@@ -233,7 +235,9 @@ You can provide access to your data via a [file browser][25]{:target="_blank"}. 
 
 <center>
 <a href="../images/filebrowser_fig1.png" data-lightbox="fig10"><img src="../images/filebrowser_fig1.png" width="800px"></a><br>
+
 See how to do install in [github][26]{:target="_blank"}
+
 </center>
 
 
@@ -251,7 +255,9 @@ The initial choice was not to manage users in the Maggot tool. This choice was m
 
 <center>
 <a href="../images/sso_oauth2.png" data-lightbox="fig11"><img src="../images/sso_oauth2.png" width="800px"></a><br>
- _Keycloak supports OIDC (an extension to OAuth 2.0) and works as an IdP while authenticating a client._
+
+Keycloak supports OIDC (an extension to OAuth 2.0) and works as an IdP while authenticating a client.
+ 
 </center>
 
 
