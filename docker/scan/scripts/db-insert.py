@@ -30,13 +30,14 @@ def is_valid_json_file(filename):
         print("ERROR: "+path_str+f" is not a valid JSON file : {e}")
         return False
 
+
 def get_json(filename):
     with open(filename, 'r', encoding='utf-8') as f:
         content = json.load(f)
     return content
 
-def isJSONValid(path):
 
+def isJSONValid(path):
     # load the JSON schema
     json_schema = get_json('/json/maggot-schema.json')
 
@@ -80,6 +81,7 @@ def isJSONValid(path):
 
     return ret
 
+
 def scan_dir(dir):
     listedirpgd = os.listdir(dir)
     if '#snapshot' in listedirpgd: listedirpgd.remove('#snapshot')
@@ -112,6 +114,7 @@ def scan_dir(dir):
             filename.write(field)
         else:
             scan_dir(path)
+
 
 ############
 ### Prog ###

@@ -23,7 +23,7 @@ $RESMEDIA=1;
 $PRIVATE_ACCESS=0;
 
 // Waiting time while loading vocabulary via Ajax API
-$AJAXWAIT=5000;
+$AJAXWAIT=3000;
 
 #------------------------
 
@@ -166,7 +166,7 @@ $ORCID_API_URL = 'https://pub.orcid.org/v3.0/csv-search';
 #------------------------
 
 // Configuring messaging for sending metadata to data managers
-$sendMail=NULL;
+$SENDMAIL=NULL;
 
 #------------------------
 

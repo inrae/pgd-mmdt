@@ -11,10 +11,79 @@ function display_request($operator, $arr_query) {
 	return $str_query;
 }
 
-// Traitement de la recherche
+
+function searchByKeywords(array $keywords, $operator)
+{
+	global $client;
+
+	// Make sure keywords are lowercase for case-insensitive comparison
+	$keywords = array_map('mb_strtolower', $keywords);
+
+	// Browse all the documents in the collection
+	$filter = [];
+	$options = [];
+	$query = new MongoDB\Driver\Query($filter, $options);
+	$obj = $client->executeQuery('pgd-db.metadata', $query)->toArray();
+	$results = [];
+	foreach($obj as $key => $value) {
+		$score=0;
+		$title = '';
+		$keymatch = [];
+		foreach($value as $key => $val) {
+			if (in_array($key, array("chemin", "profile", "_id"))) continue;
+			if ($key == "title") $title = $val;
+			if (is_string($val)) {
+				$valueLower = mb_strtolower($val);
+				foreach ($keywords as $keyword)
+					if (mb_strpos($valueLower, $keyword) !== false) {
+						$keymatch[$keyword]=1;
+						$score++;
+					}
+			} elseif (is_array($val)) {
+				foreach ($val as $item)
+					if (is_string($item)) {
+						$itemLower = mb_strtolower($item);
+						foreach ($keywords as $keyword)
+							if (mb_strpos($itemLower, $keyword) !== false) {
+								$keymatch[$keyword]=1;
+								$score++;
+							}
+					}
+			}
+		}
+		if ($score>0)
+			if ( $operator==='or' || ($operator==='and' && array_sum($keymatch)==count($keywords)) )
+				$results[$title] = $score;
+	}
+	arsort($results);
+	return $results;
+}
+
+$obj = NULL;
+
+// Simple search 
+if( isset( $_POST['query'] ) ) {
+	$operator = isset($_POST['operator']) ? $_POST['operator'] : 'or' ;
+	$sendType = 2;
+	$keywords = explode(' ', $_POST['query']);
+	$results = searchByKeywords($keywords, $operator);
+
+	// Builds then executes query
+	$titles = array_keys($results);
+	$filter = ['title' => ['$in' => $titles]];
+	$options = array('projection'=>[], 'sort' => ['title' => 1]);
+	foreach($shortview as $key) $options['projection'][$key]=true;
+	$options['projection']['chemin']=true;
+	$query = new MongoDB\Driver\Query($filter, $options);
+	$obj = $client->executeQuery('pgd-db.metadata', $query)->toArray();
+}
+
+// Advanced search 
 if( isset( $_POST['param'] ) ){
 
-	// Clauses where pour requêtes mongo
+	$sendType = 1;
+
+	// Where clauses for Mongo queries
 	$where_search = array();
 	$array_where = array();
 
@@ -27,7 +96,7 @@ if( isset( $_POST['param'] ) ){
 		if (! array_key_exists($field, $checkboite) && ! array_key_exists($field, $multiboite)) array_push($array_freefield, $field);
 	}
 
-	// Décoder le json contenant les données à chercher
+	// Decode the json containing the data to search for
 	$params = json_decode($_POST['param'], TRUE);
 
 	// Options
@@ -35,7 +104,7 @@ if( isset( $_POST['param'] ) ){
 	foreach($shortview as $key)
 		$options['projection'][$key]=true;
 
-	// Parser le json de données saisies
+	// Parse the json of the request data
 	$arr_query = array();
 	foreach($params as $skey => $val) {
 		if ($skey == 'operator') {
@@ -43,7 +112,7 @@ if( isset( $_POST['param'] ) ){
 		}
 		if ($key == '_field_' || $key == '_sortby_') continue;
 		$key = preg_replace('/-\d+$/','',$skey);
-		if (in_array($key, $array_freefield)) { # Champs libres ou balises select
+		if (in_array($key, $array_freefield)) { # Free fields or select tags
 			if( strlen($val) || is_numeric($val) ){
 				if ($val !== 'All'){
 					array_push($arr_query, html_cond($key,$val));
@@ -53,14 +122,14 @@ if( isset( $_POST['param'] ) ){
 				}
 			}
 		} else {
-			# Checkboxes sous la forme 'variable-23' par exemple (.+_\d+)
+			# Checkboxes in the form 'variable-23' for example (.+_\d+)
 			if (preg_match('/(\w+)-\d+/', $skey, $matches) == 1) {
 				array_push($arr_query, html_cond($key,$val));
 				$filter = new MongoDB\BSON\Regex("$val","i");
 				$array_temp = array("$matches[1]" => $filter);
 				array_push($array_where, $array_temp);
 			}
-			# Multi-select sous la forme 'variable-sel'
+			# Multi-select in the form 'variable-sel'
 			if (preg_match('/(\w+)-sel/', $skey, $matches) == 1) {
 				$fkey=preg_replace('/-sel$/','',$skey);
 				$terms = explode(", ", $val);
@@ -87,15 +156,22 @@ if( isset( $_POST['param'] ) ){
 	}
 
 	// Display the query
-	echo display_request($operator, $arr_query);
+	if ($sendType==1)
+		echo display_request($operator, $arr_query);
 
 	// Find all datasets matching the entered criteria
 	$options['projection']['chemin']=true;
 	$query = new MongoDB\Driver\Query($where_search, $options);
 	$obj = $client->executeQuery('pgd-db.metadata', $query)->toArray();
-	$ret = count($obj);
+}
+
+// Affichage 
+if (!is_null($obj))
+{
+//echo "<br><pre>"; print_r($obj); echo "</pre><br>";
 
 	// has the serach failed ?
+	$ret = count($obj);
 	if ($ret <1  ) {
 		echo  '<div class="p-3 mb-2 bg-warning text-black">No datasets available that match your search ...';
 	} else {
@@ -106,7 +182,7 @@ if( isset( $_POST['param'] ) ){
 		$array_view = array(); $cnt=0;
 		foreach($shortview as $key) {
 			//echo'<th>'.get_label($key).'</th>';
-			echo'<th><button style="border: none; background-color: #c2d5e9; color: #585894; font-weight: bold;" onclick="sendData(_field_=\''.$key.'\', _sortby_=signsort['.$cnt.']); signsort['.$cnt.']= -signsort['.$cnt.'];">'.get_label($key).'</button></th>';
+			echo'<th><button style="border: none; background-color: #c2d5e9; color: #585894; font-weight: bold;" onclick="sendData(type='.$sendType.',_field_=\''.$key.'\', _sortby_=signsort['.$cnt.']); signsort['.$cnt.']= -signsort['.$cnt.'];">'.get_label($key).'</button></th>';
 			array_push($array_view, '-'); # default value
 			$cnt++;
 		}

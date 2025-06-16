@@ -11,6 +11,9 @@
 	<script src="js/search.js"></script>
 	<script type="text/javascript">
 	var DEBUG = <? echo isset($_GET['debug']) ? $_GET['debug'] : 0 ?>;
+	var ADVS = <? echo isset($_GET['advsearch']) ? $_GET['advsearch'] : 0 ?>;
+	var advdisp = ADVS ? '' : 'none' ;
+	var simpledisp = ADVS ? 'none' : '' ;
 	var AJAXWAIT = "<? echo isset($_GET['wait']) ? $_GET['wait'] : $AJAXWAIT ?>";
 	var arrItems;
 	var maxField = 10; //Checkboxes increment limitation
@@ -20,13 +23,23 @@
 
 	function $_(id) { return document.getElementById(id) }
 
-	$(document).ready(function() {
-		// Load json from user
-		$('.load_data').click(function() {
-			var file = document.getElementById("selectFiles").files;
-			load_data(file);
-		});
+	advClick = function () {
+		$('.advsearch').css('display', '');
+		$('.simplesearch').css('display', 'none');
+		sendData(type=1);
+	}
 
+	simpleClick = function () {
+		$('.advsearch').css('display', 'none');
+		$('.simplesearch').css('display', '');
+		search2 = $("#search2").val()
+		if (search2.length)
+			sendData(type=2);
+		else
+			sendData(type=1);
+	}
+
+	$(document).ready(function() {
 		// Load 'json/options.json' into the arrItems array
 		$.ajaxSetup({async:false});
 			$.getJSON("conf/options.json", function (data) {
@@ -107,6 +120,10 @@
 		// Init array for sorting short view
 		signsort = Array(shortview.length).fill(1);
 
+		$(".advsearch").css("display", advdisp);
+		$(".simplesearch").css("display", simpledisp);
+		sendData(type=1);
+
 	});
 
 	</script>
@@ -115,17 +132,47 @@
 <body style="zoom: <? echo $ZOOMWP ?>">
 
 <?php echo $header_main ?>
-<br>
+<br><br>
 
 <div id='loadmessage' class="loadmessage"><i>Loading external vocabulary</i>&nbsp;&nbsp;&nbsp;<img src="img/dots-loading.gif" width="30px"></div>
 
+<form id="formsearch2" name="formsearch2" enctype="multipart/form-data" accept-charset="utf-8">
+<section>
+	<table class="simplesearch" style="width: 100%" border="0">
+	<tr><td colspan=2><span class="labeldiv">Selection by Keywords</span></td></tr>
+	<tr><td style="width: 77%">
+		<div class="form-group2" style="width: 100%">
+			<input placeholder="list of keywords" class="form-control form-control-sm solo " type="text" name="search2" id="search2" style="width: 100%">
+		</div>
+	</td><td style="width: 23%">
+		<div class="form-group2 ">
+			<button class="btn btn-primary bi-search" type="submit" aria-label="Search">&nbsp;Search</button>
+			&nbsp;&nbsp;<a class="textlink" onclick="advClick();">Go to Advanced search</a>
+		</div>
+	<tr><td colspan=2>
+        <div class="form-check">
+          <label class="form-check-label">
+            <input type="radio" class="form-check-input" name="operator2" value="and">Mandatory (AND)
+          </label>
+        </div>
+		&nbsp;&nbsp;
+        <div class="form-check">
+          <label class="form-check-label">
+            <input type="radio" class="form-check-input" name="operator2" value="or" checked>Optionnal (OR)
+          </label>
+        </div>
+	</td></tr>
+	<tr><td colspan=2><span class="labeldiv">&nbsp;</span></td></tr></table>
+</section>
+</form>
+
 <form id="formsearch" name="formsearch" enctype="multipart/form-data" accept-charset="utf-8">
 <section>
-    <table border="0">
-    <tr><td id="colitems" style="width: 25%; vertical-align: top;">
+    <table border="0" style="width: 100%">
+    <tr><td class="advsearch" id="colitems" style="width: 25%; vertical-align: top;">
         <div id='fields' style="overflow-y: scroll; max-height: 800px;"></div>
     </td></tr>
-    <tr><td style="vertical-align: top; height: 50px; padding: 20px;">
+    <tr><td class="advsearch" style="vertical-align: top; height: 50px; padding: 20px;">
     <div style="float: left;">
         <h2 class="searchoptions">Search criterion</h2>
         <div style="padding-bottom: 10px;"><em>Indicate here if the fields you have entered are mandatory (search including all fields entered) or if they are optional (search including at least 1 field entered)</em></div>
@@ -142,8 +189,9 @@
         </div>
         <br/><br>
         <center><p>
-            <input type="submit" value="Search" class="btn btn-primary"  style="width: 30%;"/>
-            <input type="reset" value="Empty the form" class="btn btn-primary"  style="width: 30%;"onClick="$('#container').empty(); flip_all('off'); "/>
+            <button type="submit" class="btn btn-primary bi-search"  style="width: 20%;"/>&nbsp;Search</button>
+            <button type="reset" class="btn btn-primary bi-trash"  style="width: 20%;" onClick="$('#container').empty(); flip_all('off'); "/>&nbsp;Empty the form</button>
+			&nbsp;&nbsp;<a class="textlink" onclick="simpleClick();">Go to Simple search</a>
         </p></center>
     </div>
     </td></tr>
@@ -181,7 +229,7 @@
 	$(window).on('load', function(){
 		setTimeout(differ_ajaxtest, 1000)
 		if ( $( window ).width()>maxWidth ) $('#colitems').prop("rowspan", 3);
-		sendData();
+		sendData(type=1);
 	})
 
 	$(window).on('resize', function(){

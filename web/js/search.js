@@ -1,57 +1,74 @@
 var sendDataOk = 0;
 
-function sendData(_field_='title', _sortby_=1)
+function sendData(type=1, _field_='title', _sortby_=1)
 {
-	// Accéder à l'élément form
-	var form = document.getElementById("formsearch");
 	sendDataOk = 1;
 
 	var XHR = new XMLHttpRequest();
 
-	// Lier l'objet FormData et l'élément form puis transformer Formdata en json pour passage à PHP
-	var FD = new FormData(form);
-	var object = {};
-	FD.forEach((value, key) => {object[key] = value});
-	object['_field_'] = _field_;
-	object['_sortby_'] = _sortby_;
-	var json = JSON.stringify(object);
-
-	// Définir ce qui se passe si la soumission s'est opérée avec succès
+	// Define what happens if the submission is successful
 	var divcontainer = document.getElementById("container");
 	XHR.addEventListener("load", function(event) {
 		divcontainer.innerHTML= event.target.responseText;
 		//window.location = (""+window.location).replace(/#[A-Za-z0-9_]*$/,'')+"#results"
 	});
 
-	// Definir ce qui se passe en cas d'erreur
+	// Define what happens if the submission is failed
 	XHR.addEventListener("error", function(event) {
 		alert('Oops! Something went wrong. Try again.');
 	});
 
-	// Configuration de la requête //
+	// Request
 	XHR.open("POST", "view", true); // URL relative OK
-
 	XHR.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 
-	// Les données envoyées sont ce que l'utilisateur a mis dans le formulaire
-	XHR.send('param='+json);
+	// Simple form 
+	if (type==2) {
+		search2 = $.trim($("#search2").val());
+		operator = $('input[name="operator2"]:checked').val();
+		if (DEBUG) console.log('keywords: '+search2+', operator: '+operator)
+		if (search2.length)
+			XHR.send('query='+encodeURIComponent(search2)+'&operator='+operator);
+		else
+			type=1;
+	}
+
+	// Advanced form : Link the FormData object and the form element then transform Formdata into json for passing to PHP
+	if (type==1) {
+		var form = document.getElementById("formsearch");
+		var FD = new FormData(form);
+		var object = {};
+		FD.forEach((value, key) => {object[key] = value});
+		object['_field_'] = _field_;
+		object['_sortby_'] = _sortby_;
+		var json = JSON.stringify(object);	
+		XHR.send('param='+json);
+	}
+
 }
 
 window.addEventListener("load", function ()
 {
-	// Accéder à l'élément form
+	// Support the submit event from the Advanced form
 	var form = document.getElementById("formsearch");
-
-	// et prendre en charge l'événement submit
 	form.addEventListener("submit", function (event) {
 		event.preventDefault();
 		if (sendDataOk==0) {
 			if (!$('input[name=operator]:checked').val()) {
 				alert('You must indicate whether your search fields are mandatory or optional!');
 			} else {
-				sendData();
+				sendData(type=1);
 			}
 		}
 		sendDataOk=0;
 	});
+
+	// Support the submit event from the Simple form
+	var form2 = document.getElementById("formsearch2");
+	form2.addEventListener("submit", function (event) {
+		event.preventDefault();
+		sendData(type=2);
+		sendDataOk=0;
+	});
+
 });

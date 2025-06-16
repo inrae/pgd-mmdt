@@ -15,7 +15,6 @@
 
    * Addition of a "search bar" allowing you to enter a series of keywords in order to perform a search across all fields, in addition to the advanced search by field - as currently in the Maggot application.
 
-
 <br>
 
 ### Summary of past and recent changes

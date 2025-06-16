@@ -12,8 +12,8 @@
 	<script src="js/autocomplete/resourcetypes.js"></script>
 	<script type="text/javascript">
 	var DEBUG = <? echo isset($_GET['debug']) ? $_GET['debug'] : 0 ?>;
-	var SEND = <? echo ! is_null($sendMail) ?>;
 	var AJAXWAIT = "<? echo isset($_GET['wait']) ? $_GET['wait'] : $AJAXWAIT ?>";
+	var SEND = <? echo isset($SENDMAIL['smtpHost']) ? "'".$SENDMAIL['smtpHost']."'" : "''" ?>;
 	var arrItems;
 	var url_schema = '<? echo $url_schema; ?>';
 	var resource_media = '<? echo $RESMEDIA; ?>';
@@ -119,8 +119,6 @@
 
 		// Get "Resources" types
 		if (!listdico.hasOwnProperty('resources') || listdico['resources'].length==0) {
-			//resourcetypes=[];
-			//get_terms_from_bioportal('DATACITE-VOCAB', 'http://purl.org/datacite/v4.4/ResourceTypeGeneral', 'resourcetypes');
 			listdico['resources'] = resourcetypes;
 		}
 
@@ -247,8 +245,8 @@
 
 <form id="submitForm" enctype="multipart/form-data" autocomplete="off" action="#" method="post">
 	<center><p>
-		<input type="submit" value="Generate the metadata file" class="btn btn-primary" style="width: 250px;" />
-		<input type="reset" value="Empty the form" class="btn btn-primary" style="width: 250px;" onclick="window.location.reload();"/>
+		<button type="submit" class="btn btn-primary bi-rocket-takeoff" style="width: 250px;" />&nbsp;Generate the metadata file</button>
+		<button type="reset" class="btn btn-primary bi-trash" style="width: 250px;" onclick="window.location.reload();"/>&nbsp;Empty the form</button>
 	</p></center>
 </form>
 

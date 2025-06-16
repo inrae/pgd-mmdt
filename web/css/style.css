@@ -109,7 +109,7 @@ a, a:visited, a:hover { text-decoration: none; color: #2578cf; }
 }
 
 .loadmessage {
-	padding:5px 0px 50px 50px;
+	padding:10px 10px 10px 10px;
 	background: #fff;
 	position: fixed;
 	top: 120px;
@@ -302,6 +302,11 @@ div.table-responsive {
 .description {
 	color: #194162;;
 	font-size:16px;
+}
+
+.textlink {
+	cursor: pointer;
+	color: #2578cf;
 }
 
 .msgbox {
