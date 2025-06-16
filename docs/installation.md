@@ -233,7 +233,7 @@ You can provide access to your data via a [file browser][25]{:target="_blank"}. 
 
 <center>
 <a href="../images/filebrowser_fig1.png" data-lightbox="fig10"><img src="../images/filebrowser_fig1.png" width="800px"></a><br>
- _See how to do install in [github][26]{:target="_blank"}._
+*See how to do install in [github][26]{:target="_blank"}*
 </center>
 
 
@@ -286,7 +286,6 @@ The initial choice was not to manage users in the Maggot tool. This choice was m
 [25]: https://filebrowser.org/
 [26]: https://github.com/djacob65/maggot-fb
 [27]: https://docs.nginx.com/nginx/admin-guide/web-server/web-server/
-
 
 [30]: https://en.wikipedia.org/wiki/OAuth
 [31]: https://en.wikipedia.org/wiki/Single_sign-on
