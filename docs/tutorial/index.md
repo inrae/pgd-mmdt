@@ -40,7 +40,7 @@ __Metadata Entry__
 : <p>This is the main module allowing the data producer to enter their metadata relating to a dataset. See the corresponding tutorial for [Metadata Entry](describe).</p>
 
 __Search datasets__
-: <p>This module allows users to search datasets based on the associated metadata, to see all the metadata and possibly to have access to the data itself. This obviously assumes that the metadata files have been deposited in the correct directory in the storage space dedicated to data management within your collective. See [Infrastructure](../infrastructure).</p>
+: <p>This module allows users to search datasets based on the associated metadata, to see all the metadata and possibly to have access to the data itself. See the corresponding tutorial for [Search Datasets](search). This obviously assumes that the metadata files have been deposited in the correct directory in the storage space dedicated to data management within your collective. See [Infrastructure](../infrastructure).</p>
 
 __File Browser__
 : <p>This module gives users access to a [file browser][1]{:target="_blank"} provided that the data manager has installed it. See [File Browser](../installation/#file-browser)</p>

@@ -135,6 +135,7 @@ nav:
       - tutorial/index.md
       - Metadata Entry : tutorial/describe.md
       - Metadata File : tutorial/metadata.md
+      - Search Datasets : tutorial/search.md
     - Infrastructure: infrastructure.md
     - Installation: installation.md
     - Definition files:
