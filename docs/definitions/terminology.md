@@ -84,6 +84,9 @@ Example of Maggot JSON file generated based on the same definition file
 
 * [Maggot JSON of the FRIM dataset][2]{:target="_blank"} and its corresponding [JSON-schema][3]{:target="_blank"}
 
+
+As a reminder, a JSON schema serves to define the structure, content, and constraints of JSON data (e.g required fields, data types, default values), ensuring that the data exchanged adheres to an expected format. It thus facilitates data validation, and improves interoperability between components. In the Maggot application, JSON schema is used _i_) when discovering metadata files in the storage space, _ii_) when uploading a JSON file via the web interface. In both cases, In both cases, we rely on the [assertible.com][10]{:target="_blank"} validation API.
+
 <br>
 
 #### Structure of the Terminology documentation file (TSV)
@@ -128,4 +131,4 @@ Same example as above converted to HTML format using Markdown format
 [7]: https://twitter.github.io/typeahead.js/
 [8]: https://skosmos.org/
 [9]: https://ontoportal.org/
-
+[10]: https://assertible.com/json-schema-validation
