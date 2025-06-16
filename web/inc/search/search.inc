@@ -139,7 +139,7 @@
 <form id="formsearch2" name="formsearch2" enctype="multipart/form-data" accept-charset="utf-8">
 <section>
 	<table class="simplesearch" style="width: 100%" border="0">
-	<tr><td colspan=2><span class="labeldiv">Selection by Keywords</span></td></tr>
+	<tr><td colspan=2><span class="labeldiv">Selection by Keywords &nbsp;<a href="<? echo $maggot_doc_url.'tutorial/search/' ?>" target="doc"><i class="bi-question-octagon-fill" style="color: rgb(27, 130, 193); font-size: 12px;" onmouseover="$(this).css('font-size','18px');" onmouseleave="$(this).css('font-size','12px');"></i></a></span></td></tr>
 	<tr><td style="width: 77%">
 		<div class="form-group2" style="width: 100%">
 			<input placeholder="list of keywords" class="form-control form-control-sm solo " type="text" name="search2" id="search2" style="width: 100%">
@@ -207,7 +207,7 @@
 <script>
 	$("[name='btn-search']").removeClass('btn-primary');  $("[name='btn-search']").addClass('menu-select');
 
-	function final_loading() {
+	function final_loading(){
 		if (DEBUG) console.log('--- BEGIN final_loading ...')
 		bioportal_setup();
 		active_autocomplete()
@@ -215,7 +215,7 @@
 		if (DEBUG) console.log('--- END final_loading ...')
 	}
 
-	function differ_ajaxtest() {
+	function differ_ajaxtest(){
 		if($.active > 0) {
 			if (DEBUG) console.log('Wait for AJAX to finish ...')
 			$(document).ajaxStop(function(){ $(document).unbind("ajaxStop"); setTimeout(final_loading,300); });

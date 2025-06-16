@@ -5,6 +5,7 @@ function html_cond($key,$val) {
 	return "<span style=\"color:rgb(47,105,211)\"><b>$skey</b></span><b> &#10153; </b><span style=\"color:rgb(24,114,106)\"><b><i>$val</b></i></span>";
 }
 
+
 function display_request($operator, $arr_query) {
 	$op = "&nbsp;&nbsp;<span style=\"color:rgb(223,66,66)\"><b>".strtoupper(str_replace('$','', $operator))."</b></span>&nbsp;&nbsp;";
 	$str_query = '<p style="font-size: smaller"><b>&#10100;&nbsp;&nbsp;</b>'.implode($op,$arr_query).'<b>&nbsp;&nbsp;&#10101;</b></p>';
@@ -59,12 +60,16 @@ function searchByKeywords(array $keywords, $operator)
 	return $results;
 }
 
+
+// Empty result by default
 $obj = NULL;
 
-// Simple search 
-if( isset( $_POST['query'] ) ) {
-	$operator = isset($_POST['operator']) ? $_POST['operator'] : 'or' ;
+
+// === Simple search ===
+if( isset( $_POST['query'] ) )
+{
 	$sendType = 2;
+	$operator = isset($_POST['operator']) ? $_POST['operator'] : 'or' ;
 	$keywords = explode(' ', $_POST['query']);
 	$results = searchByKeywords($keywords, $operator);
 
@@ -78,9 +83,10 @@ if( isset( $_POST['query'] ) ) {
 	$obj = $client->executeQuery('pgd-db.metadata', $query)->toArray();
 }
 
-// Advanced search 
-if( isset( $_POST['param'] ) ){
 
+// === Advanced search  ===
+if( isset( $_POST['param'] ) )
+{
 	$sendType = 1;
 
 	// Where clauses for Mongo queries
@@ -165,7 +171,8 @@ if( isset( $_POST['param'] ) ){
 	$obj = $client->executeQuery('pgd-db.metadata', $query)->toArray();
 }
 
-// Affichage 
+
+// === Display the result if any ===
 if (!is_null($obj))
 {
 //echo "<br><pre>"; print_r($obj); echo "</pre><br>";
