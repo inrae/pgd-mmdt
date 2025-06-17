@@ -220,7 +220,9 @@ When updating the application, it is imperative to preserve a whole set of confi
 
 ### Architecture diagram
 
-<b><i>Note:</i></b> _See how to do proceed for [configuration steps](../configuration)._
+The architecture diagram shows the modules and their interactions (MongoDB, Web Interface, Metadata File Search), each embedded in a Docker container.
+
+_See how to do proceed for [configuration steps](../configuration)._
 
 <center>
 <a href="../images/schema.png" data-lightbox="fig0"><img src="../images/schema.png" width="800px"></a>
