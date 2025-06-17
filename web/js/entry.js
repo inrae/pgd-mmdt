@@ -23,7 +23,7 @@ function load_data(json)
 	var datetxt = Object.keys(dateboite);
 	var autoarea = Object.keys(areaboite);
 	var textarea = autotxt.concat(autoarea).concat(datetxt);
-	
+
 	// Validation based on JSON schema
 	//indata = this.result;
 	indata = Base64.encode(json);
@@ -33,7 +33,7 @@ function load_data(json)
 			.done(function(outdata) { resp=JSON.parse(outdata); })
 			.fail(function(outdata) { console.log(outdata); });
 	$.ajaxSetup({async:true});
-    if (DEBUG) console.log(resp);
+	if (DEBUG) console.log(resp);
 	// If no errors
 	if (resp.errors && resp.errors.length==0) {
 	//ok=1; if (ok==1) {
@@ -79,14 +79,16 @@ function load_data(json)
 
 		// Resources
 		res=result['resources'];
+		if (DEBUG) console.log(res)
 		for( var i = 1; i <= res.length; ++i ) {
-			if(i>1) add_bouton_r();
+			if(i>1) add_bouton_r(i);
 			document.getElementsByName('resource-f1-'+i)[0].value=res[i-1]['datatype'];
 			document.getElementsByName('resource-f2-'+i)[0].value=res[i-1]['description'];
 			document.getElementsByName('resource-f3-'+i)[0].value=res[i-1]['location'];
 			if (resource_media>0 && res[i-1].hasOwnProperty('media'))
 				document.getElementsByName('resource-f4-'+i)[0].value=res[i-1]['media'];
 		}
+		listboite['resources']['compteur']=res.length;
 	} else {
 	// If errors
 		message = 'ERROR: the uploaded file seems not a valid Maggot JSON file.';
@@ -301,6 +303,13 @@ function generateJSON() {
 		$(form2).css('top', '300px')
 		$(form2).css('left', ($(window).width()/2 - 250)+'px')
 	}
+}
+
+function resetForm(){
+	reset_form();
+	$('#dataset').val('').change();
+	$('.resdiv').remove();
+	listboite['resources']['compteur']=1;
 }
 
 (function() {

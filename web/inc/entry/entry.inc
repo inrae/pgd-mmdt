@@ -52,6 +52,8 @@ if ($ret>0) {
 	var horiztabs = 1;
 	var statusentry=0;
 	var maxWidth=1200;
+	var listboite = '';
+
 	if ( $( window ).width()>maxWidth ) horiztabs = 0;
 
 	function $_(id) { return document.getElementById(id) }
@@ -304,7 +306,7 @@ if ($ret>0) {
 	<br>
 	<center><p>
 		<button type="button" class="btn btn-primary bi-rocket-takeoff" style="width: 250px;" onclick="generateJSON();">&nbsp;Generate the metadata file</button>
-		<button type="reset" class="btn btn-primary bi-trash" style="width: 250px;" onclick="$('#dataset').val('').change();">&nbsp;Empty the form</button>
+		<button type="reset" class="btn btn-primary bi-trash" style="width: 250px;" onclick="resetForm();">&nbsp;Empty the form</button>
 	</p></center>
 	<div id='fields'></div>
 	<p><span style="color:#db0d0d;"><i class="bi-asterisk"></i></span>&nbsp;<i>mandatory fields</i></p>
@@ -320,10 +322,15 @@ if ($ret>0) {
 		nextSibling.innerText = fileName
 		var file = document.getElementById("selectFiles").files;
 		reset_form();
+		$('.resdiv').remove();
+		listboite['resources']['compteur']=1;
 		load_file(file);
 	});
 	// Selecting a Dataset
 	document.getElementById('dataset').addEventListener('change', function() {
+		reset_form();
+		$('.resdiv').remove();
+		listboite['resources']['compteur']=1;
 		load_dataset(this.value)
 	});
 	$("[name='btn-input']").removeClass('btn-primary');  $("[name='btn-input']").addClass('menu-select');
