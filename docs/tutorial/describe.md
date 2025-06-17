@@ -29,7 +29,7 @@ When you enter the metadata entry module you should see a page that looks like t
 
 * All the fields (metadata) to be filled in are distributed between several tabs, also called sections. Each section tries to group together a set of fields relating to the same topic.
 
-* You can reload a previously created metadata file. All form fields will then be initialized with the value(s) defined in the metadata file.
+* You can reload a previously created metadata file either from your external disk or from the data storage space. All form fields will then be initialized with the value(s) defined in the metadata file.
 
 * You must at least complete the mandatory fields marked with a red star.
 

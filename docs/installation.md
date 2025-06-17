@@ -221,11 +221,11 @@ When updating the application, it is imperative to preserve a whole set of confi
 ### Architecture diagram
 
 <center>
-<a href="../images/schema.png" data-lightbox="fig0"><img src="../images/schema.png" width="800px"></a>
-</center><br>
+<a href="../images/schema.png" data-lightbox="fig0"><img src="../images/schema.png" width="800px"></a><br>
+<b><i>Note:</i></b>  <i>See how to do proceed for [configuration steps](../configuration).</i>
+</center>
 
-**_Note:_**  _See how to do proceed for [configuration steps](../configuration)._
-
+<br>
 
 -----
 
@@ -234,11 +234,9 @@ When updating the application, it is imperative to preserve a whole set of confi
 You can provide access to your data via a [file browser][25]{:target="_blank"}. This application must be [installed separately][26]{:target="_blank"} but can be connected to Maggot by specifying the corresponding URL in the [configuration file](../settings/#incconfigconfiginc). Users and their rights are managed in the filebrowser application. Likewise, we can also <a href="../images/filebrowser_fig2.png" data-lightbox="fig2">create links to the data without a password</a>. These links can be usefully specified as external resources in the metadata managed by Maggot.
 
 <center>
-<a href="../images/filebrowser_fig1.png" data-lightbox="fig10"><img src="../images/filebrowser_fig1.png" width="800px"></a>
-</center><br>
-
-_See how to do install in [github][26]{:target="_blank"}_
-
+<a href="../images/filebrowser_fig1.png" data-lightbox="fig10"><img src="../images/filebrowser_fig1.png" width="800px"></a><br>
+<i>See how to do install in [github][26]{:target="_blank"}</i>
+</center>
 
 <br>
 
@@ -254,9 +252,9 @@ The initial choice was not to manage users in the Maggot tool. This choice was m
 
 <center>
 <a href="../images/sso_oauth2.png" data-lightbox="fig11"><img src="../images/sso_oauth2.png" width="800px"></a>
-</center><br>
+<p style="text-align:center;"><i>Keycloak supports OIDC (an extension to OAuth 2.0) and works as an IdP while authenticating a client</i></p>
+</center>
 
-_Keycloak supports OIDC (an extension to OAuth 2.0) and works as an IdP while authenticating a client._
 
 
 <br>
