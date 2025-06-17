@@ -55,5 +55,9 @@
    
    * Added the ability to deposit metadata into repositories like Zenodo or based on Harvard Dataverse.
 
+   * Added the ability to harvest metadata based on the OAI-PMH protocol.
+
+   * Added the ability to export metadata in JSON-LD format
+
    * Proposes as an option, a filebrowser to install separately (https://github.com/djacob65/maggot-fb)
 
