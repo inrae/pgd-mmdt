@@ -84,8 +84,6 @@ some_url:
 
 3. [EMBL-EBI Ontology Lookup Service][20]{:target="_blank"} is a repository for biomedical ontologies that aims to provide a single point of access to the latest ontology versions. You can browse the ontologies through the website as well as programmatically via the OLS API.
 
-Note: we also support the [Terminology Service for NFDI4Health][26]{:target="_blank"} given that it is also based on OLS.
-
 <br>
 
 * Here is, for example, the implementation of the [INRAE Thesaurus][21]{:target="_blank"}, a web service based on [SKOSMOS][6]{:target="_blank"}. The figure below shows in more details how to fill in the definition files linked to the two scripts necessary for implementing the web service :
