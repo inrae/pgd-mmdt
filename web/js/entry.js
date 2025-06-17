@@ -275,7 +275,8 @@ function destroyClickedElement(event)
 	document.body.removeChild(event.target);
 }
 
-function getJsonName() {
+function getJsonName()
+{
 	var jsonName = Math.round(+new Date() / 1000);
 	var labelFile = document.getElementById("inputGroupFile01");
 	var fdata = document.forms["formulaire"];
@@ -292,7 +293,8 @@ function getJsonName() {
 	return jsonName;
 }
 
-function generateJSON() {
+function generateJSON()
+{
 	var fdata = document.forms["formulaire"];
 	var form2 = document.getElementById("saveForm");
 	var jsonName = document.getElementById("jsonName");
@@ -305,14 +307,16 @@ function generateJSON() {
 	}
 }
 
-function resetForm(){
+function resetForm()
+{
 	reset_form();
 	$('#dataset').val('').change();
 	$('.resdiv').remove();
 	listboite['resources']['compteur']=1;
 }
 
-(function() {
+(function()
+{
 	// Generate metadate : Generation of the file in json format
 	document.addEventListener( "DOMContentLoaded", function()
 	{

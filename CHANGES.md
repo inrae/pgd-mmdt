@@ -4,16 +4,15 @@
 ### Developments in the pipeline
 
 
-* **Release 2.3** - before the end of 2025 (_planned_)
+* **Release 2.3** - before the end of 2025
 
-   * "Internal metadata management," i.e that the metadata will be stored in an internal space managed by the Maggot application.
-       * This internal management option will be configured in advance. It will not be possible to mix the two approaches (internal/external).
-       * The metadata form pre-fill feature will include the ability, in addition to the existing option to import an external metadata file, to use an internal metadata file if this option has been selected.
-       * Important: To perform this management, it will be necessary to add a username to the metadata file to keep track of who created it. There are two scenarios, depending on whether Maggot's SSO layer is installed (https://github.com/djacob65/maggot-sso/wiki) or not:
-           * The SSO layer is not installed; in this case, the default username will be "anonymous." And therefore, anyone will be able to modify or overwrite the metadata. So not highly recommended.
-           * The SSO layer is installed and then the "username" will be the login name. Only the user who created the metadata and anyone with "admin" rights will be able to modify the metadata.
+   * Addition of a "search bar" allowing you to enter a series of keywords in order to perform a search across all fields, in addition to the advanced search by field - as currently in the Maggot application (_done_).
 
-   * Addition of a "search bar" allowing you to enter a series of keywords in order to perform a search across all fields, in addition to the advanced search by field - as currently in the Maggot application.
+   * Reloading a metadata file is now possible directly from the data storage space, knowing that reloading can still be done from your own disk (_done_).
+
+   * From the metadata sheet of a dataset, it is now possible to reload it in edit mode (_done_).
+
+   * "Internal metadata management," i.e that the metadata will be stored in an internal space managed by the Maggot application. The implementation are still to be defined, but this internal management will have to be configured in advance as an option; it will not be possible to mix the two approaches (internal/external) (_To do_).
 
 <br>
 
@@ -35,6 +34,8 @@
    * Fixed issue when scanning while some metadata files have incorrect format. See [issue #2](https://github.com/inrae/pgd-mmdt/issues/2)
    
    * It is now possible to check the version of Maggot after an installation. We can access the current version from the About tab and a file named VERSION under the root contains the version number. See [issue #5](https://github.com/inrae/pgd-mmdt/issues/5)
+
+   * Fixed some bugs due to upgrading to PHP 8
 
 
 * **Release 2.1** - September 2024

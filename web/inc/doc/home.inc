@@ -26,7 +26,7 @@
 				var id = $(this).attr('id');
 				$(this).mouseover(function(e) {
 					mouseX = e.pageX;  mouseY = e.pageY;
-					$('#overlay_' + id).css({'top':1.05*mouseY+75,'left':mouseX}).show();
+					$('#overlay_' + id).css({'top':1.05*mouseY+50,'left':mouseX-250}).show();
 				});
 				$(this).mouseout(function() {
 					var id = $(this).attr('id');
