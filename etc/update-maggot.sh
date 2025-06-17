@@ -9,7 +9,6 @@
 # ./docker/scan/scripts/config.py
 # ./web/inc/config/mongodb.inc
 # ./web/inc/config/local.inc
-# ./web/docs/doc.md
 
 # List of directory to be preserved
 # ./web/conf/
@@ -43,13 +42,21 @@ GITREPOS=https://github.com/inrae/${REPOS}.git
   if [ $? -eq 0 ]; then
      # Config
      [ -f $PREV/local.conf ] && sudo cp ./$PREV/local.conf ./$APP/
-     sudo cp ./$PREV/etc/.htpasswd ./$APP/etc/
      sudo cp ./$PREV/docker/scan/scripts/config.py ./$APP/docker/scan/scripts/
      sudo cp ./$PREV/web/inc/config/mongodb.inc ./$APP/web/inc/config/
      [ -f ./$PREV/web/inc/config/local.inc ] && sudo cp ./$PREV/web/inc/config/local.inc ./$APP/web/inc/config/
+
+     # Passwords
+     sudo cp ./$PREV/etc/.htpasswd ./$APP/etc/
+
+     # Metadata configuration files
      sudo cp ./$PREV/web/conf/* ./$APP/web/conf/
+
+     # Cache
      sudo cp -rf ./$PREV/web/cache ./$APP/web/
      sudo chmod -R 777 ./$APP/web/cache
+
+     # cvlist
      sudo rm -rf ./$APP/web/cvlist/*
      sudo cp -rf ./$PREV/web/cvlist/* ./$APP/web/cvlist/
      find $APP/web/cvlist/ -name "*.txt" -a ! -name "*_format.txt" -exec sudo chmod 777 {} \;
@@ -71,7 +78,6 @@ GITREPOS=https://github.com/inrae/${REPOS}.git
      sudo chmod 644 ./$APP/web/inc/mapping/*
 
      # Docs
-     sudo cp ./$PREV/web/docs/doc.md ./$APP/web/docs/
      sudo chmod 775 ./$APP/web/docs/
      sudo chmod 664 ./$APP/web/docs/*
 

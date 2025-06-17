@@ -7,6 +7,7 @@
 # Loading config file
 require_once('inc/config/config.inc');
 include ('inc/header.inc');
+include ('inc/functions/functions.inc');
 include ('inc/entry/entry.inc');
 include ('inc/footer.inc');
 

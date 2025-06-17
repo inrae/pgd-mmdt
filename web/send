@@ -11,7 +11,7 @@ require_once ('inc/functions/functions.inc');
 $RET="0";
 
 do {
-	if (is_null($sendMail) || ! gettype($sendMail)=="array")
+	if (is_null($SENDMAIL) || ! gettype($SENDMAIL)=="array")
 		break;
 
 	include ('inc/functions/sendmail.inc');

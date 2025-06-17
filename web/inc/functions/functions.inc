@@ -39,6 +39,15 @@ function genKEY()
 	return md5(uniqid(rand(),true));
 }
 
+# Executes a database query, then returns an array containing all results
+function dbQueryToArray($filter=[], $options=[])
+{
+	global $client, $database, $collection;
+	$query = new MongoDB\Driver\Query($filter, $options);
+	$obj = $client->executeQuery($database.'.'.$collection, $query)->toArray();
+	return $obj;
+}
+
 # Extract the parameter names from a string of type "par1=value1,par2=value2,par3=value3"
 function extractNames($string)
 {

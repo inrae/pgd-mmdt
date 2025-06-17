@@ -64,7 +64,7 @@ if (isset($_GET['empty'])) {
 }
 
 function getMetadata ($id_metadata) {
-	global $client, $txtboite, $listboite, $checkboite, $multiboite, $dateboite, $areaboite;
+	global $txtboite, $listboite, $checkboite, $multiboite, $dateboite, $areaboite;
 
 	// Options
 	$options = array('projection'=>[]);
@@ -78,8 +78,7 @@ function getMetadata ($id_metadata) {
 
 	// Requête pour récupérer l'ensemble des champs de la table metadata pour ce jeu de donnée
 	$filter = [ 'title' => $id_metadata ];
-	$query = new MongoDB\Driver\Query($filter, $options);
-	$obj = $client->executeQuery('pgd-db.metadata', $query)->toArray();
+	$obj = dbQueryToArray($filter, $options);
 	$ret = count($obj);
 	if ($ret > 0) {
 		$ret = (array)($obj[0]);
@@ -194,8 +193,12 @@ do {
 	// Title + Export JSON
 	$my_html = '<table style="width: 100%;"><tr><td><h2 style="font-size: 24px;"><i class="bi bi-list" style="color:grey; font-size: 20px"></i>&nbsp;'.$title.'</h2></td><td align="right" style="width: 400px;"><div class="btn-group btn-group-lg" role="group"><select style="text-align-last:center;" id="export_sel" name="export_sel" class="form-control form-control-sm export_json" onchange="export_json(\''.$id_metadata.'\',$(this).val());"><option value="0">--- Metadata export ---</option><option value="maggot">Maggot JSON Format</option>';
 
+	// Filebrowser
 	if ($FILEBROWSER)
 		echo "<script>$('#filebrowser').html('<a href=\"".$URL_FILEBROWSER."\" class=\"search_data\" target=\"_blank\"><button type=\"button\" class=\"btn btn-primary\" style=\"max-height: 32px;padding-top: 0.2rem;\" data-toggle=\"button\" aria-pressed=\"false\" autocomplete=\"off\" name=\"btn-search\">File Browser</button></a>');$('#filebrowsercont').css('display','inline-block')</script>";
+
+	// Edit Metadata
+	echo "<script>$('#editlink').html('<a href=\"../entry?dataset=".$id_metadata."\" class=\"search_data\"><button type=\"button\" class=\"btn btn-primary\" style=\"max-height: 32px;padding-top: 0.2rem;\" data-toggle=\"button\" aria-pressed=\"false\" autocomplete=\"off\" name=\"btn-search\">Edit Metadata</button></a>');$('#editcont').css('display','inline-block')</script>";
 
 	$dropselect = ($export_dataverse || $export_zenodo || $export_bloxberg) ? 1 : 0;
 

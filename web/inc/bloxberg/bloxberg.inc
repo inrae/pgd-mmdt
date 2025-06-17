@@ -37,15 +37,15 @@ $options['projection']['title']=true;
 $options['projection'][$maggot_fulltitle]=true;
 $options['projection']['chemin']=true;
 
-// Rechercher tous les jeux de données répondant aux critères saisis
-$query = new MongoDB\Driver\Query(array(), $options);
-$obj = $client->executeQuery('pgd-db.metadata', $query)->toArray();
+// Search all datasets matching the entered criteria
+$obj = dbQueryToArray(array(), $options);
 $ret = count($obj);
 
 $options_dataset='<option value="">---</option>';
 if ($ret>0) {
 	foreach($obj as $arr) {
 		$value = (array)$arr;
+		if (is_accessible ($value)) continue;
 		$array_dataset[$value['title']] = $value['chemin'];
 		$selected='';
 		if ($dataset === $value['title']) $selected='selected';
@@ -66,17 +66,17 @@ if ($ret>0) {
 	<script type="text/javascript">
 	function selectjson(id) {
 		if (id==1) {
-		$('.selectjson1').css('display','flex');
-		$('.selectjson2').css('display','none');
-		$('#jsontype1').addClass('activated');
-		$('#jsontype2').removeClass('activated');
-		$('input[name="jsontype"]').val('1');
+			$('.selectjson1').css('display','flex');
+			$('.selectjson2').css('display','none');
+			$('#jsontype1').addClass('activated');
+			$('#jsontype2').removeClass('activated');
+			$('input[name="jsontype"]').val('1');
 		} else {
-		$('.selectjson1').css('display','none');
-		$('.selectjson2').css('display','flex');
-		$('#jsontype1').removeClass('activated');
-		$('#jsontype2').addClass('activated');
-		$('input[name="jsontype"]').val('2');
+			$('.selectjson1').css('display','none');
+			$('.selectjson2').css('display','flex');
+			$('#jsontype1').removeClass('activated');
+			$('#jsontype2').addClass('activated');
+			$('input[name="jsontype"]').val('2');
 		}
 		$('#errbox').css('display','none');
 	}

@@ -33,10 +33,12 @@
 		$('.advsearch').css('display', 'none');
 		$('.simplesearch').css('display', '');
 		search2 = $("#search2").val()
-		if (search2.length)
+		if (search2.length) {
 			sendData(type=2);
-		else
+		} else {
+			$('#formsearch').trigger("reset");
 			sendData(type=1);
+		}
 	}
 
 	$(document).ready(function() {
@@ -122,8 +124,6 @@
 
 		$(".advsearch").css("display", advdisp);
 		$(".simplesearch").css("display", simpledisp);
-		sendData(type=1);
-
 	});
 
 	</script>
@@ -152,13 +152,13 @@
 	<tr><td colspan=2>
         <div class="form-check">
           <label class="form-check-label">
-            <input type="radio" class="form-check-input" name="operator2" value="and">Mandatory (AND)
+            <input type="radio" class="form-check-input" name="operator2" value="and" checked>Mandatory (AND)
           </label>
         </div>
 		&nbsp;&nbsp;
         <div class="form-check">
           <label class="form-check-label">
-            <input type="radio" class="form-check-input" name="operator2" value="or" checked>Optionnal (OR)
+            <input type="radio" class="form-check-input" name="operator2" value="or">Optionnal (OR)
           </label>
         </div>
 	</td></tr>
@@ -189,7 +189,7 @@
         </div>
         <br/><br>
         <center><p>
-            <button type="submit" class="btn btn-primary bi-search"  style="width: 20%;"/>&nbsp;Search</button>
+            <button type="submit" class="btn btn-primary bi-search"  style="width: 20%;" />&nbsp;Search</button>
             <button type="reset" class="btn btn-primary bi-trash"  style="width: 20%;" onClick="$('#container').empty(); flip_all('off'); "/>&nbsp;Empty the form</button>
 			&nbsp;&nbsp;<a class="textlink" onclick="simpleClick();">Go to Simple search</a>
         </p></center>

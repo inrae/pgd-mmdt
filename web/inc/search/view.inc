@@ -15,19 +15,13 @@ function display_request($operator, $arr_query) {
 
 function searchByKeywords(array $keywords, $operator)
 {
-	global $client;
-
 	// Make sure keywords are lowercase for case-insensitive comparison
 	$keywords = array_map('mb_strtolower', $keywords);
 
 	// Browse all the documents in the collection
-	$filter = [];
-	$options = [];
-	$query = new MongoDB\Driver\Query($filter, $options);
-	$obj = $client->executeQuery('pgd-db.metadata', $query)->toArray();
+	$obj = dbQueryToArray();
 	$results = [];
 	foreach($obj as $key => $value) {
-		$score=0;
 		$title = '';
 		$keymatch = [];
 		foreach($value as $key => $val) {
@@ -36,27 +30,21 @@ function searchByKeywords(array $keywords, $operator)
 			if (is_string($val)) {
 				$valueLower = mb_strtolower($val);
 				foreach ($keywords as $keyword)
-					if (mb_strpos($valueLower, $keyword) !== false) {
+					if (mb_strpos($valueLower, $keyword) !== false)
 						$keymatch[$keyword]=1;
-						$score++;
-					}
 			} elseif (is_array($val)) {
 				foreach ($val as $item)
 					if (is_string($item)) {
 						$itemLower = mb_strtolower($item);
 						foreach ($keywords as $keyword)
-							if (mb_strpos($itemLower, $keyword) !== false) {
+							if (mb_strpos($itemLower, $keyword) !== false)
 								$keymatch[$keyword]=1;
-								$score++;
-							}
 					}
 			}
 		}
-		if ($score>0)
-			if ( $operator==='or' || ($operator==='and' && array_sum($keymatch)==count($keywords)) )
-				$results[$title] = $score;
+		if ( ($operator==='or' && array_sum($keymatch)>0) || ($operator==='and' && array_sum($keymatch)==count($keywords)) )
+			$results[$title] = array_sum($keymatch);
 	}
-	arsort($results);
 	return $results;
 }
 
@@ -79,8 +67,7 @@ if( isset( $_POST['query'] ) )
 	$options = array('projection'=>[], 'sort' => ['title' => 1]);
 	foreach($shortview as $key) $options['projection'][$key]=true;
 	$options['projection']['chemin']=true;
-	$query = new MongoDB\Driver\Query($filter, $options);
-	$obj = $client->executeQuery('pgd-db.metadata', $query)->toArray();
+	$obj = dbQueryToArray($filter, $options);
 }
 
 
@@ -167,8 +154,7 @@ if( isset( $_POST['param'] ) )
 
 	// Find all datasets matching the entered criteria
 	$options['projection']['chemin']=true;
-	$query = new MongoDB\Driver\Query($where_search, $options);
-	$obj = $client->executeQuery('pgd-db.metadata', $query)->toArray();
+	$obj = dbQueryToArray($where_search, $options);
 }
 
 

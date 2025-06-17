@@ -1,3 +1,29 @@
+<?php
+
+$dataset = '';
+if (isset($_GET['dataset'])) $dataset = $_GET['dataset'];
+
+// Search all datasets matching the entered criteria
+$options = array('projection'=>[]);
+$options['projection']['title']=true;
+$options['projection'][$maggot_fulltitle]=true;
+$options['projection']['chemin']=true;
+$obj = dbQueryToArray(array(), $options);
+$ret = count($obj);
+
+$options_dataset='<option value="">---</option>';
+if ($ret>0) {
+	foreach($obj as $arr) {
+		$value = (array)$arr;
+		if (is_accessible ($value)) continue;
+		$selected='';
+		if ($dataset === $value['title']) $selected='selected';
+		$options_dataset .= '<option value="'.$value['title'].'" '.$selected.'>'.$value[$maggot_fulltitle].'</option>';
+	}
+}
+
+?>
+
 <!DOCTYPE html>
 <!-
   Copyright: (c) INRAE - 2022-2023
@@ -14,6 +40,7 @@
 	var DEBUG = <? echo isset($_GET['debug']) ? $_GET['debug'] : 0 ?>;
 	var AJAXWAIT = "<? echo isset($_GET['wait']) ? $_GET['wait'] : $AJAXWAIT ?>";
 	var SEND = <? echo isset($SENDMAIL['smtpHost']) ? "'".$SENDMAIL['smtpHost']."'" : "''" ?>;
+	var dataset = '<? echo $dataset ?>';
 	var arrItems;
 	var url_schema = '<? echo $url_schema; ?>';
 	var resource_media = '<? echo $RESMEDIA; ?>';
@@ -28,6 +55,30 @@
 	if ( $( window ).width()>maxWidth ) horiztabs = 0;
 
 	function $_(id) { return document.getElementById(id) }
+
+	function selectjson(id) {
+		if (id==1) {
+			$('.selectjson1').css('display','flex');
+			$('.selectjson2').css('display','none');
+			$('#jsontype1').addClass('activated');
+			$('#jsontype2').removeClass('activated');
+			$('input[name="jsontype"]').val('1');
+		} else {
+			$('.selectjson1').css('display','none');
+			$('.selectjson2').css('display','flex');
+			$('#jsontype1').removeClass('activated');
+			$('#jsontype2').addClass('activated');
+			$('input[name="jsontype"]').val('2');
+		}
+	}
+
+	function load_dataset(dataset) {
+		$.ajaxSetup({async:false});
+		$.get( "<? echo $APPURL ?>/metadata/"+dataset, { format: 'maggot' } )
+			.done(function(json) { load_data(JSON.stringify(json)); })
+			.fail(function(outdata) { console.log(outdata); });
+		$.ajaxSetup({async:true});
+	}
 
 	$(document).ready(function() {
 
@@ -212,7 +263,14 @@
 	<table style="border:0; padding:0; max-width:1200px; width:100%">
 	<tr><td style="width:10px"><img src="img/arrow-right.png" width="20px" onclick="flip_form('SECTION1')" id="SECTION1img" class="link"> </td><td><span class="sectiontitle">Pre-fill the form</span></td></tr>
 	<tr><td></td><td><div class="flip" id="SECTION1" style="display: none;">
-		<div class="input-group mb-3">
+		<div class="btn-group gr-jsontype" role="group">
+			<button type="button" id="jsontype1" class="btn btn-secondary activated" onclick="selectjson(1);">Internal JSON</button>
+			<button type="button" id="jsontype2" class="btn btn-secondary" onclick="selectjson(2);">External JSON</button>
+		</div><br><br>
+		<div class="input-group mb-3 selectjson1" style="display: flex;">
+		<div class="dataset"><b>&nbsp;&nbsp;Dataset:&nbsp;&nbsp;&nbsp;</b></div><select name="dataset" id="dataset" style="height: 38px;" class="form-control form-control-sm dataset-select"><? echo $options_dataset ?></select>
+		</div> 
+		<div class="input-group mb-3 selectjson2" style="display: none;">
 			<div class="input-group-prepend">
 				<span class="input-group-text">Select a JSON file</span>
 			</div>
@@ -223,7 +281,6 @@
 		</div>
 	</div></td></tr>
 	</table>
-	<br>
 </form>
 
 <!-- Save as JSON -->
@@ -243,15 +300,12 @@
 	</form>
 </div><!-- /div Save as JSON -->
 
-<form id="submitForm" enctype="multipart/form-data" autocomplete="off" action="#" method="post">
-	<center><p>
-		<button type="submit" class="btn btn-primary bi-rocket-takeoff" style="width: 250px;" />&nbsp;Generate the metadata file</button>
-		<button type="reset" class="btn btn-primary bi-trash" style="width: 250px;" onclick="window.location.reload();"/>&nbsp;Empty the form</button>
-	</p></center>
-</form>
-
-
 <form id="formulaire" enctype="multipart/form-data" autocomplete="off" action="#" method="post">
+	<br>
+	<center><p>
+		<button type="button" class="btn btn-primary bi-rocket-takeoff" style="width: 250px;" onclick="generateJSON();">&nbsp;Generate the metadata file</button>
+		<button type="reset" class="btn btn-primary bi-trash" style="width: 250px;" onclick="$('#dataset').val('').change();">&nbsp;Empty the form</button>
+	</p></center>
 	<div id='fields'></div>
 	<p><span style="color:#db0d0d;"><i class="bi-asterisk"></i></span>&nbsp;<i>mandatory fields</i></p>
 </form>
@@ -261,12 +315,16 @@
 <script>
 	// Show file name select for loading : https://www.codeply.com/p/LtpNZllird
 	document.querySelector('.custom-file-input').addEventListener('change',function(e){
-	var fileName = document.getElementById("selectFiles").files[0].name;
-	var nextSibling = e.target.nextElementSibling
-	nextSibling.innerText = fileName
-	var file = document.getElementById("selectFiles").files;
-	reset_form();
-	load_data(file);
+		var fileName = document.getElementById("selectFiles").files[0].name;
+		var nextSibling = e.target.nextElementSibling
+		nextSibling.innerText = fileName
+		var file = document.getElementById("selectFiles").files;
+		reset_form();
+		load_file(file);
+	});
+	// Selecting a Dataset
+	document.getElementById('dataset').addEventListener('change', function() {
+		load_dataset(this.value)
 	});
 	$("[name='btn-input']").removeClass('btn-primary');  $("[name='btn-input']").addClass('menu-select');
 
@@ -299,6 +357,7 @@
 
 	$(window).on('load', function(){
 		setTimeout(differ_ajaxtest, 1000)
+		if (dataset.length) load_dataset(dataset)
 	})
 
 	$(window).on('resize', function(){

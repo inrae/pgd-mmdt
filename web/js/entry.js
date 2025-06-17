@@ -1,99 +1,101 @@
-// Load a user's json
-function load_data(file)
+function load_file(file)
 {
 	if (file.length <= 0) {
 		alert("Please select a file in JSON format !");
 		return false;
 	}
-	
-	var json = new FileReader(); // Reader
-	
+
 	var fr = new FileReader(); // Reader
-	
 	fr.onload = function(e) {
-		var id = "";
-		var tags = Object.keys(checkboite);
-		var lists = Object.keys(listboite);
-		var multisel = Object.keys(multiboite);
-		var autotxt = Object.keys(txtboite);
-		var datetxt = Object.keys(dateboite);
-		var autoarea = Object.keys(areaboite);
-		var textarea = autotxt.concat(autoarea).concat(datetxt);
+		load_data(this.result)
+	}
+	fr.readAsText(file.item(0));
+};
+
+// Load a user's json
+function load_data(json)
+{
+	var id = "";
+	var tags = Object.keys(checkboite);
+	var lists = Object.keys(listboite);
+	var multisel = Object.keys(multiboite);
+	var autotxt = Object.keys(txtboite);
+	var datetxt = Object.keys(dateboite);
+	var autoarea = Object.keys(areaboite);
+	var textarea = autotxt.concat(autoarea).concat(datetxt);
 	
-		// Validation based on JSON schema
-		//indata = this.result;
-		indata = Base64.encode(this.result);
-		resp='';
-		$.ajaxSetup({async:false});
-		$.get( "check", { json: indata } )
-				.done(function(outdata) { resp=JSON.parse(outdata); })
-				.fail(function(outdata) { console.log(outdata); });
-		$.ajaxSetup({async:true});
-        if (DEBUG) console.log(resp);
-		// If no errors
-		if (resp.errors && resp.errors.length==0) {
-		//ok=1; if (ok==1) {
-			var result = JSON.parse(e.target.result);
-			if (DEBUG) console.log(result);
-			allItems = []; checkItems = []; multiItems=[]; listItems=[]; textItems=[];
-			// For each item in the json: assignment of values in the form 
-			$.each(result, function(item, obj) {
-				for (var prop in obj) {
-					// CheckBoxes
-					if (tags.includes(item)) {
-						id = item+`${obj[prop]}`.replace(/ /g,"_");
-						id_info = item+` = ${obj[prop]}`;
-						// Test if the box is present or not in the form
-						if (document.getElementById(id)) {
-							document.getElementById(id).checked=true;
-							if (! checkItems.includes(item)) checkItems.push(item);
-						} else {
-							alert('Please re-enter this value in the corresponding text field of the form : '+id_info);
-						}
-					}
-					// Multi-Select
-					if (multisel.includes(item)) {
-						var element = document.getElementById(item+'-sel')
-						if (element != null) element.value = obj.join(', ');
-						if (! multiItems.includes(item)) multiItems.push(item);
-					}
-					// Lists
-					if (lists.includes(item)) {
-						var element = document.getElementById(item+'_select')
-						if (element != null) element.value = obj;
-						if (! listItems.includes(item)) listItems.push(item);
-					}
-					// Text
-					if (textarea.includes(item)) {
-						document.getElementById(item).value = obj;
-						if (! textItems.includes(item)) textItems.push(item);
+	// Validation based on JSON schema
+	//indata = this.result;
+	indata = Base64.encode(json);
+	resp='';
+	$.ajaxSetup({async:false});
+	$.get( "check", { json: indata } )
+			.done(function(outdata) { resp=JSON.parse(outdata); })
+			.fail(function(outdata) { console.log(outdata); });
+	$.ajaxSetup({async:true});
+    if (DEBUG) console.log(resp);
+	// If no errors
+	if (resp.errors && resp.errors.length==0) {
+	//ok=1; if (ok==1) {
+		var result = JSON.parse(json);
+		if (DEBUG) console.log(result);
+		allItems = []; checkItems = []; multiItems=[]; listItems=[]; textItems=[];
+		// For each item in the json: assignment of values in the form 
+		$.each(result, function(item, obj) {
+			for (var prop in obj) {
+				// CheckBoxes
+				if (tags.includes(item)) {
+					id = item+`${obj[prop]}`.replace(/ /g,"_");
+					id_info = item+` = ${obj[prop]}`;
+					// Test if the box is present or not in the form
+					if (document.getElementById(id)) {
+						document.getElementById(id).checked=true;
+						if (! checkItems.includes(item)) checkItems.push(item);
+					} else {
+						alert('Please re-enter this value in the corresponding text field of the form : '+id_info);
 					}
 				}
-			});
-			allItems['checkbox']=checkItems; allItems['multi-select']=multiItems; allItems['dropbox']=listItems; allItems['textbox']=textItems;
-			if (DEBUG) console.log(allItems)
-
-			// Resources
-			res=result['resources'];
-			for( var i = 1; i <= res.length; ++i ) {
-				if(i>1) add_bouton_r();
-				document.getElementsByName('resource-f1-'+i)[0].value=res[i-1]['datatype'];
-				document.getElementsByName('resource-f2-'+i)[0].value=res[i-1]['description'];
-				document.getElementsByName('resource-f3-'+i)[0].value=res[i-1]['location'];
-				if (resource_media>0 && res[i-1].hasOwnProperty('media'))
-					document.getElementsByName('resource-f4-'+i)[0].value=res[i-1]['media'];
+				// Multi-Select
+				if (multisel.includes(item)) {
+					var element = document.getElementById(item+'-sel')
+					if (element != null) element.value = obj.join(', ');
+					if (! multiItems.includes(item)) multiItems.push(item);
+				}
+				// Lists
+				if (lists.includes(item)) {
+					var element = document.getElementById(item+'_select')
+					if (element != null) element.value = obj;
+					if (! listItems.includes(item)) listItems.push(item);
+				}
+				// Text
+				if (textarea.includes(item)) {
+					document.getElementById(item).value = obj;
+					if (! textItems.includes(item)) textItems.push(item);
+				}
 			}
-		} else {
-		// If errors
-			message = 'ERROR: the uploaded file seems not a valid Maggot JSON file.';
-			console.log(message)
-			console.log(JSON.stringify(resp))
-			alert(message);
-			return false;
+		});
+		allItems['checkbox']=checkItems; allItems['multi-select']=multiItems; allItems['dropbox']=listItems; allItems['textbox']=textItems;
+		if (DEBUG) console.log(allItems)
+
+		// Resources
+		res=result['resources'];
+		for( var i = 1; i <= res.length; ++i ) {
+			if(i>1) add_bouton_r();
+			document.getElementsByName('resource-f1-'+i)[0].value=res[i-1]['datatype'];
+			document.getElementsByName('resource-f2-'+i)[0].value=res[i-1]['description'];
+			document.getElementsByName('resource-f3-'+i)[0].value=res[i-1]['location'];
+			if (resource_media>0 && res[i-1].hasOwnProperty('media'))
+				document.getElementsByName('resource-f4-'+i)[0].value=res[i-1]['media'];
 		}
+	} else {
+	// If errors
+		message = 'ERROR: the uploaded file seems not a valid Maggot JSON file.';
+		console.log(message)
+		console.log(JSON.stringify(resp))
+		alert(message);
+		return false;
 	}
 	
-	fr.readAsText(file.item(0));
 };
 
 // Reset form : Clean the textbox && Uncheck all checkboxes 
@@ -288,11 +290,23 @@ function getJsonName() {
 	return jsonName;
 }
 
+function generateJSON() {
+	var fdata = document.forms["formulaire"];
+	var form2 = document.getElementById("saveForm");
+	var jsonName = document.getElementById("jsonName");
+	var jsonform = toJSONString( fdata );
+	if (check_required(jsonform, required)) {
+		jsonName.value = getJsonName();
+		form2.style.display = 'block';
+		$(form2).css('top', '300px')
+		$(form2).css('left', ($(window).width()/2 - 250)+'px')
+	}
+}
+
 (function() {
 	// Generate metadate : Generation of the file in json format
 	document.addEventListener( "DOMContentLoaded", function()
 	{
-		var form = document.getElementById("submitForm");
 		var form2 = document.getElementById("saveForm");
 		var fdata = document.forms["formulaire"];
 		var jsonName = document.getElementById("jsonName");
@@ -300,17 +314,6 @@ function getJsonName() {
 		var jsonMsg = document.getElementById("jsonMsg");
 		var btnGenerate = document.getElementById("btnGenerate");
 
-		form.addEventListener( "submit", function( e ) {
-			e.preventDefault();
-			var jsonform = toJSONString( fdata );
-			if (check_required(jsonform, required)) {
-				jsonName.value = getJsonName();
-				form2.style.display = 'block';
-				$(form2).css('top', '300px')
-				$(form2).css('left', ($(window).width()/2 - 250)+'px')
-			}
-		}, false);
-	
 		form2.addEventListener( "submit", function( e ) {
 			e.preventDefault();
 			var jsonform = toJSONString( fdata );

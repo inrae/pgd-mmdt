@@ -19,7 +19,7 @@
 
 function getMetadata ($id_metadata='')
 {
-	global $client, $txtboite, $listboite, $checkboite, $multiboite, $areaboite;
+	global $txtboite, $listboite, $checkboite, $multiboite, $areaboite;
 	
 	// Options
 	$options = array('projection'=>[]);
@@ -32,8 +32,7 @@ function getMetadata ($id_metadata='')
 
 	// Requête pour récupérer l'ensemble des champs de la table metadata pour ce jeu de donnée
 	$filter = strlen($id_metadata)>0 ? [ 'title' => $id_metadata ] : array();
-	$query = new MongoDB\Driver\Query($filter, $options);
-	$obj = $client->executeQuery('pgd-db.metadata', $query)->toArray();
+	$obj = dbQueryToArray($filter, $options);
 	$ret = count($obj);
 	if ($ret > 0 ) {
 		$ret = $obj;
@@ -78,11 +77,11 @@ function get_dcterms ($def, $map, $record)
 	$cvlist=array();  // the corresponding cvlist for each dataverse field if applicable
 	$cv=array();
 	$cnt=1;
-	while (strlen($def[$cnt][1])>0) {
+	while (strlen($def[$cnt][1] ?? '')>0) {
 		$arr=$def[$cnt];
 		if (! in_array( $arr[$CF], array_keys($record))) { $cnt++; continue; }
 		// If there is a dico
-		if (strlen($arr[$VS])>0 && preg_match('/^cvlist:([a-zA-Z0-9_]+)/',$arr[$VS], $matches)) {
+		if (strlen($arr[$VS] ?? '')>0 && preg_match('/^cvlist:([a-zA-Z0-9_]+)/',$arr[$VS], $matches)) {
 			$dico=$matches[1];
 			if (! in_array($dico, $cvlist)) {
 				${$dico} = tsvToArray($cvdir.$dico.'/'.$dico.'.txt');
@@ -90,7 +89,7 @@ function get_dcterms ($def, $map, $record)
 			}
 		}
 		// If there is a thesaurus / ontology
-		if (strlen($arr[$VS])>0 && preg_match('/^cv:([a-zA-Z0-9_]+)/',$arr[$VS], $matches)) {
+		if (strlen($arr[$VS] ?? '')>0 && preg_match('/^cv:([a-zA-Z0-9_]+)/',$arr[$VS], $matches)) {
 			$dico=$matches[1];
 			if (! in_array($dico, $cv)) {
 				$idx=find_mapping($map, $dico);
@@ -165,13 +164,15 @@ function get_dcterms ($def, $map, $record)
 			continue;
 		}
 		$xml .= "\n".'<dc:identifier>'.dirname($OAI_BASEURL).'/metadata/'.$record['title'].'</dc:identifier>';
-		$res = $metadata['resources'];
-		for($j=0; $j<count($res); $j++) {
-			if (! isset($res[$j][$arr[$VS]])) continue;
-			$key = $arr[$CT];
-			$value = $res[$j][$arr[$VS]];
-			if (strlen($value)==0 || ! preg_match('/^http*/', $value)) continue;
-			$xml .= "\n".'<'.$key.'>'.$value.'</'.$key.'>';
+		if (isset($metadata['resources'])) {
+			$res = $metadata['resources'];
+			for($j=0; $j<count($res); $j++) {
+				if (! isset($res[$j][$arr[$VS]])) continue;
+				$key = $arr[$CT];
+				$value = $res[$j][$arr[$VS]];
+				if (strlen($value)==0 || ! preg_match('/^http*/', $value)) continue;
+				$xml .= "\n".'<'.$key.'>'.$value.'</'.$key.'>';
+			}
 		}
 	}
 	$xml .= "\n".'<dc:date>'.$date.'</dc:date>';
@@ -428,6 +429,7 @@ do
 		$from = isset($par['from']) ? $par['from'] : $OAI_DATE;
 		$until = isset($par['until']) ? $par['until'] : date("Y-m-d");
 		$records = getMetadata ();
+
 		$LIST = '';
 		if (is_array($records)) for ($k=0; $k<count($records); $k++) {
 			$record = (array)($records[$k]);
@@ -435,6 +437,7 @@ do
 			$datestamp = getDatestamp($record);
 			if ($datestamp>=$from && $datestamp<=$until) {
 				$LIST .= "\n".'<record id="'.$record['title'].'">'."\n".'<header>'."\n".'<identifier>oai:'.$OAI_IDENTIFIER.'::'.$record['title'].'</identifier>'."\n".'  <datestamp>'.$datestamp.'</datestamp>'."\n".'<setSpec>maggot</setSpec>'."\n".'</header>'."\n".'<metadata>'."\n".'<oai_dc:dc '.$OAI_DC_HEADER;
+//echo "<br><pre>"; print_r($record); echo "</pre><br>";
 				$LIST .= get_dcterms($def,$map,$record);
 				$LIST .= "\n".'</oai_dc:dc>'."\n".'</metadata></record>';
 			}

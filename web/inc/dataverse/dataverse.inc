@@ -38,8 +38,7 @@ $options['projection'][$maggot_fulltitle]=true;
 $options['projection']['chemin']=true;
 
 // Rechercher tous les jeux de données répondant aux critères saisis
-$query = new MongoDB\Driver\Query(array(), $options);
-$obj = $client->executeQuery('pgd-db.metadata', $query)->toArray();
+$obj = dbQueryToArray(array(), $options);
 $ret = count($obj);
 
 $options_dataset='<option value="">--- Select a dataset ---</option>';
