@@ -9,6 +9,7 @@
 
 html {
         scroll-behavior: smooth;
+        height: 100%;
 }
 
 body {
@@ -18,15 +19,17 @@ body {
         color:#666;
         background:#ffffff;
         padding:20px;
-        min-height: 100vh;
+        min-height: 100%;
         display: flex;
         flex-direction: column;
         font-family: var(--font-family);
+        position: relative;
 }
 
 footer {
-        margin-top: auto;
-        margin-bottom: -120px;
+        /*margin-top: auto;
+        margin-bottom: -120px;*/
+        position: absolute; bottom: 10px; left: 0; right: 0;
 }
 
 input {
@@ -109,11 +112,10 @@ a, a:visited, a:hover { text-decoration: none; color: #2578cf; }
 }
 
 .loadmessage {
-	padding:10px 10px 10px 10px;
+	color: red;
 	background: #fff;
-	position: fixed;
-	top: 120px;
-	/*right: 0px;*/
+	position: inherit;
+	left: 250px;
 	z-index: 1000;
 }
 

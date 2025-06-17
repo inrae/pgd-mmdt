@@ -132,7 +132,7 @@
 <body style="zoom: <? echo $ZOOMWP ?>">
 
 <?php echo $header_main ?>
-<br><br>
+<br>
 
 <div id='loadmessage' class="loadmessage"><i>Loading external vocabulary</i>&nbsp;&nbsp;&nbsp;<img src="img/dots-loading.gif" width="30px"></div>
 

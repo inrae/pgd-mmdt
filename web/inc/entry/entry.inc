@@ -257,9 +257,9 @@ if ($ret>0) {
 <body style="zoom: <? echo $ZOOMWP ?>">
 
 <?php echo $header_main ?>
+<br>
 
 <div id='loadmessage' class="loadmessage"><i>Loading external vocabulary</i>&nbsp;&nbsp;&nbsp;<img src="img/dots-loading.gif" width="30px"></div>
-<br>
 
 <form enctype="multipart/form-data" autocomplete="off" action="#" method="post">
 	<table style="border:0; padding:0; max-width:1200px; width:100%">
@@ -309,7 +309,7 @@ if ($ret>0) {
 		<button type="reset" class="btn btn-primary bi-trash" style="width: 250px;" onclick="resetForm();">&nbsp;Empty the form</button>
 	</p></center>
 	<div id='fields'></div>
-	<p><span style="color:#db0d0d;"><i class="bi-asterisk"></i></span>&nbsp;<i>mandatory fields</i></p>
+	<p><span style="color:#db0d0d;"><i class="bi-asterisk"></i></span>&nbsp;<i>mandatory fields</i></p><br><br>
 </form>
 
 <br/>
