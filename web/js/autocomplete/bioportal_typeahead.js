@@ -6,7 +6,7 @@
 // Variables used only in this script.
 let bioportal_url='https://bioportal.bioontology.org'
 let bioportal_logo = 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTmvaQl_K9V8g9qv1oywrfUCjBT8_rZXtolGg&s'
-let bioportal_options='/search/json_search/?target_property=name&ontologies='
+let bioportal_options='/search/json_search/?target_property=name'
 let bioportal_limit=99
 
 // BioPortal API with help of Typeahead
@@ -20,8 +20,11 @@ var bioportal_typeahead = function (idName, ontology)
 		limitview : bioportal_limit,
 		async: true,
 		source: function (query, processSync, processAsync) {
-			if (ontology.length>0 && ontology != 'all')  ontology='';
-			url = bioportal_url+bioportal_options+ontology.replace(/:/g,',')+'&q=*'+encodeURIComponent(query)+'*&response=json&callback=?'
+			url = bioportal_url+bioportal_options
+			if (ontology != 'all')
+				url = url + '&ontologies='+ontology.replace(/:/g,',')
+			else
+				url = url + '&q=*'+encodeURIComponent(query)+'*&response=json&callback=?'
 			if (DEBUG) console.log('GET '+url)
 			return $.ajax({
 				url: url,

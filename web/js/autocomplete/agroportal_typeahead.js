@@ -6,7 +6,7 @@
 // Variables used only in this script.
 let agroportal_url='https://agroportal.lirmm.fr'
 let agroportal_logo = 'https://ontoportal.org/images/logo.png'
-let agroportal_options='/search/json_search/?target_property=name&ontologies='
+let agroportal_options='/search/json_search/?target_property=name'
 let agroportal_limit=99
 
 // AgroPortal API with help of Typeahead
@@ -20,8 +20,11 @@ var agroportal_typeahead = function (idName, ontology)
 		limitview : agroportal_limit,
 		async: true,
 		source: function (query, processSync, processAsync) {
-			if (ontology.length>0 && ontology != 'all')  ontology='';
-			url = agroportal_url+agroportal_options+ontology.replace(/:/g,',')+'&q=*'+encodeURIComponent(query)+'*&response=json&callback=?'
+			url = agroportal_url+agroportal_options
+			if (ontology != 'all')
+				url = url + '&ontologies='+ontology.replace(/:/g,',')
+			else
+				url = url + '&q=*'+encodeURIComponent(query)+'*&response=json&callback=?'
 			if (DEBUG) console.log('GET '+url)
 			return $.ajax({
 				url: url,

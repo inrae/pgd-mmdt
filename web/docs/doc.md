@@ -223,6 +223,25 @@
 </div>
 
 .
+## MODEL
+
+* This section is about Model
+
+
+<div class="decal" markdown="1">
+### Species
+
+*  Specifiy the main species 
+
+
+### Organ
+
+*  Organ of the plant
+
+
+</div>
+
+.
 ## OTHER
 
 * This section allows you  to enter miscellious information (protocols, comments, issues, ...)

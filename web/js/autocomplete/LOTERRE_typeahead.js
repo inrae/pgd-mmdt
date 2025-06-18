@@ -22,7 +22,10 @@ var LOTERRE_typeahead = function (idName, thesaurus)
 		limitview : LOTERRE_limit,
 		async: true,
 		source: function (query, processSync, processAsync) {
-			url = LOTERRE_api+thesaurus+'/search?'+LOTERRE_options+'&query=*'+encodeURIComponent(query)+'*'
+			if (thesaurus=='all')
+				url = LOTERRE_api+'search?'+LOTERRE_options+'&query=*'+encodeURIComponent(query)+'*'
+			else
+				url = LOTERRE_api+thesaurus+'/search?'+LOTERRE_options+'&query=*'+encodeURIComponent(query)+'*'
 			if (DEBUG) console.log('GET '+url)
 			return $.ajax({
 				url: url,
@@ -53,7 +56,10 @@ var LOTERRE_typeahead = function (idName, thesaurus)
 				'</div>'
 			].join('\n'),
 			suggestion: function (data) {
-				return '<p>'+data.prefLabel+'</p>';
+				if (thesaurus=='all')
+					return '<p>'+data.prefLabel+'&nbsp;<font color=grey><i>('+data.vocab+')</i></font></p>';
+				else
+					return '<p>'+data.prefLabel+'</p>';
 			}
 		},
 		display: function (data) {

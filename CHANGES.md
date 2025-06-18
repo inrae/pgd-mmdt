@@ -12,6 +12,8 @@
 
    * From the metadata sheet of a dataset, it is now possible to reload it in edit mode (_done_).
 
+   * Regarding the terminology definition, added the possibility to put 'onto=all' in the features to indicate that we wish to query all ontologies or thesauri (_done_).
+
    * "Internal metadata management," i.e that the metadata will be stored in an internal space managed by the Maggot application. The implementation are still to be defined, but this internal management will have to be configured in advance as an option; it will not be possible to mix the two approaches (internal/external) (_To do_).
 
 <br>
