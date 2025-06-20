@@ -23,8 +23,7 @@ var bioportal_typeahead = function (idName, ontology)
 			url = bioportal_url+bioportal_options
 			if (ontology != 'all')
 				url = url + '&ontologies='+ontology.replace(/:/g,',')
-			else
-				url = url + '&q=*'+encodeURIComponent(query)+'*&response=json&callback=?'
+			url = url + '&q=*'+encodeURIComponent(query)+'*&response=json&callback=?'
 			if (DEBUG) console.log('GET '+url)
 			return $.ajax({
 				url: url,

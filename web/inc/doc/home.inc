@@ -1,7 +1,7 @@
 <?php
 	$links[0]="https://www.ouvrirlascience.fr/dmp-opidor-outil-pour-faciliter-la-redaction-de-plans-de-gestion-de-donnees/";
 	$links[1]="https://www.ouvrirlascience.fr/deuxieme-plan-national-pour-la-science-ouverte/";
-	$links[2]="https://entrepot.recherche.data.gouv.fr/";
+	$links[2]="https://recherche.data.gouv.fr/";
 	$links[3]="https://www.ouvrirlascience.fr/fair-principles/";
 	$links[4]="https://wp.u-picardie.fr/open-science/wp-content/uploads/sites/22/2021/07/Fiche-Synthetique-Metadonnees.pdf";
 	$links[5]="./doc/meta";
