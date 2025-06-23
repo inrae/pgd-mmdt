@@ -44,7 +44,7 @@ _See a short [Presentation][11]{:target="_blank"} and [Poster][12]{:target="_bla
 ### Overview of the different stages of metadata management
 
 <center><img src="./images/overview_steps.png" width="600px"><br>
-**_Note:_**  _The step numbers indicated in the figure correspond to the different points developed below_
+<b><i>Note:</i></b>  <i>The step numbers indicated in the figure correspond to the different points developed below</i>
 </center>
 
 
