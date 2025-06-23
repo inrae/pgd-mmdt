@@ -131,4 +131,4 @@ See <a href="<? echo $links[6]; ?>" target="_blank">Quick tutorial</a>.
 ?>
 </section>
 
-<br/>
+<br/><br/><br/><br/>

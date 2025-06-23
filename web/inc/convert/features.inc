@@ -51,7 +51,7 @@ function get_feature_form ($infos)
 </div>
 <div id="feature_onto" class="form-group2" style="width:575px; display: '.$display_onto.'">
 	<span class="labeldiv">Ontologies</span>
-	<input class="form-control form-control-sm solo" type="text" name="onto" id="onto" style="width:575px" placeholder="ontology list separated by a colon" value="'.$onto.'">
+	<input class="form-control form-control-sm solo" type="text" name="onto" id="onto" style="width:575px" placeholder="ontology list separated by a colon or simply the keyword \'all\'" value="'.$onto.'">
 </div>
 </div>';
 

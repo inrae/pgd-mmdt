@@ -4,7 +4,7 @@
 // Simply 1) change all 'VO' occurrences to the name of the new portal; 2) change the URL, logo and options according to the new portal.
 
 // Variables used only in this script.
-let VO_api = 'https://consultation.vocabulaires-ouverts.inrae.fr/rest/v1/'
+let VO_api = 'https://consultation.vocabulaires-ouverts.inrae.fr/rest/v1'
 let VO_options = 'lang=en&type=skos:Concept&parent=&group='
 let VO_logo = 'https://vocabulaires-ouverts.inrae.fr/wp-content/uploads/sites/50/2022/09/cropped-logo-VOINRAE-267x66.png'
 let VO_limit = 1000
@@ -23,10 +23,9 @@ var VO_typeahead = function (idName, thesaurus)
 		limitview : VO_limit,
 		async: true,
 		source: function (query, processSync, processAsync) {
-			if (thesaurus=='all')
-				url = VO_api+'search?'+VO_options+'&query=*'+encodeURIComponent(query)+'*'
-			else
-				url = VO_api+thesaurus+'/search?'+VO_options+'&query=*'+encodeURIComponent(query)+'*'
+			url = VO_api
+			if (thesaurus != 'all') url = url + '/' + thesaurus
+			url = url+'/search?'+VO_options+'&query=*'+encodeURIComponent(query)+'*'
 			if (DEBUG) console.log('GET '+url)
 			return $.ajax({
 				url: url,

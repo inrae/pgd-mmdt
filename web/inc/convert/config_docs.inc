@@ -234,4 +234,7 @@ if (isset($_POST['confirm']) && $_POST['confirm']=='Yes') {
 
 	} 
 }
+
+echo "<br><br>";
+
 ?>

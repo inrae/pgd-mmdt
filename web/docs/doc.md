@@ -239,6 +239,11 @@
 *  Organ of the plant
 
 
+### Factor
+
+* Specify a group factor
+
+
 </div>
 
 .

@@ -4,7 +4,7 @@
 // Simply 1) change all 'LOTERRE' occurrences to the name of the new portal; 2) change the URL, logo and options according to the new portal.
 
 // Variables used only in this script.
-let LOTERRE_api = 'https://loterre.istex.fr/rest/v1/'
+let LOTERRE_api = 'https://loterre.istex.fr/rest/v1'
 let LOTERRE_options = 'lang=en&type=skos:Concept&parent=&group='
 let LOTERRE_logo = 'https://loterre.istex.fr/images//istex.png'
 let LOTERRE_limit = 1000
@@ -22,10 +22,9 @@ var LOTERRE_typeahead = function (idName, thesaurus)
 		limitview : LOTERRE_limit,
 		async: true,
 		source: function (query, processSync, processAsync) {
-			if (thesaurus=='all')
-				url = LOTERRE_api+'search?'+LOTERRE_options+'&query=*'+encodeURIComponent(query)+'*'
-			else
-				url = LOTERRE_api+thesaurus+'/search?'+LOTERRE_options+'&query=*'+encodeURIComponent(query)+'*'
+			url = LOTERRE_api
+			if (thesaurus != 'all')	url = url + '/' + thesaurus
+			url = url+'/search?'+LOTERRE_options+'&query=*'+encodeURIComponent(query)+'*'
 			if (DEBUG) console.log('GET '+url)
 			return $.ajax({
 				url: url,

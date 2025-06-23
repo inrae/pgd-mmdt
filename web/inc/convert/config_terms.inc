@@ -68,6 +68,7 @@ require_once('inc/convert/features.inc');
 		$('#lblconfirm').text('Are you sure you want to update the terminoly definition file ?');
 		$('#action').val(value);
 		showdiv('confirmation');
+		hidediv('errbox');
 	}
 
 	clickReset = function() {
@@ -331,6 +332,8 @@ echo '</form>
 
 do
 {
+	$errormsg = '';
+	$ok_action = 0;
 
 	if (! isset($_POST['action'])) break;
 
@@ -342,7 +345,6 @@ do
 	// == Do some checking ==
 
 		// Check if empty
-		$errormsg = '';
 		$arr_empty = array();
 		if (!strlen($term)) array_push($arr_empty, 'Field name');
 		if (!strlen($label)) array_push($arr_empty, 'Field Label');
@@ -422,11 +424,7 @@ do
 			$errormsg = 'You must choose a term to insert the new one';
 
 		// Come out if some errors
-		if (strlen($errormsg)) {
-			$htmloutput="ERROR: ".addslashes($errormsg);
-			echo "<script>$('#errbox').css('display','block'); $('#errboxmsg').html('".$htmloutput."');</script>";
-			break;
-		}
+		if (strlen($errormsg)) break;
 
 
 	// == Insert / Update the Term into the Terminology definition file ==
@@ -495,23 +493,15 @@ do
 			// if condition was not found to insert / update the new line
 			if (!$ok_newline) {
 				$errormsg = 'Conditions was not found to insert / update the new line !?';
-				$htmloutput="ERROR: ".addslashes($errormsg);
-				echo "<script>$('#errbox').css('display','block'); $('#errboxmsg').html('".$htmloutput."');</script>";
 				break;
 			}
 
-			$ret = save_and_Finalise ($outTXT);
-			if (strlen($ret)) {
-				$htmloutput="ERROR: ".addslashes($ret);
-				echo "<script>$('#errbox').css('display','block'); $('#errboxmsg').html('".$htmloutput."');</script>";
-				break;
-			}
+			$errormsg = save_and_Finalise ($outTXT);
+			if (strlen($errormsg)) break;
 
 			$successmsg = 'the new line has been insert / update. View the <a href="'.$PATH.$htmlFile.'" target="_blank">terminology definition file</a> and the <a href="'.$PATH.$html2File.'" target="_blank">terminology documentation file</a>';
-			$htmloutput1="SUCESS: ".addslashes($successmsg);
-			$htmloutput2="CAUTION: Don\'t forget to restart the Maggot application in command line mode on the server to take into account the modification in the terminology definition file";
-			echo "<script>$('#successresp').css('display','block'); $('#successmsg').html('".$htmloutput1."'); $('#caution').css('display','block'); $('#cautionmsg').html('".$htmloutput2."'); $('#action1').css('display','none'); $('#action2').css('display','none'); $('#confirmation').css('display','none'); $('#action3').css('display','inline-block');</script>";
 
+			$ok_action = $ok_newline;
 		}  while(0);
 		break;
 	}
@@ -547,25 +537,32 @@ do
 			// if condition was not found to insert / update the new line
 			if (!$ok_rmline) {
 				$errormsg = 'Conditions was not found to remove the field !?';
-				$htmloutput="ERROR: ".addslashes($errormsg);
-				echo "<script>$('#errbox').css('display','block'); $('#errboxmsg').html('".$htmloutput."');</script>";
 				break;
 			}
 
-			$ret = save_and_Finalise ($outTXT);
-			if (strlen($ret)) {
-				$htmloutput="ERROR: ".addslashes($ret);
-				echo "<script>$('#errbox').css('display','block'); $('#errboxmsg').html('".$htmloutput."');</script>";
-				break;
-			}
+			$errormsg = save_and_Finalise ($outTXT);
+			if (strlen($errormsg)) break;
 
 			$successmsg = 'the field <i>'.$term.'</i> has been remove from the section <i>'.$section.'</i>. View the <a href="'.$PATH.$htmlFile.'" target="_blank">terminology definition file</a>';
-			$htmloutput1="SUCESS: ".addslashes($successmsg);
-			$htmloutput2="CAUTION: Don\'t forget to restart the Maggot application in command line mode on the server to take into account the modification in the terminology definition file";
-			echo "<script>$('#successresp').css('display','block'); $('#successmsg').html('".$htmloutput1."'); $('#caution').css('display','block'); $('#cautionmsg').html('".$htmloutput2."'); $('#action1').css('display','none'); $('#action2').css('display','none'); $('#confirmation').css('display','none'); $('#action3').css('display','inline-block');</script>";
 
+			$ok_action = $ok_rmline;
 		}  while(0);
 		break;
 	}
 
 } while(0);
+
+if (! $ok_action && strlen($errormsg)) {
+	$htmloutput="ERROR: ".addslashes($errormsg);
+	echo "<script>$('#errbox').css('display','block'); $('#errboxmsg').html('".$htmloutput."');</script>";
+}
+
+if ($ok_action && strlen($successmsg) && ! strlen($errormsg)) {
+	$htmloutput1="SUCESS: ".addslashes($successmsg);
+	$htmloutput2="CAUTION: Don\'t forget to restart the Maggot application in command line mode on the server to take into account the modification in the terminology definition file";
+	echo "<script>$('#successresp').css('display','block'); $('#successmsg').html('".$htmloutput1."'); $('#caution').css('display','block'); $('#cautionmsg').html('".$htmloutput2."'); $('#action1').css('display','none'); $('#action2').css('display','none'); $('#confirmation').css('display','none'); $('#action3').css('display','inline-block');</script>";
+}
+
+echo "<br><br>";
+
+?>
