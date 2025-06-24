@@ -177,13 +177,13 @@ function tsv2json($filename, &$outjson)
 			//checkdico
 			if ( $val[5]=='checkbox' && ! array_key_exists($val[0], $checkdico) ) {
 				$checkdico[$val[0]]= [];
-				$str_dico = str_replace("\n", '', str_replace("\r\n", '', preg_replace('/, ?/','@',utf8_enc($val[8]))));
+				$str_dico = str_replace('---', '-', str_replace(array("\r", "\n"), '', preg_replace('/, ?/','@',utf8_enc($val[8]))));
 				foreach ( explode('@',$str_dico) as $value ) array_push( $checkdico[$val[0]], $value );
 			}
 			//listdico && resources
 			if ( ($val[5]=='dropbox' || $val[0]=='resources') && ! array_key_exists($val[0], $listdico) ) {
 				$listdico[$val[0]]=[];
-				$str_dico = str_replace("\n", '', str_replace("\r\n", '', preg_replace('/, ?/','@',utf8_enc($val[8]))));
+				$str_dico = str_replace('---', '-', str_replace(array("\r", "\n"), '', preg_replace('/, ?/','@',utf8_enc($val[8]))));
 				foreach ( explode('@',$str_dico) as $value ) array_push( $listdico[$val[0]], $value );
 			}
 		}
@@ -253,27 +253,31 @@ function tsv2schema($filename, $url_schema)
 			$val = explode("\t", $line);
 			// resources
 			if ( $val[0]=='resources' ) continue;
+			// Process some columns : features, label, predefined terms
 			$arr = assocPars($val[6]);
+			$label = str_replace(array("\r", "\n"), '', $val[7]);
+			if (in_array($val[5], array('checkbox','dropbox'))) {
+				$arr_terms = explode(',', str_replace('---', '-', str_replace(', ', ',', str_replace(array("\r", "\n"), '', utf8_enc($val[8])))));
+				#$arr_terms = array_filter($arr_terms, function ($value) { return !preg_match('/^-/',$value); });
+			}
 			// checkbox
 			if ( $val[5]=='checkbox' && $arr['open']==1) {
-				array_push($properties, '"'.$val[0].'": { "title" : "'.$val[7].'", "$ref": "#/definitions/def_array" }');
+				array_push($properties, '"'.$val[0].'": { "title" : "'.$label.'", "$ref": "#/definitions/def_array" }');
 			} elseif ( $val[5]=='checkbox' && $arr['open']==0) {
 				$min = in_array($val[0], $required) ? 1 : 0;
-				$arr_terms = explode(',', str_replace(array("\r", "\n"), '', $val[8]));
 				array_push($definitions, '"'.$val[0].'_items": { "type": "string", "enum": ["'.implode('","',$arr_terms).'"]}');
 				array_push($definitions,'"'.$val[0].'_array": { "type": "array", "minItems": '.$min.', "items": { "$ref": "#/definitions/'.$val[0].'_items" } }');
-				array_push($properties, '"'.$val[0].'": { "title" : "'.$val[7].'", "$ref": "#/definitions/'.$val[0].'_array" }');
+				array_push($properties, '"'.$val[0].'": { "title" : "'.$label.'", "$ref": "#/definitions/'.$val[0].'_array" }');
 			// dropbox
 			} elseif ( $val[5]=='dropbox') {
-				$arr_terms = explode(',', str_replace(array("\r", "\n"), '', $val[8]));
 				array_push($definitions, '"'.$val[0].'_items": { "type": "string", "enum": ["'.implode('","',$arr_terms).'"]}');
-				array_push($properties, '"'.$val[0].'": { "title" : "'.$val[7].'", "$ref": "#/definitions/'.$val[0].'_items" }');
+				array_push($properties, '"'.$val[0].'": { "title" : "'.$label.'", "$ref": "#/definitions/'.$val[0].'_items" }');
 			// multiselect
 			} elseif ( $val[5]=='multiselect' ) {
-				array_push($properties, '"'.$val[0].'": { "title" : "'.$val[7].'", "$ref": "#/definitions/def_array" }');
+				array_push($properties, '"'.$val[0].'": { "title" : "'.$label.'", "$ref": "#/definitions/def_array" }');
 			} else {
 			// textbox, areabox
-				array_push($properties, '"'.$val[0].'": { "title" : "'.$val[7].'", "type": "string" }');
+				array_push($properties, '"'.$val[0].'": { "title" : "'.$label.'", "type": "string" }');
 			}
 		}
 		// resources

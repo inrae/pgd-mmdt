@@ -413,6 +413,8 @@ do
 		if (!strlen($errormsg) && strlen($termlist)>0) {
 			if (preg_match('/[@={}()~#&\"\'%$!:;\\[\\]]/',$termlist))
 				$errormsg = 'the Predefined terms contains one or more special characters.';
+			elseif (preg_match('/---/',$termlist))
+				$termlist = str_replace('---','-',$termlist);
 		}
 
 		// Check insert section
@@ -563,6 +565,6 @@ if ($ok_action && strlen($successmsg) && ! strlen($errormsg)) {
 	echo "<script>$('#successresp').css('display','block'); $('#successmsg').html('".$htmloutput1."'); $('#caution').css('display','block'); $('#cautionmsg').html('".$htmloutput2."'); $('#action1').css('display','none'); $('#action2').css('display','none'); $('#confirmation').css('display','none'); $('#action3').css('display','inline-block');</script>";
 }
 
-echo "<br><br>";
+echo "<br><br><br>";
 
 ?>

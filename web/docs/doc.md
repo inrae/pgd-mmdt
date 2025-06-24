@@ -223,25 +223,251 @@
 </div>
 
 .
-## MODEL
+## RICE EXPERIMENT
 
-* This section is about Model
+* This section allows you to define ... 
 
 
 <div class="decal" markdown="1">
-### Species
+### Trial Description
 
-*  Specifiy the main species 
-
-
-### Organ
-
-*  Organ of the plant
+*  
 
 
-### Factor
+### Recurrent
 
-* Specify a group factor
+*  
+
+
+    *  **yes** :   
+
+    *  **no** :   
+
+### Frequency (if reccurent)
+
+*  
+
+
+    *  **daily** :   
+
+    *  ** monthly** :   
+
+    *  ** quarterly** :   
+
+    *  ** annually** :   
+
+### Start Date (if not recurrent)
+
+*  
+
+
+### End Date (if not recurrent)
+
+*  
+
+
+### Type
+
+*  
+
+
+    *  **single site** :   
+
+    *  ** multi site** :   
+
+### Design
+
+*  
+
+
+    *  **single factor** :   
+
+    *  ** multi factor** :   
+
+### Rice Data
+
+*  
+
+
+* If an item does not appear in the choices proposed, it is possible to enter it manually in the field provided for this purpose. Create a line for each new item to be added.
+
+### Grain
+
+*  
+
+
+    *  **yes** :   
+
+    *  **no** :   
+
+### Grain Quality
+
+*  
+
+
+    *  **---** :   
+
+    *  **amylose_content** :   
+
+    *  ** chawlkiness** :   
+
+    *  ** mineral_concentration** :   
+
+    *  ** sensory** :   
+
+    *  ** milling_yield** :   
+
+    *  ** head_rice_recovery** :   
+
+### Disease
+
+*  
+
+
+    *  **yes** :   
+
+    *  **no** :   
+
+### Disease Incidence
+
+*  
+
+
+### Pest
+
+*  
+
+
+    *  **yes** :   
+
+    *  **no** :   
+
+### Pest Incidence
+
+*  
+
+
+### Farmers Appreciation
+
+*  
+
+
+### Environment Data
+
+*  
+
+
+* If an item does not appear in the choices proposed, it is possible to enter it manually in the field provided for this purpose. Create a line for each new item to be added.
+
+### Agronomic Practice
+
+*  
+
+
+    *  **conventional** :   
+
+    *  ** no_tillage** :   
+
+    *  ** conservation_agriculture** :   
+
+    *  ** organic_farming** :   
+
+    *  ** intercropping** :   
+
+### Water Management
+
+*  
+
+
+    *  **irrigated** :   
+
+    *  ** rainfed_lowland** :   
+
+    *  ** rainfed_upland** :   
+
+    *  ** deepwater** :   
+
+### Germplasm
+
+*  
+
+
+</div>
+
+.
+## GEOSPATIAL
+
+* This section allows you to define ... 
+
+
+<div class="decal" markdown="1">
+### Country / Nation
+
+*  
+
+
+### State / Province
+
+*  
+
+
+### City
+
+*  
+
+
+### Other
+
+*  
+
+
+### Geographic Unit
+
+*  
+
+
+### Westernmost (Left) Longitude
+
+*  
+
+
+### Easternmost (Right) Longitude
+
+*  
+
+
+### Northernmost (Top) Latitude
+
+*  
+
+
+### Southernmost (Bottom) Latitude
+
+*  
+
+
+### Climate
+
+*  
+
+
+</div>
+
+.
+## CIRAD
+
+* This section allows you to define ... 
+
+
+<div class="decal" markdown="1">
+### Filieres Agrist
+
+*  
+
+
+### CTS
+
+*  
 
 
 </div>
