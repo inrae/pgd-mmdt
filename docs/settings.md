@@ -68,7 +68,6 @@ RESMEDIA | Gives the possibility of putting a MINE type on each resource in the 
 TITLE | Title to display in main banner | Metadata management
 FILEBROWSER | Indicates whether the file browser is used. This assumes it is installed. | 0
 URL_FILEBROWSER | File browser URL. It can be absolute or relative. | /fb/
-APPNAME | Name given in the URL to access the web interface. | maggot
 dataverse_urls | Array of Dataverse repository URLs where you can upload metadata and data | -
 zenodo_urls | Array of Zenodo repository URLs where you can upload metadata and data | -
 SERVER_URL | Default Dataverse repository URL | https://entrepot.recherche.data.gouv.fr
