@@ -68,7 +68,13 @@ if (file_exists('./conf/VERSION')) $VERSION = file_get_contents('./conf/VERSION'
 #------------------------
 
 // JSON schema
-$url_schema = $APPURL."/conf/maggot-schema.json";
+if (php_sapi_name() !== 'cli') {
+	$url_schema = $APPURL."/conf/maggot-schema.json";
+} else {
+	$HOST='localhost';
+	if (file_exists('conf/HOST')) $HOST=str_replace("\n", '', file_get_contents("conf/HOST"));
+	$url_schema = 'http:://'.$HOST."/conf/maggot-schema.json";
+}
 
 // Dataverse URL
 $dataverse_urls = array('https://demo.recherche.data.gouv.fr',
