@@ -190,6 +190,9 @@ When updating the application, it is imperative to preserve a whole set of confi
    ```sh
    #!/bin/bash
 
+   # Hostname of the Website
+   HOST=pmb-bordeaux.fr
+
    # Local HTTP Port for web application
    WEB_PORT=8088
 
