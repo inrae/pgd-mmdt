@@ -8,6 +8,7 @@
 
 * See Documentation : https://inrae.github.io/pgd-mmdt/
 
+* See the [CHANGES](https://github.com/inrae/pgd-mmdt/blob/main/CHANGES.md) file to see what's new
 
 ------
 

@@ -45,20 +45,9 @@ $URL_FAIR="https://scholar.harvard.edu/files/mercecrosas/files/fairdata-datavers
 
 #------------------------
 
-// Get http protocol
-$HTTP = 'http://';
-if (isset($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROTO'] == 'https')
-   $HTTP = 'https://';
-
 // Get the URL of the application
-$HOSTNAME='localhost';
-$APPNAME='maggot';
-if (isset($_SERVER['HTTP_HOST']) && strlen($_SERVER['HTTP_HOST']))
-   $HOSTNAME=$_SERVER['HTTP_HOST'];
-if (isset($_SERVER['HTTP_X_APP_NAME']) && strlen($_SERVER['HTTP_X_APP_NAME']))
-   $APPNAME=$_SERVER['HTTP_X_APP_NAME'];
-
-$APPURL=$HTTP.$HOSTNAME.'/'.$APPNAME;
+$APPURL = 'http://localhost/maggot';
+if (file_exists('conf/HOST')) $APPURL=str_replace("\n", '', file_get_contents("conf/HOST"));
 
 #------------------------
 
@@ -68,10 +57,7 @@ if (file_exists('./conf/VERSION')) $VERSION = file_get_contents('./conf/VERSION'
 #------------------------
 
 // JSON schema
-$HOST = php_sapi_name() === 'cli' ? 'http://localhost/maggot' : $APPURL;
-if (php_sapi_name() === 'cli' && file_exists('conf/HOST'))
-	$HOST=str_replace("\n", '', file_get_contents("conf/HOST"));
-$url_schema = $HOST.'/conf/maggot-schema.json';
+$url_schema = $APPURL.'/conf/maggot-schema.json';
 
 // Dataverse URL
 $dataverse_urls = array('https://demo.recherche.data.gouv.fr',
@@ -95,8 +81,7 @@ $ZENODO_API_TOKEN='';
 $COMMUNITIES='';
 
 // OAI-PMH
-$OAI_HTTP = 'http';
-$OAI_BASEURL=$OAI_HTTP.'://'.$APPURL.'/oai';
+$OAI_BASEURL=str_replace('https', 'http', $APPURL).'/oai';
 $OAI_EMAIL='pfmb-bordeaux@inra.fr';
 $OAI_IDENTIFIER='pmb-bordeaux.fr';
 $OAI_SET='maggot';

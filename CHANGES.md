@@ -13,7 +13,9 @@
 
 * **Release 2.3** -  June 2025 (_current_)
 
-   * **Note** : This release requires rebuilding or pulling docker containers.
+   * **Note** : It is recommended for this release to rebuild or pull Docker containers.
+
+   * **Important**: Starting with this release, to bypass web server configuration, the base URL must be specified during configuration. So you must specify it in the "_run_" file or, even better, in the "_local.conf_" file.
 
    * Addition of a "search bar" allowing you to enter a series of keywords in order to perform a search across all fields, in addition to the advanced search by field - as currently in the Maggot application.
 
