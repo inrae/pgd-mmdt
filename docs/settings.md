@@ -106,7 +106,7 @@ This file contains the essential parameters to be set before any use.
 
 |Parameter | Description | Default value
 ------------ | ------------- | ------------ 
-HOST | Hostname of the Website | localhost
+BASE_URL | Base URL of the Website | http://localhost/maggot
 WEB_PORT | Local HTTP Port for web application | 8087
 DATADIR | Path to the data | /opt/data/
 DB_IMAGE | Docker image name of the MongoDB | pgd-mmdt-db
