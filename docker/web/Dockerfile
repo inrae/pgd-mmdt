@@ -7,7 +7,7 @@ ENV TZ=Europe/Paris
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 
 # Installation of SSL libraries as well as the PHP MongoDB module
-RUN apt-get update && apt-get install -y unzip openssl libssl-dev libcurl4-openssl-dev && rm -rf /var/lib/apt/lists/* \
+RUN apt-get update && apt-get install -y unzip wget openssl libssl-dev libcurl4-openssl-dev && rm -rf /var/lib/apt/lists/* \
  && pecl install mongodb && echo "extension=mongodb.so" > /usr/local/etc/php/conf.d/mongo.ini
 
 # Install Composer && PHPMAILER

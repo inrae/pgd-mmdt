@@ -3,25 +3,28 @@
 
 ### Developments in the pipeline
 
+* **Release 2.4** _before the end of 2025_
 
-* **Release 2.3** - before the end of 2025
-
-   * Addition of a "search bar" allowing you to enter a series of keywords in order to perform a search across all fields, in addition to the advanced search by field - as currently in the Maggot application (_done_).
-
-   * Reloading a metadata file is now possible directly from the data storage space, knowing that reloading can still be done from your own disk (_done_).
-
-   * From the metadata sheet of a dataset, it is now possible to reload it in edit mode (_done_).
-
-   * Regarding the terminology definition, added the possibility to put 'onto=all' in the features to indicate that we wish to query all ontologies or thesauri (_done_).
-
-   * "Internal metadata management," i.e that the metadata will be stored in an internal space managed by the Maggot application. The implementation are still to be defined, but this internal management will have to be configured in advance as an option; it will not be possible to mix the two approaches (internal/external) (_To do_).
+   * "Internal metadata management," i.e that the metadata will be stored in an internal space managed by the Maggot application. The implementation are still to be defined, but this internal management will have to be configured in advance as an option; it will not be possible to mix the two approaches (internal/external).
 
 <br>
 
 ### Summary of past and recent changes
 
+* **Release 2.3** -  June 2025 (_current_)
 
-* **Release 2.2** - June 2025 (_current_)
+   * **Note** : This release requires rebuilding or pulling docker containers.
+
+   * Addition of a "search bar" allowing you to enter a series of keywords in order to perform a search across all fields, in addition to the advanced search by field - as currently in the Maggot application.
+
+   * Reloading a metadata file is now possible directly from the data storage space, knowing that reloading can still be done from your own disk.
+
+   * From the metadata sheet of a dataset, it is now possible to reload it in edit mode.
+
+   * Regarding the terminology definition, added the possibility to put 'onto=all' in the features to indicate that we wish to query all ontologies or thesauri.
+
+
+* **Release 2.2** - May 2025
 
    * Simplifies the terminology update process. You can now update both terminology definitions and documentation from the web interface. However, this requires administrator privileges.
    
