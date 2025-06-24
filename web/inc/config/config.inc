@@ -73,7 +73,7 @@ if (php_sapi_name() !== 'cli') {
 } else {
 	$HOST='localhost';
 	if (file_exists('conf/HOST')) $HOST=str_replace("\n", '', file_get_contents("conf/HOST"));
-	$url_schema = 'http:://'.$HOST."/conf/maggot-schema.json";
+	$url_schema = 'http://'.$HOST."/conf/maggot-schema.json";
 }
 
 // Dataverse URL
