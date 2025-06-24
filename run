@@ -130,7 +130,7 @@ case "$CMD" in
         sudo docker exec -t $DB_CONTAINER $MONGO /js/setupdb.js 1>/dev/null 2>/dev/null
         [ $? -eq 0 ] && echo OK
         [ $? -ne 0 ] && echo FAILED
-        sudo docker exec -i $WEB_CONTAINER wget -o ./tmp/convert.html --header "Host: $HOST" http://localhost/convert
+        sudo docker exec -i $WEB_CONTAINER wget -o $MYDIR/web/tmp/convert.html --header "Host: $HOST" http://localhost/convert
 
         [ $? -ne 0 ] && echo "FAILED to convert some configuration files"
         ;;
@@ -140,7 +140,7 @@ case "$CMD" in
         sudo docker exec -t $SCAN_CONTAINER /bin/bash -c "cd /pgd; python3 ./db-insert.py"
         [ $? -eq 0 ] && echo OK
         [ $? -ne 0 ] && echo FAILED
-        sudo docker exec -i $WEB_CONTAINER wget -o./tmp/convert.html --header "Host: $HOST" http://localhost/convert
+        sudo docker exec -i $WEB_CONTAINER wget -o $MYDIR/web/tmp/convert.html --header "Host: $HOST" http://localhost/convert
         [ $? -ne 0 ] && echo "FAILED to convert some configuration files"
         ;;
    passwd)
