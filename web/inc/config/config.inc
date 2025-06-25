@@ -19,6 +19,9 @@ $ZOOMWP = '90%';
 // Add a media type for each resource
 $RESMEDIA=1;
 
+// Online Configuration 
+$CONFIGURATION=1;
+
 // Private access key management
 $PRIVATE_ACCESS=0;
 

@@ -5,35 +5,6 @@
 # Copyright: (c) INRAE - 2015-2025
 #
 
-# Right Panel
-$options = [
-    'option1' => ['active' => 1, 'label' => 'Configuration', 'url' => 'viewconf', 'icon' => 'gear', 'info' => '', 'row' => 1],
-    'option2' => ['active' => 1, 'label' => 'Private access keys', 'url' => 'access', 'icon' => 'lock-fill', 'info' => '', 'row' => 1],
-    'option3' => ['active' => 1, 'label' => 'Dictionaries', 'url' => 'dictionary', 'icon' => 'person', 'info' => '', 'row' => 2],
-    'option4' => ['active' => 1, 'label' => 'Generate the metadata file', 'url' => 'entry', 'icon' => 'filetype-json', 'info' => '', 'row' => 3],
-    'option5' => ['active' => 1, 'label' => 'Search datasets', 'url' => 'search', 'icon' => 'search', 'info' => '', 'row' => 3],
-    'option6' => ['active' => 1, 'label' => 'File Browser', 'url' => '/fb/', 'icon' => 'card-list', 'info' => '', 'row' => 4],
-    'option7' => ['active' => 1, 'label' => 'Push to Dataverse', 'url' => 'dataverse', 'icon' => 'flag-fill', 'info' => '', 'row' => 5],
-    'option8' => ['active' => 1, 'label' => 'Push to Zenodo', 'url' => 'zenodo', 'icon' => 'flag', 'info' => '', 'row' => 5]
-];
-
-$options['option1']['info'] = 'Configure the terminology definition file';
-$options['option2']['info'] = 'Manage private access keys';
-$options['option3']['info'] = 'Edit the dictionaries (need admin access to edit or just use "maggot" user for viewing only)';
-$options['option4']['info'] = 'Describe a dataset using metadata of different types by facilitating their entry and avoiding their re-entry thanks to personalized dictionaries, then generate the metadata file';
-$options['option5']['info'] = 'Search datasets based on some metadata - assuming the metadata were previously deposited in the storage space';
-$options['option6']['info'] = 'File Browser allows you to browse data directories using cloud-like software';
-$options['option7']['info'] = 'Publish the metadata of datasets along with their data files into the Recherche Data Gouv repository';
-$options['option8']['info'] = 'Publish the metadata of datasets along with their data files into the Zenodo repository';
-
-
-# Group options by line
-$grouped = [1 => [], 2 => [], 3 => [], 4 => [], 5 => []];
-foreach ($options as $opt) {
-    if ($opt['active'] && isset($opt['row'])) {
-        $grouped[$opt['row']][] = $opt;
-    }
-}
 ?>
 
 <!DOCTYPE html>
@@ -43,14 +14,22 @@ foreach ($options as $opt) {
   <?php echo $HEAD ?>
   <style>
 	.btn-primary { background-color: #fff; border-color: #fff; }
-	.overlay_cl { top: 0px; padding: 20px; background-color: #fafafa; width: 500px; font-size: 20px; font-family: Arial; color: rgb(70, 130, 183); text-align: justify; display: none; position: absolute; border: solid 1px #555; box-shadow:  0 0 10px  rgba(0,0,0,0.6); -moz-box-shadow: 0 0 10px  rgba(0,0,0,0.6); -webkit-box-shadow: 0 0 10px  rgba(0,0,0,0.6); -o-box-shadow: 0 0 10px  rgba(0,0,0,0.6);}
-	.box-home { min-width: 642px; min-height: 450px; }
-	@media (min-width: 680px) { .container, .container-lg, .container-md, .container-sm, .container-xl, .container-xxl { max-width: 660px; } }
+	.box-home { min-width: 642px; min-height: 450px; min-height: 450px; }
+	@media (min-width: 620px) { .container, .container-lg, .container-md, .container-sm, .container-xl, .container-xxl { max-width: 600px; } }
 	.feature-box { min-height: unset; cursor: pointer; transition: transform 0.2s; }
 	.feature-box:hover { transform: scale(1.03); }
 	.card-body { padding: 0.35rem 0.65rem; }
+	.card-radius { border-radius: 0.45rem !important; }
 	.row { --bs-gutter-x: 0.6rem; }
-    .card-title { font-size: 1rem; color: #25318d;}
+    .card-title { font-size: 1.2rem; color: #25318d; }
+	.shadow { box-shadow: 0 0.2rem 0.2rem rgba(0, 0, 0, .15) !important; }
+	.tooltip-inner {
+		background-color: #343a40; color: #ffffff;
+		font-size: 1.2rem; font-family: 'Segoe UI', sans-serif;
+		max-width: 250px; padding: 0.5rem 0.75rem; border-radius: 0.5rem;
+		text-align: left; box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+	}
+	.tooltip.bs-tooltip-top .tooltip-arrow::before { border-top-color: #343a40; }
   </style>
   <script>
 		var maxWidth=1200;
@@ -78,8 +57,8 @@ foreach ($options as $opt) {
 <h1><img src="./docs/logo.svg?raw=true" alt="" title="Maggot" style="width:100px;"> &nbsp;&nbsp;&nbsp;&nbsp;<span id="title"><?= $MAINTITLE; ?></span></h1>
 <br>
 
-<div style="background-image: url(docs/Data-sharing-background.png); background-repeat: no-repeat; background-size: cover; padding: 20px 40px;"><center>
-<font style="font-size:32px; color:white; font-weight: 700;"><?= $BANNER; ?></font>
+<div style="background-image: url(docs/banner4-background.png); background-repeat: no-repeat; background-size: cover; padding: 20px 40px;"><center>
+<font style="font-size:32px; color:#e3e4ed; font-weight: 700;"><?= $BANNER; ?></font>
 </center>
 </div>
 <br><br>
@@ -95,32 +74,33 @@ foreach ($options as $opt) {
 <div class="box-home"><div style="padding: 20px;">
 
 <div class="container">
-  <?php foreach ($grouped as $row => $features): ?>
-    <?php if (!empty($features)): ?>
-      <div class="row mb-2 justify-content-center">
-        <?php
-          $count = count($features);
-          $colWidth = intdiv(12, $count);
-        ?>
-        <?php foreach ($features as $opt): ?>
-          <div class="col-12 col-md-<?= $colWidth ?> mb-0">
-            <div class="card feature-box text-center shadow" onclick="location.href='<?= $opt['url'] ?>'">
-              <div class="card-body">
-                <div class="mb-0">
-				<center>
-                  <table><tr><td><i class="bi bi-<?= $opt['icon'] ?>" style="font-size: 2rem;"></i></td>
-				  <td>&nbsp;</td>
-                  <td><span class="card-title" data-bs-toggle="tooltip" data-bs-offset="150,-20" data-bs-placement="top" title="<?= htmlspecialchars($opt['info']) ?>">
-                      <?= htmlspecialchars($opt['label']) ?></span></td></table>
-                </center>
-                </div>
-              </div>
-            </div>
-          </div>
-        <?php endforeach; ?>
-      </div>
-    <?php endif; ?>
-  <?php endforeach; ?>
+<?php foreach ($grouped as $row => $features): ?>
+	<?php if (!empty($features)): ?>
+		<div class="row mb-2 justify-content-center">
+		<?php
+			$count = count($features);
+			$colWidth = intdiv(12, $count);
+		?>
+		<?php foreach ($features as $opt): ?>
+			<div class="col-12 col-md-<?= $colWidth ?> mb-0">
+				<div class="card-radius card feature-box text-center shadow" onclick="location.href='<?= $opt['url'] ?>'">
+				<div class="card-body"><div class="mb-0"><center>
+					<table><tr><td><i class="bi bi-<?= $opt['icon'] ?>" style="font-size: 2rem;"></i></td>
+					<td>&nbsp;</td>
+					<td><span class="card-title" data-bs-toggle="tooltip" data-bs-offset="150,-20" 
+							data-bs-placement="top" data-bs-html="true"
+							title="<?= htmlspecialchars($opt['info']) ?>"><?= htmlspecialchars($opt['label']) ?></span></td></table>
+				</center></div></div>
+				</div>
+			</div>
+		<?php endforeach; ?>
+			<?php if (in_array($opt['row'], $row_separator) ): ?>
+				<div><hr></div>
+			<?php endif; ?>
+
+		</div>
+	<?php endif; ?>
+<?php endforeach; ?>
 </div>
 
 </div></div>
