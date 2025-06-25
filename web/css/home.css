@@ -1,0 +1,68 @@
+.btn-primary {
+	background-color: #fff;
+	border-color: #fff;
+}
+
+.box-home {
+	min-width: 642px;
+	min-height: 450px;
+	min-height: 400px;
+}
+
+@media (min-width: 620px) { .container, .container-lg, .container-md, .container-sm, .container-xl, .container-xxl { 
+	max-width: 600px;
+}}
+
+.feature-box { 
+	min-height: unset;
+	cursor: pointer;
+	border-radius: 1rem;
+	background-color: #fff;
+	transition: all 0.3s ease;
+	box-shadow: 0 0 0 rgba(0, 0, 0, 0);
+}
+
+.feature-box:hover {
+	border-color: #337ab7;
+	box-shadow: 0 8px 24px rgba(13, 110, 253, 0.3);
+	background-color: #f0f8ff;
+	transform: scale(1.05);
+	transform: translateY(-3px);
+}
+
+.card-body {
+	padding: 0.35rem 0.65rem;
+}
+
+.card-radius {
+	border-radius: 0.45rem !important;
+}
+
+.row { 
+	--bs-gutter-x: 0.6rem;
+}
+
+.card-title {
+	font-size: 1.2rem;
+	color: #25318d;
+}
+
+.shadow {
+	box-shadow: 0 0.2rem 0.2rem rgba(0, 0, 0, .15) !important;
+}
+
+.tooltip-inner {
+	background-color: #343a40;
+	color: #ffffff;
+	font-size: 1.2rem;
+	font-family: 'Segoe UI', sans-serif;
+	max-width: 250px;
+	padding: 0.5rem 0.75rem;
+	border-radius: 0.5rem;
+	text-align: left;
+	box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.tooltip.bs-tooltip-top .tooltip-arrow::before {
+	border-top-color: #343a40;
+}

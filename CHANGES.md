@@ -6,6 +6,8 @@
 * **Release 2.4** _before the end of 2025_
 
    * "Internal metadata management," i.e that the metadata will be stored in an internal space managed by the Maggot application. The implementation are still to be defined, but this internal management will have to be configured in advance as an option; it will not be possible to mix the two approaches (internal/external).
+   
+   * Access to the various features of the home page will be replaced by boxes that will appear dynamically depending on the options chosen. The current version, although very informative, is unfortunately static, which requires the management of several visuals depending on the scenario, which is very difficult to maintain and especially to customize per site/instance.
 
 <br>
 

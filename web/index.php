@@ -2,19 +2,19 @@
 
 # Nom du fichier: index.php
 # Auteur(s): D.JACOB 
-# Copyright: (c) INRAE - 2015-2021
+# Copyright: (c) INRAE - 2015-2025
 #
 # Loading config file
 require_once('inc/config/config.inc');
-include ('inc/parsedown/Parsedown.inc');
-include ('inc/parsedown/ParsedownExtra.inc');
-
-$home_file='docs/home.md';
-
-$PATH='';
 
 include ('inc/header.inc');
-include ('inc/doc/home.inc');
+if ($DEV) {
+	include ('inc/doc/home_left.inc');
+	include ('inc/doc/home_right.inc');
+	include ('inc/doc/home2.inc');
+} else {
+	include ('inc/doc/home.inc');
+}
 include ('inc/footer.inc');
 
 ?>
