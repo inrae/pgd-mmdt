@@ -103,11 +103,11 @@ See <a href="<? echo $links[6]; ?>" target="_blank">Quick tutorial</a>.
 	 <area href="./dataverse"   coords="119,216,366,297" shape="rect" id="r5">';
 
 	if ($FILEBROWSER==1)
-		echo '<area href="'.$URL_FILEBROWSER.'" target="_blank" coords="'.$coords[8].'" shape="rect" id="r7">';
+		echo '<area href="'.$URL_FILEBROWSER.'" coords="'.$coords[8].'" shape="rect" id="r7">';
+	if ($export_zenodo==1)
+		echo '<area href="./zenodo"             coords="'.$coords[9].'" shape="rect" id="r8">';
 	if ($export_zenodo==0 && $FAIRLINK==1)
 		echo '<area href="'.$URL_FAIR.'"        target="_blank" coords="'.$coords[9].'" shape="rect" id="r8">';
-	if ($export_zenodo==1)
-		echo '<area href="./zenodo"             target="_blank" coords="'.$coords[9].'" shape="rect" id="r8">';
 ?>
   </map>
 </p>

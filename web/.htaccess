@@ -34,7 +34,7 @@ Header set Access-Control-Allow-Origin "*"
 
 
 # entries
-<Files ~ "(entry|search|view|viewconf|metadata|check|send|doc|dataverse|zenodo|oai|bloxberg|access)$">
+<Files ~ "(home|entry|search|view|viewconf|metadata|check|send|doc|dataverse|zenodo|oai|bloxberg|access)$">
   Order allow,deny
   allow from all
   AcceptPathInfo On

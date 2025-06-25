@@ -12,8 +12,8 @@ function orcidTypeahead ()
 		highlight: true
 	},
 	{
-		limitget: 20,
-		limitview : 9,
+		limitget: 50,
+		limitview : 50,
 		async: true,
 		name: 'orcid-search',
 		display: function(item) {

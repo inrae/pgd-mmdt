@@ -13,7 +13,7 @@ function rorTypeahead ()
 	},
 	{
 		limitget: 50,
-		limitview : 5,
+		limitview : 50,
 		async: true,
 		source: function (query, processSync, processAsync) {
 			url = ROR_API_URL + encodeURIComponent(query);
