@@ -14,7 +14,7 @@
   <?php echo $HEAD ?>
   <style>
 	.btn-primary { background-color: #fff; border-color: #fff; }
-	.box-home { min-width: 642px; min-height: 450px; min-height: 450px; }
+	.box-home { min-width: 642px; min-height: 450px; min-height: 400px; }
 	@media (min-width: 620px) { .container, .container-lg, .container-md, .container-sm, .container-xl, .container-xxl { max-width: 600px; } }
 	.feature-box { min-height: unset; cursor: pointer; transition: transform 0.2s; }
 	.feature-box:hover { transform: scale(1.03); }
@@ -30,6 +30,7 @@
 		text-align: left; box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
 	}
 	.tooltip.bs-tooltip-top .tooltip-arrow::before { border-top-color: #343a40; }
+	.feature-box:hover {border-color: #337ab7; transform: scale(1.05); }
   </style>
   <script>
 		var maxWidth=1200;
@@ -94,10 +95,9 @@
 				</div>
 			</div>
 		<?php endforeach; ?>
-			<?php if (in_array($opt['row'], $row_separator) ): ?>
-				<div><hr></div>
-			<?php endif; ?>
-
+		<?php if (in_array($opt['row'], $row_separator) ): ?>
+			<div><hr></div>
+		<?php endif; ?>
 		</div>
 	<?php endif; ?>
 <?php endforeach; ?>

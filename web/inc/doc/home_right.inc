@@ -22,7 +22,7 @@ $options = [
     'option5' => ['active' => 1, 'row' => 3,
 		'label' => 'Search datasets', 'url' => 'search', 'icon' => 'search',
 		'info' => '<b>Search</b> datasets based on some metadata - assuming the metadata were previously deposited in the storage space'],
-    'option6' => ['active' => $FILEBROWSER, 'row' => 5,
+    'option6' => ['active' => 0, 'row' => 5, # $FILEBROWSER
 		'label' => 'File Browser', 'url' => '/fb/', 'icon' => 'card-list',
 		'info' => '<b>File Browser</b> allows you to browse data directories using cloud-like software'],
     'option7' => ['active' => $export_dataverse, 'row' => 4,
@@ -31,7 +31,7 @@ $options = [
     'option8' => ['active' => $export_zenodo, 'row' => 4,
 		'label' => 'Push to Zenodo', 'url' => 'zenodo', 'icon' => 'hand-index',
 		'info' => '<b>Publish</b> the metadata of datasets along with their data files into the <b>Zenodo</b> repository'],
-    'option9' => ['active' => $export_bloxberg, 'row' => 4,
+    'option9' => ['active' => 0, 'row' => 4, # $export_bloxberg
 		'label' => 'Push to Bloxberg', 'url' => 'bloxberg', 'icon' => 'hand-index',
 		'info' => '<b>Publish</b> the metadata of datasets into the <b>bloxberg blockchain</b> (<i>Experimental</i>)'],
     'option10' => ['active' => 0, 'row' => 6,
@@ -42,8 +42,8 @@ $options = [
 		'info' => '']
 ];
 
-# Separator after row
-$row_separator = [];
+# Separator after rows
+$row_separator = [2];
 
 # Group options by line
 $grouped = [1 => [], 2 => [], 3 => [], 4 => [], 5 => [], 6 => []];
