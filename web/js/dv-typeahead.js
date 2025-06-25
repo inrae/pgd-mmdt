@@ -6,8 +6,8 @@ function dvTypeahead () {
 		minLength: 3
 	},
 	{
-		limitget: 10,
-        limitview : 6,
+		limitget: 50,
+        limitview : 50,
 		async: true,
 		source: function (query, processSync, processAsync) {
 			url = DV_API_URL + '?type=dataverse&q=' + encodeURIComponent(query)+'*';
