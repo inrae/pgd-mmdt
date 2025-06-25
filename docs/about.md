@@ -49,27 +49,37 @@ some_url:
 
 * Daniel Jacob, François Ehrenmann, Romain David, Joseph Tran, Cathleen Mirande-Ney, Philippe Chaumeil, An ecosystem for producing and sharing metadata within the web of FAIR Data, GigaScience, Volume 14, 2025, giae111, [DOI:10.1093/gigascience/giae111](https://academic.oup.com/gigascience/article/doi/10.1093/gigascience/giae111/7945442){:target="_blank"}
 
+### Related articles
+
+* Usages d'AgroPortal dans des systèmes d'information à INRAE - [hal-05077024][21]{:target="_blank"}
+
 
 ### Contacts
 
-* Daniel Jacob ([INRAE UR BIA-BIBS][2]{:target="_blank"}) : [daniel.jacob @ inrae.fr][17]{:target="_blank"}
+* Daniel Jacob ([INRAE UR BIA-BIBS][2]{:target="_blank"} - [0000-0002-6687-7169][17]{:target="_blank"})
 
 ### Designers / Developers
 
-* Daniel Jacob ([INRAE UR BIA-BIBS][2]{:target="_blank"}) | CATI [PROSODIe][4]{:target="_blank"}
+* Daniel Jacob ([INRAE UR BIA-BIBS][2]{:target="_blank"})
 
-* François Ehrenmann ([INRAE UMR BioGECO][1]{:target="_blank"}) | CATI [GEDEOP][5]{:target="_blank"}
+* François Ehrenmann ([INRAE UMR BioGECO][1]{:target="_blank"})
 
 * Philippe Chaumeil ([INRAE UMR BioGECO][1]{:target="_blank"})
 
 
 ### Contributors
 
-* Edouard Guitton ([INRAE Dept. SA][6]{:target="_blank"}, [Emerg'IN][3]{:target="_blank"})
+* [INRAE](https://www.inrae.fr/en){:target="_blank"}
+    * Edouard Guitton ([Dept. SA][6]{:target="_blank"}, [Emerg'IN][3]{:target="_blank"}), David Benaben  & Cathleen Mirande-Ney ([UMR BFP][1]{:target="_blank"}), Joseph TRAN ([UMR EGFV][12]{:target="_blank"}), Stéphane Bernillon ([UR MycSA][14]{:target="_blank"})
 
-* Stéphane Bernillon ([INRAE UR MycSA][14]{:target="_blank"})
+* [CIRAD](https://www.cirad.fr/en){:target="_blank"}
+    * Julien Paul ([AGAP institute][7]{:target="_blank"})
 
-* Joseph TRAN ([INRAE UMR EGFV][12]{:target="_blank"}) | CATI [BARIC][13]{:target="_blank"}
+* [ERINHA][5]{:target="_blank"}
+    * Romain David 
+
+* [Mines de Paris - PSL][4]{:target="_blank"}
+    * Amélie Masson, Sandrine Mouret, Sébastien Perrin
 
 
 
@@ -85,26 +95,26 @@ some_url:
 [1]: https://www6.bordeaux-aquitaine.inrae.fr/biogeco_eng/
 [2]: https://eng-ur-bia.angers-nantes.hub.inrae.fr/
 [3]: https://www.emergin.fr/emergin_eng/
-[4]: https://prosodie.cati.inrae.fr/
-[5]: https://gedeop.cati.inrae.fr/
+[4]: https://www.minesparis.psl.eu/en/home/
+[5]: https://erinha.eu/
 [6]: https://www.inrae.fr/en/divisions/sa
-[7]: https://nextcloud.inrae.fr/s/HxEWSybeBW8rzke
+[7]: https://umr-agap.cirad.fr/en
 [8]: https://recherche.data.gouv.fr/en
-[9]: https://nextcloud.inrae.fr/s/iLHQYoAZp2i6ij7
 
 [10]: https://github.com/inrae/pgd-mmdt
 [11]: https://pmb-bordeaux.fr/maggot/
 
 [12]: https://eng-egfv.bordeaux-aquitaine.hub.inrae.fr/
-[13]: https://www.cesgo.org/catibaric/
+
 [14]: https://eng-mycsa.bordeaux-aquitaine.hub.inrae.fr/
 
-<!-- https://www.google.com/search?q=metadata+crosswalk+definition&oq=metadata+crosswalk -->
 
 [16]: https://github.com/inrae/pgd-mmdt/issues
 [17]: https://orcid.org/0000-0002-6687-7169
 
 [20]: https://www.gnu.org/licenses/gpl-3.0.html
+
+[21]: https://hal.science/hal-05077024
 
 <br><br>
 
