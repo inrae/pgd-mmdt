@@ -7,6 +7,8 @@
 # Copyright: (c) INRAE - 2022-2023
 #
 
+$DEBUG = isset($_GET['debug']) ? $_GET['debug'] : 0;
+
 if (!isset($ZENODO_SERVER_URL))  $ZENODO_SERVER_URL=$zenodo_urls[0];
 if (!isset($ZENODO_API_TOKEN))   $ZENODO_API_TOKEN='';
 if (!isset($COMMUNITIES))        $COMMUNITIES='zenodo';
@@ -62,13 +64,14 @@ if ($ret>0) {
 <head>
 	<title>Maggot - Zenodo</title>
 
-	<?php echo $HEAD ?>
-	<link rel="stylesheet" href="<?php echo $PATH ?>css/ror-widget.css">
-	<script  src="<?php echo $PATH ?>js/typeahead.min.js"></script>
-	<script>var ZC_API_URL = "<?php echo $ZENODO_SERVER_URL.$ZC_API ?>";</script>
-	<script  src="<?php echo $PATH ?>js/zc-typeahead.js"></script>
+	<?= $HEAD ?>
+	<link rel="stylesheet" href="<?= $PATH ?>css/ror-widget.css">
+	<script  src="<?= $PATH ?>js/typeahead.min.js"></script>
+	<script>var ZC_API_URL = "<?= $ZENODO_SERVER_URL.$ZC_API ?>";</script>
+	<script  src="<?= $PATH ?>js/zc-typeahead.js"></script>
 
 	<script type="text/javascript">
+	var DEBUG = <?= $DEBUG ?>;
 	function selectjson(id) {
 		if (id==1) {
 		$('.selectjson1').css('display','flex');
@@ -109,30 +112,30 @@ if ($ret>0) {
 	}
 	$(document).on('click', '#server', function() {
 		zenodo_server = $('#server').find(":selected").val();
-		ZC_API_URL = zenodo_server + '<?php echo $ZC_API ?>';
+		ZC_API_URL = zenodo_server + '<?= $ZC_API ?>';
 	})
 	</script>
 </head>
 
-<body style="zoom: <? echo $ZOOMWP ?>">
+<body style="zoom: <?= $ZOOMWP ?>">
 
-<?php echo $header_title ?>
+<?= $header_title ?>
 <br><br>
 
-<h1>Publishing Datasets <a href="<? echo $maggot_doc_url.'publish/zenodo' ?>" target="_blank"><i class="bi bi-question-octagon-fill" style="color:grey; font-size: 20px"></i></a></h1>
+<h1>Publishing Datasets <a href="<?= $maggot_doc_url.'publish/zenodo' ?>" target="_blank"><i class="bi bi-question-octagon-fill" style="color:grey; font-size: 20px"></i></a></h1>
 <br>
 
 <section>
 	<div id="push" style="display: block; max-width:1000px; margin:auto;">
 		<br/>
-		<form id="formpush" name="formpush" action="?dataset=<? echo $dataset ?>" onsubmit="return check()" autocomplete="off" method="post" enctype="multipart/form-data">
+		<form id="formpush" name="formpush" action="?dataset=<?= $dataset ?>" onsubmit="return check()" autocomplete="off" method="post" enctype="multipart/form-data">
 			<h2>Publish metadata to a Zenodo repository</h2>
 			<div class="btn-group gr-jsontype" role="group">
 				<button type="button" id="jsontype1" class="btn btn-secondary activated" onclick="selectjson(1);">Internal JSON</button>
 				<button type="button" id="jsontype2" class="btn btn-secondary" onclick="selectjson(2);">External JSON</button>
 			</div><br><br>
 			<div class="input-group mb-3 selectjson1" style="display: flex;">
-			<div class="dataset"><b>&nbsp;&nbsp;Dataset:&nbsp;&nbsp;&nbsp;</b></div><select name="dataset" id="dataset" style="height: 38px;" class="form-control form-control-sm dataset-select" onchange="$('#errbox').css('display','none');"><? echo $options_dataset ?></select>
+			<div class="dataset"><b>&nbsp;&nbsp;Dataset:&nbsp;&nbsp;&nbsp;</b></div><select name="dataset" id="dataset" style="height: 38px;" class="form-control form-control-sm dataset-select" onchange="$('#errbox').css('display','none');"><?= $options_dataset ?></select>
 			</div> 
 			<div class="input-group mb-3 selectjson2" style="display: none;">
 				<div class="input-group-prepend">
@@ -143,16 +146,16 @@ if ($ret>0) {
 					<label id="label" class="custom-file-label" for="jsonfile"></label>
 				</div>
 			</div>
-			<div style="padding-bottom: 10px;"><b>Zenodo Server URL</b>:&nbsp;<select name="server" id="server" class="form-control form-control-sm"><? echo $options_server ?></select></div>
-			<div style="padding-bottom: 10px;"><b>API-Token</b>:&nbsp;<input class="form-control form-control-sm solo" type="text" name="token" id="token" value="<? echo $ZENODO_API_TOKEN ?>" placeholder="Copy-paste here the API Token from your corresponding Zenodo account"/></div>
-			<div style="padding-bottom: 10px;"><b>Communities</b>:&nbsp;<input class="form-control form-control-sm solo typeahead" type="text" name="parent" id="parent" value="<? echo $COMMUNITIES ?>" placeholder="Entrer the first 4 letters of targeted Community name"/></div>
+			<div style="padding-bottom: 10px;"><b>Zenodo Server URL</b>:&nbsp;<select name="server" id="server" class="form-control form-control-sm"><?= $options_server ?></select></div>
+			<div style="padding-bottom: 10px;"><b>API-Token</b>:&nbsp;<input class="form-control form-control-sm solo" type="text" name="token" id="token" value="<?= $ZENODO_API_TOKEN ?>" placeholder="Copy-paste here the API Token from your corresponding Zenodo account"/></div>
+			<div style="padding-bottom: 10px;"><b>Communities</b>:&nbsp;<input class="form-control form-control-sm solo typeahead" type="text" name="parent" id="parent" value="<?= $COMMUNITIES ?>" placeholder="Entrer the first 4 letters of targeted Community name"/></div>
 			<input type="submit" class="btn btn-primary" style="width: 100px;" id="btnpush" name="btnpush" value="Publish"/>
 			<input type="hidden" name="jsontype" id="jsontype" value="1">
 			<br>
 		</form>
 	</div>
 	<div id="waiting" style="display: none; max-width:1000px; margin:auto;">
-		<br><br><img src="<? echo $PATH ?>img/throbber.gif" width="100px">
+		<br><br><img src="<?= $PATH ?>img/throbber.gif" width="100px">
 	</div>
 	<div id="result" style="display: block; max-width: 1000px; margin: auto;">
 		<br>
@@ -183,7 +186,7 @@ if ($ret>0) {
 <br>
 <script>
 	$(window).on('load', function() {
-		if (<? echo $EXTERN ?>) {
+		if (<?= $EXTERN ?>) {
 			$('.gr-jsontype').css('display','none');
 			selectjson(2);
 		}
@@ -276,10 +279,26 @@ do
 		break;
 	}
 
+	// check if all "cv" are defined in the mapping
+	$errmsg ='';
+	$map_names = [];
+	foreach( $map as $arr ) array_push($map_names, $arr[0]);
+	foreach( $def as $arr1 ) {
+		if (!preg_match('/cv:/', $arr1[7])) continue;
+		$cvname = explode(':',$arr1[7])[1];
+		if (!in_array($cvname, $map_names))
+			$errmsg .= 'ERROR: "'.$cvname.'" does not defined in the mapping file';
+	}
+	if (strlen($errmsg)) {
+		echo "<script>$('#errboxmsg').html('".$errmsg."'); $('#errbox').css('display','block');</script>";
+		break;
+	}
+
 //echo "<br><pre>"; print_r ($def); echo "</pre><br>";
+//echo "<br><pre>"; print_r ($map); echo "</pre><br>"; 
 //echo "<br><pre>"; print_r (array_keys($metadata)); echo "</pre><br>"; 
 
-	// Convert JSON to Dataverse
+	// Convert JSON to Zenodo
 	$outjson = json2zenodo($metadata, $def, $map, $COMMUNITIES);
 	if (strlen($outjson)==0) {
 		$msg='Error: Either no conversion has been done or the conversion has failed !!!';
@@ -290,7 +309,7 @@ do
 	// Display links to input/output JSON files and both Dataverse & Mapping definition files
 	file_put_contents($json_url, $outjson);
 	
-	// Display links of both Dataverse & Mapping definition files
+	// Display links of both Zenodo & Mapping definition files
 	$output1 = 'tmp/'.genKEY().'.html';
 	$output2 = 'tmp/'.genKEY().'.html';
 	file_put_contents($output1, tsv2html($PATH.$zenodo_conf));
@@ -340,12 +359,16 @@ do
 
 	// Error
 	if (is_array($output_arr) && count($output_arr)>0 && array_key_exists('status',$output_arr)) {
-		$status=$output_arr['status']; $message = str_replace("'","\\'", $output_arr['message']);
+		$status=$output_arr['status']; 
+		$message = !is_null($output_arr['message']) ? str_replace("'","\\'", $output_arr['message']) : '';
 		$htmloutput="Status: $status - $message<br>";
 		if (array_key_exists('errors',$output_arr))
 			for($k=0; $k<count($output_arr['errors']); $k++) {
 				$arr=$output_arr['errors'][$k];
-				$field = $arr['field']; $message = str_replace("'","\\'", $arr['message']);
+				$field = $arr['field'];
+				$message = '';
+				for($j=0; $j<count($arr['messages']); $j++)
+					$message = !is_null($arr['messages'][$j]) ? str_replace("'","\\'", $arr['messages'][$j]) : '';
 				$htmloutput .= "&nbsp;&nbsp;&nbsp;$k : $field - $message<br>";
 			}
 		echo "<script>$('#errresp').css('display','block'); $('#errrespmsg').html('".$htmloutput."');</script>";
@@ -363,7 +386,7 @@ do
 		echo "<script>$('#successmsg').html('".$htmlsuccess."'); $('#successresp').css('display','block');</script>";
 	}
 
-	if (!file_exists($path.'/'.$auth_senddata_file)) break;
+	if ($jsontype==2 || !file_exists($path.'/'.$auth_senddata_file)) break;
 
 	// Sending file if internal JSON
 	if ($jsontype==1) {
@@ -391,17 +414,15 @@ do
 	}
 } while(0);
 
-echo "<script>$('#waiting').css('display','none');</script>";
-
 ?>
 
-<br>
-
 <script>
-    /* Montrer le nom du fichier selectionner pour chargement : https://www.codeply.com/p/LtpNZllird */
-    document.querySelector('.custom-file-input').addEventListener('change',function(e){
-      var fileName = document.getElementById("jsonfile").files[0].name;
-      var nextSibling = e.target.nextElementSibling
-      nextSibling.innerText = fileName
-    });
+	document.querySelector('.custom-file-input').addEventListener('change',function(e){
+		var fileName = document.getElementById("jsonfile").files[0].name;
+		var nextSibling = e.target.nextElementSibling
+		nextSibling.innerText = fileName
+	});
+	$('#waiting').css('display','none');
 </script>
+
+<br>

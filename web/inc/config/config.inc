@@ -183,7 +183,7 @@ require_once('inc/config/mongodb.inc');
 #------------------------
 
 // For development version only
-$DEV=1;
+$DEV=0;
 $LOG=0;
 
 // If local configuration

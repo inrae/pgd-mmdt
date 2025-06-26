@@ -6,7 +6,7 @@
 
 function simpleField($field, $value)
 {
-	$value = $value ? str_replace("\n", '', $value) : '';
+	$value = $value ? str_replace('"', '\"', str_replace("\n", '', $value)) : '';
 	return '{"typeName": "'.$field.'","multiple": false,"typeClass": "primitive","value": "'.$value.'"}';
 }
 

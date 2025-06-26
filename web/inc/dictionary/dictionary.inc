@@ -6,6 +6,8 @@
 # Copyright: (c) INRAE - 2022-2023
 #
 
+$DEBUG = isset($_GET['debug']) ? $_GET['debug'] : 0;
+
 # Dictionary name if specified
 $DICOSEL='';
 if (isset($_GET['dico'])) $DICOSEL=$_GET['dico'];
@@ -52,6 +54,7 @@ $upload_mode = (strlen($USER) && $USER === $ADMINGROUP) ? 'inline' : 'none';
 
 	<script>history.pushState(null, 'Maggot - Dictionary', 'dictionary');</script>
 	<script type="text/javascript">
+	var DEBUG = <?= $DEBUG ?>;
 	function getsort(url) {
 		window.location.href = url+'&search='+$('#searchterm').val();
 	}
@@ -74,6 +77,7 @@ $upload_mode = (strlen($USER) && $USER === $ADMINGROUP) ? 'inline' : 'none';
 <section>
 	<form id="formdico" name="formdico" action="#" autocomplete="off" method="get" enctype="multipart/form-data">
 		<b>Dictionaries</b>:&nbsp;<a href="<? echo $maggot_doc_url.'dictionaries' ?>" target="doc"><i class="bi-question-octagon-fill" style="color:#1b82c1; font-size: 12px"></i></a>
+		<input type="hidden" id="debug" name="debug" value="<?= $DEBUG ?>">
 		<select style="font-size: 1rem;" name="dico" id="dico" class="form-control form-control-sm" onchange="this.form.submit();"><? echo $html_options ?></select>
 	</form>
 	<br>
@@ -171,7 +175,7 @@ do {
 	// thead
 	$var1=$var2=$var3=$var4=''; $sep='';
 	$html_thread = '<thead class="thread-light"><tr>';
-	$url = basename($_SERVER['SCRIPT_NAME']).'?dico='.$DICOSEL.'&sort=';
+	$url = basename($_SERVER['SCRIPT_NAME']).'?debug='.$DEBUG.'&dico='.$DICOSEL.'&sort=';
 
 	$cnt=0;
 	foreach($format as $line) {

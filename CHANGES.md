@@ -60,6 +60,8 @@
 
 * **Release 2.0** - September 2023
 
+   * Second redesign of the web interface
+   
    * Integrates dictionaries of people as well as of controlled vocabulary, which can be updated from the web interface with administrator rights.
    
    * Added the ability to deposit metadata into repositories like Zenodo or based on Harvard Dataverse.
@@ -69,4 +71,18 @@
    * Added the ability to export metadata in JSON-LD format
 
    * Proposes as an option, a filebrowser to install separately (https://github.com/djacob65/maggot-fb)
+   
+   * Added a home page to access all application features from a clickable image showing the metadata flow.
 
+
+* **Release 1.5** - September 2022
+
+   * Complete configuration of the terminology by including the documentation in tabbed files (TSV) in order to dynamically generate the input and query interfaces.
+
+   * Added the ability to associate intranet/internet links to online resources (datasets, articles, images, etc.) within metadata.
+
+   * Added the possibility of associating controlled vocabularies based on ontologies (agroportail and bioportail) and on thesauri (thesaurus-inrae).
+
+   * Added the ability to associate an API with a metadata field
+
+   * Partial redesign of the web interface

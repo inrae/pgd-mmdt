@@ -16,12 +16,11 @@ function orcidTypeahead ()
 		limitview : 50,
 		async: true,
 		name: 'orcid-search',
-		display: function(item) {
-			return item["orcid"];
-		},
 		source: function (query, processSync, processAsync) {
+			url = "?orcid=" + get_searchTerm()
+			if (DEBUG) console.log('GET '+url)
 			return $.ajax({
-				url: "?orcid=" + get_searchTerm(),
+				url: url,
 				type: 'GET',
 				dataType: 'json',
 				timeout: 3000,
@@ -44,6 +43,12 @@ function orcidTypeahead ()
 			suggestion: function(item) {
 				return '<div><strong>'+item['given-names']+' '+item['family-name']+'</strong><br><small>'+item['email']+' – '+item['current-institution-affiliation-name']+'</small></div>';
 			}
+		},
+		display: function(item) {
+			return item["orcid"];
+		},
+		value: function(item) {
+			return item["orcid"];
 		}
 	});
 }

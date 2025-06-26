@@ -14,7 +14,7 @@ function cmd_api_zenodo($cmd) {
 
 function get_api_zenodo($id='') {
 	global $ZENODO_API_TOKEN, $ZENODO_SERVER_URL;
-	if (strlen($id) > 0)
+	if (strsize($id) > 0)
 		$cmd = 'curl --request GET '.$ZENODO_SERVER_URL.'/api/deposit/depositions/'.$id.'?access_token='.$ZENODO_API_TOKEN;
 	else
 		$cmd = 'curl --request GET '.$ZENODO_SERVER_URL.'/api/deposit/depositions?access_token='.$ZENODO_API_TOKEN;
@@ -62,11 +62,11 @@ function json2zenodo($metadata, $def, $map, $COMMUNITIES='')
 	$cvlist=array();  // the corresponding cvlist for each dataverse field if applicable
 	$cv=array();
 	$cnt=1;
-	while (strlen($def[$cnt][1])>0) {
+	while (isset($def[$cnt]) && strsize($def[$cnt][1])>0) {
 		$arr=$def[$cnt];
 		if (! in_array( $arr[$CF],array_keys($metadata))) { $cnt++; continue; }
 		// If there is a dico
-		if (strlen($arr[$VS])>0 && preg_match('/^cvlist:([a-zA-Z0-9_]+)/',$arr[$VS], $matches)) {
+		if (strsize($arr[$VS])>0 && preg_match('/^cvlist:([a-zA-Z0-9_]+)/',$arr[$VS], $matches)) {
 			$dico=$matches[1];
 			if (! in_array($dico, $cvlist)) {
 				${$dico} = tsvToArray($cvdir.$dico.'/'.$dico.'.txt');
@@ -74,7 +74,7 @@ function json2zenodo($metadata, $def, $map, $COMMUNITIES='')
 			}
 		}
 		// If there is a thesaurus / ontology
-		if (strlen($arr[$VS])>0 && preg_match('/^cv:([a-zA-Z0-9_]+)/',$arr[$VS], $matches)) {
+		if (strsize($arr[$VS])>0 && preg_match('/^cv:([a-zA-Z0-9_]+)/',$arr[$VS], $matches)) {
 			$dico=$matches[1];
 			if (! in_array($dico, $cv)) {
 				$idx=find_mapping($map, $dico);
@@ -93,21 +93,21 @@ function json2zenodo($metadata, $def, $map, $COMMUNITIES='')
 	$arrname = $fieldname = $p_arrname = $p_fieldname = '';
 	$jsoncore = '';
 
-	if (strlen($COMMUNITIES)) {
+	if (strsize($COMMUNITIES)) {
 		$cnt=0;
 		$def[$cnt] = [ '', 'communities', 0, $N, $N, '', $COMMUNITIES, '', '', '' ];
 	} else {
 		$cnt=1;
 	}
-	while (strlen($def[$cnt][$CT])>0) {
+	while (isset($def[$cnt]) && isset($def[$cnt][$CT]) && strsize($def[$cnt][$CT])>0) {
 		$arr=$def[$cnt];    // current line
 		$arr2=$def[$cnt+1]; // following line
 		$level = $arr[$CL];
 		do {
-			if (strlen($arr[$CT])==0) break;
+			if (strsize($arr[$CT])==0) break;
 	// Open an array at level 0
 			if ($arr[$CA]==$Y && $arr[$CM]==$Y) {
-				if (strlen($arr[$CF])>0 && array_key_exists($arr[$CF], $metadata) && count($metadata[$arr[$CF]])>0) {
+				if (strsize($arr[$CF])>0 && array_key_exists($arr[$CF], $metadata) && count($metadata[$arr[$CF]])>0) {
 					$cond1 = ($level == 0);
 					$cond2 = ($level == 1 && $arrname !== $arr[$CT] && $fieldname !== $arr[$CF]);
 					if ($cond1 || $cond2) {
@@ -122,7 +122,7 @@ function json2zenodo($metadata, $def, $map, $COMMUNITIES='')
 
 	// Open a simple object at level 0 or at level 1
 			if ($arr[$CA]==$N && $arr[$CM]==$Y) {
-				if (strlen($arr[$CF])>0 && array_key_exists($arr[$CF], $metadata)) {
+				if (strsize($arr[$CF])>0 && array_key_exists($arr[$CF], $metadata)) {
 					$cond1 = ($level == 0 && $arrname !== $arr[$CT] && $fieldname !== $arr[$CF]);
 					if ($cond1) {
 						$fieldname=$arr[$CF]; $arrname = $arr[$CT];
@@ -137,11 +137,11 @@ function json2zenodo($metadata, $def, $map, $COMMUNITIES='')
 
 	// Simple array at level 0
 			if ($arr[$CA]==$Y && $arr[$CM]==$N) {
-				if (strlen($arr[$CF])>0 && array_key_exists($arr[$CF], $metadata)) {
+				if (strsize($arr[$CF])>0 && array_key_exists($arr[$CF], $metadata)) {
 					if ($level == 0 && $arr[$VT]=='#VALUE') {
 						$fieldname=$arr[$CF]; $arrname = $arr[$CT];
 						$jsoncore .= '"'.$arrname.'":["'.join('", "', $metadata[$fieldname]).'"]';
-						if (strlen($arr2[$CA])>0 && strlen($arr2[$CM])>0) addComma($jsoncore);
+						if (strsize($arr2[$CA])>0 && strsize($arr2[$CM])>0) addComma($jsoncore);
 						break;
 					}
 				}
@@ -149,7 +149,7 @@ function json2zenodo($metadata, $def, $map, $COMMUNITIES='')
 			}
 
 	// Level 0
-			if ($level==0 && strlen($arr[$CF])==0 && ! in_array($arr[$VT], $ValueTypes) ) {
+			if ($level==0 && strsize($arr[$CF])==0 && ! in_array($arr[$VT], $ValueTypes) ) {
 				if ($arr[$CT]=='communities') {
 					$values = explode(',', $arr[$VT]);
 					$jsonval = array();
@@ -159,15 +159,15 @@ function json2zenodo($metadata, $def, $map, $COMMUNITIES='')
 					$jsoncore .= '"'.$arr[$CT].'":'.$arr[$VT];
 				else
 					$jsoncore .= '"'.$arr[$CT].'":"'.$arr[$VT].'"';
-				if (strlen($arr2[$CA])>0 && strlen($arr2[$CM])>0) addComma($jsoncore);
+				if (strsize($arr2[$CA])>0 && strsize($arr2[$CM])>0) addComma($jsoncore);
 				break;
 			}
 			if ($level==0 && $arr[$CA]==$N && $arr[$CM]==$N && array_key_exists($arr[$CF], $metadata)) {
-				$value = $metadata[$arr[$CF]];
+				$value = str_replace('"', '\"',  str_replace("'", "`", $metadata[$arr[$CF]]));
 				if ($arr[$CT]=='access_right')
 					$value=$ZENODO['ACCESS_RIGHTS'][$value];
 				$jsoncore .= '"'.$arr[$CT].'":"'.$arr[$PR].$value.'"';
-				if (strlen($arr2[$CA])>0 && strlen($arr2[$CM])>0) addComma($jsoncore);
+				if (strsize($arr2[$CA])>0 && strsize($arr2[$CM])>0) addComma($jsoncore);
 				break;
 			}
 
@@ -187,7 +187,7 @@ function json2zenodo($metadata, $def, $map, $COMMUNITIES='')
 				while ($def[$cnt+$J][$CA]==$N && $def[$cnt+$J][$CL]>0) {
 					$defobj[$J] = $def[$cnt+$J];
 					$J++;
-					if (strlen($def[$cnt+$J][$CT])==0) break;
+					if (!isset($def[$cnt+$J][$CT]) || strsize($def[$cnt+$J][$CT])==0) break;
 				}
 				// Get the current field and check if there are metadata corresponding to it
 				if ($defobj[0][$CF] !== $fieldname) $fieldname = $defobj[0][$CF];
@@ -260,7 +260,7 @@ function json2zenodo($metadata, $def, $map, $COMMUNITIES='')
 							if ($fpeople) $value = str_replace(' ',', ',$value);
 						}
 						if ($value == '#DICO') {
-							if (strlen($defobj[$i][$VS])>0 && preg_match('/^cvlist:([a-zA-Z0-9_]+)/',$defobj[$i][$VS], $matches)) {
+							if (strsize($defobj[$i][$VS])>0 && preg_match('/^cvlist:([a-zA-Z0-9_]+)/',$defobj[$i][$VS], $matches)) {
 								$dico=$matches[1];
 								$opt = ($dico == 'people') ? array(0,' ',1) : array(0);
 								$idx=find_dico(${$dico}, $meta[$k], $opt);
@@ -269,7 +269,7 @@ function json2zenodo($metadata, $def, $map, $COMMUNITIES='')
 							}
 						}
 						if ($value == '#ONTO') {
-							if (strlen($defobj[$i][$VS])>0 && preg_match('/^cv:([a-zA-Z0-9_]+)/',$defobj[$i][$VS], $matches)) {
+							if (strsize($defobj[$i][$VS])>0 && preg_match('/^cv:([a-zA-Z0-9_]+)/',$defobj[$i][$VS], $matches)) {
 								$dico=$matches[1];
 								$out = get_term_info(${$dico}, $meta[$k]);
 								if (! empty($out))
@@ -277,12 +277,12 @@ function json2zenodo($metadata, $def, $map, $COMMUNITIES='')
 							}
 						}
 					// if Type == 'grants'
-						if (strlen(strval($value))>0 && $objtype=='grants') {
+						if (strsize(strval($value))>0 && $objtype=='grants') {
 							if (preg_match('/^ANR-[0-9_]+-.+/',$value)) $value = $ZENODO['GRANTS_DOI']['ANR'].'::'.$value;
 							elseif (preg_match('/^([0-9_]+)/',$value,$matches)) $value = $ZENODO['GRANTS_DOI']['EU'].'::'.$matches[1];
 						}
 					// if value is not empty
-						if (strlen(strval($value))>0) {
+						if (strsize(strval($value))>0) {
 							$value = $defobj[$i][$PR].$value;
 							if (! in_array($value, $ValueTypes)) {
 								$cntval++;
@@ -298,18 +298,18 @@ function json2zenodo($metadata, $def, $map, $COMMUNITIES='')
 						$jnode .= '}';
 						$level=1;
 					}
-					if (strlen($jnode) && ($objtype!=='subjects' || $cntval==$nbfields)) {
+					if (strsize($jnode) && ($objtype!=='subjects' || $cntval==$nbfields)) {
 						$jsoncore .= '{'.$jnode.'}'; // object at level 1
 						if ($k<(count($meta)-1))
 							addComma($jsoncore);
 					}
 				}
 				$cnt = $cnt + $J-1;
-				$arr2=$def[$cnt+1];
+				$arr2=isset($def[$cnt+1]) ? $def[$cnt+1] : [];
 			}
 
 	// Close an object or an array at level 1
-			if ($level == 1 && ($arr2[$CA]==$Y || $arr2[$CM]==$Y || strlen($arr2[$CF])==0)) {
+			if (empty($arr2) || $level == 1 && ($arr2[$CA]==$Y || $arr2[$CM]==$Y || strsize($arr2[$CF])==0)) {
 				if ($fieldname !== 'resources' && ($arrname == $arr2[$CT] || $fieldname == $arr2[$CF]))
 					break;
 				if ($level_type=='object') {
@@ -320,7 +320,7 @@ function json2zenodo($metadata, $def, $map, $COMMUNITIES='')
 					removeComma($jsoncore); 
 					$jsoncore .= ']';
 				}
-				if (strlen($arr2[$CT])>0)
+				if (isset($arr2[$CT]) && strsize($arr2[$CT])>0)
 					addComma($jsoncore);
 				$level = 0; $level_type = '';
 			}

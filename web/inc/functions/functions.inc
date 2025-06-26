@@ -95,6 +95,9 @@ function aasort (&$array, $key)
 	else               $array = $ret;
 }
 
+// Fixes the deprecated issue with strlen (php>=8)
+function strsize($str) { return strlen($str ?? ''); }
+
 // UFT-8 encode for a string
 function utf8_enc ($iso8859_1_string)
 {

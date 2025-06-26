@@ -17,6 +17,7 @@ function rorTypeahead ()
 		async: true,
 		source: function (query, processSync, processAsync) {
 			url = ROR_API_URL + encodeURIComponent(query);
+			if (DEBUG) console.log('GET '+url)
 			return $.ajax({
 				url: url,
 				type: 'GET',

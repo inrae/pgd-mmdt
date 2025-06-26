@@ -11,6 +11,7 @@ function dvTypeahead () {
 		async: true,
 		source: function (query, processSync, processAsync) {
 			url = DV_API_URL + '?type=dataverse&q=' + encodeURIComponent(query)+'*';
+			if (DEBUG) console.log('GET '+url)
 			return $.ajax({
 				url: url,
 				type: 'GET',

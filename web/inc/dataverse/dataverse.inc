@@ -6,6 +6,8 @@
 # Copyright: (c) INRAE - 2022-2023
 #
 
+$DEBUG = isset($_GET['debug']) ? $_GET['debug'] : 0;
+
 if (!isset($SERVER_URL)) $SERVER_URL=$dataverse_urls[0];
 if (!isset($API_TOKEN))  $API_TOKEN='';
 if (!isset($PARENT))     $PARENT='';
@@ -61,13 +63,14 @@ if ($ret>0) {
 <head>
 	<title>Maggot - Dataverse</title>
 
-	<?php echo $HEAD ?>
-	<link rel="stylesheet" href="<?php echo $PATH ?>css/ror-widget.css">
-	<script  src="<?php echo $PATH ?>js/typeahead.min.js"></script>
-	<script>var DV_API_URL = "<?php echo $SERVER_URL.$DV_API ?>";</script>
-	<script  src="<?php echo $PATH ?>js/dv-typeahead.js"></script>
+	<?= $HEAD ?>
+	<link rel="stylesheet" href="<?= $PATH ?>css/ror-widget.css">
+	<script  src="<?= $PATH ?>js/typeahead.min.js"></script>
+	<script>var DV_API_URL = "<?= $SERVER_URL.$DV_API ?>";</script>
+	<script  src="<?= $PATH ?>js/dv-typeahead.js"></script>
 
 	<script type="text/javascript">
+	var DEBUG = <?= $DEBUG ?>;
 	function selectjson(id) {
 		if (id==1) {
 		$('.selectjson1').css('display','flex');
@@ -108,30 +111,30 @@ if ($ret>0) {
 	}
 	$(document).on('click', '#server', function() {
 		dataverse_server = $('#server').find(":selected").val();
-		DV_API_URL = dataverse_server + '<?php echo $DV_API ?>';
+		DV_API_URL = dataverse_server + '<?= $DV_API ?>';
 	})
 	</script>
 </head>
 
-<body style="zoom: <? echo $ZOOMWP ?>">
+<body style="zoom: <?= $ZOOMWP ?>">
 
-<?php echo $header_title ?>
+<?= $header_title ?>
 <br><br>
 
-<h1>Publishing Datasets <a href="<? echo $maggot_doc_url.'publish/dataverse' ?>" target="_blank"><i class="bi bi-question-octagon-fill" style="color:grey; font-size: 20px"></i></a></h1>
+<h1>Publishing Datasets <a href="<?= $maggot_doc_url.'publish/dataverse' ?>" target="_blank"><i class="bi bi-question-octagon-fill" style="color:grey; font-size: 20px"></i></a></h1>
 <br>
 
 <section>
 	<div id="push" style="display: block; max-width:1000px; margin:auto;">
 		<br/>
-		<form id="formpush" name="formpush" action="?dataset=<? echo $dataset ?>" onsubmit="return check()" autocomplete="off" method="post" enctype="multipart/form-data">
+		<form id="formpush" name="formpush" action="?dataset=<?= $dataset ?>" onsubmit="return check()" autocomplete="off" method="post" enctype="multipart/form-data">
 			<h2>Publish metadata to a Dataverse repository</h2>
 			<div class="btn-group gr-jsontype" role="group">
 				<button type="button" id="jsontype1" class="btn btn-secondary activated" onclick="selectjson(1);">Internal JSON</button>
 				<button type="button" id="jsontype2" class="btn btn-secondary" onclick="selectjson(2);">External JSON</button>
 			</div><br><br>
 			<div class="input-group mb-3 selectjson1" style="display: flex;">
-			<div class="dataset"><b>&nbsp;&nbsp;Dataset:&nbsp;&nbsp;&nbsp;</b></div><select name="dataset" id="dataset" style="height: 38px;" class="form-control form-control-sm dataset-select" onchange="$('#errbox').css('display','none');"><? echo $options_dataset ?></select>
+			<div class="dataset"><b>&nbsp;&nbsp;Dataset:&nbsp;&nbsp;&nbsp;</b></div><select name="dataset" id="dataset" style="height: 38px;" class="form-control form-control-sm dataset-select" onchange="$('#errbox').css('display','none');"><?= $options_dataset ?></select>
 			</div> 
 			<div class="input-group mb-3 selectjson2" style="display: none;">
 				<div class="input-group-prepend">
@@ -142,9 +145,9 @@ if ($ret>0) {
 					<label id="label" class="custom-file-label" for="jsonfile"></label>
 				</div>
 			</div>
-			<div style="padding-bottom: 10px;"><b>Dataverse Server URL</b>:&nbsp;<select name="server" id="server" class="form-control form-control-sm"><? echo $options_server ?></select></div>
-			<div style="padding-bottom: 10px;"><b>API-Token</b>:&nbsp;<input class="form-control form-control-sm solo" type="text" name="token" id="token" value="<? echo $API_TOKEN ?>" placeholder="Copy-paste here the API Token from your corresponding Dataverse account" /></div>
-			<div style="padding-bottom: 10px;"><b>Dataverse</b>:&nbsp;<input class="form-control form-control-sm solo typeahead" type="text" name="parent" id="parent" value="<? echo $PARENT ?>" placeholder="Entrer the first 3 letters of targeted dataverse name"/></div>
+			<div style="padding-bottom: 10px;"><b>Dataverse Server URL</b>:&nbsp;<select name="server" id="server" class="form-control form-control-sm"><?= $options_server ?></select></div>
+			<div style="padding-bottom: 10px;"><b>API-Token</b>:&nbsp;<input class="form-control form-control-sm solo" type="text" name="token" id="token" value="<?= $API_TOKEN ?>" placeholder="Copy-paste here the API Token from your corresponding Dataverse account" /></div>
+			<div style="padding-bottom: 10px;"><b>Dataverse</b>:&nbsp;<input class="form-control form-control-sm solo typeahead" type="text" name="parent" id="parent" value="<?= $PARENT ?>" placeholder="Entrer the first 3 letters of targeted dataverse name"/></div>
 			<input type="submit" class="btn btn-primary" style="width: 100px;" id="btnpush" name="btnpush" value="Publish"/>
 			<input type="hidden" name="jsontype" id="jsontype" value="1">
 			<br>
@@ -182,7 +185,7 @@ if ($ret>0) {
 <br>
 <script>
 	$(window).on('load', function() {
-		if (<? echo $EXTERN ?>) {
+		if (<?= $EXTERN ?>) {
 			$('.gr-jsontype').css('display','none');
 			selectjson(2);
 		}
@@ -284,7 +287,7 @@ do
 		echo "<script>$('#errboxmsg').html('".$msg."'); $('#errbox').css('display','block');</script>";
 		break;
 	}
-	
+
 	// Display links to input/output JSON files and both Dataverse & Mapping definition files
 	$ds=$metadata['title'];
 	file_put_contents($json_url, $outjson);
@@ -325,19 +328,39 @@ do
 	// Create / Update dataset to the data repository
 	if (strlen($persistentid)) {
 		// Update
-		$new_ds = json_decode($outjson,true)['datasetVersion'];
-		unset($new_ds['license']);
-		unset($new_ds['termsOfUse']);
-		$new_jsonds = json_encode($new_ds);
-		$json_url = 'tmp/'.genKEY().'.json';
-		file_put_contents($json_url, $new_jsonds);
-		$request="datasets/:persistentId/versions/:draft?persistentId=".$persistentid;
-		$output_arr = send_api_dataverse($request,$json_url, $mode='PUT');
+		try { 
+			$new_ds = json_decode($outjson,true)['datasetVersion']; 
+			unset($new_ds['license']);
+			unset($new_ds['termsOfUse']);
+			$new_jsonds = json_encode($new_ds);
+			$json_url = 'tmp/'.genKEY().'.json';
+			file_put_contents($json_url, $new_jsonds);
+			$request="datasets/:persistentId/versions/:draft?persistentId=".$persistentid;
+			$output_arr = send_api_dataverse($request,$json_url, $mode='PUT');
+		} catch(Exception $e) { $output_arr=[]; }
 	} else {
 		// Create
 		$output_arr = send_api_dataverse("dataverses/$PARENT/datasets",$json_url, $mode='POST');
 	}
-	
+//echo "<br><pre>"; print_r ($output_arr); echo "</pre><br>"; 
+
+	if (empty($output_arr)) {
+		$htmloutput = "Error: There is a problem with the JSON file";
+		echo "<script>$('#errresp').css('display','block'); $('#errrespmsg').html('".$htmloutput."');</script>";
+		break;
+	}
+
+	if (!isset($output_arr['status'])) {
+		if (strlen($persistentid)) {
+			$htmloutput="ERROR: an error occurs when trying to update the dataset with the persistentid=".$persistentid;
+		} else {
+			$htmloutput="ERROR: an error occurs when trying to create the dataset ";
+		}
+		$htmloutput .= "<br>Either there is a problem with the JSON file, or try again later";
+		echo "<script>$('#errresp').css('display','block'); $('#errrespmsg').html('".$htmloutput."');</script>";
+		break;
+	}
+
 	$status = $output_arr['status'];
 	if ($status==='ERROR') {
 		$htmloutput="ERROR: ".addslashes($output_arr['message']);
@@ -396,17 +419,15 @@ do
 
 } while(0);
 
-echo "<script>$('#waiting').css('display','none');</script>";
-
 ?>
 
-<br>
-
 <script>
-    /* Montrer le nom du fichier selectionner pour chargement : https://www.codeply.com/p/LtpNZllird */
-    document.querySelector('.custom-file-input').addEventListener('change',function(e){
-      var fileName = document.getElementById("jsonfile").files[0].name;
-      var nextSibling = e.target.nextElementSibling
-      nextSibling.innerText = fileName
-    });
+	document.querySelector('.custom-file-input').addEventListener('change',function(e){
+		var fileName = document.getElementById("jsonfile").files[0].name;
+		var nextSibling = e.target.nextElementSibling
+		nextSibling.innerText = fileName
+	});
+	$('#waiting').css('display','none');
 </script>
+
+<br>

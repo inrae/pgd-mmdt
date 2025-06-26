@@ -9,6 +9,7 @@ function zcTypeahead () {
 		async: true,
 		source: function (query, processSync, processAsync) {
 			url = ZC_API_URL + encodeURIComponent(query);
+			if (DEBUG) console.log('GET '+url)
 			return $.ajax({
 				url: url,
 				type: 'GET',

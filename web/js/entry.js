@@ -25,7 +25,6 @@ function load_data(json)
 	var textarea = autotxt.concat(autoarea).concat(datetxt);
 
 	// Validation based on JSON schema
-	//indata = this.result;
 	indata = Base64.encode(json);
 	resp='';
 	$.ajaxSetup({async:false});

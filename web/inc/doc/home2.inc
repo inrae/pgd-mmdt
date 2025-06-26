@@ -39,9 +39,8 @@
 <h1><img src="./docs/logo.svg?raw=true" alt="" title="Maggot" style="width:100px;"> &nbsp;&nbsp;&nbsp;&nbsp;<span id="title"><?= $MAINTITLE; ?></span></h1>
 <br>
 
-<div style="background-image: url(docs/banner-background.png); background-repeat: no-repeat; background-size: cover; padding: 20px 40px;"><center>
-<font style="font-size:32px; color:#e3e4ed; font-weight: 700;"><?= $BANNER; ?></font>
-</center>
+<div style="background-image: url(docs/banner-background.png); background-repeat: no-repeat; background-size: cover; padding: 20px 40px;">
+<center><font style="font-size:32px; color:#e3e4ed; font-weight: 700;"><?= $BANNER; ?></font></center>
 </div>
 <br><br>
 
@@ -54,7 +53,6 @@
 
 <!-- Right box -->
 <div class="box-home"><div style="padding: 20px;">
-
 <div class="container">
 <?php foreach ($OPTGROUPS as $row => $features): ?>
 	<?php if (!empty($features)): ?>
@@ -78,7 +76,6 @@
 	<?php endif; ?>
 <?php endforeach; ?>
 </div>
-
 </div></div>
 
 </center>
