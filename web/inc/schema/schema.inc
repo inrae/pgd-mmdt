@@ -54,7 +54,7 @@ function get_ROR_url ($organization)
 }
 
 function addComma (&$str) {	if (substr($str,-1) !== ',') $str = $str.','; }
-function removeComma (&$str) {	$len = strlen($str); if (substr($str,-1) == ',') $str = substr($str,0,$len-1); }
+function removeComma (&$str) {	$len = strsize($str); if (substr($str,-1) == ',') $str = substr($str,0,$len-1); }
 
 //----------------------------------------
 // Generate the schema.org JSON-LD file (output_json)
@@ -83,11 +83,11 @@ function json2schema($metadata, $def, $map)
 	$cvlist=array();  // the corresponding cvlist for each dataverse field if applicable
 	$cv=array();
 	$cnt=1;
-	while (strlen($def[$cnt][0])==0) {
+	while (isset($def[$cnt]) && strsize($def[$cnt][0])==0) {
 		$arr=$def[$cnt];
 		if (! in_array( $arr[$CF],array_keys($metadata))) { $cnt++; continue; }
 		// If there is a dico
-		if (strlen($arr[$VS])>0 && preg_match('/^cvlist:([a-zA-Z0-9_]+)/',$arr[$VS], $matches)) {
+		if (strsize($arr[$VS])>0 && preg_match('/^cvlist:([a-zA-Z0-9_]+)/',$arr[$VS], $matches)) {
 			$dico=$matches[1];
 			if (! in_array($dico, $cvlist)) {
 				${$dico} = tsvToArray($cvdir.$dico.'/'.$dico.'.txt');
@@ -95,7 +95,7 @@ function json2schema($metadata, $def, $map)
 			}
 		}
 		// If there is a thesaurus / ontology
-		if (strlen($arr[$VS])>0 && preg_match('/^cv:([a-zA-Z0-9_]+)/',$arr[$VS], $matches)) {
+		if (strsize($arr[$VS])>0 && preg_match('/^cv:([a-zA-Z0-9_]+)/',$arr[$VS], $matches)) {
 			$dico=$matches[1];
 			if (! in_array($dico, $cv)) {
 				$idx=find_mapping($map, $dico);
@@ -118,12 +118,12 @@ function json2schema($metadata, $def, $map)
 	$jsoncore = '';
 
 	$cnt=1;
-	while (strlen($def[$cnt][$CS])==0) {
+	while (isset($def[$cnt]) && isset($def[$cnt][$CS]) && strsize($def[$cnt][$CS])==0) {
 		$arr=$def[$cnt];    // current line
 		$arr2=$def[$cnt+1]; // following line
 		$level = $arr[$CL];
 		do {
-			if ((strlen($arr[$CF])==0 && strlen($arr[$CT])==0)|| $def[$cnt][$CS] == '#context') break;
+			if ((strsize($arr[$CF])==0 && strsize($arr[$CT])==0)|| $def[$cnt][$CS] == '#context') break;
 
 	// Open an array at level 0
 			if ($arr[$CA]==$Y && $arr[$CM]==$Y) {
@@ -161,7 +161,7 @@ function json2schema($metadata, $def, $map)
 					if ($level == 0 && $arr[$VT]=='#VALUE') {
 						$fieldname=$arr[$CF]; $arrname = $arr[$CT];
 						$jsoncore .= '"'.$arrname.'":["'.join('", "', $metadata[$fieldname]).'"]';
-						if (strlen($arr2[$CA])>0 && strlen($arr2[$CM])>0) addComma($jsoncore);
+						if (strsize($arr2[$CA])>0 && strsize($arr2[$CM])>0) addComma($jsoncore);
 						break;
 					}
 				}
@@ -169,26 +169,27 @@ function json2schema($metadata, $def, $map)
 			}
 
 	// Level 0
-			if ($level==0 && strlen($arr[$CF])==0 && ! in_array($arr[$VT], $ValueTypes) ) {
+			if ($level==0 && strsize($arr[$CF])==0 && ! in_array($arr[$VT], $ValueTypes) ) {
 				$jsoncore .= '"'.$arr[$CT].'":"'.$arr[$VT].'"';
-				if (strlen($arr2[$CA])>0 && strlen($arr2[$CM])>0) addComma($jsoncore);
+				if (strsize($arr2[$CA])>0 && strsize($arr2[$CM])>0) addComma($jsoncore);
 				break;
 			}
 			if ($level==0 && $arr[$CF] == '@type') {
 				$jsoncore .= '"@type":"'.$arr[$VT].'"';
-				if (strlen($arr2[$CA])>0 && strlen($arr2[$CM])>0) addComma($jsoncore);
+				if (strsize($arr2[$CA])>0 && strsize($arr2[$CM])>0) addComma($jsoncore);
 				break;
 			}
 			if ($level==0 && $arr[$CF] == '@id') {
 				$jsoncore .= '"@id":"'.$arr[$PR].$id_metadata.'"';
-				if (strlen($arr2[$CA])>0 && strlen($arr2[$CM])>0) addComma($jsoncore);
+				if (strsize($arr2[$CA])>0 && strsize($arr2[$CM])>0) addComma($jsoncore);
 				break;
 			}
 			if ($level==0 && $arr[$CA]==$N && $arr[$CM]==$N && array_key_exists($arr[$CF], $metadata)) {
-				$value = $metadata[$arr[$CF]];
+				//$value = $metadata[$arr[$CF]];
+				$value = str_replace('"', '\"',  str_replace("'", "`", $metadata[$arr[$CF]]));
 				if ($arr[$CT] == 'schema:license') $value = get_license_url($value);
 				$jsoncore .= '"'.$arr[$CT].'":"'.$arr[$PR].$value.'"';
-				if (strlen($arr2[$CA])>0 && strlen($arr2[$CM])>0) addComma($jsoncore);
+				if (strsize($arr2[$CA])>0 && strsize($arr2[$CM])>0) addComma($jsoncore);
 				break;
 			}
 
@@ -208,7 +209,7 @@ function json2schema($metadata, $def, $map)
 				while ($def[$cnt+$J][$CA]==$N && $def[$cnt+$J][$CL]>0) {
 					$defobj[$J] = $def[$cnt+$J];
 					$J++;
-					if (strlen($def[$cnt+$J][$CA])==0 || strlen($def[$cnt+$J][$CM])==0) break;
+					if (strsize($def[$cnt+$J][$CA])==0 || strsize($def[$cnt+$J][$CM])==0) break;
 				}
 				// Get the current field and check if there are metadata corresponding to it
 				if ($defobj[0][$CF] !== $fieldname) $fieldname = $defobj[0][$CF];
@@ -275,7 +276,7 @@ function json2schema($metadata, $def, $map)
 							if ($objtype=='schema:Person') $value = str_replace(' ',', ',$value);
 						}
 						if ($value == '#DICO') {
-							if (strlen($defobj[$i][$VS])>0 && preg_match('/^cvlist:([a-zA-Z0-9_]+)/',$defobj[$i][$VS], $matches)) {
+							if (strsize($defobj[$i][$VS])>0 && preg_match('/^cvlist:([a-zA-Z0-9_]+)/',$defobj[$i][$VS], $matches)) {
 								$dico=$matches[1];
 								$opt = ($dico == 'people') ? array(0,' ',1) : array(0);
 								$idx=find_dico(${$dico}, $meta[$k], $opt);
@@ -289,7 +290,7 @@ function json2schema($metadata, $def, $map)
 							}
 						}
 						if ($value == '#ONTO') {
-							if (strlen($defobj[$i][$VS])>0 && preg_match('/^cv:([a-zA-Z0-9_]+)/',$defobj[$i][$VS], $matches)) {
+							if (strsize($defobj[$i][$VS])>0 && preg_match('/^cv:([a-zA-Z0-9_]+)/',$defobj[$i][$VS], $matches)) {
 								$dico=$matches[1];
 								$out = get_term_info(${$dico}, $meta[$k]);
 								if (! empty($out))
@@ -297,7 +298,7 @@ function json2schema($metadata, $def, $map)
 							}
 						}
 					// if value is not empty
-						if (strlen(strval($value))>0) {
+						if (strsize(strval($value))>0) {
 							$value = $defobj[$i][$PR].$value;
 							if (! in_array($value, $ValueTypes)) {
 								$jsoncore .= '"'.$key.'":"'.$value.'"';
@@ -321,7 +322,7 @@ function json2schema($metadata, $def, $map)
 			}
 
 	// Close an object or an array at level 1
-			if ($level == 1 && ($arr2[$CA]==$Y || $arr2[$CM]==$Y || strlen($arr2[$CF])==0 || $arr2[$CS] == '#context')) {
+			if ($level == 1 && ($arr2[$CA]==$Y || $arr2[$CM]==$Y || strsize($arr2[$CF])==0 || $arr2[$CS] == '#context')) {
 				if ($fieldname !== 'resources' && ($arrname == $arr2[$CT] || $fieldname == $arr2[$CF]))
 					break;
 				if ($level_type=='object') {
@@ -332,7 +333,7 @@ function json2schema($metadata, $def, $map)
 					removeComma($jsoncore); 
 					$jsoncore .= ']';
 				}
-				if ($arr2[$CS] !== '#context' && strlen($arr2[$CF])>0)
+				if ($arr2[$CS] !== '#context' && strsize($arr2[$CF])>0)
 					addComma($jsoncore);
 				$level = 0; $level_type = '';
 			}
@@ -345,7 +346,7 @@ function json2schema($metadata, $def, $map)
 	if ($def[$cnt][$CS] == '#context') {
 		$cnt++;
 		$jsoncontext =array();
-		while (strlen($def[$cnt][$CN])>0) {
+		while (isset($def[$cnt]) && isset($def[$cnt][$CN]) && strsize($def[$cnt][$CN])>0) {
 			$jsoncontext[] = '"'.$def[$cnt][$CN].'":"'.$def[$cnt][$CU].'"';
 			$cnt++;
 		}
@@ -367,34 +368,49 @@ function maggot2schema ($input_json, &$output_json)
 		// Get Metadata
 		$metadata = json_decode($input_json, true);
 		if ( gettype($metadata)!== 'array' || count($metadata)==0 ) {
-			$msg='Error: '.$name.' is not a valid json file !!!';
+			$msg='{"Error":"'.$name.' is not a valid json file !!!"}';
 			break;
 		}
 
 		// Read schema definition file
 		if (! is_file($jsonld_conf)) {
-			$msg='Error: '.$jsonld_conf.' does not exist !!!';
+			$msg='{"Error":"'.$jsonld_conf.' does not exist !!!"}';
 			break;
 		}
 		$def = tsvToArray($jsonld_conf, false);
 		if (! count($def)) {
-			$msg='Error: '.$jsonld_conf.' is empty !!!';
+			$msg='{"Error":"'.$jsonld_conf.' is empty !!!"}';
 			break;
 		}
 
 		if ($def[0][0] !== '#datasetField') {
-			$msg='Error: '.$jsonld_conf.' seems have a wrong format!!!';
+			$msg='{"Error":"'.$jsonld_conf.' seems have a wrong format!!!"}';
 			break;
 		}
 
 		// Read Mapping definition file
 		if (! is_file($mapping_conf)) {
-			$msg='Error: '.$mapping_conf.' does not exist !!!';
+			$msg='{"Error":"'.$mapping_conf.' does not exist !!!"}';
 			break;
 		}
 		$map = tsvToArray($mapping_conf, true);
 		if (! count($map)) {
-			$msg='Error: '.$mapping_conf.' is empty !!!';
+			$msg='{"Error":"'.$mapping_conf.' is empty !!!"}';
+			break;
+		}
+
+		// check if all "cv" are defined in the mapping
+		$map_names = [];
+		foreach( $map as $arr ) array_push($map_names, $arr[0]);
+		$arr_msg = [];
+		foreach( $def as $arr1 ) {
+			if (!preg_match('/cv:/', $arr1[8])) continue;
+			$cvname = explode(':', $arr1[8])[1];
+			if (!in_array($cvname, $map_names))
+				array_push($arr_msg, '{"Error":"Field '.$arr1[2].', '.$cvname.' does not defined in the mapping file"}');
+		}
+		if (count($arr_msg)) {
+			$msg = '['.implode(',', $arr_msg).']';
 			break;
 		}
 

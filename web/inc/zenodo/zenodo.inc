@@ -287,7 +287,7 @@ do
 		if (!preg_match('/cv:/', $arr1[7])) continue;
 		$cvname = explode(':',$arr1[7])[1];
 		if (!in_array($cvname, $map_names))
-			$errmsg .= 'ERROR: "'.$cvname.'" does not defined in the mapping file';
+			$errmsg .= 'ERROR: "'.$cvname.'" does not defined in the mapping file<br>';
 	}
 	if (strlen($errmsg)) {
 		echo "<script>$('#errboxmsg').html('".$errmsg."'); $('#errbox').css('display','block');</script>";

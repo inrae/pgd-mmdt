@@ -279,7 +279,22 @@ do
 		echo "<script>$('#errboxmsg').html('".$msg."'); $('#errbox').css('display','block');</script>";
 		break;
 	}
-	
+
+	// check if all "cv" are defined in the mapping
+	$errmsg ='';
+	$map_names = [];
+	foreach( $map as $arr ) array_push($map_names, $arr[0]);
+	foreach( $def as $arr1 ) {
+		if (!preg_match('/cv:/', $arr1[3])) continue;
+		$cvname = explode(':',$arr1[3])[1];
+		if (!in_array($cvname, $map_names))
+			$errmsg .= 'ERROR: "'.$cvname.'" does not defined in the mapping file<br>';
+	}
+	if (strlen($errmsg)) {
+		echo "<script>$('#errboxmsg').html('".$errmsg."'); $('#errbox').css('display','block');</script>";
+		break;
+	}
+
 	// Convert JSON to Dataverse
 	$outjson= json2dataverse($metadata, $def, $map);
 	if (strlen($outjson)==0) {

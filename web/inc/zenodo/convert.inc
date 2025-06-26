@@ -347,29 +347,44 @@ function maggot2zenodo ($input_json, &$output_json)
 		// Get Metadata
 		$metadata = json_decode($input_json, true);
 		if ( gettype($metadata)!== 'array' || count($metadata)==0 ) {
-			$msg='Error: '.$name.' is not a valid json file !!!';
+			$msg='{"Error":"'.$name.' is not a valid json file !!!"}';
 			break;
 		}
 
 		// Read schema definition file
 		if (! is_file($zenodo_conf)) {
-			$msg='Error: '.$zenodo_conf.' does not exist !!!';
+			$msg='{"Error":"'.$zenodo_conf.' does not exist !!!"}';
 			break;
 		}
 		$def = tsvToArray($zenodo_conf, false);
 		if (! count($def)) {
-			$msg='Error: '.$zenodo_conf.' is empty !!!';
+			$msg='{"Error":"'.$zenodo_conf.' is empty !!!"}';
 			break;
 		}
 
 		// Read Mapping definition file
 		if (! is_file($mapping_conf)) {
-			$msg='Error: '.$mapping_conf.' does not exist !!!';
+			$msg='{"Error":"'.$mapping_conf.' does not exist !!!"}';
 			break;
 		}
 		$map = tsvToArray($mapping_conf, true);
 		if (! count($map)) {
-			$msg='Error: '.$mapping_conf.' is empty !!!';
+			$msg='{"Error":"'.$mapping_conf.' is empty !!!"}';
+			break;
+		}
+
+		// check if all "cv" are defined in the mapping
+		$map_names = [];
+		foreach( $map as $arr ) array_push($map_names, $arr[0]);
+		$arr_msg = [];
+		foreach( $def as $arr1 ) {
+			if (!preg_match('/cv:/', $arr1[7])) continue;
+			$cvname = explode(':', $arr1[7])[1];
+			if (!in_array($cvname, $map_names))
+				array_push($arr_msg, '{"Error":"Field '.$arr1[0].', '.$cvname.' does not defined in the mapping file"}');
+		}
+		if (count($arr_msg)) {
+			$msg = '['.implode(',', $arr_msg).']';
 			break;
 		}
 
