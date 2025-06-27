@@ -68,6 +68,10 @@ $OPTIONS = [
 ...
 
 ];
+
+# Separator after rows
+$ROW_SEPARATOR = [2];
+
 ```
 
 **Meaning of each of the parameters defining an option**
@@ -83,6 +87,8 @@ $OPTIONS = [
 * **_info_** : Sets the text appearing in a tooltip box when you pass the mouse over the button. Note that HTML tags are supported.
 
 * **_row_** : Indicates the line on which the option appears. You can put 2 to 3 options per line depending on the length of the labels. Depending on the configuration settings, i.e., whether the options are active or not, you can arrange the options as you wish. 
+
+Additionally, separator lines can be inserted by specifying in the **$ROW_SEPARATOR** variable the row numbers where they should be inserted.
 
 <br><br><br>
 
