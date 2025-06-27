@@ -77,9 +77,9 @@
 
 * **Release 1.5** - September 2022
 
-   * Complete configuration of the terminology by including the documentation in tabbed files (TSV) in order to dynamically generate the input and query interfaces.
+   * Complete configuration of the terminology, including the documentation, in tabulated files (TSV) in order to dynamically generate the input and query interfaces.
 
-   * Added the ability to associate intranet/internet links to online resources (datasets, articles, images, etc.) within metadata.
+   * Ability to add intranet/internet resources within metadata as a link along with a small description and a type (datasets, articles, images, etc...).
 
    * Added the possibility of associating controlled vocabularies based on ontologies (agroportail and bioportail) and on thesauri (thesaurus-inrae).
 

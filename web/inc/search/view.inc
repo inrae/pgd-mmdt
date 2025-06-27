@@ -52,19 +52,23 @@ function searchByKeywords(array $keywords, $operator)
 // Empty result by default
 $obj = NULL;
 
-
 // === Simple search ===
 if( isset( $_POST['query'] ) )
 {
-	$sendType = 2;
+	$field = isset( $_POST['field'] ) ? $_POST['field'] : 'title';
+	$sortby = isset( $_POST['sortby'] ) ? $_POST['sortby'] : 1;
 	$operator = isset($_POST['operator']) ? $_POST['operator'] : 'or' ;
+	$sendType = 2;
 	$keywords = explode(' ', $_POST['query']);
 	$results = searchByKeywords($keywords, $operator);
 
 	// Builds then executes query
 	$titles = array_keys($results);
 	$filter = ['title' => ['$in' => $titles]];
-	$options = array('projection'=>[], 'sort' => ['title' => 1]);
+	if ((int)$sortby>0) 
+		$options = array('projection'=>[], 'sort' => [$field => 1]);
+	else
+		$options = array('projection'=>[], 'sort' => [$field => -1]);
 	foreach($shortview as $key) $options['projection'][$key]=true;
 	$options['projection']['chemin']=true;
 	$obj = dbQueryToArray($filter, $options);
@@ -175,7 +179,7 @@ if (!is_null($obj))
 		$array_view = array(); $cnt=0;
 		foreach($shortview as $key) {
 			//echo'<th>'.get_label($key).'</th>';
-			echo'<th><button style="border: none; background-color: #c2d5e9; color: #585894; font-weight: bold;" onclick="sendData(type='.$sendType.',_field_=\''.$key.'\', _sortby_=signsort['.$cnt.']); signsort['.$cnt.']= -signsort['.$cnt.'];">'.get_label($key).'</button></th>';
+			echo'<th><button type="button" style="border: none; background-color: #c2d5e9; color: #585894; font-weight: bold;" onclick="sendData(type='.$sendType.',_field_=\''.$key.'\', _sortby_=signsort['.$cnt.']); signsort['.$cnt.']= -signsort['.$cnt.'];">'.get_label($key).'</button></th>';
 			array_push($array_view, '-'); # default value
 			$cnt++;
 		}

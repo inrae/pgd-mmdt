@@ -5,7 +5,7 @@
 <html lang="en" >
 <head>
 	<title>Maggot - Search</title>
-	<?php echo $HEADMAIN ?>
+	<?= $HEADMAIN ?>
 
 	<style>::-webkit-scrollbar{ width: 0px; }</style>
 	<script src="js/search.js"></script>
@@ -129,9 +129,9 @@
 	</script>
 </head>
 
-<body style="zoom: <? echo $ZOOMWP ?>">
+<body style="zoom: <?= $ZOOMWP ?>">
 
-<?php echo $header_main ?>
+<?= $header_main ?>
 <br>
 
 <div id='loadmessage' class="loadmessage"><i>Loading external vocabulary</i>&nbsp;&nbsp;&nbsp;<img src="img/dots-loading.gif" width="30px"></div>
@@ -139,7 +139,7 @@
 <form id="formsearch2" name="formsearch2" enctype="multipart/form-data" accept-charset="utf-8">
 <section>
 	<table class="simplesearch" style="width: 100%" border="0">
-	<tr><td colspan=2><span class="labeldiv">Selection by Keywords &nbsp;<a href="<? echo $maggot_doc_url.'tutorial/search/' ?>" target="doc"><i class="bi-question-octagon-fill" style="color: rgb(27, 130, 193); font-size: 12px;" onmouseover="$(this).css('font-size','18px');" onmouseleave="$(this).css('font-size','12px');"></i></a></span></td></tr>
+	<tr><td colspan=2><span class="labeldiv">Selection by Keywords &nbsp;<a href="<?= $maggot_doc_url.'tutorial/search/' ?>" target="doc"><i class="bi-question-octagon-fill" style="color: rgb(27, 130, 193); font-size: 12px;" onmouseover="$(this).css('font-size','18px');" onmouseleave="$(this).css('font-size','12px');"></i></a></span></td></tr>
 	<tr><td style="width: 77%">
 		<div class="form-group2" style="width: 100%">
 			<input placeholder="list of keywords" class="form-control form-control-sm solo " type="text" name="search2" id="search2" style="width: 100%">
@@ -199,6 +199,7 @@
         <div id="container" class="table-responsive" style="overflow-y: scroll;"></div>
     </td></tr>
     </table>
+	<input type="hidden" id="sendflag" name="sendflag" value="0">
 </section>
 </form>
 
@@ -229,7 +230,7 @@
 	$(window).on('load', function(){
 		setTimeout(differ_ajaxtest, 1000)
 		if ( $( window ).width()>maxWidth ) $('#colitems').prop("rowspan", 3);
-		sendData(type=1);
+		sendData(type=1); $('#sendflag').val(0);
 	})
 
 	$(window).on('resize', function(){
