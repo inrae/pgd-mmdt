@@ -4,8 +4,8 @@
 
 // Retrieve a Token
 function get_token_orcid() {
-	global $ORCID_OAUTH_URL, $ORCID_CLIENT_ID, $ORCID_CLIENT_SECRET;
-	$cmd = 'curl -s -H "Accept: application/json" --data "client_id='.$ORCID_CLIENT_ID.'&client_secret='.$ORCID_CLIENT_SECRET.'&grant_type=client_credentials&scope=/read-public" '.$ORCID_OAUTH_URL.'/token';
+	global $ORCID_OAUTH_URL, $ORCID_CLIENT_ID, $ORCID_CLIENT_SECRET, $ORCID_MAX_TIME;
+	$cmd = 'curl -s -H "Accept: application/json" --max-time '.$ORCID_MAX_TIME.' --data "client_id='.$ORCID_CLIENT_ID.'&client_secret='.$ORCID_CLIENT_SECRET.'&grant_type=client_credentials&scope=/read-public" '.$ORCID_OAUTH_URL.'/token';
 	$output_js=shell_exec($cmd);
 	$output_arr = json_decode($output_js, true);
 	return $output_arr;
@@ -13,14 +13,14 @@ function get_token_orcid() {
 
 // Send an API query
 function get_orcid_query($token, $fn, $gn=null) {
-	global $ORCID_API_URL;
+	global $ORCID_API_URL, $ORCID_MAX_TIME;
 	if (is_null($gn))
 		$query  = 'family-name:'.$fn;
 	else
 		$query  = 'given-names:'.$gn.'+AND+family-name:'.$fn;
 	$query .= '&fl=orcid,given-names,family-name,email,current-institution-affiliation-name';
 	# Submit query
-	$cmd = 'curl -s -H "Accept: text/csv" -H "Authorization: Bearer '.$token.'" '.$ORCID_API_URL.'/?q='.$query;
+	$cmd = 'curl -s -H "Accept: text/csv" --max-time '.$ORCID_MAX_TIME.' -H "Authorization: Bearer '.$token.'" '.$ORCID_API_URL.'/?q='.$query;
 	return 	csv2json(shell_exec($cmd));
 }
 

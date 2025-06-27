@@ -16,6 +16,7 @@ function dvTypeahead () {
 				url: url,
 				type: 'GET',
 				dataType: 'json',
+				timeout: 5000,
 				success: function (json) {
 					orgs = json.data.items
 					return processAsync(orgs);

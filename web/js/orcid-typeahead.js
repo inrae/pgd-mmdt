@@ -23,7 +23,7 @@ function orcidTypeahead ()
 				url: url,
 				type: 'GET',
 				dataType: 'json',
-				timeout: 3000,
+				timeout: 10000,
 				success: function (json) {
 					return processAsync(json);
 				},

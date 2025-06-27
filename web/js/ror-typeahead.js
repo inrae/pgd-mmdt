@@ -22,6 +22,7 @@ function rorTypeahead ()
 				url: url,
 				type: 'GET',
 				dataType: 'json',
+				timeout: 5000,
 				success: function (json) {
 					orgs = json.items
 					return processAsync(orgs);

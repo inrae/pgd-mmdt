@@ -14,6 +14,7 @@ function zcTypeahead () {
 				url: url,
 				type: 'GET',
 				dataType: 'json',
+				timeout: 5000,
 				success: function (json) {
 					return processAsync([json]);
 				}
