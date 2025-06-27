@@ -11,9 +11,9 @@ some_url:
 
 <style>.md-typeset h1 {display: none;} .md-nav__item {font-size: medium}</style>
 
-### Customization of the home page
+### Home page customization 
 
-Since the version 2.4, it is now more easy to customize the home page, depending on your site.  The figure below shows an example of a home page.
+Since the [version 2.4][1]{target=_blank}, it is now more easy to customize the home page, depending on your site.  The figure below shows an example of a home page.
 
 <center>
 <a href="../images/home-page-0.png" data-lightbox="fig0"><img src="../images/home-page-0.png" width="600px"></a>
@@ -56,6 +56,15 @@ $OPTIONS = [
 		'info' => '<b>Manage</b> private access keys',
 		'row' => 1
 	],
+	'option3' => [
+		'active' => 1,
+		'label' => 'Dictionaries',
+		'url' => 'dictionary',
+		'icon' => 'person',
+		'info' => '<b>Edit</b> the dictionaries (need admin access to edit or just use "maggot" user for viewing only),
+		'row' => 2
+	],
+
 ...
 
 ];
@@ -67,16 +76,17 @@ $OPTIONS = [
 
 * **_url_** : Sets the URL corresponding to the option. It is recommended not to change it.
 
-* **_label_** : Sets the label appearing on the button in the menu.
+* **_label_** : Sets the label appearing on the button in the menu. Please keep them concise and precise.
 
-* **_icon_** : Sets the icon appearing on the button in the menu. See [icons][1]{target=_blank} on Bootstrap website.
+* **_icon_** : Sets the icon appearing on the button in the menu. See [icons][2]{target=_blank} on Bootstrap website.
 
-* **_info_** : Sets the text appearing in a tooltip box when you pass the mouse over the button.
+* **_info_** : Sets the text appearing in a tooltip box when you pass the mouse over the button. Note that HTML tags are supported.
 
-* **_row_** : Indicates the line on which the option appears. Depending on the configuration settings, i.e., whether the options are active or not, you can arrange the options as you wish.
+* **_row_** : Indicates the line on which the option appears. You can put 2 to 3 options per line depending on the length of the labels. Depending on the configuration settings, i.e., whether the options are active or not, you can arrange the options as you wish. 
 
 <br><br><br>
 
 
-[1]: https://icons.getbootstrap.com/
+[1]: https://github.com/inrae/pgd-mmdt/blob/main/CHANGES.md
+[2]: https://icons.getbootstrap.com/
 
