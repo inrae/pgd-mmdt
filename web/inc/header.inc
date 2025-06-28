@@ -103,19 +103,25 @@ $header_title = $infolog.$header_open.$header_close;
 
 # Header for Entry / Search
 
-if( ! isset( $_GET['extern'] ) && ! $EXTERN )
-$menu1 ='<div class="btn-group btn-group-lg align-to-right" role="group">
-	<i class="bi bi-filetype-json" style="color:grey;"></i><a href="./entry" class="search_data"><button type="button" class="btn btn-primary" data-toggle="button" aria-pressed="false" autocomplete="off" name="btn-input">Metadata input</button></a>&nbsp;&nbsp;&nbsp;
-	<i class="bi bi-search" style="color:grey;"></i><a href="./search" class="search_data"><button type="button" class="btn btn-primary" data-toggle="button" aria-pressed="false" autocomplete="off" name="btn-search">Dataset research</button></a>&nbsp;&nbsp;&nbsp;
-	<i class="bi bi-question-octagon-fill" style="color:grey;"></i><a href="./doc/about" class="search_data"><button type="button" class="btn btn-primary" data-toggle="button" aria-pressed="false" autocomplete="off">About</button></a>
+if( ! isset( $_GET['extern'] ) && ! $EXTERN ) {
+$menu_com = '<div class="btn-group btn-group-lg align-to-right" role="group">
+	<i class="bi bi-filetype-json" style="color:grey;"></i><a href="'.$PATH.'entry" class="search_data"><button type="button" class="btn btn-primary" data-toggle="button" aria-pressed="false" autocomplete="off" name="btn-input">Metadata input</button></a>&nbsp;&nbsp;&nbsp;
+	<i class="bi bi-search" style="color:grey;"></i><a href="'.$PATH.'search" class="search_data"><button type="button" class="btn btn-primary" data-toggle="button" aria-pressed="false" autocomplete="off" name="btn-search">Dataset research</button></a>&nbsp;&nbsp;&nbsp;';
+$menu1 = $menu_com . '<i class="bi bi-question-octagon-fill" style="color:grey;"></i><a href="./doc/about" class="search_data">
+	<button type="button" class="btn btn-primary" data-toggle="button" aria-pressed="false" autocomplete="off">About</button></a>
 	</div>';
+$menu2 = $menu_com . '<i class="bi bi-house" style="color:grey;"></i><a href="'.$PATH.'home" class="search_data">
+	<button type="button" class="btn btn-primary" data-toggle="button" aria-pressed="false" autocomplete="off">Home</button></a>
+	</div>';
+}
 
-if( isset( $_GET['extern'] ) || $EXTERN )
-$menu1 ='<div class="btn-group btn-group-lg" role="group">
+if( isset( $_GET['extern'] ) || $EXTERN ) {
+$menu1 = $menu2 = '<div class="btn-group btn-group-lg" role="group">
 	<a href="./dataverse" class="search_data"><button type="button" class="btn btn-primary" data-toggle="button" aria-pressed="false" autocomplete="off" name="btn-search">Publish Dataset</button></a>
 	</div>';
+}
 
-$header_main = $infolog.$header_open.$menu1.$header_close;
+$header_main = $infolog.$header_open.$menu2.$header_close;
 
 #------------------------
 

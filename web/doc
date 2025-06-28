@@ -16,10 +16,11 @@ include ('inc/parsedown/ParsedownExtra.inc');
 
 include ('inc/header.inc');
 
-if ($FUNC=='home' || isset($_GET['home'])) {
-	include ('inc/doc/home.inc');
-} elseif ($FUNC=='about' || isset($_GET['about'])) {
-	include ('inc/doc/about.inc');
+if ($FUNC=='about' || isset($_GET['about'])) {
+	if ($DEV)
+		include ('inc/doc/about2.inc');
+	else
+		include ('inc/doc/about.inc');
 } elseif ($FUNC=='meta' || isset($_GET['meta'])) {
 	include ('inc/doc/doc.inc');
 }

@@ -48,7 +48,7 @@
 
 <section>
 
-<h1><img src="./docs/logo.svg?raw=true" alt="" title="Maggot" style="width:100px;"> &nbsp;&nbsp;&nbsp;&nbsp;<span id="title"><?php echo $MAINTITLE; ?></span></h1>
+<h1><img src="./img/logo.svg?raw=true" alt="" title="Maggot" style="width:100px;"> &nbsp;&nbsp;&nbsp;&nbsp;<span id="title"><?php echo $MAINTITLE; ?></span></h1>
 <br>
 
 <div style="background-image: url(docs/Data-sharing-background.png); background-repeat: no-repeat; background-size: cover; padding: 20px 40px;"><center>

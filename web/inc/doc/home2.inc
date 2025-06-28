@@ -36,10 +36,10 @@
 
 <section>
 
-<h1><img src="./docs/logo.svg?raw=true" alt="" title="Maggot" style="width:100px;"> &nbsp;&nbsp;&nbsp;&nbsp;<span id="title"><?= $MAINTITLE; ?></span></h1>
+<h1><img src="./img/logo.svg?raw=true" alt="" title="Maggot" style="width:100px;"> &nbsp;&nbsp;&nbsp;&nbsp;<span id="title"><?= $MAINTITLE; ?></span></h1>
 <br>
 
-<div style="background-image: url(docs/banner-background.png); background-repeat: no-repeat; background-size: cover; padding: 20px 40px;">
+<div style="background-image: url(img/banner-background.png); background-repeat: no-repeat; background-size: cover; padding: 20px 40px;">
 <center><font style="font-size:32px; color:#e3e4ed; font-weight: 700;"><?= $BANNER; ?></font></center>
 </div>
 <br><br>

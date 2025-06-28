@@ -83,7 +83,7 @@ do {
       // If no role defined Then Access Forbidden (403)
       if (count($AUTH_ROLES)==0) {
           echo "<center>";
-          echo "<br><img src=\"$PATH"."docs/logo2.svg\" width=\"12%\"><br><br>";
+          echo "<br><img src=\"$PATH"."img/logo2.svg\" width=\"12%\"><br><br>";
           echo "<br>Welcome <b>".$AUTH_TOKEN['name']."</b><br><br>";
           echo "<b>HTTP ERROR 403 : Acces refused</b><br>";
           echo "<br>Your account is registred but you must contact the administrator that will assign you a role<br>";
@@ -108,7 +108,7 @@ do {
       $output_js=shell_exec($cmd);
       if (is.null($output_js) || ! $output_js) {
           echo "<center>";
-          echo "<br><img src=\"$PATH"."docs/logo2.svg\" width=\"12%\"><br><br>";
+          echo "<br><img src=\"$PATH"."img/logo2.svg\" width=\"12%\"><br><br>";
           echo "<b>Userinfo Endpoint</b> : $USERINFO_ENDPOINT<br><br>";
           echo "<b>ERROR : Failed to get user information</b><br>";
           echo "</center>";
@@ -127,7 +127,7 @@ do {
       // Get attributes defined by the scope in AUTH_IP (2nd parameter)
       if (!isset($AUTH_TOKEN[$INFOS[1]])) {
           echo "<center>";
-          echo "<br><img src=\"$PATH"."docs/logo2.svg\" width=\"12%\"><br><br>";
+          echo "<br><img src=\"$PATH"."img/logo2.svg\" width=\"12%\"><br><br>";
           echo "<br>Welcome <b>".$AUTH_TOKEN['name']."</b><br><br>";
           echo "<b>ERROR : Acces refused</b><br>";
           echo "<br>The scope <i>".$INFOS[1]."</i> is not defined<br>Please, contact the Administrator <br>";
@@ -143,7 +143,7 @@ do {
       // Check if some items restrict access in AUTH_IP (3rd parameter)
       if (count($INFOS)>2 && is_array($INFOS[2]) && count($INFOS[2])>0 && count(array_intersect($INFOS[2], $AUTH_ROLES))==0) {
           echo "<center>";
-          echo "<br><img src=\"$PATH"."docs/logo2.svg\" width=\"12%\"><br><br>";
+          echo "<br><img src=\"$PATH"."img/logo2.svg\" width=\"12%\"><br><br>";
           echo "<br>Welcome <b>".$AUTH_TOKEN['name']."</b><br><br>";
           echo "<b>HTTP ERROR 403 : Acces refused</b><br>";
           echo "<br>You are not authorised to access to this application.<br>Please, contact the Administrator <br>";

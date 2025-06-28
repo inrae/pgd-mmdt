@@ -6,7 +6,7 @@
 #
 
 # Right Panel
-$options = [
+$OPTIONS = [
 	'option1' => ['active' => $CONFIGURATION, 'row' => 1,
 		'label' => 'Configuration', 'url' => 'viewconf', 'icon' => 'gear', 
 		'info' => '<b>Configure</b> the terminology definition file'],
@@ -47,7 +47,7 @@ $ROW_SEPARATOR = [2];
 
 # Group options by line
 $OPTGROUPS = [1 => [], 2 => [], 3 => [], 4 => [], 5 => [], 6 => []];
-foreach ($options as $opt) {
+foreach ($OPTIONS as $opt) {
     if ($opt['active'] && isset($opt['row'])) {
         $OPTGROUPS[$opt['row']][] = $opt;
     }
