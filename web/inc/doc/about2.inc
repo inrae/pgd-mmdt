@@ -54,12 +54,16 @@ $badges = preg_replace('/<a(.*?)href="([^"]+)"(.*?)>/i','<a$1href="$2"$3 target=
 <center><font style="font-size:32px; color:#e3e4ed; font-weight: 700;">Maggot, a research data cataloging tool - (v. <?= $VERSION ?>)</font></center>
 </div>
 <br>
-<?= $badges ?>
 <center>
 
 <!-- Left panel -->
-<div class="box-home" style="width: 100%"><div style="padding: 35px;">
+<div class="box-home" style="min-width:500px; min-height: 400px;"><div style="padding: 15px;">
+<img src="<?= $PATH ?>img/maggot_overview.png?raw=true" width="450" height="350" alt="Overview"/>
+</div></div>
 
+<!-- Right box -->
+<div class="box-home" style="min-width:700px; min-height: 400px;"><div style="padding: 20px;">
+<?= $badges ?>
 <h2>Change Log</h2>
 <ul>
 <li><b>Change log on Github</b> : <a href="https://github.com/inrae/pgd-mmdt/blob/main/CHANGES.md" target="_blank">https://github.com/inrae/pgd-mmdt/blob/main/CHANGES.md</a></li>
