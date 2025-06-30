@@ -57,12 +57,12 @@ $badges = preg_replace('/<a(.*?)href="([^"]+)"(.*?)>/i','<a$1href="$2"$3 target=
 <center>
 
 <!-- Left panel -->
-<div class="box-home" style="min-width:500px; min-height: 400px;"><div style="padding: 15px;">
+<div class="box-home" style="min-width:250px; min-height: 400px;"><div style="padding: 15px;">
 <img src="<?= $PATH ?>img/maggot_overview.png?raw=true" width="450" height="350" alt="Overview"/>
 </div></div>
 
 <!-- Right box -->
-<div class="box-home" style="min-width:700px; min-height: 400px;"><div style="padding: 20px;">
+<div class="box-home" style="width:800px; min-height: 400px;"><div style="padding: 20px;">
 <?= $badges ?>
 <h2>Change Log</h2>
 <ul>

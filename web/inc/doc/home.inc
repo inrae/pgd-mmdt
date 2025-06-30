@@ -42,7 +42,7 @@
 <div style="background-image: url(img/banner-background.png); background-repeat: no-repeat; background-size: cover; padding: 20px 40px;">
 <center><font style="font-size:32px; color:#e3e4ed; font-weight: 700;"><?= $BANNER; ?></font></center>
 </div>
-<br><br>
+<br>
 
 <center>
 
