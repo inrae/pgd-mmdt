@@ -13,7 +13,7 @@ some_url:
 
 ### Home page customization 
 
-Since the [version 2.4][1]{target=_blank}, it is now more easy to customize the home page, depending on your site.  The figure below shows an example of a home page.
+Since the [version 2.3][1]{target=_blank}, it is now more easy to customize the home page, depending on your site.  The figure below shows an example of a home page.
 
 <center>
 <a href="../images/home-page-0.png" data-lightbox="fig0"><img src="../images/home-page-0.png" width="600px"></a>

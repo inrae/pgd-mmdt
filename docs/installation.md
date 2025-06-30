@@ -85,6 +85,12 @@ sh ./run <option>
 
 <br>
 
+#### Home page customization 
+
+* Since the [version 2.3][34]{target=_blank}, it is now more easy to customize the home page, depending on your site. See  [Home page customization ](../home_page)
+
+<br>
+
 #### Starting the application
 
 * You must first either build the 3 docker container images ... (using MongoDB 6.0+ with [AVX enabled](../avx_win11_vbox))
@@ -298,4 +304,4 @@ The initial choice was not to manage users in the Maggot tool. This choice was m
 [31]: https://en.wikipedia.org/wiki/Single_sign-on
 [32]: https://github.com/djacob65/maggot-sso/
 [33]: https://github.com/djacob65/maggot-sso/wiki/Single-Sign-On
-
+[34]: https://github.com/inrae/pgd-mmdt/blob/main/CHANGES.md
