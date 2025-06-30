@@ -21,7 +21,7 @@ See a short [Presentation][2]{:target="_blank"} and [Poster][3]{:target="_blank"
 
 #### Overview
 
-The Maggot tool is made up of several modules, all accessible from the main page by clicking on the corresponding part of the image as shown in the figure below:
+The Maggot tool is made up of several modules, all accessible from the main page by clicking on the corresponding box of the menu as shown in the figure below:
 
 <center>
 <a href="../images/tuto_fig1.png" data-lightbox="fig1"><img src="../images/tuto_fig1.png" width="800px"></a><br>
@@ -42,7 +42,7 @@ __Metadata Entry__
 __Search datasets__
 : <p>This module allows users to search datasets based on the associated metadata, to see all the metadata and possibly to have access to the data itself. See the corresponding tutorial for [Search Datasets](search). This obviously assumes that the metadata files have been deposited in the correct directory in the storage space dedicated to data management within your collective. See [Infrastructure](../infrastructure).</p>
 
-__File Browser__
+__File Browser__ (_optional_)
 : <p>This module gives users access to a [file browser][1]{:target="_blank"} provided that the data manager has installed it. See [File Browser](../installation/#file-browser)</p>
 
 __Publication__
