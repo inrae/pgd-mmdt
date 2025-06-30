@@ -31,7 +31,7 @@ $OPTIONS = [
 	'option8' => ['active' => $export_zenodo, 'row' => 4,
 		'label' => 'Push to Zenodo', 'url' => 'zenodo', 'icon' => 'hand-index',
 		'info' => '<b>Publish</b> the metadata of datasets along with their data files into the <b>Zenodo</b> repository'],
-	'option9' => ['active' => 0, 'row' => 4, # $export_bloxberg
+	'option9' => ['active' => $DEV ? $export_bloxberg : 0, 'row' => 4, # $export_bloxberg
 		'label' => 'Push to Bloxberg', 'url' => 'bloxberg', 'icon' => 'hand-index',
 		'info' => '<b>Publish</b> the metadata of datasets into the <b>bloxberg blockchain</b> (<i>Experimental</i>)'],
 	'option10' => ['active' => 0, 'row' => 6,

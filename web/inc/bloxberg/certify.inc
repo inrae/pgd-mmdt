@@ -55,8 +55,10 @@ function exec_cmd_api($cmd)
 {
 	global $LOG;
 	if ($LOG) echo "<script>console.log('".addslashes($cmd)."');</script>";
-	$output_js=shell_exec($cmd);
-	if ($LOG) echo "<script>console.log('".$output_js."');</script>";
+	$output_js=shell_exec($cmd.' 2>&1');
+	if (strsize($output_js) && preg_match('/Failed/', $output_js))
+		$output_js = '{ "error": 1, "detail": "'.str_replace("\r", '', str_replace("\n", '', $output_js)).'" }';
+	if ($LOG) echo "<script>console.log('".addslashes($output_js)."');</script>";
 	return $output_js;
 }
 
@@ -77,7 +79,7 @@ function certify_api_bloxberg($upload, $mode='POST')
 	$request = 'createBloxbergCertificate';
 	if ($LOG) echo "<script>console.log('".addslashes($upload)."');</script>";
 	if ($LOG) echo "<script>console.log('certify_api_bloxberg:');</script>";
-	$cmd='curl -H "'.$header.'" -H "'.$accept.'" -H "'.$content_type.'" -X '.$mode.' '.$BC_SERVER_URL.$request.' -d \''.$upload.'\'';
+	$cmd='curl -s -S --connect-timeout 5 -H "'.$header.'" -H "'.$accept.'" -H "'.$content_type.'" -X '.$mode.' '.$BC_SERVER_URL.$request.' -d \''.$upload.'\'';
 	return exec_cmd_api($cmd);
 }
 
@@ -96,7 +98,7 @@ function generatePDF_api_bloxberg($BBjson, $output_zip, $mode='POST')
 	$jqBBjson = preg_replace('/\s+/', ' ', str_replace("\r", '', str_replace("\n", '', $BBjson)));
 	//$upload = addslashes($jqBBjson);
 	$upload = $jqBBjson;
-	$cmd='curl --write-out "%{http_code}" -H "'.$header.'" -H "'.$accept.'" -H "'.$content_type.'" -X '.$mode.' '.$BC_SERVER_URL.$request;
+	$cmd='curl -s -S --write-out "%{http_code}" -H "'.$header.'" -H "'.$accept.'" -H "'.$content_type.'" -X '.$mode.' '.$BC_SERVER_URL.$request;
 	$cmd .= ' -d \''.$upload.'\'';
 	$cmd .= ' --output '.$output_zip.' --silent';
 	if ($LOG) echo "<script>console.log('".addslashes($cmd)."');</script>";

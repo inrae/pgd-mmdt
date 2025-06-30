@@ -97,7 +97,8 @@ $header_open='<div class="entete"><table width="100%"><tr>
 
 $header_close='</td></tr></table></div>';
 
-$header_title = $infolog.$header_open.$header_close;
+$headder_btn_home = '<div class="btn-group btn-group-lg align-to-right" role="group"><i class="bi bi-house" style="color:grey;"></i><a href="'.$PATH.'" class="search_data"><button type="button" class="btn btn-primary" data-toggle="button" aria-pressed="false" autocomplete="off">Home</button></a></div>';
+$header_title = $infolog.$header_open.$headder_btn_home.$header_close;
 
 #------------------------
 
@@ -110,7 +111,7 @@ $menu_com = '<div class="btn-group btn-group-lg align-to-right" role="group">
 $menu1 = $menu_com . '<i class="bi bi-question-octagon-fill" style="color:grey;"></i><a href="./doc/about" class="search_data">
 	<button type="button" class="btn btn-primary" data-toggle="button" aria-pressed="false" autocomplete="off">About</button></a>
 	</div>';
-$menu2 = $menu_com . '<i class="bi bi-house" style="color:grey;"></i><a href="'.$PATH.'home" class="search_data">
+$menu2 = $menu_com . '<i class="bi bi-house" style="color:grey;"></i><a href="'.$PATH.'" class="search_data">
 	<button type="button" class="btn btn-primary" data-toggle="button" aria-pressed="false" autocomplete="off">Home</button></a>
 	</div>';
 }

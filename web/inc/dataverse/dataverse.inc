@@ -121,14 +121,15 @@ if ($ret>0) {
 <?= $header_title ?>
 <br><br>
 
-<h1>Publishing Datasets <a href="<?= $maggot_doc_url.'publish/dataverse' ?>" target="_blank"><i class="bi bi-question-octagon-fill" style="color:grey; font-size: 20px"></i></a></h1>
+<h1>Publish metadata to a Dataverse repository <a href="<?= $maggot_doc_url.'publish/dataverse' ?>" target="_blank"><i class="bi bi-question-octagon-fill" style="color:grey; font-size: 20px"></i></a></h1>
 <br>
 
 <section>
-	<div id="push" style="display: block; max-width:1000px; margin:auto;">
+	<div id="push" style="display: block; max-width:1200px; margin:auto;">
 		<br/>
 		<form id="formpush" name="formpush" action="?dataset=<?= $dataset ?>" onsubmit="return check()" autocomplete="off" method="post" enctype="multipart/form-data">
-			<h2>Publish metadata to a Dataverse repository</h2>
+		<fieldset class="form-group2 fieldset_section" style="padding: 20px 40px;">
+			<legend class="legend_section"><span style="background-color:white">&nbsp;&nbsp;Submission&nbsp;&nbsp;</span></legend>
 			<div class="btn-group gr-jsontype" role="group">
 				<button type="button" id="jsontype1" class="btn btn-secondary activated" onclick="selectjson(1);">Internal JSON</button>
 				<button type="button" id="jsontype2" class="btn btn-secondary" onclick="selectjson(2);">External JSON</button>
@@ -151,6 +152,7 @@ if ($ret>0) {
 			<input type="submit" class="btn btn-primary" style="width: 100px;" id="btnpush" name="btnpush" value="Publish"/>
 			<input type="hidden" name="jsontype" id="jsontype" value="1">
 			<br>
+		</fieldset>
 		</form>
 	</div>
 	<div id="waiting" style="display: none; max-width:1000px; margin:auto;">
@@ -159,7 +161,6 @@ if ($ret>0) {
 	<div id="result" style="display: block">
 		<br>
 		<div id='link'></div>
-		<br>
 		<div style="padding-bottom: 10px;"><div id="errbox" name="errbox" class="msgbox errbox">
 			<div style="margin-left: 2rem; margin-top: 1rem; margin-bottom: 0rem;">
 				<span id="errboxmsg">Error !!!</span></p>

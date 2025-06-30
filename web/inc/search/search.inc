@@ -141,8 +141,8 @@
 	<table class="simplesearch" style="width: 100%" border="0">
 	<tr><td colspan=2><span class="labeldiv">Selection by Keywords &nbsp;<a href="<?= $maggot_doc_url.'tutorial/search/' ?>" target="doc"><i class="bi-question-octagon-fill" style="color: rgb(27, 130, 193); font-size: 12px;" onmouseover="$(this).css('font-size','18px');" onmouseleave="$(this).css('font-size','12px');"></i></a></span></td></tr>
 	<tr><td style="width: 77%">
-		<div class="form-group2" style="width: 100%">
-			<input placeholder="list of keywords" class="form-control form-control-sm solo " type="text" name="search2" id="search2" style="width: 100%">
+		<div class="form-group2" style="width: 100%;">
+			<input placeholder="list of keywords" class="form-control form-control-sm solo " type="text" name="search2" id="search2" style="width: 100%; padding: 5px 10px; line-height: 25px;">
 		</div>
 	</td><td style="width: 23%">
 		<div class="form-group2 ">

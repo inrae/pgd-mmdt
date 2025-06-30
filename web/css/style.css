@@ -334,7 +334,7 @@ div.table-responsive {
 }
 
 .filemsgbox {
-	color: #52499e;
+	color: #c17c3f;
 }
 
 .dataset {
@@ -368,9 +368,7 @@ p.selval {
     display: block;
     min-inline-size: min-content;
     margin-inline: 2px;
-    border-width: 0.1rem;
-    border-style: groove;
-    border-color: lightsteelblue;
+	border: 3px solid #ebebeb;
     border-image: initial;
     padding-block: 0.35em 0.625em;
     padding-inline: 0.75em;

@@ -114,11 +114,11 @@ if ($ret>0) {
 <br>
 
 <section>
-	<div id="push" style="display: block; max-width:1000px; margin:auto;">
-		<br/>
+	<div id="push" style="display: block; max-width:1200px; margin:auto;">
 		<form id="formpush" name="formpush" action="?dataset=<? echo $dataset ?>" onsubmit="return check()" autocomplete="off" method="post" enctype="multipart/form-data">
-			<h2>Certification of metadata file on the bloxberg blockchain</h2>
 			This protects your intellectual property and safeguards against potential future scooping by generating a unique identifier from your data that is then stored on the chain. A certificate is then created to provide proof that this information belongs to you or your organization.<br><br>
+		<fieldset class="form-group2 fieldset_section" style="padding: 20px 40px;">
+			<legend class="legend_section"><span style="background-color:white">&nbsp;&nbsp;Submission&nbsp;&nbsp;</span></legend>
 			<div class="btn-group gr-jsontype" role="group">
 				<button type="button" id="jsontype1" class="btn btn-secondary activated" onclick="selectjson(1);">Internal JSON</button>
 				<button type="button" id="jsontype2" class="btn btn-secondary" onclick="selectjson(2);">External JSON</button>
@@ -141,6 +141,7 @@ if ($ret>0) {
 			<input type="submit" class="btn btn-primary" style="width: 100px;" id="btnpush" name="btnpush" value="Publish"/>
 			<input type="hidden" name="jsontype" id="jsontype" value="1">
 			<br>
+		</fieldset>
 		</form>
 	</div>
 	<div id="waiting" style="display: none; max-width:1000px; margin:auto;">
@@ -149,23 +150,22 @@ if ($ret>0) {
 	<div id="result" style="display: block">
 		<br>
 		<div id='link'></div>
-		<br>
-		<div style="padding-bottom: 10px;"><div id="errbox" name="errbox" class="msgbox errbox">
+		<div style="padding-bottom: 10px; padding-top: 10px;"><div id="errbox" name="errbox" class="msgbox errbox">
 			<div style="margin-left: 2rem; margin-top: 1rem; margin-bottom: 0rem;">
 				<span id="errboxmsg">Error !!!</span></p>
 			</div>
 		</div></div>
-		<div style="padding-bottom: 10px;"><div id="errresp" name="errresp" class="msgbox errbox">
+		<div style="padding-bottom: 10px; padding-top: 10px;"><div id="errresp" name="errresp" class="msgbox errbox">
 			<div style="margin-left: 2rem; margin-top: 1rem; margin-bottom: 0rem;">
 				<span id="errrespmsg">Error !!!</span></p>
 			</div>
 		</div></div>
-		<div style="padding-bottom: 10px;"><div id="successresp" name="successresp" class="msgbox successbox">
+		<div style="padding-bottom: 10px; padding-top: 10px;"><div id="successresp" name="successresp" class="msgbox successbox">
 			<div style="margin-left: 2rem; margin-top: 1rem; margin-bottom: 0rem;">
 				<span id="successmsg">Success !!!</span></p>
 			</div>
 		</div></div>
-		<div style="padding-bottom: 10px;"><div id="filemsgbox" name="filemsgbox" class="msgbox filemsgbox">
+		<div style="padding-bottom: 10px; padding-top: 10px;"><div id="filemsgbox" name="filemsgbox" class="msgbox filemsgbox">
 			<div style="margin-left: 2rem; margin-top: 1rem; margin-bottom: 0rem;">
 				<span id="filemsg"></span></p>
 			</div>
@@ -278,11 +278,16 @@ do
 	echo "<script>$('#push').css('display','none');</script>";
 	echo "<script>$('#link').html('".box_links($arr_links, $flglink)."');</script>";
 
-	$output_arr = json_decode($response_js, true);
-	$COND = is_array($output_arr) && array_key_exists('detail', $output_arr) && strlen($output_arr['detail'])>0;
-	if ($COND) {
-		$msg='Error: Fail to certify the metadata file on the bloxberg blockchain!!!';
-		$msg.= "<br><pre>".$output_arr['detail']."</pre>";
+	$msg = '';
+	if (strsize($response_js)>0) {
+		$output_arr = json_decode($response_js, true);
+		$COND = is_array($output_arr) && array_key_exists('detail', $output_arr) && strlen($output_arr['detail'])>0;
+		$msg = addslashes($output_arr['detail']);
+	} else {
+		$msg.= "Unknown error";
+	}
+	if (strsize($msg)) {
+		$msg = 'Error: Fail to certify the metadata file on the bloxberg blockchain !<br><pre>'.$msg.'</pre>';
 		echo "<script>$('#errboxmsg').html('".$msg."'); $('#errbox').css('display','block');</script>";
 		break;
 	}

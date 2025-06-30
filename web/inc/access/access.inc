@@ -67,7 +67,8 @@ do {
 <section>
 	<br/>
 	<form id="formconvert" name="formconvert" action="#" autocomplete="off" method="post" enctype="multipart/form-data">
-		<h2>Generate a private access key file</h2>
+		<fieldset class="form-group2 fieldset_section" style="padding: 20px 40px;">
+			<legend class="legend_section" style="width: 33%;"><span style="background-color:white">&nbsp;&nbsp;Generate a private access key file&nbsp;&nbsp;</span></legend>
 		<br>
 		<div class="form-group2" style="width:250px" id="d1">
 		<span class="labeldiv">Private Key</span>
@@ -92,15 +93,20 @@ do {
 		<br><br>
 		<input id="download" type="download" value="Download the Private Access File" class="btn btn-success btn-xs" style="width: 300px; display:<? echo $disp1 ?>;" onclick="downloadFile('<? echo $PATH.$crypt_url ?>','<? echo $private_auth_file ?>');"/>
 		<div id="message2" style="display: <? echo $disp2 ?>;"><p style="color:#d92b48">ERROR: <? echo $errormsg ?></p></div>
-		<br><br>
+		<br>
+		</fieldset>
+		<br>
 		<hr>
-		<br><br>
-		<h2>Record a private access key into the current session</h2>
+		<br>
+		<fieldset class="form-group2 fieldset_section" style="padding: 20px 40px;">
+			<legend class="legend_section" style="width: 50%;"><span style="background-color:white">&nbsp;&nbsp;Record a private access key into the current session&nbsp;&nbsp;</span></legend>
 		<br>
 		<span><b>Private Key</b> : <input class="input-setval " type="password" name="keysession" id="keysession" style="width:350px" placeholder="at least <? echo $nbcar ?> characters" value="<? echo $keysession ?>" onclick="document.getElementById('message').style.display='none';"></span>
 		<input type="submit" class="btn btn-success btn-xs" style="width: 100px;" name="reckey" value="Record key" onclick="document.getElementById('message').style.display='none';"/>
 		<br><br>
 		<div id="message3" style="display: <? echo $disp3 ?>;"><p style="color:#68b893">Success: your private access key has been reccorded</p></div>
+		<br>
+		</fieldset>
 	</form>
 </section>
 <br>

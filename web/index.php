@@ -8,13 +8,9 @@
 require_once('inc/config/config.inc');
 
 include ('inc/header.inc');
-if ($DEV) {
-	include ('inc/doc/home_left.inc');
-	include ('inc/doc/home_right.inc');
-	include ('inc/doc/home2.inc');
-} else {
-	include ('inc/doc/home.inc');
-}
+include ('inc/doc/home_left.inc');
+include ('inc/doc/home_right.inc');
+include ('inc/doc/home.inc');
 include ('inc/footer.inc');
 
 ?>

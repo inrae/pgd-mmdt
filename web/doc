@@ -7,8 +7,6 @@
 # Loading config file
 require_once('inc/config/config.inc');
 
-$home_file='docs/home.md';
-$about_file='docs/about.md';
 $meta_file='docs/doc.md';
 
 include ('inc/parsedown/Parsedown.inc');
@@ -17,10 +15,7 @@ include ('inc/parsedown/ParsedownExtra.inc');
 include ('inc/header.inc');
 
 if ($FUNC=='about' || isset($_GET['about'])) {
-	if ($DEV)
-		include ('inc/doc/about2.inc');
-	else
-		include ('inc/doc/about.inc');
+	include ('inc/doc/about.inc');
 } elseif ($FUNC=='meta' || isset($_GET['meta'])) {
 	include ('inc/doc/doc.inc');
 }
