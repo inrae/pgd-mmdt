@@ -6,7 +6,7 @@
     "dateCreated": "2022-01-01",
     "datePublished": "2023-10-29",
     "dateModified": "2025-06-30",
-    "downloadUrl": "https://github.com/inrae/pgd-mmdt/archive/refs/tags/2.1.tar.gz",
+    "downloadUrl": "https://github.com/inrae/pgd-mmdt/archive/refs/tags/2.3.tar.gz",
     "issueTracker": "https://github.com/inrae/pgd-mmdt/issues",
     "name": "Maggot",
     "version": "2.3",
@@ -47,7 +47,7 @@
             "email": "daniel.jacob@inrae.fr",
             "affiliation": {
                 "@type": "Organization",
-                "name": "INRAE UMR 1332 Biologie du Fruit et Pathogènes"
+                "name": "INRAE UR BIA-BIBS"
             }
         },
         {
