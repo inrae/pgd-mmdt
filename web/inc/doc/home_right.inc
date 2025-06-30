@@ -22,7 +22,7 @@ $OPTIONS = [
 	'option5' => ['active' => 1, 'row' => 3,
 		'label' => 'Search datasets', 'url' => 'search', 'icon' => 'search',
 		'info' => '<b>Search</b> datasets based on some metadata - assuming the metadata were previously deposited in the storage space'],
-	'option6' => ['active' => 0, 'row' => 5, # $FILEBROWSER
+	'option6' => ['active' => 0, 'row' => 1, # $FILEBROWSER
 		'label' => 'File Browser', 'url' => '/fb/', 'icon' => 'card-list',
 		'info' => '<b>File Browser</b> allows you to browse data directories using cloud-like software'],
 	'option7' => ['active' => $export_dataverse, 'row' => 4,
