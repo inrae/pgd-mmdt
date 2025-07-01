@@ -28,7 +28,8 @@ __2__ - <ins>Message in the banner</ins> is defined by the  **_$BANNER_** variab
 
 __3__ - <ins>Text on the left part</ins> is defined by the **_$HTMLTEXT_** variable in the _web/inc/home/home_left.inc_ file.
 
-__4__ - <ins>Options and their arrangements</ins> are defined by the **_$OPTIONS_** variable in the _web/inc/home/home_right.inc_ file.<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;See more details below.
+__4__ - <ins>Options and their arrangements</ins> are defined by the **_$OPTIONS_** variable in the _web/inc/home/home_right.inc_ file.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;See more details below.
 
 __5__ - <ins>Logos and links</ins> at the bottom of the page are in the _web/inc/footer.inc_ file.
 
@@ -89,6 +90,13 @@ $ROW_SEPARATOR = [2];
 * **_row_** : Indicates the line on which the option appears. You can put 2 to 3 options per line depending on the length of the labels. Depending on the configuration settings, i.e., whether the options are active or not, you can arrange the options as you wish. 
 
 Additionally, separator lines can be inserted by specifying in the **$ROW_SEPARATOR** variable the row numbers where they should be inserted.
+
+
+The example below shows two menus - the first is complete while the second is more minimal - depending on the options chosen as active and then visible or not.
+
+<center>
+<a href="../images/home-page-1.png" data-lightbox="fig1"><img src="../images/home-page-1.png" width="600px"></a>
+</center>
 
 <br><br><br>
 
