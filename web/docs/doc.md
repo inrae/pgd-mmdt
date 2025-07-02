@@ -1,6 +1,10 @@
 # Metadata documentation
 ----
 
+<font size="+1"><b>Set of metadata as defined in the terminology.</b></font>
+
+---
+
 .
 
 ## DEFINITION
@@ -287,6 +291,7 @@
 * Preferably indicate a URL to an external resource accessible to all. But it can also be a password-protected resource (e.g. a disk space on the cloud). This can also be text clearly indicating where the resource is located (internal disk space). Finally, this can be the name of a file deposited on the same disk space as the metadata file, in order to be able to push it in the data repository at the same time as the metadata (see [Publication](https://inrae.github.io/pgd-mmdt/publish/) on the online documentation).
 
 
-</div>
 
-.
+<br>
+
+<br><br>
