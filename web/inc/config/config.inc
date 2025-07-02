@@ -1,5 +1,7 @@
 <?php
 
+session_start([ 'cookie_lifetime' => 3600,  'gc_maxlifetime' => 3600]);
+
 date_default_timezone_set('Europe/Paris');
 ini_set('error_reporting', E_ERROR);
 ini_set("include_path", ".:/usr/share/php");
