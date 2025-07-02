@@ -347,7 +347,9 @@ function tsv2md($filename)
 {
 	global $checkboite, $RESMEDIA;
 
-	$md = "# Metadata documentation\n----\n\n.\n\n";
+	$md = "# Metadata documentation\n----\n\n";
+	$md .= "<font size=\"+1\"><b>Set of metadata as defined in the terminology.</b></font>\n\n---\n\n";
+	$md .= ".\n\n";
 	$section='';
 
 	do {
@@ -383,13 +385,15 @@ function tsv2md($filename)
 			}
 			// option
 			if ($val[0] == 'option') {
-			$md .= "    *  **".$val[1]."** :  ".$val[2]."\n";
-			continue;
+				$md .= "    *  **".$val[1]."** :  ".$val[2]."\n";
+				continue;
 			}
 		}
-		$md .= "</div>\n\n.\n";
+		$md .= "\n<br>";
 
 	} while(0);
+
+	$md .= "\n\n<br><br>";
 	return $md;
 }
 

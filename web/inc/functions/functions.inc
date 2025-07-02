@@ -213,7 +213,7 @@ function is_accessible ($record)
 {
 	global $PRIVATE_ACCESS, $private_auth_file;
 	#$GLOB = $_COOKIE; # see inc/access/access.inc
-	$GLOB = $_SESSION;
+	$GLOB = isset($_SESSION) ? $_SESSION : [];
 	$path = str_replace('pgd_data', 'mnt', $record['chemin']);
 	$file_auth= dirname($path)."/".$private_auth_file;
 	$ret=FALSE;
