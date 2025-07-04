@@ -73,14 +73,14 @@ do {
 		<div class="form-group2" style="width:250px" id="d1">
 		<span class="labeldiv">Private Key</span>
 		<fieldset>
-			<input class="input-setval " type="password" name="key" id="key" style="width:250px" placeholder="at least <? echo $nbcar ?> characters" value="<? echo $key ?>">
+			<input class="form-control form-control-sm solo input-setval " type="password" name="key" id="key" style="width:250px" placeholder="at least <? echo $nbcar ?> characters" value="<? echo $key ?>">
 		</fieldset>
 		</div>
 		&nbsp; &nbsp;
 		<div class="form-group2" style="width:250px" id="d1">
 		<span class="labeldiv">Confirmation</span>
 		<fieldset>
-			<input class="input-setval " type="password" name="keyc" id="keyc" style="width:250px" placeholder="at least <? echo $nbcar ?> characters" value="">
+			<input class="form-control form-control-sm solo input-setval " type="password" name="keyc" id="keyc" style="width:250px" placeholder="at least <? echo $nbcar ?> characters" value="">
 		</fieldset>
 		</div>
 		&nbsp; &nbsp;
@@ -101,7 +101,7 @@ do {
 		<fieldset class="form-group2 fieldset_section" style="padding: 20px 40px;">
 			<legend class="legend_section" style="width: 50%;"><span style="background-color:white">&nbsp;&nbsp;Record a private access key into the current session&nbsp;&nbsp;</span></legend>
 		<br>
-		<span><b>Private Key</b> : <input class="input-setval " type="password" name="keysession" id="keysession" style="width:350px" placeholder="at least <? echo $nbcar ?> characters" value="<? echo $keysession ?>" onclick="document.getElementById('message').style.display='none';"></span>
+		<span><b>Private Key</b> : <input class="form-control form-control-sm solo input-setval " type="password" name="keysession" id="keysession" style="width:350px" placeholder="at least <? echo $nbcar ?> characters" value="<? echo $keysession ?>" onclick="document.getElementById('message').style.display='none';"></span>
 		<input type="submit" class="btn btn-success btn-xs" style="width: 100px;" name="reckey" value="Record key" onclick="document.getElementById('message').style.display='none';"/>
 		<br><br>
 		<div id="message3" style="display: <? echo $disp3 ?>;"><p style="color:#68b893">Success: your private access key has been reccorded</p></div>

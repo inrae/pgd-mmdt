@@ -289,7 +289,7 @@ if ($ret>0) {
 <div id="saveForm" class="saveForm" enctype="multipart/form-data" autocomplete="off" action="#" style="display: none;">
 	<strong>Generate a JSON file</strong>
 	<form id ="saveform" name="saveform" >
-		<br><span>Filename:</span>&nbsp;&nbsp;<b>META_</b>&nbsp;<input id="jsonName" name="jsonName" type="text">&nbsp;<b>.json</b><br><br>
+		<br><span>Filename:</span>&nbsp;&nbsp;<b>META_</b>&nbsp;<input id="jsonName" name="jsonName" class="form-control form-control-sm solo" style="display: inline" type="text">&nbsp;<b>.json</b><br><br>
 		<div id="divSend">
 			<input type="checkbox" id="jsonSend" name="jsonSend" value="">
 			<label id="labelSend" for="SEND">Send the metadata file to the data manager(s)</label><br><br>

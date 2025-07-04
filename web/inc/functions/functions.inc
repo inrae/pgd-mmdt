@@ -377,7 +377,7 @@ function get_term_info($dico, $name)
 
 function box_links($arr_links, $dwnld=0, $help=0)
 {
-	$html_output = '<fieldset class="border px-3 py-3 rounded"><legend class="legend_section"><span style="background-color:white">&nbsp;&nbsp;Files&nbsp;&nbsp;</span></legend>';
+	$html_output = '<fieldset class="form-group2 fieldset_section"><legend class="legend_section"><span style="background-color:white">&nbsp;&nbsp;Files&nbsp;&nbsp;</span></legend>';
 
 	foreach(array_keys($arr_links) as $key) {
 		$arr = $arr_links[$key];
