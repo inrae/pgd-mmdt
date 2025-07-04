@@ -9,14 +9,17 @@ some_url:
 
 # About
 
-<style>.md-typeset h1 {display: none;} .md-nav__item {font-size: medium}</style>
+<style>.md-typeset h1 {display: none;} .md-nav__item {font-size: medium} .md-sidebar__scrollwrap {overflow: unset}</style>
 
 ### Maggot, a research data cataloging tool 
 
 
-#### Background 
+#### Motivations
 
-Within collectives (units, platforms, large projects, etc.) there are challenges of organizing, documenting, storing, and sharing data in order to have visibility on what is produced within these collectives: data sets, software, databases, images, sounds, videos, analyses, codes, etc.
+* Meet the challenges of organizing, documenting, storing and sharing data within a collective (unit, platform, project, etc.).
+* Have visibility of what is produced within the collective: datasets, software, images, sounds, videos, analyses, codes, etc.
+* Fall within an open science approach for sharing and reproducibility by promoting FAIR principles within the collective.
+* Raise awareness among newcomers and students about a better description of what they produce.
 
 #### Main objectives
 
@@ -30,7 +33,7 @@ Since the organization of metadata must follow a schema (i.e., indicating which 
 
 Concerning semantics, we recommend a gradual approach towards the adoption of standardized [controlled vocabularies][2]. For example, a simple dictionary of business vocabulary used by the community in the scientific field concerned may be perfectly sufficient. Subsequently, the creation of a thesaurus with or without correspondence with existing ontologies can be considered or, better still, enriching existing ones (e.g., [Thesaurus-INRAE][3]{:target="_blank"}). Obviously, when they exist, the ontologies of the domain can be chosen progressively by selecting those which are relevant for the collective and by drawing up a comprehensible landscape of the context in which they are included.
 
-The metadata thus produced are used to feed a local data warehouse intended to be subsequently consulted by all the people in the collective. Hence the importance of both the metadata schema and the vocabulary repositories specific to each collective. But these same metadata can also feed other warehouses, namely [Dataverse][1]{:target="_blank"} and [Zenodo][4]{:target="_blank"}. Similarly, these metadata must be able to be harvested in order to carry out meta-analyses. It is therefore necessary to set up [gateways][5] between the different formats.
+The metadata thus produced are used to feed a local data warehouse intended to be subsequently consulted by all the people in the collective. Hence the importance of both the metadata schema and the vocabulary repositories specific to each collective. But these same metadata can also feed other warehouses, e.g. [Recherche Data Gouv][1]{:target="_blank"} and [Zenodo][4]{:target="_blank"}. Similarly, these metadata must be able to be harvested in order to carry out meta-analyses. It is therefore necessary to set up [gateways][5] between the different formats.
 
 
 <center>
@@ -39,7 +42,9 @@ The metadata thus produced are used to feed a local data warehouse intended to b
 
 #### Tools and technologies
 
-The inventory of online vocabularies allows us to identify three main types of resources: **1**) ontology portals based on [OntoPortal][6]{:target="_blank"} – such as [AgroPortal][7]{:target="_blank"} and [BioPortal][8]{:target="_blank"}, **2**) thesauri based on [SKOSMOS][9]{:target="_blank"} - [Thesaurus-INRAE][3]{:target="_blank"}, [LOTERRE][10]{:target="_blank"}, etc. and **3**) ontology portals based on the EMBL-EBI ontology search service i.e. [Ontology Lookup Service][11]{:target="_blank"}. These three types of resources are supported in order to maximize relevance in the choice of vocabularies. Since all these vocabularies are made available on the Internet, and given the volumes of data that this represents, the option chosen is to retrieve them on demand using a connector on these portals – via APIs ([Application Program Interface][12]{:target="_blank"}).
+There are three main classes of vocabularies: thesauri, ontologies, and non-hierarchical vocabularies in the form of a simple list. All of these vocabularies are made available on the Internet via dedicated portals, and given the volumes of data that this represents, the chosen option is to retrieve them on demand using a connector on these portals – via APIs (Application Program Interface [Application Program Interface][12]{:target="_blank"}).
+
+Among the supported portals, we can cite those based on ontology portals based on [OntoPortal][6]{:target="_blank"} – such as [AgroPortal][7]{:target="_blank"} and [BioPortal][8]{:target="_blank"}, those based on [SKOSMOS][9]{:target="_blank"} (e.g. [Thesaurus-INRAE][3]{:target="_blank"}, [LOTERRE][10]{:target="_blank"}) as well as the EMBL-EBI portal ([Ontology Lookup Service][11]{:target="_blank"}). While a SKOSMOS-type portal is dedicated only to thesauri, OntoPortal-type portals can host both thesauri and ontologies. Support for all these portals thus allows for a wide variety of vocabularies.
 
 Other additional but useful resources are also used (via their API) in order to minimize entries and therefore identification errors, but also to avoid duplicates. Examples include the international register of institutions ([Research Organization Registry][13]{:target="_blank"}), or the register of persistent identifications for people ([ORCID][14]{:target="_blank"}).
 
@@ -58,7 +63,7 @@ Enabling producers to obtain metadata that better respects the [FAIR principles]
 Since the "capture" of metadata is crucial, it should ideally be done uniquely and at the most relevant stage of the data lifecycle for each of them (e.g., the name of a project at the time of its submission to funders). On the other hand, each entry can be a source of error, confusion, or duplication. This is why it is necessary to reinforce the tendency to interconnect the different online resources within an information flow following a logic of stages. The description of the project, the participants, with general keywords (ANR type resources), then comes the data management plan ([DMP][19]{:target="_blank"}) where we describe the types of data, the licenses, etc. (e.g., [DMP Opidor][20]{:target="_blank"}) then the descriptive metadata specific to each project (e.g., [Maggot][21]), and finally the structural metadata of each dataset (e.g., [ODAM][22]{:target="_blank"}), until the final dissemination (e.g., [Dataverse][1]{:target="_blank"}). Consequently, at each stage, we must retrieve the metadata upstream and then transmit them downstream with added value specific to each stage. This is called “[machine actionable][23]{:target="_blank"}” i.e., exploitability by the machine.
 
 
-[1]: https://recherche.data.gouv.fr/
+[1]: https://entrepot.recherche.data.gouv.fr/
 [2]: https://inrae.github.io/pgd-mmdt/chats/chat3/
 [3]: https://science-ouverte.inrae.fr/fr/offre-service/enrichir-ses-donnees-par-un-vocabulaire-controle
 [4]: https://zenodo.org/
