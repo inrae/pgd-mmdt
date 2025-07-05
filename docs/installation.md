@@ -163,6 +163,14 @@ Let's say that the IP address of your VM is 192.168.56.2, then in your browser y
    
    ...
    
+       location ~ ^/maggot/api/([^/]+)/([^/]+)$ {
+           rewrite ^/maggot/api/([^/]+)/([^/]+)$ /maggot/metadata/$1?format=$2;
+       }
+   
+       location ~ ^/maggot/api/([^/]+)$ {
+           rewrite ^/maggot/api/([^/]+)$ /maggot/metadata/$1?format=maggot;
+       }
+   
        location /maggot/ {
            proxy_set_header Host $host;
            proxy_set_header X-App-Name 'maggot';
