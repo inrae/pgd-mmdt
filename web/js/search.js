@@ -15,7 +15,7 @@ function sendData(type=1, _field_='title', _sortby_=1)
 	});
 
 	// Request
-	XHR.open("POST", "view", true); // URL relative OK
+	XHR.open("POST", "view", false); // URL relative OK - Synchronous
 	XHR.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 
 	if (DEBUG) console.log('sendData type '+type+': field = '+_field_+', sort = '+_sortby_);
@@ -26,7 +26,6 @@ function sendData(type=1, _field_='title', _sortby_=1)
 		operator = $('input[name="operator2"]:checked').val();
 		if (search2.length) {
 			if (DEBUG) console.log('keywords: '+search2+', operator: '+operator)
-			$('#sendflag').val(1);
 			XHR.send('query='+encodeURIComponent(search2)+'&operator='+operator+'&field='+_field_+'&sortby='+_sortby_);
 		} else {
 			if (DEBUG) console.log('Reset formsearch => type = 1')
@@ -45,7 +44,6 @@ function sendData(type=1, _field_='title', _sortby_=1)
 		object['_sortby_'] = _sortby_;
 		var json = JSON.stringify(object);	
 		if (DEBUG) console.log(json)
-		$('#sendflag').val(1);
 		XHR.send('param='+json);
 	}
 
@@ -55,8 +53,7 @@ submitForm1 = function () {
 	if (!$('input[name=operator]:checked').val()) {
 		alert('You must indicate whether your search fields are mandatory or optional!');
 	} else {
-		if ($('#sendflag').val()==0) sendData(type=1);
-		$('#sendflag').val(0);
+		sendData(type=1);
 	}
 }
 
@@ -64,27 +61,6 @@ submitForm2 = function () {
 	if (!$('input[name=operator2]:checked').val()) {
 		alert('You must indicate whether your search fields are mandatory or optional!');
 	} else {
-		if ($('#sendflag').val()==0) sendData(type=2);
-		$('#sendflag').val(0);
+		sendData(type=2);
 	}
 }
-
-window.addEventListener("load", function () {
-	// Support the submit event from the Advanced form
-	var form = document.getElementById("formsearch");
-	form.addEventListener("submit", function (event) {
-		event.preventDefault();
-		if (DEBUG) console.log('Submit Form1')
-		submitForm1()
-	});
-
-	// Support the submit event from the Simple form
-	var form2 = document.getElementById("formsearch2");
-	form2.addEventListener("submit", function (event) {
-		event.preventDefault();
-		if (DEBUG) console.log('Submit Form2')
-		submitForm2()
-	});
-
-});
-

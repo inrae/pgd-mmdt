@@ -146,7 +146,7 @@
 		</div>
 	</td><td style="width: 23%">
 		<div class="form-group2 ">
-			<button class="btn btn-primary bi-search" type="submit" aria-label="Search">&nbsp;Search</button>
+			<button type="button" class="btn btn-primary bi-search" aria-label="Search" onclick="submitForm2();">&nbsp;Search</button>
 			&nbsp;&nbsp;<a class="textlink" onclick="advClick();">Go to Advanced search</a>
 		</div>
 	<tr><td colspan=2>
@@ -189,8 +189,8 @@
         </div>
         <br/><br>
         <center><p>
-            <button type="submit" class="btn btn-primary bi-search"  style="width: 20%;" />&nbsp;Search</button>
-            <button type="reset" class="btn btn-primary bi-trash"  style="width: 20%;" onClick="$('#container').empty(); flip_all('off'); "/>&nbsp;Empty the form</button>
+            <button type="button" class="btn btn-primary bi-search" style="width: 20%;" onclick="submitForm1();"/>&nbsp;Search</button>
+            <button type="reset" class="btn btn-primary bi-trash" style="width: 20%;" onClick="$('#container').empty(); flip_all('off'); "/>&nbsp;Empty the form</button>
 			&nbsp;&nbsp;<a class="textlink" onclick="simpleClick();">Go to Simple search</a>
         </p></center>
     </div>

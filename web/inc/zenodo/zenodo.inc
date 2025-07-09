@@ -123,7 +123,6 @@ if ($ret>0) {
 <br><br>
 
 <h1>Publish metadata to a Zenodo repository <a href="<?= $maggot_doc_url.'publish/zenodo' ?>" target="_blank"><i class="bi bi-question-octagon-fill" style="color:grey; font-size: 20px"></i></a></h1>
-<br>
 
 <section>
 	<div id="push" style="display: block; max-width:1200px; margin:auto;">

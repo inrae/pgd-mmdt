@@ -68,7 +68,7 @@ do {
 	<br/>
 	<form id="formconvert" name="formconvert" action="#" autocomplete="off" method="post" enctype="multipart/form-data">
 		<fieldset class="form-group2 fieldset_section" style="padding: 20px 40px;">
-			<legend class="legend_section" style="width: 33%;"><span style="background-color:white">&nbsp;&nbsp;Generate a private access key file&nbsp;&nbsp;</span></legend>
+			<legend class="legend_section" style="width: 40%;"><span style="background-color:white"><center>&nbsp;&nbsp;Generate a private access key file&nbsp;&nbsp;</center></span></legend>
 		<br>
 		<div class="form-group2" style="width:250px" id="d1">
 		<span class="labeldiv">Private Key</span>
@@ -99,7 +99,7 @@ do {
 		<hr>
 		<br>
 		<fieldset class="form-group2 fieldset_section" style="padding: 20px 40px;">
-			<legend class="legend_section" style="width: 50%;"><span style="background-color:white">&nbsp;&nbsp;Record a private access key into the current session&nbsp;&nbsp;</span></legend>
+			<legend class="legend_section" style="width: 55%;"><span style="background-color:white"><center>&nbsp;&nbsp;Record a private access key into the current session&nbsp;&nbsp;</center></span></legend>
 		<br>
 		<span><b>Private Key</b> : <input class="form-control form-control-sm solo input-setval" type="password" name="keysession" id="keysession" style="width:350px; display: inline" placeholder="at least <? echo $nbcar ?> characters" value="<? echo $keysession ?>" onclick="document.getElementById('message').style.display='none';"></span>
 		<input type="submit" class="btn btn-success btn-xs" style="width: 100px;" name="reckey" value="Record key" onclick="document.getElementById('message').style.display='none';"/>

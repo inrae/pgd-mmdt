@@ -1,4 +1,4 @@
-![Logo](web/docs/logo.png)
+![Logo](web/img/logo.png)
 
 [![bio.tools](https://img.shields.io/badge/bio.tools-maggot-orange)](https://bio.tools/maggot)
 [![HAL INRAE](https://img.shields.io/badge/HAL%20INRAE-04873759-green)](https://hal.inrae.fr/hal-04873759)

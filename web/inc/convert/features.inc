@@ -4,7 +4,7 @@
 function get_feature_form ($infos)
 {
 	// defaut feature values
-	$arr1 = get_vocab_array($typeahead=0); array_push($arr1, 'typeahead');
+	$arr1 = get_vocab_array($typeahead=0); array_unshift($arr1, 'typeahead');
 	$arr2 = get_vocab_array($typeahead=1);
 	$autocompl = $ws = $width = $onto = '';
 	$open=0; $rows=6; $cols=30;
@@ -22,7 +22,7 @@ function get_feature_form ($infos)
 		$arr1 = array_merge($arr1, get_dico_array());
 		$autocompl = isset($arr['autocomplete']) ? $arr['autocomplete'] : 'typeahead';
 		$ws = isset($arr['ws']) ? $arr['ws'] : 'bioportal';
-		$onto = isset($arr['onto']) ? $arr['onto'] : '';
+		$onto = isset($arr['onto']) ? str_replace(':',', ',$arr['onto']) : '';
 		$min = isset($arr['min']) ? $arr['min'] : 3;
 		$display = 'inline-block';
 		if ($autocompl !== '') $display_min = 'inline-block';
@@ -51,7 +51,7 @@ function get_feature_form ($infos)
 </div>
 <div id="feature_onto" class="form-group2" style="width:575px; display: '.$display_onto.'">
 	<span class="labeldiv">Ontologies</span>
-	<input class="form-control form-control-sm solo" type="text" name="onto" id="onto" style="width:575px" placeholder="ontology list separated by a colon or simply the keyword \'all\'" value="'.$onto.'">
+	<input class="form-control form-control-sm solo" type="text" name="onto" id="onto" style="width:575px" placeholder="ontology list separated by a comma or simply the keyword \'all\'" value="'.$onto.'">
 </div>
 </div>';
 
@@ -163,7 +163,7 @@ function get_features_line ()
 		$autocompl = $_POST['multi_autocompl'];
 		$features = 'autocomplete='.$autocompl;
 		if ($autocompl == 'typeahead')
-			$features .= ',ws='.$_POST['ws'].',onto='.$_POST['onto'];
+			$features .= ',ws='.$_POST['ws'].',onto='.preg_replace('/\s?,\s?/',':',$_POST['onto']);
 		$features .= ',min='.$_POST['multi_min'];
 		break;
 	case 'textbox' :

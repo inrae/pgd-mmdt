@@ -8,9 +8,9 @@
 require_once('inc/config/config.inc');
 
 include ('inc/header.inc');
-include ('inc/doc/home_left.inc');
-include ('inc/doc/home_right.inc');
-include ('inc/doc/home.inc');
+include ('inc/home/home_left.inc');
+include ('inc/home/home_right.inc');
+include ('inc/home/home.inc');
 include ('inc/footer.inc');
 
 ?>
