@@ -560,7 +560,7 @@ if (! $ok_action && strlen($errormsg)) {
 }
 
 if ($ok_action && strlen($successmsg) && ! strlen($errormsg)) {
-	$htmloutput1="SUCESS: ".addslashes($successmsg);
+	$htmloutput1="SUCCESS: ".addslashes($successmsg);
 	$htmloutput2="CAUTION: Don\'t forget to restart the Maggot application in command line mode on the server to take into account the modification in the terminology definition file";
 	echo "<script>$('#successresp').css('display','block'); $('#successmsg').html('".$htmloutput1."'); $('#caution').css('display','block'); $('#cautionmsg').html('".$htmloutput2."'); $('#action1').css('display','none'); $('#action2').css('display','none'); $('#confirmation').css('display','none'); $('#action3').css('display','inline-block');</script>";
 }

@@ -229,7 +229,7 @@ if (isset($_POST['confirm']) && $_POST['confirm']=='Yes') {
 
 	if (isset($ok_line) && $ok_line==1) {
 		$successmsg = 'the new line has been insert / update. View the <a href="'.$PATH.$html2File.'" target="_blank">terminology documentation file</a>';
-		$htmloutput="SUCESS: ".addslashes($successmsg);
+		$htmloutput="SUCCESS: ".addslashes($successmsg);
 		echo "<script>$('#successresp').css('display','block'); $('#successmsg').html('".$htmloutput."'); $('#caution').css('display','block'); $('#action1').css('display','none'); $('#action2').css('display','none'); $('#confirmation').css('display','none'); $('#action3').css('display','inline-block');</script>";
 
 	} 
