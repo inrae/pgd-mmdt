@@ -5,6 +5,7 @@ function get_feature_form ($infos)
 {
 	// defaut feature values
 	$arr1 = get_vocab_array($typeahead=0); array_unshift($arr1, 'typeahead');
+		$arr1 = array_merge($arr1, get_dico_array());
 	$arr2 = get_vocab_array($typeahead=1);
 	$autocompl = $ws = $width = $onto = '';
 	$open=0; $rows=6; $cols=30;
@@ -19,7 +20,6 @@ function get_feature_form ($infos)
 	$display_min = 'none';
 	$display_onto = 'none';
 	if ($infos[4]=='multiselect') {
-		$arr1 = array_merge($arr1, get_dico_array());
 		$autocompl = isset($arr['autocomplete']) ? $arr['autocomplete'] : 'typeahead';
 		$ws = isset($arr['ws']) ? $arr['ws'] : 'bioportal';
 		$onto = isset($arr['onto']) ? str_replace(':',', ',$arr['onto']) : '';
