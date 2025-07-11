@@ -5,12 +5,13 @@ function get_feature_form ($infos)
 {
 	// defaut feature values
 	$arr1 = get_vocab_array($typeahead=0); array_unshift($arr1, 'typeahead');
-		$arr1 = array_merge($arr1, get_dico_array());
+	$arr1 = array_merge($arr1, get_dico_array());
 	$arr2 = get_vocab_array($typeahead=1);
 	$autocompl = $ws = $width = $onto = '';
 	$open=0; $rows=6; $cols=30;
 	$min = 3;
 
+	// Parses features then populates an array
 	$arr = assocPars($infos[5]);
 //echo "<pre>"; print_r($arr); echo "</pre>";
 

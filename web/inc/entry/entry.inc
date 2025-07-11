@@ -22,6 +22,8 @@ if ($ret>0) {
 	}
 }
 
+$EXTERN = isset($_GET['extern']) ? 1 : $EXTERN;
+
 ?>
 
 <!DOCTYPE html>
@@ -94,7 +96,7 @@ if ($ret>0) {
 			});
 		$.ajaxSetup({async:true});
 
-		// Get the different dictionnaries
+		// Gets the different dictionnaries
 		sections = arrItems[0];    // sections which gathered one or severals variable
 		required = arrItems[2];    // required fields
 		checkboite = arrItems[4];  // list of the checkboxes along with their parameters
@@ -120,7 +122,7 @@ if ($ret>0) {
 		myhtml += '</ul>';
 
 		cnt=0;
-		// Insert HTML fields defined in arrItems
+		// Inserts HTML fields defined in arrItems
 		for (var key in sections['labels']) {
 			if (key=='resources') continue;
 			cnt++;
@@ -250,6 +252,11 @@ if ($ret>0) {
 			$( "#tabs li" ).removeClass( "ui-corner-top" ).addClass( "ui-corner-left" );
 		}
 
+		if (<?= $EXTERN ?>) {
+			$('.gr-jsontype').css('display','none');
+			selectjson(2);
+		}
+
 	});
     </script>
 </head>
@@ -335,7 +342,7 @@ if ($ret>0) {
 	});
 	$("[name='btn-input']").removeClass('btn-primary');  $("[name='btn-input']").addClass('menu-select');
 
-	// Disable the Send button if sendMail id not configurated
+	// Disables the Send button if sendMail is not configurated
 	if (SEND.length==0) {
 		$("#jsonSend").attr("disabled", true);
 		$("#divSend").hide();
