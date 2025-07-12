@@ -76,6 +76,26 @@ $EXTERN = isset($_GET['extern']) ? 1 : $EXTERN;
 		}
 	}
 
+	function final_loading() {
+		if (DEBUG) console.log('--- BEGIN final_loading ...')
+		bioportal_setup();
+		active_autocomplete()
+		$('#loadmessage').css('display','none');
+		if (DEBUG) console.log('--- END final_loading ...')
+		if (DEBUG) for(i=0; i<vartocomplete.length; i++) console.log(vartocomplete[i])
+	}
+
+	function differ_ajaxtest() {
+		if($.active > 0) {
+			if (DEBUG) console.log('Wait for AJAX to finish ...')
+			$(document).ajaxStop(function(){ $(document).unbind("ajaxStop"); setTimeout(final_loading,300); });
+		}
+		else {
+			if (DEBUG) console.log('Wait '+AJAXWAIT+' ms ...')
+			setTimeout(final_loading,AJAXWAIT);
+		}
+	}
+
 	function load_dataset(dataset) {
 		$.ajaxSetup({async:false});
 		$.get( "<? echo $APPURL ?>/metadata/"+dataset, { format: 'maggot' } )
@@ -252,13 +272,32 @@ $EXTERN = isset($_GET['extern']) ? 1 : $EXTERN;
 			$( "#tabs li" ).removeClass( "ui-corner-top" ).addClass( "ui-corner-left" );
 		}
 
+		// If EXTERN only, disables the internal JSON button
 		if (<?= $EXTERN ?>) {
 			$('.gr-jsontype').css('display','none');
 			selectjson(2);
 		}
 
+		setTimeout(differ_ajaxtest, 1000)
+		if (dataset.length) load_dataset(dataset)
+
 	});
-    </script>
+
+	$(window).on('resize', function(){
+		if ( $( window ).width()>maxWidth ) {
+		$( "#tabs" ).tabs().addClass( "ui-tabs-vertical ui-helper-clearfix" );
+		$( "#tabs li" ).removeClass( "ui-corner-top" ).addClass( "ui-corner-left" );
+		} else {
+		$( "#tabs" ).tabs().removeClass( "ui-tabs-vertical ui-helper-clearfix" );
+		$( "#tabs li" ).removeClass( "ui-corner-left" ).addClass( "ui-corner-top" );
+		}
+	})
+
+	window.addEventListener('beforeunload',(event) =>{
+		if (statusentry) event.returnValue = `Are you sure you want to leave?`;
+	});
+
+	</script>
 </head>
 
 <body style="zoom: <? echo $ZOOMWP ?>">
@@ -299,7 +338,7 @@ $EXTERN = isset($_GET['extern']) ? 1 : $EXTERN;
 		<br><span>Filename:</span>&nbsp;&nbsp;<b>META_</b>&nbsp;<input id="jsonName" name="jsonName" class="form-control form-control-sm solo" style="display: inline" type="text">&nbsp;<b>.json</b><br><br>
 		<div id="divSend">
 			<input type="checkbox" id="jsonSend" name="jsonSend" value="">
-			<label id="labelSend" for="SEND">Send the metadata file to the data manager(s)</label><br><br>
+			<label for="jsonSend">Send the metadata file to the data manager(s)</label><br><br>
 			<textarea class="form-control form-control-sm" id="jsonMsg"  name="jsonMsg" rows="8" style="display: none;" placeholder="Please put your comment here"></textarea>
 		</div><br>
 		<span><center>
@@ -333,6 +372,7 @@ $EXTERN = isset($_GET['extern']) ? 1 : $EXTERN;
 		listboite['resources']['compteur']=1;
 		load_file(file);
 	});
+
 	// Selecting a Dataset
 	document.getElementById('dataset').addEventListener('change', function() {
 		reset_form();
@@ -346,45 +386,8 @@ $EXTERN = isset($_GET['extern']) ? 1 : $EXTERN;
 	if (SEND.length==0) {
 		$("#jsonSend").attr("disabled", true);
 		$("#divSend").hide();
-		if (DEBUG) console.log('SEND is disable');
+		if (DEBUG) console.log('SENDMAIL is disabled');
+	} else if (DEBUG) {
+		console.log('SENDMAIL is enabled');
 	}
-
-	function final_loading() {
-		if (DEBUG) console.log('--- BEGIN final_loading ...')
-		bioportal_setup();
-		active_autocomplete()
-		$('#loadmessage').css('display','none');
-		if (DEBUG) console.log('--- END final_loading ...')
-		if (DEBUG) for(i=0; i<vartocomplete.length; i++) console.log(vartocomplete[i])
-	}
-
-	function differ_ajaxtest() {
-		if($.active > 0) {
-			if (DEBUG) console.log('Wait for AJAX to finish ...')
-			$(document).ajaxStop(function(){ $(document).unbind("ajaxStop"); setTimeout(final_loading,300); });
-		}
-		else {
-			if (DEBUG) console.log('Wait '+AJAXWAIT+' ms ...')
-			setTimeout(final_loading,AJAXWAIT);
-		}
-	}
-
-	$(window).on('load', function(){
-		setTimeout(differ_ajaxtest, 1000)
-		if (dataset.length) load_dataset(dataset)
-	})
-
-	$(window).on('resize', function(){
-		if ( $( window ).width()>maxWidth ) {
-		$( "#tabs" ).tabs().addClass( "ui-tabs-vertical ui-helper-clearfix" );
-		$( "#tabs li" ).removeClass( "ui-corner-top" ).addClass( "ui-corner-left" );
-		} else {
-		$( "#tabs" ).tabs().removeClass( "ui-tabs-vertical ui-helper-clearfix" );
-		$( "#tabs li" ).removeClass( "ui-corner-left" ).addClass( "ui-corner-top" );
-		}
-	})
-
-	window.addEventListener('beforeunload',(event) =>{
-		if (statusentry) event.returnValue = `Are you sure you want to leave?`;
-	});
 </script>

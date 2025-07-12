@@ -27,6 +27,7 @@ function load_data(json)
 	// Validation based on JSON schema
 	indata = Base64.encode(json);
 	resp='';
+	if (DEBUG) console.log("Check if the JSON file is valid:");
 	$.ajaxSetup({async:false});
 	$.get( "check", { json: indata } )
 			.done(function(outdata) { resp=JSON.parse(outdata); })

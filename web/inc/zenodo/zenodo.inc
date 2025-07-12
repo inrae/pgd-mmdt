@@ -74,17 +74,17 @@ if ($ret>0) {
 	var DEBUG = <?= $DEBUG ?>;
 	function selectjson(id) {
 		if (id==1) {
-		$('.selectjson1').css('display','flex');
-		$('.selectjson2').css('display','none');
-		$('#jsontype1').addClass('activated');
-		$('#jsontype2').removeClass('activated');
-		$('input[name="jsontype"]').val('1');
+			$('.selectjson1').css('display','flex');
+			$('.selectjson2').css('display','none');
+			$('#jsontype1').addClass('activated');
+			$('#jsontype2').removeClass('activated');
+			$('input[name="jsontype"]').val('1');
 		} else {
-		$('.selectjson1').css('display','none');
-		$('.selectjson2').css('display','flex');
-		$('#jsontype1').removeClass('activated');
-		$('#jsontype2').addClass('activated');
-		$('input[name="jsontype"]').val('2');
+			$('.selectjson1').css('display','none');
+			$('.selectjson2').css('display','flex');
+			$('#jsontype1').removeClass('activated');
+			$('#jsontype2').addClass('activated');
+			$('input[name="jsontype"]').val('2');
 		}
 		$('#errbox').css('display','none');
 	}

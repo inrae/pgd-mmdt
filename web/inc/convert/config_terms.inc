@@ -158,16 +158,17 @@ if (strlen($term_select)) {
 }
 
 if (isset($_POST['action']) && in_array($_POST['action'], $actions)) {
-	if ($_POST['action']==$actions[0]) $term_create = $_POST['field'];
+	if ($_POST['action']==$actions[0]) $term_create = trim($_POST['field']);
 	$required = isset($_POST['required']) ? $_POST['required'] : $infos[1];
 	$search = isset($_POST['search']) ? $_POST['search'] : $infos[2];
-	$shortview = isset($_POST['shortview']) ? $_POST['shortview'] : $infos[3];
-	$seltype = isset($_POST['type']) ? $_POST['type'] : $infos[4];
-	$features = isset($_POST['features']) ? $_POST['features'] : $infos[5];
+	$shortview = isset($_POST['shortview']) ? trim($_POST['shortview']) : $infos[3];
+	$seltype = isset($_POST['type']) ? trim($_POST['type']) : $infos[4];
+	$features = isset($_POST['features']) ? trim($_POST['features']) : $infos[5];
 	if (isset($_POST['confirm']) && $_POST['confirm']=='Yes')
-		$features = get_features_line ();
-	$label = isset($_POST['label']) ? $_POST['label'] : $infos[6];
-	$termlist = isset($_POST['termlist']) ? $_POST['termlist'] : $infos[7];
+		$features = get_features_line();
+	$label = isset($_POST['label']) ? trim($_POST['label']) : $infos[6];
+	$termlist = isset($_POST['termlist']) ? trim($_POST['termlist']) : $infos[7];
+	if (strsize($termlist)) $termlist = preg_replace('/\s?,\s?/',',',$termlist);
 	$infos = array($section, $required, $search, $shortview, $seltype, $features, $label, $termlist);
 }
 
@@ -225,7 +226,7 @@ if (strlen($section_create) || strlen($term_select) || strlen($term_create)) {
 </div>
 &nbsp;';
 
-	echo get_feature_form ($infos);
+	echo get_feature_form($infos);
 
 	$display = in_array($infos[4], array('checkbox', 'dropbox')) ? "inline-block" : "none";
 	echo '
@@ -235,6 +236,7 @@ if (strlen($section_create) || strlen($term_select) || strlen($term_create)) {
     <input class="form-control form-control-sm solo" type="text" name="termlist" id="termlist" style="width:1260px" placeholder="Predefined terms separated by a comma" value="'.$infos[7].'">
 </div>';
 
+// Insertion conditions
 	$opt_after = '<option value="after" selected>After</option><option value="before">Before</option>';
 	$opt_before = '<option value="after">After</option><option value="before" selected>Before</option>';
 	$opt_insert = isset($_POST['insert']) && $_POST['insert'] == 'before' ? $opt_before : $opt_after ;
