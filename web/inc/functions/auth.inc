@@ -106,7 +106,7 @@ do {
 
       // Get Userinfo
       $output_js=shell_exec($cmd);
-      if (is.null($output_js) || ! $output_js) {
+      if (is_null($output_js) || ! $output_js) {
           echo "<center>";
           echo "<br><img src=\"$PATH"."img/logo2.svg\" width=\"12%\"><br><br>";
           echo "<b>Userinfo Endpoint</b> : $USERINFO_ENDPOINT<br><br>";
