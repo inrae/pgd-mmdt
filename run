@@ -117,18 +117,14 @@ case "$CMD" in
    initdb)
         VER=$(sudo docker exec -t $DB_CONTAINER mongod --version | head -1)
         echo "Mongo $VER"
-        # Mongo command (ver 4.0: mongo ; ver 5.0+: mongosh)
-        MONGO=mongo
-        RET=$(sudo docker exec -t $DB_CONTAINER which $MONGO)
-        [ -z "$RET" ] && MONGO=mongosh
         RET=$(sudo docker exec -t $DB_CONTAINER cat /proc/cpuinfo | grep avx 1>/dev/null 2>/dev/null; echo $?)
-        if [ $MONGO == "mongosh" -a $RET -ne 0 ]; then
+        if [ $RET -ne 0 ]; then
             echo "ERROR: AVX support is disabled - See https://inrae.github.io/pgd-mmdt/avx_win11_vbox/"
             exit 1
         fi
         echo -n "Init DB ... "
         sudo docker exec -t $DB_CONTAINER /bin/bash -c "cd /js; python3 ./generate_setupdb.py"
-        sudo docker exec -t $DB_CONTAINER $MONGO /js/setupdb.js 1>/dev/null 2>/dev/null
+        sudo docker exec -t $DB_CONTAINER mongosh /js/setupdb.js 1>/dev/null 2>/dev/null
         [ $? -eq 0 ] && echo OK
         [ $? -ne 0 ] && echo FAILED
         sudo docker exec -i $WEB_CONTAINER php ./convert

@@ -81,6 +81,12 @@ GITREPOS=https://github.com/inrae/${REPOS}.git
      sudo chmod 775 ./$APP/web/docs/
      sudo chmod 664 ./$APP/web/docs/*
 
+     # Web interface customization
+     #sudo cp ./$PREV/web/inc/home/home_left.inc ./$APP/web/inc/home/
+     #sudo cp ./$PREV/web/inc/home/home_right.inc ./$APP/web/inc/home/
+     #sudo cp ./$PREV/web/inc/footer.inc ./$APP/web/inc/
+     #sudo cp ./$PREV/web/img/banner-background.png ./$APP/web/img/
+
      # Delete the .git directory
      ( cd $APP; sudo rm -rf ./.git )
      ( cd $APP; sudo rm -f .gitignore AUTHORS codemeta.json LICENSE README.md CHANGES.md )
