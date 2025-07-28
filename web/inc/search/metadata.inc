@@ -9,7 +9,7 @@ if( isset( $_GET['id'] ) ){
 
 if (isset($_GET['format']) && strlen($id_metadata)) {
 	$error1 = '{ "error" : "file system error" }';
-	$error2 = '{ "error" : "dataset seems unavailable" }';
+	$error2 = '{ "error" : "dataset "'.$id_metadata.'" seems unavailable" }';
 	$error3 = '{ "error" : "Unknown format or feature not enabled" }';
 	$array_values = getMetadata ($id_metadata);
 	$json = $error2;
@@ -43,9 +43,14 @@ if (isset($_GET['format']) && strlen($id_metadata)) {
 				$msg = maggot2schema ($input_json, $output_json);
 				$json = strlen($msg) ? $msg : $output_json;
 				break;
+			} 
+			if ($export_jsonld && $_GET['format']==='graph') {
+				include ('inc/schema/graph.inc');
+				exit();
 			}
 		} while(0);
 	}
+
 	echo header('content-type:application/json');
 	echo $json;
 	exit();
