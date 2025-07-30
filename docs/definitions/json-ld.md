@@ -38,9 +38,13 @@ Example of JSON-LD definition file (partial) using the metadata schemas proposed
 <a href="../../images/jsonld_conf1.png" data-lightbox="conf1"><img src="../../images/jsonld_conf1.png" width="800px"></a>
 </center>
 
-Example of JSON-LD file generated based on the definition file itself given as an example above.
+Example of JSON-LD file generated based on the definition file itself given as an example above,
 
    * [JSON-LD file of the FRIM dataset][8]{:target="_blank"}
+
+and its corresponding related diagram
+
+   * [JSON-LD Graph of the FRIM dataset][10]{:target="_blank"}
 
 <br><br>
 
@@ -53,3 +57,4 @@ Example of JSON-LD file generated based on the definition file itself given as a
 [7]: https://docs.google.com/spreadsheets/d/13HP-jI_cwLDHBetn9UKTREPJ_F4iHdAvhjmlvmYdSSw/edit#gid=0
 [8]: https://pmb-bordeaux.fr/maggot/metadata/frim1?format=jsonld
 [9]: https://niem.github.io/json/reference/json-ld/context/
+[10]: https://pmb-bordeaux.fr/maggot/api/frim1/graph
