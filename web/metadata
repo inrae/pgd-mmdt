@@ -21,6 +21,10 @@ if (isset($_GET['format']) && $_GET['format']==='jsonld') {
 	include ('inc/schema/schema.inc');
 }
 
+if (isset($_GET['format']) && $_GET['format']==='rdf') {
+	include ('inc/schema/schema.inc');
+}
+
 if (isset($_GET['format']) && $_GET['format']==='zenodo') {
 	include ('inc/zenodo/mapping.inc');
 	include ('inc/zenodo/convert.inc');

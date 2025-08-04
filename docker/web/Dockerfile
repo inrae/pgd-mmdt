@@ -13,6 +13,8 @@ RUN apt-get update && apt-get install -y unzip wget openssl libssl-dev libcurl4-
 # Install Composer && PHPMAILER
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer \
  && php /usr/local/bin/composer require phpmailer/phpmailer \
+ && php /usr/local/bin/composer require easyrdf/easyrdf \
+ && php /usr/local/bin/composer require ml/json-ld \
  && mkdir -p /usr/share/php && mv /var/www/html/vendor /usr/share/php/ && rm -f /var/www/html/composer.*
 
 # Do some cleaning

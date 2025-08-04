@@ -1,15 +1,16 @@
 <?php
 
-$URL=$APPURL."/metadata/$id_metadata/?format=jsonld";
+$URL=$APPURL."/metadata/$id_metadata/";
 
 ?>
-
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <title>JSON-LD Graph Viewer + Export</title>
+  <script src="https://unpkg.com/jsonld/dist/jsonld.min.js"></script>
+  <script src="https://unpkg.com/n3/browser/n3.min.js"></script>
   <script src="https://unpkg.com/vis-network/standalone/umd/vis-network.min.js"></script>
   <style>
     body { font-family: sans-serif; }
@@ -21,6 +22,11 @@ $URL=$APPURL."/metadata/$id_metadata/?format=jsonld";
 
 <h2>JSON-LD Graph Viewer (<?= $id_metadata ?>)</h2>
 
+<div id="loading" style="display:none; margin-top:1em;">
+  <img src="https://i.imgur.com/llF5iyg.gif" alt="Chargement..." style="height:32px; vertical-align:middle;">
+  <span>Conversion en cours...</span>
+</div>
+
 <div id="controls">
   <div>
     <strong>View mode:</strong><br>
@@ -30,7 +36,9 @@ $URL=$APPURL."/metadata/$id_metadata/?format=jsonld";
   <div>
     <strong>Export:</strong><br>
     <select id="exportType">
-      <option value="rdf">RDF Triples</option>
+      <option value="ntriples">RDF Triples</option>
+      <option value="turtle">RDF Turtle</option>
+      <option value="rdf">RDF/XML</option>
     </select>
     <button id="exportBtn">Export</button>
   </div>
@@ -110,23 +118,42 @@ $URL=$APPURL."/metadata/$id_metadata/?format=jsonld";
 			layout: { improvedLayout: true },
 			edges: { arrows: 'to', font: { align: 'middle' }, smooth: true },
 			nodes: {
-			font: { size: 14 },
-			shape: 'dot',
-			scaling: { label: true },
-			shadow: true
+				font: { size: 14 },
+				shape: 'dot',
+				scaling: { label: true },
+				shadow: true
 			},
 			physics: {
-			barnesHut: {
-				gravitationalConstant: -30000,
-				springLength: 150
-			},
-			stabilization: true
+				barnesHut: {
+					gravitationalConstant: -30000,
+					springLength: 150
+				},
+				stabilization: true
 			}
 		};
 
 		currentNetwork = new vis.Network(container, data, options);
 		currentNodes = nodes;
 		currentEdges = edges;
+	}
+
+	async function convertJsonLd(format) {
+		try {
+			const nquads = await jsonld.toRDF(jsonldData, { format: 'application/n-quads' });
+			if (format === 'ntriples') return nquads;
+	
+			if (format === 'turtle') {
+				let result = '';
+				const parser = new N3.Parser();
+				const quads = parser.parse(nquads);
+				const writer = new N3.Writer({ format: 'Turtle' });			  
+				writer.addQuads(quads);
+				writer.end((error, turtle) => { result = turtle; });
+			return result;
+			}
+		} catch (err) {
+			console.error("Conversion error :", err);
+		}
 	}
 
 	// Handle view mode switch
@@ -137,34 +164,40 @@ $URL=$APPURL."/metadata/$id_metadata/?format=jsonld";
 	});
 
 	// Handle export actions
-	document.getElementById('exportBtn').addEventListener('click', () => {
-		const type = document.getElementById('exportType').value;
-		if (type === 'rdf') {
-			exportRDF();
-		}
-	});
+	document.getElementById('exportBtn').addEventListener('click', () => exportRDF(), false);
 
-	function exportRDF() {
-		if (!currentEdges || !currentNodes) return;
-		
-		let rdf = '';
-		currentEdges.forEach(edge => {
-			const subject = edge.from;
-			const predicate = edge.label || 'relatedTo';
-			const object = edge.to;
-			rdf += `<${subject}> <${predicate}> <${object}> .\n`;
+	async function exportRDF() {
+		const loader = document.getElementById('loading');
+		const format = document.getElementById('exportType').value;
+		if (format==="rdf") {
+			loader.style.display = 'block';
+			await fetch('<?= $URL ?>?format=rdf')
+				.then(response => response.text())
+				.then(data => {
+					const blob = new Blob([data], { type: 'application/rdf+xml' });
+					const url = URL.createObjectURL(blob);
+					const link = document.createElement('a');
+					link.href = url;
+					link.download = 'graph.rdf';
+					link.click();
+					URL.revokeObjectURL(url);
+				
+				});
+		} else
+			await convertJsonLd(format).valueOf(Promise).then(function(data){
+				const extension = format === 'turtle' ? 'ttl' : 'nt';
+				const blob = new Blob([data], { type: 'text/plain' });
+				const url = URL.createObjectURL(blob);
+				const link = document.createElement('a');
+				link.href = url;
+				link.download = 'graph.'+extension;
+				link.click();
+				URL.revokeObjectURL(url);
 		});
+		loader.style.display = 'none';
+	};
 
-		const blob = new Blob([rdf], { type: 'text/plain' });
-		const url = URL.createObjectURL(blob);
-		const a = document.createElement('a');
-		a.href = url;
-		a.download = 'graph-triples.nt';
-		a.click();
-		URL.revokeObjectURL(url);
-	}
-
-	fetch('<?= $URL ?>')
+	fetch('<?= $URL ?>?format=jsonld')
 	.then((res) => res.json())
 	.then((data) => {
 		jsonldData = data;

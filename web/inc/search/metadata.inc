@@ -10,7 +10,7 @@ if( isset( $_GET['id'] ) ){
 if (isset($_GET['format']) && strlen($id_metadata)) {
 	$error1 = '{ "error" : "file system error" }';
 	$error2 = '{ "error" : "dataset "'.$id_metadata.'" seems unavailable" }';
-	$error3 = '{ "error" : "Unknown format or feature not enabled" }';
+	$error3 = '{ "error" : "Unknown format '.$_GET['format'].' or feature not enabled" }';
 	$array_values = getMetadata ($id_metadata);
 	$json = $error2;
 	if (is_array($array_values)) {
@@ -47,6 +47,17 @@ if (isset($_GET['format']) && strlen($id_metadata)) {
 			if ($export_jsonld && $_GET['format']==='graph') {
 				include ('inc/schema/graph.inc');
 				exit();
+			}
+			if ($export_jsonld && $_GET['format']==='rdf') {
+				$jsonld='';
+				$msg = maggot2schema ($input_json, $jsonld);
+				if (! strlen($msg)) {
+					include ('inc/schema/easyRDF.inc');
+					exit();
+				} else {
+					$json = $msg;
+					break;
+				}
 			}
 		} while(0);
 	}
