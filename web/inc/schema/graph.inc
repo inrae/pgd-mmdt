@@ -9,38 +9,47 @@ $URL=$APPURL."/metadata/$id_metadata/";
 <head>
   <meta charset="UTF-8">
   <title>JSON-LD Graph Viewer + Export</title>
-  <script src="https://unpkg.com/jsonld/dist/jsonld.min.js"></script>
-  <script src="https://unpkg.com/n3/browser/n3.min.js"></script>
-  <script src="https://unpkg.com/vis-network/standalone/umd/vis-network.min.js"></script>
   <style>
-    body { font-family: sans-serif; }
-    #controls { margin: 1em 0; display: flex; gap: 2em; align-items: center; }
-    #mynetwork { width: 100%; height: 800px; border: 1px solid lightgray; }
+	body { font-family: sans-serif; }
+	#controls { margin: 1em 0; display: flex; gap: 2em; align-items: center; }
+	#mynetwork { width: 100%; height: 800px; border: 1px solid lightgray; }
   </style>
 </head>
 <body>
 
 <h2>JSON-LD Graph Viewer (<?= $id_metadata ?>)</h2>
 
-<div id="loading" style="display: none; position: absolute; top: 75px; left: 350px; z-index: 9999;">
+<div id="loading" style="display: none; position: absolute; top: 150px; left: 300px; z-index: 9999;">
   <img src="https://i.imgur.com/llF5iyg.gif" alt="Chargement..." style="height:32px; vertical-align:middle;">
   <span>Waiting ...</span>
 </div>
 
+<div id="slider" style="display: block; position: absolute; top: 80px; left: 360px; z-index: 9999;">
+  <label for="gravitySlider">Graph gravity:</label>
+  <input type="range" id="gravitySlider" min="-100000" max="-1000" step="-1000" value="-30000">
+  <span id="gravityValue">-30000</span>
+</div>
+
+<div id="slider2" style="display: block; position: absolute; top: 80px; left: 710px; z-index: 9999;">
+  <label for="fontSlider">Font size:</label>
+  <input type="range" id="fontSlider" min="8" max="36" step="1" value="24">
+  <span id="fontValue">24</span>
+</div>
+
 <div id="controls">
   <div>
-    <strong>View mode:</strong><br>
-    <label><input type="radio" name="mode" value="simple" checked> Simple</label>
-    <label><input type="radio" name="mode" value="full"> Full</label>
+	<strong>View mode:</strong><br>
+	<label><input type="radio" name="mode" value="simple" checked> Simple</label>
+	<label><input type="radio" name="mode" value="full"> Full</label>
   </div>
   <div>
-    <strong>Export:</strong><br>
-    <select id="exportType">
-      <option value="ntriples">RDF Triples</option>
-      <option value="turtle">RDF Turtle</option>
-      <option value="rdf">RDF/XML</option>
-    </select>
-    <button id="exportBtn">Export</button>
+	<strong>Export:</strong><br>
+	<select id="exportType">
+	  <option value="ntriples">RDF Triples</option>
+	  <option value="turtle">RDF Turtle</option>
+	  <option value="rdf">RDF/XML</option>
+	</select>
+	<button id="exportBtn">Export</button>
   </div>
 </div>
 
@@ -48,18 +57,78 @@ $URL=$APPURL."/metadata/$id_metadata/";
 
 <div id="mynetwork"></div>
 
+<script src="https://unpkg.com/jsonld/dist/jsonld.min.js"></script>
+<script src="https://unpkg.com/n3/browser/n3.min.js"></script>
+<script src="https://unpkg.com/vis-network/standalone/umd/vis-network.min.js"></script>
 <script>
-	const colorDict = {
+	const container = document.getElementById('mynetwork');
+
+	const colorDict = { // cf https://rgbcolorpicker.com/
 		"schema:creator": "#ff9999",
 		"schema:author": "#ccffcc",
 		"schema:keywords": "#3ec2cc",
 		"citation:topicClassification": "#3ec2cc",
 		"contributor": "#ccffcc",
-		"schema:funding": "#ffff99",
+		"schema:funding": "#d6d979",
 		"schema:hasPart": "#ffcc99",
+		"publication": "#ffcc99",
+		"citation:producer": "#8e98bf",
+		"affiliation": "#bf8ebd",
+		"memberOf": "#bf8ebd",
+		"funder": "#bf8ebd",
 		// Default fallback
 		"default": "#99ccff"
 	};
+
+	let jsonldData = null;
+	let network = null;
+
+	const slider = document.getElementById('gravitySlider');
+	const gravityValue = document.getElementById('gravityValue');
+	const slider2 = document.getElementById('fontSlider');
+	const fontValue = document.getElementById('fontValue');
+	
+	slider.addEventListener('input', () => {
+		gravityValue.textContent = parseFloat(slider.value).toFixed(2);
+	});
+
+	slider2.addEventListener('input', () => {
+		fontValue.textContent = parseFloat(slider2.value).toFixed(0);
+	});
+
+	// Appliquer la mise à jour du graphe au relâchement (mouse ou clavier)
+	slider.addEventListener('change', () => {
+		const newGravity = parseFloat(slider.value);
+		updateGraphGravity(newGravity);
+	});
+	
+	slider2.addEventListener('change', () => {
+		const newFont = parseFloat(slider2.value);
+		updateFont(newFont);
+	});
+
+	function updateGraphGravity(value) {
+		network.setOptions({
+			physics: {
+				solver: 'barnesHut', // ou 'barnesHut' si tu l’utilises
+				barnesHut: {
+					gravitationalConstant: value
+				},
+				stabilization: true
+			}
+		});
+	}
+
+	function updateFont(value) {
+		network.setOptions({
+			nodes: {
+				font: { size: value },
+				shape: 'dot',
+				scaling: { label: true },
+				shadow: true
+			}
+		});
+	}
 
 	function getColorForProperty(prop) {
 		return colorDict[prop] || colorDict["default"];
@@ -87,9 +156,6 @@ $URL=$APPURL."/metadata/$id_metadata/";
 		});
 		legendContainer.appendChild(table);
 	}
-
-	const container = document.getElementById('mynetwork');
-	let jsonldData = null;
 
 	function renderGraph(mode = 'simple') {
 		const nodes = new vis.DataSet();
@@ -156,7 +222,7 @@ $URL=$APPURL."/metadata/$id_metadata/";
 			layout: { improvedLayout: true },
 			edges: { arrows: 'to', font: { align: 'middle' }, smooth: true },
 			nodes: {
-				font: { size: 14 },
+				font: { size: 24 },
 				shape: 'dot',
 				scaling: { label: true },
 				shadow: true
@@ -170,7 +236,7 @@ $URL=$APPURL."/metadata/$id_metadata/";
 			}
 		};
 
-		const network = new vis.Network(container, data, options);
+		network = new vis.Network(container, data, options);
 		network.once("stabilizationIterationsDone", function (obj) {
 			document.getElementById('loading').style.display = "none"
 			createLegend(colorDict);
@@ -237,7 +303,7 @@ $URL=$APPURL."/metadata/$id_metadata/";
 		document.getElementById('loading').style.display = 'none';
 	};
 
-    async function getJSONLD() {
+	async function getJSONLD() {
 		document.getElementById('loading').style.display = 'block';
 		await fetch('<?= $URL ?>?format=jsonld')
 			.then((res) => res.json())
