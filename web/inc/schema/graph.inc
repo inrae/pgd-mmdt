@@ -8,7 +8,7 @@ $URL=$APPURL."/metadata/$id_metadata/";
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>JSON-LD Graph Viewer + Export</title>
+  <title>Maggot - JSON-LD Graph Viewer</title>
   <style>
 	body { font-family: sans-serif; }
 	#controls { margin: 1em 0; display: flex; gap: 2em; align-items: center; }
@@ -17,7 +17,7 @@ $URL=$APPURL."/metadata/$id_metadata/";
 </head>
 <body>
 
-<h2>JSON-LD Graph Viewer (<?= $id_metadata ?>)</h2>
+<h2>Maggot - JSON-LD Graph Viewer (<?= $id_metadata ?>)</h2>
 
 <div id="loading" style="display: none; position: absolute; top: 150px; left: 300px; z-index: 9999;">
   <img src="https://i.imgur.com/llF5iyg.gif" alt="Chargement..." style="height:32px; vertical-align:middle;">
@@ -27,10 +27,9 @@ $URL=$APPURL."/metadata/$id_metadata/";
 <div id="slider" style="display: block; position: absolute; top: 80px; left: 360px; z-index: 9999;">
   <label for="gravitySlider">Graph gravity:</label>
   <input type="range" id="gravitySlider" min="-100000" max="-1000" step="-1000" value="-30000">
-  <span id="gravityValue">-30000</span>
 </div>
 
-<div id="slider2" style="display: block; position: absolute; top: 80px; left: 710px; z-index: 9999;">
+<div id="slider2" style="display: block; position: absolute; top: 80px; left: 650px; z-index: 9999;">
   <label for="fontSlider">Font size:</label>
   <input type="range" id="fontSlider" min="8" max="36" step="1" value="24">
   <span id="fontValue">24</span>
@@ -62,6 +61,12 @@ $URL=$APPURL."/metadata/$id_metadata/";
 <script src="https://unpkg.com/vis-network/standalone/umd/vis-network.min.js"></script>
 <script>
 	const container = document.getElementById('mynetwork');
+	const slider = document.getElementById('gravitySlider');
+	const slider2 = document.getElementById('fontSlider');
+	const fontValue = document.getElementById('fontValue');
+	const legendContainer = document.getElementById('legend');
+	const loading = document.getElementById('loading');
+	const exportBtn = document.getElementById('exportBtn');
 
 	const colorDict = { // cf https://rgbcolorpicker.com/
 		"schema:creator": "#ff9999",
@@ -76,32 +81,28 @@ $URL=$APPURL."/metadata/$id_metadata/";
 		"affiliation": "#bf8ebd",
 		"memberOf": "#bf8ebd",
 		"funder": "#bf8ebd",
-		// Default fallback
 		"default": "#99ccff"
 	};
+
+	getJSONLD();
+
+// ------------------
 
 	let jsonldData = null;
 	let network = null;
 
-	const slider = document.getElementById('gravitySlider');
-	const gravityValue = document.getElementById('gravityValue');
-	const slider2 = document.getElementById('fontSlider');
-	const fontValue = document.getElementById('fontValue');
-	
-	slider.addEventListener('input', () => {
-		gravityValue.textContent = parseFloat(slider.value).toFixed(2);
-	});
-
+	// Handle slider2 value
 	slider2.addEventListener('input', () => {
 		fontValue.textContent = parseFloat(slider2.value).toFixed(0);
 	});
 
-	// Appliquer la mise à jour du graphe au relâchement (mouse ou clavier)
+	// Handle slider change
 	slider.addEventListener('change', () => {
 		const newGravity = parseFloat(slider.value);
 		updateGraphGravity(newGravity);
 	});
-	
+
+	// Handle slider2 change
 	slider2.addEventListener('change', () => {
 		const newFont = parseFloat(slider2.value);
 		updateFont(newFont);
@@ -110,7 +111,7 @@ $URL=$APPURL."/metadata/$id_metadata/";
 	function updateGraphGravity(value) {
 		network.setOptions({
 			physics: {
-				solver: 'barnesHut', // ou 'barnesHut' si tu l’utilises
+				solver: 'barnesHut',
 				barnesHut: {
 					gravitationalConstant: value
 				},
@@ -135,7 +136,6 @@ $URL=$APPURL."/metadata/$id_metadata/";
 	}
 
 	function createLegend(colorDict) {
-		const legendContainer = document.getElementById('legend');
 		legendContainer.innerHTML = '<h4>Legend</h4>';
 		const table = document.createElement('table');
 		table.style.borderCollapse = 'collapse';
@@ -222,14 +222,14 @@ $URL=$APPURL."/metadata/$id_metadata/";
 			layout: { improvedLayout: true },
 			edges: { arrows: 'to', font: { align: 'middle' }, smooth: true },
 			nodes: {
-				font: { size: 24 },
+				font: { size: parseFloat(slider2.value) },
 				shape: 'dot',
 				scaling: { label: true },
 				shadow: true
 			},
 			physics: {
 				barnesHut: {
-					gravitationalConstant: -30000,
+					gravitationalConstant: parseFloat(slider.value),
 					springLength: 150
 				},
 				stabilization: true
@@ -238,7 +238,7 @@ $URL=$APPURL."/metadata/$id_metadata/";
 
 		network = new vis.Network(container, data, options);
 		network.once("stabilizationIterationsDone", function (obj) {
-			document.getElementById('loading').style.display = "none"
+			loading.style.display = "none"
 			createLegend(colorDict);
 		});
 	}
@@ -265,18 +265,18 @@ $URL=$APPURL."/metadata/$id_metadata/";
 	// Handle view mode switch
 	document.querySelectorAll('input[name="mode"]').forEach(radio => {
 		radio.addEventListener('change', (e) => {
-			document.getElementById('loading').style.display = 'block';
+			loading.style.display = 'block';
 			if (jsonldData) renderGraph(e.target.value);
 		});
 	});
 
 	// Handle export actions
-	document.getElementById('exportBtn').addEventListener('click', () => exportRDF(), false);
+	exportBtn.addEventListener('click', () => exportRDF(), false);
 
 	async function exportRDF() {
-		const format = document.getElementById('exportType').value;
+		const format = exportBtn.value;
 		if (format==="rdf") {
-			document.getElementById('loading').style.display = 'block';
+			loading.style.display = 'block';
 			await fetch('<?= $URL ?>?format=rdf')
 				.then(response => response.text())
 				.then(data => {
@@ -300,11 +300,11 @@ $URL=$APPURL."/metadata/$id_metadata/";
 				link.click();
 				URL.revokeObjectURL(url);
 		});
-		document.getElementById('loading').style.display = 'none';
+		loading.style.display = 'none';
 	};
 
 	async function getJSONLD() {
-		document.getElementById('loading').style.display = 'block';
+		loading.style.display = 'block';
 		await fetch('<?= $URL ?>?format=jsonld')
 			.then((res) => res.json())
 			.then((data) => {
@@ -312,9 +312,6 @@ $URL=$APPURL."/metadata/$id_metadata/";
 				renderGraph('simple');
 		});
 	}
-
-	getJSONLD();
-
 </script>
 
 </body>
