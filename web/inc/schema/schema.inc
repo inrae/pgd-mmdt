@@ -66,7 +66,9 @@ function json2schema($metadata, $def, $map)
 	global $cvdir, $id_metadata;
 
 	// Index of columns
+	#datasetField Field Type Level Array Multiple Property Value type Value source Index Prefix  
 	$CS=0; $CF=1; $CT=2; $CL=3; $CA=4; $CM=5; $CP=6; $VT=7; $VS=8; $CI=9; $PR=10;
+	#Name Url
 	$CN=1; $CU=2;
 
 	// Boolean values
@@ -116,6 +118,7 @@ function json2schema($metadata, $def, $map)
 	$level_type = '';
 	$arrname = $fieldname = $p_arrname = $p_fieldname = '';
 	$jsoncore = '';
+	#$bn=1; $bn_ids = array();
 
 	$cnt=1;
 	while (isset($def[$cnt]) && isset($def[$cnt][$CS]) && strsize($def[$cnt][$CS])==0) {
@@ -284,8 +287,17 @@ function json2schema($metadata, $def, $map)
 									$value = ${$dico}[$idx][$defobj[$i][$CI]];
 								if ($objtype=='schema:Organization' && $key=='name') {
 									$url_ror_id=get_ROR_url($value);
-									if ($url_ror_id !== $value)
+									if ($url_ror_id !== $value) {
+										// Add @id for organization
+										#$ror = str_replace('/', '', parse_url($url_ror_id, PHP_URL_PATH));
+										#if (count($bn_ids)==0 || ! array_search($ror, $bn_ids)) {
+										#	$bn_ids[$bn]=$ror; $idbn=$bn; $bn=$bn+1;
+										#} else {
+										#	$idbn = array_search($ror, $bn_ids);
+										#}
+										#$jsoncore .= '"@id":"o'.$idbn.'",';
 										$jsoncore .= '"identifier":"'.$url_ror_id.'",';
+									}
 								}
 							}
 						}

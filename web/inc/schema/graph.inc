@@ -22,9 +22,9 @@ $URL=$APPURL."/metadata/$id_metadata/";
 
 <h2>JSON-LD Graph Viewer (<?= $id_metadata ?>)</h2>
 
-<div id="loading" style="display:none; margin-top:1em;">
+<div id="loading" style="display: none; position: absolute; top: 75px; left: 350px; z-index: 9999;">
   <img src="https://i.imgur.com/llF5iyg.gif" alt="Chargement..." style="height:32px; vertical-align:middle;">
-  <span>Conversion en cours...</span>
+  <span>Waiting ...</span>
 </div>
 
 <div id="controls">
@@ -44,14 +44,52 @@ $URL=$APPURL."/metadata/$id_metadata/";
   </div>
 </div>
 
+<div id="legend" style="margin-top: 20px; position: absolute; top: 100px; left: 20px; z-index: 9999;"></div>
+
 <div id="mynetwork"></div>
 
 <script>
+	const colorDict = {
+		"schema:creator": "#ff9999",
+		"schema:author": "#ccffcc",
+		"schema:keywords": "#3ec2cc",
+		"citation:topicClassification": "#3ec2cc",
+		"contributor": "#ccffcc",
+		"schema:funding": "#ffff99",
+		"schema:hasPart": "#ffcc99",
+		// Default fallback
+		"default": "#99ccff"
+	};
+
+	function getColorForProperty(prop) {
+		return colorDict[prop] || colorDict["default"];
+	}
+
+	function createLegend(colorDict) {
+		const legendContainer = document.getElementById('legend');
+		legendContainer.innerHTML = '<h4>Legend</h4>';
+		const table = document.createElement('table');
+		table.style.borderCollapse = 'collapse';
+		Object.entries(colorDict).forEach(([property, color]) => {
+			const row = document.createElement('tr');
+			const colorBox = document.createElement('td');
+			colorBox.style.backgroundColor = color;
+			colorBox.style.width = '20px';
+			colorBox.style.height = '20px';
+			colorBox.style.border = '1px solid #000';
+			colorBox.style.marginRight = '10px';
+			const label = document.createElement('td');
+			label.style.paddingLeft = '10px';
+			label.textContent = property === 'default' ? 'Other / default' : property;
+			row.appendChild(colorBox);
+			row.appendChild(label);
+			table.appendChild(row);
+		});
+		legendContainer.appendChild(table);
+	}
+
 	const container = document.getElementById('mynetwork');
 	let jsonldData = null;
-	let currentNetwork = null;
-	let currentEdges = null;
-	let currentNodes = null;
 
 	function renderGraph(mode = 'simple') {
 		const nodes = new vis.DataSet();
@@ -71,12 +109,12 @@ $URL=$APPURL."/metadata/$id_metadata/";
 		
 			if (!seen.has(currentId)) {
 				const label = obj['name'] || obj['@id'] || obj['description'] || currentId;
-				nodes.add({ id: currentId, label: label.toString(), shape: 'ellipse' });
+				nodes.add({ id: currentId, label: label.toString(), shape: 'ellipse', color: getColorForProperty(prop) });
 				seen.add(currentId);
 			}
 		
 			if (parentId && prop) {
-				edges.add({ from: parentId, to: currentId, label: prop });
+				edges.add({ from: parentId, to: currentId, label: prop, color: getColorForProperty(prop) });
 			}
 		
 			for (const key in obj) {
@@ -91,8 +129,8 @@ $URL=$APPURL."/metadata/$id_metadata/";
 						} else if (mode === 'full') {
 						const literalId = currentId + '_' + key + '_' + v;
 						if (!seen.has(literalId)) {
-							nodes.add({ id: literalId, label: `${key}: ${v}`, shape: 'box', color: '#e0e0e0' });
-							edges.add({ from: currentId, to: literalId, label: key });
+							nodes.add({ id:literalId, label:`${key}: ${v}`, shape:'box', color:getColorForProperty(prop) });
+							edges.add({ from: currentId, to: literalId, label: key, color: getColorForProperty(prop) });
 							seen.add(literalId);
 						}
 						}
@@ -132,9 +170,11 @@ $URL=$APPURL."/metadata/$id_metadata/";
 			}
 		};
 
-		currentNetwork = new vis.Network(container, data, options);
-		currentNodes = nodes;
-		currentEdges = edges;
+		const network = new vis.Network(container, data, options);
+		network.once("stabilizationIterationsDone", function (obj) {
+			document.getElementById('loading').style.display = "none"
+			createLegend(colorDict);
+		});
 	}
 
 	async function convertJsonLd(format) {
@@ -159,6 +199,7 @@ $URL=$APPURL."/metadata/$id_metadata/";
 	// Handle view mode switch
 	document.querySelectorAll('input[name="mode"]').forEach(radio => {
 		radio.addEventListener('change', (e) => {
+			document.getElementById('loading').style.display = 'block';
 			if (jsonldData) renderGraph(e.target.value);
 		});
 	});
@@ -167,10 +208,9 @@ $URL=$APPURL."/metadata/$id_metadata/";
 	document.getElementById('exportBtn').addEventListener('click', () => exportRDF(), false);
 
 	async function exportRDF() {
-		const loader = document.getElementById('loading');
 		const format = document.getElementById('exportType').value;
 		if (format==="rdf") {
-			loader.style.display = 'block';
+			document.getElementById('loading').style.display = 'block';
 			await fetch('<?= $URL ?>?format=rdf')
 				.then(response => response.text())
 				.then(data => {
@@ -194,15 +234,20 @@ $URL=$APPURL."/metadata/$id_metadata/";
 				link.click();
 				URL.revokeObjectURL(url);
 		});
-		loader.style.display = 'none';
+		document.getElementById('loading').style.display = 'none';
 	};
 
-	fetch('<?= $URL ?>?format=jsonld')
-	.then((res) => res.json())
-	.then((data) => {
-		jsonldData = data;
-		renderGraph('simple');
-	});
+    async function getJSONLD() {
+		document.getElementById('loading').style.display = 'block';
+		await fetch('<?= $URL ?>?format=jsonld')
+			.then((res) => res.json())
+			.then((data) => {
+				jsonldData = data;
+				renderGraph('simple');
+		});
+	}
+
+	getJSONLD();
 
 </script>
 
