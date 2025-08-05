@@ -24,25 +24,24 @@ $URL=$APPURL."/metadata/$id_metadata/";
   <span>Waiting ...</span>
 </div>
 
-<div id="slider" style="display: block; position: absolute; top: 80px; left: 360px; z-index: 9999;">
-  <label for="gravitySlider">Graph gravity:</label>
+<div id="slider" style="display: block; position: absolute; top: 65px; left: 370px; z-index: 9999;">
+  <strong>Graph gravity</strong><br>
   <input type="range" id="gravitySlider" min="-100000" max="-1000" step="-1000" value="-30000">
 </div>
 
-<div id="slider2" style="display: block; position: absolute; top: 80px; left: 650px; z-index: 9999;">
-  <label for="fontSlider">Font size:</label>
+<div id="slider2" style="display: block; position: absolute; top: 65px; left: 550px; z-index: 9999;">
+  <strong>Font size:</strong>&nbsp;<span id="fontValue">24</span><br>
   <input type="range" id="fontSlider" min="8" max="36" step="1" value="24">
-  <span id="fontValue">24</span>
 </div>
 
 <div id="controls">
   <div>
-	<strong>View mode:</strong><br>
+	<strong>View mode</strong><br>
 	<label><input type="radio" name="mode" value="simple" checked> Simple</label>
 	<label><input type="radio" name="mode" value="full"> Full</label>
   </div>
   <div>
-	<strong>Export:</strong><br>
+	<strong>Export</strong><br>
 	<select id="exportType">
 	  <option value="ntriples">RDF Triples</option>
 	  <option value="turtle">RDF Turtle</option>
@@ -61,12 +60,12 @@ $URL=$APPURL."/metadata/$id_metadata/";
 <script src="https://unpkg.com/vis-network/standalone/umd/vis-network.min.js"></script>
 <script>
 	const container = document.getElementById('mynetwork');
-	const slider = document.getElementById('gravitySlider');
-	const slider2 = document.getElementById('fontSlider');
-	const fontValue = document.getElementById('fontValue');
 	const legendContainer = document.getElementById('legend');
 	const loading = document.getElementById('loading');
 	const exportBtn = document.getElementById('exportBtn');
+	const slider = document.getElementById('gravitySlider');
+	const slider2 = document.getElementById('fontSlider');
+	const fontValue = document.getElementById('fontValue');
 
 	const colorDict = { // cf https://rgbcolorpicker.com/
 		"schema:creator": "#ff9999",
@@ -90,6 +89,17 @@ $URL=$APPURL."/metadata/$id_metadata/";
 
 	let jsonldData = null;
 	let network = null;
+
+	// Handle view mode switch
+	document.querySelectorAll('input[name="mode"]').forEach(radio => {
+		radio.addEventListener('change', (e) => {
+			loading.style.display = 'block';
+			if (jsonldData) renderGraph(e.target.value);
+		});
+	});
+
+	// Handle export actions
+	exportBtn.addEventListener('click', () => exportRDF(), false);
 
 	// Handle slider2 value
 	slider2.addEventListener('input', () => {
@@ -261,17 +271,6 @@ $URL=$APPURL."/metadata/$id_metadata/";
 			console.error("Conversion error :", err);
 		}
 	}
-
-	// Handle view mode switch
-	document.querySelectorAll('input[name="mode"]').forEach(radio => {
-		radio.addEventListener('change', (e) => {
-			loading.style.display = 'block';
-			if (jsonldData) renderGraph(e.target.value);
-		});
-	});
-
-	// Handle export actions
-	exportBtn.addEventListener('click', () => exportRDF(), false);
 
 	async function exportRDF() {
 		const format = exportBtn.value;
