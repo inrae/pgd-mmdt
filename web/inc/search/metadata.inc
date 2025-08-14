@@ -134,31 +134,45 @@ function build_table($section, $arr) {
 
 <head>
 	<title>Maggot - Metadata</title>
-	<?php echo $HEAD ?>
+	<?= $HEAD ?>
 
 	<script type="text/javascript">
-	function export_json(name, format) {
-		$.ajaxSetup({async:true});
+	async function export_file(name, format) {
 		$('#waiting').css('display','block');
-		$.getJSON('<?php echo $PATH ?>metadata/'+name+'?format='+format, function (json) {
-			const bytes = new TextEncoder().encode(JSON.stringify(json));
-			const blob = new Blob([bytes], { type: "application/json;charset=utf-8" });
-			const url = window.URL.createObjectURL(blob);
-			const a = document.createElement('a');
-			a.style.display = 'none';
-			a.href = url;
-			a.download = name+'_'+format+'.json';
-			document.body.appendChild(a);
-			a.click();
-			window.URL.revokeObjectURL(url);
-			$('#export_sel').val('0');
-			$('#waiting').css('display','none');
-		});
+		if (format==='rdf')
+			await fetch('<?= $PATH ?>metadata/'+name+'?format=rdf')
+				.then(response => response.text())
+				.then(data => {
+					const blob = new Blob([data], { type: 'application/rdf+xml' });
+					const url = URL.createObjectURL(blob);
+					const link = document.createElement('a');
+					link.href = url;
+					link.download = name+'-rdf.xml';
+					link.click();
+					URL.revokeObjectURL(url);
+					$('#export_sel').val('0');
+					$('#waiting').css('display','none');
+			});
+		else
+			await $.getJSON('<?= $PATH ?>metadata/'+name+'?format='+format, function (json) {
+				const bytes = new TextEncoder().encode(JSON.stringify(json));
+				const blob = new Blob([bytes], { type: "application/json;charset=utf-8" });
+				const url = window.URL.createObjectURL(blob);
+				const a = document.createElement('a');
+				a.style.display = 'none';
+				a.href = url;
+				a.download = name+'_'+format+'.json';
+				document.body.appendChild(a);
+				a.click();
+				window.URL.revokeObjectURL(url);
+				$('#export_sel').val('0');
+				$('#waiting').css('display','none');
+			});
 	}
 	function gotoURL(param) {
 		if (param !== 'none') {
-			path = '<?php echo $PATH ?>';
-			id_metadata='<?php echo $id_metadata ?>';
+			path = '<?= $PATH ?>';
+			id_metadata='<?= $id_metadata ?>';
 			url = path+param+'?dataset='+id_metadata
 			window.open(url, '_self');
 		}
@@ -166,9 +180,9 @@ function build_table($section, $arr) {
 	</script>
 </head>
 
-<body style="zoom: <? echo $ZOOMWP ?>">
+<body style="zoom: <?= $ZOOMWP ?>">
 
-<?php echo $header_meta ?>
+<?= $header_meta ?>
 <br>
 
 <div style="padding-bottom: 10px;"><div id="errbox" name="errbox" class="msgbox errbox">
@@ -207,7 +221,7 @@ do {
 		$title=$array_values['title'];
 
 	// Title + Export JSON
-	$my_html = '<table style="width: 100%;"><tr><td><h2 style="font-size: 24px;"><i class="bi bi-list" style="color:grey; font-size: 20px"></i>&nbsp;'.$title.'</h2></td><td align="right" style="width: 400px;"><div class="btn-group btn-group-lg" role="group"><select style="text-align-last:center;" id="export_sel" name="export_sel" class="form-control form-control-sm export_json" onchange="export_json(\''.$id_metadata.'\',$(this).val());"><option value="0">--- Metadata export ---</option><option value="maggot">Maggot JSON Format</option>';
+	$my_html = '<table style="width: 100%;"><tr><td><h2 style="font-size: 24px;"><i class="bi bi-list" style="color:grey; font-size: 20px"></i>&nbsp;'.$title.'</h2></td><td align="right" style="width: 400px;"><div class="btn-group btn-group-lg" role="group"><select style="text-align-last:center;" id="export_sel" name="export_sel" class="form-control form-control-sm export_json" onchange="export_file(\''.$id_metadata.'\',$(this).val());"><option value="0">--- Metadata export ---</option><option value="maggot">Maggot JSON Format</option>';
 
 	// Filebrowser
 	if ($FILEBROWSER)
@@ -235,7 +249,7 @@ do {
 	}
 
 	if ($export_jsonld)
-		$my_html .= '<option value="jsonld">JSON-LD Format</option>';
+		$my_html .= '<option value="jsonld">JSON-LD Format</option><option value="rdf">RDF/XML Format</option>';
 
 	if ($export_bloxberg && $dropselect) {
 		echo "<script>$('#publish_sel').append(`<option value=\"bloxberg\">bloxberg blockchain</option>`); $('#exportcont').css('display','inline-block');</script>";

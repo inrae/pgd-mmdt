@@ -63,7 +63,8 @@ $URL=$APPURL."/metadata/$id_metadata/";
 	const legendContainer = document.getElementById('legend');
 	const loading = document.getElementById('loading');
 	const exportBtn = document.getElementById('exportBtn');
-	const slider = document.getElementById('gravitySlider');
+	const exportType = document.getElementById('exportType');
+	const slider1 = document.getElementById('gravitySlider');
 	const slider2 = document.getElementById('fontSlider');
 	const fontValue = document.getElementById('fontValue');
 
@@ -106,9 +107,9 @@ $URL=$APPURL."/metadata/$id_metadata/";
 		fontValue.textContent = parseFloat(slider2.value).toFixed(0);
 	});
 
-	// Handle slider change
-	slider.addEventListener('change', () => {
-		const newGravity = parseFloat(slider.value);
+	// Handle slider1 change
+	slider1.addEventListener('change', () => {
+		const newGravity = parseFloat(slider1.value);
 		updateGraphGravity(newGravity);
 	});
 
@@ -182,35 +183,31 @@ $URL=$APPURL."/metadata/$id_metadata/";
 
 		function process(obj, parentId = null, prop = null) {
 			const currentId = getNodeId(obj);
-		
 			if (!seen.has(currentId)) {
 				const label = obj['name'] || obj['@id'] || obj['description'] || currentId;
 				nodes.add({ id: currentId, label: label.toString(), shape: 'ellipse', color: getColorForProperty(prop) });
 				seen.add(currentId);
 			}
-		
 			if (parentId && prop) {
 				edges.add({ from: parentId, to: currentId, label: prop, color: getColorForProperty(prop) });
 			}
-		
 			for (const key in obj) {
 				if (key === '@context') continue;
 				const val = obj[key];
-			
 				if (typeof val === 'object' && val !== null) {
 					if (Array.isArray(val)) {
-					val.forEach(v => {
-						if (typeof v === 'object') {
-						process(v, currentId, key);
-						} else if (mode === 'full') {
-						const literalId = currentId + '_' + key + '_' + v;
-						if (!seen.has(literalId)) {
-							nodes.add({ id:literalId, label:`${key}: ${v}`, shape:'box', color:getColorForProperty(prop) });
-							edges.add({ from: currentId, to: literalId, label: key, color: getColorForProperty(prop) });
-							seen.add(literalId);
-						}
-						}
-					});
+						val.forEach(v => {
+							if (typeof v === 'object') {
+								process(v, currentId, key);
+							} else if (mode === 'full') {
+								const literalId = currentId + '_' + key + '_' + v;
+								if (!seen.has(literalId)) {
+									nodes.add({ id:literalId, label:`${key}: ${v}`, shape:'box', color:getColorForProperty(prop) });
+									edges.add({ from: currentId, to: literalId, label: key, color: getColorForProperty(prop) });
+									seen.add(literalId);
+								}
+							}
+						});
 					} else {
 						process(val, currentId, key);
 					}
@@ -257,7 +254,6 @@ $URL=$APPURL."/metadata/$id_metadata/";
 		try {
 			const nquads = await jsonld.toRDF(jsonldData, { format: 'application/n-quads' });
 			if (format === 'ntriples') return nquads;
-	
 			if (format === 'turtle') {
 				let result = '';
 				const parser = new N3.Parser();
@@ -273,7 +269,7 @@ $URL=$APPURL."/metadata/$id_metadata/";
 	}
 
 	async function exportRDF() {
-		const format = exportBtn.value;
+		const format = exportType.value;
 		if (format==="rdf") {
 			loading.style.display = 'block';
 			await fetch('<?= $URL ?>?format=rdf')
@@ -286,7 +282,6 @@ $URL=$APPURL."/metadata/$id_metadata/";
 					link.download = 'graph.rdf';
 					link.click();
 					URL.revokeObjectURL(url);
-				
 				});
 		} else
 			await convertJsonLd(format).valueOf(Promise).then(function(data){

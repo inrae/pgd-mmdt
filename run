@@ -131,7 +131,7 @@ case "$CMD" in
         [ $? -ne 0 ] && echo "FAILED to convert some configuration files"
         ;;
    scan)
-        echo -n "Scanning ... "
+        echo "Scanning ... "
         sudo docker exec -t $SCAN_CONTAINER /bin/bash -c "cd /pgd; python3 ./pgd.py"
         sudo docker exec -t $SCAN_CONTAINER /bin/bash -c "cd /pgd; python3 ./db-insert.py"
         [ $? -eq 0 ] && echo OK
