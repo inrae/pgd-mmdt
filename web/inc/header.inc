@@ -157,7 +157,7 @@ if ($export_dataverse || $export_zenodo || $export_bloxberg)
 	$header_meta_1 = '
 		<div class="form-group1" id="exportcont" style="display: none"><i class="bi bi-hand-index-thumb" style="color:grey;"></i>
 		<select style="text-align-last:center; border:0; background: #edf1f6;" id="publish_sel" name="publish_sel" class="form-control-sm" onchange="gotoURL(this.value);">
-		<option value="none">Publish the datasets</option></select></div>&nbsp;&nbsp;';
+		<option value="none">Publish the datasets</option></select></div>&nbsp;&nbsp|&nbsp;&nbsp;';
 
 $header_meta = $infolog.$header_open.$header_meta_1.$header_meta_2.$header_close;
 
