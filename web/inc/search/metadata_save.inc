@@ -177,11 +177,6 @@ function build_table($section, $arr) {
 			window.open(url, '_self');
 		}
 	}
-	function gotoURL2(url) {
-		if (url !== 'none') {
-			window.open(url, '_self');
-		}
-	}
 	</script>
 </head>
 
@@ -228,15 +223,12 @@ do {
 	// Title + Export JSON
 	$my_html = '<table style="width: 100%;"><tr><td><h2 style="font-size: 24px;"><i class="bi bi-list" style="color:grey; font-size: 20px"></i>&nbsp;'.$title.'</h2></td><td align="right" style="width: 400px;"><div class="btn-group btn-group-lg" role="group"><select style="text-align-last:center;" id="export_sel" name="export_sel" class="form-control form-control-sm export_json" onchange="export_file(\''.$id_metadata.'\',$(this).val());"><option value="0">--- Metadata export ---</option><option value="maggot">Maggot JSON Format</option>';
 
-	// Edit Metadata
-	echo "<script>$('#other_sel').append('<option value=\"".$PATH."entry?dataset=".$id_metadata."\">Edit Metadata</option>'); $('#othercont').css('display','inline-block');</script>";
-
 	// Filebrowser
 	if ($FILEBROWSER)
-		echo "<script>$('#other_sel').append(`<option value=\"".$URL_FILEBROWSER."\">File Browser</option>`); $('#othercont').css('display','inline-block');</script>";
+		echo "<script>$('#filebrowser').html('<a href=\"".$URL_FILEBROWSER."\" class=\"search_data\" target=\"_blank\"><button type=\"button\" class=\"btn btn-primary\" style=\"max-height: 32px;padding-top: 0.2rem;\" data-toggle=\"button\" aria-pressed=\"false\" autocomplete=\"off\" name=\"btn-search\">File Browser</button></a>');$('#filebrowsercont').css('display','inline-block')</script>";
 
-	if ($export_jsonld)
-		echo "<script>$('#other_sel').append(`<option value=\"".$id_metadata."?format=graph\">View RDF Graph</option>`); $('#othercont').css('display','inline-block');</script>";
+	// Edit Metadata
+	echo "<script>$('#editlink').html('<a href=\"../entry?dataset=".$id_metadata."\" class=\"search_data\"><button type=\"button\" class=\"btn btn-primary\" style=\"max-height: 32px;padding-top: 0.2rem;\" data-toggle=\"button\" aria-pressed=\"false\" autocomplete=\"off\" name=\"btn-search\">Edit Metadata</button></a>');$('#editcont').css('display','inline-block')</script>";
 
 	$dropselect = ($export_dataverse || $export_zenodo || $export_bloxberg) ? 1 : 0;
 

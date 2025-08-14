@@ -213,7 +213,7 @@ if (!is_null($obj))
 				echo '<td>'.$val.'</td>';
 
 			// Metadata link
-			echo "<td><a target=\"_blank\" href=\"metadata/$idmetadata\"><img src=\"img/metadata-icon.png\"></a></td>";
+			echo "<td><a href=\"metadata/$idmetadata\"><img src=\"img/metadata-icon.png\"></a></td>";
 			echo "</tr><tr>";
 		}
 		echo "</table></div><br><br>";

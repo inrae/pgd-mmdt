@@ -146,20 +146,21 @@ $header_config = $infolog.$header_open.'<div class="btn-group btn-group-lg" role
 
 # Header for Metadata
 $header_meta_1 = '
-	<div class="form-group1" id="exportcont" style="display: none"><i class="bi bi-hand-index-thumb" style="color:grey;"></i><span id="export"></span></div>&nbsp;&nbsp;';
+	<div class="form-group2" id="editcont" style="display: none"><i class="bi bi-pencil" style="color:grey;"></i><span id="editlink"></span></div>';
 
 $header_meta_2 = '
-	<div class="form-group2" id="othercont" style="display: none"><i class="bi bi-tools" style="color:grey;"></i>
-	<select style="text-align-last:center; border:0; background: #edf1f6;" id="other_sel" name="other_sel" class="form-control-sm" onchange="gotoURL2(this.value);">
-	<option value="none">--- Others tools ---</option></select></div>&nbsp;&nbsp;';
+	<div class="form-group2" id="exportcont" style="display: none"><i class="bi bi-hand-index-thumb" style="color:grey;"></i><span id="export"></span></div>&nbsp;&nbsp;';
+
+$header_meta_3 = '
+	<div class="form-group2" id="filebrowsercont" style="display: none"><i class="bi bi-folder" style="color:grey;"></i><span id="filebrowser"></span></div>';
 
 if ($export_dataverse || $export_zenodo || $export_bloxberg)
-	$header_meta_1 = '
-		<div class="form-group1" id="exportcont" style="display: none"><i class="bi bi-hand-index-thumb" style="color:grey;"></i>
-		<select style="text-align-last:center; border:0; background: #edf1f6;" id="publish_sel" name="publish_sel" class="form-control-sm" onchange="gotoURL(this.value);">
+	$header_meta_2 = '
+		<div class="form-group2" id="exportcont" style="display: none"><i class="bi bi-hand-index-thumb" style="color:grey;"></i>
+		<select style="text-align-last:center; border:0; background: #edf1f6;" id="publish_sel" name="publish_sel" class="form-control-sm" onchange="gotoURL(this.value)">
 		<option value="none">Publish the datasets</option></select></div>&nbsp;&nbsp;';
 
-$header_meta = $infolog.$header_open.$header_meta_1.$header_meta_2.$header_close;
+$header_meta = $infolog.$header_open.$header_meta_1.$header_meta_2.$header_meta_3.$header_close;
 
 
 

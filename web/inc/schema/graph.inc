@@ -24,7 +24,7 @@ $URL=$APPURL."/metadata/$id_metadata/";
   <span>Waiting ...</span>
 </div>
 
-<div id="slider" style="display: block; position: absolute; top: 65px; left: 370px; z-index: 9999;">
+<div id="slider1" style="display: block; position: absolute; top: 65px; left: 370px; z-index: 9999;">
   <strong>Graph gravity</strong><br>
   <input type="range" id="gravitySlider" min="-100000" max="-1000" step="-1000" value="-30000">
 </div>
@@ -57,7 +57,7 @@ $URL=$APPURL."/metadata/$id_metadata/";
 
 <script src="https://unpkg.com/jsonld/dist/jsonld.min.js"></script>
 <script src="https://unpkg.com/n3/browser/n3.min.js"></script>
-<script src="https://unpkg.com/vis-network/standalone/umd/vis-network.min.js"></script>
+<script src="https://unpkg.com/vis-network@10.0.1/standalone/umd/vis-network.min.js"></script>
 <script>
 	const container = document.getElementById('mynetwork');
 	const legendContainer = document.getElementById('legend');
@@ -67,6 +67,7 @@ $URL=$APPURL."/metadata/$id_metadata/";
 	const slider1 = document.getElementById('gravitySlider');
 	const slider2 = document.getElementById('fontSlider');
 	const fontValue = document.getElementById('fontValue');
+	const barnesHut = document.getElementById('barnesHut');
 
 	const colorDict = { // cf https://rgbcolorpicker.com/
 		"schema:creator": "#ff9999",
@@ -236,7 +237,7 @@ $URL=$APPURL."/metadata/$id_metadata/";
 			},
 			physics: {
 				barnesHut: {
-					gravitationalConstant: parseFloat(slider.value),
+					gravitationalConstant: parseFloat(slider1.value),
 					springLength: 150
 				},
 				stabilization: true
