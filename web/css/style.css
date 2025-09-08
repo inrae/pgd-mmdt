@@ -58,7 +58,8 @@ em {font-size:12px;}
 
 a, a:visited, a:hover { text-decoration: none; color: #2578cf; }
 
-		
+.menu_select { appearance: auto; }
+
 /* Style the header: fixed position (always stay at the top) */
 .header {
 	position: fixed;

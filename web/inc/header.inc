@@ -88,14 +88,16 @@ if (! is_null($AUTH_TOKEN)) {
 
 #------------------------
 
-# Header for Home page / Publish data / Dictionaries / bloxberg / ...
-
 $header_open='<div class="entete"><table width="100%"><tr>
 <td align="left"><img src="'.$PATH.'img/maggot-icon.png" height="32" width="35">&nbsp;<a class="entete" href="'.$PATH.'">'.$TITLE.'</a></td>
 <td>&nbsp;</td>
 <td align="right">';
 
 $header_close='</td></tr></table></div>';
+
+#------------------------
+
+# Header for Home page / Publish data / Dictionaries / bloxberg / ...
 
 $headder_btn_home = '<div class="btn-group btn-group-lg align-to-right" role="group"><i class="bi bi-house" style="color:grey;"></i><a href="'.$PATH.'" class="search_data"><button type="button" class="btn btn-primary" data-toggle="button" aria-pressed="false" autocomplete="off">Home</button></a></div>';
 $header_title = $infolog.$header_open.$headder_btn_home.$header_close;
@@ -126,6 +128,11 @@ $header_main = $infolog.$header_open.$menu2.$header_close;
 
 #------------------------
 
+# Header for Metadata
+$header_meta = $infolog.$header_open.$menu2.$header_close;
+
+#------------------------
+
 # Header for Documentation
 
 $header_doc = $header_open.'<div class="btn-group btn-group-lg" role="group">
@@ -141,26 +148,6 @@ $header_config = $infolog.$header_open.'<div class="btn-group btn-group-lg" role
 	<i class="bi bi-filetype-md" style="color:grey;"><a href="'.$PATH.'config?docs" class="search_data"><button type="button" class="btn btn-primary" data-toggle="button" aria-pressed="false" autocomplete="off" name="btn-conv3">Documentation</button></a>
 	<i class="bi bi-question-octagon-fill" style="color:grey;"></i><a href="'.$maggot_doc_url.'configuration/" class="search_data" target="_blank"><button type="button" class="btn btn-primary" data-toggle="button" aria-pressed="false" autocomplete="off">Help</button></a>
 	</div>'.$header_close;
-
-#------------------------
-
-# Header for Metadata
-$header_meta_1 = '
-	<div class="form-group1" id="exportcont" style="display: none"><i class="bi bi-hand-index-thumb" style="color:grey;"></i><span id="export"></span></div>&nbsp;&nbsp;';
-
-$header_meta_2 = '
-	<div class="form-group2" id="othercont" style="display: none"><i class="bi bi-tools" style="color:grey;"></i>
-	<select style="text-align-last:center; border:0; background: #edf1f6;" id="other_sel" name="other_sel" class="form-control-sm" onchange="gotoURL2(this.value);">
-	<option value="none">--- Others tools ---</option></select></div>&nbsp;&nbsp;';
-
-if ($export_dataverse || $export_zenodo || $export_bloxberg)
-	$header_meta_1 = '
-		<div class="form-group1" id="exportcont" style="display: none"><i class="bi bi-hand-index-thumb" style="color:grey;"></i>
-		<select style="text-align-last:center; border:0; background: #edf1f6;" id="publish_sel" name="publish_sel" class="form-control-sm" onchange="gotoURL(this.value);">
-		<option value="none">Publish the datasets</option></select></div>&nbsp;&nbsp|&nbsp;&nbsp;';
-
-$header_meta = $infolog.$header_open.$header_meta_1.$header_meta_2.$header_close;
-
 
 
 ?>

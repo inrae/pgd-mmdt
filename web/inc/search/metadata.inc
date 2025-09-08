@@ -179,8 +179,13 @@ function build_table($section, $arr) {
 	}
 	function gotoURL2(url) {
 		if (url !== 'none') {
-			window.open(url, '_self');
+			if(url.match(/entry.dataset=/) !== null)
+				window.open(url, '_self');
+			else
+				window.open(url, '_blank');
 		}
+		const $select = document.querySelector('#other_sel');
+		$select.value = 'none'
 	}
 	</script>
 </head>
@@ -225,45 +230,39 @@ do {
 	if (array_key_exists('title',$array_values))
 		$title=$array_values['title'];
 
-	// Title + Export JSON
-	$my_html = '<table style="width: 100%;"><tr><td><h2 style="font-size: 24px;"><i class="bi bi-list" style="color:grey; font-size: 20px"></i>&nbsp;'.$title.'</h2></td><td align="right" style="width: 400px;"><div class="btn-group btn-group-lg" role="group"><select style="text-align-last:center;" id="export_sel" name="export_sel" class="form-control form-control-sm export_json" onchange="export_file(\''.$id_metadata.'\',$(this).val());"><option value="0">--- Metadata export ---</option><option value="maggot">Maggot JSON Format</option>';
+	// Title + Menus
+	$my_html = '<table style="width: 100%;"><tr><td><h2 style="font-size: 24px;"><i class="bi bi-list" style="color:grey; font-size: 20px"></i>&nbsp;'.$title.'</h2></td><td align="right" style="width: 600px;"><div class="btn-group btn-group-lg" role="group">';
 
-	// Edit Metadata
-	echo "<script>$('#other_sel').append('<option value=\"".$PATH."entry?dataset=".$id_metadata."\">Edit Metadata</option>'); $('#othercont').css('display','inline-block');</script>";
-
-	// Filebrowser
-	if ($FILEBROWSER)
-		echo "<script>$('#other_sel').append(`<option value=\"".$URL_FILEBROWSER."\">File Browser</option>`); $('#othercont').css('display','inline-block');</script>";
-
-	if ($export_jsonld)
-		echo "<script>$('#other_sel').append(`<option value=\"".$id_metadata."?format=graph\">View RDF Graph</option>`); $('#othercont').css('display','inline-block');</script>";
-
-	$dropselect = ($export_dataverse || $export_zenodo || $export_bloxberg) ? 1 : 0;
+	$html_sel1='<select style="text-align-last:center; min-width: 200px;" id="export_sel" name="export_sel" class="form-control form-control-sm menu_select export_json" onchange="export_file(\''.$id_metadata.'\',$(this).val());"><option value="0" selected disabled hidden>Metadata export</option><option value="maggot">Maggot JSON Format</option>';
+	$html_sel2='<select style="text-align-last:center; min-width: 200px;" id="other_sel" name="other_sel" class="form-control form-control-sm menu_select export_json" onchange="gotoURL2(this.value);"><option value="none" selected disabled hidden>Other Tools</option><option value="'.$PATH.'entry?dataset='.$id_metadata.'">Edit Metadata</option>';
+	$html_sel3='<select style="text-align-last:center; min-width: 200px;" id="publish_sel" name="publish_sel" class="form-control form-control-sm menu_select export_json" onchange="gotoURL(this.value);"><option value="none" selected disabled hidden>Publish the datasets</option>';
 
 	if ($export_dataverse && is_file($dataverse_conf) && is_file($mapping_conf)) {
-		if ($dropselect)
-			echo "<script>$('#publish_sel').append(`<option value=\"dataverse\">Dataverse repository</option>`); $('#exportcont').css('display','inline-block');</script>";
-		else
-			echo "<script>$('#export').html('<a href=\"".$PATH."dataverse?dataset=".$id_metadata."\" class=\"search_data\"><button type=\"button\" class=\"btn btn-primary\" style=\"max-height: 32px;padding-top: 0.2rem;\" data-toggle=\"button\" aria-pressed=\"false\" autocomplete=\"off\" name=\"btn-search\">Publish the Dataset</button></a>');$('#exportcont').css('display','inline-block');</script>";
-		$my_html .= '<option value="dataverse">Dataverse JSON Format</option>';
+		$html_sel3 .= '<option value="dataverse">Dataverse repository</option>';
+		$html_sel1 .= '<option value="dataverse">Dataverse JSON Format</option>';
 	}
 
 	if ($export_zenodo && is_file($zenodo_conf)) {
-		if ($dropselect)
-			echo "<script>$('#publish_sel').append(`<option value=\"zenodo\">Zenodo repository</option>`); $('#exportcont').css('display','inline-block');</script>";
-		else
-			echo "<script>$('#export').html('<a href=\"".$PATH."zenodo?dataset=".$id_metadata."\" class=\"search_data\"><button type=\"button\" class=\"btn btn-primary\" style=\"max-height: 32px;padding-top: 0.2rem;\" data-toggle=\"button\" aria-pressed=\"false\" autocomplete=\"off\" name=\"btn-search\">Publish the Dataset</button></a>');$('#exportcont').css('display','inline-block');</script>";
-		$my_html .= '<option value="zenodo">Zenodo JSON Format</option>';
+		$html_sel3 .= '<option value="zenodo">Zenodo repository</option>';
+		$html_sel1 .= '<option value="zenodo">Zenodo JSON Format</option>';
 	}
 
 	if ($export_jsonld)
-		$my_html .= '<option value="jsonld">JSON-LD Format</option><option value="rdf">RDF/XML Format</option>';
+		$html_sel1 .= '<option value="jsonld">JSON-LD Format</option><option value="rdf">RDF/XML Format</option>';
 
-	if ($export_bloxberg && $dropselect) {
-		echo "<script>$('#publish_sel').append(`<option value=\"bloxberg\">bloxberg blockchain</option>`); $('#exportcont').css('display','inline-block');</script>";
-	}
+	if ($export_bloxberg)
+		$html_sel3 .= '<option value="bloxberg">bloxberg blockchain</option>';
 
-	$my_html .=  '</select></div><div id="waiting" style="display: none; max-width:1000px; margin:auto;"><img src="'.$PATH.'img/throbber.gif" width="100px"></div></td></tr></table><br>';
+	if ($FILEBROWSER)
+		$html_sel2 .= '<option value="'.$URL_FILEBROWSER.'">File Browser</option>';
+
+	if ($export_jsonld)
+		$html_sel2 .= '<option value="'.$id_metadata.'?format=graph">View RDF Graph</option>';
+
+	$my_html .=  $html_sel1.'</select>';
+	if ($export_dataverse || $export_zenodo || $export_bloxberg)
+		$my_html .=  '&nbsp;&nbsp;'.$html_sel3.'</select>';
+	$my_html .= '&nbsp;&nbsp;'.$html_sel2.'</select></div><div id="waiting" style="display: none; max-width:1000px; margin:auto;"><img src="'.$PATH.'img/throbber.gif" width="100px"></div></td></tr></table><br>';
 	echo $my_html;
 
 	// Description of the Dataset

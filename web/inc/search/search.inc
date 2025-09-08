@@ -10,15 +10,15 @@
 	<style>::-webkit-scrollbar{ width: 0px; }</style>
 	<script src="js/search.js"></script>
 	<script type="text/javascript">
-	var DEBUG = <? echo isset($_GET['debug']) ? $_GET['debug'] : 0 ?>;
-	var ADVS = <? echo isset($_GET['advsearch']) ? $_GET['advsearch'] : 0 ?>;
+	var DEBUG = <?= isset($_GET['debug']) ? $_GET['debug'] : 0 ?>;
+	var ADVS = <?= isset($_GET['advsearch']) ? $_GET['advsearch'] : 0 ?>;
 	var advdisp = ADVS ? '' : 'none' ;
 	var simpledisp = ADVS ? 'none' : '' ;
-	var AJAXWAIT = "<? echo isset($_GET['wait']) ? $_GET['wait'] : $AJAXWAIT ?>";
+	var AJAXWAIT = "<?= isset($_GET['wait']) ? $_GET['wait'] : $AJAXWAIT ?>";
 	var arrItems;
 	var maxField = 10; //Checkboxes increment limitation
 	var maxWidth=1200;
-	var cvdir=<?php echo "'".$cvdir."'" ?>;
+	var cvdir=<?= "'".$cvdir."'" ?>;
 	var signsort = Array();
 
 	function $_(id) { return document.getElementById(id) }

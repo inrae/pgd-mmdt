@@ -44,13 +44,13 @@ $upload_mode = (strlen($USER) && $USER === $ADMINGROUP) ? 'inline' : 'none';
 <head>
 	<title>Maggot - Dictionary</title>
 
-	<?php echo $HEAD ?>
-	<link rel="stylesheet" href="<?php echo $PATH ?>css/ror-widget.css">
-	<link rel="stylesheet" href="<?php echo $PATH ?>css/edit.css">
-	<script  src="<?php echo $PATH ?>js/typeahead.min.js"></script>
-	<script  src="<?php echo $PATH ?>js/ror-typeahead.js"></script>
-	<script  src="<?php echo $PATH ?>js/orcid-typeahead.js"></script>
-	<script  src="<?php echo $PATH ?>js/edit.js"></script>
+	<?= $HEAD ?>
+	<link rel="stylesheet" href="<?= $PATH ?>css/ror-widget.css">
+	<link rel="stylesheet" href="<?= $PATH ?>css/edit.css">
+	<script  src="<?= $PATH ?>js/typeahead.min.js"></script>
+	<script  src="<?= $PATH ?>js/ror-typeahead.js"></script>
+	<script  src="<?= $PATH ?>js/orcid-typeahead.js"></script>
+	<script  src="<?= $PATH ?>js/edit.js"></script>
 
 	<script>history.pushState(null, 'Maggot - Dictionary', 'dictionary');</script>
 	<script type="text/javascript">
@@ -68,7 +68,7 @@ $upload_mode = (strlen($USER) && $USER === $ADMINGROUP) ? 'inline' : 'none';
 
 <body style="zoom: <? echo $ZOOMWP ?>">
 
-<?php echo $header_title ?>
+<?= $header_title ?>
 <br><br>
 
 <!--h1>Dictionaries <a href="<? echo $maggot_doc_url.'dictionaries' ?>" target="_blank"><i class="bi bi-question-octagon-fill" style="color:grey; font-size: 20px"></i></a></h1>

@@ -10,7 +10,7 @@ require_once('inc/convert/features.inc');
 
 <head>
 	<title>Maggot - Config</title>
-	<?php echo $HEADMAIN ?>
+	<?= $HEADMAIN ?>
 
 	<script type="text/javascript">
 	var section_select = "<? echo isset($_GET['section_select']) ? $_GET['section_select'] : '' ?>";
@@ -93,7 +93,7 @@ require_once('inc/convert/features.inc');
 
 <body style="zoom: <? echo $ZOOMWP ?>">
 
-<?php echo $header_config ?>
+<?= $header_config ?>
 <br><br>
 
 <h1>Terminology definition <a href="<? echo $maggot_doc_url.'definitions/terminology/' ?>" target="doc"><i class="bi bi-question-octagon-fill" style="color:grey; font-size: 20px"></i></a></h1>

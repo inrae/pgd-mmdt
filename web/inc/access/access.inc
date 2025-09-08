@@ -53,12 +53,12 @@ do {
 
 <head>
 	<title>Maggot - Encryption</title>
-	<?php echo $HEAD ?>
+	<?= $HEAD ?>
 </head>
 
 <body style="zoom: <? echo $ZOOMWP ?>">
 
-<?php echo $header_title ?>
+<?= $header_title ?>
 <br><br>
 
 <h1>Private access key management <a href="<? echo $maggot_doc_url.'private-access/' ?>" target="_blank"><i class="bi bi-question-octagon-fill" style="color:grey; font-size: 20px"></i></a></h1>

@@ -33,7 +33,7 @@ $EXTERN = isset($_GET['extern']) ? 1 : $EXTERN;
 <html lang="en" >
 <head>
 	<title>Maggot - Metadata entry</title>
-	<? echo $HEADMAIN ?>
+	<?= $HEADMAIN ?>
 
 	<style>::-webkit-scrollbar{ width: 5px; }</style>
 	<script src="js/entry.js"></script>
@@ -302,7 +302,7 @@ $EXTERN = isset($_GET['extern']) ? 1 : $EXTERN;
 
 <body style="zoom: <? echo $ZOOMWP ?>">
 
-<?php echo $header_main ?>
+<?= $header_main ?>
 <br>
 
 <div id='loadmessage' class="loadmessage"><i>Loading external vocabulary</i>&nbsp;&nbsp;&nbsp;<img src="img/dots-loading.gif" width="30px"></div>

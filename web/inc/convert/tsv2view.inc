@@ -3,12 +3,12 @@
 
 <head>
 	<title>Maggot - Config</title>
-	<?php echo $HEAD ?>
+	<?= $HEAD ?>
 </head>
 
 <body style="zoom: <? echo $ZOOMWP ?>">
 
-<?php echo $header_config ?>
+<?= $header_config ?>
 <br><br>
 
 <h1>View all current definition files <a href="<? echo $maggot_doc_url.'definitions/' ?>" target="doc"><i class="bi bi-question-octagon-fill" style="color:grey; font-size: 20px"></i></a></h1>

@@ -3,15 +3,15 @@
 
 <head>
     <title>Maggot - Metadata Documentation</title>
-	<?php echo $HEAD ?>
-    <link rel="stylesheet" href="<?php echo $PATH ?>css/doc.css">
+	<?= $HEAD ?>
+    <link rel="stylesheet" href="<?= $PATH ?>css/doc.css">
 </head>
 
 <body>
 
 <body style="zoom: <? echo $ZOOMWP ?>">
 
-<?php echo $header_doc ?>
+<?= $header_doc ?>
 <br><br>
 
 <section>

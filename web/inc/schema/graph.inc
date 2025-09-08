@@ -17,7 +17,7 @@ $URL=$APPURL."/metadata/$id_metadata/";
 </head>
 <body>
 
-<h2>Maggot - JSON-LD Graph Viewer (<?= $id_metadata ?>)</h2>
+<h2><?= $id_metadata ?> - JSON-LD Graph</h2>
 
 <div id="loading" style="display: none; position: absolute; top: 150px; left: 300px; z-index: 9999;">
   <img src="https://i.imgur.com/llF5iyg.gif" alt="Chargement..." style="height:32px; vertical-align:middle;">

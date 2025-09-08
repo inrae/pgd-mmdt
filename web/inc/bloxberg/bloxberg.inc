@@ -61,7 +61,7 @@ if ($ret>0) {
 <head>
 	<title>Maggot - bloxberg blockchain</title>
 
-	<?php echo $HEAD ?>
+	<?= $HEAD ?>
 
 	<script type="text/javascript">
 	function selectjson(id) {
@@ -107,7 +107,7 @@ if ($ret>0) {
 
 <body style="zoom: <? echo $ZOOMWP ?>">
 
-<?php echo $header_title ?>
+<?= $header_title ?>
 <br><br>
 
 <h1>EXPERIMENTAL - Certification on the blockchain <a href="<? echo $maggot_doc_url.'bloxberg' ?>" target="_blank"><i class="bi bi-question-octagon-fill" style="color:grey; font-size: 20px"></i></a></h1>
