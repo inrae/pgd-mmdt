@@ -105,6 +105,7 @@ Since the "capture" of metadata is crucial, it should ideally be done uniquely a
 ### Related articles
 
 * Usages d'AgroPortal dans des systèmes d'information à INRAE - [hal-05077024][201]{:target="_blank"}
+* Créez, gérez et partagez vos métadonnées avec Maggot - [VO-INRAE][202]{:target="_blank"}
 
 
 ### Contacts
@@ -163,7 +164,7 @@ Since the "capture" of metadata is crucial, it should ideally be done uniquely a
 
 [200]: https://www.gnu.org/licenses/gpl-3.0.html
 [201]: https://hal.science/hal-05077024
-
+[202]: https://vocabulaires-ouverts.inrae.fr/outil-maggot/
 
 <br><br>
 

@@ -144,7 +144,7 @@ sh ./run <option>
 * On the first line, the one which corresponds to the web interface, we see that port 80 of the docker is exported to port 8087 of the VM.
 Let's say that the IP address of your VM is 192.168.56.2, then in your browser you will need to put the URL http://192.168.56.2:8087/. You can of course change the port number in the '*[run](../settings/#run)*' file.
 
-* It may be preferable to use a lightweight http server like [nginx][27]{:target="_blank"} so that the Maggot URL will be http://192.168.56.2/maggot/. Below an example of config:
+* Finally, we recommend using a lightweight http server like [nginx][27]{:target="_blank"} so that the Maggot URL will be http://192.168.56.2/maggot/. Below an example of config:
    ```sh
    ## /etc/nginx/nginx.conf
    http {
@@ -170,7 +170,11 @@ Let's say that the IP address of your VM is 192.168.56.2, then in your browser y
        location ~ ^/maggot/api/([^/]+)$ {
            rewrite ^/maggot/api/([^/]+)$ /maggot/metadata/$1?format=maggot;
        }
-   
+
+       location ~ ^/maggot/graph/([^/]+)$ {
+            rewrite ^/maggot/graph/([^/]+)$ /maggot/metadata/$1?format=graph;
+       }
+
        location /maggot/ {
            proxy_set_header Host $host;
            proxy_set_header X-App-Name 'maggot';
