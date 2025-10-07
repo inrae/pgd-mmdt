@@ -21,7 +21,7 @@ Here is the list of all files that may be subject to adjustment of certain param
 
 <br>
 
-#### dockerscanpart/scripts/config.py
+#### docker/scan/scripts/config.py
 
 This file defines the connection parameters to the Mongo database. Knowing that this database is only accessible internally, in principle they do not need to be changed.
 
@@ -81,7 +81,9 @@ cvdir | Relative path of the Control Vocabulary Listes (cvlist) | cvlist/
 maggot_fulltitle | Maggot name of the field corresponding to the title in dataverse/zenodo | fulltitle
 auth_senddata_file | Name of the file that must be present in the data directory to authorize the transfer of the data file | META_datafile_ok.txt
 private_auth_file | Name of the private access file | META_auth.txt
-SENDMAIL | Configuring messaging for sending metadata to data managers (see below) | NULL
+SENDMAIL<sup>(1)</sup> | Configuring messaging for sending metadata to data managers (see below) | NULL
+
+<font size="-1">(1) Note: This variable was previously (ver<2.3) named _SendMail_. You must capitalize it.</font>
 
 <br>
 

@@ -13,6 +13,9 @@ some_url:
 
 ### Metadata File
 
+
+#### Export 
+
 Once the form has been completed, even partially (at least those which are mandatory and marked with a red star), you can export your metadata in the form of a file. The file is in JSON format and must have the prefix 'META_'.
 
 By clicking on the "Generate the metadata file" button, you can save it on your disk space. 
@@ -26,6 +29,9 @@ Furthermore, if email sending has been configured (see [settings](../../settings
 <center>
 <a href="../../images/tuto2_fig11.png" data-lightbox="fig11"><img src="../../images/tuto2_fig11.png" width="500px"></a>
 </center>
+
+
+#### Use
 
 In case you want to save the metadata file on your disk space, you have two ways to use this file:
 
