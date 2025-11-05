@@ -2,7 +2,7 @@
 // See https://ror.readme.io/docs/create-ror-powered-typeaheads
 //     https://github.com/twitter/typeahead.js/blob/master/doc/jquery_typeahead.md
 
-var ROR_API_URL = "https://api.ror.org/organizations?query="
+var ROR_API_URL = "https://api.ror.org/v2/organizations?query="
 
 function rorTypeahead ()
 {

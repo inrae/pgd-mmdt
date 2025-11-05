@@ -6,17 +6,18 @@
 * **Release 2.4** _before the end of 2025_
 
    * "Internal metadata management," i.e that the metadata will be stored in an internal space managed by the Maggot application. The implementation are still to be defined, but this internal management will have to be configured in advance as an option; it will not be possible to mix the two approaches (internal/external).
-   
+
 <br>
 
 ### Summary of past and recent changes
 
 * **Release 2.3.2** -  October 2025 (_current_)
 
-   * People dictionary : adaptation of the Typeahead script for version 2 of the ROR schema and API
-   * Two features have been added to the 'run' shell script, which are very useful for debugging and other purposes:
-       * 'statdb': allows you to obtain information about the Mongo database.
-       * 'showdb': allows you to obtain the content of the Mongo database in JSON format.
+   * People dictionary : adaptation of the Typeahead script for [version 2 of the ROR schema and API](https://ror.org/blog/2024-04-15-announcing-ror-v2/)
+   * Two features have been added to the 'run' shell script, which are very useful for debugging :
+       * _statdb_: Get information about the Mongo database in JSON format
+       * _showdb_: Get the content of the Mongo database in JSON format
+
 
 * **Release 2.3** -  June 2025
 
