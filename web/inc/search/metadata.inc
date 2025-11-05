@@ -176,6 +176,8 @@ function build_table($section, $arr) {
 			url = path+param+'?dataset='+id_metadata
 			window.open(url, '_self');
 		}
+		const $select = document.querySelector('#publish_sel');
+		$select.value = 'none'
 	}
 	function gotoURL2(url) {
 		if (url !== 'none') {

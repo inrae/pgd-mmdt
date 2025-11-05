@@ -8,6 +8,9 @@
 require_once('inc/config/config.inc');
 include ('inc/functions/functions.inc');
 
+# DEV mode must be set internally only for this function
+$DEV = isset($_GET['debug']) ? 0 : $DEV;
+
 do {
    if (isset($_GET['json'])) {
       $json = base64_decode($_GET['json']);

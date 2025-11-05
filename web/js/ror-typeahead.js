@@ -24,7 +24,19 @@ function rorTypeahead ()
 				dataType: 'json',
 				timeout: 5000,
 				success: function (json) {
-					orgs = json.items
+					const q = query.toLowerCase();
+					const orgs = json.items
+						.map(item => {
+							const nameObj = item.names.find(n => n.types.includes('ror_display')) || item.names[0];
+							const name = nameObj ? nameObj.value : 'unnamed organization';
+							const acronyms = item.names.filter(n => n.types.includes('acronym')).map(n => n.value);
+							const country = item.locations?.[0]?.geonames_details?.country_name || '';
+							const geoname = item.locations?.[0]?.geonames_details?.name || '';
+							const type = item.types.join(', ');
+							return {
+								id: item.id, name, country, geoname, acronyms, type
+							};
+						})
 					return processAsync(orgs);
 				}
 			});
@@ -37,28 +49,12 @@ function rorTypeahead ()
 				'</div>'
 			].join('\n'),
 			suggestion: function (data) {
-				altNames = ""
-				if(data.aliases.length > 0) {
-					for (let i = 0; i < data.aliases.length; i++){
-						altNames += data.aliases[i] + ", ";
-					}
-				}
-				if(data.acronyms.length > 0) {
-					for (let i = 0; i < data.acronyms.length; i++){
-						altNames += data.acronyms[i] + ", ";
-					}
-				}
-				if(data.labels.length > 0) {
-					for (let i = 0; i < data.labels.length; i++){
-						altNames += data.labels[i].label + ", ";
-					}
-				}
-				altNames = altNames.replace(/,\s*$/, "");
-				return '<p>' + data.name + '<br><small>' + data.types[0] + ', ' + data.country.country_name + '<br><i>'+ altNames + '</i></small></p>';
+				const acronyms = data.acronyms.length ? `<em>(${data.acronyms.join(', ')})</em>` : '';
+				return `<div class="p-1"><strong>${data.name} ${acronyms}</strong><br><small>${data.country} — ${data.geoname} — ${data.type}</small></div>`;
 			}
 		},
 		display: function (data) {
-			return data.name;
+			return data.name.replace(/['"]+/g, '');
 		},
 		value: function(data) {
 			return data.identifier;

@@ -183,9 +183,10 @@ require_once('inc/config/mongodb.inc');
 
 #------------------------
 
-// For development version only
-$DEV=0;
-$LOG=0;
+// Debugging information if requested
+$DEV = isset($_GET['debug']) ? $_GET['debug'] : 0;
+
+$LOG = 0;
 
 // If local configuration
 if (is_file('inc/config/local.inc'))

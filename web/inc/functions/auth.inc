@@ -39,9 +39,6 @@ function getBearerToken()
     return null;
 }
 
-// DEV mode only for the home page if request
-//if (isset($_GET['dev']) && strlen($_SERVER['QUERY_STRING']) == 3) $DEV=1;
-
 /*
  *  populate some global variables relative to access rigths
  *  $AUTH_TOKEN : payload from the JWT as an array

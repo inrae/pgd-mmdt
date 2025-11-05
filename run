@@ -23,9 +23,11 @@ DB_CONTAINER=mmdt-db
 SCAN_CONTAINER=mmdt-scan
 WEB_CONTAINER=mmdt-web
 
-# Volume name for Mondo DB
+# MongoDB settings
 MONGO_VOL=mmdt-mongodb
 MONGO_PORT=27017
+MONGO_DB=pgd-db
+MONGO_COL=metadata
 
 # Docker account for retrieving the images
 DOCKERACCOUNT=djacob65
@@ -44,7 +46,7 @@ MYNET=my-net
 
 CMD=$1
 
-usage() { echo "usage: sh $0 start|stop|restart|fullstart|ps|build|pull|initdb|scan";  exit 1; }
+usage() { echo "usage: sh $0 start|stop|restart|fullstart|ps|build|pull|initdb|scan|showdb";  exit 1; }
 
 case "$CMD" in
    start)
@@ -138,6 +140,13 @@ case "$CMD" in
         [ $? -ne 0 ] && echo FAILED
         sudo docker exec -i $WEB_CONTAINER php ./convert
         [ $? -ne 0 ] && echo "FAILED to convert some configuration files"
+        ;;
+   showdb)
+        sudo docker exec -t $DB_CONTAINER /bin/sh -c "mongosh $MONGO_DB --eval 'db.getCollection(\"$MONGO_COL\").find()'"
+        ;;
+   statdb)
+        sudo docker exec -t $DB_CONTAINER /bin/sh -c "mongosh $MONGO_DB --eval 'db.stats()'"
+        sudo docker exec -t $DB_CONTAINER /bin/sh -c "mongosh $MONGO_DB --eval 'db.getCollection(\"$MONGO_COL\").validate()'"
         ;;
    passwd)
         [ $# -gt 1 ] && USER=$2

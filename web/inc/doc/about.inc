@@ -10,9 +10,9 @@ $parser = new ParsedownExtra();
 $badges = preg_replace('/<a(.*?)href="([^"]+)"(.*?)>/i','<a$1href="$2"$3 target="_blank">', $parser->text('
 [![SciCrunch](https://img.shields.io/badge/RRID-SCR_025261-green)](https://scicrunch.org/resolver/RRID:SCR_025261)
 [![bio.tools](https://img.shields.io/badge/bio.tools-maggot-orange)](https://bio.tools/maggot)
-[![identifiers](https://img.shields.io/badge/RDA:MSC-t81-brown)](https://rdamsc.bath.ac.uk/msc/t81)
-[![identifiers](https://img.shields.io/badge/CatOPDIPoR-maggot-magenta)](https://cat.opidor.fr/index.php/Maggot)
-[![identifiers](https://img.shields.io/badge/HAL-04589638-lightseagreen)](https://hal.inrae.fr/hal-04589638)
+[![RDA:MSC](https://img.shields.io/badge/RDA:MSC-t81-brown)](https://rdamsc.bath.ac.uk/msc/t81)
+[![CatOPIDoR](https://img.shields.io/badge/CatOPIDoR-maggot-magenta)](https://cat.opidor.fr/index.php/Maggot)
+[![HAL](https://img.shields.io/badge/HAL-04589638-lightseagreen)](https://hal.inrae.fr/hal-04589638)
 '));
 
 ?>
@@ -64,18 +64,19 @@ $badges = preg_replace('/<a(.*?)href="([^"]+)"(.*?)>/i','<a$1href="$2"$3 target=
 <!-- Right box -->
 <div class="box-home" style="width:800px; min-height: 400px;"><div style="padding: 20px;">
 <?= $badges ?>
-<h2>Change Log</h2>
-<ul>
-<li><b>Change log on Github</b> : <a href="https://github.com/inrae/pgd-mmdt/blob/main/CHANGES.md" target="_blank">https://github.com/inrae/pgd-mmdt/blob/main/CHANGES.md</a></li>
-</ul>
-
-<br>
 
 <h2>Links</h2>
 <ul>
 <li><b>Documentation</b> : <a href="https://inrae.github.io/pgd-mmdt/" target="_blank">https://inrae.github.io/pgd-mmdt/</a></li>
 <li><b>Source code on Github</b> : <a href="https://github.com/inrae/pgd-mmdt" target="_blank">https://github.com/inrae/pgd-mmdt</a></li>
 <li><b>Issues tracker</b> : <a href="https://github.com/inrae/pgd-mmdt/issues" target="_blank">https://github.com/inrae/pgd-mmdt/issues</a></li>
+</ul>
+
+<br>
+
+<h2>Change Log</h2>
+<ul>
+<li><b>Change log on Github</b> : <a href="https://github.com/inrae/pgd-mmdt/blob/main/CHANGES.md" target="_blank">https://github.com/inrae/pgd-mmdt/blob/main/CHANGES.md</a></li>
 </ul>
 
 <br>
