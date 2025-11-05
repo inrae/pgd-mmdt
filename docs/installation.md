@@ -81,6 +81,8 @@ sh ./run <option>
 * ***fullstart*** : Perform the 3 actions ***start***, ***initdb*** and ***scan***
 * ***restart*** : Perform the 2 actions ***stop*** then ***fullstart***
 * ***ps*** : Check that all containers are running correctly
+* ***statdb*** : Get information about the Mongo database in JSON format (Application must be started including the 'scan' step)
+* ***showdb*** : Get the content of the Mongo database in JSON format (Application must be started including the 'scan' step)
 * ***passwd*** <_user_>: Define the admin password if no _user_ is specified, allowing you to add entries in dictionaries or to add/update the terminology files (_definition_ & _documentation_, see [configuration](../configuration)). If a _user_ is specified, the dictionary consultation will be authorized for this user.
 
 <br>
