@@ -11,7 +11,14 @@
 
 ### Summary of past and recent changes
 
-* **Release 2.3** -  June 2025 (_current_)
+* **Release 2.3.2** -  October 2025 (_current_)
+
+   * People dictionary : adaptation of the Typeahead script for version 2 of the ROR schema and API
+   * Two features have been added to the 'run' shell script, which are very useful for debugging and other purposes:
+       * 'statdb': allows you to obtain information about the Mongo database.
+       * 'showdb': allows you to obtain the content of the Mongo database in JSON format.
+
+* **Release 2.3** -  June 2025
 
    * **Note** : It is recommended for this release to rebuild or pull Docker containers.
 
