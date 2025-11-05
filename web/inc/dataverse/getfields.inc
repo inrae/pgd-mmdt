@@ -224,7 +224,8 @@ function getfield_publication($metadata, $df, $dico)
 	foreach($df as $arr) {
 		$val=$metadata[ $arr[0] ];
 		if ($arr[1]==='publicationCitation') {
-			$json.=$sep.'"publicationCitation":'.simpleField('publicationCitation',$val);
+			$json.=$sep.'"publicationRelationType":'.cvField('publicationRelationType','IsSupplementTo');
+			$json.=',"publicationCitation":'.simpleField('publicationCitation',$val);
 			$valid=1;
 		}
 		else if ($arr[1]==='publicationIDType')
@@ -296,7 +297,6 @@ function getfield_topicClassification($metadata, $df, $dico)
 	return compoundArray('topicClassification',$json);
 }
 
-// otherReferences
 function getfield_otherReferences($metadata, $df, $dico)
 {
 	$str='';
