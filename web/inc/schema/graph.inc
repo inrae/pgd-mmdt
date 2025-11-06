@@ -30,8 +30,8 @@ $URL=$APPURL."/metadata/$id_metadata/";
 </div>
 
 <div id="slider2" style="display: block; position: absolute; top: 65px; left: 550px; z-index: 9999;">
-  <strong>Font size:</strong>&nbsp;<span id="fontValue">24</span><br>
-  <input type="range" id="fontSlider" min="8" max="36" step="1" value="24">
+  <strong>Change Node size:</strong>&nbsp;<span id="fontValue">0</span><br>
+  <input type="range" id="fontSlider" min="-8" max="8" step="1" value="0">
 </div>
 
 <div id="controls">
@@ -91,7 +91,12 @@ $URL=$APPURL."/metadata/$id_metadata/";
 
 	let jsonldData = null;
 	let network = null;
+	let cursize = 0;
 
+	const FONTSIZE = 24 // Font size by default
+	const MAX_LABEL_LENGTH = 25; // Text length threshold before reducing the font size
+	const MAX_WIDTH_LB = 500; // maximum width before line break
+	
 	// Handle view mode switch
 	document.querySelectorAll('input[name="mode"]').forEach(radio => {
 		radio.addEventListener('change', (e) => {
@@ -116,8 +121,9 @@ $URL=$APPURL."/metadata/$id_metadata/";
 
 	// Handle slider2 change
 	slider2.addEventListener('change', () => {
-		const newFont = parseFloat(slider2.value);
-		updateFont(newFont);
+		const newInc = parseFloat(slider2.value);
+		updateFont(newInc-cursize);
+		cursize = newInc;
 	});
 
 	function updateGraphGravity(value) {
@@ -133,13 +139,11 @@ $URL=$APPURL."/metadata/$id_metadata/";
 	}
 
 	function updateFont(value) {
-		network.setOptions({
-			nodes: {
-				font: { size: value },
-				shape: 'dot',
-				scaling: { label: true },
-				shadow: true
-			}
+		console.log(network)
+		const nodesDataSet = network.body.data.nodes;
+		nodesDataSet.forEach(node => {
+			const size = node.font?.size || 20;
+			nodesDataSet.update({ id: node.id, font: { size: size + value } });
 		});
 	}
 
@@ -221,18 +225,34 @@ $URL=$APPURL."/metadata/$id_metadata/";
 					}
 				}
 			}
+
+			// Apply an appropriate font size.
+			nodes.forEach(node => {
+				const baseFontSize = FONTSIZE + parseFloat(slider2.value);
+				if (node.label.length > MAX_LABEL_LENGTH) {
+					const scale = Math.max(0.65, 1 - (node.label.length - MAX_LABEL_LENGTH) * 0.01);
+					node.font = { size: baseFontSize * scale };
+				} else {
+					node.font = { size: baseFontSize };
+				}
+				nodes.update(node);
+			});
 		}
 
-		process(jsonldData);
-		
-		const data = { nodes, edges };
+		// Change the value of the main node by its name.
+		const jdata = jsonldData
+		jdata['@id'] = jdata['@id'].split('/')[jdata['@id'].split('/').length-1]
+		process(jdata);
+
+		// Graph options
 		const options = {
 			layout: { improvedLayout: true },
 			edges: { arrows: 'to', font: { align: 'middle' }, smooth: true },
 			nodes: {
-				font: { size: parseFloat(slider2.value) },
-				shape: 'dot',
+				font: { multi: "html" },
+				shape: 'box',
 				scaling: { label: true },
+				widthConstraint: { maximum: MAX_WIDTH_LB },
 				shadow: true
 			},
 			physics: {
@@ -244,12 +264,16 @@ $URL=$APPURL."/metadata/$id_metadata/";
 			}
 		};
 
+		// Build the network object (view connected on data : edges + nodes)
+		const data = { nodes, edges };
 		network = new vis.Network(container, data, options);
 		network.once("stabilizationIterationsDone", function (obj) {
 			loading.style.display = "none"
 			createLegend(colorDict);
 		});
 	}
+
+// ------------------
 
 	async function convertJsonLd(format) {
 		try {
@@ -259,7 +283,7 @@ $URL=$APPURL."/metadata/$id_metadata/";
 				let result = '';
 				const parser = new N3.Parser();
 				const quads = parser.parse(nquads);
-				const writer = new N3.Writer({ format: 'Turtle' });			  
+				const writer = new N3.Writer({ format: 'Turtle' });
 				writer.addQuads(quads);
 				writer.end((error, turtle) => { result = turtle; });
 			return result;

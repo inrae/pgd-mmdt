@@ -14,7 +14,8 @@
 * **Release 2.3.2** -  October 2025 (_current_)
 
    * People dictionary : adaptation of the Typeahead script for [version 2 of the ROR schema and API](https://ror.org/blog/2024-04-15-announcing-ror-v2/)
-   * Compliance with the new Dataverse JSON format (addition of the publicationRelationType field)
+   * Compliance with the new Dataverse JSON format (Added the mandatory field 'publication Relation Type')
+   * Troubleshooting issues related to BioPortal API calls
    * Two features have been added to the 'run' shell script, which are very useful for debugging :
        * _statdb_: Get information about the Mongo database in JSON format
        * _showdb_: Get the content of the Mongo database in JSON format

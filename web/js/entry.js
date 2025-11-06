@@ -34,9 +34,10 @@ function load_data(json)
 			.fail(function(outdata) { console.log(outdata); });
 	$.ajaxSetup({async:true});
 	if (DEBUG) console.log(resp);
+
 	// If no errors
-	if (resp.errors && resp.errors.length==0) {
-	//ok=1; if (ok==1) {
+	if (resp.errors && resp.errors.length==0)
+	{
 		var result = JSON.parse(json);
 		if (DEBUG) console.log(result);
 		allItems = []; checkItems = []; multiItems=[]; listItems=[]; textItems=[];
@@ -74,6 +75,7 @@ function load_data(json)
 				}
 			}
 		});
+
 		allItems['checkbox']=checkItems; allItems['multi-select']=multiItems; allItems['dropbox']=listItems; allItems['textbox']=textItems;
 		if (DEBUG) console.log(allItems)
 
@@ -89,13 +91,16 @@ function load_data(json)
 				document.getElementsByName('resource-f4-'+i)[0].value=res[i-1]['media'];
 		}
 		listboite['resources']['compteur']=res.length;
+
 	} else {
+
 	// If errors
 		message = 'ERROR: the uploaded file seems not a valid Maggot JSON file.';
 		console.log(message)
 		console.log(JSON.stringify(resp))
 		alert(message);
 		return false;
+
 	}
 	
 };
@@ -122,6 +127,7 @@ function toJSONString( form )
 {
 	var obj = {};
 		obj[ 'profile' ] = url_schema;
+
 	// Text
 	var elements = form.querySelectorAll( "input.solo[type=text]" );
 	for( var i = 0; i < elements.length; ++i ) {
@@ -134,6 +140,7 @@ function toJSONString( form )
 			obj[ name ] = value;
 		}
 	}
+
 	// Textarea
 	var elements = form.querySelectorAll( "textarea" );
 	for( var i = 0; i < elements.length; ++i ) {
@@ -144,6 +151,7 @@ function toJSONString( form )
 			if( name && value.length>0 && value != '-') obj[ name ] = value;
 		}
 	}
+
 	// Select
 	var elements = form.querySelectorAll( "select" );
 	for( var i = 0; i < elements.length; ++i ) {
@@ -155,15 +163,17 @@ function toJSONString( form )
 			if( name && value.length>0 && value != '-') obj[ name ] = value;
 		}
 	}
+
 	// Multi-select
 	for (var key in multiboite) {
 		var listTerms = [];
 		if (multiboite.hasOwnProperty(key)) {
-		var terms = $('#'+key+'-sel' ).val();
-		if (terms.length>0) listTerms=terms.split( /,\s*/ );
+			var terms = $('#'+key+'-sel' ).val();
+			if (terms.length>0) listTerms=terms.split( /,\s*/ );
 		}
 		if (listTerms.length) obj[key] = listTerms;
 	}
+
 	// CheckBoxes
 	for (var key in chkbxdico) {
 		if (chkbxdico.hasOwnProperty(key)) {
@@ -179,6 +189,7 @@ function toJSONString( form )
 		}
 		if (listData.length) obj[key] = listData;
 	}
+
 	// Resources
 	R=formulaire.querySelectorAll( 'table.resource' )
 	if (R.length>0) {
@@ -207,7 +218,7 @@ function toJSONString( form )
 		}
 		if (listData.length) obj['resources'] = listData;
 	}
-	
+
 	return JSON.stringify( obj );
 }
 

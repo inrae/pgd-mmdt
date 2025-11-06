@@ -4,47 +4,49 @@
 // Native API Dataverse
 //----------------------------
 
+$APIVER = 'v1';
+
 function cmd_api_dataverse($cmd) {
 	global $LOG;
 	if ($LOG) echo "<script>console.log('".addslashes($cmd)."');</script>";
 	$output_js=shell_exec($cmd);
 	if ($LOG) echo "<script>console.log('".$output_js."');</script>";
 	$output_arr = json_decode($output_js, true);
-//echo "<br><pre>";  print_r($output_arr['data']); echo "</pre><br>";
+// echo "<br><pre>";  print_r($output_arr['data']); echo "</pre><br>";
 	return $output_arr;
 }
 
 function get_api_dataverse($request) {
-	global $API_TOKEN, $SERVER_URL;
-	$cmd = 'curl -H "X-Dataverse-key:'.$API_TOKEN.'" -X GET "'.$SERVER_URL.'/api/v1/'.$request.'"';
+	global $API_TOKEN, $SERVER_URL, $APIVER;
+	$cmd = 'curl -H "X-Dataverse-key:'.$API_TOKEN.'" -X GET "'.$SERVER_URL.'/api/'.$APIVER.'/'.$request.'"';
 	return cmd_api_dataverse($cmd);
 }
 
 function send_api_dataverse($request, $upload, $mode='POST') {
-	global $API_TOKEN, $SERVER_URL;
+	global $API_TOKEN, $SERVER_URL, $APIVER;
 	$header = 'X-Dataverse-key:'.$API_TOKEN;
 	$content_type = "Content-type:application/json";
 	$upload = "--upload-file ".$upload;
-	$cmd='curl -H "'.$header.'" -H "'.$content_type.'" -X '.$mode.' "'.$SERVER_URL.'/api/v1/'.$request.'" '.$upload;
+	$cmd='curl -H "'.$header.'" -H "'.$content_type.'" -X '.$mode.' "'.$SERVER_URL.'/api/'.$APIVER.'/'.$request.'" '.$upload;
 	return cmd_api_dataverse($cmd);
 }
 
 function send_file_dataverse($id, $file, $description, $tags, $update) {
-	global $API_TOKEN, $SERVER_URL;
+	global $API_TOKEN, $SERVER_URL, $APIVER;
 	$header = 'X-Dataverse-key:'.$API_TOKEN;
 	$upload = '-F "file=@'.$file.'"';
 	$annotation = '-F \'jsonData={"description":"'.$description.'","categories":["'.$tags.'"], "restrict":"false"}\'';
 	if ($update)
-		$cmd='curl -H "'.$header.'" -X POST '.$upload.' '.$annotation.' '.$SERVER_URL.'/api/v1/files/'.$id.'/replace';
+		$cmd='curl -H "'.$header.'" -X POST '.$upload.' '.$annotation.' '.$SERVER_URL.'/api/'.$APIVER.'/files/'.$id.'/replace';
 	else
-		$cmd='curl -H "'.$header.'" -X POST '.$upload.' '.$annotation.' '.$SERVER_URL.'/api/v1/datasets/'.$id.'/add';
+		$cmd='curl -H "'.$header.'" -X POST '.$upload.' '.$annotation.' '.$SERVER_URL.'/api/'.$APIVER.'/datasets/'.$id.'/add';
 	return cmd_api_dataverse($cmd);
 }
 
 function privateURL_api_dataverse($id, $get=0) {
-	global $API_TOKEN, $SERVER_URL;
+	global $API_TOKEN, $SERVER_URL, $APIVER;
 	$op = 'POST'; if ($get>0) $op='GET';
-	$cmd = 'curl -H X-Dataverse-key:'.$API_TOKEN.' -X '.$op.' "'.$SERVER_URL.'/api/v1/datasets/'.$id.'/privateUrl"';
+	$cmd = 'curl -H X-Dataverse-key:'.$API_TOKEN.' -X '.$op.' "'.$SERVER_URL.'/api/'.$APIVER.'/datasets/'.$id.'/privateUrl"';
 	return cmd_api_dataverse($cmd);
 }
 
@@ -220,10 +222,10 @@ function send_resources_files($id, $resources, $path, $array_files)
 		}
 		$status = $output_arr['status'];
 		if ($status==='ERROR') {
-			$msg .='ERROR '.$arr['location'].': '.addslashes($output_arr['message']).'<br>';
+			$msg .= '<b>'.$arr['location'].'</b>: '.addslashes($output_arr['message']).'<br>';
 		}
 		if ($status==='OK') {
-			$msg .='SUCCESS: '.$arr['location'].' '.$op.'<br>';
+			$msg .= '<b>'.$arr['location'].'</b> '.$op.' with success<br>';
 		}
 	}
 	return $msg;

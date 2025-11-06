@@ -39,18 +39,18 @@ $EXTERN = isset($_GET['extern']) ? 1 : $EXTERN;
 	<script src="js/entry.js"></script>
 	<script src="js/autocomplete/resourcetypes.js"></script>
 	<script type="text/javascript">
-	var DEBUG = <? echo isset($_GET['debug']) ? $_GET['debug'] : 0 ?>;
-	var AJAXWAIT = "<? echo isset($_GET['wait']) ? $_GET['wait'] : $AJAXWAIT ?>";
-	var SEND = <? echo isset($SENDMAIL['smtpHost']) ? "'".$SENDMAIL['smtpHost']."'" : "''" ?>;
-	var dataset = '<? echo $dataset ?>';
+	var DEBUG = <?= isset($_GET['debug']) ? $_GET['debug'] : 0 ?>;
+	var AJAXWAIT = "<?= isset($_GET['wait']) ? $_GET['wait'] : $AJAXWAIT ?>";
+	var SEND = <?= isset($SENDMAIL['smtpHost']) ? "'".$SENDMAIL['smtpHost']."'" : "''" ?>;
+	var dataset = '<?= $dataset ?>';
 	var arrItems;
-	var url_schema = '<? echo $url_schema; ?>';
-	var resource_media = '<? echo $RESMEDIA; ?>';
+	var url_schema = '<?= $url_schema; ?>';
+	var resource_media = '<?= $RESMEDIA; ?>';
 	var maxField = 10; //Checkboxes increment limitation
 	var maxResource = 20; //Resources increment limitation
 	var nameofrequired = [];
 	var extern= <? $EXTERN = isset($_GET['extern']) ? 1 : $EXTERN; if($EXTERN){ echo "true"; } else { echo "false"; } ?> ;
-	var cvdir=<? echo "'".$cvdir."'" ?>;
+	var cvdir=<?= "'".$cvdir."'" ?>;
 	var horiztabs = 1;
 	var statusentry=0;
 	var maxWidth=1200;
