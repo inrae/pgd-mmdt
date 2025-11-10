@@ -16,7 +16,7 @@ function bioportal_search($map, $query)
 
 	$server_url = "https://data.bioontology.org";
 	$base_url = $server_url.'/search';
-	$params = [ "q" => $query, "format" => "json", "ontology" => "" ];
+	$params = [ "q" => $query, "format" => "json", "ontologies" => "" ];
 	$url = $base_url . "?" . http_build_query($params);
 	if (strlen($ontology)>0 && $ontology !== 'all') $url .= $ontology;
 	if ($LOG) echo "<pre>".$url."</pre>";
@@ -42,9 +42,9 @@ function bioportal_search($map, $query)
 	$col = $json['collection'];
 	$id = $col[0]['@id'];
 	$onto = basename($col[0]['links']['ontology']);
-	$ret = array( $onto, $id );
 	if ($LOG) echo "<pre>".$onto.' - '.$id."</pre>";
 
+	$ret = array( $onto, $id );
 	return $ret;
 }
 

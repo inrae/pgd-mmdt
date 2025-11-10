@@ -42,7 +42,7 @@ function get_ROR_url ($organization)
 		} else {
 			$json_ror = file_get_contents($url_ror.urlencode($organization));
 			$ror = json_decode($json_ror,true);
-			if (count($ror)>0) {
+			if (count($ror)>0 && isset($ror['items'][0])) {
 				$url_ror_id = $ror['items'][0]['id'];
 				$ror_cache[$organization] = $url_ror_id;
 			}
@@ -127,7 +127,6 @@ function json2schema($metadata, $def, $map)
 		$level = $arr[$CL];
 		do {
 			if ((strsize($arr[$CF])==0 && strsize($arr[$CT])==0)|| $def[$cnt][$CS] == '#context') break;
-
 	// Open an array at level 0
 			if ($arr[$CA]==$Y && $arr[$CM]==$Y) {
 				if (array_key_exists($arr[$CF], $metadata) && count($metadata[$arr[$CF]])>0) {
@@ -288,14 +287,6 @@ function json2schema($metadata, $def, $map)
 								if ($objtype=='schema:Organization' && $key=='name') {
 									$url_ror_id=get_ROR_url($value);
 									if ($url_ror_id !== $value) {
-										// Add @id for organization
-										#$ror = str_replace('/', '', parse_url($url_ror_id, PHP_URL_PATH));
-										#if (count($bn_ids)==0 || ! array_search($ror, $bn_ids)) {
-										#	$bn_ids[$bn]=$ror; $idbn=$bn; $bn=$bn+1;
-										#} else {
-										#	$idbn = array_search($ror, $bn_ids);
-										#}
-										#$jsoncore .= '"@id":"o'.$idbn.'",';
 										$jsoncore .= '"identifier":"'.$url_ror_id.'",';
 									}
 								}

@@ -30,7 +30,7 @@ $URL=$APPURL."/metadata/$id_metadata/";
 </div>
 
 <div id="slider2" style="display: block; position: absolute; top: 65px; left: 550px; z-index: 9999;">
-  <strong>Change Node size:</strong>&nbsp;<span id="fontValue">0</span><br>
+  <strong>Change Node size</strong><br>
   <input type="range" id="fontSlider" min="-8" max="8" step="1" value="0">
 </div>
 
@@ -107,11 +107,6 @@ $URL=$APPURL."/metadata/$id_metadata/";
 
 	// Handle export actions
 	exportBtn.addEventListener('click', () => exportRDF(), false);
-
-	// Handle slider2 value
-	slider2.addEventListener('input', () => {
-		fontValue.textContent = parseFloat(slider2.value).toFixed(0);
-	});
 
 	// Handle slider1 change
 	slider1.addEventListener('change', () => {
