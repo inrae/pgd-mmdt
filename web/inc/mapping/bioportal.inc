@@ -29,7 +29,7 @@ function bioportal_search($map, $query)
 	$ch = curl_init($url);
 	curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 	curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
-	curl_setopt($ch, CURLOPT_HTTPHEADER, [ base64_decode($headercode) ]);
+	curl_setopt($ch, CURLOPT_HTTPHEADER, [ 'Authorization: apikey token='.base64_decode($headercode) ]);
 
 	$response = curl_exec($ch);
 	$httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
