@@ -5,13 +5,17 @@
 //----------------------------
 // Corresponding mapping script when 'bioportal' is specified in the CVtype column of the mapping file (conf/mapping.txt)
 //
+// Note (oct 2025) : We are using the API with a token because simple searches without a token no longer work correctly 
+//                   via curl calls from a server (server side curl blocked by Cloudflare, which uses anti-scraping methods)
+//                   See https://scrapfly.io/blog/posts/how-to-bypass-cloudflare-anti-scraping
 
 function bioportal_search($map, $query)
 {
 	$ret=array();
 	$server_url = $map[2];
 	$ontology=$map[3];
-	$BP_apikey = 'f709257f-06a4-450c-a21f-89727cc7fbe1';
+	if (!file_exists('conf/bpcode.txt')) return $ret;
+	$headercode = explode("\n", file_get_contents('conf/bpcode.txt'))[0];
 	$LOG = 0;
 
 	$server_url = "https://data.bioontology.org";
@@ -20,11 +24,13 @@ function bioportal_search($map, $query)
 	$url = $base_url . "?" . http_build_query($params);
 	if (strlen($ontology)>0 && $ontology !== 'all') $url .= $ontology;
 	if ($LOG) echo "<pre>".$url."</pre>";
+	if ($LOG) echo "<pre>".$headercode."</pre>";
 
 	$ch = curl_init($url);
 	curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 	curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
-	curl_setopt($ch, CURLOPT_HTTPHEADER, [ "Authorization: apikey token=$BP_apikey" ]);
+	curl_setopt($ch, CURLOPT_HTTPHEADER, [ base64_decode($headercode) ]);
+
 	$response = curl_exec($ch);
 	$httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
 	$contentType = curl_getinfo($ch, CURLINFO_CONTENT_TYPE);
@@ -47,5 +53,6 @@ function bioportal_search($map, $query)
 	$ret = array( $onto, $id );
 	return $ret;
 }
+
 
 ?>
