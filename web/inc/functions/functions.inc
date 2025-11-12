@@ -393,4 +393,92 @@ function box_links($arr_links, $dwnld=0, $help=0)
 	return $html_output;
 }
 
+
+//----------------------------
+// MD5 Encryption / Decryption
+//----------------------------
+
+/**
+* Encrypts a text (reversibly) with a password. 
+*
+* Returns an encoded string (base64) containing:
+* iterations:salt_b64:iv_b64:hmac_b64:ciphertext_b64
+*
+* @param string $plaintext  The plaintext key
+* @param string $password   The password / secret (must be stored outside the code)
+* @param int    $iterations PBKDF2 iterations (>= 100000 recommended)
+* @return string            Base64-safe encoded payload (text)
+* @throws Exception         If random_bytes fails
+*/
+function encrypt_text(string $plaintext, string $password, int $iterations = 100000): string
+{
+    $cipherMethod = 'aes-256-cbc';
+
+    $salt = random_bytes(16);
+    $key  = hash_pbkdf2('sha256', $password, $salt, $iterations, 32, true);
+
+    $ivLen = openssl_cipher_iv_length($cipherMethod);
+    $iv = random_bytes($ivLen);
+    $ciphertext = openssl_encrypt($plaintext, $cipherMethod, $key, OPENSSL_RAW_DATA, $iv);
+    if ($ciphertext === false) {
+        throw new RuntimeException('openssl_encrypt failed');
+    }
+
+    $hmac = hash_hmac('sha256', $iv . $ciphertext, $key, true);
+    $parts = [
+        (string)$iterations,
+        base64_encode($salt),
+        base64_encode($iv),
+        base64_encode($hmac),
+        base64_encode($ciphertext),
+    ];
+
+    return implode(':', $parts);
+}
+
+/**
+* Decrypts the value previously encrypted by encrypt_text.
+*
+* @param string $payload   The string returned by encrypt_api_key
+* @param string $password  The same password used for encryption
+* @return string|false     The decrypted text, or false on failure/integrity check failure
+*/
+function decrypt_payload(string $payload, string $password)
+{
+    $cipherMethod = 'aes-256-cbc';
+
+    $parts = explode(':', $payload, 5);
+    if (count($parts) !== 5) {
+        return false;
+    }
+
+    [$iterationsStr, $saltB64, $ivB64, $hmacB64, $cipherB64] = $parts;
+    $iterations = (int)$iterationsStr;
+    if ($iterations <= 0) {
+        return false;
+    }
+
+    $salt = base64_decode($saltB64, true);
+    $iv = base64_decode($ivB64, true);
+    $hmac = base64_decode($hmacB64, true);
+    $ciphertext = base64_decode($cipherB64, true);
+    if ($salt === false || $iv === false || $hmac === false || $ciphertext === false) {
+        return false;
+    }
+
+    $key = hash_pbkdf2('sha256', $password, $salt, $iterations, 32, true);
+
+    $calcHmac = hash_hmac('sha256', $iv . $ciphertext, $key, true);
+    if (!hash_equals($hmac, $calcHmac)) {
+        return false;
+    }
+
+    $plaintext = openssl_decrypt($ciphertext, $cipherMethod, $key, OPENSSL_RAW_DATA, $iv);
+    if ($plaintext === false) {
+        return false;
+    }
+
+    return $plaintext;
+}
+
 ?>

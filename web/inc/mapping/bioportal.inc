@@ -14,9 +14,13 @@ function bioportal_search($map, $query)
 	$ret=array();
 	$server_url = $map[2];
 	$ontology=$map[3];
-	if (!file_exists('conf/bpcode.txt')) return $ret;
-	$headercode = explode("\n", file_get_contents('conf/bpcode.txt'))[0];
 	$LOG = 0;
+
+	if (!file_exists('conf/bpcode.txt')) return $ret;
+	$payload = base64_decode(explode("\n", file_get_contents('conf/bpcode.txt'))[0]);
+	$cryptKey = base64_decode(explode("\n", file_get_contents('conf/bpcode.txt'))[1]);
+	$BP_apiKey = decrypt_payload($payload, $cryptKey);
+	if ($LOG) echo "<pre>".$payload.' - '.$cryptKey.' - '.$BP_apiKey."</pre>";
 
 	$server_url = "https://data.bioontology.org";
 	$base_url = $server_url.'/search';
@@ -24,12 +28,11 @@ function bioportal_search($map, $query)
 	$url = $base_url . "?" . http_build_query($params);
 	if (strlen($ontology)>0 && $ontology !== 'all') $url .= $ontology;
 	if ($LOG) echo "<pre>".$url."</pre>";
-	if ($LOG) echo "<pre>".$headercode."</pre>";
 
 	$ch = curl_init($url);
 	curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 	curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
-	curl_setopt($ch, CURLOPT_HTTPHEADER, [ 'Authorization: apikey token='.base64_decode($headercode) ]);
+	curl_setopt($ch, CURLOPT_HTTPHEADER, [ 'Authorization: apikey token='.$BP_apiKey ]);
 
 	$response = curl_exec($ch);
 	$httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
