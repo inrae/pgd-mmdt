@@ -9,11 +9,11 @@
 $BANNER="An ecosystem for producing and sharing metadata";
 
 # Left Panel
-$links[0]="https://www.ouvrirlascience.fr/dmp-opidor-outil-pour-faciliter-la-redaction-de-plans-de-gestion-de-donnees/";
+$links[0]="https://doranum.fr/plan-gestion-donnees-dmp/plan-de-gestion-des-donnees-fiche-synthetique_10_13143_cgv4-0k53/";
 $links[1]="https://www.ouvrirlascience.fr/deuxieme-plan-national-pour-la-science-ouverte/";
 $links[2]="https://recherche.data.gouv.fr/";
 $links[3]="https://www.ouvrirlascience.fr/fair-principles/";
-$links[4]="https://wp.u-picardie.fr/open-science/wp-content/uploads/sites/22/2021/07/Fiche-Synthetique-Metadonnees.pdf";
+$links[4]="https://doranum.fr/metadonnees-standards-formats/metadonnees-standards-formats-fiche-synthetique_10_13143_vbjs-6288/";
 $links[5]="https://inrae.github.io/pgd-mmdt/tutorial/";
 
 $HTMLTEXT = '

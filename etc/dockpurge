@@ -1,0 +1,12 @@
+#!/bin/bash
+
+
+LIST=$(docker ps -a | grep  'Exited' | awk '{ print $1 }')
+N=$(echo $LIST | wc -w | tr -d "\n")
+[ $N -gt 0 ] && for i in $LIST; do docker rm -f $i; done
+
+LIST=$(docker images | grep '<none>' | awk '{ print $3 }')
+N=$(echo $LIST | wc -w | tr -d "\n")
+[ $N -gt 0 ] && for i in $LIST; do docker rmi $i; done
+
+exit 0

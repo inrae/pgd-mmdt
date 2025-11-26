@@ -7,7 +7,7 @@
 //
 // Note (oct 2025) : We are using the API with a token because simple searches without a token no longer work correctly 
 //                   via curl calls from a server (server side curl blocked by Cloudflare, which uses anti-scraping methods)
-//                   See https://scrapfly.io/blog/posts/how-to-bypass-cloudflare-anti-scraping
+//                   For more details, search in Google "server side curl blocked by cloudflare" or "How To Bypass Cloudflare"
 
 function bioportal_search($map, $query)
 {
