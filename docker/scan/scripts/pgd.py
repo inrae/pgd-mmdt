@@ -4,6 +4,7 @@ import re
 import json
 from pprint import pprint
 from pprint import pformat
+import paths
 
 ### functions ###
 
@@ -91,8 +92,8 @@ def format_dico(mydico,master):
 
 ### Prog ###
 p = re.compile('META_.*\.json')
-master_json = '../json/config_terms.json'
-outputfile = '../json/options.json'
+master_json = paths.confdir+'/config_terms.json'
+outputfile = paths.confdir+'/options.json'
 
 if is_valid_json_file(master_json) is True:
     masterdic = get_json(master_json)
@@ -102,7 +103,7 @@ if is_valid_json_file(master_json) is True:
     activedic = load_active_dic(masterdic)
     maindic = init_dic(activedic)
 
-    scan_dir("/pgd_data/", maindic)
+    scan_dir(paths.datadir, maindic)
 
     alldata = merge_dic(activedic,maindic)
     clean_dic(alldata)

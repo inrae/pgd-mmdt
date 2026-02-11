@@ -1,6 +1,6 @@
 ## Change Log
 
-
+<!--
 ### Developments in the pipeline
 
 * **Release 2.4** _before the end of 2025_
@@ -8,10 +8,15 @@
    * "Internal metadata management," i.e that the metadata will be stored in an internal space managed by the Maggot application. The implementation are still to be defined, but this internal management will have to be configured in advance as an option; it will not be possible to mix the two approaches (internal/external).
 
 <br>
+-->
 
 ### Summary of past and recent changes
 
-* **Release 2.3.2** -  October 2025 (_current_)
+* **Release 2.3.4** -  February 2026 (_current_)
+
+   * _Life Sciences_ metadata is now supported for Harvard Dataverse repository importation (defined in _web/conf/dataverse.txt_). See [Doc online ](https://inrae.github.io/pgd-mmdt/definitions/dataverse/)
+
+* **Release 2.3.2** -  October 2025 
 
    * People dictionary : adaptation of the Typeahead script for [version 2 of the ROR schema and API](https://ror.org/blog/2024-04-15-announcing-ror-v2/)
    * Compliance with the new Dataverse JSON format (Added the mandatory field 'publication Relation Type')

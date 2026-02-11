@@ -67,7 +67,7 @@ $dataverse_urls = array('https://demo.recherche.data.gouv.fr',
                         'https://data-preproduction.inrae.fr',
                         'https://entrepot.recherche.data.gouv.fr');
 $DV_API = '/api/search';
-
+$DV_LICENSE_ETALAB = 1;
 $SERVER_URL='https://entrepot.recherche.data.gouv.fr';
 $PARENT='';
 
@@ -75,10 +75,8 @@ $PARENT='';
 // Zenodo URLs
 $zenodo_urls = array('https://zenodo.org',
                      'https://zenodo-rdm-qa.web.cern.ch');
-//                     'https://sandbox.zenodo.org');
 
 $ZC_API = '/api/communities/';
-
 $ZENODO_SERVER_URL='https://zenodo.org';
 $ZENODO_API_TOKEN='';
 $COMMUNITIES='';

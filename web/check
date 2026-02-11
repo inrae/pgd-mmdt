@@ -46,6 +46,23 @@ do {
       print("<pre>"); print_r($AUTH_TOKEN); print("</pre><br>");
       break;
    }
+   if ($DEV && isset($_GET['biomedicalCV'])) {
+      $schema = file_get_contents($dataverse_urls[2]."/api/v1/metadatablocks/biomedical");
+      if ($schema) {
+         $json = json_decode($schema);
+         $arrfields = (array)$json->data->fields;
+         $fields = array_keys($arrfields);
+         #echo '<pre>'; print_r($fields); echo '</pre><br>';
+         foreach($fields as $field) {
+             $arr = (array)$arrfields[$field];
+             if (empty($arr['isControlledVocabulary'])) continue;
+             echo "---- $field ----<br>";
+             foreach($arr['controlledVocabularyValues'] as $str) echo "<pre>$str</pre>";
+             echo "<br>";
+         }
+         break;
+      }
+   }
    echo "$APPURL";
 } while(0);
 

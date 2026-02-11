@@ -67,11 +67,11 @@ case "$CMD" in
         [ $SSO -eq 0 ] && sudo sed -i -e "s/^#>//g" $MYDIR/web/.htaccess
         # Launch DB container
         VOLDBSRC="-v $MYDIR/docker/db/initialisation:/js"
-        sudo docker run -d --network=$MYNET  -v $MONGO_VOL:/data/db -v $DATADIR:/pgd_data -v $MYDIR/web/conf:/json $VOLDBSRC -p $MONGO_PORT:27017 --name $DB_CONTAINER $DB_IMAGE
+        sudo docker run -d --network=$MYNET -v $MONGO_VOL:/data/db -v $MYDIR/web/conf:/conf $VOLDBSRC -p $MONGO_PORT:27017 --name $DB_CONTAINER $DB_IMAGE
         # Launch SCAN container
         VOLSCANSRC=
         [ $DEV -eq 1 ] && VOLSRCSCAN="-v $MYDIR/docker/scan/scripts:/pgd"
-        sudo docker run -d --network=$MYNET  -v $DATADIR:/pgd_data -v $MYDIR/web/conf:/json $VOLSRCSCAN --name $SCAN_CONTAINER $SCAN_IMAGE
+        sudo docker run -d --network=$MYNET  -v $DATADIR:/mnt -v $MYDIR/web/conf:/conf $VOLSRCSCAN --name $SCAN_CONTAINER $SCAN_IMAGE
         # Launch WEB container
         [ -f $MYDIR/VERSION ] && sudo cp $MYDIR/VERSION $MYDIR/web/conf/VERSION
         sudo echo $BASE_URL > $MYDIR/web/conf/HOST

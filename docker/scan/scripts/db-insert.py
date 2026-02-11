@@ -7,6 +7,7 @@ import pymongo
 from pymongo import MongoClient
 import urllib.parse
 import config
+import paths
 import importlib.util
 
 try:
@@ -21,7 +22,7 @@ except ImportError as e:
 ### functions ###
 
 def is_valid_json_file(filename):
-    path_str = filename.replace("/pgd_data/", "")
+    path_str = filename.replace(paths.datadir, "")
     try:
         with open(filename, 'r', encoding='utf-8') as f:
             content = json.load(f)
@@ -39,7 +40,7 @@ def get_json(filename):
 
 def isJSONValid(path):
     # load the JSON schema
-    json_schema = get_json('/json/maggot-schema.json')
+    json_schema = get_json(paths.confdir+'/maggot-schema.json')
 
     # Load metadata file
     json_data = get_json(path)
@@ -56,7 +57,7 @@ def isJSONValid(path):
 
     # Default return value
     ret = False
-    path_str = path.replace("/pgd_data/", "")
+    path_str = path.replace(paths.datadir, "")
 
     try:
         # Send the POST request
@@ -128,7 +129,7 @@ filename = open(db_commands, "w")
 filename.write("[\n")
 
 # Directory scan
-scan_dir("/pgd_data")
+scan_dir(paths.datadir)
 
 filename.write("]\n")
 filename.close()

@@ -1,6 +1,7 @@
 import json
+import paths
 
-with open('/json/config_terms.json') as f:
+with open(paths.confdir+'/config_terms.json') as f:
    param = json.load(f)
 
 str_fields = []

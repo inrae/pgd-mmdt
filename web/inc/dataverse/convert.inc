@@ -4,8 +4,6 @@
 // Native API Dataverse
 //----------------------------
 
-$APIVER = 'v1';
-
 function cmd_api_dataverse($cmd) {
 	global $LOG;
 	if ($LOG) echo "<script>console.log('".addslashes($cmd)."');</script>";
@@ -17,47 +15,48 @@ function cmd_api_dataverse($cmd) {
 }
 
 function get_api_dataverse($request) {
-	global $API_TOKEN, $SERVER_URL, $APIVER;
-	$cmd = 'curl -H "X-Dataverse-key:'.$API_TOKEN.'" -X GET "'.$SERVER_URL.'/api/'.$APIVER.'/'.$request.'"';
+	global $DV_CURL, $DV_API_URL;
+	$cmd = $DV_CURL.' -X GET "'.$DV_API_URL.'/'.$request.'"';
 	return cmd_api_dataverse($cmd);
 }
 
 function send_api_dataverse($request, $upload, $mode='POST') {
-	global $API_TOKEN, $SERVER_URL, $APIVER;
-	$header = 'X-Dataverse-key:'.$API_TOKEN;
+	global $DV_CURL, $DV_API_URL;
 	$content_type = "Content-type:application/json";
 	$upload = "--upload-file ".$upload;
-	$cmd='curl -H "'.$header.'" -H "'.$content_type.'" -X '.$mode.' "'.$SERVER_URL.'/api/'.$APIVER.'/'.$request.'" '.$upload;
+	$cmd=$DV_CURL.' -H "'.$content_type.'" -X '.$mode.' "'.$DV_API_URL.'/'.$request.'" '.$upload;
 	return cmd_api_dataverse($cmd);
 }
 
 function send_file_dataverse($id, $file, $description, $tags, $update) {
-	global $API_TOKEN, $SERVER_URL, $APIVER;
-	$header = 'X-Dataverse-key:'.$API_TOKEN;
+	global $DV_CURL, $DV_API_URL;
 	$upload = '-F "file=@'.$file.'"';
 	$annotation = '-F \'jsonData={"description":"'.$description.'","categories":["'.$tags.'"], "restrict":"false"}\'';
 	if ($update)
-		$cmd='curl -H "'.$header.'" -X POST '.$upload.' '.$annotation.' '.$SERVER_URL.'/api/'.$APIVER.'/files/'.$id.'/replace';
+		$cmd=$DV_CURL.' -X POST '.$upload.' '.$annotation.' '.$DV_API_URL.'/files/'.$id.'/replace';
 	else
-		$cmd='curl -H "'.$header.'" -X POST '.$upload.' '.$annotation.' '.$SERVER_URL.'/api/'.$APIVER.'/datasets/'.$id.'/add';
+		$cmd=$DV_CURL.' -X POST '.$upload.' '.$annotation.' '.$DV_API_URL.'/datasets/'.$id.'/add';
 	return cmd_api_dataverse($cmd);
 }
 
 function privateURL_api_dataverse($id, $get=0) {
-	global $API_TOKEN, $SERVER_URL, $APIVER;
+	global $DV_CURL, $DV_API_URL;
 	$op = 'POST'; if ($get>0) $op='GET';
-	$cmd = 'curl -H X-Dataverse-key:'.$API_TOKEN.' -X '.$op.' "'.$SERVER_URL.'/api/'.$APIVER.'/datasets/'.$id.'/privateUrl"';
+	$cmd = $DV_CURL.' -X '.$op.' "'.$DV_API_URL.'/datasets/'.$id.'/privateUrl"';
 	return cmd_api_dataverse($cmd);
 }
-
 
 //----------------------------
 // Convertion routines
 //----------------------------
 
+function isEmptyBlock ($hash, $block) {
+	return substr($hash[$block], -1) == "[" ? True : False;
+}
+
 function json2dataverse($metadata, $def, $map)
 {
-	global $cvdir;
+	global $cvdir, $biomedicalCV, $DV_LICENSE_ETALAB;
 
 	// Data preparation
 	$df = array();    // associative array with dataverse fields as keys
@@ -67,6 +66,8 @@ function json2dataverse($metadata, $def, $map)
 		if (! in_array( $def[$i][0],array_keys($metadata))) continue;
 		if (strlen($def[$i][1])==0) continue;
 		$dico=$def[$i][3];
+		$block = "citation";
+		if (count($def[$i])>3 && strlen($def[$i][4])>0) $block = $def[$i][4];
 		// If there is a dico
 		if (strlen($def[$i][3])>0 && preg_match('/^cvlist:([a-zA-Z0-9_]+)/',$dico, $matches)) {
 			$dico=$matches[1];
@@ -86,53 +87,78 @@ function json2dataverse($metadata, $def, $map)
 		}
 		// Array of fields if there is a 'type' defined
 		if (strlen($def[$i][2])>0) {
-			$df[ $def[$i][2] ][] = array($def[$i][0], $def[$i][1], $def[$i][2], $dico);
+			$df[ $def[$i][2] ][] = array($def[$i][0], $def[$i][1], $def[$i][2], $dico, $block);
 		} else {
 			//  Unique field
-			$df[ $def[$i][1] ] = array($def[$i][0], $def[$i][2], $dico);
+			$df[ $def[$i][1] ] = array($def[$i][0], $def[$i][2], $dico, $block);
 		}
 	}
 //echo "<br><pre>"; print_r($df); echo "</pre><br>"; 
 
-// JSON creation
-	$JSONcore='{"metadataLanguage": "en", "datasetVersion": {';
+	// JSON creation
+	$JSONfull='{"metadataLanguage": "en", "datasetVersion": {';
 	$JSONclose = '}}';
 	$sep='';
 
 	// license
-	unset($df['license']); $JSONcore .= '"license": "etalab 2.0","uri": "https://spdx.org/licenses/etalab-2.0.html"';  $sep=',';
+	if ($DV_LICENSE_ETALAB) unset($df['license']); // France
 	if (isset($df['license']) && strlen($metadata[$df['license'][0]])) {
-		$JSONcore .= '"license": "'.$metadata[$df['license'][0]].'"';
+		$JSONfull .= '"license": "'.$metadata[$df['license'][0]].'"';
+		$sep=',';
+	} else {
+		$JSONfull .= '"license": "etalab 2.0","uri": "https://spdx.org/licenses/etalab-2.0.html"';
 		$sep=',';
 	}
-	$JSONcore .= $sep.'"metadataBlocks": {"citation": {"displayName": "Citation Metadata", "fields": [';
-	$JSONclose = ']}}'.$JSONclose;
-	$sep='';
 
-	// All other fields
+	// metadataBlocks
+	$JSONfull .= $sep.'"metadataBlocks": {';
+	$JSONclose = '}'.$JSONclose;
+
+	// Blocks
+	$JSONBlocks = array(
+		"citation" => '"citation": {"displayName":"Citation Metadata", "name":"citation", "fields": [',
+		"biomedical" => '"biomedical": {"displayName":"Life Sciences Metadata", "name":"biomedical", "fields": ['
+	);
+	$JSONcloseBlock = ']}';
+
+	// Retrieve all CVs from the "biomedical" block
+	$biomedicalCV = get_biomedicalCV();
+
+	// All fields in Blocks
 	foreach( $df as $dkey => $arr ) {
 		if (function_exists('getfield_'.$dkey)) {
+			$block = '';
 			if(gettype($arr[0])==='array') {
 				$dico=array();
 				foreach($arr as $subarr) {
-	//print_r($dkey.', '.$subarr[0].', '.$subarr[1].', '.$subarr[2].', '.$subarr[3]); echo "<br>";
+					if (strlen($block)==0) $block = $subarr[4];
+//print_r($dkey.', '.$subarr[0].', '.$subarr[1].', '.$subarr[2].', '.$subarr[3].', '.$block); echo "<br>";
 					if (strlen($subarr[3]) && isset( ${$subarr[3]} ))
 						$dico[]=${$subarr[3]};
 				}
 				$json = ('getfield_'.$dkey)($metadata, $df[$dkey], $dico);
 			} else {
 				$dico=$arr[2];
-	//print_r($dkey.', '.$dico); echo "<br>";
+				$block = $arr[3];
+//print_r($dkey.', '.$dico.', '.$block); echo "<br>";
 				$dic = strlen($dico) && isset( ${$dico} ) ? ${$dico} : "";
 				$json = ('getfield_'.$dkey)($metadata, $df[$dkey], $dic);
 			}
-			if (strlen($json)) { $JSONcore .= $sep.$json; }
-			$sep=',';
+			$sep = isEmptyBlock($JSONBlocks,$block) ? '' : ',';
+			if (strlen($json)) { $JSONBlocks[$block] .= $sep.$json; }
 		}
-		if ( ($dkey==='title') && function_exists('getfield_otherId') )
-			$JSONcore .= $sep.getfield_otherId($metadata);
+		if ( ($dkey==='title') && function_exists('getfield_otherId') ) {
+			$block = 'citation';
+			$sep = isEmptyBlock($JSONBlocks,$block) ? '' : ',';
+			$JSONBlocks[$block] .= $sep.getfield_otherId($metadata);
+		}
 	}
-	return $JSONcore.$JSONclose;
+
+	// Final JSON 
+	$JSONfull .= $JSONBlocks['citation'].$JSONcloseBlock;
+	$JSONfull .= isEmptyBlock($JSONBlocks,$block) ? '' : ','.$JSONBlocks['biomedical'].$JSONcloseBlock;
+	$JSONfull .= $JSONclose;
+	return $JSONfull;
 }
 
 function maggot2dataverse ($input_json, &$output_json)
@@ -206,7 +232,9 @@ function send_resources_files($id, $resources, $path, $array_files)
 
 	$msg = '';
 	foreach($resources as $arr) {
-		if (strlen($arr['location'])==0 || preg_match('/^https?:/',$arr['location']) || ! file_exists($path.'/'.$arr['location']))
+		if (strlen($arr['location'])==0 || 
+			preg_match('/^https?:/',$arr['location']) || 
+			! file_exists($path.'/'.$arr['location']))
 			continue;
 		if (! file_exists($path.'/'.$auth_senddata_file)) {
 			$msg .='Warning : File '.$path.'/'.$auth_senddata_file.' not found<br>';

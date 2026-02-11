@@ -24,6 +24,11 @@ if( isset($_POST['btnpush']) ) {
 		$dataset = trim($_POST['dataset']);
 }
 
+
+// Defines global variables for the native Dataverse API
+$DV_CURL = 'curl -H "X-Dataverse-key:'.$API_TOKEN.'"';
+$DV_API_URL = $SERVER_URL.'/api/v1';
+
 $EXTERN = isset($_GET['extern']) ? 1 : $EXTERN;
 
 $options_server='';
@@ -32,14 +37,13 @@ foreach ($dataverse_urls as $url) {
 	$options_server .= '<option value="'.$url.'"'.$selected.'>'.$url.'</option>';
 }
 
-
 $array_dataset=array();
 $options = array('projection'=>[]);
 $options['projection']['title']=true;
 $options['projection'][$maggot_fulltitle]=true;
 $options['projection']['chemin']=true;
 
-// Rechercher tous les jeux de données répondant aux critères saisis
+// Search for all datasets that meet the entered criteria.
 $obj = dbQueryToArray(array(), $options);
 $ret = count($obj);
 
@@ -242,7 +246,7 @@ do
 		$json = file_get_contents($tmpName);
 		file_put_contents($input_url, $json);
 	}
-	
+
 	$metadata = json_decode($json, true);
 	if ( gettype($metadata)!== 'array' || count($metadata)==0 ) {
 		$msg='Error: '.$name.' is not a valid json file !!!';
@@ -258,21 +262,21 @@ do
 		echo "<script>$('#errboxmsg').html('".$msg."'); $('#errbox').css('display','block');</script>";
 		break;
 	}
-	
+
 	$def = tsvToArray($dataverse_conf, true);
 	if (! count($def)) {
 		$msg='Error: '.$dataverse_conf.' is empty !!!';
 		echo "<script>$('#errboxmsg').html('".$msg."'); $('#errbox').css('display','block');</script>";
 		break;
 	}
-	
+
 	// Read Mapping definition file
 	if (! is_file($mapping_conf)) {
 		$msg='Error: '.$mapping_conf.' does not exist !!!';
 		echo "<script>$('#errboxmsg').html('".$msg."'); $('#errbox').css('display','block');</script>";
 		break;
 	}
-	
+
 	$map = tsvToArray($mapping_conf, true);
 	if (! count($map)) {
 		$msg='Error: '.$mapping_conf.' is empty !!!';

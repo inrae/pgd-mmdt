@@ -1,0 +1,2 @@
+datadir = "/mnt"
+confdir = "/conf"
