@@ -36,9 +36,11 @@ some_url:
 </center>
 <br>
 
-**3** - **Vocabulary based on a web API in a text field** (*textbox*)
+**3** - **JavaScript-based vocabulary in a text field** (*textbox*)
 
-* The [web API][1]{:target="_blank"} is defined in a [JavaScript][13]{:target="_blank"} file with the same name as the assigned variable (here *cities*) and must present under *web/js/autocomplete*. For example, to enter a French city you can use the API [geo.api.gouv.fr][3]{:target="_blank"}. See [cities.js][4]{:target="_blank"}
+* The JavaScript here involves populating a list variable (e.g. _cities = [ ... ]_) with the desired vocabulary. The name of this variable must be the same as the name of the JavaScript file and must present under *web/js/autocomplete* (e.g. *cities.js*)
+
+* The list can be directly embedded in the code (e.g. [lifecycle.js][27]{:target="_blank"}) or retrieved via [web API][1]{:target="_blank"}. For example, to enter a French city you can use the API [geo.api.gouv.fr][3]{:target="_blank"}. See [cities.js][4]{:target="_blank"}
 
 <center>
 <a href="../../images/vocabulary_fig3.png" data-lightbox="fig3"><img src="../../images/vocabulary_fig3.png" width="800px"></a>
@@ -130,3 +132,4 @@ some_url:
 [24]: https://github.com/inrae/pgd-mmdt/blob/main/web/js/autocomplete/VO_typeahead.js
 [25]: https://github.com/inrae/pgd-mmdt/blob/main/web/inc/mapping/skosmos.inc
 [26]: https://semanticlookup.zbmed.de
+[27]: https://github.com/inrae/pgd-mmdt/blob/main/web/js/autocomplete/lifecycle.js

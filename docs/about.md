@@ -58,6 +58,13 @@ some_url:
 
 * Daniel Jacob ([INRAE UR BIA-BIBS][2]{:target="_blank"} - [0000-0002-6687-7169][17]{:target="_blank"})
 
+
+### Discussion space
+
+* Issues tracker on [github][16]{:target="_blank"}
+* [Tchap][18]{:target="_blank"} : Only for the French education and research community
+
+
 ### Designers / Developers
 
 * Daniel Jacob ([INRAE UR BIA-BIBS][2]{:target="_blank"})
@@ -111,6 +118,7 @@ some_url:
 
 [16]: https://github.com/inrae/pgd-mmdt/issues
 [17]: https://orcid.org/0000-0002-6687-7169
+[18]: https://tchap.gouv.fr/#/room/#MaggotVhqYIz03cj9:agent.agriculture.tchap.gouv.fr
 
 [20]: https://www.gnu.org/licenses/gpl-3.0.html
 
