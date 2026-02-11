@@ -118,7 +118,7 @@ In Maggot, it is therefore  in principle necessary to define a list of predefine
 <a href="../../images/dataverse_fig6.png" data-lightbox="fig6"><img src="../../images/dataverse_fig6.png" width="800px"></a>
 </center>
 <br>
-The figure below shown an example as an illustration:
+The figure below shows an example as an illustration:
 <center>
 <a href="../../images/dataverse_fig7.png" data-lightbox="fig7"><img src="../../images/dataverse_fig7.png" width="800px"></a>
 </center>
