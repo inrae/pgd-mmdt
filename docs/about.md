@@ -118,7 +118,7 @@ some_url:
 
 [16]: https://github.com/inrae/pgd-mmdt/issues
 [17]: https://orcid.org/0000-0002-6687-7169
-[18]: https://tchap.gouv.fr/#/room/#MaggotVhqYIz03cj9:agent.agriculture.tchap.gouv.fr
+[18]: https://www.tchap.gouv.fr/#/room/!fMpqgxVmYfzmotjVoQ:agent.agriculture.tchap.gouv.fr
 
 [20]: https://www.gnu.org/licenses/gpl-3.0.html
 
