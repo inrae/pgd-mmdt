@@ -72,18 +72,18 @@ sh ./run <option>
 
 **Options**:
 
-* ***build*** : Create the 3 Docker images namely ***pgd-mmdt-db***, ***pgd-mmdt-scan*** and ***pgd-mmdt-web***
-* ***pull*** : Get (pull) from DockerHub the 3 Docker images namely ***pgd-mmdt-db***, ***pgd-mmdt-scan*** and ***pgd-mmdt-web***
-* ***start*** : _1_) Launch the 3 services by creating the Docker containers corresponding to the Docker images; _2_) Create also the MongoDB volume.
-* ***stop*** :  _1_) Remove all the 3 Docker containers; _2_) Remove the MongoDB volume.
-* ***initdb*** : Create and initialize the Mongo collection then load the contents of the database and the web interface
-* ***scan*** : Scan the data  according to a fixed period ([30 min][18]{:target="_blank"}) 
-* ***fullstart*** : Perform the 2 actions ***start***, ***initdb***
-* ***restart*** : Perform the 2 actions ***stop*** then ***fullstart***
-* ***ps*** : Check that all containers are running correctly
-* ***statdb*** : Get information about the Mongo database in JSON format (Application must be started including the 'scan' step)
-* ***showdb*** : Get the content of the Mongo database in JSON format (Application must be started including the 'scan' step)
-* ***passwd*** <_user_>: Define the admin password if no _user_ is specified, allowing you to add entries in dictionaries or to add/update the terminology files (_definition_ & _documentation_, see [configuration](../configuration)). If a _user_ is specified, the dictionary consultation will be authorized for this user.
+* ***build*** : Creates the 3 Docker images namely ***pgd-mmdt-db***, ***pgd-mmdt-scan*** and ***pgd-mmdt-web***
+* ***pull*** : Retrieves (pull) from DockerHub the 3 Docker images namely ***pgd-mmdt-db***, ***pgd-mmdt-scan*** and ***pgd-mmdt-web***
+* ***start*** : _1_) Starts the 3 services by creating the Docker containers corresponding to the Docker images; _2_) Creates also the MongoDB volume.
+* ***stop*** :  _1_) Removes all the 3 Docker containers; _2_) Remove the MongoDB volume.
+* ***initdb*** : Creates and initializes the Mongo collection then loads the metadata sets (JSON file) into the database
+* ***scan*** : Scans the directory tree for metadata files and compiles them into a JSON file.
+* ***fullstart*** : Executes the ***start*** and ***initdb*** actions.
+* ***restart*** : Executes the ***stop*** and ***fullstart*** actions.
+* ***ps*** : Checks that all containers are running correctly
+* ***statdb*** : Retrieves information about the Mongo database in JSON format (Application must be started in full mode)
+* ***showdb*** : Retrieves the content of the Mongo database in JSON format (Application must be started in full mode)
+* ***passwd*** <_user_>: Defines the admin password if no _user_ is specified, allowing you to add entries in dictionaries or to add/update the terminology files (_definition_ & _documentation_, see [configuration](../configuration)). If a _user_ is specified, the dictionary consultation will be authorized for this user.
 
 <br>
 
