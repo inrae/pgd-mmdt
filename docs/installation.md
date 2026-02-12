@@ -111,7 +111,7 @@ sh ./run <option>
      ```sh
      sh ./run start
      ```
-    * Scanning  the data directory to search for metadata files (META_XXXX.json) in case this is the first time the application is being run.
+    * Scanning  the data directory to search for metadata files (_META_XXXX.json_) in case this is the first time the application is being run.
      ```sh
      sh ./run scan
      ```
@@ -120,20 +120,20 @@ sh ./run <option>
      sh ./run initdb
      ```
 
-* You can also launch the 2 steps (start and initdb) with a single command:
+* You can also launch the 2 steps (_start_ and _initdb_) with a single command:
    ```sh
    sh ./run fullstart
    ```
-* You can check if all metadata sets have been loaded using the show db command:
+* You can check if all metadata sets have been loaded using the _showdb_ action:
    ```sh
    sh ./run showdb | grep 'title'
    ```
-* To update the MongoDB database in case you have uploaded a new or updated metadata file, you must perform a scan and restart the system once it is complete. This allows for a background scan without preventing the application from functioning.
+* To update the MongoDB database in case you have uploaded a new or updated metadata file, you must perform a _scan_ then _restart_ the system once it is complete. This allows for a background scan without preventing the application from functioning.
      ```sh
      sh ./run scan
      sh ./run restart
      ```
-* **WARNING**: Modifying the terminology file will also affect MongoDB. Therefore, you must first stop and then restart the application without initializing the database, perform a scan, and then restart the application in full mode.
+* **WARNING**: Modifying the terminology file will also affect MongoDB. Therefore, you must first _stop_ and then restart the application without initializing the database, perform a _scan_, and then _restart_ the application in full mode.
      ```sh
      sh ./run stop
      sh ./run start
