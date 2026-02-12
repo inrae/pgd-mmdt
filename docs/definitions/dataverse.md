@@ -101,7 +101,7 @@ ProtocleType | Protocole type| - | - | No | No
 </center>
 <br>
 
-Since Maggot only allows one vocabulary source (e.g., a dictionary) per metadata field, the data manager must therefore add the most relevant predefined CV to each appropriate dictionary (**a**). Then, during the transfer to Dataverse, a sorting mechanism between the two types of vocabularies (predefined vocabularies and others) ensures that the fields of the Dataverse metadata record are correctly populated (**b**).
+Since Maggot only allows one vocabulary source (e.g., a dictionary) per metadata field, the data manager must therefore add the most relevant predefined CV to each appropriate dictionary (**a**). Then, during the transfer to Dataverse, a sorting mechanism between the two types of vocabularies (predefined vocabularies and others) ensures that the Dataverse metadata fields are correctly populated (**b**).
 
 <center>
 <a href="../../images/dataverse_fig6.png" data-lightbox="fig6"><img src="../../images/dataverse_fig6.png" width="800px"></a>
