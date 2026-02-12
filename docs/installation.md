@@ -76,9 +76,9 @@ sh ./run <option>
 * ***pull*** : Get (pull) from DockerHub the 3 Docker images namely ***pgd-mmdt-db***, ***pgd-mmdt-scan*** and ***pgd-mmdt-web***
 * ***start*** : _1_) Launch the 3 services by creating the Docker containers corresponding to the Docker images; _2_) Create also the MongoDB volume.
 * ***stop*** :  _1_) Remove all the 3 Docker containers; _2_) Remove the MongoDB volume.
-* ***initdb*** : Create and initialize the Mongo collection
-* ***scan*** : Scan the data  according to a fixed period ([30 min][18]{:target="_blank"}) and update the contents of the database and the web interface
-* ***fullstart*** : Perform the 3 actions ***start***, ***initdb*** and ***scan***
+* ***initdb*** : Create and initialize the Mongo collection then load the contents of the database and the web interface
+* ***scan*** : Scan the data  according to a fixed period ([30 min][18]{:target="_blank"}) 
+* ***fullstart*** : Perform the 2 actions ***start***, ***initdb***
 * ***restart*** : Perform the 2 actions ***stop*** then ***fullstart***
 * ***ps*** : Check that all containers are running correctly
 * ***statdb*** : Get information about the Mongo database in JSON format (Application must be started including the 'scan' step)
@@ -111,20 +111,25 @@ sh ./run <option>
      ```sh
      sh ./run start
      ```
+    * Scanning  the data directory to search for metadata files (META_XXXX.json) in case this is the first time the application is being run.
+     ```sh
+     sh ./run scan
+     ```
     * Initialization of the MongoDB database
      ```sh
      sh ./run initdb
      ```
-    * Scanning the data directory for metadata files (META_XXXX.json)
-     ```sh
-     sh ./run scan
-     ```
 
-* You can also launch these 3 steps with a single command:
+* You can also launch the 2 steps (start and initdb) with a single command:
    ```sh
    sh ./run fullstart
    ```
 
+* To update the MongoDB database in case you have uploaded a new or updated metadata file, you must perform a scan and restart the system once it is complete. This allows for a background scan without preventing the application from functioning.
+     ```sh
+     sh ./run scan
+     sh ./run restart
+     ```
 <br>
 
 #### Launching the web application in the web browser
