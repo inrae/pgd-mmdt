@@ -31,7 +31,7 @@ The file must have 4 columns + one optional with headers defined as follows:
 * column 2 - **Typename** : The corresponding Dataverse fields. 
 * column 3 - **Type** :The Dataverse field at the top level encapsulating the fields in the “Typename” column where applicable
 * column 4 - **Terminology** : Indicates from which vocabulary the mapping should be performed. Concerning the vocabulary to be mapped either ***i)*** on a dictionary, you must put the name of the corresponding [dictionary](../../dictionaries) prefixed with ***cvlist:***, or ***ii)*** on ontologies or on a thesaurus, you must specify the corresponding entry in the [mapping definition file](../mapping) prefixing it with ***cv:***.
-* column 5 - **Block** (_optional_): Name of the metadata block. Currently, only two blocks are support, namely the _common metadata_ block called **_citation_**., the _life science_ metadata block called **_biomedical_**. This column is optional but in this case, this assumes that all metadata correspond to the common metadata block (_citation_).
+* column 5 - **Block** (_optional_): Name of the metadata block. Currently, only two blocks are support, namely the _common metadata_ block called **_citation_**., the _life science_ metadata block called **_biomedical_**. This column is optional but in this case, this assumes that all metadata correspond to the common metadata block (_citation_). See the [structure of the metadata blocks][5]{:target="_blank"} in JSON format.
 
 Below an example of Dataverse definition file (TSV)
 <center>
@@ -45,7 +45,7 @@ Example of Dataverse JSON file generated based on the definition file itself giv
 
 ### Common metadata block (_citation_)
 
-* List of **_Typename_** (column 2) supported by Maggot. Be careful of character case. See [the structure of the common metadata blocks][5]{:target="_blank"} in JSON format.
+* List of **_Typename_** (column 2) supported by Maggot. Be careful of character case. See [the structure of the common metadata blocks][6]{:target="_blank"} in JSON format.
 
 Typename     | Decription       | Type | Terminology | Linked to a CV | Required
 ------------ | -----------------|------|------------|---------------|--------------
@@ -75,11 +75,11 @@ publication_idtype | The type of identifier that uniquely identifies a related p
 publication_idnumber | The identifier for a related publication | must be equal to _publication_ | - | No | No
 publication_url | The URL form of the identifier entered in the Identifier field, e.g. the DOI URL if a DOI was entered in the Identifier field. | must be equal to _publication_ | - | No | No
 
-^(1)^ The list of CV terms must be defined either in the _Predefined terms_ column in the terminology definition file or in a javascipt. See [vocabulary](../vocabulary/)
+^(1)^ The list of CV terms must be defined either in the _Predefined terms_ column in the terminology definition file or in a javascipt. See [vocabulary](../vocabulary/) (points 1 & 3).
 
 ### Life science metadata block (_biomedical_)
 
-* List of **_Typename_** (column 2) supported by Maggot. Be careful of character case. See [the structure of the life science metadata blocks][6]{:target="_blank"} in JSON format.
+* List of **_Typename_** (column 2) supported by Maggot. Be careful of character case. See [the structure of the life science metadata blocks][7]{:target="_blank"} in JSON format.
 
 Typename     | Decription       | Type | Terminology | Linked to a CV | Required
 ------------ | -----------------|------|------------|---------------|--------------
@@ -94,25 +94,14 @@ SampleType | Sample description | - | - | No | No
 ProtocleType | Protocole type| - | - | No | No
 
 
-**Point of attention** : In the _Life Sciences_ metadata block, for some metadata (organism, study design, factor, measurement type, technology type, platform), you can choose either one or more terms from a list of predefined CVs (A), or one or more terms defined by the user (B).
+**Point of attention** : In the _Life Sciences_ metadata block, there are two ways to populate certain metadata (organism, study design, factor, measurement type, technology type, platform): either with a [predefined CV][8]{:target="_blank"} (**A**), or with user-defined terms (**B**) as shown in the figure below:
 
 <center>
 <a href="../../images/dataverse_fig5.png" data-lightbox="fig5"><img src="../../images/dataverse_fig5.png" width="800px"></a>
 </center>
 <br>
 
-In Maggot, it is therefore  in principle necessary to define a list of predefined terms (dictionary) containing strictly the same list of terms if you want to associate a term already predefined (A) in Dataverse.
-
-**Issue**:
-
-* On the one hand, the predefined CV for each term in the _biomedical_ block is limited and cannot cover all situations. 
-* On the other hand, Maggot only allows associating a single CV source (e.g., a dictionary) with each term.
-
-**Solution retained**
-
-**a**) Regarding the [predefined CVs][7]{:target="_blank"}, the data manager has to add the most relevant ones to each suitable dictionary.
-
-**b**) During the transfer to Dataverse, a sorting mechanism between the two types of vocabularies (predefined CVs and others) ensures that the fields in the Dataverse metadata record are correctly populated. 
+Since Maggot only allows one vocabulary source (e.g., a dictionary) per metadata field, the data manager must therefore add the most relevant predefined CV to each appropriate dictionary (**a**). Then, during the transfer to Dataverse, a sorting mechanism between the two types of vocabularies (predefined vocabularies and others) ensures that the fields of the Dataverse metadata record are correctly populated (**b**).
 
 <center>
 <a href="../../images/dataverse_fig6.png" data-lightbox="fig6"><img src="../../images/dataverse_fig6.png" width="800px"></a>
@@ -130,7 +119,8 @@ The figure below shows an example as an illustration:
 [2]: https://guides.dataverse.org/en/latest/api/native-api.html#import-a-dataset-into-a-dataverse-collection
 [3]: https://pmb-bordeaux.fr/maggot/metadata/frim1?format=dataverse
 [4]: https://open-research-europe.ec.europa.eu/for-authors/data-guidelines#approvedrepositories
-[5]: https://demo.recherche.data.gouv.fr/api/metadatablocks/citation
-[6]: https://demo.recherche.data.gouv.fr/api/metadatablocks/biomedical
-[7]: https://pmb-bordeaux.fr/maggot/check?biomedicalCV
+[5]: https://demo.recherche.data.gouv.fr/api/metadatablocks
+[6]: https://demo.recherche.data.gouv.fr/api/metadatablocks/citation
+[7]: https://demo.recherche.data.gouv.fr/api/metadatablocks/biomedical
+[8]: https://pmb-bordeaux.fr/maggot/check?biomedicalCV
 

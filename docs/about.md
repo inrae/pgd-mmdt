@@ -62,7 +62,7 @@ some_url:
 ### Discussion space
 
 * Issues tracker on [github][16]{:target="_blank"}
-* [Tchap][18]{:target="_blank"} : Only for the French education and research community
+* [Tchap][18]{:target="_blank"} : Only for the French Education and Research (ESR) community
 
 
 ### Designers / Developers
