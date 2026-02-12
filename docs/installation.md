@@ -124,12 +124,23 @@ sh ./run <option>
    ```sh
    sh ./run fullstart
    ```
-
+* You can check if all metadata sets have been loaded using the show db command:
+   ```sh
+   sh ./run showdb | grep 'title'
+   ```
 * To update the MongoDB database in case you have uploaded a new or updated metadata file, you must perform a scan and restart the system once it is complete. This allows for a background scan without preventing the application from functioning.
      ```sh
      sh ./run scan
      sh ./run restart
      ```
+* **WARNING**: Modifying the terminology file will also affect MongoDB. Therefore, you must first stop and then restart the application without initializing the database, perform a scan, and then restart the application in full mode.
+     ```sh
+     sh ./run stop
+     sh ./run start
+     sh ./run scan
+     sh ./run restart
+     ```
+
 <br>
 
 #### Launching the web application in the web browser
