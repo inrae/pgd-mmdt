@@ -94,7 +94,7 @@ case "$CMD" in
         [ $? -eq 0 ] && echo OK
         ;;
    fullstart)
-        ( sh $0 start ; sh $0 initdb ; sh $0 scan )
+        ( sh $0 start ; sh $0 initdb )
         ;;
    restart)
         ( sh $0 stop ; sh $0 fullstart )
@@ -125,17 +125,24 @@ case "$CMD" in
             exit 1
         fi
         echo -n "Init DB ... "
-        sudo docker exec -t $DB_CONTAINER /bin/bash -c "cd /js; python3 ./generate_setupdb.py"
-        sudo docker exec -t $DB_CONTAINER mongosh /js/setupdb.js 1>/dev/null 2>/dev/null
-        [ $? -eq 0 ] && echo OK
-        [ $? -ne 0 ] && echo FAILED
+        if [ -f "$MYDIR/docker/scan/scripts/DB_final_commands.json" ]; then
+            sudo docker exec -t $DB_CONTAINER /bin/bash -c "cd /js; python3 ./generate_setupdb.py"
+            sudo docker exec -t $DB_CONTAINER mongosh /js/setupdb.js 1>/dev/null 2>/dev/null
+            if [ $? -eq 0 ]; then
+                echo OK
+                sudo docker exec -t $SCAN_CONTAINER /bin/bash -c "cd /pgd; python3 ./db-insert.py"
+                echo OK Metadata loaded !
+            else
+                echo FAILED
+            fi
+        else
+            echo "WARNING: You must proceed to a scan before using the application - then restart"
+        fi
         sudo docker exec -i $WEB_CONTAINER php ./convert
-        [ $? -ne 0 ] && echo "FAILED to convert some configuration files"
         ;;
    scan)
         echo "Scanning ... "
         sudo docker exec -t $SCAN_CONTAINER /bin/bash -c "cd /pgd; python3 ./pgd.py"
-        sudo docker exec -t $SCAN_CONTAINER /bin/bash -c "cd /pgd; python3 ./db-insert.py"
         [ $? -eq 0 ] && echo OK
         [ $? -ne 0 ] && echo FAILED
         sudo docker exec -i $WEB_CONTAINER php ./convert

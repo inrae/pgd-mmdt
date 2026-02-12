@@ -46,8 +46,8 @@ do {
       print("<pre>"); print_r($AUTH_TOKEN); print("</pre><br>");
       break;
    }
-   if ($DEV && isset($_GET['biomedicalCV'])) {
-      $schema = file_get_contents($dataverse_urls[2]."/api/v1/metadatablocks/biomedical");
+   if (isset($_GET['biomedicalCV'])) {
+      $schema = file_get_contents($dataverse_urls[0]."/api/v1/metadatablocks/biomedical");
       if ($schema) {
          $json = json_decode($schema);
          $arrfields = (array)$json->data->fields;
@@ -56,6 +56,7 @@ do {
          foreach($fields as $field) {
              $arr = (array)$arrfields[$field];
              if (empty($arr['isControlledVocabulary'])) continue;
+             $field = str_replace('study','', str_replace('Assay','', $field));
              echo "---- $field ----<br>";
              foreach($arr['controlledVocabularyValues'] as $str) echo "<pre>$str</pre>";
              echo "<br>";

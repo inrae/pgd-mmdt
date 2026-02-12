@@ -5,6 +5,12 @@ import json
 from pprint import pprint
 from pprint import pformat
 import paths
+import importlib.util
+
+try:
+    import requests
+except ImportError as e:
+    pass  # module doesn't exist
 
 ### functions ###
 
@@ -20,6 +26,50 @@ def get_json(filename):
     with open(filename, 'r', encoding='utf-8') as f:
         content = json.load(f)
     return content
+
+def isJSONValid(path):
+    # load the JSON schema
+    json_schema = get_json(paths.confdir+'/maggot-schema.json')
+
+    # Load metadata file
+    json_data = get_json(path)
+
+    # URL & header : see https://assertible.com/json-schema-validation
+    url = "https://assertible.com/json"
+    headers = {"Content-Type":"application/json; charset=utf-8"}
+
+    # Payload
+    payload = {
+        'schema': json_schema,
+        'json': json_data
+    }
+
+    # Default return value
+    ret = False
+    path_str = path.replace(paths.datadir, "")
+
+    try:
+        # Send the POST request
+        session = requests.Session()
+        response = session.post(url, headers=headers, json=payload)
+        #response.raise_for_status()
+
+        # Response
+        result = response.json()
+        if result.get("valid", False):
+            print("SUCCESS: "+path_str+"  is valid")
+            ret = True
+        else:
+            print("ERROR: "+path_str+" is not a valid Maggot JSON file")
+            for error in result.get("errors", []):
+                print(f"- {error}")
+
+    except requests.exceptions.Timeout:
+        print("Timeout is reached")
+    except requests.exceptions.RequestException as e:
+        print(f"❗ An error occurs for "+path_str)
+
+    return ret
 
 # Transforms a key/set dictionary into a key/list
 def set_to_list_dic(mydicset):
@@ -72,12 +122,27 @@ def scan_dir(dir,dico):
                 continue
             if is_valid_json_file(path) is False:
                 continue
+            spec = importlib.util.find_spec('requests')
+            if spec is not None and isJSONValid(path) is False:
+                continue
+            filename.write("\t{")
             mydata = get_json(path)
             for key,value in mydata.items():
                 #print(type(value))
                 if isinstance(value,list):
+                    field = "\""+key+"\":"+json.dumps(list(value), ensure_ascii=False)+","
+                    filename.write(field)
                     if key != 'resources' and key in dico:
                         dico[key].update(set(mydata[key]))
+                else:
+                    value = regex.sub("", value)
+                    value = value.replace('"','\\"')
+                    field = "\""+key+"\":\""+value+"\","
+                    filename.write(field)
+            field = "\"chemin\":\""+path+"\""
+            filename.write(field)
+            field = "},\n"
+            filename.write(field)
         else:
             scan_dir(path,dico)
 
@@ -91,9 +156,18 @@ def format_dico(mydico,master):
     return formated
 
 ### Prog ###
+
 p = re.compile('META_.*\.json')
+regex = re.compile(r'[\n\r\t]')
+
 master_json = paths.confdir+'/config_terms.json'
 outputfile = paths.confdir+'/options.json'
+
+## Data to be inserted into the database
+db_commands = 'DB_commands.json'
+
+# File containing data insertion commands
+db_final_commands = 'DB_final_commands.json'
 
 if is_valid_json_file(master_json) is True:
     masterdic = get_json(master_json)
@@ -103,7 +177,12 @@ if is_valid_json_file(master_json) is True:
     activedic = load_active_dic(masterdic)
     maindic = init_dic(activedic)
 
+    # Directory scan
+    filename = open(db_commands, "w")
+    filename.write("[\n")
     scan_dir(paths.datadir, maindic)
+    filename.write("]\n")
+    filename.close()
 
     alldata = merge_dic(activedic,maindic)
     clean_dic(alldata)
@@ -117,6 +196,13 @@ if is_valid_json_file(master_json) is True:
     fo.write(str(param).replace("'","\"").replace('True','true').replace('False','false'))
     fo.close()
 
+    # File containing data insertion commands
+    final_command_file = open(db_final_commands,"w")
+    filename = open(db_commands, "r")
+    tempfile = filename.read()
+    chaineTriee = re.sub(r'(.*)},\n]', r'\1}\n]', tempfile)
+    final_command_file.write(chaineTriee)
+    final_command_file.close()
 else:
     print("ERROR: "+master_json+" is not a valid JSON file")
 

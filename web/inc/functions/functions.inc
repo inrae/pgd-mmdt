@@ -74,7 +74,7 @@ function assocPars($string)
 # Generate an identifier compliant with the otherId field in Dataverse
 function otherID ($id)
 {
-    return str_replace('-','',$id).date("Y");
+    return str_replace('-','',$id).'@'.date("Y");
 }
 
 // Sort a Multi-dimensional Array by Value
