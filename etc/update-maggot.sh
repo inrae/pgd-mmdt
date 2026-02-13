@@ -43,7 +43,7 @@ GITREPOS=https://github.com/inrae/${REPOS}.git
      # Copy the list of files to be preserved
      LISTFILE=$APP/etc/preserve.list
      for F in $(cat $LISTFILE | grep -v -E "^(#|$)"); do
-          [ -f "$PREV/$F" ] && echo sudo cp ./$PREV/$F ./$APP/$(dirname $F)/
+          [ -f "$PREV/$F" ] && sudo cp ./$PREV/$F ./$APP/$(dirname $F)/
      done
 
      # Cache
