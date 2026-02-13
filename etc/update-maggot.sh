@@ -4,11 +4,7 @@
 # (Bash scripts to move under /usr/local/bin)
 
 # List of files to be preserved
-# ./local.conf
-# ./etc/.htpasswd
-# ./docker/scan/scripts/config.py
-# ./web/inc/config/mongodb.inc
-# ./web/inc/config/local.inc
+# see ./etc/preserve.list
 
 # List of directory to be preserved
 # ./web/conf/
@@ -30,31 +26,25 @@ GITREPOS=https://github.com/inrae/${REPOS}.git
   # Stop APP
   [ $SYSTEMCTL -eq 0 ] && sudo sh ./$APP/run stop
   [ $SYSTEMCTL -eq 1 ] && sudo systemctl stop $APP
+
   echo
   echo "----------------------------------"
   echo "update $APP"
   echo "----------------------------------"
+
   # Add 'prev' as postfix to the current APP directory
   sudo mv $APP ${APP}.prev
   PREV=${APP}.prev
+
   # Get the source code from github
   sudo git clone $GITREPOS $APP
+
   if [ $? -eq 0 ]; then
-     # Config
-     [ -f $PREV/local.conf ] && sudo cp ./$PREV/local.conf ./$APP/
-     sudo cp ./$PREV/docker/scan/scripts/config.py ./$APP/docker/scan/scripts/
-     sudo cp ./$PREV/web/inc/config/mongodb.inc ./$APP/web/inc/config/
-     [ -f ./$PREV/web/inc/config/local.inc ] && sudo cp ./$PREV/web/inc/config/local.inc ./$APP/web/inc/config/
-
-     # Metadata sets
-     [ -f ./$PREV/docker/scan/scripts/DB_final_commands.json ] && \
-       cp ./$PREV/docker/scan/scripts/DB_final_commands.json ./$APP/docker/scan/scripts/
-
-     # Passwords
-     sudo cp ./$PREV/etc/.htpasswd ./$APP/etc/
-
-     # Metadata configuration files
-     sudo cp ./$PREV/web/conf/* ./$APP/web/conf/
+     # Copy the list of files to be preserved
+     LISTFILE=$APP/etc/preserve.list
+     for F in $(cat $LISTFILE | grep -v -E "^(#|$)"); do
+          [ -f "$PREV/$F" ] && echo sudo cp ./$PREV/$F ./$APP/$(dirname $F)/
+     done
 
      # Cache
      sudo cp -rf ./$PREV/web/cache ./$APP/web/

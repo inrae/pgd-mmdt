@@ -1,0 +1,7 @@
+# List of files to be preserved
+local.conf
+etc/.htpasswd
+docker/scan/scripts/config.py
+docker/scan/scripts/DB_final_commands.json
+web/inc/config/mongodb.inc
+web/inc/config/local.inc
