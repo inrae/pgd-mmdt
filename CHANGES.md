@@ -15,7 +15,7 @@
 * **Release 2.3.4** -  February 2026 (_current_)
 
    * _Life Sciences_ metadata is now supported for Harvard Dataverse repository importation (defined in _web/conf/dataverse.txt_). See [Doc online ](https://inrae.github.io/pgd-mmdt/definitions/dataverse/)
-   * An important change has been made to the application startup process. Indeed, the _scan_ is now independent of the application's full startup. See [Doc online ](https://inrae.github.io/pgd-mmdt/installation/#starting-the-application)
+   * An important change has been made to the application startup process. Indeed, the _scan_ is now independent of the application's full startup. See [Doc online ](https://inrae.github.io/pgd-mmdt/installation/#starting-the-application). Remember to update your update script (e.g. /usr/local/bin/update-maggot.sh) from the script in the repository (etc/update-maggot.sh).
 
 * **Release 2.3.2** -  October 2025 
 
