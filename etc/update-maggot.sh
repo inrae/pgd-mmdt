@@ -46,6 +46,10 @@ GITREPOS=https://github.com/inrae/${REPOS}.git
      sudo cp ./$PREV/web/inc/config/mongodb.inc ./$APP/web/inc/config/
      [ -f ./$PREV/web/inc/config/local.inc ] && sudo cp ./$PREV/web/inc/config/local.inc ./$APP/web/inc/config/
 
+     # Metadata sets
+     [ -f ./$PREV/docker/scan/scripts/DB_final_commands.json ] && \
+       cp ./$PREV/docker/scan/scripts/DB_final_commands.json ./$APP/docker/scan/scripts/
+
      # Passwords
      sudo cp ./$PREV/etc/.htpasswd ./$APP/etc/
 
