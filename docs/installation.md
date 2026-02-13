@@ -44,7 +44,7 @@ MAGGOT uses 3 Docker images for 3 distinct services:
 *  *[docker/scan/scripts/config.py][21]{:target="_blank"}* : defines MongoDB settings (dbserver, dbport, username, password)
 *  *[web/inc/config/mongodb.inc][24]{:target="_blank"}* : defines MongoDB settings (dbserver, dbport, username, password)
 *  *[web/inc/config/config.inc][22]{:target="_blank"}* : defines many of web parameters (modify only if necessary)
-*  ***web/inc/config/local.inc*** : defines the application parameters specific to the local installation (not erase when updating).
+*  ***web/inc/config/local.inc*** : defines the application parameters specific to the local installation (not erased when updating).
 
 See [Configuration settings](../settings)
 
@@ -126,7 +126,7 @@ sh ./run <option>
    ```
 * You can check if all metadata sets have been loaded using the _showdb_ action:
    ```sh
-   sh ./run showdb | grep 'title'
+   sh ./run showdb | grep ' title'
    ```
 * To update the MongoDB database in case you have uploaded a new or updated metadata file, you must perform a _scan_ then _restart_ the system once it is complete. This allows for a background scan without preventing the application from functioning.
      ```sh

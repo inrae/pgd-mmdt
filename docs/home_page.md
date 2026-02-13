@@ -98,9 +98,13 @@ The example below shows two menus - the first is complete while the second is mo
 <a href="../images/home-page-1.png" data-lightbox="fig1"><img src="../images/home-page-1.png" width="600px"></a>
 </center>
 
-<br><br><br>
 
+#### Note
+
+Before updating the application in order to preserve your home page configuration files, think to edit the update script ([./etc/update-maggot.sh][3]{:target="_blank"}, preferably placed under '**/usr/local/bin**').
+
+<br><br><br>
 
 [1]: https://github.com/inrae/pgd-mmdt/blob/main/CHANGES.md
 [2]: https://icons.getbootstrap.com/
-
+[3]: https://github.com/inrae/pgd-mmdt/blob/main/etc/update-maggot.sh
