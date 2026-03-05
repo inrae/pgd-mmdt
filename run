@@ -2,8 +2,6 @@
 
 MYDIR=`dirname $0` && [ ! `echo "$0" | grep '^\/'` ] && MYDIR=`pwd`/$MYDIR
 
-DEV=0
-
 # Base URL of the Website
 BASE_URL=http://localhost/maggot
 
