@@ -9,9 +9,6 @@ RUN apt-get update && \
     rm -rf /var/lib/apt/lists/* && \
     mkdir /pgd && mkdir /json
 
-COPY scripts/config.py \
-     scripts/pgd.py \
-     scripts/db-insert.py /pgd/
 
 COPY scripts/pgd-cron /etc/cron.d/pgd-cron
 

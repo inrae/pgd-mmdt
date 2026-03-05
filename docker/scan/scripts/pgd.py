@@ -6,6 +6,7 @@ from pprint import pprint
 from pprint import pformat
 import paths
 import importlib.util
+from pathlib import Path
 
 try:
     import requests
@@ -169,7 +170,7 @@ db_commands = 'DB_commands.json'
 # File containing data insertion commands
 db_final_commands = 'DB_final_commands.json'
 
-if is_valid_json_file(master_json) is True:
+if  Path(master_json).is_file() is True and is_valid_json_file(master_json) is True:
     masterdic = get_json(master_json)
     str_masterdic = '{ "chkbxdico": '+str(masterdic['chkbxdico'])+', "listdico": '+str(masterdic['listdico'])+'}'
     masterdic = json.loads(str_masterdic.replace("'",'"'))

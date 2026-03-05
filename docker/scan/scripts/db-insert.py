@@ -20,7 +20,7 @@ def get_json(filename):
 db_final_commands = 'DB_final_commands.json'
 
 if os.path.getsize(db_final_commands)>10:
-    # Load JSON file to insert into the database
+    # Load JSON file
     final_file_dict = get_json(db_final_commands)
 
     # data insertion
