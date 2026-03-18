@@ -1,8 +1,8 @@
 <?php
 #
-# Dataverse implementation 
+# Dataverse implementation
 #
-# Auteur(s): D.JACOB 
+# Auteur(s): D.JACOB
 # Copyright: (c) INRAE - 2022-2023
 #
 
@@ -24,10 +24,6 @@ if( isset($_POST['btnpush']) ) {
 		$dataset = trim($_POST['dataset']);
 }
 
-
-// Defines global variables for the native Dataverse API
-$DV_CURL = 'curl -H "X-Dataverse-key:'.$API_TOKEN.'"';
-$DV_API_URL = $SERVER_URL.'/api/v1';
 
 $EXTERN = isset($_GET['extern']) ? 1 : $EXTERN;
 
@@ -70,7 +66,7 @@ if ($ret>0) {
 	<?= $HEAD ?>
 	<link rel="stylesheet" href="<?= $PATH ?>css/ror-widget.css">
 	<script  src="<?= $PATH ?>js/typeahead.min.js"></script>
-	<script>var DV_API_URL = "<?= $SERVER_URL.$DV_API ?>";</script>
+	<script>var DV_API_URL = "<?= $SERVER_URL.$DV_API ?>"; var DV_API_TOKEN = "<?= $API_TOKEN ?>";</script>
 	<script  src="<?= $PATH ?>js/dv-typeahead.js"></script>
 
 	<script type="text/javascript">
@@ -117,6 +113,9 @@ if ($ret>0) {
 		dataverse_server = $('#server').find(":selected").val();
 		DV_API_URL = dataverse_server + '<?= $DV_API ?>';
 	})
+	$(document).on('input', '#token', function() {
+    	DV_API_TOKEN = $(this).val();
+	})
 	</script>
 </head>
 
@@ -139,7 +138,7 @@ if ($ret>0) {
 			</div><br><br>
 			<div class="input-group mb-3 selectjson1" style="display: flex;">
 			<div class="dataset"><b>&nbsp;&nbsp;Dataset:&nbsp;&nbsp;&nbsp;</b></div><select name="dataset" id="dataset" style="height: 38px;" class="form-control form-control-sm dataset-select" onchange="$('#errbox').css('display','none');"><?= $options_dataset ?></select>
-			</div> 
+			</div>
 			<div class="input-group mb-3 selectjson2" style="display: none;">
 				<div class="input-group-prepend">
 					<span class="input-group-text">Select a JSON file</span>
@@ -242,7 +241,7 @@ do
 		$type = $_FILES['jsonfile']['type'];
 		$tmpName = $_FILES['jsonfile']['tmp_name'];
 		echo "<script>$('#label').html('".$name."');</script>"; // document.getElementById('label').innerHTML='$name';
-	
+
 		$json = file_get_contents($tmpName);
 		file_put_contents($input_url, $json);
 	}
@@ -254,7 +253,7 @@ do
 		break;
 	}
 //echo "<br><pre>"; print_r ($metadata); echo "</pre><br>";
-//echo "<br><pre>"; print_r (array_keys($metadata)); echo "</pre><br>"; 
+//echo "<br><pre>"; print_r (array_keys($metadata)); echo "</pre><br>";
 
 	// Read Dataverse definition file
 	if (! is_file($dataverse_conf)) {
@@ -310,13 +309,13 @@ do
 	// Display links to input/output JSON files and both Dataverse & Mapping definition files
 	$ds=$metadata['title'];
 	file_put_contents($json_url, $outjson);
-	
+
 	// Display links of both Dataverse & Mapping definition files
 	$output1 = 'tmp/'.genKEY().'.html';
 	$output2 = 'tmp/'.genKEY().'.html';
 	file_put_contents($output1, tsv2html($PATH.$dataverse_conf));
 	file_put_contents($output2, tsv2html($PATH.$PATH.$mapping_conf));
-	
+
 	$arr_links = array();
 	$arr_links[0]=array('Input file',$PATH.$input_url,$name);
 	$arr_links[1]=array('Dataverse definition file',$output1,$dataverse_conf);
@@ -340,15 +339,15 @@ do
 		if ($state==='RELEASED') $infos .= ' '.$arr['majorVersion'].'.'.$arr['minorVersion'];
 		$infos .= ', create at '.$arr['createdAt'].', '.$persistentid.', dataverse: '.$arr['identifier_of_dataverse'];
 		$msg='WARNING: The dataset '.$ds.' already exists in the data repository '.$SERVER_URL.'.';
-		$msg.='<br>&nbsp;&nbsp;&nbsp;'.$infos; 
+		$msg.='<br>&nbsp;&nbsp;&nbsp;'.$infos;
 		//echo "<script>$('#errboxmsg').html('".$msg."'); $('#errbox').css('display','block');</script>";
 	}
 
 	// Create / Update dataset to the data repository
 	if (strlen($persistentid)) {
 		// Update
-		try { 
-			$new_ds = json_decode($outjson,true)['datasetVersion']; 
+		try {
+			$new_ds = json_decode($outjson,true)['datasetVersion'];
 			unset($new_ds['license']);
 			unset($new_ds['termsOfUse']);
 			$new_jsonds = json_encode($new_ds);
@@ -361,7 +360,7 @@ do
 		// Create
 		$output_arr = send_api_dataverse("dataverses/$PARENT/datasets",$json_url, $mode='POST');
 	}
-// echo "<br><pre>"; print_r ($output_arr); echo "</pre><br>"; 
+// echo "<br><pre>"; print_r ($output_arr); echo "</pre><br>";
 
 	if (empty($output_arr)) {
 		$htmloutput = "Error: There is a problem with the JSON file";
@@ -400,14 +399,14 @@ do
 				foreach( $output_arr['data']['files'] as $arr)
 					$array_files[ $arr['dataFile']['filename'] ] = $arr['dataFile']['id'];
 		} else if (isset($output_arr['data']['persistentId'])) {
-			$persistentId=$output_arr['data']['persistentId']; 
+			$persistentId=$output_arr['data']['persistentId'];
 			$datasetID = $output_arr['data']['id'];
 			$op='created';
 		}
-	
+
 		$htmlsuccess="SUCCESS: The dataset ".$ds." has been ".$op." with success with the persistent ID: ".$persistentId; // ' (id = '.$datasetID.')';
 		echo "<script>$('#successmsg').html('".$htmlsuccess."'); $('#successresp').css('display','block');</script>";
-	
+
 		// Sending file if internal JSON
 		if ($jsontype==1) {
 			$msg = send_resources_files($datasetID, $metadata['resources'], $path, $array_files);
@@ -415,7 +414,7 @@ do
 				echo "<script>$('#filemsg').html('".$msg."'); $('#filemsgbox').css('display','block');</script>";
 			}
 		}
-	
+
 		// Create a private URL if not already exists
 		$output_arr = privateURL_api_dataverse($datasetID,1);
 		$status = $output_arr['status'];
