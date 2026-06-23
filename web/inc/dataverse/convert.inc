@@ -15,34 +15,36 @@ function cmd_api_dataverse($cmd) {
 }
 
 function get_api_dataverse($request) {
-	global $DV_CURL, $DV_API_URL;
-	$cmd = $DV_CURL.' -X GET "'.$DV_API_URL.'/'.$request.'"';
+	global $API_TOKEN, $SERVER_URL;
+	$cmd = 'curl -H "X-Dataverse-key:'.$API_TOKEN.'" -X GET "'.$SERVER_URL.'/api/v1/'.$request.'"';
 	return cmd_api_dataverse($cmd);
 }
 
 function send_api_dataverse($request, $upload, $mode='POST') {
-	global $DV_CURL, $DV_API_URL;
+	global $API_TOKEN, $SERVER_URL;
+	$header = 'X-Dataverse-key:'.$API_TOKEN;
 	$content_type = "Content-type:application/json";
 	$upload = "--upload-file ".$upload;
-	$cmd=$DV_CURL.' -H "'.$content_type.'" -X '.$mode.' "'.$DV_API_URL.'/'.$request.'" '.$upload;
+	$cmd='curl -H "'.$header.'" -H "'.$content_type.'" -X '.$mode.' "'.$SERVER_URL.'/api/v1/'.$request.'" '.$upload;
 	return cmd_api_dataverse($cmd);
 }
 
 function send_file_dataverse($id, $file, $description, $tags, $update) {
-	global $DV_CURL, $DV_API_URL;
+	global $API_TOKEN, $SERVER_URL;
+	$header = 'X-Dataverse-key:'.$API_TOKEN;
 	$upload = '-F "file=@'.$file.'"';
 	$annotation = '-F \'jsonData={"description":"'.$description.'","categories":["'.$tags.'"], "restrict":"false"}\'';
 	if ($update)
-		$cmd=$DV_CURL.' -X POST '.$upload.' '.$annotation.' '.$DV_API_URL.'/files/'.$id.'/replace';
+		$cmd='curl -H "'.$header.'" -X POST '.$upload.' '.$annotation.' '.$SERVER_URL.'/api/v1/files/'.$id.'/replace';
 	else
-		$cmd=$DV_CURL.' -X POST '.$upload.' '.$annotation.' '.$DV_API_URL.'/datasets/'.$id.'/add';
+		$cmd='curl -H "'.$header.'" -X POST '.$upload.' '.$annotation.' '.$SERVER_URL.'/api/v1/datasets/'.$id.'/add';
 	return cmd_api_dataverse($cmd);
 }
 
 function privateURL_api_dataverse($id, $get=0) {
-	global $DV_CURL, $DV_API_URL;
+	global $API_TOKEN, $SERVER_URL;
 	$op = 'POST'; if ($get>0) $op='GET';
-	$cmd = $DV_CURL.' -X '.$op.' "'.$DV_API_URL.'/datasets/'.$id.'/privateUrl"';
+	$cmd = 'curl -H X-Dataverse-key:'.$API_TOKEN.' -X '.$op.' "'.$SERVER_URL.'/api/v1/datasets/'.$id.'/privateUrl"';
 	return cmd_api_dataverse($cmd);
 }
 
