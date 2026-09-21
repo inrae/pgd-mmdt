@@ -105,7 +105,7 @@ sh ./run <option>
    sh ./run pull
    ```
 
-* The application can be sequentially started :
+* The initial start-up must be performed sequentially, as follows:
 
     * Starting the web interface
      ```sh
@@ -120,7 +120,7 @@ sh ./run <option>
      sh ./run initdb
      ```
 
-* You can also launch the 2 steps (_start_ and _initdb_) with a single command:
+* Once the initial _scan_ is complete, the application can be launched as a single command by combining the startup (_start_) and MongoDB initialization (_init_) steps, as follow:
    ```sh
    sh ./run fullstart
    ```
