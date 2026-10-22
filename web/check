@@ -46,6 +46,14 @@ do {
       print("<pre>"); print_r($AUTH_TOKEN); print("</pre><br>");
       break;
    }
+   if ($DEV && isset($_GET['apikey']) && strlen($_GET['apikey'])) {
+      $apiKey = $_GET['apikey'];
+      $cryptKey =  genKEY().genKEY();
+      $payload2 = encrypt_text($apiKey, $cryptKey)."\n";
+      echo "<pre>".$payload2.' - '.$cryptKey.' - '.decrypt_payload($payload2, $cryptKey)."</pre>";
+      echo "<pre>".base64_encode($payload2)."\n".base64_encode($cryptKey)."</pre>";
+      break;
+   }
    if (isset($_GET['biomedicalCV'])) {
       $schema = file_get_contents($dataverse_urls[0]."/api/v1/metadatablocks/biomedical");
       if ($schema) {

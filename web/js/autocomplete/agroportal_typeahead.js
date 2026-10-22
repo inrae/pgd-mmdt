@@ -4,9 +4,9 @@
 // Simply 1) change all 'agroportal' occurrences to the name of the new portal; 2) change the URL according to the new portal.
 
 // Variables used only in this script.
-let agroportal_url='https://agroportal.lirmm.fr'
+let agroportal_api='https://data.agroportal.eu'
+let agroportal_apikey='95ebe7f5-f8d1-41ea-a1d6-08e194196517'
 let agroportal_logo = 'https://ontoportal.org/images/logo.png'
-let agroportal_options='/search/json_search/?target_property=name'
 let agroportal_limit=99
 
 // AgroPortal API with help of Typeahead
@@ -20,20 +20,34 @@ var agroportal_typeahead = function (idName, ontology)
 		limitview : agroportal_limit,
 		async: true,
 		source: function (query, processSync, processAsync) {
-			url = agroportal_url+agroportal_options
+			let params = new URLSearchParams({
+				q: query,
+				suggest: 'true',
+				include: 'prefLabel'
+			})
 			if (ontology != 'all')
-				url = url + '&ontologies='+ontology.replace(/:/g,',')
-			url = url + '&q=*'+encodeURIComponent(query)+'*&response=json&callback=?'
-			if (DEBUG) console.log('GET '+url)
-			return $.ajax({
+				params.set('ontologies', ontology.replace(/:/g, ','))
+
+			let url = agroportal_api + '/search?' + params.toString()
+			if (DEBUG) console.log('GET ' + url)
+
+			$.ajax({
 				url: url,
 				type: 'GET',
-					dataType: 'json',
-					success: function (json) {
-						res=[];
-						arr = json.data.split(/~.~/);
-						arr.forEach((el) => res.push(JSON.parse('{"label":"'+el.split('|')[0]+'", "ontology":"'+el.split('|')[3]+'"}' )));
-						return processAsync(res);
+				dataType: 'json',
+				headers: {
+					'Authorization': 'apikey token=' + agroportal_apikey
+				},
+				success: function (json) {
+					let res = (json.collection || []).map(el => ({
+						label: el.prefLabel,
+						ontology: (el.links && el.links.ontology || '').split('/').pop()
+					}));
+					processAsync(res);
+				},
+				error: function (xhr) {
+					console.error('AgroPortal error', xhr.status);
+					processAsync([]);
 				}
 			});
 		},

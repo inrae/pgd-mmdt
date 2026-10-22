@@ -49,11 +49,14 @@ function bioportal_search($map, $query)
 	if (json_last_error() !== JSON_ERROR_NONE) return $ret;
 
 	$col = $json['collection'];
-	$id = $col[0]['@id'];
-	$onto = basename($col[0]['links']['ontology']);
-	if ($LOG) echo "<pre>".$onto.' - '.$id."</pre>";
-
-	$ret = array( $onto, $id );
+	if (count($col)>0) {
+		$id = $col[0]['@id'];
+		$onto = basename($col[0]['links']['ontology']);
+		if ($LOG) echo "<pre>".$onto.' - '.$id."</pre>";
+		$ret = array( $onto, $id );
+	} else {
+		if ($LOG) echo "<pre>No found</pre>";
+	}
 	return $ret;
 }
 
