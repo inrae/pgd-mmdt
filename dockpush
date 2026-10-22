@@ -1,0 +1,23 @@
+#!/bin/bash
+
+MYDIR=`dirname $0` && [ ! `echo "$0" | grep '^\/'` ] && MYDIR=`pwd`/$MYDIR
+
+# Docker images
+DB_IMAGE=pgd-mmdt-db
+SCAN_IMAGE=pgd-mmdt-scan
+WEB_IMAGE=pgd-mmdt-web
+
+# Docker account for retrieving the images
+DOCKERACCOUNT=djacob65
+
+# Replace default configuration parameters with local ones if exist
+[ -f $MYDIR/local.conf ] && . $MYDIR/local.conf
+
+sudo docker image tag $DB_IMAGE $DOCKERACCOUNT/maggot-db
+sudo docker push $DOCKERACCOUNT/maggot-db:latest
+
+sudo docker image tag $SCAN_IMAGE $DOCKERACCOUNT/maggot-scan
+sudo docker push $DOCKERACCOUNT/maggot-scan:latest
+
+sudo docker image tag $WEB_IMAGE $DOCKERACCOUNT/maggot-web
+sudo docker push $DOCKERACCOUNT/maggot-web:latest

@@ -70,7 +70,7 @@ var bioportal_typeahead = function (idName, ontology)
 			return data.label;
 		},
 		value: function(data) {
-			return data.label;
+			return data.label; // +'|'+data.ontology;
 		}
 	});
 }

@@ -3,7 +3,7 @@
 // Retrieve all CVs from the "biomedical" block
 function get_biomedicalCV ()
 {
-    global $dataverse_urls;
+    global $dataverse_urls, $LOG;
 	$SERVER_URL= $dataverse_urls[0].'/api/v1';
     $schema = file_get_contents($SERVER_URL."/metadatablocks/biomedical");
     $arrCV = array();
@@ -17,6 +17,7 @@ function get_biomedicalCV ()
              $arrCV[$field] = $arr['controlledVocabularyValues'];
          }
     }
+	if ($LOG) print_r($arrCV);
     return $arrCV;
 }
 

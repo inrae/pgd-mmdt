@@ -14,20 +14,20 @@
 
 license=[];
 
-var json=[];
+var license_full=[];
 var url='https://raw.githubusercontent.com/spdx/license-list-data/main/json/licenses.json';
-var patterns = [ /^CC-BY-/, /^etalab/, /^GPL-/, /^MIT-/, /^CECILL-/ ];
+var patterns = [ /^CC-BY-/, /^etalab/, /^GPL-/, /^LGPL-/, /^MIT-/, /^CECILL-/ ];
 
 $.ajax({ type: 'GET', 
 	url: url, 
 	async: false,
 	header: { 'accept': 'application/json', 'Access-Control-Allow-Origin': '*' },
-	success: function(data){ json=JSON.parse(data);  }
+	success: function(data){ license_full=JSON.parse(data);  }
 })
 
 setTimeout(function(){
-   for(var i=0;i<json['licenses'].length;i++) {
-      name=json['licenses'][i]['licenseId'];
+   for(var i=0;i<license_full['licenses'].length;i++) {
+      name=license_full['licenses'][i]['licenseId'];
       if (name.length>15) continue
       for (var item in patterns)
           if (name.match(patterns[item])) { license.push(name); break; }

@@ -3,7 +3,7 @@
 <!--
 ### Developments in the pipeline
 
-* **Release 2.4** _before the end of 2025_
+* **Release 2.4** _before the end of 2027_
 
    * "Internal metadata management," i.e that the metadata will be stored in an internal space managed by the Maggot application. The implementation are still to be defined, but this internal management will have to be configured in advance as an option; it will not be possible to mix the two approaches (internal/external).
 
@@ -12,7 +12,14 @@
 
 ### Summary of past and recent changes
 
-* **Release 2.3.4** -  February 2026 (_current_)
+* **Release 2.3.6** -  October 2026 (_current_)
+
+   * **Note** : It is recommended for this release to rebuild or pull Docker containers.
+
+   * Upgrade to PHP 8.4.27, including a fix for critical vulnerabilities (CVE-2026-109618).
+
+
+* **Release 2.3.4** -  February 2026
 
    * **Note** : It is recommended for this release to rebuild or pull Docker containers.
 

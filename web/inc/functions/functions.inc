@@ -123,7 +123,7 @@ function tsvToArray($tsv, $header=false)
 	if (($tsvToRead = fopen($tsv, 'r')) !== FALSE) {
 		if ($header) $line = fgets($tsvToRead, 1000);
 		while (! feof($tsvToRead)) {
-			$data = fgetcsv($tsvToRead, 1000, "\t");
+			$data = fgetcsv($tsvToRead, 1000, "\t",  "\"", "\\");
 			if (gettype($data)==='array') {
 				$tsvArray[] = utf8_converter($data);
 			}
