@@ -27,14 +27,19 @@ GITREPOS=https://github.com/inrae/${REPOS}.git
   [ $SYSTEMCTL -eq 0 ] && sudo sh ./$APP/run stop
   [ $SYSTEMCTL -eq 1 ] && sudo systemctl stop $APP
 
+  # Add 'prev' as postfix to the current APP directory
+  PREV=${APP}.prev
+
+  # Delete old APP directory if exists
+  if [ -d $PREV ] && sudo rm -rf ./$PREV
+
   echo
   echo "----------------------------------"
   echo "update $APP"
   echo "----------------------------------"
 
-  # Add 'prev' as postfix to the current APP directory
-  sudo mv $APP ${APP}.prev
-  PREV=${APP}.prev
+  # Move the  current APP directory as a previous version
+  sudo mv $APP $PREV
 
   # Get the source code from github
   sudo git clone $GITREPOS $APP
@@ -89,7 +94,5 @@ GITREPOS=https://github.com/inrae/${REPOS}.git
      [ $SYSTEMCTL -eq 0 ] && ( cd $APP; sudo sh ./run fullstart )
      [ $SYSTEMCTL -eq 1 ] && systemctl start $APP
 
-     # Delete old APP directory
-     sudo rm -rf ./$PREV
   fi
 )
