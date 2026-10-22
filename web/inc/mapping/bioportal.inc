@@ -14,7 +14,7 @@ function bioportal_search($map, $query)
 	$ret=array();
 	$server_url = $map[2];
 	$ontology=$map[3];
-	$LOG = 0;
+	$LOG = 1;
 
 	if (!file_exists('conf/bpcode.txt')) return $ret;
 	$payload = base64_decode(explode("\n", file_get_contents('conf/bpcode.txt'))[0]);
@@ -22,7 +22,6 @@ function bioportal_search($map, $query)
 	$BP_apiKey = decrypt_payload($payload, $cryptKey);
 	if ($LOG) echo "<pre>".$payload.' - '.$cryptKey.' - '.$BP_apiKey."</pre>";
 
-	$server_url = "https://data.bioontology.org";
 	$base_url = $server_url.'/search';
 	$params = [ "q" => $query, "format" => "json", "ontologies" => "" ];
 	$url = $base_url . "?" . http_build_query($params);

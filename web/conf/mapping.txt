@@ -1,8 +1,8 @@
 Cvname	Cvtype	Cvurl	Cvterms	Cvlang
 bpall	bioportal	https://data.bioontology.org	all	en
-agall	ontoportal	https://agroportal.lirmm.fr/	all	en
-bponto	bioportal	https://data.bioontology.org	EDAM,OBI,NMR,MS,PO,PTO,AGRO,ECOCORE,IOBC,NCBITAXON	en
-agonto	ontoportal	https://agroportal.lirmm.fr/	NCBITAXON,INRAETHES	en
-ols	ols	https://www.ebi.ac.uk/ols4	all	en
+agall	agroportal	https://data.agroportal.eu	all	en
+bponto	bioportal	https://data.bioontology.org	EDAM,OBI,NMR,MS,PO,PTO,AGRO,ECOCORE,IOBC,NCBITAXON,CHMO,CHEBI	en
+agonto	agroportal	https://data.agroportal.eu	NCBITAXON,INRAETHES	en
 VO	skosmos	https://consultation.vocabulaires-ouverts.inrae.fr	thesaurus-inrae	en
 LOTERRE	skosmos	https://loterre.istex.fr	all	en
+ols	ols	https://www.ebi.ac.uk/ols4	all	en
