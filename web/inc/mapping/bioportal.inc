@@ -14,7 +14,7 @@ function bioportal_search($map, $query)
 	$ret=array();
 	$server_url = $map[2];
 	$ontology=$map[3];
-	$LOG = 1;
+	$LOG = 0;
 
 	if (!file_exists('conf/bpcode.txt')) return $ret;
 	$payload = base64_decode(explode("\n", file_get_contents('conf/bpcode.txt'))[0]);
