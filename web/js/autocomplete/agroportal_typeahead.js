@@ -4,10 +4,7 @@
 // Simply 1) change all 'agroportal' occurrences to the name of the new portal; 2) change the URL according to the new portal.
 
 // Variables used only in this script.
-let agroportal_api='https://data.agroportal.eu'
-let agroportal_apikey='95ebe7f5-f8d1-41ea-a1d6-08e194196517'
 let agroportal_logo = 'https://ontoportal.org/images/logo.png'
-let agroportal_limit=99
 
 // AgroPortal API with help of Typeahead
 // idName : the magggot field name
@@ -16,38 +13,29 @@ var agroportal_typeahead = function (idName, ontology)
 {
 	$('#agroportal-'+idName+' .typeahead').typeahead({ hint: true, highlight: true, minLength: 3 },
 	{
-		limitget: agroportal_limit,
-		limitview : agroportal_limit,
+		limitget: 50,
+		limitview : 50,
 		async: true,
 		source: function (query, processSync, processAsync) {
 			let params = new URLSearchParams({
-				q: query,
-				suggest: 'true',
-				include: 'prefLabel'
+				onto: 'agroportal',
+				q: query
 			})
 			if (ontology != 'all')
-				params.set('ontologies', ontology.replace(/:/g, ','))
-
-			let url = agroportal_api + '/search?' + params.toString()
-			if (DEBUG) console.log('GET ' + url)
-
-			$.ajax({
+				params.set('ontology', ontology.replace(/:/g, ','))
+			let url = '?' + params.toString()
+			if (DEBUG) console.log('GET '+url)
+			return $.ajax({
 				url: url,
 				type: 'GET',
 				dataType: 'json',
-				headers: {
-					'Authorization': 'apikey token=' + agroportal_apikey
-				},
+				timeout: 10000,
 				success: function (json) {
-					let res = (json.collection || []).map(el => ({
-						label: el.prefLabel,
-						ontology: (el.links && el.links.ontology || '').split('/').pop()
-					}));
-					processAsync(res);
+					return processAsync(json);
 				},
-				error: function (xhr) {
-					console.error('AgroPortal error', xhr.status);
-					processAsync([]);
+				error: function(xhr, status) {
+					if (status === 'timeout') console.warn('The waiting time has ended');
+					return processAsync([]);
 				}
 			});
 		},

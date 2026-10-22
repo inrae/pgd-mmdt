@@ -140,10 +140,10 @@ function tsvToArray($tsv, $header=false)
 function csv2json($csv)
 {
 	$lines = explode("\n", trim($csv));
-	$headers = str_getcsv(array_shift($lines));
+	$headers = str_getcsv(array_shift($lines), ',', '"', '\\');
 	$data = [];
 	foreach ($lines as $line) {
-		$values = str_getcsv($line);
+		$values = str_getcsv($line, ',', '"', '\\');
 		$row = [];
 		foreach ($headers as $i => $header) {
 			$row[$header] = $values[$i] ?? '';
@@ -371,6 +371,58 @@ function get_term_info($dico, $name)
 	return $out;
 }
 
+
+//----------------------------
+// Mapping function for Ontoportal API services
+//----------------------------
+function ontoportal_mapping($map, $query, $service)
+{
+	global $LOG;
+	$ret=array();
+	$server_url = $map[2];
+	$ontology=$map[3];
+
+	$apiKey = get_apikey($service);
+	if (is_null($apiKey)) return $ret;
+
+	$base_url = $server_url.'/search';
+	$params = [ "q" => $query, "format" => "json", "ontologies" => "" ];
+	$url = $base_url . "?" . http_build_query($params);
+	if (strlen($ontology)>0 && $ontology !== 'all') $url .= $ontology;
+	if ($LOG) echo "<pre>".$url."</pre>";
+
+	$ch = curl_init($url);
+	curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+	curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
+	curl_setopt($ch, CURLOPT_HTTPHEADER, [ 'Authorization: apikey token='.$apiKey ]);
+
+	$response = curl_exec($ch);
+	$httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+	$contentType = curl_getinfo($ch, CURLINFO_CONTENT_TYPE);
+	if ($LOG) echo "<pre>".$httpCode.' - '.$contentType."</pre>";
+
+	if (strpos($contentType, "application/json") === false || $httpCode !== 200 || curl_errno($ch)) {
+		curl_close($ch);
+		return $ret;
+	}
+	curl_close($ch);
+
+	$json = json_decode($response, true);
+	if (json_last_error() !== JSON_ERROR_NONE) return $ret;
+
+	$col = $json['collection'];
+	if (count($col)>0) {
+		$id = $col[0]['@id'];
+		$onto = basename($col[0]['links']['ontology']);
+		if ($LOG) echo "<pre>".$onto.' - '.$id."</pre>";
+		$ret = array( $onto, $id );
+	} else {
+		if ($LOG) echo "<pre>No found</pre>";
+	}
+	return $ret;
+}
+
+
 //----------------------------
 // Build a box of links
 //----------------------------
@@ -479,6 +531,34 @@ function decrypt_payload(string $payload, string $password)
     }
 
     return $plaintext;
+}
+
+
+/**
+* Retrieve the API key for the 'name' service from the file containing the encrypted keys.
+*
+* @param string $name      The service name
+* @return string           The API key or null
+*/
+function get_apikey(string $name): ?string
+{
+	global $KEYS_FILE, $LOG;
+	if (!file_exists($KEYS_FILE)) return null;
+	$raw = file_get_contents($KEYS_FILE);
+	if ($raw === false) return null;
+
+	$data = json_decode($raw, true);
+	if (!is_array($data) || !isset($data[$name])) return null;
+
+	$entry = $data[$name];
+	if (!isset($entry['payload'], $entry['cryptkey'])) return null;
+
+	$payload = base64_decode($entry['payload']);
+	$cryptKey = base64_decode($entry['cryptkey']);
+	$apiKey = decrypt_payload($payload, $cryptKey);
+	if ($LOG) echo "<pre>".$payload.' - '.$cryptKey.' - '.$apiKey."</pre>";
+
+	return $apiKey;
 }
 
 ?>

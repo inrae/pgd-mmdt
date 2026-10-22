@@ -18,6 +18,7 @@
 
    * Upgrade to PHP 8.4.27, including a fix for critical vulnerabilities (CVE-2026-109618).
 
+   * As calls to the OntoPortal APIs no longer function due to stricter security measures, an API_KEY is now required. To avoid hardcoding this key, a server-side proxy should be used to handle the API calls, rather than having the JavaScript code perform them directly.
 
 * **Release 2.3.4** -  February 2026
 

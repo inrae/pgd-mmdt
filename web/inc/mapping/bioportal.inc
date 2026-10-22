@@ -11,52 +11,7 @@
 
 function bioportal_search($map, $query)
 {
-	$ret=array();
-	$server_url = $map[2];
-	$ontology=$map[3];
-	$LOG = 0;
-
-	if (!file_exists('conf/bpcode.txt')) return $ret;
-	$payload = base64_decode(explode("\n", file_get_contents('conf/bpcode.txt'))[0]);
-	$cryptKey = base64_decode(explode("\n", file_get_contents('conf/bpcode.txt'))[1]);
-	$BP_apiKey = decrypt_payload($payload, $cryptKey);
-	if ($LOG) echo "<pre>".$payload.' - '.$cryptKey.' - '.$BP_apiKey."</pre>";
-
-	$base_url = $server_url.'/search';
-	$params = [ "q" => $query, "format" => "json", "ontologies" => "" ];
-	$url = $base_url . "?" . http_build_query($params);
-	if (strlen($ontology)>0 && $ontology !== 'all') $url .= $ontology;
-	if ($LOG) echo "<pre>".$url."</pre>";
-
-	$ch = curl_init($url);
-	curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-	curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
-	curl_setopt($ch, CURLOPT_HTTPHEADER, [ 'Authorization: apikey token='.$BP_apiKey ]);
-
-	$response = curl_exec($ch);
-	$httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
-	$contentType = curl_getinfo($ch, CURLINFO_CONTENT_TYPE);
-	if ($LOG) echo "<pre>".$httpCode.' - '.$contentType."</pre>";
-
-	if (strpos($contentType, "application/json") === false || $httpCode !== 200 || curl_errno($ch)) {
-		curl_close($ch);
-		return $ret;
-	}
-	curl_close($ch);
-
-	$json = json_decode($response, true);
-	if (json_last_error() !== JSON_ERROR_NONE) return $ret;
-
-	$col = $json['collection'];
-	if (count($col)>0) {
-		$id = $col[0]['@id'];
-		$onto = basename($col[0]['links']['ontology']);
-		if ($LOG) echo "<pre>".$onto.' - '.$id."</pre>";
-		$ret = array( $onto, $id );
-	} else {
-		if ($LOG) echo "<pre>No found</pre>";
-	}
-	return $ret;
+	return ontoportal_mapping($map, $query, 'bioportal');
 }
 
 

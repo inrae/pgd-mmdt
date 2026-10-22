@@ -4,10 +4,7 @@
 // Simply 1) change all 'bioportal' occurrences to the name of the new portal; 2) change the URL according to the new portal.
 
 // Variables used only in this script.
-let bioportal_api='https://data.bioontology.org'
 let bioportal_logo = 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTmvaQl_K9V8g9qv1oywrfUCjBT8_rZXtolGg&s'
-let bioportal_apikey = 'f709257f-06a4-450c-a21f-89727cc7fbe1'
-let bioportal_limit=99
 
 // BioPortal API with help of Typeahead
 // idName : the magggot field name
@@ -16,38 +13,29 @@ var bioportal_typeahead = function (idName, ontology)
 {
 	$('#bioportal-'+idName+' .typeahead').typeahead({ hint: true, highlight: true, minLength: 3 },
 	{
-		limitget: bioportal_limit,
-		limitview : bioportal_limit,
+		limitget: 50,
+		limitview : 50,
 		async: true,
 		source: function (query, processSync, processAsync) {
 			let params = new URLSearchParams({
-				q: query,
-				suggest: 'true',
-				include: 'prefLabel'
+				onto: 'bioportal',
+				q: query
 			})
 			if (ontology != 'all')
-				params.set('ontologies', ontology.replace(/:/g, ','))
-
-			let url = bioportal_api + '/search?' + params.toString()
-			if (DEBUG) console.log('GET ' + url)
-
-			$.ajax({
+				params.set('ontology', ontology.replace(/:/g, ','))
+			let url = '?' + params.toString()
+			if (DEBUG) console.log('GET '+url)
+			return $.ajax({
 				url: url,
 				type: 'GET',
 				dataType: 'json',
-				headers: {
-					'Authorization': 'apikey token=' + bioportal_apikey
-				},
+				timeout: 10000,
 				success: function (json) {
-					let res = (json.collection || []).map(el => ({
-						label: el.prefLabel,
-						ontology: (el.links && el.links.ontology || '').split('/').pop()
-					}));
-					processAsync(res);
+					return processAsync(json);
 				},
-				error: function (xhr) {
-					console.error('BioPortal error', xhr.status);
-					processAsync([]);
+				error: function(xhr, status) {
+					if (status === 'timeout') console.warn('The waiting time has ended');
+					return processAsync([]);
 				}
 			});
 		},

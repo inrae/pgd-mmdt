@@ -36,7 +36,7 @@ function orcidTypeahead ()
 		templates: {
 			pending: [
 				'<div class="empty-message tt-Loading">',
-				'<img src="https://homepage-prod.orcid.org/assets/iD_icon_1-b2beec997a.png" style="width:50px;"/>&nbsp;&nbsp;'+
+				'<img src="https://orcid.org/assets/vectors/orcid.logo.svg" style="width:50px;"/>&nbsp;&nbsp;'+
 				'<b><i>Wait while fetching people list ...</i></b>',
 				'</div>'
 			].join('\n'),

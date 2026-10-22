@@ -4,7 +4,9 @@
 
 // Retrieve a Token
 function get_token_orcid() {
-	global $ORCID_OAUTH_URL, $ORCID_CLIENT_ID, $ORCID_CLIENT_SECRET, $ORCID_MAX_TIME;
+	global $ORCID_OAUTH_URL, $ORCID_CLIENT_ID, $ORCID_MAX_TIME;
+	$ORCID_CLIENT_SECRET = get_apikey('orcid');
+	if (is_null($ORCID_CLIENT_SECRET)) return array();
 	$cmd = 'curl -s -H "Accept: application/json" --max-time '.$ORCID_MAX_TIME.' --data "client_id='.$ORCID_CLIENT_ID.'&client_secret='.$ORCID_CLIENT_SECRET.'&grant_type=client_credentials&scope=/read-public" '.$ORCID_OAUTH_URL.'/token';
 	$output_js=shell_exec($cmd);
 	$output_arr = json_decode($output_js, true);
