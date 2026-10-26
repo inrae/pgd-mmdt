@@ -16,31 +16,34 @@ if (isset($_GET['onto']))
 			break;
 	}
 
-	header('Content-Type: application/json; charset=utf-8');
-
-	if (strlen($API_URL)==0) {
-		echo json_encode([], JSON_UNESCAPED_UNICODE);
-		exit(0);
-	}
-
-	$API_KEY = get_apikey($portal);
-	$LIMIT   = 99;
-
-
 	function fail(int $code): never {
 		http_response_code($code);
 		echo '[]';
 		exit;
 	}
 
-	// --- Validation des entrées ---
+	header('Content-Type: application/json; charset=utf-8');
+
+
+	// --- Input validation ---
+
+	if (strlen($API_URL)==0) {
+		echo json_encode([], JSON_UNESCAPED_UNICODE);
+		exit(0);
+	}
+
 	$q = trim($_GET['q'] ?? '');
 	if (mb_strlen($q) < 3 || mb_strlen($q) > 100) fail(400);
 
 	$ontologies = $_GET['ontology'] ?? '';
 	if ($ontologies !== '' && !preg_match('/^[A-Za-z0-9_,-]+$/', $ontologies)) fail(400);
 
-	// --- Appel de l'API ---
+	$API_KEY = get_apikey($portal);
+	$LIMIT   = $_GET['limit'] ?? 99;
+
+
+	// --- API call ---
+
 	$params = [
 		'q'        => $q,
 		'suggest'  => 'true',
@@ -61,7 +64,12 @@ if (isset($_GET['onto']))
 	curl_close($ch);
 	
 	if ($body === false || $code !== 200) fail(502);
-	
+
+	if ($_GET['origapi']) {
+		echo $body;
+		exit(0);
+	}
+
 	$json = json_decode($body, true);
 	$out  = [];
 	foreach (($json['collection'] ?? []) as $el) {
@@ -73,6 +81,6 @@ if (isset($_GET['onto']))
 
 	// Short browser cache: limits repeated requests
 	header('Cache-Control: public, max-age=300');
-	echo json_encode($out, JSON_UNESCAPED_UNICODE);
+	echo trim(json_encode($out, JSON_UNESCAPED_UNICODE));
 	exit(0);
 }

@@ -46,8 +46,8 @@ do {
       print("<pre>"); print_r($AUTH_TOKEN); print("</pre><br>");
       break;
    }
-   if ($DEV && isset($_GET['apikey']) && strlen($_GET['apikey'])) {
-      $apiKey = $_GET['apikey'];
+   if ($DEV && isset($_GET['encodekey']) && strlen($_GET['encodekey'])) {
+      $apiKey = $_GET['encodekey'];
       $cryptKey =  genKEY().genKEY();
       $payload2 = encrypt_text($apiKey, $cryptKey)."\n";
       echo "<pre>".$payload2.' - '.$cryptKey.' - '.decrypt_payload($payload2, $cryptKey)."</pre>";
