@@ -5,3 +5,11 @@ docker/scan/scripts/config.py
 docker/scan/scripts/DB_final_commands.json
 web/inc/config/mongodb.inc
 web/inc/config/local.inc
+web/conf/config_terms.txt
+web/conf/config_doc.txt
+web/conf/mapping.txt
+web/conf/dataverse.txt
+web/conf/zenodo.txt
+web/conf/schema-jsonld.txt
+web/conf/oai-pmh.txt
+web/conf/apicodes.json

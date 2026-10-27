@@ -8,10 +8,13 @@
 require_once('inc/config/config.inc');
 include ('inc/functions/functions.inc');
 
-# DEV mode must be set internally only for this function
+# DEV mode can't be set externally
 $DEV = isset($_GET['debug']) ? 0 : $DEV;
 
 do {
+
+   // Functions called via JavaScript
+
    if (isset($_GET['json'])) {
       $json = base64_decode($_GET['json']);
       echo isJSONValid($json);
@@ -25,27 +28,9 @@ do {
       header("Location: ".dirname($_SERVER['HTTP_REFERER']));
       break;
    }
-   if ($DEV && isset($_GET['header'])) {
-      echo "HTTP_X_APP_NAME = ".$_SERVER['HTTP_X_APP_NAME'].'<br>';
-      echo "HTTP_HOST = ".$_SERVER['HTTP_HOST'].'<br>';
-      echo "HTTP_X_FORWARDED_HOST = ".$_SERVER['HTTP_X_FORWARDED_HOST'].'<br>';
-      echo "HTTP_X_REAL_IP = ".$_SERVER['HTTP_X_REAL_IP'].'<br>';
-      echo "HTTP_X_FORWARDED_FOR = ".$_SERVER['HTTP_X_FORWARDED_FOR'].'<br>';
-      break;
-   }
-   if ($DEV && isset($_GET['lookup'])) {
-      echo '<pre>'; print_r(dns_get_record($_GET['lookup'], DNS_NS)); echo '</pre><br>';
-      echo '<pre>'; print_r(dns_get_record($_GET['lookup'], DNS_A)); echo '</pre><br>';
-      break;
-   }
-   if ($DEV && isset($_GET['phpinfo'])) {
-      echo phpinfo();
-      break;
-   }
-   if ($DEV && isset($_GET['token']) && ! is_null($AUTH_TOKEN)) {
-      print("<pre>"); print_r($AUTH_TOKEN); print("</pre><br>");
-      break;
-   }
+
+   // Features requested by users from their browser
+
    if (isset($_GET['encodekey']) && strlen($_GET['encodekey'])) {
       $apiKey = $_GET['encodekey'];
       $cryptKey =  genKEY().genKEY();
@@ -71,6 +56,30 @@ do {
          }
          break;
       }
+   }
+
+   // Debugging information
+
+   if ($DEV && isset($_GET['header'])) {
+      echo "HTTP_X_APP_NAME = ".$_SERVER['HTTP_X_APP_NAME'].'<br>';
+      echo "HTTP_HOST = ".$_SERVER['HTTP_HOST'].'<br>';
+      echo "HTTP_X_FORWARDED_HOST = ".$_SERVER['HTTP_X_FORWARDED_HOST'].'<br>';
+      echo "HTTP_X_REAL_IP = ".$_SERVER['HTTP_X_REAL_IP'].'<br>';
+      echo "HTTP_X_FORWARDED_FOR = ".$_SERVER['HTTP_X_FORWARDED_FOR'].'<br>';
+      break;
+   }
+   if ($DEV && isset($_GET['lookup'])) {
+      echo '<pre>'; print_r(dns_get_record($_GET['lookup'], DNS_NS)); echo '</pre><br>';
+      echo '<pre>'; print_r(dns_get_record($_GET['lookup'], DNS_A)); echo '</pre><br>';
+      break;
+   }
+   if ($DEV && isset($_GET['phpinfo'])) {
+      echo phpinfo();
+      break;
+   }
+   if ($DEV && isset($_GET['token']) && ! is_null($AUTH_TOKEN)) {
+      print("<pre>"); print_r($AUTH_TOKEN); print("</pre><br>");
+      break;
    }
    echo "$APPURL";
 } while(0);
