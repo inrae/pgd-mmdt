@@ -102,6 +102,22 @@ some_url:
     * [web/js/autocomplete/VO_typeahead.js][24]{:target="_blank"}
 	* [web/inc/mapping/skosmos.inc][25]{:target="_blank"}
 
+<br>
+
+**Note regarding OntoPortal sites**
+
+* An API Key is now required for calling the OntoPortal APIs due to stricter security measures. To avoid hardcoding this key, a server-side proxy should be used to handle the API calls, rather than having the JavaScript code perform them directly.
+
+* The file [conf/apicodes.json][29]{:target="_blank"} contains encrypted API keys for the following web services: *BioPortal*, *AgroPortal* - and also *ORCID*. This means that calls to these APIs are now handled via the server, rather than on the client side using JavaScript code as was the case in previous versions (up to and including version 2.3.4). Consequently, these APIs can be accessed via Maggot URLs. 
+
+* Examples are provided below - It is recommended to install a [JSON Formatter extension][28]{:target="_blank"} in your web browser.
+
+    * BioPortal: <a href="https://pmb-bordeaux.fr/maggot/entry?onto=bioportal&ontology=EDAM&q=data" target="_blank">entry?onto=bioportal&ontology=EDAM&q=data</a>
+    * AgroPortal: <a href="https://pmb-bordeaux.fr/maggot/entry?onto=agroportal&ontology=INRAETHES,PO&q=plant" target="_blank">entry?onto=agroportal&ontology=INRAETHES,PO&q=plant</a>
+
+* The encrypted API keys found in `conf/apicodes.json` are obtained by: 1) creating an account for each service, and 2) generating an API key for access.
+
+* Encryption is performed using the following URL: <i>check?encodekey=&#60;API_key></i>; . The two lines returned correspond to the _'payload'_ and the _'cryptkey'_, respectively.
 
 
 *[API]: Application Program Interface in contrast with a User Interface. It is a way for two or more computer programs to communicate with each other. 
@@ -133,3 +149,5 @@ some_url:
 [25]: https://github.com/inrae/pgd-mmdt/blob/main/web/inc/mapping/skosmos.inc
 [26]: https://semanticlookup.zbmed.de
 [27]: https://github.com/inrae/pgd-mmdt/blob/main/web/js/autocomplete/lifecycle.js
+[28]: https://chromewebstore.google.com/detail/json-formatter/bcjindcccaagfpapjjmafapmmgkkhgoa?pli=1
+[29]: https://github.com/inrae/pgd-mmdt/blob/main/web/conf/apicodes.json
