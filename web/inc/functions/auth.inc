@@ -31,7 +31,7 @@ function getBearerToken()
         if (preg_match('/Bearer\s((.*)\.(.*)\.(.*))/', $headers, $matches)) {
             $payload = $matches[3];
             $jsondata = base64_decode($payload);
-            if ($DEV) print "<script>console.log(".$jsondata.")</script>";
+			if ($DEV) $GLOBALS['DEVJS'] .=  "console.log(".$jsondata.");";
             $data = json_decode($jsondata, true);
             return $data;
         }
@@ -64,7 +64,7 @@ do {
 
    // Get Access Token
    $AUTH_ID_TOKEN = getHeader('ID_Token');
-   if ($DEV) print "<script>console.log('".$AUTH_IP_NAME." : ".$AUTH_ID_TOKEN."')</script>";
+   if ($DEV) $DEVJS .= "console.log('".$AUTH_IP_NAME." : ".$AUTH_ID_TOKEN."');";
 
    // Local IP via Keycloak or External IP via Broker  
    if ($AUTH_IP_NAME == "KEYCLOAK") {
@@ -99,7 +99,7 @@ do {
       // CURL command
       $USERINFO_ENDPOINT =  $INFOS[0];
       $cmd = "curl -X GET -H \"Authorization: Bearer ".$AUTH_ID_TOKEN."\" $USERINFO_ENDPOINT";
-      if ($DEV) echo "<script>console.log('".addslashes($cmd)."');</script>";
+      if ($DEV) $DEVJS .= "console.log('".addslashes($cmd)."');";
 
       // Get Userinfo
       $output_js=shell_exec($cmd);
@@ -112,14 +112,14 @@ do {
           exit;
       }
       $output_arr = json_decode($output_js, true);
-      if ($DEV) echo "<script>console.log(".$output_js.");</script>";
+      if ($DEV) $DEVJS .= "console.log(".$output_js.");";
 
       // Get 'name' and 'family_name'
       $AUTH_TOKEN['name'] = $output_arr['given_name'].' '.$output_arr['family_name'];
 
       // Merge Openid and Userinfo in the array
       $AUTH_TOKEN = array_merge($AUTH_TOKEN, $output_arr);
-      if ($DEV) echo "<script>console.log(".json_encode($AUTH_TOKEN).");</script>";
+      if ($DEV) $DEVJS .= "console.log(".json_encode($AUTH_TOKEN).");";
 
       // Get attributes defined by the scope in AUTH_IP (2nd parameter)
       if (!isset($AUTH_TOKEN[$INFOS[1]])) {

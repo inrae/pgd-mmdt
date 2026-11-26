@@ -192,8 +192,4 @@ $LOG = 0;
 if (is_file('inc/config/local.inc'))
     include ('inc/config/local.inc');
 
-#------------------------
-
-include ('inc/functions/auth.inc');
-
 ?>

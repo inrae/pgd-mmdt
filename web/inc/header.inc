@@ -77,6 +77,8 @@ $HEADMAIN = $HEAD1.'
 #------------------------
 
 # Authentication information if applicable
+$DEVJS = '';
+include ('inc/functions/auth.inc');
 
 $infolog ='';
 if (! is_null($AUTH_TOKEN)) {
@@ -84,6 +86,7 @@ if (! is_null($AUTH_TOKEN)) {
     if (count($AUTH_ROLES)>0) $ROLES = implode(', ',$AUTH_ROLES);
     $infolog = '<div style="position: absolute; top: -1px; left: 10px;"><font size="-1">
             <i>&nbsp;<b>'.$AUTH_TOKEN['name']."</b> ( ".$ROLES.' ) - <a href="'.$PATH.'logout">Logout</a></i></font></div>';
+    $infolog .= '<script>'.$DEVJS.'</script>';
 }
 
 #------------------------
