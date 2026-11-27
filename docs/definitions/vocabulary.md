@@ -50,7 +50,7 @@ some_url:
 **4** - **Vocabulary based on a dictionary with multiple selection** (*multiselect*) 
 
 * [Dictionaries](../../dictionaries) allow you to record multiple information necessary to define an entity, such as the names of people or even the funders. These information, once entered and saved in a file called a dictionary. Based on a very simple JavaScript retrieving the complete list of items included in the dictionary, thus creating a sort of internal API, we can fill a Maggot field by  autocompletion related to a search for these items.
-* The JavaScript file must be named _**dico.js**_ and be present under _**web/cvlist/_dico_/**_ where _**dico**_ is the name of the dictionary. See for instance _[people.js][5]{:target="_blank"}_
+* The JavaScript file must be named _**dico.js**_ and be present under _**web/cvlist/_dico_/**_ where _**dico**_ is the name of the dictionary. See for instance [people.js][5]{:target="_blank"}
 
 <center>
 <a href="../../images/vocabulary_fig4.png" data-lightbox="fig4"><img src="../../images/vocabulary_fig4.png" width="800px"></a>
@@ -103,6 +103,8 @@ some_url:
 	* [web/inc/mapping/skosmos.inc][25]{:target="_blank"}
 
 <br>
+
+<a name="ontonote"></a>
 
 **Note regarding OntoPortal sites**
 
